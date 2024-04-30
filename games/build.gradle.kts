@@ -11,46 +11,30 @@ kotlin {
             }
         }
     }
-
-    val toExport = listOf(
-        projects.api,
-        projects.logs,
-        projects.resources,
-        projects.mvvm,
-        projects.dashboard,
-        projects.games,
-    )
-
+    
     listOf(
         iosX64(),
         iosArm64(),
         iosSimulatorArm64()
     ).forEach {
         it.binaries.framework {
-            baseName = "shared"
+            baseName = "games"
             isStatic = true
-            toExport.forEach { dep ->
-                export(dep)
-            }
         }
     }
 
     sourceSets {
         commonMain.dependencies {
-            toExport.forEach { api(it) }
-            implementation(libs.koin.core)
+            //put your multiplatform dependencies here
         }
         commonTest.dependencies {
             implementation(libs.kotlin.test)
-        }
-        androidMain.dependencies {
-            implementation(libs.koin.android)
         }
     }
 }
 
 android {
-    namespace = "com.opencritic.app"
+    namespace = "com.opencritic.games"
     compileSdk = 34
     defaultConfig {
         minSdk = 28

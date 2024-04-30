@@ -13,6 +13,13 @@
 		4256278C2BE0F05300EDEEEB /* Localizable.xcstrings in Resources */ = {isa = PBXBuildFile; fileRef = 4256278B2BE0F05300EDEEEB /* Localizable.xcstrings */; };
 		4256278E2BE0F0A100EDEEEB /* IosStringResourceProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4256278D2BE0F0A100EDEEEB /* IosStringResourceProvider.swift */; };
 		425627902BE0F17E00EDEEEB /* IosImagesResourceProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4256278F2BE0F17E00EDEEEB /* IosImagesResourceProvider.swift */; };
+		425627932BE109F400EDEEEB /* DashboardPopularGameListItemView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 425627922BE109F400EDEEEB /* DashboardPopularGameListItemView.swift */; };
+		425627952BE1109600EDEEEB /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 425627942BE1109600EDEEEB /* Images.xcassets */; };
+		425627992BE113F300EDEEEB /* DashboardPopularGamesHorizontalListItemView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 425627982BE113F300EDEEEB /* DashboardPopularGamesHorizontalListItemView.swift */; };
+		4256279B2BE1174B00EDEEEB /* DashboardTitleListItemView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4256279A2BE1174B00EDEEEB /* DashboardTitleListItemView.swift */; };
+		4256279D2BE119FB00EDEEEB /* DashboardStateErrorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4256279C2BE119FB00EDEEEB /* DashboardStateErrorView.swift */; };
+		4256279F2BE11A9200EDEEEB /* DashboardStateLoadingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4256279E2BE11A9200EDEEEB /* DashboardStateLoadingView.swift */; };
+		425627A12BE11AEE00EDEEEB /* DashboardStateContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 425627A02BE11AEE00EDEEEB /* DashboardStateContentView.swift */; };
 		7555FF83242A565900829871 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7555FF82242A565900829871 /* ContentView.swift */; };
 /* End PBXBuildFile section */
 
@@ -36,6 +43,13 @@
 		4256278B2BE0F05300EDEEEB /* Localizable.xcstrings */ = {isa = PBXFileReference; lastKnownFileType = text.json.xcstrings; path = Localizable.xcstrings; sourceTree = "<group>"; };
 		4256278D2BE0F0A100EDEEEB /* IosStringResourceProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IosStringResourceProvider.swift; sourceTree = "<group>"; };
 		4256278F2BE0F17E00EDEEEB /* IosImagesResourceProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IosImagesResourceProvider.swift; sourceTree = "<group>"; };
+		425627922BE109F400EDEEEB /* DashboardPopularGameListItemView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DashboardPopularGameListItemView.swift; sourceTree = "<group>"; };
+		425627942BE1109600EDEEEB /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
+		425627982BE113F300EDEEEB /* DashboardPopularGamesHorizontalListItemView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DashboardPopularGamesHorizontalListItemView.swift; sourceTree = "<group>"; };
+		4256279A2BE1174B00EDEEEB /* DashboardTitleListItemView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DashboardTitleListItemView.swift; sourceTree = "<group>"; };
+		4256279C2BE119FB00EDEEEB /* DashboardStateErrorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DashboardStateErrorView.swift; sourceTree = "<group>"; };
+		4256279E2BE11A9200EDEEEB /* DashboardStateLoadingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DashboardStateLoadingView.swift; sourceTree = "<group>"; };
+		425627A02BE11AEE00EDEEEB /* DashboardStateContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DashboardStateContentView.swift; sourceTree = "<group>"; };
 		7555FF7B242A565900829871 /* iosApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = iosApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		7555FF82242A565900829871 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		7555FF8C242A565B00829871 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -60,6 +74,19 @@
 			path = "Preview Content";
 			sourceTree = "<group>";
 		};
+		425627912BE109B900EDEEEB /* Dashboard */ = {
+			isa = PBXGroup;
+			children = (
+				425627922BE109F400EDEEEB /* DashboardPopularGameListItemView.swift */,
+				425627982BE113F300EDEEEB /* DashboardPopularGamesHorizontalListItemView.swift */,
+				4256279A2BE1174B00EDEEEB /* DashboardTitleListItemView.swift */,
+				4256279C2BE119FB00EDEEEB /* DashboardStateErrorView.swift */,
+				4256279E2BE11A9200EDEEEB /* DashboardStateLoadingView.swift */,
+				425627A02BE11AEE00EDEEEB /* DashboardStateContentView.swift */,
+			);
+			path = Dashboard;
+			sourceTree = "<group>";
+		};
 		7555FF72242A565900829871 = {
 			isa = PBXGroup;
 			children = (
@@ -80,6 +107,7 @@
 		7555FF7D242A565900829871 /* iosApp */ = {
 			isa = PBXGroup;
 			children = (
+				425627912BE109B900EDEEEB /* Dashboard */,
 				058557BA273AAA24004C7B11 /* Assets.xcassets */,
 				7555FF82242A565900829871 /* ContentView.swift */,
 				7555FF8C242A565B00829871 /* Info.plist */,
@@ -88,6 +116,7 @@
 				4256278B2BE0F05300EDEEEB /* Localizable.xcstrings */,
 				4256278D2BE0F0A100EDEEEB /* IosStringResourceProvider.swift */,
 				4256278F2BE0F17E00EDEEEB /* IosImagesResourceProvider.swift */,
+				425627942BE1109600EDEEEB /* Images.xcassets */,
 			);
 			path = iosApp;
 			sourceTree = "<group>";
@@ -160,6 +189,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				058557D9273AAEEB004C7B11 /* Preview Assets.xcassets in Resources */,
+				425627952BE1109600EDEEEB /* Images.xcassets in Resources */,
 				058557BB273AAA24004C7B11 /* Assets.xcassets in Resources */,
 				4256278C2BE0F05300EDEEEB /* Localizable.xcstrings in Resources */,
 			);
@@ -192,10 +222,16 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				425627A12BE11AEE00EDEEEB /* DashboardStateContentView.swift in Sources */,
+				425627992BE113F300EDEEEB /* DashboardPopularGamesHorizontalListItemView.swift in Sources */,
 				2152FB042600AC8F00CF470E /* iOSApp.swift in Sources */,
 				7555FF83242A565900829871 /* ContentView.swift in Sources */,
+				4256279B2BE1174B00EDEEEB /* DashboardTitleListItemView.swift in Sources */,
+				4256279F2BE11A9200EDEEEB /* DashboardStateLoadingView.swift in Sources */,
 				425627902BE0F17E00EDEEEB /* IosImagesResourceProvider.swift in Sources */,
 				4256278E2BE0F0A100EDEEEB /* IosStringResourceProvider.swift in Sources */,
+				4256279D2BE119FB00EDEEEB /* DashboardStateErrorView.swift in Sources */,
+				425627932BE109F400EDEEEB /* DashboardPopularGameListItemView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

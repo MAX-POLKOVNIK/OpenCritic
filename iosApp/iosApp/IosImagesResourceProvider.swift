@@ -10,5 +10,8 @@ import Foundation
 import shared
 
 class IosImagesResourceProvider : ImageResourceProvider {
-    
+    var fairHead: String { "fair-head" }
+    var mightyHead: String { "mighty-head" }
+    var strongHead: String { "strong-head" }
+    var weakHead: String { "weak-head" }
 }

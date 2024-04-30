@@ -6,7 +6,7 @@ import kotlinx.serialization.Serializable
 @Serializable
 data class PopularItemDto(
     val images: ImageBoxDto,
-    val topCriticScore: String,
+    val topCriticScore: Int,
     val tier: String,
     val name: String,
     val id: Long,

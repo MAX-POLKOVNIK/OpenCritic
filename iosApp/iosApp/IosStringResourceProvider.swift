@@ -10,5 +10,9 @@ import Foundation
 import shared
 
 class IosStringResourceProvider : StringResourceProvider {
+    func get(stringResource: String) -> String {
+        NSLocalizedString(stringResource, comment: stringResource)
+    }
+    
     var popularGames: String { "str_popular_games" }
 }

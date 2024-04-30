@@ -20,6 +20,12 @@
 		4256279D2BE119FB00EDEEEB /* DashboardStateErrorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4256279C2BE119FB00EDEEEB /* DashboardStateErrorView.swift */; };
 		4256279F2BE11A9200EDEEEB /* DashboardStateLoadingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4256279E2BE11A9200EDEEEB /* DashboardStateLoadingView.swift */; };
 		425627A12BE11AEE00EDEEEB /* DashboardStateContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 425627A02BE11AEE00EDEEEB /* DashboardStateContentView.swift */; };
+		425627A32BE11E5F00EDEEEB /* FlowView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 425627A22BE11E5F00EDEEEB /* FlowView.swift */; };
+		425627A52BE11EAD00EDEEEB /* ObservableViewModelState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 425627A42BE11EAD00EDEEEB /* ObservableViewModelState.swift */; };
+		425627A72BE11EFE00EDEEEB /* FlowPublisher.swift in Sources */ = {isa = PBXBuildFile; fileRef = 425627A62BE11EFE00EDEEEB /* FlowPublisher.swift */; };
+		425627A92BE11F5400EDEEEB /* DashboardScreenView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 425627A82BE11F5400EDEEEB /* DashboardScreenView.swift */; };
+		425627AB2BE124A500EDEEEB /* KoinViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 425627AA2BE124A500EDEEEB /* KoinViewModel.swift */; };
+		425627AE2BE135F300EDEEEB /* CachedAsyncImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 425627AD2BE135F300EDEEEB /* CachedAsyncImage.swift */; };
 		7555FF83242A565900829871 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7555FF82242A565900829871 /* ContentView.swift */; };
 /* End PBXBuildFile section */
 
@@ -50,6 +56,12 @@
 		4256279C2BE119FB00EDEEEB /* DashboardStateErrorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DashboardStateErrorView.swift; sourceTree = "<group>"; };
 		4256279E2BE11A9200EDEEEB /* DashboardStateLoadingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DashboardStateLoadingView.swift; sourceTree = "<group>"; };
 		425627A02BE11AEE00EDEEEB /* DashboardStateContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DashboardStateContentView.swift; sourceTree = "<group>"; };
+		425627A22BE11E5F00EDEEEB /* FlowView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FlowView.swift; sourceTree = "<group>"; };
+		425627A42BE11EAD00EDEEEB /* ObservableViewModelState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ObservableViewModelState.swift; sourceTree = "<group>"; };
+		425627A62BE11EFE00EDEEEB /* FlowPublisher.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FlowPublisher.swift; sourceTree = "<group>"; };
+		425627A82BE11F5400EDEEEB /* DashboardScreenView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DashboardScreenView.swift; sourceTree = "<group>"; };
+		425627AA2BE124A500EDEEEB /* KoinViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KoinViewModel.swift; sourceTree = "<group>"; };
+		425627AD2BE135F300EDEEEB /* CachedAsyncImage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CachedAsyncImage.swift; sourceTree = "<group>"; };
 		7555FF7B242A565900829871 /* iosApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = iosApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		7555FF82242A565900829871 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		7555FF8C242A565B00829871 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -83,8 +95,21 @@
 				4256279C2BE119FB00EDEEEB /* DashboardStateErrorView.swift */,
 				4256279E2BE11A9200EDEEEB /* DashboardStateLoadingView.swift */,
 				425627A02BE11AEE00EDEEEB /* DashboardStateContentView.swift */,
+				425627A82BE11F5400EDEEEB /* DashboardScreenView.swift */,
 			);
 			path = Dashboard;
+			sourceTree = "<group>";
+		};
+		425627AC2BE134C200EDEEEB /* Base */ = {
+			isa = PBXGroup;
+			children = (
+				425627A22BE11E5F00EDEEEB /* FlowView.swift */,
+				425627A42BE11EAD00EDEEEB /* ObservableViewModelState.swift */,
+				425627A62BE11EFE00EDEEEB /* FlowPublisher.swift */,
+				425627AA2BE124A500EDEEEB /* KoinViewModel.swift */,
+				425627AD2BE135F300EDEEEB /* CachedAsyncImage.swift */,
+			);
+			path = Base;
 			sourceTree = "<group>";
 		};
 		7555FF72242A565900829871 = {
@@ -107,6 +132,7 @@
 		7555FF7D242A565900829871 /* iosApp */ = {
 			isa = PBXGroup;
 			children = (
+				425627AC2BE134C200EDEEEB /* Base */,
 				425627912BE109B900EDEEEB /* Dashboard */,
 				058557BA273AAA24004C7B11 /* Assets.xcassets */,
 				7555FF82242A565900829871 /* ContentView.swift */,
@@ -226,12 +252,18 @@
 				425627992BE113F300EDEEEB /* DashboardPopularGamesHorizontalListItemView.swift in Sources */,
 				2152FB042600AC8F00CF470E /* iOSApp.swift in Sources */,
 				7555FF83242A565900829871 /* ContentView.swift in Sources */,
+				425627A72BE11EFE00EDEEEB /* FlowPublisher.swift in Sources */,
 				4256279B2BE1174B00EDEEEB /* DashboardTitleListItemView.swift in Sources */,
 				4256279F2BE11A9200EDEEEB /* DashboardStateLoadingView.swift in Sources */,
+				425627A92BE11F5400EDEEEB /* DashboardScreenView.swift in Sources */,
 				425627902BE0F17E00EDEEEB /* IosImagesResourceProvider.swift in Sources */,
+				425627A52BE11EAD00EDEEEB /* ObservableViewModelState.swift in Sources */,
+				425627AE2BE135F300EDEEEB /* CachedAsyncImage.swift in Sources */,
+				425627A32BE11E5F00EDEEEB /* FlowView.swift in Sources */,
 				4256278E2BE0F0A100EDEEEB /* IosStringResourceProvider.swift in Sources */,
 				4256279D2BE119FB00EDEEEB /* DashboardStateErrorView.swift in Sources */,
 				425627932BE109F400EDEEEB /* DashboardPopularGameListItemView.swift in Sources */,
+				425627AB2BE124A500EDEEEB /* KoinViewModel.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

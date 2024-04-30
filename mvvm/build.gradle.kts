@@ -26,9 +26,13 @@ kotlin {
     sourceSets {
         commonMain.dependencies {
             implementation(libs.androidx.lifecycle.viewmodel)
+            implementation(libs.koin.core)
         }
         commonTest.dependencies {
             implementation(libs.kotlin.test)
+        }
+        androidMain.dependencies {
+            implementation(libs.koin.android)
         }
     }
 }

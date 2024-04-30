@@ -16,8 +16,9 @@ struct DashboardPopularGameListItemView: View {
         VStack(
             alignment: .leading,
             content: {
-                AsyncImage(
-                    url: URL(string: item.posterUrl)
+                CachedAsyncImage(
+                    url: URL(string: item.posterUrl),
+                    urlCache: .imageCache
                 ) { image in
                     image.resizable()
                 } placeholder: {

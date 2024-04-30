@@ -34,7 +34,7 @@ class DashboardViewModel(
                                     stringResourceProvider.popularGames,
                                 ),
                                 stringResourceProvider.get(
-                                    stringResourceProvider.popularGames,
+                                    stringResourceProvider.popularGamesDescription,
                                 )
                             ),
                             popularGames = DashboardPopularGamesHorizontalListItem(

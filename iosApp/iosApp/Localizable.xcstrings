@@ -1,6 +1,9 @@
 {
   "sourceLanguage" : "en",
   "strings" : {
+    "Loading..." : {
+
+    },
     "str_popular_games" : {
       "extractionState" : "manual",
       "localizations" : {
@@ -8,6 +11,17 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Popular games"
+          }
+        }
+      }
+    },
+    "str_popular_games_description" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Don't miss the most popular games on OpenCritic today"
           }
         }
       }

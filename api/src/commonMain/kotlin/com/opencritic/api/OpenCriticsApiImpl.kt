@@ -12,5 +12,5 @@ internal class OpenCriticsApiImpl(
     private val client: HttpClient,
 ) : OpenCriticsApi {
     override suspend fun getGamePopular(): List<PopularItemDto> =
-        client.get(baseUrl + "popular").body()
+        client.get(baseUrl + "game/popular").body()
 }

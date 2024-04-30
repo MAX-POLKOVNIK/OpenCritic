@@ -4,5 +4,5 @@ import kotlinx.serialization.Serializable
 
 @Serializable
 data class ImagesDto(
-    val box: ImageBoxDto
+    val box: ImageBoxDto,
 )

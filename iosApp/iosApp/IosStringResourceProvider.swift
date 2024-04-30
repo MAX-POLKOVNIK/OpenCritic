@@ -15,4 +15,5 @@ class IosStringResourceProvider : StringResourceProvider {
     }
     
     var popularGames: String { "str_popular_games" }
+    var popularGamesDescription: String { "str_popular_games_description" }
 }

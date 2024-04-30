@@ -1,6 +1,7 @@
 package com.opencritic.dashboard.data
 
 import com.opencritic.api.OpenCriticsApi
+import com.opencritic.api.dto.image.prefixedImageUrl
 import com.opencritic.dashboard.domain.DashboardRepository
 import com.opencritic.dashboard.domain.PopularGame
 import com.opencritic.games.Tier
@@ -20,8 +21,8 @@ class DashboardRepositoryImpl(
                     PopularGame(
                         id = it.id,
                         name = it.name,
-                        posterUrl = it.images.sm,
-                        score = it.topCriticScore,
+                        posterUrl = it.images.box.sm.prefixedImageUrl(),
+                        score = it.topCriticScore.toInt(),
                         tier = Tier(it.tier)
                     )
                 }

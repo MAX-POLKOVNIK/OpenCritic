@@ -1,0 +1,3 @@
+package com.opencritic.resources
+
+interface ImageResourceProvider

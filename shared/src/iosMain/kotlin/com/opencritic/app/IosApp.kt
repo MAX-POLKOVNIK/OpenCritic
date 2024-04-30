@@ -1,15 +1,16 @@
 package com.opencritic.app
 
+import com.opencritic.resources.ImageResourceProvider
+import com.opencritic.resources.StringResourceProvider
 import org.koin.core.KoinApplication
-import platform.Foundation.NSLog
 
 object IosApp : BaseApp() {
-    fun init() {
-        onInit()
-        NSLog("Hello from KMP")
+    fun init(
+        stringResourceProvider: StringResourceProvider,
+        imageResourceProvider: ImageResourceProvider,
+    ) {
+        onInit(stringResourceProvider, imageResourceProvider)
     }
 
-    override fun onKoinInit(koinApplication: KoinApplication) {
-
-    }
+    override fun onKoinInit(koinApplication: KoinApplication) {}
 }

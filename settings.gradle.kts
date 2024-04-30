@@ -18,3 +18,6 @@ rootProject.name = "OpenCritic"
 include(":androidApp")
 include(":shared")
 include(":api")
+include(":logs")
+include(":mvvm")
+include(":resources")

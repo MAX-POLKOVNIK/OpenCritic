@@ -11,44 +11,30 @@ kotlin {
             }
         }
     }
-
-    val toExport = listOf(
-        projects.api,
-        projects.logs,
-        projects.resources,
-        projects.mvvm,
-    )
-
+    
     listOf(
         iosX64(),
         iosArm64(),
         iosSimulatorArm64()
     ).forEach {
         it.binaries.framework {
-            baseName = "shared"
+            baseName = "resources"
             isStatic = true
-            toExport.forEach { dep ->
-                export(dep)
-            }
         }
     }
 
     sourceSets {
         commonMain.dependencies {
-            toExport.forEach { api(it) }
             implementation(libs.koin.core)
         }
         commonTest.dependencies {
             implementation(libs.kotlin.test)
         }
-        androidMain.dependencies {
-            implementation(libs.koin.android)
-        }
     }
 }
 
 android {
-    namespace = "com.opencritic.app"
+    namespace = "com.opencritic.resources"
     compileSdk = 34
     defaultConfig {
         minSdk = 28

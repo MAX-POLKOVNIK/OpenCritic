@@ -13,7 +13,7 @@ struct DashboardPopularGamesHorizontalListItemView: View {
     let item: DashboardPopularGamesHorizontalListItem
     
     var body: some View {
-        ScrollView(.horizontal) {
+        ScrollView(.horizontal, showsIndicators: false) {
             LazyHStack(alignment: .top, spacing: 10) {
                 ForEach(item.items, id: \.self) { item in
                     DashboardPopularGameListItemView(
@@ -40,7 +40,7 @@ struct DashboardPopularGamesHorizontalListItemView_Previews: PreviewProvider {
                     ),
                     PopularGame(
                         id: 2,
-                        name: "Test",
+                        name: "Test sakdsfkl askldj akljs aklsdja",
                         posterUrl: "https://img.opencritic.com/game/14353/o/cDwMyHmW.jpg",
                         score: 32,
                         tier: Tier.fair

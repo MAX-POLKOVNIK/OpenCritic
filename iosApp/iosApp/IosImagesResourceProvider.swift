@@ -14,4 +14,10 @@ class IosImagesResourceProvider : ImageResourceProvider {
     var mightyHead: String { "mighty-head" }
     var strongHead: String { "strong-head" }
     var weakHead: String { "weak-head" }
+    
+    var tabBrowse: String { "list.dash.header.rectangle" }
+    var tabCalendar: String { "calendar" }
+    var tabMain: String { "newspaper" }
+    var tabSearch: String { "magnifyingglass" }
+    var tabYourList: String { "star" }
 }

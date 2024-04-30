@@ -26,6 +26,8 @@
 		425627A92BE11F5400EDEEEB /* DashboardScreenView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 425627A82BE11F5400EDEEEB /* DashboardScreenView.swift */; };
 		425627AB2BE124A500EDEEEB /* KoinViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 425627AA2BE124A500EDEEEB /* KoinViewModel.swift */; };
 		425627AE2BE135F300EDEEEB /* CachedAsyncImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 425627AD2BE135F300EDEEEB /* CachedAsyncImage.swift */; };
+		425627B12BE14A6A00EDEEEB /* MainStateView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 425627B02BE14A6A00EDEEEB /* MainStateView.swift */; };
+		425627B52BE151A500EDEEEB /* MainScreenView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 425627B42BE151A500EDEEEB /* MainScreenView.swift */; };
 		7555FF83242A565900829871 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7555FF82242A565900829871 /* ContentView.swift */; };
 /* End PBXBuildFile section */
 
@@ -62,6 +64,8 @@
 		425627A82BE11F5400EDEEEB /* DashboardScreenView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DashboardScreenView.swift; sourceTree = "<group>"; };
 		425627AA2BE124A500EDEEEB /* KoinViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KoinViewModel.swift; sourceTree = "<group>"; };
 		425627AD2BE135F300EDEEEB /* CachedAsyncImage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CachedAsyncImage.swift; sourceTree = "<group>"; };
+		425627B02BE14A6A00EDEEEB /* MainStateView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainStateView.swift; sourceTree = "<group>"; };
+		425627B42BE151A500EDEEEB /* MainScreenView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainScreenView.swift; sourceTree = "<group>"; };
 		7555FF7B242A565900829871 /* iosApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = iosApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		7555FF82242A565900829871 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		7555FF8C242A565B00829871 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -112,6 +116,15 @@
 			path = Base;
 			sourceTree = "<group>";
 		};
+		425627AF2BE14A5500EDEEEB /* Main */ = {
+			isa = PBXGroup;
+			children = (
+				425627B02BE14A6A00EDEEEB /* MainStateView.swift */,
+				425627B42BE151A500EDEEEB /* MainScreenView.swift */,
+			);
+			path = Main;
+			sourceTree = "<group>";
+		};
 		7555FF72242A565900829871 = {
 			isa = PBXGroup;
 			children = (
@@ -132,6 +145,7 @@
 		7555FF7D242A565900829871 /* iosApp */ = {
 			isa = PBXGroup;
 			children = (
+				425627AF2BE14A5500EDEEEB /* Main */,
 				425627AC2BE134C200EDEEEB /* Base */,
 				425627912BE109B900EDEEEB /* Dashboard */,
 				058557BA273AAA24004C7B11 /* Assets.xcassets */,
@@ -258,8 +272,10 @@
 				425627A92BE11F5400EDEEEB /* DashboardScreenView.swift in Sources */,
 				425627902BE0F17E00EDEEEB /* IosImagesResourceProvider.swift in Sources */,
 				425627A52BE11EAD00EDEEEB /* ObservableViewModelState.swift in Sources */,
+				425627B12BE14A6A00EDEEEB /* MainStateView.swift in Sources */,
 				425627AE2BE135F300EDEEEB /* CachedAsyncImage.swift in Sources */,
 				425627A32BE11E5F00EDEEEB /* FlowView.swift in Sources */,
+				425627B52BE151A500EDEEEB /* MainScreenView.swift in Sources */,
 				4256278E2BE0F0A100EDEEEB /* IosStringResourceProvider.swift in Sources */,
 				4256279D2BE119FB00EDEEEB /* DashboardStateErrorView.swift in Sources */,
 				425627932BE109F400EDEEEB /* DashboardPopularGameListItemView.swift in Sources */,
@@ -392,6 +408,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_ASSET_PATHS = "\"iosApp/Preview Content\"";
+				DEVELOPMENT_TEAM = Z3L9WQ82SG;
 				ENABLE_PREVIEWS = YES;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -408,7 +425,7 @@
 					"-framework",
 					shared,
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = orgIdentifier.iosApp;
+				PRODUCT_BUNDLE_IDENTIFIER = max.polkovnik.opencritic;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -421,6 +438,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_ASSET_PATHS = "\"iosApp/Preview Content\"";
+				DEVELOPMENT_TEAM = Z3L9WQ82SG;
 				ENABLE_PREVIEWS = YES;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -437,7 +455,7 @@
 					"-framework",
 					shared,
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = orgIdentifier.iosApp;
+				PRODUCT_BUNDLE_IDENTIFIER = max.polkovnik.opencritic;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";

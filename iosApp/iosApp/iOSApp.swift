@@ -11,7 +11,7 @@ struct iOSApp: App {
     }
 	var body: some Scene {
 		WindowGroup {
-			DashboardScreenView()
+			MainScreenView()
 		}
 	}
 }

@@ -4,6 +4,7 @@ import com.opencritic.api.apiModule
 import com.opencritic.dashboard.di.dashboardModule
 import com.opencritic.logs.Logger
 import com.opencritic.logs.logsModule
+import com.opencritic.main.di.mainModule
 import com.opencritic.resources.ImageResourceProvider
 import com.opencritic.resources.StringResourceProvider
 import com.opencritic.resources.resourcesModule
@@ -27,6 +28,7 @@ abstract class BaseApp : KoinComponent {
                 logsModule,
                 resourcesModule(stringResourceProvider, imageResourceProvider),
                 dashboardModule,
+                mainModule,
             )
         }
 

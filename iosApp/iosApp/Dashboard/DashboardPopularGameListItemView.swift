@@ -39,7 +39,8 @@ struct DashboardPopularGameListItemView: View {
                 Text(item.nameText)
                     .lineLimit(2)
                     .multilineTextAlignment(.leading)
-                    .frame(maxWidth: 128, alignment: .leading)
+                    .frame(maxWidth: 128, minHeight: 48, alignment: .topLeading)
+                    .fixedSize(horizontal: false, vertical: /*@START_MENU_TOKEN@*/true/*@END_MENU_TOKEN@*/)
             }
         )
     }

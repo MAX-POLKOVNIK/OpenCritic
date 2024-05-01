@@ -20,6 +20,7 @@ kotlin {
         projects.dashboard,
         projects.games,
         projects.main,
+        projects.navigation,
     )
 
     listOf(

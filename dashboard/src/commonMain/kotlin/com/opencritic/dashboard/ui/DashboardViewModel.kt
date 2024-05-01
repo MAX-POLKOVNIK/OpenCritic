@@ -3,6 +3,8 @@ package com.opencritic.dashboard.ui
 import com.opencritic.dashboard.domain.GetDashboardInteractor
 import com.opencritic.logs.Logger
 import com.opencritic.mvvm.BaseViewModel
+import com.opencritic.navigation.GameDetailsRoute
+import com.opencritic.navigation.Router
 import com.opencritic.resources.DateFormatter
 import com.opencritic.resources.ImageResourceProvider
 import com.opencritic.resources.StringResourceProvider
@@ -46,8 +48,9 @@ class DashboardViewModel(
                             popularGames = DashboardPosterGamesHorizontalListItem(
                                 dashboard.popularGames,
                                 imageResourceProvider,
-                                {}
-                            ),
+                            ) {
+                                requireRouter().navigateTo(GameDetailsRoute(it.id))
+                            },
                             dealsTitle = DashboardTitleListItem(
                                 stringResourceProvider.featuredDeals.get(stringResourceProvider),
                                 stringResourceProvider.featuredDealsDescription.get(stringResourceProvider),

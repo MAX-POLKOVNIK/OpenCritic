@@ -12,7 +12,9 @@ struct iOSApp: App {
     }
 	var body: some Scene {
 		WindowGroup {
-			MainScreenView()
+            RouterView {
+                MainScreenView()
+            }
 		}
 	}
 }

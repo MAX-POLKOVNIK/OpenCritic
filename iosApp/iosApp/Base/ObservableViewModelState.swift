@@ -11,9 +11,11 @@ import shared
 import Combine
 
 class ObservableViewModelState<T : ViewModelState>: ObservableObject {
-    @Published var value: T?
+    @Published var value: T
 
-    init(publisher: AnyPublisher<T, Never>) {
+    init(publisher: AnyPublisher<T, Never>, initial: T) {
+        value = initial
+        
         publisher
             .compactMap { $0 }
             .receive(on: DispatchQueue.main)

@@ -11,8 +11,8 @@ import shared
 import Combine
 
 func FlowPublisher<T>(_ flow: ViewModelStateFlow<T>) -> AnyPublisher<T, Never> {
-    return Deferred<Publishers.HandleEvents<PassthroughSubject<T, Never>>> {
-        let subject = PassthroughSubject<T, Never>()
+    return Deferred<Publishers.HandleEvents<CurrentValueSubject<T, Never>>> {
+        let subject = CurrentValueSubject<T, Never>(flow.value)
         
         let closable = flow.watch { next in
             subject.send(next)

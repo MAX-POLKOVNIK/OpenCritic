@@ -22,20 +22,12 @@ struct FlowView<State: ViewModelState, StateView>: View where StateView: View {
         @ViewBuilder viewProducer: @escaping (State) -> StateView
     ) {
         self.observableState =
-            ObservableViewModelState(publisher: FlowPublisher(flow))
+            ObservableViewModelState(publisher: FlowPublisher(flow), initial: flow.value)
         
         self.viewProducer = viewProducer
     }
 
     public var body: some View {
-        let view: AnyView
-        
-        if let state = self.observableState.value {
-            view = AnyView(viewProducer(state))
-        } else {
-            view = AnyView(EmptyView())
-        }
-        
-        return view
+        viewProducer(self.observableState.value)
     }
 }

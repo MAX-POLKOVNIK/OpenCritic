@@ -30,6 +30,7 @@ kotlin {
             implementation(projects.games)
             implementation(projects.api)
             implementation(projects.logs)
+            implementation(projects.navigation)
 
             implementation(libs.kotlinx.coroutines.core)
             implementation(libs.kotlinx.datetime)

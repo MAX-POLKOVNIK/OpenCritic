@@ -37,6 +37,9 @@ struct DashboardPosterGameListItemView: View {
                     .fixedSize(horizontal: false, vertical: /*@START_MENU_TOKEN@*/true/*@END_MENU_TOKEN@*/)
             }
         )
+        .onTapGesture {
+            item.click()
+        }
     }
 }
 

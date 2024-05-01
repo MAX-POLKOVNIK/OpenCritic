@@ -18,29 +18,23 @@ kotlin {
         iosSimulatorArm64()
     ).forEach {
         it.binaries.framework {
-            baseName = "mvvm"
+            baseName = "navigation"
             isStatic = true
         }
     }
 
     sourceSets {
         commonMain.dependencies {
-            implementation(projects.navigation)
-
-            implementation(libs.androidx.lifecycle.viewmodel)
-            implementation(libs.koin.core)
+            //put your multiplatform dependencies here
         }
         commonTest.dependencies {
             implementation(libs.kotlin.test)
-        }
-        androidMain.dependencies {
-            implementation(libs.koin.android)
         }
     }
 }
 
 android {
-    namespace = "com.opencritic.mvvm"
+    namespace = "com.opencritic.navigation"
     compileSdk = 34
     defaultConfig {
         minSdk = 28

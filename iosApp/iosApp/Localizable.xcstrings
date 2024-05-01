@@ -4,6 +4,39 @@
     "Loading..." : {
 
     },
+    "str_buy_now_on" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Buy Now on %@ "
+          }
+        }
+      }
+    },
+    "str_featured_deals" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Featured Deals"
+          }
+        }
+      }
+    },
+    "str_featured_deals_description" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "A selection of some of the best deals on OpenCritic"
+          }
+        }
+      }
+    },
     "str_popular_games" : {
       "extractionState" : "manual",
       "localizations" : {

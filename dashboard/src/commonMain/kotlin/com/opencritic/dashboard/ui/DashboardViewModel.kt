@@ -5,6 +5,7 @@ import com.opencritic.logs.Logger
 import com.opencritic.mvvm.BaseViewModel
 import com.opencritic.resources.ImageResourceProvider
 import com.opencritic.resources.StringResourceProvider
+import com.opencritic.resources.get
 import kotlinx.coroutines.launch
 
 class DashboardViewModel(
@@ -30,17 +31,24 @@ class DashboardViewModel(
                     mutableState.tryEmit(
                         DashboardState.Content(
                             popularGamesTitle = DashboardTitleListItem(
-                                stringResourceProvider.get(
-                                    stringResourceProvider.popularGames,
-                                ),
-                                stringResourceProvider.get(
-                                    stringResourceProvider.popularGamesDescription,
-                                )
+                                stringResourceProvider.popularGames.get(stringResourceProvider),
+                                stringResourceProvider.popularGamesDescription.get(stringResourceProvider),
                             ),
                             popularGames = DashboardPopularGamesHorizontalListItem(
                                 dashboard.popularGames,
                                 imageResourceProvider,
                                 {}
+                            ),
+                            dealsTitle = DashboardTitleListItem(
+                                stringResourceProvider.featuredDeals.get(stringResourceProvider),
+                                stringResourceProvider.featuredDealsDescription.get(stringResourceProvider),
+                            ),
+                            deals = DashboardDealsHorizontalListItem(
+                                deals = dashboard.deals,
+                                stringResourceProvider = stringResourceProvider,
+                                imageResourceProvider = imageResourceProvider,
+                                onClick = {},
+                                onBuyNowClick = {},
                             )
                         )
                     )

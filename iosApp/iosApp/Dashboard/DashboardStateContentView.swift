@@ -17,6 +17,10 @@ struct DashboardStateContentView: View {
             LazyVStack(alignment: .leading) {
                 DashboardTitleListItemView(item: state.popularGamesTitle)
                 DashboardPopularGamesHorizontalListItemView(item: state.popularGames)
+                Spacer()
+                    .frame(height: 16)
+                DashboardTitleListItemView(item: state.dealsTitle)
+                DashboardDealsHorizontalListItemView(item: state.deals)
             }
         }
     }
@@ -57,7 +61,52 @@ struct DashboardStateContentView: View {
                     ],
                     imageResourceProvider: IosImagesResourceProvider(),
                     onClick: {_ in }
-                )
+                ),
+            dealsTitle: DashboardTitleListItem(
+                title: "Deals",
+                subtitle: "Deals description"
+            ),
+            deals: DashboardDealsHorizontalListItem(
+                deals: [
+                    GameDeal(
+                        game: PopularGame(
+                            id: 1,
+                            name: "Test some long name",
+                            posterUrl: "https://img.opencritic.com/game/14353/o/cDwMyHmW.jpg",
+                            score: 32,
+                            tier: Tier.fair
+                        ),
+                        name: "Amazon",
+                        price: 49.99
+                    ),
+                    GameDeal(
+                        game: PopularGame(
+                            id: 2,
+                            name: "Test some long name",
+                            posterUrl: "https://img.opencritic.com/game/14353/o/cDwMyHmW.jpg",
+                            score: 32,
+                            tier: Tier.fair
+                        ),
+                        name: "Amazon",
+                        price: 49.99
+                    ),
+                    GameDeal(
+                        game: PopularGame(
+                            id: 3,
+                            name: "Test some long name",
+                            posterUrl: "https://img.opencritic.com/game/14353/o/cDwMyHmW.jpg",
+                            score: 32,
+                            tier: Tier.fair
+                        ),
+                        name: "Amazon",
+                        price: 49.99
+                    ),
+                ],
+                stringResourceProvider: IosStringResourceProvider(),
+                imageResourceProvider: IosImagesResourceProvider(),
+                onClick: { _ in },
+                onBuyNowClick: { _ in }
+            )
         )
     )
 }

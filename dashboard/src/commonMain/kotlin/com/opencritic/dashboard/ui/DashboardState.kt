@@ -8,5 +8,7 @@ sealed interface DashboardState : ViewModelState {
     data class Content(
         val popularGamesTitle: DashboardTitleListItem,
         val popularGames: DashboardPopularGamesHorizontalListItem,
+        val dealsTitle: DashboardTitleListItem,
+        val deals: DashboardDealsHorizontalListItem,
     ) : DashboardState
 }

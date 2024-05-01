@@ -28,6 +28,8 @@
 		425627AE2BE135F300EDEEEB /* CachedAsyncImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 425627AD2BE135F300EDEEEB /* CachedAsyncImage.swift */; };
 		425627B12BE14A6A00EDEEEB /* MainStateView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 425627B02BE14A6A00EDEEEB /* MainStateView.swift */; };
 		425627B52BE151A500EDEEEB /* MainScreenView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 425627B42BE151A500EDEEEB /* MainScreenView.swift */; };
+		425627B72BE1EAD300EDEEEB /* DashboardDealListItemView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 425627B62BE1EAD300EDEEEB /* DashboardDealListItemView.swift */; };
+		425627B92BE1EE8700EDEEEB /* DashboardDealsHorizontalListItemView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 425627B82BE1EE8700EDEEEB /* DashboardDealsHorizontalListItemView.swift */; };
 		7555FF83242A565900829871 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7555FF82242A565900829871 /* ContentView.swift */; };
 /* End PBXBuildFile section */
 
@@ -66,6 +68,8 @@
 		425627AD2BE135F300EDEEEB /* CachedAsyncImage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CachedAsyncImage.swift; sourceTree = "<group>"; };
 		425627B02BE14A6A00EDEEEB /* MainStateView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainStateView.swift; sourceTree = "<group>"; };
 		425627B42BE151A500EDEEEB /* MainScreenView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainScreenView.swift; sourceTree = "<group>"; };
+		425627B62BE1EAD300EDEEEB /* DashboardDealListItemView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DashboardDealListItemView.swift; sourceTree = "<group>"; };
+		425627B82BE1EE8700EDEEEB /* DashboardDealsHorizontalListItemView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DashboardDealsHorizontalListItemView.swift; sourceTree = "<group>"; };
 		7555FF7B242A565900829871 /* iosApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = iosApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		7555FF82242A565900829871 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		7555FF8C242A565B00829871 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -100,6 +104,8 @@
 				4256279E2BE11A9200EDEEEB /* DashboardStateLoadingView.swift */,
 				425627A02BE11AEE00EDEEEB /* DashboardStateContentView.swift */,
 				425627A82BE11F5400EDEEEB /* DashboardScreenView.swift */,
+				425627B62BE1EAD300EDEEEB /* DashboardDealListItemView.swift */,
+				425627B82BE1EE8700EDEEEB /* DashboardDealsHorizontalListItemView.swift */,
 			);
 			path = Dashboard;
 			sourceTree = "<group>";
@@ -272,12 +278,14 @@
 				425627A92BE11F5400EDEEEB /* DashboardScreenView.swift in Sources */,
 				425627902BE0F17E00EDEEEB /* IosImagesResourceProvider.swift in Sources */,
 				425627A52BE11EAD00EDEEEB /* ObservableViewModelState.swift in Sources */,
+				425627B92BE1EE8700EDEEEB /* DashboardDealsHorizontalListItemView.swift in Sources */,
 				425627B12BE14A6A00EDEEEB /* MainStateView.swift in Sources */,
 				425627AE2BE135F300EDEEEB /* CachedAsyncImage.swift in Sources */,
 				425627A32BE11E5F00EDEEEB /* FlowView.swift in Sources */,
 				425627B52BE151A500EDEEEB /* MainScreenView.swift in Sources */,
 				4256278E2BE0F0A100EDEEEB /* IosStringResourceProvider.swift in Sources */,
 				4256279D2BE119FB00EDEEEB /* DashboardStateErrorView.swift in Sources */,
+				425627B72BE1EAD300EDEEEB /* DashboardDealListItemView.swift in Sources */,
 				425627932BE109F400EDEEEB /* DashboardPopularGameListItemView.swift in Sources */,
 				425627AB2BE124A500EDEEEB /* KoinViewModel.swift in Sources */,
 			);

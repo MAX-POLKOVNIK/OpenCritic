@@ -6,7 +6,8 @@ class GetDashboardInteractor(
     suspend operator fun invoke(): Result<Dashboard> =
         runCatching {
             Dashboard(
-               popularGames = dashboardRepository.getPopularGames(),
+                popularGames = dashboardRepository.getPopularGames(),
+                deals = dashboardRepository.getDeals(),
             )
         }
 }

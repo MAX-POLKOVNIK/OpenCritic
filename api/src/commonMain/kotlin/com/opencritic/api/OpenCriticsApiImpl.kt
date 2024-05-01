@@ -1,5 +1,6 @@
 package com.opencritic.api
 
+import com.opencritic.api.dto.deal.DealItemDto
 import com.opencritic.api.dto.popular.PopularItemDto
 import io.ktor.client.HttpClient
 import io.ktor.client.call.body
@@ -13,4 +14,7 @@ internal class OpenCriticsApiImpl(
 ) : OpenCriticsApi {
     override suspend fun getGamePopular(): List<PopularItemDto> =
         client.get(baseUrl + "game/popular").body()
+
+    override suspend fun getDeals(): List<DealItemDto> =
+        client.get(baseUrl + "game/deals").body()
 }

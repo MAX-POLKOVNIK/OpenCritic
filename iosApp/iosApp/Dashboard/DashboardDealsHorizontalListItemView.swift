@@ -1,0 +1,76 @@
+//
+//  DashboardDealsHorizontalListItemView.swift
+//  iosApp
+//
+//  Created by Max Polkovnik on 01/05/2024.
+//  Copyright © 2024 orgName. All rights reserved.
+//
+
+import SwiftUI
+import shared
+
+struct DashboardDealsHorizontalListItemView: View {
+    let item: DashboardDealsHorizontalListItem
+    
+    var body: some View {
+        ScrollView(.horizontal, showsIndicators: false) {
+            LazyHStack(alignment: .top, spacing: 10) {
+                ForEach(item.items, id: \.self) { item in
+                    DashboardDealListItemView(
+                        item: item
+                    )
+                }
+            }
+            .padding(.horizontal)
+        }
+    }
+}
+
+struct DashboardDealsHorizontalListItemView_Previews: PreviewProvider {
+    static var previews: some View {
+        DashboardDealsHorizontalListItemView(
+            item: DashboardDealsHorizontalListItem(
+                deals: [
+                    GameDeal(
+                        game: PopularGame(
+                            id: 1,
+                            name: "Test some long name",
+                            posterUrl: "https://img.opencritic.com/game/14353/o/cDwMyHmW.jpg",
+                            score: 32,
+                            tier: Tier.fair
+                        ),
+                        name: "Amazon",
+                        price: 49.99
+                    ),
+                    GameDeal(
+                        game: PopularGame(
+                            id: 2,
+                            name: "Test some long name",
+                            posterUrl: "https://img.opencritic.com/game/14353/o/cDwMyHmW.jpg",
+                            score: 32,
+                            tier: Tier.fair
+                        ),
+                        name: "Amazon",
+                        price: 49.99
+                    ),
+                    GameDeal(
+                        game: PopularGame(
+                            id: 3,
+                            name: "Test some long name",
+                            posterUrl: "https://img.opencritic.com/game/14353/o/cDwMyHmW.jpg",
+                            score: 32,
+                            tier: Tier.fair
+                        ),
+                        name: "Amazon",
+                        price: 49.99
+                    ),
+                ],
+                stringResourceProvider: IosStringResourceProvider(),
+                imageResourceProvider: IosImagesResourceProvider(),
+                onClick: {_ in },
+                onBuyNowClick: { _ in }
+            )
+        )
+        .previewLayout(.fixed(width: 300, height: 600))
+    }
+}

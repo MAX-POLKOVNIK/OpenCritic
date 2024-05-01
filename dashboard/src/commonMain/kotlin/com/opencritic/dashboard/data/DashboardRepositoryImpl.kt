@@ -3,6 +3,7 @@ package com.opencritic.dashboard.data
 import com.opencritic.api.OpenCriticsApi
 import com.opencritic.api.dto.image.prefixedImageUrl
 import com.opencritic.dashboard.domain.DashboardRepository
+import com.opencritic.dashboard.domain.GameDeal
 import com.opencritic.dashboard.domain.PopularGame
 import com.opencritic.games.Tier
 import kotlinx.coroutines.CoroutineDispatcher
@@ -24,6 +25,24 @@ class DashboardRepositoryImpl(
                         posterUrl = it.images.box.sm.prefixedImageUrl(),
                         score = it.topCriticScore.toInt(),
                         tier = Tier(it.tier)
+                    )
+                }
+        }
+
+    override suspend fun getDeals(): List<GameDeal> =
+        withContext(defaultDispatcher) {
+            openCriticsApi.getDeals()
+                .map {
+                    GameDeal(
+                        game = PopularGame(
+                            id = it.id,
+                            name = it.name,
+                            posterUrl = it.images.box.sm.prefixedImageUrl(),
+                            score = it.topCriticScore.toInt(),
+                            tier = Tier(it.tier)
+                        ),
+                        name = it.featuredDeal.name,
+                        price = it.featuredDeal.price,
                     )
                 }
         }

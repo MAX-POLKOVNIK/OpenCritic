@@ -9,8 +9,8 @@
 import SwiftUI
 import shared
 
-struct DashboardPopularGameListItemView: View {
-    let item: DashboardPopularGameListItem
+struct DashboardPosterGameListItemView: View {
+    let item: DashboardPosterGameListItem
     
     var body: some View {
         VStack(
@@ -24,17 +24,11 @@ struct DashboardPopularGameListItemView: View {
                 } placeholder: {
                     Color.gray
                 }
-                .frame(width: 128, height: 192)
-                .clipShape(.rect(cornerRadius: 8))
-                HStack(
-                    content: {
-                        Image(item.headImageResource)
-                            .resizable()
-                            .aspectRatio(contentMode: .fit)
-                            .frame(width: 24, height: 24)
-                        Text(item.scoreText)
-                            .bold()
-                    }
+                    .frame(width: 128, height: 192)
+                    .clipShape(.rect(cornerRadius: 8))
+                
+                GameRankView(
+                    model: item.rank
                 )
                 Text(item.nameText)
                     .lineLimit(2)
@@ -46,16 +40,15 @@ struct DashboardPopularGameListItemView: View {
     }
 }
 
-struct DashboardPopularGameListItemView_Previews: PreviewProvider {
+struct DashboardPosterGameListItemView_Previews: PreviewProvider {
     static var previews: some View {
-        DashboardPopularGameListItemView(
-            item: DashboardPopularGameListItem(
-                game: PopularGame(
+        DashboardPosterGameListItemView(
+            item: DashboardPosterGameListItem(
+                game: PosterGame(
                     id: 1,
                     name: "Test some long name",
                     posterUrl: "https://img.opencritic.com/game/14353/o/cDwMyHmW.jpg",
-                    score: 32,
-                    tier: Tier.fair
+                    rank: GameRank(tier: Tier.fair, score: 32)
                 ),
                 imageResourceProvider: IosImagesResourceProvider(),
                 onClick: {_ in }

@@ -29,6 +29,9 @@ class IosStringResourceProvider : StringResourceProvider {
     var viewMore: String { "str_view_more" }
     var reviewedThisWeek: String { "str_reviewed_this_week" }
     
+    var hallOfFameFormatted: String { "str_hall_of_fame" }
+    var hallOfFameDescriptionFormatted: String { "str_hall_of_fame_description" }
+    
     var tabBrowse: String { "str_tab_browse" }
     var tabCalendar: String { "str_tab_calendar" }
     var tabMain: String { "str_tab_main" }

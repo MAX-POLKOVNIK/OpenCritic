@@ -3,7 +3,7 @@ package com.opencritic.dashboard.domain
 class GetDashboardInteractor(
     private val dashboardRepository: DashboardRepository,
 ) {
-    suspend operator fun invoke(): Result<Dashboard> =
+    suspend operator fun invoke(year: Int): Result<Dashboard> =
         runCatching {
             Dashboard(
                 popularGames = dashboardRepository.getPopularGames(),
@@ -11,6 +11,7 @@ class GetDashboardInteractor(
                 recentlyReleased = dashboardRepository.getRecentlyReleased(),
                 upcoming = dashboardRepository.getUpcoming(),
                 reviewedToday = dashboardRepository.getReviewedToday(),
+                hallOfFame = dashboardRepository.getHallOfFame(year)
             )
         }
 }

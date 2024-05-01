@@ -16,8 +16,8 @@ data class DashboardDealListItem(
     override val id: Long
         get() = gameDeal.game.id
 
-    val gameItem: DashboardPopularGameListItem
-        get() = DashboardPopularGameListItem(
+    val gameItem: DashboardPosterGameListItem
+        get() = DashboardPosterGameListItem(
             game = gameDeal.game,
             imageResourceProvider = imageResourceProvider,
             onClick = { onClick(this) }

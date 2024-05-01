@@ -28,4 +28,7 @@ internal class OpenCriticsApiImpl(
 
     override suspend fun getRecentlyReleased(): List<ReleasedGameDto> =
         client.get(baseUrl + "game/recently-released").body()
+
+    override suspend fun getHallOfFame(year: Int): List<ReleasedGameDto> =
+        client.get(baseUrl + "game/hall-of-fame/$year").body()
 }

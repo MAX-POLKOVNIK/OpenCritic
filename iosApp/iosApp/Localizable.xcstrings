@@ -40,6 +40,28 @@
         }
       }
     },
+    "str_hall_of_fame" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%@ Hall of Fame"
+          }
+        }
+      }
+    },
+    "str_hall_of_fame_description" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "The best games of %@ (so far)"
+          }
+        }
+      }
+    },
     "str_popular_games" : {
       "extractionState" : "manual",
       "localizations" : {

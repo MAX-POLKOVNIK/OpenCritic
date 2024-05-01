@@ -4,5 +4,6 @@ import kotlinx.serialization.Serializable
 
 @Serializable
 data class ImagesDto(
-    val box: ImageBoxDto,
+    val box: ImageLinksDto? = null,
+    val banner: ImageLinksDto? = null,
 )

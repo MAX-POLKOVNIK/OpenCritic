@@ -7,11 +7,13 @@ sealed interface DashboardState : ViewModelState {
     data class Error(val error: String) : DashboardState
     data class Content(
         val popularGamesTitle: DashboardTitleListItem,
-        val popularGames: DashboardPopularGamesHorizontalListItem,
+        val popularGames: DashboardPosterGamesHorizontalListItem,
         val dealsTitle: DashboardTitleListItem,
         val deals: DashboardDealsHorizontalListItem,
         val recentlyReleased: DashboardSublistListItem,
         val upcomingReleases: DashboardSublistListItem,
         val reviewedToday: DashboardSublistListItem,
+        val hallOfFameTitle: DashboardTitleListItem,
+        val hallOfFame: DashboardPosterGamesHorizontalListItem,
     ) : DashboardState
 }

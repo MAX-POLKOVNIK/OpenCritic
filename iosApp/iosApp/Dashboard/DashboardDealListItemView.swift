@@ -14,7 +14,7 @@ struct DashboardDealListItemView: View {
     
     var body: some View {
         VStack {
-            DashboardPopularGameListItemView(item: item.gameItem)
+            DashboardPosterGameListItemView(item: item.gameItem)
             Button(item.priceText) { item.buyNowClick() }
                 .bold()
             Button(item.buyNowText) { item.buyNowClick() }
@@ -29,12 +29,11 @@ struct DashboardDealListItemView_Previews: PreviewProvider {
         DashboardDealListItemView(
             item: DashboardDealListItem(
                 gameDeal: GameDeal(
-                    game: PopularGame(
+                    game: PosterGame(
                         id: 1,
                         name: "Test some long name",
                         posterUrl: "https://img.opencritic.com/game/14353/o/cDwMyHmW.jpg",
-                        score: 32,
-                        tier: Tier.fair
+                        rank: GameRank(tier: Tier.fair, score: 32)
                     ),
                     name: "Amazon",
                     price: 49.99

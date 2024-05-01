@@ -16,7 +16,7 @@ struct DashboardStateContentView: View {
         ScrollView(.vertical) {
             LazyVStack(alignment: .leading) {
                 DashboardTitleListItemView(item: state.popularGamesTitle)
-                DashboardPopularGamesHorizontalListItemView(item: state.popularGames)
+                DashboardPosterGamesHorizontalListItemView(item: state.popularGames)
                 Spacer()
                     .frame(height: 16)
                 DashboardTitleListItemView(item: state.dealsTitle)
@@ -32,6 +32,10 @@ struct DashboardStateContentView: View {
                 DashboardSublistListitemView(item: state.upcomingReleases)
                 Spacer()
                     .frame(height: 24)
+                DashboardTitleListItemView(item: state.hallOfFameTitle)
+                DashboardPosterGamesHorizontalListItemView(item: state.hallOfFame)
+                Spacer()
+                    .frame(height: 16)
             }
         }
     }
@@ -45,29 +49,26 @@ struct DashboardStateContentView: View {
                     title: "Hello",
                     subtitle: "Second string"
                 ),
-            popularGames: 
-                DashboardPopularGamesHorizontalListItem(
+            popularGames:
+                DashboardPosterGamesHorizontalListItem(
                     popularGames: [
-                        PopularGame(
+                        PosterGame(
                             id: 1,
                             name: "Test some long",
                             posterUrl: "https://img.opencritic.com/game/14353/o/cDwMyHmW.jpg",
-                            score: 32,
-                            tier: Tier.fair
+                            rank: GameRank(tier: Tier.fair, score: 32)
                         ),
-                        PopularGame(
+                        PosterGame(
                             id: 2,
                             name: "Test",
                             posterUrl: "https://img.opencritic.com/game/14353/o/cDwMyHmW.jpg",
-                            score: 32,
-                            tier: Tier.fair
+                            rank: GameRank(tier: Tier.fair, score: 32)
                         ),
-                        PopularGame(
+                        PosterGame(
                             id: 3,
                             name: "Test",
                             posterUrl: "https://img.opencritic.com/game/14353/o/cDwMyHmW.jpg",
-                            score: 32,
-                            tier: Tier.fair
+                            rank: GameRank(tier: Tier.fair, score: 32)
                         )
                     ],
                     imageResourceProvider: IosImagesResourceProvider(),
@@ -80,34 +81,31 @@ struct DashboardStateContentView: View {
             deals: DashboardDealsHorizontalListItem(
                 deals: [
                     GameDeal(
-                        game: PopularGame(
+                        game: PosterGame(
                             id: 1,
                             name: "Test some long name",
                             posterUrl: "https://img.opencritic.com/game/14353/o/cDwMyHmW.jpg",
-                            score: 32,
-                            tier: Tier.fair
+                            rank: GameRank(tier: Tier.fair, score: 32)
                         ),
                         name: "Amazon",
                         price: 49.99
                     ),
                     GameDeal(
-                        game: PopularGame(
+                        game: PosterGame(
                             id: 2,
                             name: "Test some long name",
                             posterUrl: "https://img.opencritic.com/game/14353/o/cDwMyHmW.jpg",
-                            score: 32,
-                            tier: Tier.fair
+                            rank: GameRank(tier: Tier.fair, score: 32)
                         ),
                         name: "Amazon",
                         price: 49.99
                     ),
                     GameDeal(
-                        game: PopularGame(
+                        game: PosterGame(
                             id: 3,
                             name: "Test some long name",
                             posterUrl: "https://img.opencritic.com/game/14353/o/cDwMyHmW.jpg",
-                            score: 32,
-                            tier: Tier.fair
+                            rank: GameRank(tier: Tier.fair, score: 32)
                         ),
                         name: "Amazon",
                         price: 49.99
@@ -120,7 +118,12 @@ struct DashboardStateContentView: View {
             ),
             recentlyReleased: DashboardSublistListItem(id: DashboardSublistListItem.Type_.recentlyreleased, titleText: "", items: [], viewMoreText: "", onMoreClick: { _ in }),
             upcomingReleases: DashboardSublistListItem(id: DashboardSublistListItem.Type_.recentlyreleased, titleText: "", items: [], viewMoreText: "", onMoreClick: { _ in }),
-            reviewedToday: DashboardSublistListItem(id: DashboardSublistListItem.Type_.recentlyreleased, titleText: "", items: [], viewMoreText: "", onMoreClick: { _ in })
+            reviewedToday: DashboardSublistListItem(id: DashboardSublistListItem.Type_.recentlyreleased, titleText: "", items: [], viewMoreText: "", onMoreClick: { _ in }),
+            hallOfFameTitle: DashboardTitleListItem(
+                title: "Hall of fame",
+                subtitle: "Hall of fame description"
+            ),
+            hallOfFame: DashboardPosterGamesHorizontalListItem(popularGames: [], imageResourceProvider: IosImagesResourceProvider(), onClick: { _ in })
         )
     )
 }

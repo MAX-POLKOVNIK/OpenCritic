@@ -7,6 +7,9 @@ import com.opencritic.resources.ImageResourceProvider
 import com.opencritic.resources.StringResourceProvider
 import com.opencritic.resources.get
 import kotlinx.coroutines.launch
+import kotlinx.datetime.Clock
+import kotlinx.datetime.TimeZone
+import kotlinx.datetime.toLocalDateTime
 
 class DashboardViewModel(
     private val getDashboardInteractor: GetDashboardInteractor,
@@ -20,7 +23,11 @@ class DashboardViewModel(
 
     init {
         scope.launch {
-            getDashboardInteractor()
+            val currentYear = Clock.System.now()
+                .toLocalDateTime(timeZone = TimeZone.UTC)
+                .year
+
+            getDashboardInteractor(currentYear)
                 .onFailure {
                     mutableState.tryEmit(
                         DashboardState.Error(it.toString())
@@ -34,7 +41,7 @@ class DashboardViewModel(
                                 stringResourceProvider.popularGames.get(stringResourceProvider),
                                 stringResourceProvider.popularGamesDescription.get(stringResourceProvider),
                             ),
-                            popularGames = DashboardPopularGamesHorizontalListItem(
+                            popularGames = DashboardPosterGamesHorizontalListItem(
                                 dashboard.popularGames,
                                 imageResourceProvider,
                                 {}
@@ -70,6 +77,15 @@ class DashboardViewModel(
                                 imageResourceProvider = imageResourceProvider,
                                 onItemClick = {},
                                 onMoreClick = {},
+                            ),
+                            hallOfFameTitle = DashboardTitleListItem(
+                                title = stringResourceProvider.hallOfFameFormatted.get(stringResourceProvider, currentYear.toString()),
+                                subtitle = stringResourceProvider.hallOfFameDescriptionFormatted.get(stringResourceProvider, currentYear.toString())
+                            ),
+                            hallOfFame = DashboardPosterGamesHorizontalListItem(
+                                dashboard.hallOfFame,
+                                imageResourceProvider,
+                                {}
                             )
                         )
                     )

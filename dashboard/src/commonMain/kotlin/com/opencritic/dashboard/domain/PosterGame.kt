@@ -1,11 +1,10 @@
 package com.opencritic.dashboard.domain
 
-import com.opencritic.games.Tier
+import com.opencritic.games.GameRank
 
-data class PopularGame(
+data class PosterGame(
     val id: Long,
     val name: String,
     val posterUrl: String,
-    val score: Int,
-    val tier: Tier,
+    val rank: GameRank?,
 )

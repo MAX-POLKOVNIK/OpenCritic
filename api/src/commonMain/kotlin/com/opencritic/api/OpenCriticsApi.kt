@@ -15,4 +15,6 @@ interface OpenCriticsApi {
     suspend fun getUpcoming(): List<ReleasedGameDto>
 
     suspend fun getRecentlyReleased(): List<ReleasedGameDto>
+
+    suspend fun getHallOfFame(year: Int): List<ReleasedGameDto>
 }

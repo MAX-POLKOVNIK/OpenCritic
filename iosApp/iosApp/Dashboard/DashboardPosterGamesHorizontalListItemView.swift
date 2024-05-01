@@ -9,14 +9,14 @@
 import SwiftUI
 import shared
 
-struct DashboardPopularGamesHorizontalListItemView: View {
-    let item: DashboardPopularGamesHorizontalListItem
+struct DashboardPosterGamesHorizontalListItemView: View {
+    let item: DashboardPosterGamesHorizontalListItem
     
     var body: some View {
         ScrollView(.horizontal, showsIndicators: false) {
             LazyHStack(alignment: .top, spacing: 10) {
                 ForEach(item.items, id: \.self) { item in
-                    DashboardPopularGameListItemView(
+                    DashboardPosterGameListItemView(
                         item: item
                     )
                 }
@@ -28,30 +28,27 @@ struct DashboardPopularGamesHorizontalListItemView: View {
 
 struct DashboardPopularGamesHorizontalListItemView_Previews: PreviewProvider {
     static var previews: some View {
-        DashboardPopularGamesHorizontalListItemView(
-            item: DashboardPopularGamesHorizontalListItem(
+        DashboardPosterGamesHorizontalListItemView(
+            item: DashboardPosterGamesHorizontalListItem(
                 popularGames: [
-                    PopularGame(
+                    PosterGame(
                         id: 1,
-                        name: "Test some long",
+                        name: "Test some long name",
                         posterUrl: "https://img.opencritic.com/game/14353/o/cDwMyHmW.jpg",
-                        score: 32,
-                        tier: Tier.fair
+                        rank: GameRank(tier: Tier.fair, score: 32)
                     ),
-                    PopularGame(
+                    PosterGame(
                         id: 2,
-                        name: "Test sakdsfkl askldj akljs aklsdja",
+                        name: "Test some long name",
                         posterUrl: "https://img.opencritic.com/game/14353/o/cDwMyHmW.jpg",
-                        score: 32,
-                        tier: Tier.fair
+                        rank: GameRank(tier: Tier.fair, score: 32)
                     ),
-                    PopularGame(
+                    PosterGame(
                         id: 3,
-                        name: "Test",
+                        name: "Test some long name",
                         posterUrl: "https://img.opencritic.com/game/14353/o/cDwMyHmW.jpg",
-                        score: 32,
-                        tier: Tier.fair
-                    )
+                        rank: GameRank(tier: Tier.fair, score: 32)
+                    ),
                 ],
                 imageResourceProvider: IosImagesResourceProvider(),
                 onClick: {_ in }

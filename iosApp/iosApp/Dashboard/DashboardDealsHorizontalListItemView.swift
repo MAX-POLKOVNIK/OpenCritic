@@ -32,34 +32,31 @@ struct DashboardDealsHorizontalListItemView_Previews: PreviewProvider {
             item: DashboardDealsHorizontalListItem(
                 deals: [
                     GameDeal(
-                        game: PopularGame(
+                        game: PosterGame(
                             id: 1,
                             name: "Test some long name",
                             posterUrl: "https://img.opencritic.com/game/14353/o/cDwMyHmW.jpg",
-                            score: 32,
-                            tier: Tier.fair
+                            rank: GameRank(tier: Tier.fair, score: 32)
                         ),
                         name: "Amazon",
                         price: 49.99
                     ),
                     GameDeal(
-                        game: PopularGame(
+                        game: PosterGame(
                             id: 2,
                             name: "Test some long name",
                             posterUrl: "https://img.opencritic.com/game/14353/o/cDwMyHmW.jpg",
-                            score: 32,
-                            tier: Tier.fair
+                            rank: GameRank(tier: Tier.fair, score: 32)
                         ),
                         name: "Amazon",
                         price: 49.99
                     ),
                     GameDeal(
-                        game: PopularGame(
+                        game: PosterGame(
                             id: 3,
                             name: "Test some long name",
                             posterUrl: "https://img.opencritic.com/game/14353/o/cDwMyHmW.jpg",
-                            score: 32,
-                            tier: Tier.fair
+                            rank: GameRank(tier: Tier.fair, score: 32)
                         ),
                         name: "Amazon",
                         price: 49.99

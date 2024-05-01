@@ -22,6 +22,9 @@ interface StringResourceProvider {
     val viewMore: StringResource
     val reviewedThisWeek: StringResource
 
+    val hallOfFameFormatted: StringResource
+    val hallOfFameDescriptionFormatted: StringResource
+
     val buyNowOnFormatted: StringResource
 }
 

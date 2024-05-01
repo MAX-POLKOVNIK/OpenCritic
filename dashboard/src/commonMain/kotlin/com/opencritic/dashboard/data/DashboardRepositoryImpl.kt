@@ -5,9 +5,8 @@ import com.opencritic.api.dto.image.prefixedImageUrl
 import com.opencritic.dashboard.domain.DashboardRepository
 import com.opencritic.dashboard.domain.GameDeal
 import com.opencritic.dashboard.domain.GameItem
-import com.opencritic.dashboard.domain.PopularGame
+import com.opencritic.dashboard.domain.PosterGame
 import com.opencritic.games.GameRank
-import com.opencritic.games.Tier
 import kotlinx.coroutines.CoroutineDispatcher
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.IO
@@ -17,16 +16,15 @@ class DashboardRepositoryImpl(
     private val openCriticsApi: OpenCriticsApi,
     private val defaultDispatcher: CoroutineDispatcher = Dispatchers.IO,
 ) : DashboardRepository {
-    override suspend fun getPopularGames(): List<PopularGame> =
+    override suspend fun getPopularGames(): List<PosterGame> =
         withContext(defaultDispatcher) {
             openCriticsApi.getGamePopular()
                 .map {
-                    PopularGame(
+                    PosterGame(
                         id = it.id,
                         name = it.name,
-                        posterUrl = it.images.box.sm.prefixedImageUrl(),
-                        score = it.topCriticScore.toInt(),
-                        tier = Tier(it.tier)
+                        posterUrl = it.images.box?.sm?.prefixedImageUrl() ?: it.images.banner?.sm?.prefixedImageUrl() ?: "",
+                        rank = GameRank(it.tier, it.topCriticScore),
                     )
                 }
         }
@@ -36,12 +34,11 @@ class DashboardRepositoryImpl(
             openCriticsApi.getDeals()
                 .map {
                     GameDeal(
-                        game = PopularGame(
+                        game = PosterGame(
                             id = it.id,
                             name = it.name,
-                            posterUrl = it.images.box.sm.prefixedImageUrl(),
-                            score = it.topCriticScore.toInt(),
-                            tier = Tier(it.tier)
+                            posterUrl = it.images.box?.sm?.prefixedImageUrl() ?: it.images.banner?.sm?.prefixedImageUrl() ?: "",
+                            rank = GameRank(it.tier, it.topCriticScore),
                         ),
                         name = it.featuredDeal.name,
                         price = it.featuredDeal.price,
@@ -57,12 +54,7 @@ class DashboardRepositoryImpl(
                         id = it.id,
                         name = it.name,
                         releaseDate = it.firstReleaseDate,
-                        rank =
-                            if (it.tier.isBlank() || it.topCriticScore < 0) null
-                            else GameRank(
-                                tier = Tier(it.tier),
-                                score = it.topCriticScore.toInt(),
-                            )
+                        rank = GameRank(it.tier, it.topCriticScore),
                     )
                 }
         }
@@ -75,12 +67,7 @@ class DashboardRepositoryImpl(
                         id = it.id,
                         name = it.name,
                         releaseDate = it.firstReleaseDate,
-                        rank =
-                            if (it.tier.isBlank() || it.topCriticScore < 0) null
-                            else GameRank(
-                                tier = Tier(it.tier),
-                                score = it.topCriticScore.toInt(),
-                            )
+                        rank = GameRank(it.tier, it.topCriticScore),
                     )
                 }
         }
@@ -93,12 +80,20 @@ class DashboardRepositoryImpl(
                         id = it.id,
                         name = it.name,
                         releaseDate = it.firstReleaseDate,
-                        rank =
-                            if (it.tier.isBlank() || it.topCriticScore < 0) null
-                            else GameRank(
-                                tier = Tier(it.tier),
-                                score = it.topCriticScore.toInt(),
-                            )
+                        rank = GameRank(it.tier, it.topCriticScore),
+                    )
+                }
+        }
+
+    override suspend fun getHallOfFame(year: Int): List<PosterGame> =
+        withContext(defaultDispatcher) {
+            openCriticsApi.getHallOfFame(year)
+                .map {
+                    PosterGame(
+                        id = it.id,
+                        name = it.name,
+                        posterUrl = it.images.box?.sm?.prefixedImageUrl() ?: it.images.banner?.sm?.prefixedImageUrl() ?: "",
+                        rank = GameRank(it.tier, it.topCriticScore),
                     )
                 }
         }

@@ -18,6 +18,28 @@
         }
       }
     },
+    "str_fair" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Fair"
+          }
+        }
+      }
+    },
+    "str_fair_description" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Games scored in the 30th - 60th percentiles. Some issues hold these games. "
+          }
+        }
+      }
+    },
     "str_featured_deals" : {
       "extractionState" : "manual",
       "localizations" : {
@@ -58,6 +80,28 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "The best games of %@ (so far)"
+          }
+        }
+      }
+    },
+    "str_mighty" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Mighty"
+          }
+        }
+      }
+    },
+    "str_mighty_description" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "The top 10% of game ratings. Best in their genre. Universal critical acclaim. "
           }
         }
       }
@@ -113,6 +157,28 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "REVIEWED TODAY"
+          }
+        }
+      }
+    },
+    "str_strong" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Strong"
+          }
+        }
+      }
+    },
+    "str_strong_description" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "The next 30% of all games scored on OpenCritic. Great execution with a few flaws."
           }
         }
       }
@@ -190,6 +256,61 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "View More"
+          }
+        }
+      }
+    },
+    "str_weak" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Weak"
+          }
+        }
+      }
+    },
+    "str_weak_description" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "The bottom 30% of game ratings. Games that missed on some key elements."
+          }
+        }
+      }
+    },
+    "who_is_mighty_man" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Who is \"Mighty Man\"?"
+          }
+        }
+      }
+    },
+    "who_is_mighty_man_color_description" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "The color scheme comes from video games, where \"orange\" loot is often best, with purple, blue, and green tiered loot following."
+          }
+        }
+      }
+    },
+    "who_is_mighty_man_description" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "\"Mighty Man\" is OpenCritic's way of tagging games based on the scores awarded to them by top critics."
           }
         }
       }

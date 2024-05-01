@@ -91,6 +91,10 @@ class DashboardViewModel(
                                 dashboard.hallOfFame,
                                 imageResourceProvider,
                                 {}
+                            ),
+                            whoIsMightyMan = DashboardMightyManListItem(
+                                stringResourceProvider,
+                                imageResourceProvider
                             )
                         )
                     )

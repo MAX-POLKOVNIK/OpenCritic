@@ -14,6 +14,22 @@ class IosStringResourceProvider : StringResourceProvider {
         String(format: NSLocalizedString(stringResource, comment: stringResource), args.map { $0 as CVarArg })
     }
     
+    var fair: String { "str_fair" }
+    var fairDescription: String { "str_fair_description" }
+    
+    var mighty: String { "str_mighty" }
+    var mightyDescription: String { "str_mighty_description" }
+    
+    var strong: String { "str_strong" }
+    var strongDescription: String { "str_strong_description" }
+    
+    var weak: String { "str_weak" }
+    var weakDescription: String { "str_weak_description" }
+    
+    var whoIsMightyMan: String { "who_is_mighty_man" }
+    var whoIsMightyManColorDescription: String { "who_is_mighty_man_color_description" }
+    var whoIsMightyManDescription: String { "who_is_mighty_man_description" }
+    
     var buyNowOnFormatted: String { "str_buy_now_on" }
     
     var popularGames: String { "str_popular_games" }

@@ -34,6 +34,8 @@
 		42E2F09C2BE2085800B76F14 /* DashboardGameListItemView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42E2F09B2BE2085800B76F14 /* DashboardGameListItemView.swift */; };
 		42E2F09E2BE2098C00B76F14 /* DashboardSublistListitemView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42E2F09D2BE2098C00B76F14 /* DashboardSublistListitemView.swift */; };
 		42E2F0A02BE21B7700B76F14 /* IosDateFormatter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42E2F09F2BE21B7700B76F14 /* IosDateFormatter.swift */; };
+		42E2F0A22BE226B700B76F14 /* DashboardMightyManItemListItemView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42E2F0A12BE226B700B76F14 /* DashboardMightyManItemListItemView.swift */; };
+		42E2F0A42BE2288200B76F14 /* DashboardMightyManListItemView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42E2F0A32BE2288200B76F14 /* DashboardMightyManListItemView.swift */; };
 		7555FF83242A565900829871 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7555FF82242A565900829871 /* ContentView.swift */; };
 /* End PBXBuildFile section */
 
@@ -78,6 +80,8 @@
 		42E2F09B2BE2085800B76F14 /* DashboardGameListItemView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DashboardGameListItemView.swift; sourceTree = "<group>"; };
 		42E2F09D2BE2098C00B76F14 /* DashboardSublistListitemView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DashboardSublistListitemView.swift; sourceTree = "<group>"; };
 		42E2F09F2BE21B7700B76F14 /* IosDateFormatter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IosDateFormatter.swift; sourceTree = "<group>"; };
+		42E2F0A12BE226B700B76F14 /* DashboardMightyManItemListItemView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DashboardMightyManItemListItemView.swift; sourceTree = "<group>"; };
+		42E2F0A32BE2288200B76F14 /* DashboardMightyManListItemView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DashboardMightyManListItemView.swift; sourceTree = "<group>"; };
 		7555FF7B242A565900829871 /* iosApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = iosApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		7555FF82242A565900829871 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		7555FF8C242A565B00829871 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -116,6 +120,8 @@
 				425627B82BE1EE8700EDEEEB /* DashboardDealsHorizontalListItemView.swift */,
 				42E2F09B2BE2085800B76F14 /* DashboardGameListItemView.swift */,
 				42E2F09D2BE2098C00B76F14 /* DashboardSublistListitemView.swift */,
+				42E2F0A12BE226B700B76F14 /* DashboardMightyManItemListItemView.swift */,
+				42E2F0A32BE2288200B76F14 /* DashboardMightyManListItemView.swift */,
 			);
 			path = Dashboard;
 			sourceTree = "<group>";
@@ -305,10 +311,12 @@
 				425627AE2BE135F300EDEEEB /* CachedAsyncImage.swift in Sources */,
 				42E2F09C2BE2085800B76F14 /* DashboardGameListItemView.swift in Sources */,
 				425627A32BE11E5F00EDEEEB /* FlowView.swift in Sources */,
+				42E2F0A42BE2288200B76F14 /* DashboardMightyManListItemView.swift in Sources */,
 				425627B52BE151A500EDEEEB /* MainScreenView.swift in Sources */,
 				42E2F09E2BE2098C00B76F14 /* DashboardSublistListitemView.swift in Sources */,
 				4256278E2BE0F0A100EDEEEB /* IosStringResourceProvider.swift in Sources */,
 				4256279D2BE119FB00EDEEEB /* DashboardStateErrorView.swift in Sources */,
+				42E2F0A22BE226B700B76F14 /* DashboardMightyManItemListItemView.swift in Sources */,
 				425627B72BE1EAD300EDEEEB /* DashboardDealListItemView.swift in Sources */,
 				425627932BE109F400EDEEEB /* DashboardPosterGameListItemView.swift in Sources */,
 				425627AB2BE124A500EDEEEB /* KoinViewModel.swift in Sources */,

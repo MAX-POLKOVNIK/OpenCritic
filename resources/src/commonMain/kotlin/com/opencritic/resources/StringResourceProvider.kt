@@ -3,6 +3,20 @@ package com.opencritic.resources
 interface StringResourceProvider {
     fun get(stringResource: StringResource, args: List<String>): String
 
+    val mighty: StringResource
+    val strong: StringResource
+    val fair: StringResource
+    val weak: StringResource
+
+    val mightyDescription: StringResource
+    val strongDescription: StringResource
+    val fairDescription: StringResource
+    val weakDescription: StringResource
+
+    val whoIsMightyMan: StringResource
+    val whoIsMightyManDescription: StringResource
+    val whoIsMightyManColorDescription: StringResource
+
     val tabMain: StringResource
     val tabSearch: StringResource
     val tabBrowse: StringResource

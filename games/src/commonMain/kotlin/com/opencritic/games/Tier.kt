@@ -1,10 +1,10 @@
 package com.opencritic.games
 
 enum class Tier {
-    Weak,
-    Fair,
+    Mighty,
     Strong,
-    Mighty;
+    Fair,
+    Weak,
 }
 
 fun Tier(str: String): Tier =

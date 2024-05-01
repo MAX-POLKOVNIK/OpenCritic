@@ -19,6 +19,7 @@ struct DashboardGameListItemView: View {
                 .lineLimit(1)
             Spacer()
             Text(item.dateText)
+                .frame(minWidth: 70, alignment: .leading)
         }
         .padding(.horizontal)
     }

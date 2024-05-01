@@ -3,6 +3,7 @@ package com.opencritic.dashboard.ui
 import com.opencritic.dashboard.domain.GetDashboardInteractor
 import com.opencritic.logs.Logger
 import com.opencritic.mvvm.BaseViewModel
+import com.opencritic.resources.DateFormatter
 import com.opencritic.resources.ImageResourceProvider
 import com.opencritic.resources.StringResourceProvider
 import com.opencritic.resources.get
@@ -15,6 +16,7 @@ class DashboardViewModel(
     private val getDashboardInteractor: GetDashboardInteractor,
     private val stringResourceProvider: StringResourceProvider,
     private val imageResourceProvider: ImageResourceProvider,
+    private val dateFormatter: DateFormatter,
     private val logger: Logger,
 ) : BaseViewModel<DashboardState>() {
 
@@ -61,6 +63,7 @@ class DashboardViewModel(
                                 gameItems = dashboard.reviewedToday,
                                 stringResourceProvider = stringResourceProvider,
                                 imageResourceProvider = imageResourceProvider,
+                                dateFormatter = dateFormatter,
                                 onItemClick = {},
                                 onMoreClick = {},
                             ),
@@ -68,6 +71,7 @@ class DashboardViewModel(
                                 gameItems = dashboard.upcoming,
                                 stringResourceProvider = stringResourceProvider,
                                 imageResourceProvider = imageResourceProvider,
+                                dateFormatter = dateFormatter,
                                 onItemClick = {},
                                 onMoreClick = {},
                             ),
@@ -75,6 +79,7 @@ class DashboardViewModel(
                                 gameItems = dashboard.recentlyReleased,
                                 stringResourceProvider = stringResourceProvider,
                                 imageResourceProvider = imageResourceProvider,
+                                dateFormatter = dateFormatter,
                                 onItemClick = {},
                                 onMoreClick = {},
                             ),

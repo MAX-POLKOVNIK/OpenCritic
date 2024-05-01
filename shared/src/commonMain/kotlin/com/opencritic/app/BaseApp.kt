@@ -5,6 +5,7 @@ import com.opencritic.dashboard.di.dashboardModule
 import com.opencritic.logs.Logger
 import com.opencritic.logs.logsModule
 import com.opencritic.main.di.mainModule
+import com.opencritic.resources.DateFormatter
 import com.opencritic.resources.ImageResourceProvider
 import com.opencritic.resources.StringResourceProvider
 import com.opencritic.resources.resourcesModule
@@ -19,6 +20,7 @@ abstract class BaseApp : KoinComponent {
     internal fun onInit(
         stringResourceProvider: StringResourceProvider,
         imageResourceProvider: ImageResourceProvider,
+        dateFormatter: DateFormatter,
     ) {
         startKoin {
             onKoinInit(this)
@@ -26,7 +28,7 @@ abstract class BaseApp : KoinComponent {
             modules(
                 apiModule,
                 logsModule,
-                resourcesModule(stringResourceProvider, imageResourceProvider),
+                resourcesModule(stringResourceProvider, imageResourceProvider, dateFormatter),
                 dashboardModule,
                 mainModule,
             )

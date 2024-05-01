@@ -6,7 +6,8 @@ struct iOSApp: App {
     init() {
         IosApp.shared.doInit(
             stringResourceProvider: IosStringResourceProvider(),
-            imageResourceProvider: IosImagesResourceProvider()
+            imageResourceProvider: IosImagesResourceProvider(),
+            dateFormatter: IosDateFormatter()
         )
     }
 	var body: some Scene {

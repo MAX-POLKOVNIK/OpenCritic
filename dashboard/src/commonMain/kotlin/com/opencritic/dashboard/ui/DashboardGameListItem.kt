@@ -4,6 +4,7 @@ import com.opencritic.dashboard.domain.GameItem
 import com.opencritic.games.GameRank
 import com.opencritic.games.GameRankModel
 import com.opencritic.mvvm.ListItem
+import com.opencritic.resources.DateFormatter
 import com.opencritic.resources.ImageResourceProvider
 import kotlinx.datetime.Instant
 import kotlinx.datetime.LocalDate
@@ -23,22 +24,13 @@ data class DashboardGameListItem(
     constructor(
         gameItem: GameItem,
         imageResourceProvider: ImageResourceProvider,
+        dateFormatter: DateFormatter,
         onClick: (DashboardGameListItem) -> Unit,
     ) : this(
         id = gameItem.id,
         rank = GameRankModel(imageResourceProvider, gameItem.rank),
         nameText = gameItem.name,
-        dateText = gameItem.releaseDate.format(),
+        dateText = dateFormatter.formatShort(gameItem.releaseDate.toLocalDateTime(TimeZone.UTC).date),
         onClick = onClick,
     )
 }
-
-@OptIn(FormatStringsInDatetimeFormats::class)
-val dateTimeFormat = LocalDate.Format {
-    byUnicodePattern("MM dd")
-}
-
-private fun Instant.format(): String =
-    toLocalDateTime(TimeZone.UTC)
-        .date
-        .format(dateTimeFormat)

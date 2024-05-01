@@ -21,6 +21,17 @@ struct DashboardStateContentView: View {
                     .frame(height: 16)
                 DashboardTitleListItemView(item: state.dealsTitle)
                 DashboardDealsHorizontalListItemView(item: state.deals)
+                Spacer()
+                    .frame(height: 16)
+                DashboardSublistListitemView(item: state.reviewedToday)
+                Spacer()
+                    .frame(height: 24)
+                DashboardSublistListitemView(item: state.recentlyReleased)
+                Spacer()
+                    .frame(height: 24)
+                DashboardSublistListitemView(item: state.upcomingReleases)
+                Spacer()
+                    .frame(height: 24)
             }
         }
     }
@@ -106,7 +117,10 @@ struct DashboardStateContentView: View {
                 imageResourceProvider: IosImagesResourceProvider(),
                 onClick: { _ in },
                 onBuyNowClick: { _ in }
-            )
+            ),
+            recentlyReleased: DashboardSublistListItem(id: DashboardSublistListItem.Type_.recentlyreleased, titleText: "", items: [], viewMoreText: "", onMoreClick: { _ in }),
+            upcomingReleases: DashboardSublistListItem(id: DashboardSublistListItem.Type_.recentlyreleased, titleText: "", items: [], viewMoreText: "", onMoreClick: { _ in }),
+            reviewedToday: DashboardSublistListItem(id: DashboardSublistListItem.Type_.recentlyreleased, titleText: "", items: [], viewMoreText: "", onMoreClick: { _ in })
         )
     )
 }

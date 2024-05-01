@@ -8,6 +8,9 @@ class GetDashboardInteractor(
             Dashboard(
                 popularGames = dashboardRepository.getPopularGames(),
                 deals = dashboardRepository.getDeals(),
+                recentlyReleased = dashboardRepository.getRecentlyReleased(),
+                upcoming = dashboardRepository.getUpcoming(),
+                reviewedToday = dashboardRepository.getReviewedToday(),
             )
         }
 }

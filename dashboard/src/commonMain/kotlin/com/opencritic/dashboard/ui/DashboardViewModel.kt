@@ -49,6 +49,27 @@ class DashboardViewModel(
                                 imageResourceProvider = imageResourceProvider,
                                 onClick = {},
                                 onBuyNowClick = {},
+                            ),
+                            reviewedToday = DashboardSublistListItem.reviewedToday(
+                                gameItems = dashboard.reviewedToday,
+                                stringResourceProvider = stringResourceProvider,
+                                imageResourceProvider = imageResourceProvider,
+                                onItemClick = {},
+                                onMoreClick = {},
+                            ),
+                            upcomingReleases = DashboardSublistListItem.upcomingReleases(
+                                gameItems = dashboard.upcoming,
+                                stringResourceProvider = stringResourceProvider,
+                                imageResourceProvider = imageResourceProvider,
+                                onItemClick = {},
+                                onMoreClick = {},
+                            ),
+                            recentlyReleased = DashboardSublistListItem.recentlyReleased(
+                                gameItems = dashboard.recentlyReleased,
+                                stringResourceProvider = stringResourceProvider,
+                                imageResourceProvider = imageResourceProvider,
+                                onItemClick = {},
+                                onMoreClick = {},
                             )
                         )
                     )

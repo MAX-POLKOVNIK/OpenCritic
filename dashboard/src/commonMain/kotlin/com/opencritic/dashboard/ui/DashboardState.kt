@@ -10,5 +10,8 @@ sealed interface DashboardState : ViewModelState {
         val popularGames: DashboardPopularGamesHorizontalListItem,
         val dealsTitle: DashboardTitleListItem,
         val deals: DashboardDealsHorizontalListItem,
+        val recentlyReleased: DashboardSublistListItem,
+        val upcomingReleases: DashboardSublistListItem,
+        val reviewedToday: DashboardSublistListItem,
     ) : DashboardState
 }

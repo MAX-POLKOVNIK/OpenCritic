@@ -15,6 +15,13 @@ interface StringResourceProvider {
     val featuredDeals: StringResource
     val featuredDealsDescription: StringResource
 
+    val recentlyReleased: StringResource
+    val upcomingReleases: StringResource
+    val reviewedToday: StringResource
+
+    val viewMore: StringResource
+    val reviewedThisWeek: StringResource
+
     val buyNowOnFormatted: StringResource
 }
 

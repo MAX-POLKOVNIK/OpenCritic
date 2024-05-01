@@ -8,6 +8,7 @@ androidx-activityCompose = "1.8.0"
 ktor = "2.3.10"
 kotlinXSerialization = "1.6.2"
 kotlinXCoroutines = "1.8.1-Beta"
+kotlinXDatetime = "0.6.0-RC.2"
 koin = "3.4.3"
 lifecycle_version = "2.8.0-alpha03"
 
@@ -29,6 +30,7 @@ ktor-client-logging = { module = "io.ktor:ktor-client-logging", version.ref = "k
 kotlinx-coroutines-core = { module = "org.jetbrains.kotlinx:kotlinx-coroutines-core", version.ref = "kotlinXCoroutines" }
 kotlinx-coroutines-android = { module = "org.jetbrains.kotlinx:kotlinx-coroutines-android", version.ref = "kotlinXCoroutines" }
 kotlinx-serialization = { module = "org.jetbrains.kotlinx:kotlinx-serialization-json", version.ref = "kotlinXSerialization"}
+kotlinx-datetime = { module = "org.jetbrains.kotlinx:kotlinx-datetime", version.ref = "kotlinXDatetime" }
 koin-android = { module = "io.insert-koin:koin-android", version.ref = "koin" }
 koin-core = { module = "io.insert-koin:koin-core", version.ref = "koin" }
 

@@ -22,6 +22,13 @@ class IosStringResourceProvider : StringResourceProvider {
     var featuredDeals: String { "str_featured_deals" }
     var featuredDealsDescription: String { "str_featured_deals_description" }
     
+    var recentlyReleased: String { "str_recently_released" }
+    var reviewedToday: String { "str_reviewed_today" }
+    var upcomingReleases: String { "str_upcoming_releases" }
+    
+    var viewMore: String { "str_view_more" }
+    var reviewedThisWeek: String { "str_reviewed_this_week" }
+    
     var tabBrowse: String { "str_tab_browse" }
     var tabCalendar: String { "str_tab_calendar" }
     var tabMain: String { "str_tab_main" }

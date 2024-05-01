@@ -1,6 +1,9 @@
 {
   "sourceLanguage" : "en",
   "strings" : {
+    "?" : {
+
+    },
     "Loading..." : {
 
     },
@@ -59,6 +62,39 @@
         }
       }
     },
+    "str_recently_released" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "RECENTLY RELEASED"
+          }
+        }
+      }
+    },
+    "str_reviewed_this_week" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Reviewed This Week"
+          }
+        }
+      }
+    },
+    "str_reviewed_today" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "REVIEWED TODAY"
+          }
+        }
+      }
+    },
     "str_tab_browse" : {
       "extractionState" : "manual",
       "localizations" : {
@@ -110,6 +146,28 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Your Lists"
+          }
+        }
+      }
+    },
+    "str_upcoming_releases" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "UPCOMING RELEASES"
+          }
+        }
+      }
+    },
+    "str_view_more" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "View More"
           }
         }
       }

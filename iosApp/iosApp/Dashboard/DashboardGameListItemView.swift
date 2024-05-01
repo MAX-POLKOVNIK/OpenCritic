@@ -21,7 +21,9 @@ struct DashboardGameListItemView: View {
             Text(item.dateText)
                 .frame(minWidth: 70, alignment: .leading)
         }
-        .padding(.horizontal)
+            .padding(.horizontal)
+            .contentShape(Rectangle())
+            .onTapGesture { item.click() }
     }
 }
 

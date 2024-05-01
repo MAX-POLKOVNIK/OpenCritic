@@ -33,4 +33,6 @@ data class DashboardGameListItem(
         dateText = dateFormatter.formatShort(gameItem.releaseDate.toLocalDateTime(TimeZone.UTC).date),
         onClick = onClick,
     )
+
+    fun click() = onClick(this)
 }

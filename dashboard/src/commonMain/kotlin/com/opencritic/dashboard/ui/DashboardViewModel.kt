@@ -4,7 +4,6 @@ import com.opencritic.dashboard.domain.GetDashboardInteractor
 import com.opencritic.logs.Logger
 import com.opencritic.mvvm.BaseViewModel
 import com.opencritic.navigation.GameDetailsRoute
-import com.opencritic.navigation.Router
 import com.opencritic.resources.DateFormatter
 import com.opencritic.resources.ImageResourceProvider
 import com.opencritic.resources.StringResourceProvider
@@ -49,7 +48,7 @@ class DashboardViewModel(
                                 dashboard.popularGames,
                                 imageResourceProvider,
                             ) {
-                                requireRouter().navigateTo(GameDetailsRoute(it.id))
+                                navigateToGame(it.id)
                             },
                             dealsTitle = DashboardTitleListItem(
                                 stringResourceProvider.featuredDeals.get(stringResourceProvider),
@@ -59,7 +58,7 @@ class DashboardViewModel(
                                 deals = dashboard.deals,
                                 stringResourceProvider = stringResourceProvider,
                                 imageResourceProvider = imageResourceProvider,
-                                onClick = {},
+                                onClick = { navigateToGame(it.id) },
                                 onBuyNowClick = {},
                             ),
                             reviewedToday = DashboardSublistListItem.reviewedToday(
@@ -67,7 +66,7 @@ class DashboardViewModel(
                                 stringResourceProvider = stringResourceProvider,
                                 imageResourceProvider = imageResourceProvider,
                                 dateFormatter = dateFormatter,
-                                onItemClick = {},
+                                onItemClick = { navigateToGame(it.id) },
                                 onMoreClick = {},
                             ),
                             upcomingReleases = DashboardSublistListItem.upcomingReleases(
@@ -75,7 +74,7 @@ class DashboardViewModel(
                                 stringResourceProvider = stringResourceProvider,
                                 imageResourceProvider = imageResourceProvider,
                                 dateFormatter = dateFormatter,
-                                onItemClick = {},
+                                onItemClick = { navigateToGame(it.id) },
                                 onMoreClick = {},
                             ),
                             recentlyReleased = DashboardSublistListItem.recentlyReleased(
@@ -83,7 +82,7 @@ class DashboardViewModel(
                                 stringResourceProvider = stringResourceProvider,
                                 imageResourceProvider = imageResourceProvider,
                                 dateFormatter = dateFormatter,
-                                onItemClick = {},
+                                onItemClick = { navigateToGame(it.id) },
                                 onMoreClick = {},
                             ),
                             hallOfFameTitle = DashboardTitleListItem(
@@ -91,9 +90,9 @@ class DashboardViewModel(
                                 subtitle = stringResourceProvider.hallOfFameDescriptionFormatted.get(stringResourceProvider, currentYear.toString())
                             ),
                             hallOfFame = DashboardPosterGamesHorizontalListItem(
-                                dashboard.hallOfFame,
-                                imageResourceProvider,
-                                {}
+                                popularGames = dashboard.hallOfFame,
+                                imageResourceProvider = imageResourceProvider,
+                                onClick = { navigateToGame(it.id) }
                             ),
                             whoIsMightyMan = DashboardMightyManListItem(
                                 stringResourceProvider,
@@ -104,31 +103,37 @@ class DashboardViewModel(
                                 subtitle = dashboard.switchFeatured.description,
                             ),
                             switchGames = DashboardPosterGamesHorizontalListItem(
-                                dashboard.switchFeatured.games,
-                                imageResourceProvider,
-                                {}
+                                popularGames = dashboard.switchFeatured.games,
+                                imageResourceProvider = imageResourceProvider,
+                                onClick = { navigateToGame(it.id) }
                             ),
                             xboxTitle = DashboardTitleListItem(
                                 title = dashboard.xboxFeatured.name,
                                 subtitle = dashboard.xboxFeatured.description,
                             ),
                             xboxGames = DashboardPosterGamesHorizontalListItem(
-                                dashboard.xboxFeatured.games,
-                                imageResourceProvider,
-                                {}
+                                popularGames = dashboard.xboxFeatured.games,
+                                imageResourceProvider = imageResourceProvider,
+                                onClick = { navigateToGame(it.id) }
                             ),
                             playstationTitle = DashboardTitleListItem(
                                 title = dashboard.playstationFeatured.name,
                                 subtitle = dashboard.playstationFeatured.description,
                             ),
                             playstationGames = DashboardPosterGamesHorizontalListItem(
-                                dashboard.playstationFeatured.games,
-                                imageResourceProvider,
-                                {}
+                                popularGames = dashboard.playstationFeatured.games,
+                                imageResourceProvider = imageResourceProvider,
+                                onClick = { navigateToGame(it.id) }
                             ),
                         )
                     )
                 }
         }
     }
+
+    private fun navigateToGame(gameId: Long) =
+        requireRouter()
+            .navigateTo(
+                GameDetailsRoute(gameId)
+            )
 }

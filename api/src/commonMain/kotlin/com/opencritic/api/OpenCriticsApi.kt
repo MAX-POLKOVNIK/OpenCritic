@@ -1,6 +1,7 @@
 package com.opencritic.api
 
 import com.opencritic.api.dto.deal.DealItemDto
+import com.opencritic.api.dto.featured.FeaturedGameListDto
 import com.opencritic.api.dto.popular.PopularItemDto
 import com.opencritic.api.dto.review.ReviewedTodayGameDto
 import com.opencritic.api.dto.released.ReleasedGameDto
@@ -17,4 +18,10 @@ interface OpenCriticsApi {
     suspend fun getRecentlyReleased(): List<ReleasedGameDto>
 
     suspend fun getHallOfFame(year: Int): List<ReleasedGameDto>
+
+    suspend fun getSwitchFeatured(): FeaturedGameListDto
+
+    suspend fun getXboxFeatured(): FeaturedGameListDto
+
+    suspend fun getPlaystationFeatured(): FeaturedGameListDto
 }

@@ -11,7 +11,10 @@ class GetDashboardInteractor(
                 recentlyReleased = dashboardRepository.getRecentlyReleased(),
                 upcoming = dashboardRepository.getUpcoming(),
                 reviewedToday = dashboardRepository.getReviewedToday(),
-                hallOfFame = dashboardRepository.getHallOfFame(year)
+                hallOfFame = dashboardRepository.getHallOfFame(year),
+                switchFeatured = dashboardRepository.getSwitchFeatured(),
+                xboxFeatured = dashboardRepository.getXboxFeatured(),
+                playstationFeatured = dashboardRepository.getPlaystationFeatured(),
             )
         }
 }

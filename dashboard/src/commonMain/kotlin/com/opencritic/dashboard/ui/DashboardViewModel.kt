@@ -95,7 +95,34 @@ class DashboardViewModel(
                             whoIsMightyMan = DashboardMightyManListItem(
                                 stringResourceProvider,
                                 imageResourceProvider
-                            )
+                            ),
+                            switchTitle = DashboardTitleListItem(
+                                title = dashboard.switchFeatured.name,
+                                subtitle = dashboard.switchFeatured.description,
+                            ),
+                            switchGames = DashboardPosterGamesHorizontalListItem(
+                                dashboard.switchFeatured.games,
+                                imageResourceProvider,
+                                {}
+                            ),
+                            xboxTitle = DashboardTitleListItem(
+                                title = dashboard.xboxFeatured.name,
+                                subtitle = dashboard.xboxFeatured.description,
+                            ),
+                            xboxGames = DashboardPosterGamesHorizontalListItem(
+                                dashboard.xboxFeatured.games,
+                                imageResourceProvider,
+                                {}
+                            ),
+                            playstationTitle = DashboardTitleListItem(
+                                title = dashboard.playstationFeatured.name,
+                                subtitle = dashboard.playstationFeatured.description,
+                            ),
+                            playstationGames = DashboardPosterGamesHorizontalListItem(
+                                dashboard.playstationFeatured.games,
+                                imageResourceProvider,
+                                {}
+                            ),
                         )
                     )
                 }

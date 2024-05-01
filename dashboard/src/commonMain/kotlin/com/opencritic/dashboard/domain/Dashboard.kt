@@ -7,4 +7,7 @@ data class Dashboard(
     val upcoming: List<GameItem>,
     val reviewedToday: List<GameItem>,
     val hallOfFame: List<PosterGame>,
+    val switchFeatured: FeaturedGameList,
+    val xboxFeatured: FeaturedGameList,
+    val playstationFeatured: FeaturedGameList,
 )

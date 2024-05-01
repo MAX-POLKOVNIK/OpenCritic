@@ -3,6 +3,7 @@ package com.opencritic.dashboard.data
 import com.opencritic.api.OpenCriticsApi
 import com.opencritic.api.dto.image.prefixedImageUrl
 import com.opencritic.dashboard.domain.DashboardRepository
+import com.opencritic.dashboard.domain.FeaturedGameList
 import com.opencritic.dashboard.domain.GameDeal
 import com.opencritic.dashboard.domain.GameItem
 import com.opencritic.dashboard.domain.PosterGame
@@ -96,5 +97,59 @@ class DashboardRepositoryImpl(
                         rank = GameRank(it.tier, it.topCriticScore),
                     )
                 }
+        }
+
+    override suspend fun getSwitchFeatured(): FeaturedGameList =
+        withContext(defaultDispatcher) {
+            val dto = openCriticsApi.getSwitchFeatured()
+
+            FeaturedGameList(
+                name = dto.label,
+                description = dto.description,
+                games = dto.games.map {
+                    PosterGame(
+                        id = it.id,
+                        name = it.name,
+                        posterUrl = it.images.box?.sm?.prefixedImageUrl() ?: it.images.banner?.sm?.prefixedImageUrl() ?: "",
+                        rank = GameRank(it.tier, it.topCriticScore),
+                    )
+                }
+            )
+        }
+
+    override suspend fun getXboxFeatured(): FeaturedGameList =
+        withContext(defaultDispatcher) {
+            val dto = openCriticsApi.getXboxFeatured()
+
+            FeaturedGameList(
+                name = dto.label,
+                description = dto.description,
+                games = dto.games.map {
+                    PosterGame(
+                        id = it.id,
+                        name = it.name,
+                        posterUrl = it.images.box?.sm?.prefixedImageUrl() ?: it.images.banner?.sm?.prefixedImageUrl() ?: "",
+                        rank = GameRank(it.tier, it.topCriticScore),
+                    )
+                }
+            )
+        }
+
+    override suspend fun getPlaystationFeatured(): FeaturedGameList =
+        withContext(defaultDispatcher) {
+            val dto = openCriticsApi.getPlaystationFeatured()
+
+            FeaturedGameList(
+                name = dto.label,
+                description = dto.description,
+                games = dto.games.map {
+                    PosterGame(
+                        id = it.id,
+                        name = it.name,
+                        posterUrl = it.images.box?.sm?.prefixedImageUrl() ?: it.images.banner?.sm?.prefixedImageUrl() ?: "",
+                        rank = GameRank(it.tier, it.topCriticScore),
+                    )
+                }
+            )
         }
 }

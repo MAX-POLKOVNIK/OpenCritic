@@ -16,5 +16,11 @@ sealed interface DashboardState : ViewModelState {
         val hallOfFameTitle: DashboardTitleListItem,
         val hallOfFame: DashboardPosterGamesHorizontalListItem,
         val whoIsMightyMan: DashboardMightyManListItem,
+        val switchTitle: DashboardTitleListItem,
+        val switchGames: DashboardPosterGamesHorizontalListItem,
+        val xboxTitle: DashboardTitleListItem,
+        val xboxGames: DashboardPosterGamesHorizontalListItem,
+        val playstationTitle: DashboardTitleListItem,
+        val playstationGames: DashboardPosterGamesHorizontalListItem,
     ) : DashboardState
 }

@@ -1,6 +1,7 @@
 package com.opencritic.api
 
 import com.opencritic.api.dto.deal.DealItemDto
+import com.opencritic.api.dto.featured.FeaturedGameListDto
 import com.opencritic.api.dto.popular.PopularItemDto
 import com.opencritic.api.dto.review.ReviewedTodayGameDto
 import com.opencritic.api.dto.released.ReleasedGameDto
@@ -31,4 +32,13 @@ internal class OpenCriticsApiImpl(
 
     override suspend fun getHallOfFame(year: Int): List<ReleasedGameDto> =
         client.get(baseUrl + "game/hall-of-fame/$year").body()
+
+    override suspend fun getSwitchFeatured(): FeaturedGameListDto =
+        client.get(baseUrl + "editor-sequence/switch-featured").body()
+
+    override suspend fun getXboxFeatured(): FeaturedGameListDto =
+        client.get(baseUrl + "editor-sequence/xbox-featured").body()
+
+    override suspend fun getPlaystationFeatured(): FeaturedGameListDto =
+        client.get(baseUrl + "editor-sequence/playstation-featured").body()
 }

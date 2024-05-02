@@ -3,6 +3,14 @@ package com.opencritic.resources
 interface StringResourceProvider {
     fun get(stringResource: StringResource, args: List<String>): String
 
+    val gameActionWant: StringResource
+    val gameActionPlayed: StringResource
+    val gameActionFavorite: StringResource
+
+    val openCriticRating: StringResource
+    val topCriticAverage: StringResource
+    val criticsRecommend: StringResource
+
     val mighty: StringResource
     val strong: StringResource
     val fair: StringResource
@@ -40,6 +48,8 @@ interface StringResourceProvider {
     val hallOfFameDescriptionFormatted: StringResource
 
     val buyNowOnFormatted: StringResource
+
+    val viewAllReviewsFormatted: StringResource
 }
 
 fun StringResource.get(provider: StringResourceProvider, vararg args: String): String =

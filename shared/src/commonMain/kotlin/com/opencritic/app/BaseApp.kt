@@ -2,6 +2,7 @@ package com.opencritic.app
 
 import com.opencritic.api.apiModule
 import com.opencritic.dashboard.di.dashboardModule
+import com.opencritic.games.details.di.gameDetailsModule
 import com.opencritic.logs.Logger
 import com.opencritic.logs.logsModule
 import com.opencritic.main.di.mainModule
@@ -31,6 +32,7 @@ abstract class BaseApp : KoinComponent {
                 resourcesModule(stringResourceProvider, imageResourceProvider, dateFormatter),
                 dashboardModule,
                 mainModule,
+                gameDetailsModule,
             )
         }
 

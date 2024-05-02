@@ -4,6 +4,16 @@
     "?" : {
 
     },
+    "%@%@" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "%1$@%2$@"
+          }
+        }
+      }
+    },
     "Loading..." : {
 
     },
@@ -14,6 +24,17 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Buy Now on %@ "
+          }
+        }
+      }
+    },
+    "str_critics_recommend" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Critics Recommend"
           }
         }
       }
@@ -62,6 +83,39 @@
         }
       }
     },
+    "str_game_action_favorite" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Favorite"
+          }
+        }
+      }
+    },
+    "str_game_action_played" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Played"
+          }
+        }
+      }
+    },
+    "str_game_action_want" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Want"
+          }
+        }
+      }
+    },
     "str_hall_of_fame" : {
       "extractionState" : "manual",
       "localizations" : {
@@ -102,6 +156,17 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "The top 10% of game ratings. Best in their genre. Universal critical acclaim. "
+          }
+        }
+      }
+    },
+    "str_open_critic_rating" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "OpenCritic Rating"
           }
         }
       }
@@ -238,6 +303,17 @@
         }
       }
     },
+    "str_top_critic_average" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Top Critic Average"
+          }
+        }
+      }
+    },
     "str_upcoming_releases" : {
       "extractionState" : "manual",
       "localizations" : {
@@ -245,6 +321,17 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "UPCOMING RELEASES"
+          }
+        }
+      }
+    },
+    "str_view_all_reviews" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "View All %@ Critic Reviews"
           }
         }
       }

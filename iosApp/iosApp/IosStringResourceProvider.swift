@@ -14,6 +14,14 @@ class IosStringResourceProvider : StringResourceProvider {
         String(format: NSLocalizedString(stringResource, comment: stringResource), args.map { $0 as CVarArg })
     }
     
+    var gameActionFavorite: String { "str_game_action_favorite" }
+    var gameActionPlayed: String { "str_game_action_played" }
+    var gameActionWant: String { "str_game_action_want" }
+    
+    var criticsRecommend: String { "str_critics_recommend" }
+    var openCriticRating: String { "str_open_critic_rating" }
+    var topCriticAverage: String { "str_top_critic_average" }
+    
     var fair: String { "str_fair" }
     var fairDescription: String { "str_fair_description" }
     
@@ -53,4 +61,6 @@ class IosStringResourceProvider : StringResourceProvider {
     var tabMain: String { "str_tab_main" }
     var tabSearch: String { "str_tab_search" }
     var tabYourList: String { "str_tab_your_list" }
+    
+    var viewAllReviewsFormatted: String { "str_view_all_reviews" }
 }

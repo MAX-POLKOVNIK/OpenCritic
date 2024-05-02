@@ -30,7 +30,3 @@ struct DashboardScreenView: View {
         }
     }
 }
-
-//#Preview {
-//    DashboardScreenView()
-//}

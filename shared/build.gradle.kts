@@ -21,6 +21,7 @@ kotlin {
         projects.games,
         projects.main,
         projects.navigation,
+        projects.gameDetails
     )
 
     listOf(

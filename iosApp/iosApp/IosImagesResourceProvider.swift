@@ -10,6 +10,15 @@ import Foundation
 import shared
 
 class IosImagesResourceProvider : ImageResourceProvider {
+    var gameActionFavorite: String { "heart.fill" }
+    var gameActionPlayed: String { "checkmark" }
+    var gameActionWant: String { "plus" }
+    
+    var fairMan: String { "fair-man" }
+    var mightyMan: String { "mighty-man" }
+    var strongMan: String { "strong-man" }
+    var weakMan: String { "weak-man" }
+    
     var fairHead: String { "fair-head" }
     var mightyHead: String { "mighty-head" }
     var strongHead: String { "strong-head" }

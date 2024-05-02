@@ -11,7 +11,7 @@ import org.koin.mp.KoinPlatformTools
 import kotlin.reflect.KClass
 
 @OptIn(BetaInteropApi::class)
-fun <T : ObjCObject> ObjCClassOf<T>.koinViewModel(): T {
+fun <T : ObjCObject> ObjCClassOf<T>.koinViewModel(arg: Any = Unit): T {
     val kClass: KClass<*>? = getOriginalKotlinClass(this)
 
     requireNotNull(kClass) {
@@ -22,8 +22,8 @@ fun <T : ObjCObject> ObjCClassOf<T>.koinViewModel(): T {
     return KoinPlatformTools.defaultContext().get()
         .get(
             clazz = kClass,
-//            parameters = {
-//                parametersOf(router)
-//            }
+            parameters = {
+                parametersOf(arg)
+            }
         )
 }

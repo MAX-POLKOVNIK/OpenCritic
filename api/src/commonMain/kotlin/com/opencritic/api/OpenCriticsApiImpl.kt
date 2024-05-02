@@ -1,10 +1,12 @@
 package com.opencritic.api
 
 import com.opencritic.api.dto.deal.DealItemDto
+import com.opencritic.api.dto.details.GameDetailsDto
 import com.opencritic.api.dto.featured.FeaturedGameListDto
 import com.opencritic.api.dto.popular.PopularItemDto
 import com.opencritic.api.dto.review.ReviewedTodayGameDto
 import com.opencritic.api.dto.released.ReleasedGameDto
+import com.opencritic.api.dto.review.ReviewDto
 import io.ktor.client.HttpClient
 import io.ktor.client.call.body
 import io.ktor.client.request.get
@@ -41,4 +43,10 @@ internal class OpenCriticsApiImpl(
 
     override suspend fun getPlaystationFeatured(): FeaturedGameListDto =
         client.get(baseUrl + "editor-sequence/playstation-featured").body()
+
+    override suspend fun getGame(gameId: Long): GameDetailsDto =
+        client.get(baseUrl + "game/${gameId}").body()
+
+    override suspend fun getGameReviews(gameId: Long, skip: Int): List<ReviewDto> =
+        client.get(baseUrl + "reviews/game/$gameId/?skip=$skip&sort=popularity").body()
 }

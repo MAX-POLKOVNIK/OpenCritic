@@ -9,6 +9,7 @@
 import Foundation
 import shared
 import SwiftUI
+import UIKit
 
 class IosRouter: ObservableObject, Router {
     @Published var path: NavigationPath = NavigationPath()
@@ -26,6 +27,12 @@ class IosRouter: ObservableObject, Router {
     }
     
     func navigateTo(route: Route) {
+        if let urlRoute = route as? UrlRoute, let url = URL(string: urlRoute.url) {
+            UIApplication.shared.open(url)
+            
+            return
+        }
+        
         path.append(route)
     }
     

@@ -23,7 +23,9 @@ fun CardReviewItem(
     CardReviewItem(
         id = review.id,
         outletText = review.outlet.name,
-        authorText = review.alias ?: review.authors.joinToString(", ") { it.name },
+        authorText = review.alias
+            ?.takeIf { it.isNotBlank() }
+            ?: review.authors.joinToString(", ") { it.name },
         outletThumbnailUrl = review.outlet.imageUrl,
         score = ReviewScoreDisplayItem(review.score, review.scoreFormat),
         snippetText = review.snippet,

@@ -103,7 +103,8 @@ struct DashboardStateContentView: View {
                             rank: GameRank(tier: Tier.fair, score: 32)
                         ),
                         name: "Amazon",
-                        price: 49.99
+                        price: 49.99,
+                        externalUrl: ""
                     ),
                     GameDeal(
                         game: PosterGame(
@@ -113,7 +114,8 @@ struct DashboardStateContentView: View {
                             rank: GameRank(tier: Tier.fair, score: 32)
                         ),
                         name: "Amazon",
-                        price: 49.99
+                        price: 49.99,
+                        externalUrl: ""
                     ),
                     GameDeal(
                         game: PosterGame(
@@ -123,7 +125,8 @@ struct DashboardStateContentView: View {
                             rank: GameRank(tier: Tier.fair, score: 32)
                         ),
                         name: "Amazon",
-                        price: 49.99
+                        price: 49.99,
+                        externalUrl: ""
                     ),
                 ],
                 stringProvider: IosStringProvider(),

@@ -39,7 +39,8 @@ struct DashboardDealsHorizontalListItemView_Previews: PreviewProvider {
                             rank: GameRank(tier: Tier.fair, score: 32)
                         ),
                         name: "Amazon",
-                        price: 49.99
+                        price: 49.99,
+                        externalUrl: ""
                     ),
                     GameDeal(
                         game: PosterGame(
@@ -49,7 +50,8 @@ struct DashboardDealsHorizontalListItemView_Previews: PreviewProvider {
                             rank: GameRank(tier: Tier.fair, score: 32)
                         ),
                         name: "Amazon",
-                        price: 49.99
+                        price: 49.99,
+                        externalUrl: ""
                     ),
                     GameDeal(
                         game: PosterGame(
@@ -59,7 +61,8 @@ struct DashboardDealsHorizontalListItemView_Previews: PreviewProvider {
                             rank: GameRank(tier: Tier.fair, score: 32)
                         ),
                         name: "Amazon",
-                        price: 49.99
+                        price: 49.99,
+                        externalUrl: ""
                     ),
                 ],
                 stringProvider: IosStringProvider(),

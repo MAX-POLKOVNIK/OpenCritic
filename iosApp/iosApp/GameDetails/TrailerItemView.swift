@@ -39,6 +39,9 @@ struct TrailerItemView: View {
                 .fill(Color.white)
                 .shadow(color: .gray, radius: 2, x: 0, y: 2)
         )
+        .onTapGesture {
+            item.click()
+        }
     }
 }
 

@@ -4,6 +4,7 @@ import com.opencritic.games.Tier
 import com.opencritic.games.details.domain.GetGameDetailsInteractor
 import com.opencritic.logs.Logger
 import com.opencritic.mvvm.BaseViewModel
+import com.opencritic.navigation.UrlRoute
 import com.opencritic.resources.DateFormatter
 import com.opencritic.resources.ImageResourceProvider
 import com.opencritic.resources.StringProvider
@@ -85,7 +86,13 @@ class GameDetailsViewModel(
                             viewAllMedia = "${stringProvider.viewAll} ${stringProvider.media}",
                             isTrailersVisible = details.trailers.size > 1,
                             trailersText = "${details.name} ${stringProvider.trailers}",
-                            trailers = details.trailers.take(3).map { TrailerItem(it, {}) },
+                            trailers = details.trailers
+                                .take(3)
+                                .map { trailer ->
+                                    TrailerItem(trailer) {
+                                        requireRouter().navigateTo(UrlRoute(trailer.externalUrl))
+                                    }
+                                },
                             viewAllTrailers = "${stringProvider.viewAll} ${stringProvider.trailers}",
                             isScreenshotsVisible = details.screenshotUrls.isNotEmpty() && details.trailers.size > 1,
                             screenshotsText = "${details.name} ${stringProvider.screenshots}",
@@ -99,7 +106,9 @@ class GameDetailsViewModel(
                                     CardReviewItem(
                                         review = review,
                                         readFullReviewText = stringProvider.readFullReview,
-                                        onClick = {},
+                                        onClick = {
+                                            requireRouter().navigateTo(UrlRoute(review.externalUrl))
+                                        },
                                     )
                                 }
                         )

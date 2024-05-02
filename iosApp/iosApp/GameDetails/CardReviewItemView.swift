@@ -54,7 +54,7 @@ struct CardReviewItemView: View {
             
             Text(item.snippetText)
                 .padding(.top)
-            Button(item.readFullReviewText) { }
+            Button(item.readFullReviewText) { item.click() }
                 .padding(.top)
         }
         .padding()

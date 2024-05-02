@@ -4,4 +4,5 @@ data class GameDeal(
     val game: PosterGame,
     val name: String,
     val price: Float,
+    val externalUrl: String,
 )

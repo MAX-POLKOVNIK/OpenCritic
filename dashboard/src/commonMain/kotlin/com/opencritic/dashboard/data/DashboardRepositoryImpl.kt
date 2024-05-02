@@ -43,6 +43,7 @@ class DashboardRepositoryImpl(
                         ),
                         name = it.featuredDeal.name,
                         price = it.featuredDeal.price,
+                        externalUrl = it.featuredDeal.externalUrl
                     )
                 }
         }

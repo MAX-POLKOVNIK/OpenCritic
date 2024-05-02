@@ -4,6 +4,7 @@ import com.opencritic.dashboard.domain.GetDashboardInteractor
 import com.opencritic.logs.Logger
 import com.opencritic.mvvm.BaseViewModel
 import com.opencritic.navigation.GameDetailsRoute
+import com.opencritic.navigation.UrlRoute
 import com.opencritic.resources.DateFormatter
 import com.opencritic.resources.ImageResourceProvider
 import com.opencritic.resources.StringProvider
@@ -58,7 +59,12 @@ class DashboardViewModel(
                                 stringProvider = stringProvider,
                                 imageResourceProvider = imageResourceProvider,
                                 onClick = { navigateToGame(it.id) },
-                                onBuyNowClick = {},
+                                onBuyNowClick = {
+                                    requireRouter()
+                                        .navigateTo(
+                                            UrlRoute(it.gameDeal.externalUrl)
+                                        )
+                                },
                             ),
                             reviewedToday = DashboardSublistListItem.reviewedToday(
                                 gameItems = dashboard.reviewedToday,

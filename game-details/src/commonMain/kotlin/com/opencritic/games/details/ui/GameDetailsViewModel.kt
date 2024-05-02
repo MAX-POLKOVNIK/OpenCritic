@@ -6,8 +6,7 @@ import com.opencritic.logs.Logger
 import com.opencritic.mvvm.BaseViewModel
 import com.opencritic.resources.DateFormatter
 import com.opencritic.resources.ImageResourceProvider
-import com.opencritic.resources.StringResourceProvider
-import com.opencritic.resources.get
+import com.opencritic.resources.StringProvider
 import kotlinx.coroutines.launch
 import kotlinx.datetime.TimeZone
 import kotlinx.datetime.toLocalDateTime
@@ -15,7 +14,7 @@ import kotlinx.datetime.toLocalDateTime
 class GameDetailsViewModel(
     private val gameId: Long,
     private val getGameDetailsInteractor: GetGameDetailsInteractor,
-    private val stringResourceProvider: StringResourceProvider,
+    private val stringProvider: StringProvider,
     private val imageResourceProvider: ImageResourceProvider,
     private val dateFormatter: DateFormatter,
     private val logger: Logger,
@@ -42,7 +41,7 @@ class GameDetailsViewModel(
                             name = details.name,
                             gameActionItems = gameActionItems(
                                 imageResourceProvider = imageResourceProvider,
-                                stringResourceProvider = stringResourceProvider,
+                                stringProvider = stringProvider,
                                 isWanted = false,
                                 isPlayed = false,
                                 isFavorite = false,
@@ -62,11 +61,11 @@ class GameDetailsViewModel(
                                 null -> imageResourceProvider.weakMan
                             },
                             tier = details.rank?.tier,
-                            tierDescription = stringResourceProvider.openCriticRating.get(stringResourceProvider),
+                            tierDescription = stringProvider.openCriticRating,
                             topCriticScore = details.rank?.score,
-                            topCriticScoreDescription = stringResourceProvider.topCriticAverage.get(stringResourceProvider),
+                            topCriticScoreDescription = stringProvider.topCriticAverage,
                             recommendedPercent = details.recommendPercent,
-                            criticsRecommendDescription = stringResourceProvider.criticsRecommend.get(stringResourceProvider),
+                            criticsRecommendDescription = stringProvider.criticsRecommend,
                             briefReviews = details.reviews
                                 .filter { it.score != null }
                                 .filterNot { it.scoreFormat.isSelect }
@@ -79,27 +78,27 @@ class GameDetailsViewModel(
                                     )
                                 },
                             isViewAllVisible = details.reviewCount != 0,
-                            viewAllText = stringResourceProvider.viewAllReviewsFormatted.get(stringResourceProvider, details.reviewCount.toString()),
+                            viewAllText = stringProvider.viewAllReviewsFormatted(details.reviewCount.toString()),
                             isMediaVisible = details.trailers.size <= 1 && details.screenshotUrls.isNotEmpty(),
-                            mediaText = "${details.name} ${stringResourceProvider.media.get(stringResourceProvider)}",
+                            mediaText = "${details.name} ${stringProvider.media}",
                             media = details.trailers.map { TrailerItem(it, {}) } + details.screenshotUrls.take(3).map { ScreenshotItem(it, {}) },
-                            viewAllMedia = "${stringResourceProvider.viewAll.get(stringResourceProvider)} ${stringResourceProvider.media.get(stringResourceProvider)}",
+                            viewAllMedia = "${stringProvider.viewAll} ${stringProvider.media}",
                             isTrailersVisible = details.trailers.size > 1,
-                            trailersText = "${details.name} ${stringResourceProvider.trailers.get(stringResourceProvider)}",
+                            trailersText = "${details.name} ${stringProvider.trailers}",
                             trailers = details.trailers.take(3).map { TrailerItem(it, {}) },
-                            viewAllTrailers = "${stringResourceProvider.viewAll.get(stringResourceProvider)} ${stringResourceProvider.trailers.get(stringResourceProvider)}",
+                            viewAllTrailers = "${stringProvider.viewAll} ${stringProvider.trailers}",
                             isScreenshotsVisible = details.screenshotUrls.isNotEmpty() && details.trailers.size > 1,
-                            screenshotsText = "${details.name} ${stringResourceProvider.screenshots.get(stringResourceProvider)}",
+                            screenshotsText = "${details.name} ${stringProvider.screenshots}",
                             screenshots = details.screenshotUrls.take(3).map { ScreenshotItem(it, {}) },
-                            viewAllScreenshots = "${stringResourceProvider.viewAll.get(stringResourceProvider)} ${stringResourceProvider.screenshots.get(stringResourceProvider)}",
+                            viewAllScreenshots = "${stringProvider.viewAll} ${stringProvider.screenshots}",
                             isReviewsVisible = details.reviewCount != 0,
-                            reviewTitleText = stringResourceProvider.criticReviewsForFormatted.get(stringResourceProvider, details.name),
+                            reviewTitleText = stringProvider.criticReviewsForFormatted(details.name),
                             reviews = details.reviews
                                 .take(8)
                                 .map { review ->
                                     CardReviewItem(
                                         review = review,
-                                        readFullReviewText = stringResourceProvider.readFullReview.get(stringResourceProvider),
+                                        readFullReviewText = stringProvider.readFullReview,
                                         onClick = {},
                                     )
                                 }

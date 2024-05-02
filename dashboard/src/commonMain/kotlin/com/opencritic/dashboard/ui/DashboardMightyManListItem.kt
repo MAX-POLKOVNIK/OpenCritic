@@ -3,8 +3,7 @@ package com.opencritic.dashboard.ui
 import com.opencritic.games.Tier
 import com.opencritic.mvvm.ListItem
 import com.opencritic.resources.ImageResourceProvider
-import com.opencritic.resources.StringResourceProvider
-import com.opencritic.resources.get
+import com.opencritic.resources.StringProvider
 
 data class DashboardMightyManListItem(
     override val id: Unit = Unit,
@@ -16,16 +15,16 @@ data class DashboardMightyManListItem(
 
 
 fun DashboardMightyManListItem(
-    stringResourceProvider: StringResourceProvider,
+    stringProvider: StringProvider,
     imageResourceProvider: ImageResourceProvider,
 ): DashboardMightyManListItem =
     DashboardMightyManListItem(
-        title = stringResourceProvider.whoIsMightyMan.get(stringResourceProvider),
-        description = stringResourceProvider.whoIsMightyManDescription.get(stringResourceProvider),
-        colorDescription = stringResourceProvider.whoIsMightyManColorDescription.get(stringResourceProvider),
+        title = stringProvider.whoIsMightyMan,
+        description = stringProvider.whoIsMightyManDescription,
+        colorDescription = stringProvider.whoIsMightyManColorDescription,
         items = Tier.entries.map {
             DashboardMightyManItemListItem(
-                stringResourceProvider = stringResourceProvider,
+                stringProvider = stringProvider,
                 imageResourceProvider = imageResourceProvider,
                 tier = it,
             )

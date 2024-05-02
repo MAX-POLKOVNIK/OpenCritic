@@ -2,11 +2,10 @@ package com.opencritic.main.ui
 
 import com.opencritic.mvvm.BaseViewModel
 import com.opencritic.resources.ImageResourceProvider
-import com.opencritic.resources.StringResourceProvider
-import com.opencritic.resources.get
+import com.opencritic.resources.StringProvider
 
 class MainViewModel(
-    stringResourceProvider: StringResourceProvider,
+    stringProvider: StringProvider,
     imageResourceProvider: ImageResourceProvider,
 ) : BaseViewModel<MainState>() {
     override val initialState: MainState =
@@ -14,27 +13,27 @@ class MainViewModel(
             tabs = listOf(
                 Tab(
                     id = TabType.Main,
-                    name = stringResourceProvider.tabMain.get(stringResourceProvider),
+                    name = stringProvider.tabMain,
                     imageResource = imageResourceProvider.tabMain,
                 ),
                 Tab(
                     id = TabType.Search,
-                    name = stringResourceProvider.tabSearch.get(stringResourceProvider),
+                    name = stringProvider.tabSearch,
                     imageResource = imageResourceProvider.tabSearch,
                 ),
                 Tab(
                     id = TabType.Browse,
-                    name = stringResourceProvider.tabBrowse.get(stringResourceProvider),
+                    name = stringProvider.tabBrowse,
                     imageResource = imageResourceProvider.tabBrowse,
                 ),
                 Tab(
                     id = TabType.Calendar,
-                    name = stringResourceProvider.tabCalendar.get(stringResourceProvider),
+                    name = stringProvider.tabCalendar,
                     imageResource = imageResourceProvider.tabCalendar,
                 ),
                 Tab(
                     id = TabType.YourLists,
-                    name = stringResourceProvider.tabYourList.get(stringResourceProvider),
+                    name = stringProvider.tabYourList,
                     imageResource = imageResourceProvider.tabYourList,
                 ),
             )

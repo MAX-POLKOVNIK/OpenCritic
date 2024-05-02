@@ -3,11 +3,11 @@ package com.opencritic.resources
 import org.koin.dsl.module
 
 fun resourcesModule(
-    strings: StringResourceProvider,
+    strings: StringProvider,
     images: ImageResourceProvider,
     dateFormatter: DateFormatter,
 ) = module {
-    single<StringResourceProvider> { strings }
+    single<StringProvider> { strings }
     single<ImageResourceProvider> { images }
     single<DateFormatter> { dateFormatter }
 }

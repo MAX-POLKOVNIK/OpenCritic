@@ -126,7 +126,7 @@ struct DashboardStateContentView: View {
                         price: 49.99
                     ),
                 ],
-                stringResourceProvider: IosStringResourceProvider(),
+                stringProvider: IosStringProvider(),
                 imageResourceProvider: IosImagesResourceProvider(),
                 onClick: { _ in },
                 onBuyNowClick: { _ in }
@@ -139,7 +139,7 @@ struct DashboardStateContentView: View {
                 subtitle: "Hall of fame description"
             ),
             hallOfFame: DashboardPosterGamesHorizontalListItem(popularGames: [], imageResourceProvider: IosImagesResourceProvider(), onClick: { _ in }),
-            whoIsMightyMan: DashboardMightyManListItemKt.DashboardMightyManListItem(stringResourceProvider: IosStringResourceProvider(), imageResourceProvider: IosImagesResourceProvider()),
+            whoIsMightyMan: DashboardMightyManListItemKt.DashboardMightyManListItem(stringProvider: IosStringProvider(), imageResourceProvider: IosImagesResourceProvider()),
             switchTitle: DashboardTitleListItem(
                 title: "Hall of fame",
                 subtitle: "Hall of fame description"

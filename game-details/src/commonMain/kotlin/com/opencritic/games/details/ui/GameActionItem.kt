@@ -3,8 +3,7 @@ package com.opencritic.games.details.ui
 import com.opencritic.games.GameAction
 import com.opencritic.resources.ImageResource
 import com.opencritic.resources.ImageResourceProvider
-import com.opencritic.resources.StringResourceProvider
-import com.opencritic.resources.get
+import com.opencritic.resources.StringProvider
 
 data class GameActionItem(
     val gameAction: GameAction,
@@ -16,7 +15,7 @@ data class GameActionItem(
 
 fun GameActionItem(
     imageResourceProvider: ImageResourceProvider,
-    stringResourceProvider: StringResourceProvider,
+    stringProvider: StringProvider,
     action: GameAction,
     isSelected: Boolean,
     onClick: (GameActionItem) -> Unit,
@@ -29,9 +28,9 @@ fun GameActionItem(
             GameAction.Favorite -> imageResourceProvider.gameActionFavorite
         },
         text = when (action) {
-            GameAction.Want -> stringResourceProvider.gameActionWant.get(stringResourceProvider)
-            GameAction.Played -> stringResourceProvider.gameActionPlayed.get(stringResourceProvider)
-            GameAction.Favorite -> stringResourceProvider.gameActionFavorite.get(stringResourceProvider)
+            GameAction.Want -> stringProvider.gameActionWant
+            GameAction.Played -> stringProvider.gameActionPlayed
+            GameAction.Favorite -> stringProvider.gameActionFavorite
         },
         isSelected = isSelected,
         onClick = onClick,
@@ -39,7 +38,7 @@ fun GameActionItem(
 
 fun gameActionItems(
     imageResourceProvider: ImageResourceProvider,
-    stringResourceProvider: StringResourceProvider,
+    stringProvider: StringProvider,
     isWanted: Boolean,
     isPlayed: Boolean,
     isFavorite: Boolean,
@@ -48,7 +47,7 @@ fun gameActionItems(
     GameAction.entries.map {
         GameActionItem(
             imageResourceProvider = imageResourceProvider,
-            stringResourceProvider = stringResourceProvider,
+            stringProvider = stringProvider,
             action = it,
             isSelected = when (it) {
                 GameAction.Want -> isWanted

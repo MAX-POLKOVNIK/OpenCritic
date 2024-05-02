@@ -39,7 +39,7 @@ struct DashboardMightyManListItemView: View {
 #Preview {
     DashboardMightyManListItemView(
         item: DashboardMightyManListItemKt.DashboardMightyManListItem(
-            stringResourceProvider: IosStringResourceProvider(),
+            stringProvider: IosStringProvider(),
             imageResourceProvider: IosImagesResourceProvider()
         )
     )

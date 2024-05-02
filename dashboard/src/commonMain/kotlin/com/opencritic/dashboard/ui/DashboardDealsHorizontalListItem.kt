@@ -3,11 +3,11 @@ package com.opencritic.dashboard.ui
 import com.opencritic.dashboard.domain.GameDeal
 import com.opencritic.mvvm.ListItem
 import com.opencritic.resources.ImageResourceProvider
-import com.opencritic.resources.StringResourceProvider
+import com.opencritic.resources.StringProvider
 
 data class DashboardDealsHorizontalListItem(
     val deals: List<GameDeal>,
-    private val stringResourceProvider: StringResourceProvider,
+    private val stringProvider: StringProvider,
     private val imageResourceProvider: ImageResourceProvider,
     private val onClick: (DashboardDealListItem) -> Unit,
     private val onBuyNowClick: (DashboardDealListItem) -> Unit,
@@ -19,7 +19,7 @@ data class DashboardDealsHorizontalListItem(
         get() = deals.map { deal ->
             DashboardDealListItem(
                 gameDeal = deal,
-                stringResourceProvider = stringResourceProvider,
+                stringProvider = stringProvider,
                 imageResourceProvider = imageResourceProvider,
                 onClick = onClick,
                 onBuyNowClick = onBuyNowClick,

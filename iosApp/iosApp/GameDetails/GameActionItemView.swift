@@ -27,7 +27,7 @@ struct GameActionItemView: View {
     GameActionItemView(
         item: GameActionItem(
             gameAction: GameAction.favorite,
-            imageResource: IosStringResourceProvider().gameActionFavorite,
+            imageResource: IosStringProvider().gameActionFavorite,
             text: "Favorite",
             isSelected: false,
             onClick: { _ in }

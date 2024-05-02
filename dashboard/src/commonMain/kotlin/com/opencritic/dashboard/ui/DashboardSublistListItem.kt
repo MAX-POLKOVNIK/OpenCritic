@@ -4,8 +4,7 @@ import com.opencritic.dashboard.domain.GameItem
 import com.opencritic.mvvm.ListItem
 import com.opencritic.resources.DateFormatter
 import com.opencritic.resources.ImageResourceProvider
-import com.opencritic.resources.StringResourceProvider
-import com.opencritic.resources.get
+import com.opencritic.resources.StringProvider
 
 data class DashboardSublistListItem(
     override val id: Type,
@@ -27,7 +26,7 @@ data class DashboardSublistListItem(
     companion object {
         fun recentlyReleased(
             gameItems: List<GameItem>,
-            stringResourceProvider: StringResourceProvider,
+            stringProvider: StringProvider,
             imageResourceProvider: ImageResourceProvider,
             dateFormatter: DateFormatter,
             onItemClick: (DashboardGameListItem) -> Unit,
@@ -35,17 +34,17 @@ data class DashboardSublistListItem(
         ): DashboardSublistListItem =
             DashboardSublistListItem(
                 id = Type.RecentlyReleased,
-                titleText = stringResourceProvider.recentlyReleased.get(stringResourceProvider),
+                titleText = stringProvider.recentlyReleased,
                 items = gameItems.map {
                     DashboardGameListItem(it, imageResourceProvider, dateFormatter, onItemClick)
                 },
-                viewMoreText = stringResourceProvider.viewMore.get(stringResourceProvider),
+                viewMoreText = stringProvider.viewMore,
                 onMoreClick = onMoreClick,
             )
 
         fun upcomingReleases(
             gameItems: List<GameItem>,
-            stringResourceProvider: StringResourceProvider,
+            stringProvider: StringProvider,
             imageResourceProvider: ImageResourceProvider,
             dateFormatter: DateFormatter,
             onItemClick: (DashboardGameListItem) -> Unit,
@@ -53,17 +52,17 @@ data class DashboardSublistListItem(
         ): DashboardSublistListItem =
             DashboardSublistListItem(
                 id = Type.UpcomingReleases,
-                titleText = stringResourceProvider.upcomingReleases.get(stringResourceProvider),
+                titleText = stringProvider.upcomingReleases,
                 items = gameItems.map {
                     DashboardGameListItem(it, imageResourceProvider, dateFormatter, onItemClick)
                 },
-                viewMoreText = stringResourceProvider.viewMore.get(stringResourceProvider),
+                viewMoreText = stringProvider.viewMore,
                 onMoreClick = onMoreClick,
             )
 
         fun reviewedToday(
             gameItems: List<GameItem>,
-            stringResourceProvider: StringResourceProvider,
+            stringProvider: StringProvider,
             imageResourceProvider: ImageResourceProvider,
             dateFormatter: DateFormatter,
             onItemClick: (DashboardGameListItem) -> Unit,
@@ -71,11 +70,11 @@ data class DashboardSublistListItem(
         ): DashboardSublistListItem =
             DashboardSublistListItem(
                 id = Type.ReviewedToday,
-                titleText = stringResourceProvider.reviewedToday.get(stringResourceProvider),
+                titleText = stringProvider.reviewedToday,
                 items = gameItems.map {
                     DashboardGameListItem(it, imageResourceProvider, dateFormatter, onItemClick)
                 },
-                viewMoreText = stringResourceProvider.reviewedThisWeek.get(stringResourceProvider),
+                viewMoreText = stringProvider.reviewedThisWeek,
                 onMoreClick = onMoreClick,
             )
     }

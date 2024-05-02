@@ -6,8 +6,7 @@ import com.opencritic.mvvm.BaseViewModel
 import com.opencritic.navigation.GameDetailsRoute
 import com.opencritic.resources.DateFormatter
 import com.opencritic.resources.ImageResourceProvider
-import com.opencritic.resources.StringResourceProvider
-import com.opencritic.resources.get
+import com.opencritic.resources.StringProvider
 import kotlinx.coroutines.launch
 import kotlinx.datetime.Clock
 import kotlinx.datetime.TimeZone
@@ -15,7 +14,7 @@ import kotlinx.datetime.toLocalDateTime
 
 class DashboardViewModel(
     private val getDashboardInteractor: GetDashboardInteractor,
-    private val stringResourceProvider: StringResourceProvider,
+    private val stringProvider: StringProvider,
     private val imageResourceProvider: ImageResourceProvider,
     private val dateFormatter: DateFormatter,
     private val logger: Logger,
@@ -41,8 +40,8 @@ class DashboardViewModel(
                     mutableState.tryEmit(
                         DashboardState.Content(
                             popularGamesTitle = DashboardTitleListItem(
-                                stringResourceProvider.popularGames.get(stringResourceProvider),
-                                stringResourceProvider.popularGamesDescription.get(stringResourceProvider),
+                                stringProvider.popularGames,
+                                stringProvider.popularGamesDescription,
                             ),
                             popularGames = DashboardPosterGamesHorizontalListItem(
                                 dashboard.popularGames,
@@ -51,19 +50,19 @@ class DashboardViewModel(
                                 navigateToGame(it.id)
                             },
                             dealsTitle = DashboardTitleListItem(
-                                stringResourceProvider.featuredDeals.get(stringResourceProvider),
-                                stringResourceProvider.featuredDealsDescription.get(stringResourceProvider),
+                                stringProvider.featuredDeals,
+                                stringProvider.featuredDealsDescription,
                             ),
                             deals = DashboardDealsHorizontalListItem(
                                 deals = dashboard.deals,
-                                stringResourceProvider = stringResourceProvider,
+                                stringProvider = stringProvider,
                                 imageResourceProvider = imageResourceProvider,
                                 onClick = { navigateToGame(it.id) },
                                 onBuyNowClick = {},
                             ),
                             reviewedToday = DashboardSublistListItem.reviewedToday(
                                 gameItems = dashboard.reviewedToday,
-                                stringResourceProvider = stringResourceProvider,
+                                stringProvider = stringProvider,
                                 imageResourceProvider = imageResourceProvider,
                                 dateFormatter = dateFormatter,
                                 onItemClick = { navigateToGame(it.id) },
@@ -71,7 +70,7 @@ class DashboardViewModel(
                             ),
                             upcomingReleases = DashboardSublistListItem.upcomingReleases(
                                 gameItems = dashboard.upcoming,
-                                stringResourceProvider = stringResourceProvider,
+                                stringProvider = stringProvider,
                                 imageResourceProvider = imageResourceProvider,
                                 dateFormatter = dateFormatter,
                                 onItemClick = { navigateToGame(it.id) },
@@ -79,15 +78,15 @@ class DashboardViewModel(
                             ),
                             recentlyReleased = DashboardSublistListItem.recentlyReleased(
                                 gameItems = dashboard.recentlyReleased,
-                                stringResourceProvider = stringResourceProvider,
+                                stringProvider = stringProvider,
                                 imageResourceProvider = imageResourceProvider,
                                 dateFormatter = dateFormatter,
                                 onItemClick = { navigateToGame(it.id) },
                                 onMoreClick = {},
                             ),
                             hallOfFameTitle = DashboardTitleListItem(
-                                title = stringResourceProvider.hallOfFameFormatted.get(stringResourceProvider, currentYear.toString()),
-                                subtitle = stringResourceProvider.hallOfFameDescriptionFormatted.get(stringResourceProvider, currentYear.toString())
+                                title = stringProvider.hallOfFameFormatted(currentYear.toString()),
+                                subtitle = stringProvider.hallOfFameDescriptionFormatted(currentYear.toString())
                             ),
                             hallOfFame = DashboardPosterGamesHorizontalListItem(
                                 popularGames = dashboard.hallOfFame,
@@ -95,7 +94,7 @@ class DashboardViewModel(
                                 onClick = { navigateToGame(it.id) }
                             ),
                             whoIsMightyMan = DashboardMightyManListItem(
-                                stringResourceProvider,
+                                stringProvider,
                                 imageResourceProvider
                             ),
                             switchTitle = DashboardTitleListItem(

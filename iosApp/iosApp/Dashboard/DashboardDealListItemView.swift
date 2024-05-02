@@ -38,7 +38,7 @@ struct DashboardDealListItemView_Previews: PreviewProvider {
                     name: "Amazon",
                     price: 49.99
                 ),
-                stringResourceProvider: IosStringResourceProvider(),
+                stringProvider: IosStringProvider(),
                 imageResourceProvider: IosImagesResourceProvider(),
                 onClick: { _ in },
                 onBuyNowClick: { _ in }

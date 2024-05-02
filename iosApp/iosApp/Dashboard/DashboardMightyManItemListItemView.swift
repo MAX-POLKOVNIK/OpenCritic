@@ -34,7 +34,7 @@ struct DashboardMightyManItemListItemView: View {
     DashboardMightyManItemListItemView(
         item: DashboardMightyManItemListItemKt
             .DashboardMightyManItemListItem(
-                stringResourceProvider: IosStringResourceProvider(),
+                stringProvider: IosStringProvider(),
                 imageResourceProvider: IosImagesResourceProvider(),
                 tier: Tier.mighty
             )

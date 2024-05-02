@@ -4,8 +4,7 @@ import com.opencritic.games.Tier
 import com.opencritic.mvvm.ListItem
 import com.opencritic.resources.ImageResource
 import com.opencritic.resources.ImageResourceProvider
-import com.opencritic.resources.StringResourceProvider
-import com.opencritic.resources.get
+import com.opencritic.resources.StringProvider
 
 data class DashboardMightyManItemListItem(
     override val id: Tier,
@@ -15,7 +14,7 @@ data class DashboardMightyManItemListItem(
 ) : ListItem<Tier>
 
 fun DashboardMightyManItemListItem(
-    stringResourceProvider: StringResourceProvider,
+    stringProvider: StringProvider,
     imageResourceProvider: ImageResourceProvider,
     tier: Tier,
 ): DashboardMightyManItemListItem =
@@ -28,15 +27,15 @@ fun DashboardMightyManItemListItem(
             Tier.Mighty -> imageResourceProvider.mightyHead
         },
         name = when (tier) {
-            Tier.Weak -> stringResourceProvider.weak.get(stringResourceProvider)
-            Tier.Fair -> stringResourceProvider.fair.get(stringResourceProvider)
-            Tier.Strong -> stringResourceProvider.strong.get(stringResourceProvider)
-            Tier.Mighty -> stringResourceProvider.mighty.get(stringResourceProvider)
+            Tier.Weak -> stringProvider.weak
+            Tier.Fair -> stringProvider.fair
+            Tier.Strong -> stringProvider.strong
+            Tier.Mighty -> stringProvider.mighty
         },
         description = when (tier) {
-            Tier.Weak -> stringResourceProvider.weakDescription.get(stringResourceProvider)
-            Tier.Fair -> stringResourceProvider.fairDescription.get(stringResourceProvider)
-            Tier.Strong -> stringResourceProvider.strongDescription.get(stringResourceProvider)
-            Tier.Mighty -> stringResourceProvider.mightyDescription.get(stringResourceProvider)
+            Tier.Weak -> stringProvider.weakDescription
+            Tier.Fair -> stringProvider.fairDescription
+            Tier.Strong -> stringProvider.strongDescription
+            Tier.Mighty -> stringProvider.mightyDescription
         }
     )

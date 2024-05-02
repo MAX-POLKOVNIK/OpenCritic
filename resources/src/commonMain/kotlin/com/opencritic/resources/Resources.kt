@@ -1,6 +1,6 @@
 package com.opencritic.resources
 
 interface Resources {
-    val strings: StringResourceProvider
+    val strings: StringProvider
     val images: ImageResourceProvider
 }

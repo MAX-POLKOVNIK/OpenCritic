@@ -8,7 +8,7 @@ import com.opencritic.logs.logsModule
 import com.opencritic.main.di.mainModule
 import com.opencritic.resources.DateFormatter
 import com.opencritic.resources.ImageResourceProvider
-import com.opencritic.resources.StringResourceProvider
+import com.opencritic.resources.StringProvider
 import com.opencritic.resources.resourcesModule
 import org.koin.core.KoinApplication
 import org.koin.core.component.KoinComponent
@@ -19,7 +19,7 @@ abstract class BaseApp : KoinComponent {
     private val logger: Logger by inject()
 
     internal fun onInit(
-        stringResourceProvider: StringResourceProvider,
+        stringProvider: StringProvider,
         imageResourceProvider: ImageResourceProvider,
         dateFormatter: DateFormatter,
     ) {
@@ -29,7 +29,7 @@ abstract class BaseApp : KoinComponent {
             modules(
                 apiModule,
                 logsModule,
-                resourcesModule(stringResourceProvider, imageResourceProvider, dateFormatter),
+                resourcesModule(stringProvider, imageResourceProvider, dateFormatter),
                 dashboardModule,
                 mainModule,
                 gameDetailsModule,

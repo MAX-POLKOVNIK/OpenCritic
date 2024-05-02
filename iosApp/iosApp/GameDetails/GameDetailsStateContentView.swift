@@ -229,7 +229,7 @@ struct GameDetailsStateContentView: View {
             name: "Game title",
             gameActionItems: GameActionItemKt.gameActionItems(
                 imageResourceProvider: IosImagesResourceProvider(),
-                stringResourceProvider: IosStringResourceProvider(),
+                stringProvider: IosStringProvider(),
                 isWanted: false,
                 isPlayed: false,
                 isFavorite: false,

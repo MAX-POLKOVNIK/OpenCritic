@@ -62,7 +62,7 @@ struct DashboardDealsHorizontalListItemView_Previews: PreviewProvider {
                         price: 49.99
                     ),
                 ],
-                stringResourceProvider: IosStringResourceProvider(),
+                stringProvider: IosStringProvider(),
                 imageResourceProvider: IosImagesResourceProvider(),
                 onClick: {_ in },
                 onBuyNowClick: { _ in }

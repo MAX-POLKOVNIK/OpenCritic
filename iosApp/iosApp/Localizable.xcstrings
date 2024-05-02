@@ -177,7 +177,7 @@
         "en" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "The top 10% of game ratings. Best in their genre. Universal critical acclaim. "
+            "value" : "The top 10%% of game ratings. Best in their genre. Universal critical acclaim. "
           }
         }
       }
@@ -287,7 +287,7 @@
         "en" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "The next 30% of all games scored on OpenCritic. Great execution with a few flaws."
+            "value" : "The next 30%% of all games scored on OpenCritic. Great execution with a few flaws."
           }
         }
       }
@@ -430,7 +430,7 @@
         "en" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "The bottom 30% of game ratings. Games that missed on some key elements."
+            "value" : "The bottom 30%% of game ratings. Games that missed on some key elements."
           }
         }
       }

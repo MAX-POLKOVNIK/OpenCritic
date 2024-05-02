@@ -5,7 +5,7 @@ import shared
 struct iOSApp: App {
     init() {
         IosApp.shared.doInit(
-            stringResourceProvider: IosStringResourceProvider(),
+            stringProvider: IosStringProvider(),
             imageResourceProvider: IosImagesResourceProvider(),
             dateFormatter: IosDateFormatter()
         )

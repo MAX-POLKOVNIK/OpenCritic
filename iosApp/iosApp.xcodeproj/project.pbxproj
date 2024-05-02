@@ -11,7 +11,7 @@
 		058557D9273AAEEB004C7B11 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 058557D8273AAEEB004C7B11 /* Preview Assets.xcassets */; };
 		2152FB042600AC8F00CF470E /* iOSApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2152FB032600AC8F00CF470E /* iOSApp.swift */; };
 		4256278C2BE0F05300EDEEEB /* Localizable.xcstrings in Resources */ = {isa = PBXBuildFile; fileRef = 4256278B2BE0F05300EDEEEB /* Localizable.xcstrings */; };
-		4256278E2BE0F0A100EDEEEB /* IosStringResourceProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4256278D2BE0F0A100EDEEEB /* IosStringResourceProvider.swift */; };
+		4256278E2BE0F0A100EDEEEB /* IosStringProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4256278D2BE0F0A100EDEEEB /* IosStringProvider.swift */; };
 		425627902BE0F17E00EDEEEB /* IosImagesResourceProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4256278F2BE0F17E00EDEEEB /* IosImagesResourceProvider.swift */; };
 		425627932BE109F400EDEEEB /* DashboardPosterGameListItemView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 425627922BE109F400EDEEEB /* DashboardPosterGameListItemView.swift */; };
 		425627952BE1109600EDEEEB /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 425627942BE1109600EDEEEB /* Images.xcassets */; };
@@ -67,7 +67,7 @@
 		058557D8273AAEEB004C7B11 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		2152FB032600AC8F00CF470E /* iOSApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = iOSApp.swift; sourceTree = "<group>"; };
 		4256278B2BE0F05300EDEEEB /* Localizable.xcstrings */ = {isa = PBXFileReference; lastKnownFileType = text.json.xcstrings; path = Localizable.xcstrings; sourceTree = "<group>"; };
-		4256278D2BE0F0A100EDEEEB /* IosStringResourceProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IosStringResourceProvider.swift; sourceTree = "<group>"; };
+		4256278D2BE0F0A100EDEEEB /* IosStringProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IosStringProvider.swift; sourceTree = "<group>"; };
 		4256278F2BE0F17E00EDEEEB /* IosImagesResourceProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IosImagesResourceProvider.swift; sourceTree = "<group>"; };
 		425627922BE109F400EDEEEB /* DashboardPosterGameListItemView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DashboardPosterGameListItemView.swift; sourceTree = "<group>"; };
 		425627942BE1109600EDEEEB /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
@@ -231,7 +231,7 @@
 				2152FB032600AC8F00CF470E /* iOSApp.swift */,
 				058557D7273AAEEB004C7B11 /* Preview Content */,
 				4256278B2BE0F05300EDEEEB /* Localizable.xcstrings */,
-				4256278D2BE0F0A100EDEEEB /* IosStringResourceProvider.swift */,
+				4256278D2BE0F0A100EDEEEB /* IosStringProvider.swift */,
 				4256278F2BE0F17E00EDEEEB /* IosImagesResourceProvider.swift */,
 				425627942BE1109600EDEEEB /* Images.xcassets */,
 				42E2F09F2BE21B7700B76F14 /* IosDateFormatter.swift */,
@@ -367,7 +367,7 @@
 				42E2F0B22BE33AEF00B76F14 /* GameActionItemView.swift in Sources */,
 				425627B52BE151A500EDEEEB /* MainScreenView.swift in Sources */,
 				42E2F09E2BE2098C00B76F14 /* DashboardSublistListitemView.swift in Sources */,
-				4256278E2BE0F0A100EDEEEB /* IosStringResourceProvider.swift in Sources */,
+				4256278E2BE0F0A100EDEEEB /* IosStringProvider.swift in Sources */,
 				4256279D2BE119FB00EDEEEB /* DashboardStateErrorView.swift in Sources */,
 				42E2F0A22BE226B700B76F14 /* DashboardMightyManItemListItemView.swift in Sources */,
 				42E2F0A92BE234CF00B76F14 /* RouterView.swift in Sources */,

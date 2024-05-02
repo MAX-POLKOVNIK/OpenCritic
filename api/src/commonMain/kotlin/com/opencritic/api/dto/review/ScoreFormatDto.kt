@@ -10,7 +10,7 @@ data class ScoreFormatDto(
     val scoreDisplay: String?,
     val isNumeric: Boolean,
     val isSelect: Boolean,
-    val isStars: Boolean,
+    val isStars: Boolean? = null,
     val numDecimals: Int?,
     val base: Int?,
     val options: List<ScoreFormatOptionDto>?,

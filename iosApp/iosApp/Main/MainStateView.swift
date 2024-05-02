@@ -20,30 +20,35 @@ struct MainStateView: View {
                         .tabItem {
                             Label(tab.name, systemImage: tab.imageResource)
                         }
+                        .navigationTitle(tab.name)
                 }
                 if tab.id == TabType.search {
                     ContentView()
                         .tabItem {
                             Label(tab.name, systemImage: tab.imageResource)
                         }
+                        .navigationTitle(tab.name)
                 }
                 if tab.id == TabType.browse {
                     ContentView()
                         .tabItem {
                             Label(tab.name, systemImage: tab.imageResource)
                         }
+                        .navigationTitle(tab.name)
                 }
                 if tab.id == TabType.calendar {
                     ContentView()
                         .tabItem {
                             Label(tab.name, systemImage: tab.imageResource)
                         }
+                        .navigationTitle(tab.name)
                 }
                 if tab.id == TabType.yourlists {
                     ContentView()
                         .tabItem {
                             Label(tab.name, systemImage: tab.imageResource)
                         }
+                        .navigationTitle(tab.name)
                 }
             }
         }

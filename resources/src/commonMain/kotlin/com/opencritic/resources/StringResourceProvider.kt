@@ -49,7 +49,12 @@ interface StringResourceProvider {
 
     val buyNowOnFormatted: StringResource
 
+    val viewAll: StringResource
     val viewAllReviewsFormatted: StringResource
+
+    val media: StringResource
+    val screenshots: StringResource
+    val trailers: StringResource
 }
 
 fun StringResource.get(provider: StringResourceProvider, vararg args: String): String =

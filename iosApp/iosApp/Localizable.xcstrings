@@ -138,6 +138,17 @@
         }
       }
     },
+    "str_media" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Media"
+          }
+        }
+      }
+    },
     "str_mighty" : {
       "extractionState" : "manual",
       "localizations" : {
@@ -222,6 +233,17 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "REVIEWED TODAY"
+          }
+        }
+      }
+    },
+    "str_screenshots" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Screenshots"
           }
         }
       }
@@ -314,6 +336,17 @@
         }
       }
     },
+    "str_trailers" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Trailers"
+          }
+        }
+      }
+    },
     "str_upcoming_releases" : {
       "extractionState" : "manual",
       "localizations" : {
@@ -321,6 +354,17 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "UPCOMING RELEASES"
+          }
+        }
+      }
+    },
+    "str_view_all" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "View All"
           }
         }
       }

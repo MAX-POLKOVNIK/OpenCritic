@@ -62,5 +62,10 @@ class IosStringResourceProvider : StringResourceProvider {
     var tabSearch: String { "str_tab_search" }
     var tabYourList: String { "str_tab_your_list" }
     
+    var viewAll: String { "str_view_all" }
     var viewAllReviewsFormatted: String { "str_view_all_reviews" }
+    
+    var media: String { "str_media" }
+    var screenshots: String { "str_screenshots" }
+    var trailers: String { "str_trailers" }
 }

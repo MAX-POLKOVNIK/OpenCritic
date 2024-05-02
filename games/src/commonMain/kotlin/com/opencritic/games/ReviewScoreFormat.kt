@@ -8,6 +8,7 @@ data class ReviewScoreFormat(
     val isNumeric: Boolean,
     val isSelect: Boolean,
     val isStars: Boolean,
+    val isPercent: Boolean,
     val numDecimals: Int?,
     val base: Int?,
     val options: List<ReviewScoreFormatOption>?,

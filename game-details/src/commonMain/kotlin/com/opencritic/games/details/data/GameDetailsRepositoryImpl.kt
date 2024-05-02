@@ -36,14 +36,15 @@ internal class GameDetailsRepositoryImpl(
                 companies = dto.companies.map { Company(it.name) },
                 platforms = dto.platforms.map { Platform(it.name) },
                 reviewsCount = dto.numReviews,
-                trailers = dto.trailers.map {
+                trailers = dto.trailers
+                    .map {
                     Trailer(
                         title = it.title,
-                        thumbnailUrl = "https://img.youtube.com/vi/${it.videoId}/0.jpg",
+                        thumbnailUrl = "https://img.youtube.com/vi/${it.videoId}/maxresdefault.jpg",
                         externalUrl = it.externalUrl,
                     )
                 },
-                screenshotUrls = dto.images.screenshots?.mapNotNull { it.sm } ?: emptyList(),
+                screenshotUrls = dto.images.screenshots?.mapNotNull { it.sm?.prefixedImageUrl() } ?: emptyList(),
             )
         }
 
@@ -66,7 +67,10 @@ internal class GameDetailsRepositoryImpl(
                             scoreDisplay = dto.scoreFormat.scoreDisplay,
                             isNumeric = dto.scoreFormat.isNumeric,
                             isSelect = dto.scoreFormat.isSelect,
-                            isStars = dto.scoreFormat.isStars,
+                            isStars = dto.scoreFormat.isStars ?: false,
+                            isPercent = dto.scoreFormat.scoreDisplay
+                                ?.contains("%")
+                                ?: false,
                             numDecimals = dto.scoreFormat.numDecimals,
                             base = dto.scoreFormat.base,
                             options = dto.scoreFormat.options?.map { optionDto ->

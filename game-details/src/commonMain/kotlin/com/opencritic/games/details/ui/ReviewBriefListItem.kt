@@ -28,7 +28,15 @@ fun ReviewBriefListItem(
                         ?.label
                         ?: ""
                 else ->
-                    (score / requireNotNull(scoreFormat.base)).toString() +
-                            " / ${ 100 / requireNotNull(scoreFormat.base)}"
+                    (score.toFloat() / requireNotNull(scoreFormat.base)).formatScore() +
+                            if (scoreFormat.isPercent) "%"
+                            else " / ${ 100 / requireNotNull(scoreFormat.base)}"
             }
     )
+
+private fun Float.formatScore(): String =
+    if (toInt().toFloat() == this) {
+        toInt().toString()
+    } else {
+        toString()
+    }

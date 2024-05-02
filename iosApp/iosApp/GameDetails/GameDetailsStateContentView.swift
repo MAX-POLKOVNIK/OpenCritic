@@ -14,18 +14,20 @@ struct GameDetailsStateContentView: View {
     
     var body: some View {
         ScrollView(.vertical) {
-            LazyVStack {
-                CachedAsyncImage(
-                    url: URL(string: state.imageUrl),
-                    urlCache: .imageCache
-                ) { image in
-                    image.resizable()
-                        .scaledToFill()
-                } placeholder: {
-                    Color.gray
+            LazyVStack(alignment: .leading) {
+                if state.isImageVisible {
+                    CachedAsyncImage(
+                        url: URL(string: state.imageUrl),
+                        urlCache: .imageCache
+                    ) { image in
+                        image.resizable()
+                            .scaledToFill()
+                    } placeholder: {
+                        Color.gray
+                    }
+                        .frame(minWidth: 0, maxWidth: .infinity)
+                        .aspectRatio(1.0, contentMode: .fit)
                 }
-                    .frame(minWidth: 0, maxWidth: .infinity)
-                    .aspectRatio(1.0, contentMode: .fit)
                 
                 HStack(spacing: 0) {
                     ForEach(state.gameActionItems, id: \.self) { action in
@@ -112,10 +114,13 @@ struct GameDetailsStateContentView: View {
                     ForEach(state.briefReviews, id: \.self) { item in
                         ReviewBriefListItemView(item: item)
                     }
-                    HStack {
-                        Spacer()
-                        Button(state.viewAllText, action: {})
-                            .padding()
+                    
+                    if state.isViewAllVisible {
+                        HStack {
+                            Spacer()
+                            Button(state.viewAllText, action: {})
+                                .padding()
+                        }
                     }
                 }
                     .frame(minWidth: 0, maxWidth: .infinity)
@@ -125,14 +130,82 @@ struct GameDetailsStateContentView: View {
                             .shadow(color: .gray, radius: 2, x: 0, y: 2)
                     )
                     .padding(.horizontal)
+                
+                if state.isMediaVisible {
+                    Spacer()
+                        .frame(height: 32)
+                    
+                    Text(state.mediaText)
+                        .font(.title)
+                        .padding(.horizontal)
+                    
+                    ForEach(state.media, id: \.self) { m in
+                        switch m {
+                        case let trailer as TrailerItem:
+                            TrailerItemView(item: trailer)
+                                .padding(.horizontal)
+                        case let screenshot as ScreenshotItem:
+                            ScreenshotItemView(item: screenshot)
+                                .padding(.horizontal)
+                        default: fatalError()
+                        }
+                    }
+                    
+                    HStack {
+                        Spacer()
+                        Button(state.viewAllMedia, action: {})
+                            .padding()
+                    }
+                }
+                
+                if state.isTrailersVisible {
+                    Spacer()
+                        .frame(height: 32)
+                    
+                    Text(state.trailersText)
+                        .font(.title)
+                        .padding(.horizontal)
+                    
+                    ForEach(state.trailers, id: \.self) { trailer in
+                        TrailerItemView(item: trailer)
+                            .padding(.horizontal)
+                    }
+                    
+                    HStack {
+                        Spacer()
+                        Button(state.viewAllTrailers, action: {})
+                            .padding()
+                    }
+                }
+                
+                if state.isScreenshotsVisible {
+                    Spacer()
+                        .frame(height: 32)
+                    
+                    Text(state.screenshotsText)
+                        .font(.title)
+                        .padding(.horizontal)
+                    
+                    ForEach(state.screenshots, id: \.self) { screenshot in
+                        ScreenshotItemView(item: screenshot)
+                            .padding(.horizontal)
+                    }
+                    
+                    HStack {
+                        Spacer()
+                        Button(state.viewAllScreenshots, action: {})
+                            .padding()
+                    }
+                }
             }
-        }
+        }.navigationTitle(state.name)
     }
 }
 
 #Preview {
     GameDetailsStateContentView(
         state: GameDetailsStateContent(
+            isImageVisible: true,
             imageUrl: "https://img.opencritic.com/game/14353/a7GST4so.jpg",
             name: "Game title",
             gameActionItems: GameActionItemKt.gameActionItems(
@@ -160,7 +233,20 @@ struct GameDetailsStateContentView: View {
                 ReviewBriefListItem(nameText: "IGN", scoreText: "100 / 100"),
                 ReviewBriefListItem(nameText: "IGN", scoreText: "100 / 100"),
             ],
-            viewAllText: "View all 1000 reviews"
+            isViewAllVisible: true,
+            viewAllText: "View all 1000 reviews",
+            isMediaVisible: false,
+            mediaText: "",
+            media: [],
+            viewAllMedia: "",
+            isTrailersVisible: false,
+            trailersText: "",
+            trailers: [],
+            viewAllTrailers: "",
+            isScreenshotsVisible: false,
+            screenshotsText: "",
+            screenshots: [],
+            viewAllScreenshots: ""
         )
     )
 }

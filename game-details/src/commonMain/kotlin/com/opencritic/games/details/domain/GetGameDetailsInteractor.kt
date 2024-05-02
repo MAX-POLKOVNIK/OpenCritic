@@ -19,10 +19,7 @@ class GetGameDetailsInteractor(
                 rank = game.rank,
                 releaseDate = game.releaseDate,
                 recommendPercent = game.recommendPercent,
-                reviews = reviews
-                    .filter { it.score != null }
-                    .filterNot { it.scoreFormat.isSelect }
-                    .take(8),
+                reviews = reviews,
                 reviewCount = game.reviewsCount,
                 trailers = game.trailers,
                 screenshotUrls = game.screenshotUrls,

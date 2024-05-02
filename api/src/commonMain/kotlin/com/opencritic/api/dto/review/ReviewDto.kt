@@ -13,6 +13,7 @@ data class ReviewDto(
     val externalUrl: String,
     @SerialName("Platforms") val platforms: List<PlatformDto>,
     @SerialName("Authors") val authors: List<AuthorDto>,
+    val alias: String? = null,
     val publishedDate: Instant,
     val title: String? = null,
     val score: Float? = null,

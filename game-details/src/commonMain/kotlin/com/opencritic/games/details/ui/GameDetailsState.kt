@@ -38,5 +38,8 @@ sealed interface GameDetailsState : ViewModelState {
         val screenshotsText: String,
         val screenshots: List<ScreenshotItem>,
         val viewAllScreenshots: String,
+        val isReviewsVisible: Boolean,
+        val reviewTitleText: String,
+        val reviews: List<CardReviewItem>
     ) : GameDetailsState
 }

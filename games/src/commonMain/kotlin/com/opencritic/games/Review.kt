@@ -9,8 +9,9 @@ data class Review(
     val externalUrl: String,
     val platforms: List<Platform>,
     val authors: List<Author>,
+    val alias: String?,
     val publishedDate: Instant,
     val title: String?,
-    val score: Int?,
+    val score: Float?,
     val snippet: String,
 )

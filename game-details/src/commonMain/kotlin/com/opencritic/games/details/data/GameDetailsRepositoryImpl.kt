@@ -88,9 +88,10 @@ internal class GameDetailsRepositoryImpl(
                                 name = it.name,
                             )
                         },
+                        alias = dto.alias,
                         publishedDate = dto.publishedDate,
                         title = dto.title,
-                        score = dto.score?.toInt(),
+                        score = dto.score,
                         snippet = dto.snippet,
                     )
                 }

@@ -123,7 +123,7 @@ struct GameDetailsStateContentView: View {
                         }
                     }
                 }
-                    .frame(minWidth: 0, maxWidth: .infinity)
+                    .frame(minWidth: 0, maxWidth: .infinity, alignment: .leading)
                     .background(
                         RoundedRectangle(cornerRadius: 8)
                             .fill(Color.white)
@@ -197,6 +197,25 @@ struct GameDetailsStateContentView: View {
                             .padding()
                     }
                 }
+                
+                if state.isReviewsVisible {
+                    Text(state.reviewTitleText)
+                        .font(.title)
+                        .padding(.horizontal)
+                    
+                    ForEach(state.reviews, id: \.self) { review in
+                        CardReviewItemView(item: review)
+                            .padding(.horizontal)
+                    }
+                    
+                    if state.isViewAllVisible {
+                        HStack {
+                            Spacer()
+                            Button(state.viewAllText, action: {})
+                                .padding()
+                        }
+                    }
+                }
             }
         }.navigationTitle(state.name)
     }
@@ -246,7 +265,10 @@ struct GameDetailsStateContentView: View {
             isScreenshotsVisible: false,
             screenshotsText: "",
             screenshots: [],
-            viewAllScreenshots: ""
+            viewAllScreenshots: "",
+            isReviewsVisible: false,
+            reviewTitleText: "",
+            reviews: []
         )
     )
 }

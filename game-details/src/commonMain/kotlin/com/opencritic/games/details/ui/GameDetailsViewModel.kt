@@ -67,13 +67,17 @@ class GameDetailsViewModel(
                             topCriticScoreDescription = stringResourceProvider.topCriticAverage.get(stringResourceProvider),
                             recommendedPercent = details.recommendPercent,
                             criticsRecommendDescription = stringResourceProvider.criticsRecommend.get(stringResourceProvider),
-                            briefReviews = details.reviews.map { review ->
-                                ReviewBriefListItem(
-                                    name = review.outlet.name,
-                                    score = review.score,
-                                    scoreFormat = review.scoreFormat,
-                                )
-                            },
+                            briefReviews = details.reviews
+                                .filter { it.score != null }
+                                .filterNot { it.scoreFormat.isSelect }
+                                .take(8)
+                                .map { review ->
+                                    ReviewBriefListItem(
+                                        name = review.outlet.name,
+                                        score = review.score?.toInt(),
+                                        scoreFormat = review.scoreFormat,
+                                    )
+                                },
                             isViewAllVisible = details.reviewCount != 0,
                             viewAllText = stringResourceProvider.viewAllReviewsFormatted.get(stringResourceProvider, details.reviewCount.toString()),
                             isMediaVisible = details.trailers.size <= 1 && details.screenshotUrls.isNotEmpty(),
@@ -84,10 +88,21 @@ class GameDetailsViewModel(
                             trailersText = "${details.name} ${stringResourceProvider.trailers.get(stringResourceProvider)}",
                             trailers = details.trailers.take(3).map { TrailerItem(it, {}) },
                             viewAllTrailers = "${stringResourceProvider.viewAll.get(stringResourceProvider)} ${stringResourceProvider.trailers.get(stringResourceProvider)}",
-                            isScreenshotsVisible = details.screenshotUrls.isNotEmpty(),
+                            isScreenshotsVisible = details.screenshotUrls.isNotEmpty() && details.trailers.size > 1,
                             screenshotsText = "${details.name} ${stringResourceProvider.screenshots.get(stringResourceProvider)}",
                             screenshots = details.screenshotUrls.take(3).map { ScreenshotItem(it, {}) },
                             viewAllScreenshots = "${stringResourceProvider.viewAll.get(stringResourceProvider)} ${stringResourceProvider.screenshots.get(stringResourceProvider)}",
+                            isReviewsVisible = details.reviewCount != 0,
+                            reviewTitleText = stringResourceProvider.criticReviewsForFormatted.get(stringResourceProvider, details.name),
+                            reviews = details.reviews
+                                .take(8)
+                                .map { review ->
+                                    CardReviewItem(
+                                        review = review,
+                                        readFullReviewText = stringResourceProvider.readFullReview.get(stringResourceProvider),
+                                        onClick = {},
+                                    )
+                                }
                         )
                     )
                 }

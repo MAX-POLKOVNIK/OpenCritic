@@ -51,6 +51,8 @@ interface StringResourceProvider {
 
     val viewAll: StringResource
     val viewAllReviewsFormatted: StringResource
+    val criticReviewsForFormatted: StringResource
+    val readFullReview: StringResource
 
     val media: StringResource
     val screenshots: StringResource

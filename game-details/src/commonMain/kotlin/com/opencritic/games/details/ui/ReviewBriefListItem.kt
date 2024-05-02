@@ -34,7 +34,7 @@ fun ReviewBriefListItem(
             }
     )
 
-private fun Float.formatScore(): String =
+fun Float.formatScore(): String =
     if (toInt().toFloat() == this) {
         toInt().toString()
     } else {

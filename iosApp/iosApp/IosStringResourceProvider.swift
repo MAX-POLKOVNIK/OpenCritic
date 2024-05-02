@@ -64,6 +64,8 @@ class IosStringResourceProvider : StringResourceProvider {
     
     var viewAll: String { "str_view_all" }
     var viewAllReviewsFormatted: String { "str_view_all_reviews" }
+    var criticReviewsForFormatted: String { "str_critic_reviews_for_formatted" }
+    var readFullReview: String { "str_read_full_review" }
     
     var media: String { "str_media" }
     var screenshots: String { "str_screenshots" }

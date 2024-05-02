@@ -28,6 +28,17 @@
         }
       }
     },
+    "str_critic_reviews_for_formatted" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Critic Reviews for %@"
+          }
+        }
+      }
+    },
     "str_critics_recommend" : {
       "extractionState" : "manual",
       "localizations" : {
@@ -200,6 +211,17 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Don't miss the most popular games on OpenCritic today"
+          }
+        }
+      }
+    },
+    "str_read_full_review" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Read full review"
           }
         }
       }

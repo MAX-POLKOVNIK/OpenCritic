@@ -153,7 +153,7 @@ struct GameDetailsStateContentView: View {
                     
                     HStack {
                         Spacer()
-                        Button(state.viewAllMedia, action: {})
+                        Button(state.viewAllMedia) { state.viewAllMediaClick() }
                             .padding()
                     }
                 }
@@ -173,7 +173,7 @@ struct GameDetailsStateContentView: View {
                     
                     HStack {
                         Spacer()
-                        Button(state.viewAllTrailers, action: {})
+                        Button(state.viewAllTrailers) { state.viewAllTrailersClick() }
                             .padding()
                     }
                 }
@@ -193,7 +193,7 @@ struct GameDetailsStateContentView: View {
                     
                     HStack {
                         Spacer()
-                        Button(state.viewAllScreenshots, action: {})
+                        Button(state.viewAllScreenshots) { state.viewAllScreenshotsClick() }
                             .padding()
                     }
                 }
@@ -258,14 +258,17 @@ struct GameDetailsStateContentView: View {
             mediaText: "",
             media: [],
             viewAllMedia: "",
+            onViewAllMediaClick: { _ in },
             isTrailersVisible: false,
             trailersText: "",
             trailers: [],
             viewAllTrailers: "",
+            onViewAllTrailersClick: { _ in },
             isScreenshotsVisible: false,
             screenshotsText: "",
             screenshots: [],
             viewAllScreenshots: "",
+            onViewAllScreenshotsClick: { _ in },
             isReviewsVisible: false,
             reviewTitleText: "",
             reviews: []

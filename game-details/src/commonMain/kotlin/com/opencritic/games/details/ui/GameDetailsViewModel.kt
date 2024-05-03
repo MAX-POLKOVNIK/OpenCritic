@@ -1,9 +1,11 @@
 package com.opencritic.games.details.ui
 
 import com.opencritic.games.Tier
+import com.opencritic.games.Trailer
 import com.opencritic.games.details.domain.GetGameDetailsInteractor
 import com.opencritic.logs.Logger
 import com.opencritic.mvvm.BaseViewModel
+import com.opencritic.navigation.GameMediaRoute
 import com.opencritic.navigation.UrlRoute
 import com.opencritic.resources.DateFormatter
 import com.opencritic.resources.ImageResourceProvider
@@ -82,16 +84,21 @@ class GameDetailsViewModel(
                             viewAllText = stringProvider.viewAllReviewsFormatted(details.reviewCount.toString()),
                             isMediaVisible = details.trailers.size <= 1 && details.screenshotUrls.isNotEmpty(),
                             mediaText = "${details.name} ${stringProvider.media}",
-                            media = details.trailers.map { TrailerItem(it, {}) } + details.screenshotUrls.take(3).map { ScreenshotItem(it, {}) },
+                            media = details.trailers
+                                .map {  trailer ->
+                                    TrailerItem(trailer) { openTrailer(trailer) }
+                                } + details.screenshotUrls
+                                    .take(3)
+                                    .map {
+                                        ScreenshotItem(it, {})
+                                },
                             viewAllMedia = "${stringProvider.viewAll} ${stringProvider.media}",
                             isTrailersVisible = details.trailers.size > 1,
                             trailersText = "${details.name} ${stringProvider.trailers}",
                             trailers = details.trailers
                                 .take(3)
                                 .map { trailer ->
-                                    TrailerItem(trailer) {
-                                        requireRouter().navigateTo(UrlRoute(trailer.externalUrl))
-                                    }
+                                    TrailerItem(trailer) { openTrailer(trailer) }
                                 },
                             viewAllTrailers = "${stringProvider.viewAll} ${stringProvider.trailers}",
                             isScreenshotsVisible = details.screenshotUrls.isNotEmpty() && details.trailers.size > 1,
@@ -110,10 +117,27 @@ class GameDetailsViewModel(
                                             requireRouter().navigateTo(UrlRoute(review.externalUrl))
                                         },
                                     )
-                                }
+                                },
+                            onViewAllMediaClick = { openMedia() },
+                            onViewAllScreenshotsClick = { openMedia() },
+                            onViewAllTrailersClick = { openMedia() },
                         )
                     )
                 }
         }
+    }
+
+    private fun openMedia() {
+        requireRouter()
+            .navigateTo(
+                GameMediaRoute(gameId)
+            )
+    }
+
+    private fun openTrailer(trailer: Trailer) {
+        requireRouter()
+            .navigateTo(
+                UrlRoute(trailer.externalUrl)
+            )
     }
 }

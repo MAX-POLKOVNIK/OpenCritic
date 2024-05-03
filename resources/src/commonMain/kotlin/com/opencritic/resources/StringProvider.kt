@@ -61,4 +61,6 @@ interface StringProvider {
     val game: String
     val critic: String
     val outlet: String
+
+    fun gameScreenshotsAndTrailers(name: String): String
 }

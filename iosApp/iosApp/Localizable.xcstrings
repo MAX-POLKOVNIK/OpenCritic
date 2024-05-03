@@ -149,6 +149,17 @@
         }
       }
     },
+    "str_game_screenshots_and_trailers" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%@ Screenshots and Trailers"
+          }
+        }
+      }
+    },
     "str_hall_of_fame" : {
       "extractionState" : "manual",
       "localizations" : {

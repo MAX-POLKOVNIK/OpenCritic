@@ -15,9 +15,12 @@ class IosRouter: ObservableObject, Router {
     @Published var path: NavigationPath = NavigationPath()
     
     @ViewBuilder func view(for route: Route) -> some View {
-        if let route = route as? GameDetailsRoute {
-            GameDetailsScreenView(gameId: route.gameId)
-        } else {
+        switch route {
+        case let gameRoute as GameDetailsRoute:
+            GameDetailsScreenView(gameId: gameRoute.gameId)
+        case let mediaRoute as GameMediaRoute:
+            GameMediaScreenView(gameId: mediaRoute.gameId)
+        default:
             ContentView()
         }
     }

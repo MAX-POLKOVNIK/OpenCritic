@@ -72,6 +72,8 @@ class IosStringProvider : StringProvider {
     var outlet: String { string("str_outlet") }
     var searchHint: String { string("str_search_hint") }
     
+    func gameScreenshotsAndTrailers(name: String) -> String { string("str_game_screenshots_and_trailers", args: [name]) }
+    
     private func string(_ stringResource: String, args: [String] = []) -> String {
         String(format: NSLocalizedString(stringResource, comment: stringResource), args.map { $0 as CVarArg })
     }

@@ -10,19 +10,9 @@ import SwiftUI
 import shared
 
 struct GameMediaScreenView: View {
-    @EnvironmentObject var router: IosRouter
-    
-    private let gameId: Int64
-    private let viewModel: GameMediaViewModel
-    
-    init(gameId: Int64) {
-        self.gameId = gameId
-        viewModel = koinViewModel(GameMediaViewModel.self, arg: gameId)
-    }
+    let viewModel: GameMediaViewModel
     
     var body: some View {
-        viewModel.setRouter(router: router)
-        
         return FlowView(of: viewModel.state) { state in
             switch state {
             case let content as GameMediaStateContent:

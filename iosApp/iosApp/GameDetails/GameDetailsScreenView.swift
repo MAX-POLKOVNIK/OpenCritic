@@ -10,19 +10,9 @@ import SwiftUI
 import shared
 
 struct GameDetailsScreenView: View {
-    @EnvironmentObject var router: IosRouter
-    
-    private let gameId: Int64
-    private let viewModel: GameDetailsViewModel
-    
-    init(gameId: Int64) {
-        self.gameId = gameId
-        viewModel = koinViewModel(GameDetailsViewModel.self, arg: gameId)
-    }
+    let viewModel: GameDetailsViewModel
     
     var body: some View {
-        viewModel.setRouter(router: router)
-        
         return FlowView(of: viewModel.state) { state in
             switch state {
             case let content as GameDetailsStateContent:

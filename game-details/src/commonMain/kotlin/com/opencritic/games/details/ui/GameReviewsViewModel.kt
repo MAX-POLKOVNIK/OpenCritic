@@ -5,6 +5,7 @@ import com.opencritic.games.GameRank
 import com.opencritic.games.Tier
 import com.opencritic.games.details.domain.GetGameInteractor
 import com.opencritic.games.details.domain.GetGameReviewsInteractor
+import com.opencritic.games.details.domain.ReviewSorting
 import com.opencritic.logs.Logger
 import com.opencritic.mvvm.BaseViewModel
 import com.opencritic.resources.DateFormatter
@@ -26,6 +27,7 @@ class GameReviewsViewModel(
 
     private var game: Game? = null
     private var canLoadMore: Boolean = true
+    private var sorting: ReviewSorting = ReviewSorting.Default
 
     init {
         scope.launch {
@@ -44,7 +46,7 @@ class GameReviewsViewModel(
                 }
 
             if (game != null) {
-                getGameReviewsInteractor(gameId)
+                getGameReviewsInteractor(gameId, sorting = sorting)
                     .onFailure {
                         logger.log(it.toString())
                     }
@@ -101,13 +103,13 @@ class GameReviewsViewModel(
             ),
             rankedDescription = "${game.name} is ranked in the ${game.recommendPercent ?: 0}th percentile of games scored on OpenCritic.",
             sortTitleText = "Sort",
-            sortText = "Default",
-            availableSorts = listOf("Default", "Most Popular", "Score1", "Score2"),
+            sortText = ReviewSortItem(ReviewSorting.Default, ReviewSorting.Default.name),
+            availableSorts = ReviewSorting.entries.map { ReviewSortItem(it, it.name) },
             reviewItems = emptyList(),
             isLoadingItemVisible = true,
             loadingItem = LoadingItem,
             onLoadMore = { loadMore() },
-            onSelectedSort = {},
+            onSelectedSort = { onSortSelected(it) },
         )
 
     private fun loadMore() {
@@ -115,10 +117,9 @@ class GameReviewsViewModel(
             return
 
         val state = requireNotNull(state.value as? GameReviewsState.Content)
-        println("To skip: state.reviewItems.size")
 
         scope.launch {
-            getGameReviewsInteractor(gameId, state.reviewItems.size)
+            getGameReviewsInteractor(gameId, state.reviewItems.size, sorting)
                 .onSuccess { reviews ->
                     state.copy(
                         reviewItems = state.reviewItems + reviews.map { review ->
@@ -138,5 +139,24 @@ class GameReviewsViewModel(
                     }
                 }
         }
+    }
+
+    private fun onSortSelected(item: ReviewSortItem) {
+        if (item.key == sorting)
+            return
+
+        sorting = item.key
+        canLoadMore = true
+
+        val state = requireNotNull(state.value as? GameReviewsState.Content)
+
+        mutableState.tryEmit(
+            state.copy(
+                reviewItems = emptyList(),
+                isLoadingItemVisible = true
+            )
+        )
+
+        loadMore()
     }
 }

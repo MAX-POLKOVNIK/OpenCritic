@@ -7,6 +7,7 @@ import com.opencritic.api.dto.popular.PopularItemDto
 import com.opencritic.api.dto.review.ReviewedTodayGameDto
 import com.opencritic.api.dto.released.ReleasedGameDto
 import com.opencritic.api.dto.review.ReviewDto
+import com.opencritic.api.dto.review.ReviewSortKey
 import com.opencritic.api.dto.search.SearchItemDto
 
 interface OpenCriticsApi {
@@ -30,7 +31,7 @@ interface OpenCriticsApi {
 
     suspend fun getGame(gameId: Long): GameDetailsDto
 
-    suspend fun getGameReviews(gameId: Long, skip: Int = 0): List<ReviewDto>
+    suspend fun getGameReviews(gameId: Long, skip: Int, sort: ReviewSortKey): List<ReviewDto>
 
     suspend fun search(criteria: String): List<SearchItemDto>
 }

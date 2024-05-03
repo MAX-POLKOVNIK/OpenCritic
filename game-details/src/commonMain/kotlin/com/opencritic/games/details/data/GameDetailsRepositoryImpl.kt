@@ -2,6 +2,7 @@ package com.opencritic.games.details.data
 
 import com.opencritic.api.OpenCriticsApi
 import com.opencritic.api.dto.image.prefixedImageUrl
+import com.opencritic.api.dto.review.ReviewSortKey
 import com.opencritic.games.Author
 import com.opencritic.games.Company
 import com.opencritic.games.Game
@@ -13,6 +14,7 @@ import com.opencritic.games.ReviewScoreFormat
 import com.opencritic.games.ReviewScoreFormatOption
 import com.opencritic.games.Trailer
 import com.opencritic.games.details.domain.GameDetailsRepository
+import com.opencritic.games.details.domain.ReviewSorting
 import kotlinx.coroutines.CoroutineDispatcher
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.IO
@@ -49,9 +51,21 @@ internal class GameDetailsRepositoryImpl(
             )
         }
 
-    override suspend fun getReviews(gameId: Long, skip: Int): List<Review> =
+    override suspend fun getReviews(gameId: Long, skip: Int, sort: ReviewSorting): List<Review> =
         withContext(defaultDispatcher) {
-            openCriticsApi.getGameReviews(gameId, skip)
+            openCriticsApi
+                .getGameReviews(
+                    gameId = gameId,
+                    skip = skip,
+                    sort = when (sort) {
+                        ReviewSorting.Default -> ReviewSortKey.Default
+                        ReviewSorting.MostPopular -> ReviewSortKey.Popularity
+                        ReviewSorting.ScoreHighestToLowest -> ReviewSortKey.ScoreHigh
+                        ReviewSorting.ScoreLowestToHighest -> ReviewSortKey.ScoreLow
+                        ReviewSorting.NewestFirst -> ReviewSortKey.Newest
+                        ReviewSorting.OldestFirst -> ReviewSortKey.Oldest
+                    }
+                )
                 .map { dto ->
                     Review(
                         id = dto.id,

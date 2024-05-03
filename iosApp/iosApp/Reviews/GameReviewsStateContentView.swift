@@ -8,11 +8,12 @@
 
 import SwiftUI
 import shared
+import Combine
 
 struct GameReviewsStateContentView: View {
     let state: GameReviewsStateContent
     
-    @State private var selection = "Default"
+    @State private var selection = ReviewSortItem(key: ReviewSorting.default_, name: "Def")
     
     init(state: GameReviewsStateContent) {
         self.state = state
@@ -77,11 +78,11 @@ struct GameReviewsStateContentView: View {
             
             Picker(state.sortTitleText, selection: $selection) {
                 ForEach(state.availableSorts, id: \.self) {
-                    Text($0)
+                    Text($0.name)
                 }
             }
             .pickerStyle(.menu)
-            .onSubmit {
+            .onReceive(Just(selection)) { _ in
                 state.selectedSort(sort: selection)
             }
             

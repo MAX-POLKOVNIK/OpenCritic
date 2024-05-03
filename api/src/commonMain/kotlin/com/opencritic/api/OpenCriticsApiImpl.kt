@@ -7,6 +7,7 @@ import com.opencritic.api.dto.popular.PopularItemDto
 import com.opencritic.api.dto.review.ReviewedTodayGameDto
 import com.opencritic.api.dto.released.ReleasedGameDto
 import com.opencritic.api.dto.review.ReviewDto
+import com.opencritic.api.dto.review.ReviewSortKey
 import com.opencritic.api.dto.search.SearchItemDto
 import io.ktor.client.HttpClient
 import io.ktor.client.call.body
@@ -50,8 +51,8 @@ internal class OpenCriticsApiImpl(
     override suspend fun getGame(gameId: Long): GameDetailsDto =
         client.get(baseUrl + "game/${gameId}").body()
 
-    override suspend fun getGameReviews(gameId: Long, skip: Int): List<ReviewDto> =
-        client.get(baseUrl + "reviews/game/$gameId/?skip=$skip&sort=popularity").body()
+    override suspend fun getGameReviews(gameId: Long, skip: Int, sort: ReviewSortKey): List<ReviewDto> =
+        client.get(baseUrl + "reviews/game/$gameId/?skip=$skip&sort=${sort.queryValue}").body()
 
     override suspend fun search(criteria: String): List<SearchItemDto> =
         client.get(baseUrl + "meta/search?criteria=$criteria") {

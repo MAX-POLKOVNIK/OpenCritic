@@ -2,6 +2,7 @@ package com.opencritic.games.details.ui
 
 import com.opencritic.games.GameRank
 import com.opencritic.games.Tier
+import com.opencritic.games.details.domain.ReviewSorting
 import com.opencritic.mvvm.ViewModelState
 import com.opencritic.resources.ImageResource
 import com.opencritic.resources.ImageResourceProvider
@@ -20,15 +21,15 @@ interface GameReviewsState : ViewModelState {
         val recommendScoreIndicator: RankCircleIndicatorItem,
         val rankedDescription: String,
         val sortTitleText: String,
-        val sortText: String,
-        val availableSorts: List<String>,
+        val sortText: ReviewSortItem,
+        val availableSorts: List<ReviewSortItem>,
         val reviewItems: List<ReviewListItem>,
         val isLoadingItemVisible: Boolean,
         val loadingItem: LoadingItem,
         private val onLoadMore: () -> Unit,
-        private val onSelectedSort: (String) -> Unit,
+        private val onSelectedSort: (ReviewSortItem) -> Unit,
     ) : GameReviewsState {
-        fun selectedSort(sort: String) = onSelectedSort(sort)
+        fun selectedSort(sort: ReviewSortItem) = onSelectedSort(sort)
         fun loadMore() = onLoadMore()
     }
 }
@@ -52,8 +53,8 @@ fun ReviewsStateContent_PreviewData(
         ),
         rankedDescription = "Stellar Blade is ranked in the 86th percentile of games scored on OpenCritic. ",
         sortTitleText = "Sort",
-        sortText = "Default",
-        availableSorts = listOf("Default", "Most Popular", "Score1", "Score2"),
+        sortText = ReviewSortItem(ReviewSorting.Default, ReviewSorting.Default.name),
+        availableSorts = ReviewSorting.entries.map { ReviewSortItem(it, it.name) },
         reviewItems = List(10) { ReviewListItem_PreviewData(it.toString()) },
         isLoadingItemVisible = true,
         loadingItem = LoadingItem,

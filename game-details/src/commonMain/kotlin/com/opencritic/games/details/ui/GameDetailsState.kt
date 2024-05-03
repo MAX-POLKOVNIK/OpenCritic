@@ -43,10 +43,12 @@ sealed interface GameDetailsState : ViewModelState {
         private val onViewAllScreenshotsClick: (GameDetailsState) -> Unit,
         val isReviewsVisible: Boolean,
         val reviewTitleText: String,
-        val reviews: List<CardReviewItem>
+        val reviews: List<CardReviewItem>,
+        private val onViewAllReviewsClick: () -> Unit,
     ) : GameDetailsState {
         fun viewAllMediaClick() = onViewAllMediaClick(this)
         fun viewAllTrailersClick() = onViewAllTrailersClick(this)
         fun viewAllScreenshotsClick() = onViewAllScreenshotsClick(this)
+        fun viewAllReviewsClick() = onViewAllReviewsClick()
     }
 }

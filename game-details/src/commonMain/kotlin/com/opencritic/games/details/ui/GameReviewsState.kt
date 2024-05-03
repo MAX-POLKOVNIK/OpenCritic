@@ -6,9 +6,9 @@ import com.opencritic.mvvm.ViewModelState
 import com.opencritic.resources.ImageResource
 import com.opencritic.resources.ImageResourceProvider
 
-interface ReviewsState : ViewModelState {
-    data class Error(val message: String) : ReviewsState
-    data object Loading : ReviewsState
+interface GameReviewsState : ViewModelState {
+    data class Error(val message: String) : GameReviewsState
+    data object Loading : GameReviewsState
     data class Content(
         val titleText: String,
         val imageUrl: String,
@@ -27,7 +27,7 @@ interface ReviewsState : ViewModelState {
         val loadingItem: LoadingItem,
         private val onLoadMore: () -> Unit,
         private val onSelectedSort: (String) -> Unit,
-    ) {
+    ) : GameReviewsState {
         fun selectedSort(sort: String) = onSelectedSort(sort)
         fun loadMore() = onLoadMore()
     }
@@ -36,8 +36,8 @@ interface ReviewsState : ViewModelState {
 @Suppress("FunctionName")
 fun ReviewsStateContent_PreviewData(
     imageResourceProvider: ImageResourceProvider,
-): ReviewsState.Content =
-    ReviewsState.Content(
+): GameReviewsState.Content =
+    GameReviewsState.Content(
         titleText = "Stellar Blade Reviews",
         imageUrl = "https://img.opencritic.com/game/16510/Wc7Hwzgt.jpg",
         isTierVisible = true,

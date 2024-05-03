@@ -9,12 +9,12 @@
 import SwiftUI
 import shared
 
-struct ReviewsStateContentView: View {
-    let state: ReviewsStateContent
+struct GameReviewsStateContentView: View {
+    let state: GameReviewsStateContent
     
     @State private var selection = "Default"
     
-    init(state: ReviewsStateContent) {
+    init(state: GameReviewsStateContent) {
         self.state = state
         
         selection = state.sortText
@@ -103,7 +103,7 @@ struct ReviewsStateContentView: View {
 }
 
 #Preview {
-    ReviewsStateContentView(
-        state: ReviewsStateKt.ReviewsStateContent_PreviewData(imageResourceProvider: IosImagesResourceProvider())
+    GameReviewsStateContentView(
+        state: GameReviewsStateKt.ReviewsStateContent_PreviewData(imageResourceProvider: IosImagesResourceProvider())
     )
 }

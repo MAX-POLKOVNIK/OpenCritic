@@ -52,8 +52,9 @@
 		42F844232BE49EEE00408FE7 /* ColorExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42F844222BE49EEE00408FE7 /* ColorExtensions.swift */; };
 		42F844252BE4A75F00408FE7 /* GameMediaStateContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42F844242BE4A75F00408FE7 /* GameMediaStateContentView.swift */; };
 		42F844272BE4A9EF00408FE7 /* GameMediaScreenView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42F844262BE4A9EF00408FE7 /* GameMediaScreenView.swift */; };
-		42F8442A2BE4DC5400408FE7 /* ReviewsStateContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42F844292BE4DC5400408FE7 /* ReviewsStateContentView.swift */; };
+		42F8442A2BE4DC5400408FE7 /* GameReviewsStateContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42F844292BE4DC5400408FE7 /* GameReviewsStateContentView.swift */; };
 		42F8442C2BE4EA6100408FE7 /* ReviewListItemView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42F8442B2BE4EA6100408FE7 /* ReviewListItemView.swift */; };
+		42F8442E2BE50D6400408FE7 /* GameReviewsScreenView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42F8442D2BE50D6400408FE7 /* GameReviewsScreenView.swift */; };
 		7555FF83242A565900829871 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7555FF82242A565900829871 /* ContentView.swift */; };
 /* End PBXBuildFile section */
 
@@ -116,8 +117,9 @@
 		42F844222BE49EEE00408FE7 /* ColorExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorExtensions.swift; sourceTree = "<group>"; };
 		42F844242BE4A75F00408FE7 /* GameMediaStateContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameMediaStateContentView.swift; sourceTree = "<group>"; };
 		42F844262BE4A9EF00408FE7 /* GameMediaScreenView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameMediaScreenView.swift; sourceTree = "<group>"; };
-		42F844292BE4DC5400408FE7 /* ReviewsStateContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReviewsStateContentView.swift; sourceTree = "<group>"; };
+		42F844292BE4DC5400408FE7 /* GameReviewsStateContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameReviewsStateContentView.swift; sourceTree = "<group>"; };
 		42F8442B2BE4EA6100408FE7 /* ReviewListItemView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReviewListItemView.swift; sourceTree = "<group>"; };
+		42F8442D2BE50D6400408FE7 /* GameReviewsScreenView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameReviewsScreenView.swift; sourceTree = "<group>"; };
 		7555FF7B242A565900829871 /* iosApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = iosApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		7555FF82242A565900829871 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		7555FF8C242A565B00829871 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -231,8 +233,9 @@
 		42F844282BE4D9BD00408FE7 /* Reviews */ = {
 			isa = PBXGroup;
 			children = (
-				42F844292BE4DC5400408FE7 /* ReviewsStateContentView.swift */,
+				42F844292BE4DC5400408FE7 /* GameReviewsStateContentView.swift */,
 				42F8442B2BE4EA6100408FE7 /* ReviewListItemView.swift */,
+				42F8442D2BE50D6400408FE7 /* GameReviewsScreenView.swift */,
 			);
 			path = Reviews;
 			sourceTree = "<group>";
@@ -393,7 +396,7 @@
 				42E2F0B02BE273CE00B76F14 /* GameDetailsStateContentView.swift in Sources */,
 				4256279B2BE1174B00EDEEEB /* DashboardTitleListItemView.swift in Sources */,
 				4256279F2BE11A9200EDEEEB /* DashboardStateLoadingView.swift in Sources */,
-				42F8442A2BE4DC5400408FE7 /* ReviewsStateContentView.swift in Sources */,
+				42F8442A2BE4DC5400408FE7 /* GameReviewsStateContentView.swift in Sources */,
 				425627A92BE11F5400EDEEEB /* DashboardScreenView.swift in Sources */,
 				425627902BE0F17E00EDEEEB /* IosImagesResourceProvider.swift in Sources */,
 				42E2F0B82BE3817E00B76F14 /* ScreenshotItemView.swift in Sources */,
@@ -409,6 +412,7 @@
 				425627A32BE11E5F00EDEEEB /* FlowView.swift in Sources */,
 				42F8441D2BE3E10400408FE7 /* SearchListItemView.swift in Sources */,
 				42F844212BE3E80900408FE7 /* SearchScreenView.swift in Sources */,
+				42F8442E2BE50D6400408FE7 /* GameReviewsScreenView.swift in Sources */,
 				42E2F0A42BE2288200B76F14 /* DashboardMightyManListItemView.swift in Sources */,
 				42E2F0B22BE33AEF00B76F14 /* GameActionItemView.swift in Sources */,
 				425627B52BE151A500EDEEEB /* MainScreenView.swift in Sources */,

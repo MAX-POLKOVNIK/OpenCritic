@@ -9,7 +9,7 @@ class GetGameDetailsInteractor(
             val reviews = repository.getReviews(gameId)
 
             GameDetails(
-                posterUrl = game.imageUrl,
+                posterUrl = game.squareImageUrl,
                 isWanted = false,
                 isPlayed = false,
                 isFavorite = false,

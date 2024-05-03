@@ -7,6 +7,7 @@ import com.opencritic.games.details.domain.GetGameDetailsInteractor
 import com.opencritic.logs.Logger
 import com.opencritic.mvvm.BaseViewModel
 import com.opencritic.navigation.GameMediaRoute
+import com.opencritic.navigation.GameReviewsRoute
 import com.opencritic.navigation.UrlRoute
 import com.opencritic.resources.DateFormatter
 import com.opencritic.resources.ImageResourceProvider
@@ -122,6 +123,7 @@ class GameDetailsViewModel(
                             onViewAllMediaClick = { openMedia() },
                             onViewAllScreenshotsClick = { openMedia() },
                             onViewAllTrailersClick = { openMedia() },
+                            onViewAllReviewsClick = { openReviews() }
                         )
                     )
                 }
@@ -132,6 +134,13 @@ class GameDetailsViewModel(
         requireRouter()
             .navigateTo(
                 GameMediaRoute(gameId)
+            )
+    }
+
+    private fun openReviews() {
+        requireRouter()
+            .navigateTo(
+                GameReviewsRoute(gameId)
             )
     }
 

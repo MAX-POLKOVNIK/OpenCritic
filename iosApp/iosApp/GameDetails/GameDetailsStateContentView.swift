@@ -110,7 +110,7 @@ struct GameDetailsStateContentView: View {
                     if state.isViewAllVisible {
                         HStack {
                             Spacer()
-                            Button(state.viewAllText, action: {})
+                            Button(state.viewAllText) { state.viewAllReviewsClick() }
                                 .padding()
                         }
                     }
@@ -203,7 +203,7 @@ struct GameDetailsStateContentView: View {
                     if state.isViewAllVisible {
                         HStack {
                             Spacer()
-                            Button(state.viewAllText, action: {})
+                            Button(state.viewAllText) { state.viewAllReviewsClick() }
                                 .padding()
                         }
                     }
@@ -263,7 +263,8 @@ struct GameDetailsStateContentView: View {
             onViewAllScreenshotsClick: { _ in },
             isReviewsVisible: false,
             reviewTitleText: "",
-            reviews: []
+            reviews: [],
+            onViewAllReviewsClick: {}
         )
     )
 }

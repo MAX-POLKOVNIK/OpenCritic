@@ -32,7 +32,8 @@ internal class GameDetailsRepositoryImpl(
                 releaseDate = dto.firstReleaseDate,
                 rank = GameRank(dto.tier, dto.topCriticScore),
                 recommendPercent = dto.percentRecommended.toInt().takeUnless { it < 0 },
-                imageUrl = dto.images.square?.sm?.prefixedImageUrl() ?: "",
+                squareImageUrl = dto.images.square?.sm?.prefixedImageUrl() ?: "",
+                bannerImageUrl = dto.images.banner?.sm?.prefixedImageUrl() ?: "",
                 companies = dto.companies.map { Company(it.name) },
                 platforms = dto.platforms.map { Platform(it.name) },
                 reviewsCount = dto.numReviews,
@@ -86,6 +87,7 @@ internal class GameDetailsRepositoryImpl(
                             Author(
                                 id = it.id,
                                 name = it.name,
+                                imageUrl = it.imageSrc?.sm?.prefixedImageUrl()
                             )
                         },
                         alias = dto.alias,

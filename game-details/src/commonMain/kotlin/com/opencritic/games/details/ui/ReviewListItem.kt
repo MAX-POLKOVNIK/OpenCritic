@@ -1,5 +1,11 @@
 package com.opencritic.games.details.ui
 
+import com.opencritic.games.Review
+import com.opencritic.resources.DateFormatter
+import com.opencritic.resources.StringProvider
+import kotlinx.datetime.TimeZone
+import kotlinx.datetime.toLocalDateTime
+
 data class ReviewListItem(
     val id: String,
     val outletText: String,
@@ -20,6 +26,38 @@ data class ReviewListItem(
     fun authorClick() = onAuthorClick(this)
     fun outletClick() = onOutletClick(this)
 }
+
+fun ReviewListItem(
+    review: Review,
+    stringProvider: StringProvider,
+    dateFormatter: DateFormatter,
+    onClick: (ReviewListItem) -> Unit,
+    onImageClick: (ReviewListItem) -> Unit,
+    onAuthorClick: (ReviewListItem) -> Unit,
+    onOutletClick: (ReviewListItem) -> Unit,
+): ReviewListItem =
+    ReviewListItem(
+        id = review.id,
+        outletText = review.outlet.name,
+        authorText = review.alias
+            ?.takeIf { it.isNotBlank() }
+            ?: review.authors.joinToString(", ") { it.name },
+        isAuthorVisible = (review.alias
+            ?.takeIf { it.isNotBlank() }
+            ?: review.authors.joinToString(", ") { it.name }
+                ).isNotBlank(),
+        imageUrl = review.authors.map { it.imageUrl }.firstOrNull()
+            ?: review.outlet.imageUrl,
+        score = ReviewScoreDisplayItem(review.score, review.scoreFormat),
+        dateText = dateFormatter.format(review.publishedDate.toLocalDateTime(TimeZone.UTC).date),
+        snippetText = review.snippet,
+        readFullReviewText = stringProvider.readFullReview,
+        onClick = onClick,
+        onImageClick = onImageClick,
+        onAuthorClick = onAuthorClick,
+        onOutletClick = onOutletClick,
+    )
+
 
 @Suppress("FunctionName")
 fun ReviewListItem_PreviewData(id: String = "1"): ReviewListItem =

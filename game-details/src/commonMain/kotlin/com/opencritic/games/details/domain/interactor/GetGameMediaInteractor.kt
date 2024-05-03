@@ -1,4 +1,7 @@
-package com.opencritic.games.details.domain
+package com.opencritic.games.details.domain.interactor
+
+import com.opencritic.games.details.domain.GameDetailsRepository
+import com.opencritic.games.details.domain.GameMedia
 
 class GetGameMediaInteractor(
     private val repository: GameDetailsRepository,

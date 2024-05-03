@@ -1,6 +1,6 @@
 package com.opencritic.games.details.ui
 
-import com.opencritic.games.details.domain.GetGameMediaInteractor
+import com.opencritic.games.details.domain.interactor.GetGameMediaInteractor
 import com.opencritic.logs.Logger
 import com.opencritic.mvvm.BaseViewModel
 import com.opencritic.navigation.UrlRoute

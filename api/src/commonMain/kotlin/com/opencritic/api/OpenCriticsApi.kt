@@ -3,6 +3,7 @@ package com.opencritic.api
 import com.opencritic.api.dto.deal.DealItemDto
 import com.opencritic.api.dto.details.GameDetailsDto
 import com.opencritic.api.dto.featured.FeaturedGameListDto
+import com.opencritic.api.dto.outlet.OutletDto
 import com.opencritic.api.dto.popular.PopularItemDto
 import com.opencritic.api.dto.review.ReviewedTodayGameDto
 import com.opencritic.api.dto.released.ReleasedGameDto
@@ -34,4 +35,6 @@ interface OpenCriticsApi {
     suspend fun getGameReviews(gameId: Long, skip: Int, sort: ReviewSortKey): List<ReviewDto>
 
     suspend fun search(criteria: String): List<SearchItemDto>
+
+    suspend fun getOutlet(outletId: Int): OutletDto
 }

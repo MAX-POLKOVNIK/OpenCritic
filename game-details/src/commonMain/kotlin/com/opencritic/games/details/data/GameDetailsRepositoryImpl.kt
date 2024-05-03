@@ -113,4 +113,19 @@ internal class GameDetailsRepositoryImpl(
                 }
         }
 
+    override suspend fun getOutlet(outletId: Int): com.opencritic.games.details.domain.Outlet =
+        withContext(defaultDispatcher) {
+            val dto = openCriticsApi.getOutlet(outletId)
+
+            com.opencritic.games.details.domain.Outlet(
+                id = dto.id,
+                imageUrl = dto.imageSrc.sm ?: "",
+                percentRecommended = dto.percentRecommended,
+                reviewsCount = dto.numReviews,
+                medianScore = dto.medianScore,
+                averageScore = dto.averageScore,
+                name = dto.name,
+                externalUrl = dto.externalUrl,
+            )
+        }
 }

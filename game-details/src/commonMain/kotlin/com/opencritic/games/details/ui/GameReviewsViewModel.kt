@@ -3,8 +3,8 @@ package com.opencritic.games.details.ui
 import com.opencritic.games.Game
 import com.opencritic.games.GameRank
 import com.opencritic.games.Tier
-import com.opencritic.games.details.domain.GetGameInteractor
-import com.opencritic.games.details.domain.GetGameReviewsInteractor
+import com.opencritic.games.details.domain.interactor.GetGameInteractor
+import com.opencritic.games.details.domain.interactor.GetGameReviewsInteractor
 import com.opencritic.games.details.domain.ReviewSorting
 import com.opencritic.games.details.domain.sortNameOf
 import com.opencritic.logs.Logger

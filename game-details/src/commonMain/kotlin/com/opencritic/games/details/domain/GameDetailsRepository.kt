@@ -10,4 +10,6 @@ interface GameDetailsRepository {
         skip: Int = 0,
         sort: ReviewSorting = ReviewSorting.MostPopular
     ): List<Review>
+
+    suspend fun getOutlet(outletId: Int): Outlet
 }

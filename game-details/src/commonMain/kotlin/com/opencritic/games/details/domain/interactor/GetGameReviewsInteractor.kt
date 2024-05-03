@@ -1,6 +1,8 @@
-package com.opencritic.games.details.domain
+package com.opencritic.games.details.domain.interactor
 
 import com.opencritic.games.Review
+import com.opencritic.games.details.domain.GameDetailsRepository
+import com.opencritic.games.details.domain.ReviewSorting
 
 class GetGameReviewsInteractor(
     private val gameDetailsRepository: GameDetailsRepository,

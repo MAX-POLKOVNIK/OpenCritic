@@ -3,6 +3,7 @@ package com.opencritic.api
 import com.opencritic.api.dto.deal.DealItemDto
 import com.opencritic.api.dto.details.GameDetailsDto
 import com.opencritic.api.dto.featured.FeaturedGameListDto
+import com.opencritic.api.dto.outlet.OutletDto
 import com.opencritic.api.dto.popular.PopularItemDto
 import com.opencritic.api.dto.review.ReviewedTodayGameDto
 import com.opencritic.api.dto.released.ReleasedGameDto
@@ -68,4 +69,7 @@ internal class OpenCriticsApiImpl(
                 append("Sec-Fetch-Mode", "cors")
             }
         }.body()
+
+    override suspend fun getOutlet(outletId: Int): OutletDto =
+        client.get(baseUrl + "outlet/$outletId").body()
 }

@@ -3,7 +3,7 @@ package com.opencritic.games.details.ui
 import com.opencritic.games.GameRank
 import com.opencritic.games.Tier
 import com.opencritic.games.Trailer
-import com.opencritic.games.details.domain.GetGameDetailsInteractor
+import com.opencritic.games.details.domain.interactor.GetGameDetailsInteractor
 import com.opencritic.logs.Logger
 import com.opencritic.mvvm.BaseViewModel
 import com.opencritic.navigation.GameMediaRoute

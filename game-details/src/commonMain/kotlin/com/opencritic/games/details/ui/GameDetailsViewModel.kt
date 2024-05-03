@@ -1,5 +1,6 @@
 package com.opencritic.games.details.ui
 
+import com.opencritic.games.GameRank
 import com.opencritic.games.Tier
 import com.opencritic.games.Trailer
 import com.opencritic.games.details.domain.GetGameDetailsInteractor
@@ -65,9 +66,9 @@ class GameDetailsViewModel(
                             },
                             tier = details.rank?.tier,
                             tierDescription = stringProvider.openCriticRating,
-                            topCriticScore = details.rank?.score,
+                            topCriticScore = createTopCriticAverageIndicator(details.rank ?: GameRank(Tier.Weak, 0)),
                             topCriticScoreDescription = stringProvider.topCriticAverage,
-                            recommendedPercent = details.recommendPercent,
+                            recommendedPercent = createCriticsRecommendIndicator(details.rank?.tier ?: Tier.Weak, details.recommendPercent ?: 0),
                             criticsRecommendDescription = stringProvider.criticsRecommend,
                             briefReviews = details.reviews
                                 .filter { it.score != null }

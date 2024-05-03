@@ -76,18 +76,10 @@ struct GameDetailsStateContentView: View {
                                     maxWidth: .infinity
                                 )
                             
-                            RankCircleIndicatorView(
-                                value: state.topCriticScore?.int64Value ?? Int64(0),
-                                tier: state.tier ?? Tier.fair,
-                                isPercent: false
-                            )
+                            RankCircleIndicatorView(item: state.topCriticScore)
                                 .frame(minWidth: 0, maxWidth: .infinity)
                             
-                            RankCircleIndicatorView(
-                                value: state.recommendedPercent?.int64Value ?? Int64(0),
-                                tier: state.tier ?? Tier.fair,
-                                isPercent: true
-                            )
+                            RankCircleIndicatorView(item: state.recommendedPercent)
                                 .frame(minWidth: 0, maxWidth: .infinity)
                         }
                             .padding(.horizontal)
@@ -242,9 +234,9 @@ struct GameDetailsStateContentView: View {
             tier: Tier.fair,
             tierImageResource: IosImagesResourceProvider().fairMan,
             tierDescription: "Tier description",
-            topCriticScore: 90,
+            topCriticScore: RankCircleIndicatorItemKt.createTopCriticAverageIndicator(gameRank: GameRank(tier: Tier.fair, score: 0)),
             topCriticScoreDescription: "Top critic description",
-            recommendedPercent: 90,
+            recommendedPercent: RankCircleIndicatorItemKt.createCriticsRecommendIndicator(tier: Tier.fair, score: 0),
             criticsRecommendDescription: "Critics recommends",
             briefReviews: [
                 ReviewBriefListItem(nameText: "IGN", scoreText: "100 / 100"),

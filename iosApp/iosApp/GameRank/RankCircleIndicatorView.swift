@@ -10,45 +10,12 @@ import SwiftUI
 import shared
 
 struct RankCircleIndicatorView: View {
-    let value: Int64
-    let tier: Tier
-    let isPercent: Bool
+    let item: RankCircleIndicatorItem
 
     @State var size: CGSize = .zero
     
     var body: some View {
-        let colors: [SwiftUI.Color] = switch (tier, isPercent) {
-        case (Tier.mighty, false): [
-            Color(red: 231 / 255, green: 85 / 255, blue: 39 / 255)
-        ]
-        case (Tier.mighty, true): [
-            Color(red: 224 / 255, green: 83 / 255, blue: 38 / 255),
-            Color(red: 248 / 255, green: 218 / 255, blue: 123 / 255),
-            Color(red: 224 / 255, green: 83 / 255, blue: 38 / 255),
-        ]
-        case (Tier.strong, false): [
-            Color(red: 143 / 255, green: 28 / 255, blue: 175 / 255)
-        ]
-        case (Tier.strong, true): [
-            Color(red: 112 / 255, green: 109 / 255, blue: 222 / 255),
-            Color(red: 236 / 255, green: 119 / 255, blue: 194 / 255),
-            Color(red: 112 / 255, green: 109 / 255, blue: 222 / 255)
-        ]
-        case (Tier.fair, false): [
-            Color(red: 98 / 255, green: 159 / 255, blue: 203 / 255)
-        ]
-        case (Tier.fair, true): [
-            Color(red: 89 / 255, green: 138 / 255, blue: 120 / 255),
-            Color(red: 139 / 255, green: 197 / 255, blue: 251 / 255)
-        ]
-        case (Tier.weak, false): [
-            Color(red: 139 / 255, green: 175 / 255, blue: 111 / 255)
-        ]
-        case (Tier.weak, true): [
-            Color(red: 106 / 255, green: 128 / 255, blue: 85 / 255)
-        ]
-        default: [.black]
-        }
+        let colors = item.colors.map { $0.toUIColor().toColor() }
         
         let gradient = AngularGradient(
             gradient: Gradient(
@@ -62,11 +29,11 @@ struct RankCircleIndicatorView: View {
                 Circle()
                     .frame(width: size.width, height: size.width)
                 
-                let trimStart = ((100.0 - Double(value)) / 200.0)
+                let trimStart = ((1.0 - item.progress) / 2)
                 let trimEnd = 1.0 - trimStart
                 
                 Circle()
-                    .trim(from: trimStart, to: trimEnd)
+                    .trim(from: CGFloat(trimStart), to: CGFloat(trimEnd))
                     .stroke(
                         gradient,
                         style:
@@ -79,7 +46,7 @@ struct RankCircleIndicatorView: View {
                     .frame(width: size.width * 0.8, height: size.width * 0.9)
                     .padding(8)
                 
-                Text("\(value)\(isPercent ? "%" : "")")
+                Text(item.scoreText)
                     .foregroundStyle(.white)
             }.onAppear {
                 size = proxy.size
@@ -91,6 +58,6 @@ struct RankCircleIndicatorView: View {
 
 #Preview {
     RankCircleIndicatorView(
-        value: 90, tier: .strong, isPercent: true
+        item: RankCircleIndicatorItemKt.createCriticsRecommendIndicator(tier: Tier.mighty, score: 90)
     )
 }

@@ -49,9 +49,9 @@ internal class GameDetailsRepositoryImpl(
             )
         }
 
-    override suspend fun getReviews(gameId: Long): List<Review> =
+    override suspend fun getReviews(gameId: Long, skip: Int): List<Review> =
         withContext(defaultDispatcher) {
-            openCriticsApi.getGameReviews(gameId)
+            openCriticsApi.getGameReviews(gameId, skip)
                 .map { dto ->
                     Review(
                         id = dto.id,
@@ -94,7 +94,7 @@ internal class GameDetailsRepositoryImpl(
                         publishedDate = dto.publishedDate,
                         title = dto.title,
                         score = dto.score,
-                        snippet = dto.snippet,
+                        snippet = dto.snippet ?: "",
                     )
                 }
         }

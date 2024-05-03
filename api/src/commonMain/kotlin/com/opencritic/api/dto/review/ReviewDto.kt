@@ -17,5 +17,5 @@ data class ReviewDto(
     val publishedDate: Instant,
     val title: String? = null,
     val score: Float? = null,
-    val snippet: String,
+    val snippet: String? = null,
 )

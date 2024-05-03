@@ -5,5 +5,5 @@ import com.opencritic.games.Review
 
 interface GameDetailsRepository {
     suspend fun getGame(gameId: Long): Game
-    suspend fun getReviews(gameId: Long): List<Review>
+    suspend fun getReviews(gameId: Long, skip: Int = 0): List<Review>
 }

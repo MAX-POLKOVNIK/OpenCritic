@@ -25,6 +25,7 @@ class GameReviewsViewModel(
         get() = GameReviewsState.Loading
 
     private var game: Game? = null
+    private var canLoadMore: Boolean = true
 
     init {
         scope.launch {
@@ -61,12 +62,15 @@ class GameReviewsViewModel(
                                             onImageClick = {},
                                             onOutletClick = {},
                                         )
-                                    }
+                                    },
+                                    isLoadingItemVisible = content.reviewItems.size + reviews.size < (game?.reviewsCount ?: 0)
                                 )
                             }
                             .let {
                                 mutableState.tryEmit(it)
                             }
+
+                        canLoadMore = reviews.isNotEmpty()
                     }
             }
         }
@@ -102,7 +106,37 @@ class GameReviewsViewModel(
             reviewItems = emptyList(),
             isLoadingItemVisible = true,
             loadingItem = LoadingItem,
-            onLoadMore = {},
+            onLoadMore = { loadMore() },
             onSelectedSort = {},
         )
+
+    private fun loadMore() {
+        if (!canLoadMore)
+            return
+
+        val state = requireNotNull(state.value as? GameReviewsState.Content)
+        println("To skip: state.reviewItems.size")
+
+        scope.launch {
+            getGameReviewsInteractor(gameId, state.reviewItems.size)
+                .onSuccess { reviews ->
+                    state.copy(
+                        reviewItems = state.reviewItems + reviews.map { review ->
+                            ReviewListItem(
+                                review = review,
+                                stringProvider = stringProvider,
+                                dateFormatter = dateFormatter,
+                                onClick = {},
+                                onAuthorClick = {},
+                                onImageClick = {},
+                                onOutletClick = {},
+                            )
+                        },
+                        isLoadingItemVisible = state.reviewItems.size + reviews.size < (game?.reviewsCount ?: 0)
+                    ).let {
+                        mutableState.tryEmit(it)
+                    }
+                }
+        }
+    }
 }

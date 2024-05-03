@@ -5,8 +5,8 @@ import com.opencritic.games.Review
 class GetGameReviewsInteractor(
     private val gameDetailsRepository: GameDetailsRepository,
 ) {
-    suspend operator fun invoke(gameId: Long): Result<List<Review>> =
+    suspend operator fun invoke(gameId: Long, skip: Int = 0): Result<List<Review>> =
         runCatching {
-            gameDetailsRepository.getReviews(gameId)
+            gameDetailsRepository.getReviews(gameId, skip)
         }
 }

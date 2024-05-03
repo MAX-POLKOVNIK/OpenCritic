@@ -17,7 +17,7 @@ struct RankCircleIndicatorView: View {
     @State var size: CGSize = .zero
     
     var body: some View {
-        let colors: [Color] = switch (tier, isPercent) {
+        let colors: [SwiftUI.Color] = switch (tier, isPercent) {
         case (Tier.mighty, false): [
             Color(red: 231 / 255, green: 85 / 255, blue: 39 / 255)
         ]

@@ -67,6 +67,11 @@ class IosStringProvider : StringProvider {
     var screenshots: String { string("str_screenshots") }
     var trailers: String { string("str_trailers") }
     
+    var critic: String { string("str_critic") }
+    var game: String { string("str_game") }
+    var outlet: String { string("str_outlet") }
+    var searchHint: String { string("str_search_hint") }
+    
     private func string(_ stringResource: String, args: [String] = []) -> String {
         String(format: NSLocalizedString(stringResource, comment: stringResource), args.map { $0 as CVarArg })
     }

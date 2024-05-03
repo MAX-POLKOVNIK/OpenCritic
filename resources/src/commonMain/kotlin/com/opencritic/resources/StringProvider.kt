@@ -55,4 +55,10 @@ interface StringProvider {
     val media: String
     val screenshots: String
     val trailers: String
+
+    val searchHint: String
+
+    val game: String
+    val critic: String
+    val outlet: String
 }

@@ -23,7 +23,7 @@ struct MainStateView: View {
                         .navigationTitle(tab.name)
                 }
                 if tab.id == TabType.search {
-                    ContentView()
+                    SearchScreenView()
                         .tabItem {
                             Label(tab.name, systemImage: tab.imageResource)
                         }
@@ -59,15 +59,4 @@ struct MainStateView: View {
                 .frame(height: 0) // This will constrain the overlay to only go above the top safe area and not under.
         }
     }
-}
-
-#Preview {
-    MainStateView(
-        state: MainState(
-            tabs: [
-                Tab(id: TabType.main, name: "Test", imageResource: "star"),
-                Tab(id: TabType.search, name: "Test2", imageResource: "star")
-            ]
-        )
-    )
 }

@@ -10,6 +10,7 @@ import com.opencritic.resources.DateFormatter
 import com.opencritic.resources.ImageResourceProvider
 import com.opencritic.resources.StringProvider
 import com.opencritic.resources.resourcesModule
+import com.opencritic.search.di.searchModule
 import org.koin.core.KoinApplication
 import org.koin.core.component.KoinComponent
 import org.koin.core.component.inject
@@ -33,6 +34,7 @@ abstract class BaseApp : KoinComponent {
                 dashboardModule,
                 mainModule,
                 gameDetailsModule,
+                searchModule,
             )
         }
 

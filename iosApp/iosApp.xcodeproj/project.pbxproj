@@ -46,6 +46,10 @@
 		42E2F0B62BE3738100B76F14 /* TrailerItemView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42E2F0B52BE3738100B76F14 /* TrailerItemView.swift */; };
 		42E2F0B82BE3817E00B76F14 /* ScreenshotItemView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42E2F0B72BE3817E00B76F14 /* ScreenshotItemView.swift */; };
 		42E2F0BA2BE396F700B76F14 /* CardReviewItemView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42E2F0B92BE396F700B76F14 /* CardReviewItemView.swift */; };
+		42F8441D2BE3E10400408FE7 /* SearchListItemView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42F8441C2BE3E10400408FE7 /* SearchListItemView.swift */; };
+		42F8441F2BE3E3CA00408FE7 /* SearchStateView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42F8441E2BE3E3CA00408FE7 /* SearchStateView.swift */; };
+		42F844212BE3E80900408FE7 /* SearchScreenView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42F844202BE3E80900408FE7 /* SearchScreenView.swift */; };
+		42F844232BE49EEE00408FE7 /* ColorExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42F844222BE49EEE00408FE7 /* ColorExtensions.swift */; };
 		7555FF83242A565900829871 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7555FF82242A565900829871 /* ContentView.swift */; };
 /* End PBXBuildFile section */
 
@@ -102,6 +106,10 @@
 		42E2F0B52BE3738100B76F14 /* TrailerItemView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrailerItemView.swift; sourceTree = "<group>"; };
 		42E2F0B72BE3817E00B76F14 /* ScreenshotItemView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScreenshotItemView.swift; sourceTree = "<group>"; };
 		42E2F0B92BE396F700B76F14 /* CardReviewItemView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardReviewItemView.swift; sourceTree = "<group>"; };
+		42F8441C2BE3E10400408FE7 /* SearchListItemView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchListItemView.swift; sourceTree = "<group>"; };
+		42F8441E2BE3E3CA00408FE7 /* SearchStateView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchStateView.swift; sourceTree = "<group>"; };
+		42F844202BE3E80900408FE7 /* SearchScreenView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchScreenView.swift; sourceTree = "<group>"; };
+		42F844222BE49EEE00408FE7 /* ColorExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorExtensions.swift; sourceTree = "<group>"; };
 		7555FF7B242A565900829871 /* iosApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = iosApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		7555FF82242A565900829871 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		7555FF8C242A565B00829871 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -154,6 +162,7 @@
 				425627A62BE11EFE00EDEEEB /* FlowPublisher.swift */,
 				425627AA2BE124A500EDEEEB /* KoinViewModel.swift */,
 				425627AD2BE135F300EDEEEB /* CachedAsyncImage.swift */,
+				42F844222BE49EEE00408FE7 /* ColorExtensions.swift */,
 			);
 			path = Base;
 			sourceTree = "<group>";
@@ -199,6 +208,16 @@
 			path = GameDetails;
 			sourceTree = "<group>";
 		};
+		42F8441B2BE3E0E400408FE7 /* Search */ = {
+			isa = PBXGroup;
+			children = (
+				42F8441C2BE3E10400408FE7 /* SearchListItemView.swift */,
+				42F8441E2BE3E3CA00408FE7 /* SearchStateView.swift */,
+				42F844202BE3E80900408FE7 /* SearchScreenView.swift */,
+			);
+			path = Search;
+			sourceTree = "<group>";
+		};
 		7555FF72242A565900829871 = {
 			isa = PBXGroup;
 			children = (
@@ -219,6 +238,7 @@
 		7555FF7D242A565900829871 /* iosApp */ = {
 			isa = PBXGroup;
 			children = (
+				42F8441B2BE3E0E400408FE7 /* Search */,
 				42E2F0AA2BE2700100B76F14 /* GameDetails */,
 				42E2F0A52BE2331C00B76F14 /* Router */,
 				42E2F0982BE200FD00B76F14 /* GameRank */,
@@ -362,12 +382,16 @@
 				42E2F09C2BE2085800B76F14 /* DashboardGameListItemView.swift in Sources */,
 				42E2F0B42BE34C7600B76F14 /* RankCircleIndicatorView.swift in Sources */,
 				42E2F0BA2BE396F700B76F14 /* CardReviewItemView.swift in Sources */,
+				42F8441F2BE3E3CA00408FE7 /* SearchStateView.swift in Sources */,
 				425627A32BE11E5F00EDEEEB /* FlowView.swift in Sources */,
+				42F8441D2BE3E10400408FE7 /* SearchListItemView.swift in Sources */,
+				42F844212BE3E80900408FE7 /* SearchScreenView.swift in Sources */,
 				42E2F0A42BE2288200B76F14 /* DashboardMightyManListItemView.swift in Sources */,
 				42E2F0B22BE33AEF00B76F14 /* GameActionItemView.swift in Sources */,
 				425627B52BE151A500EDEEEB /* MainScreenView.swift in Sources */,
 				42E2F09E2BE2098C00B76F14 /* DashboardSublistListitemView.swift in Sources */,
 				4256278E2BE0F0A100EDEEEB /* IosStringProvider.swift in Sources */,
+				42F844232BE49EEE00408FE7 /* ColorExtensions.swift in Sources */,
 				4256279D2BE119FB00EDEEEB /* DashboardStateErrorView.swift in Sources */,
 				42E2F0A22BE226B700B76F14 /* DashboardMightyManItemListItemView.swift in Sources */,
 				42E2F0A92BE234CF00B76F14 /* RouterView.swift in Sources */,

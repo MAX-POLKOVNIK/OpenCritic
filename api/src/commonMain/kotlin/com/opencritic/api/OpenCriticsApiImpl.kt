@@ -7,9 +7,12 @@ import com.opencritic.api.dto.popular.PopularItemDto
 import com.opencritic.api.dto.review.ReviewedTodayGameDto
 import com.opencritic.api.dto.released.ReleasedGameDto
 import com.opencritic.api.dto.review.ReviewDto
+import com.opencritic.api.dto.search.SearchItemDto
 import io.ktor.client.HttpClient
 import io.ktor.client.call.body
 import io.ktor.client.request.get
+import io.ktor.client.request.headers
+import io.ktor.http.HttpHeaders
 
 
 private const val baseUrl = "https://api.opencritic.com/api/"
@@ -49,4 +52,19 @@ internal class OpenCriticsApiImpl(
 
     override suspend fun getGameReviews(gameId: Long, skip: Int): List<ReviewDto> =
         client.get(baseUrl + "reviews/game/$gameId/?skip=$skip&sort=popularity").body()
+
+    override suspend fun search(criteria: String): List<SearchItemDto> =
+        client.get(baseUrl + "meta/search?criteria=$criteria") {
+            headers {
+                append(HttpHeaders.CacheControl, "no-cache")
+                append(HttpHeaders.Host, "api.opencritic.com")
+                append(HttpHeaders.Origin, "https://opencritic.com")
+                append(HttpHeaders.Referrer, "https://opencritic.com/")
+                append(HttpHeaders.Accept, "application/json")
+                append(HttpHeaders.UserAgent, "Mozilla/5.0 (Macintosh; Intel Mac OS X 10.15; rv:124.0) Gecko/20100101 Firefox/124.0")
+                append("Sec-Fetch-Site", "same-site")
+                append("Sec-Fetch-Dest", "empty")
+                append("Sec-Fetch-Mode", "cors")
+            }
+        }.body()
 }

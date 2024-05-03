@@ -9,10 +9,6 @@
 import Foundation
 import shared
 
-class ViewModelStorage {
-    
-}
-
 func koinViewModel<S: ViewModelState, T: BaseViewModel<S>>(_ t: T.Type = T.self, arg: Any = Void()) -> T {
     KoinViewModelKt.koinViewModel(T.self, arg: arg) as! T
 }

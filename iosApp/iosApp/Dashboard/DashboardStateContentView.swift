@@ -16,6 +16,7 @@ struct DashboardStateContentView: View {
         ScrollView(.vertical) {
             LazyVStack(alignment: .leading) {
                 DashboardTitleListItemView(item: state.popularGamesTitle)
+                    .padding(.top)
                 DashboardPosterGamesHorizontalListItemView(item: state.popularGames)
                 Spacer()
                     .frame(height: 16)

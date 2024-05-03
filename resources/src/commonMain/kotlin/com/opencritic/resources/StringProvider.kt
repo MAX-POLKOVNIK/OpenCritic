@@ -62,5 +62,15 @@ interface StringProvider {
     val critic: String
     val outlet: String
 
+    fun gameReviewRankedDescription(name: String, percent: String): String
+
+    val sort: String
+    val sortDefault: String
+    val sortMostPopular: String
+    val sortScoreHighestToLowest: String
+    val sortScoreLowestToHighest: String
+    val sortNewestFirst: String
+    val sortOldestFirst: String
+
     fun gameScreenshotsAndTrailers(name: String): String
 }

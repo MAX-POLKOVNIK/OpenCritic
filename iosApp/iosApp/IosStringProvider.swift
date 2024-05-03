@@ -74,6 +74,16 @@ class IosStringProvider : StringProvider {
     
     func gameScreenshotsAndTrailers(name: String) -> String { string("str_game_screenshots_and_trailers", args: [name]) }
     
+    func gameReviewRankedDescription(name: String, percent: String) -> String { string("str_game_review_ranked_description", args: [name, percent]) }
+    
+    var sort: String { string("str_sort") }
+    var sortDefault: String { string("str_sort_default") }
+    var sortMostPopular: String { string("str_sort_most_popular") }
+    var sortNewestFirst: String { string("str_sort_newest") }
+    var sortOldestFirst: String { string("str_sort_oldest") }
+    var sortScoreHighestToLowest: String { string("str_sort_highest") }
+    var sortScoreLowestToHighest: String { string("str_sort_lowest") }
+    
     private func string(_ stringResource: String, args: [String] = []) -> String {
         String(format: NSLocalizedString(stringResource, comment: stringResource), args.map { $0 as CVarArg })
     }

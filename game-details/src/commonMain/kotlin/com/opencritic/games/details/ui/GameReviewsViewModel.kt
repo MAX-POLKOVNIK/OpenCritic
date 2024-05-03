@@ -6,8 +6,10 @@ import com.opencritic.games.Tier
 import com.opencritic.games.details.domain.GetGameInteractor
 import com.opencritic.games.details.domain.GetGameReviewsInteractor
 import com.opencritic.games.details.domain.ReviewSorting
+import com.opencritic.games.details.domain.sortNameOf
 import com.opencritic.logs.Logger
 import com.opencritic.mvvm.BaseViewModel
+import com.opencritic.navigation.UrlRoute
 import com.opencritic.resources.DateFormatter
 import com.opencritic.resources.ImageResourceProvider
 import com.opencritic.resources.StringProvider
@@ -101,10 +103,13 @@ class GameReviewsViewModel(
             recommendScoreIndicator = createCriticsRecommendIndicator(
                 game.rank?.tier ?: Tier.Weak, game.recommendPercent ?: 0
             ),
-            rankedDescription = "${game.name} is ranked in the ${game.recommendPercent ?: 0}th percentile of games scored on OpenCritic.",
-            sortTitleText = "Sort",
-            sortText = ReviewSortItem(ReviewSorting.Default, ReviewSorting.Default.name),
-            availableSorts = ReviewSorting.entries.map { ReviewSortItem(it, it.name) },
+            isRankedDescriptionVisible = game.recommendPercent != null,
+            rankedDescription = stringProvider.gameReviewRankedDescription(game.name, (game.recommendPercent ?: 0).toString()),
+            sortTitleText = stringProvider.sort,
+            sortText = ReviewSortItem(
+                key = ReviewSorting.Default, name = stringProvider.sortNameOf(ReviewSorting.Default)
+            ),
+            availableSorts = ReviewSorting.entries.map { ReviewSortItem(it, stringProvider.sortNameOf(it)) },
             reviewItems = emptyList(),
             isLoadingItemVisible = true,
             loadingItem = LoadingItem,
@@ -127,7 +132,7 @@ class GameReviewsViewModel(
                                 review = review,
                                 stringProvider = stringProvider,
                                 dateFormatter = dateFormatter,
-                                onClick = {},
+                                onClick = { openUrl(review.externalUrl) },
                                 onAuthorClick = {},
                                 onImageClick = {},
                                 onOutletClick = {},
@@ -158,5 +163,10 @@ class GameReviewsViewModel(
         )
 
         loadMore()
+    }
+
+    private fun openUrl(url: String) {
+        requireRouter()
+            .navigateTo(UrlRoute(url))
     }
 }

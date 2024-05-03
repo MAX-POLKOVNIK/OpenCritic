@@ -34,30 +34,34 @@ struct GameReviewsStateContentView: View {
                 ) { image in
                     image.resizable()
                         .scaledToFill()
+                        .aspectRatio(16 / 9, contentMode: .fit)
                         .frame(minWidth: 0, maxWidth: .infinity)
-                        .aspectRatio(1.77, contentMode: .fill)
-                        
+                        .clipped()
                 } placeholder: {
-                    Color.gray
+                    Rectangle()
+                        .foregroundColor(.gray)
+                        .background(.gray)
+                        .aspectRatio(16 / 9, contentMode: .fit)
                 }
                     
                 Rectangle()
                     .foregroundColor(.clear)
                     .background(
                         LinearGradient(
-                            gradient: Gradient(colors: [.clear, .black]),
+                            gradient: Gradient(
+                                colors: [.clear, .black]
+                            ),
                             startPoint: .top,
                             endPoint: .bottom
                         )
                     )
+                    .aspectRatio(16 / 9, contentMode: .fit)
                 
                 HStack(alignment: .center) {
                     if state.isTierVisible {
                         Image(state.tierImageResource)
                             .resizable()
-                            .scaledToFit()
                             .frame(width: 56, height: 56)
-                            .padding(.top, 8)
                     }
                     
                     if state.isTopScoreIndicatorVisible {
@@ -70,11 +74,13 @@ struct GameReviewsStateContentView: View {
                             .frame(width: 56, height: 56)
                     }
                 }
-                .padding(.bottom)
+                .padding()
             }
-
-            Text(state.rankedDescription)
-                .listRowSeparator(.hidden)
+            
+            if state.isRankedDescriptionVisible {
+                Text(state.rankedDescription)
+                    .listRowSeparator(.hidden)
+            }
             
             Picker(state.sortTitleText, selection: $selection) {
                 ForEach(state.availableSorts, id: \.self) {

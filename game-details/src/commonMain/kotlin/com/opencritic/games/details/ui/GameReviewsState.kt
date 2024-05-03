@@ -19,6 +19,7 @@ interface GameReviewsState : ViewModelState {
         val topScoreIndicator: RankCircleIndicatorItem,
         val isRecommendIndicatorVisible: Boolean,
         val recommendScoreIndicator: RankCircleIndicatorItem,
+        val isRankedDescriptionVisible: Boolean,
         val rankedDescription: String,
         val sortTitleText: String,
         val sortText: ReviewSortItem,
@@ -40,7 +41,7 @@ fun ReviewsStateContent_PreviewData(
 ): GameReviewsState.Content =
     GameReviewsState.Content(
         titleText = "Stellar Blade Reviews",
-        imageUrl = "https://img.opencritic.com/game/16510/Wc7Hwzgt.jpg",
+        imageUrl = "https://img.opencritic.com/game/14343/ZpFE5hYe.jpg",
         isTierVisible = true,
         tierImageResource = imageResourceProvider.strongMan,
         isTopScoreIndicatorVisible = true,
@@ -51,6 +52,7 @@ fun ReviewsStateContent_PreviewData(
         recommendScoreIndicator = createCriticsRecommendIndicator(
             Tier.Strong, 85
         ),
+        isRankedDescriptionVisible = true,
         rankedDescription = "Stellar Blade is ranked in the 86th percentile of games scored on OpenCritic. ",
         sortTitleText = "Sort",
         sortText = ReviewSortItem(ReviewSorting.Default, ReviewSorting.Default.name),

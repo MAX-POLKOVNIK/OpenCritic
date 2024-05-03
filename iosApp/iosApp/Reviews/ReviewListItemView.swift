@@ -41,23 +41,29 @@ struct ReviewListItemView: View {
                 .onTapGesture { item.imageClick() }
             }
             
-            if let scoreString = item.score as? ReviewScoreDisplayItemString {
-                Text(scoreString.value)
-                    .bold()
-            }
-            
-            if let scoreStars = item.score as? ReviewScoreDisplayItemStars {
-                HStack(spacing: 0) {
-                    ForEach(0..<scoreStars.filledStars, id: \.self) { _ in
-                        Image(systemName: "star.fill")
-                    }
-                    ForEach(0..<scoreStars.halfStars, id: \.self) { _ in
-                        Image(systemName: "star.leadinghalf.filled")
-                    }
-                    ForEach(0..<scoreStars.emptyStars, id: \.self) { _ in
-                        Image(systemName: "star")
+            HStack {
+                if let scoreString = item.score as? ReviewScoreDisplayItemString {
+                    Text(scoreString.value)
+                        .bold()
+                }
+                
+                if let scoreStars = item.score as? ReviewScoreDisplayItemStars {
+                    HStack(spacing: 0) {
+                        ForEach(0..<scoreStars.filledStars, id: \.self) { _ in
+                            Image(systemName: "star.fill")
+                        }
+                        ForEach(0..<scoreStars.halfStars, id: \.self) { _ in
+                            Image(systemName: "star.leadinghalf.filled")
+                        }
+                        ForEach(0..<scoreStars.emptyStars, id: \.self) { _ in
+                            Image(systemName: "star")
+                        }
                     }
                 }
+                
+                Spacer()
+                
+                Text(item.dateText)
             }
             
             Text(item.snippetText)

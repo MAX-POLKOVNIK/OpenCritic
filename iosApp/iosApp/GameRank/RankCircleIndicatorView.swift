@@ -11,8 +11,6 @@ import shared
 
 struct RankCircleIndicatorView: View {
     let item: RankCircleIndicatorItem
-
-    @State var size: CGSize = .zero
     
     var body: some View {
         let colors = item.colors.map { $0.toUIColor().toColor() }
@@ -24,13 +22,12 @@ struct RankCircleIndicatorView: View {
             center: .center
         )
         
+        let trimStart = ((1.0 - item.progress) / 2)
+        let trimEnd = 1.0 - trimStart
+        
         GeometryReader { proxy in
             ZStack {
                 Circle()
-                    .frame(width: size.width, height: size.width)
-                
-                let trimStart = ((1.0 - item.progress) / 2)
-                let trimEnd = 1.0 - trimStart
                 
                 Circle()
                     .trim(from: CGFloat(trimStart), to: CGFloat(trimEnd))
@@ -38,26 +35,25 @@ struct RankCircleIndicatorView: View {
                         gradient,
                         style:
                             StrokeStyle(
-                                lineWidth: size.width * 0.1,
+                                lineWidth: proxy.size.width * 0.1,
                                 lineCap: .round,
                                 lineJoin: .round
                             )
                     )
-                    .frame(width: size.width * 0.8, height: size.width * 0.9)
-                    .padding(8)
+                    .frame(width: proxy.size.width * 0.8, height: proxy.size.width * 0.9)
                 
                 Text(item.scoreText)
                     .foregroundStyle(.white)
-            }.onAppear {
-                size = proxy.size
-            } // just an empty container to triggers the onAppear
-            
+            }
         }
     }
 }
 
-#Preview {
-    RankCircleIndicatorView(
-        item: RankCircleIndicatorItemKt.createCriticsRecommendIndicator(tier: Tier.mighty, score: 90)
-    )
+struct RankCircleIndicatorView_Previews: PreviewProvider {
+    static var previews: some View {
+        RankCircleIndicatorView(
+            item: RankCircleIndicatorItemKt.createCriticsRecommendIndicator(tier: Tier.mighty, score: 90)
+        )
+        .previewLayout(.fixed(width: 56, height: 56))
+    }
 }

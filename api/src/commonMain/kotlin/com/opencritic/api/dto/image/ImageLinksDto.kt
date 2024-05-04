@@ -6,4 +6,5 @@ import kotlinx.serialization.Serializable
 data class ImageLinksDto(
     val og: String? = null,
     val sm: String? = null,
+    val lg: String? = null,
 )

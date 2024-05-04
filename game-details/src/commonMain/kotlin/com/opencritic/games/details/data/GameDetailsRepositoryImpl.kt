@@ -90,6 +90,42 @@ internal class GameDetailsRepositoryImpl(
                 .map { it.toModel() }
         }
 
+    override suspend fun getAuthor(authorId: Int): com.opencritic.games.details.domain.Author =
+        withContext(defaultDispatcher) {
+            val dto = openCriticsApi.getAuthor(authorId)
+
+            com.opencritic.games.details.domain.Author(
+                id = dto.id,
+                name = dto.name,
+                imageUrl = dto.imageSrc?.lg?.prefixedImageUrl() ?: "",
+                isClaimed = dto.claimed,
+                percentRecommended = dto.percentRecommended,
+                reviewCount = dto.numReviews,
+                medianScore = dto.medianScore,
+                averageScore = dto.averageScore,
+                favoriteGames = dto.favoriteGames,
+                bio = dto.bio,
+                hometown = dto.hometown,
+                xboxLive = dto.xboxLive,
+                psn = dto.psn,
+            )
+        }
+
+    override suspend fun getAuthorReviews(
+        authorId: Int,
+        skip: Int,
+        sort: ReviewSorting
+    ): List<Review> =
+        withContext(defaultDispatcher) {
+            openCriticsApi
+                .getAuthorReviews(
+                    authorId = authorId,
+                    skip = skip,
+                    sort = sort.toDto(),
+                )
+                .map { it.toModel() }
+        }
+
     private fun ReviewSorting.toDto(): ReviewSortKey =
         when (this) {
             ReviewSorting.Default -> ReviewSortKey.Default

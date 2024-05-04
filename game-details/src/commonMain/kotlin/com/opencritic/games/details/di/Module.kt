@@ -2,6 +2,8 @@ package com.opencritic.games.details.di
 
 import com.opencritic.games.details.data.GameDetailsRepositoryImpl
 import com.opencritic.games.details.domain.GameDetailsRepository
+import com.opencritic.games.details.domain.interactor.GetAuthorInteractor
+import com.opencritic.games.details.domain.interactor.GetAuthorReviewsInteractor
 import com.opencritic.games.details.domain.interactor.GetGameDetailsInteractor
 import com.opencritic.games.details.domain.interactor.GetGameInteractor
 import com.opencritic.games.details.domain.interactor.GetGameMediaInteractor
@@ -23,6 +25,8 @@ val gameDetailsModule = module {
     singleOf(::GetGameInteractor)
     singleOf(::GetOutletInteractor)
     singleOf(::GetOutletReviewsInteractor)
+    singleOf(::GetAuthorInteractor)
+    singleOf(::GetAuthorReviewsInteractor)
 
     single<GameDetailsRepository> { GameDetailsRepositoryImpl(get()) }
 

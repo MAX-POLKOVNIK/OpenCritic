@@ -18,4 +18,12 @@ interface GameDetailsRepository {
         skip: Int,
         sort: ReviewSorting,
     ): List<Review>
+
+    suspend fun getAuthor(authorId: Int): Author
+
+    suspend fun getAuthorReviews(
+        authorId: Int,
+        skip: Int,
+        sort: ReviewSorting,
+    ): List<Review>
 }

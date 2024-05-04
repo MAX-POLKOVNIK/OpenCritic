@@ -1,5 +1,6 @@
 package com.opencritic.api
 
+import com.opencritic.api.dto.author.AuthorDto
 import com.opencritic.api.dto.deal.DealItemDto
 import com.opencritic.api.dto.details.GameDetailsDto
 import com.opencritic.api.dto.featured.FeaturedGameListDto
@@ -39,4 +40,8 @@ interface OpenCriticsApi {
     suspend fun getOutlet(outletId: Int): OutletDto
 
     suspend fun getOutletReviews(outletId: Int, skip: Int, sort: ReviewSortKey): List<ReviewDto>
+
+    suspend fun getAuthor(authorId: Int): AuthorDto
+
+    suspend fun getAuthorReviews(authorId: Int, skip: Int, sort: ReviewSortKey): List<ReviewDto>
 }

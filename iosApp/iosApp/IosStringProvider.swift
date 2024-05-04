@@ -98,6 +98,20 @@ class IosStringProvider : StringProvider {
     
     var favoriteGames: String { string("str_favorite_games") }
     
+    var allPlatforms: String { string("str_all_platforms") }
+    var platform: String { string("str_platform") }
+    
+    var sortAtoZ: String { string("str_sort_a_to_z") }
+    var sortPercentRecommended: String { string("str_sort_percent_recommended") }
+    var sortReleaseDate: String { string("str_sort_release_date") }
+    var sortReviewsCount: String { string("str_sort_review_count") }
+    var sortScore: String { string("str_sort_score") }
+    
+    var timeframe: String { string("str_timeframe") }
+    var timeframeAllTime: String { string("str_timeframe_all_time") }
+    var timeframeLast90Days: String { string("str_timeframe_last_90_days") }
+    var timeframeUpcoming: String { string("str_timeframe_upcoming") }
+    
     private func string(_ stringResource: String, args: [String] = []) -> String {
         String(format: NSLocalizedString(stringResource, comment: stringResource), args.map { $0 as CVarArg })
     }

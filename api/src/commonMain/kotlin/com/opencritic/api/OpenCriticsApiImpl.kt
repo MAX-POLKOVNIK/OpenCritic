@@ -4,7 +4,11 @@ import com.opencritic.api.dto.author.AuthorDto
 import com.opencritic.api.dto.deal.DealItemDto
 import com.opencritic.api.dto.details.GameDetailsDto
 import com.opencritic.api.dto.featured.FeaturedGameListDto
+import com.opencritic.api.dto.game.BrowseGameDto
+import com.opencritic.api.dto.game.GameSortKey
+import com.opencritic.api.dto.game.GameTimeKey
 import com.opencritic.api.dto.outlet.OutletDto
+import com.opencritic.api.dto.platform.PlatformDto
 import com.opencritic.api.dto.popular.PopularItemDto
 import com.opencritic.api.dto.review.ReviewedTodayGameDto
 import com.opencritic.api.dto.released.ReleasedGameDto
@@ -90,4 +94,15 @@ internal class OpenCriticsApiImpl(
         sort: ReviewSortKey
     ): List<ReviewDto> =
         client.get(baseUrl + "reviews/author/$authorId/?skip=$skip&sort=${sort.queryValue}").body()
+
+    override suspend fun getPlatforms(): List<PlatformDto> =
+        client.get(baseUrl + "platform").body()
+
+    override suspend fun getGames(
+        platformShortName: String,
+        time: GameTimeKey,
+        sort: GameSortKey,
+        skip: Int,
+    ): List<BrowseGameDto> =
+        client.get(baseUrl + "game?platforms=$platformShortName&skip=$skip&sort=${sort.queryValue}&time=${time.queryKey}").body()
 }

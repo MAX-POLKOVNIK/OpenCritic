@@ -27,6 +27,8 @@ fun ReviewBriefListItem(
                         ?.maxBy { it.value }
                         ?.label
                         ?: ""
+                scoreFormat.base == null ->
+                    scoreFormat.shortName
                 else ->
                     (score.toFloat() / requireNotNull(scoreFormat.base)).formatScore() +
                             if (scoreFormat.isPercent) "%"

@@ -16,6 +16,6 @@ data class GameDetailsDto(
     val name: String,
     val trailers: List<GameTrailerDto>,
     @SerialName("Companies") val companies: List<CompanyDto>,
-    @SerialName("Platforms") val platforms: List<PlatformDto>,
+    @SerialName("Platforms") val platforms: List<PlatformBriefDto>,
     val firstReleaseDate: Instant,
 )

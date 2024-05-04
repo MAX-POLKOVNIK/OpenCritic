@@ -38,7 +38,7 @@ internal class GameDetailsRepositoryImpl(
                 squareImageUrl = dto.images.square?.sm?.prefixedImageUrl() ?: "",
                 bannerImageUrl = dto.images.banner?.sm?.prefixedImageUrl() ?: "",
                 companies = dto.companies.map { Company(it.name) },
-                platforms = dto.platforms.map { Platform(it.name) },
+                platforms = dto.platforms.map { Platform(it.name, it.shortName) },
                 reviewsCount = dto.numReviews,
                 trailers = dto.trailers
                     .map {
@@ -166,7 +166,7 @@ internal class GameDetailsRepositoryImpl(
                 },
             ),
             externalUrl = externalUrl,
-            platforms = platforms.map { Platform(it.name) },
+            platforms = platforms.map { Platform(it.name, it.shortName) },
             authors = authors.map {
                 Author(
                     id = it.id,

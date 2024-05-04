@@ -29,4 +29,14 @@ class IosDateFormatter : shared.DateFormatter {
         
         return ""
     }
+    
+    func formatFull(date: Kotlinx_datetimeLocalDate) -> String {
+        if let date = Calendar.current.date(from: DateComponents(year: Int(date.year), month: Int(date.monthNumber), day: Int(date.dayOfMonth))) {
+            let formatter = DateFormatter()
+            formatter.dateFormat = "MMMM dd, yyyy"
+            return formatter.string(from: date)
+        }
+        
+        return ""
+    }
 }

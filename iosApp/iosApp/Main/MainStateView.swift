@@ -13,6 +13,7 @@ import Combine
 // temporary workaround
 private let dashboardViewModel: DashboardViewModel = koinViewModel(DashboardViewModel.self)
 private let searchViewModel: SearchViewModel = koinViewModel(SearchViewModel.self)
+private let gameBrowserViewModel: GameBrowserViewModel = koinViewModel(GameBrowserViewModel.self)
 
 struct MainStateView: View {
     let state: MainState
@@ -23,6 +24,7 @@ struct MainStateView: View {
     var body: some View {
         dashboardViewModel.setRouter(router: router)
         searchViewModel.setRouter(router: router)
+        gameBrowserViewModel.setRouter(router: router)
         
         return VStack {
             TabView(selection: $activeTab) {
@@ -44,7 +46,7 @@ struct MainStateView: View {
                             .navigationTitle(tab.name)
                     }
                     if tab.id == TabType.browse {
-                        ContentView()
+                        GameBrowserScreenView(viewModel: gameBrowserViewModel)
                             .tabItem {
                                 Label(tab.name, systemImage: tab.imageResource)
                             }

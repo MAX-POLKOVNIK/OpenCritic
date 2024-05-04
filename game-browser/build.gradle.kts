@@ -11,51 +11,40 @@ kotlin {
             }
         }
     }
-
-    val toExport = listOf(
-        projects.api,
-        projects.logs,
-        projects.resources,
-        projects.mvvm,
-        projects.dashboard,
-        projects.games,
-        projects.main,
-        projects.navigation,
-        projects.gameDetails,
-        projects.search,
-        projects.gameBrowser,
-    )
-
+    
     listOf(
         iosX64(),
         iosArm64(),
         iosSimulatorArm64()
     ).forEach {
         it.binaries.framework {
-            baseName = "shared"
+            baseName = "game-browser"
             isStatic = true
-            toExport.forEach { dep ->
-                export(dep)
-            }
         }
     }
 
     sourceSets {
         commonMain.dependencies {
-            toExport.forEach { api(it) }
+            implementation(projects.mvvm)
+            implementation(projects.resources)
+            implementation(projects.games)
+            implementation(projects.api)
+            implementation(projects.logs)
+            implementation(projects.navigation)
+            implementation(projects.gameDetails)
+
+            implementation(libs.kotlinx.coroutines.core)
+            implementation(libs.kotlinx.datetime)
             implementation(libs.koin.core)
         }
         commonTest.dependencies {
             implementation(libs.kotlin.test)
         }
-        androidMain.dependencies {
-            implementation(libs.koin.android)
-        }
     }
 }
 
 android {
-    namespace = "com.opencritic.app"
+    namespace = "com.opencritic.game.browser"
     compileSdk = 34
     defaultConfig {
         minSdk = 28

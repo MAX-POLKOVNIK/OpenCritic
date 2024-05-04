@@ -72,6 +72,16 @@ interface StringProvider {
     val sortNewestFirst: String
     val sortOldestFirst: String
 
+    val sortReleaseDate: String
+    val sortScore: String
+    val sortReviewsCount: String
+    val sortPercentRecommended: String
+    val sortAtoZ: String
+
+    val timeframeUpcoming: String
+    val timeframeAllTime: String
+    val timeframeLast90Days: String
+
     fun gameScreenshotsAndTrailers(name: String): String
 
     val reviews: String
@@ -87,4 +97,8 @@ interface StringProvider {
     fun authorIsNotClaimedFormatted(name: String): String
 
     val favoriteGames: String
+
+    val platform: String
+    val allPlatforms: String
+    val timeframe: String
 }

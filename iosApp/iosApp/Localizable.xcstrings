@@ -7,6 +7,17 @@
     "Loading..." : {
 
     },
+    "str_all_platforms" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "All Platforms"
+          }
+        }
+      }
+    },
     "str_author_is_not_claimed" : {
       "extractionState" : "manual",
       "localizations" : {
@@ -315,6 +326,17 @@
         }
       }
     },
+    "str_platform" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Platform"
+          }
+        }
+      }
+    },
     "str_popular_games" : {
       "extractionState" : "manual",
       "localizations" : {
@@ -436,6 +458,17 @@
         }
       }
     },
+    "str_sort_a_to_z" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "A - Z"
+          }
+        }
+      }
+    },
     "str_sort_default" : {
       "extractionState" : "manual",
       "localizations" : {
@@ -498,6 +531,50 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Oldest First"
+          }
+        }
+      }
+    },
+    "str_sort_percent_recommended" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%% recommended"
+          }
+        }
+      }
+    },
+    "str_sort_release_date" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Release Date"
+          }
+        }
+      }
+    },
+    "str_sort_review_count" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "# of Reviews"
+          }
+        }
+      }
+    },
+    "str_sort_score" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Score"
           }
         }
       }
@@ -575,6 +652,50 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Your Lists"
+          }
+        }
+      }
+    },
+    "str_timeframe" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Timeframe"
+          }
+        }
+      }
+    },
+    "str_timeframe_all_time" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "All Time"
+          }
+        }
+      }
+    },
+    "str_timeframe_last_90_days" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Last 90 Days"
+          }
+        }
+      }
+    },
+    "str_timeframe_upcoming" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Upcoming"
           }
         }
       }

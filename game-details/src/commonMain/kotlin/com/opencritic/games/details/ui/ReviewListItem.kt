@@ -12,12 +12,15 @@ data class ReviewListItem(
     val isAuthorVisible: Boolean,
     val authorText: String,
     val imageUrl: String,
+    val isGameVisible: Boolean,
+    val gameText: String,
     val score: ReviewScoreDisplayItem,
     val dateText: String,
     val snippetText: String,
     val readFullReviewText: String,
     private val onClick: (ReviewListItem) -> Unit,
     private val onImageClick: (ReviewListItem) -> Unit,
+    private val onGameClick: (ReviewListItem) -> Unit,
     private val onAuthorClick: (ReviewListItem) -> Unit,
     private val onOutletClick: (ReviewListItem) -> Unit,
 ) {
@@ -25,13 +28,16 @@ data class ReviewListItem(
     fun imageClick() = onImageClick(this)
     fun authorClick() = onAuthorClick(this)
     fun outletClick() = onOutletClick(this)
+    fun gameClick() = onGameClick(this)
 }
 
 fun ReviewListItem(
     review: Review,
+    isGameVisible: Boolean,
     stringProvider: StringProvider,
     dateFormatter: DateFormatter,
     onClick: (ReviewListItem) -> Unit,
+    onGameClick: (ReviewListItem) -> Unit,
     onImageClick: (ReviewListItem) -> Unit,
     onAuthorClick: (ReviewListItem) -> Unit,
     onOutletClick: (ReviewListItem) -> Unit,
@@ -52,10 +58,13 @@ fun ReviewListItem(
         dateText = dateFormatter.format(review.publishedDate.toLocalDateTime(TimeZone.UTC).date),
         snippetText = review.snippet,
         readFullReviewText = stringProvider.readFullReview,
+        isGameVisible = isGameVisible,
+        gameText = review.gameName,
         onClick = onClick,
         onImageClick = onImageClick,
         onAuthorClick = onAuthorClick,
         onOutletClick = onOutletClick,
+        onGameClick = onGameClick,
     )
 
 
@@ -63,6 +72,8 @@ fun ReviewListItem(
 fun ReviewListItem_PreviewData(id: String = "1"): ReviewListItem =
     ReviewListItem(
         id = id,
+        isGameVisible = true,
+        gameText = "Stellar Blade",
         outletText = "Digital Trends",
         isAuthorVisible = true,
         authorText = "Tomas Franzese",
@@ -76,6 +87,7 @@ fun ReviewListItem_PreviewData(id: String = "1"): ReviewListItem =
         snippetText = "Stellar Blade is a journey through the depths of human resilience and the cost of redemption, and stands as a testament to the power of storytelling in gaming. As players embark on Eve’s quest for truth and justice, they’ll find themselves immersed in a world where every choice carries weight, and the fate of humanity hangs in the balance.",
         readFullReviewText = "Read full review",
         onClick = {},
+        onGameClick = {},
         onAuthorClick = {},
         onImageClick = {},
         onOutletClick = {},

@@ -84,6 +84,16 @@ class IosStringProvider : StringProvider {
     var sortScoreHighestToLowest: String { string("str_sort_highest") }
     var sortScoreLowestToHighest: String { string("str_sort_lowest") }
     
+    func averageScoreFormatted(number: String) -> String { string("str_average_score_formatted", args: [number]) }
+    func gamesRecommendedFormatted(number: String) -> String { string("str_games_recommended_formatted", args: [number]) }
+    func gamesReviewedFormatted(number: String) -> String { string("str_games_reviewed_formatted", args: [number]) }
+    func medianScoreFormatted(number: String) -> String { string("str_median_score_formatted", args: [number]) }
+    
+    func reviewsOf(name: String) -> String { string("str_reviews_of", args: [name]) }
+    var reviews: String { string("str_reviews") }
+    
+    var homepage: String { string("str_home_page") }
+    
     private func string(_ stringResource: String, args: [String] = []) -> String {
         String(format: NSLocalizedString(stringResource, comment: stringResource), args.map { $0 as CVarArg })
     }

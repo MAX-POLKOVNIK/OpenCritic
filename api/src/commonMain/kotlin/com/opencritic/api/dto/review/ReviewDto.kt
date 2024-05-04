@@ -18,4 +18,5 @@ data class ReviewDto(
     val title: String? = null,
     val score: Float? = null,
     val snippet: String? = null,
+    val game: GameIdNameDto,
 )

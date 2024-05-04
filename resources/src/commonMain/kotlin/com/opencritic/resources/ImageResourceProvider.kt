@@ -20,4 +20,9 @@ interface ImageResourceProvider {
     val gameActionWant: ImageResource
     val gameActionPlayed: ImageResource
     val gameActionFavorite: ImageResource
+
+    val hashTag: ImageResource
+    val chartPie: ImageResource
+    val bullseye: ImageResource
+    val thumbUp: ImageResource
 }

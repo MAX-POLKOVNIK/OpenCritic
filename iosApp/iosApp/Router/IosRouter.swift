@@ -51,6 +51,10 @@ class IosRouter: ObservableObject, Router {
             GameReviewsScreenView(
                 viewModel: viewModel(for: route, arg: reviewsRoute.gameId)
             )
+        case let outletRoute as OutletReviewsRoute:
+            OutletReviewsScreenView(
+                viewModel: viewModel(for: route, arg: outletRoute.outletId)
+            )
         default:
             ContentView()
         }

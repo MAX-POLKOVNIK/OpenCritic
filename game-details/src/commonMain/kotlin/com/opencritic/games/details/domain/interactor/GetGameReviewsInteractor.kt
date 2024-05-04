@@ -13,6 +13,6 @@ class GetGameReviewsInteractor(
         sorting: ReviewSorting = ReviewSorting.MostPopular
     ): Result<List<Review>> =
         runCatching {
-            gameDetailsRepository.getReviews(gameId, skip, sorting)
+            gameDetailsRepository.getGameReviews(gameId, skip, sorting)
         }
 }

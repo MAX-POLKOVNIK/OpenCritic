@@ -10,6 +10,7 @@ import Foundation
 import shared
 
 class IosImagesResourceProvider : ImageResourceProvider {
+    
     var gameActionFavorite: String { "heart.fill" }
     var gameActionPlayed: String { "checkmark" }
     var gameActionWant: String { "plus" }
@@ -29,4 +30,9 @@ class IosImagesResourceProvider : ImageResourceProvider {
     var tabMain: String { "newspaper" }
     var tabSearch: String { "magnifyingglass" }
     var tabYourList: String { "star" }
+    
+    var bullseye: String { "circle.circle" }
+    var chartPie: String { "chart.pie.fill" }
+    var hashTag: String { "number" }
+    var thumbUp: String { "hand.thumbsup.fill" }
 }

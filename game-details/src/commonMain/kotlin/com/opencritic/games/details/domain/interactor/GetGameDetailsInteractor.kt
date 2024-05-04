@@ -9,7 +9,7 @@ class GetGameDetailsInteractor(
     suspend operator fun invoke(gameId: Long): Result<GameDetails> =
         runCatching {
             val game = repository.getGame(gameId)
-            val reviews = repository.getReviews(gameId)
+            val reviews = repository.getGameReviews(gameId)
 
             GameDetails(
                 posterUrl = game.squareImageUrl,

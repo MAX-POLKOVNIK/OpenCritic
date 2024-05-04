@@ -9,6 +9,7 @@ import com.opencritic.games.details.domain.ReviewSorting
 import com.opencritic.games.details.domain.sortNameOf
 import com.opencritic.logs.Logger
 import com.opencritic.mvvm.BaseViewModel
+import com.opencritic.navigation.OutletReviewsRoute
 import com.opencritic.navigation.UrlRoute
 import com.opencritic.resources.DateFormatter
 import com.opencritic.resources.ImageResourceProvider
@@ -59,12 +60,14 @@ class GameReviewsViewModel(
                                     reviewItems = content.reviewItems + reviews.map { review ->
                                         ReviewListItem(
                                             review = review,
+                                            isGameVisible = false,
                                             stringProvider = stringProvider,
                                             dateFormatter = dateFormatter,
                                             onClick = {},
                                             onAuthorClick = {},
                                             onImageClick = {},
-                                            onOutletClick = {},
+                                            onOutletClick = { openOutlet(review.outlet.id) },
+                                            onGameClick = {},
                                         )
                                     },
                                     isLoadingItemVisible = content.reviewItems.size + reviews.size < (game?.reviewsCount ?: 0)
@@ -85,7 +88,7 @@ class GameReviewsViewModel(
         imageResourceProvider: ImageResourceProvider,
     ): GameReviewsState.Content =
         GameReviewsState.Content(
-            titleText = game.name,
+            titleText = "${game.name} ${stringProvider.reviews}",
             imageUrl = game.bannerImageUrl,
             isTierVisible = game.rank != null,
             tierImageResource = when (game.rank?.tier) {
@@ -130,12 +133,14 @@ class GameReviewsViewModel(
                         reviewItems = state.reviewItems + reviews.map { review ->
                             ReviewListItem(
                                 review = review,
+                                isGameVisible = false,
                                 stringProvider = stringProvider,
                                 dateFormatter = dateFormatter,
                                 onClick = { openUrl(review.externalUrl) },
                                 onAuthorClick = {},
                                 onImageClick = {},
-                                onOutletClick = {},
+                                onOutletClick = { openOutlet(review.outlet.id) },
+                                onGameClick = {},
                             )
                         },
                         isLoadingItemVisible = state.reviewItems.size + reviews.size < (game?.reviewsCount ?: 0)
@@ -168,5 +173,12 @@ class GameReviewsViewModel(
     private fun openUrl(url: String) {
         requireRouter()
             .navigateTo(UrlRoute(url))
+    }
+
+    private fun openOutlet(outletId: Int) {
+        requireRouter()
+            .navigateTo(
+                OutletReviewsRoute(outletId)
+            )
     }
 }

@@ -4,6 +4,8 @@ import kotlinx.datetime.Instant
 
 data class Review(
     val id: String,
+    val gameId: Long,
+    val gameName: String,
     val outlet: Outlet,
     val scoreFormat: ReviewScoreFormat,
     val externalUrl: String,

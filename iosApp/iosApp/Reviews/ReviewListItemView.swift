@@ -18,11 +18,11 @@ struct ReviewListItemView: View {
                 VStack(alignment: .leading) {
                     Text(item.authorText)
                         .font(.title2)
-                        .onTapGesture { item.outletClick() }
+                        .onTapGesture { item.authorClick() }
                     Text(item.outletText)
                         .italic()
                         .onTapGesture {
-                            item.authorClick()
+                            item.outletClick()
                         }
                 }
                 
@@ -66,8 +66,15 @@ struct ReviewListItemView: View {
                 Text(item.dateText)
             }
             
+            if item.isGameVisible {
+                Button(item.gameText) { item.gameClick() }
+                    .multilineTextAlignment(.leading)
+                    .padding(.top)
+            }
+            
             Text(item.snippetText)
                 .padding(.top)
+            
             Button(item.readFullReviewText) { item.click() }
                 .padding(.top)
         }

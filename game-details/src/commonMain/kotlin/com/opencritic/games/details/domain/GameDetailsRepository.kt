@@ -5,11 +5,17 @@ import com.opencritic.games.Review
 
 interface GameDetailsRepository {
     suspend fun getGame(gameId: Long): Game
-    suspend fun getReviews(
+    suspend fun getGameReviews(
         gameId: Long,
         skip: Int = 0,
         sort: ReviewSorting = ReviewSorting.MostPopular
     ): List<Review>
 
     suspend fun getOutlet(outletId: Int): Outlet
+
+    suspend fun getOutletReviews(
+        outletId: Int,
+        skip: Int,
+        sort: ReviewSorting,
+    ): List<Review>
 }

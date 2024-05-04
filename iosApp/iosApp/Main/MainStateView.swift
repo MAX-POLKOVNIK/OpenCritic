@@ -13,45 +13,49 @@ struct MainStateView: View {
     let state: MainState
     
     var body: some View {
-        TabView {
-            ForEach(state.tabs, id: \.self) { tab in
-                if tab.id == TabType.main {
-                    DashboardScreenView()
-                        .tabItem {
-                            Label(tab.name, systemImage: tab.imageResource)
-                        }
-                        .navigationTitle(tab.name)
-                }
-                if tab.id == TabType.search {
-                    SearchScreenView()
-                        .tabItem {
-                            Label(tab.name, systemImage: tab.imageResource)
-                        }
-                        .navigationTitle(tab.name)
-                }
-                if tab.id == TabType.browse {
-                    ContentView()
-                        .tabItem {
-                            Label(tab.name, systemImage: tab.imageResource)
-                        }
-                        .navigationTitle(tab.name)
-                }
-                if tab.id == TabType.calendar {
-                    ContentView()
-                        .tabItem {
-                            Label(tab.name, systemImage: tab.imageResource)
-                        }
-                        .navigationTitle(tab.name)
-                }
-                if tab.id == TabType.yourlists {
-                    ContentView()
-                        .tabItem {
-                            Label(tab.name, systemImage: tab.imageResource)
-                        }
-                        .navigationTitle(tab.name)
+        VStack {
+            TabView {
+                ForEach(state.tabs, id: \.self) { tab in
+                    if tab.id == TabType.main {
+                        DashboardScreenView()
+                            .tabItem {
+                                Label(tab.name, systemImage: tab.imageResource)
+                            }
+                            .navigationBarTitle(tab.name, displayMode: .large)
+                    }
+                    if tab.id == TabType.search {
+                        SearchScreenView()
+                            .tabItem {
+                                Label(tab.name, systemImage: tab.imageResource)
+                            }
+                            .navigationBarTitle(tab.name, displayMode: .large)
+                    }
+                    if tab.id == TabType.browse {
+                        ContentView()
+                            .tabItem {
+                                Label(tab.name, systemImage: tab.imageResource)
+                            }
+                            .navigationBarTitle(tab.name, displayMode: .large)
+                    }
+                    if tab.id == TabType.calendar {
+                        ContentView()
+                            .tabItem {
+                                Label(tab.name, systemImage: tab.imageResource)
+                            }
+                            .navigationBarTitle(tab.name, displayMode: .large)
+                    }
+                    if tab.id == TabType.yourlists {
+                        ContentView()
+                            .tabItem {
+                                Label(tab.name, systemImage: tab.imageResource)
+                            }
+                            .navigationBarTitle(tab.name, displayMode: .large)
+                    }
                 }
             }
         }
+        
+        .navigationBarTitle("OpenCritic", displayMode: .inline)
         .overlay(alignment: .top) {
             Color.clear // Or any view or color
                 .background(.regularMaterial) // I put clear here because I prefer to put a blur in this case. This modifier and the material it contains are optional.

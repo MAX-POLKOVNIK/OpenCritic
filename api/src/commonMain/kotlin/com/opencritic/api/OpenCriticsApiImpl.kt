@@ -72,4 +72,11 @@ internal class OpenCriticsApiImpl(
 
     override suspend fun getOutlet(outletId: Int): OutletDto =
         client.get(baseUrl + "outlet/$outletId").body()
+
+    override suspend fun getOutletReviews(
+        outletId: Int,
+        skip: Int,
+        sort: ReviewSortKey
+    ): List<ReviewDto> =
+        client.get(baseUrl + "reviews/outlet/$outletId/?skip=$skip&sort=${sort.queryValue}").body()
 }

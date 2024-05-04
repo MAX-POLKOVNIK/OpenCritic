@@ -7,9 +7,11 @@ import com.opencritic.games.details.domain.interactor.GetGameInteractor
 import com.opencritic.games.details.domain.interactor.GetGameMediaInteractor
 import com.opencritic.games.details.domain.interactor.GetGameReviewsInteractor
 import com.opencritic.games.details.domain.interactor.GetOutletInteractor
+import com.opencritic.games.details.domain.interactor.GetOutletReviewsInteractor
 import com.opencritic.games.details.ui.GameDetailsViewModel
 import com.opencritic.games.details.ui.GameMediaViewModel
 import com.opencritic.games.details.ui.GameReviewsViewModel
+import com.opencritic.games.details.ui.OutletReviewsViewModel
 import com.opencritic.mvvm.viewModelOf
 import org.koin.core.module.dsl.singleOf
 import org.koin.dsl.module
@@ -20,10 +22,12 @@ val gameDetailsModule = module {
     singleOf(::GetGameReviewsInteractor)
     singleOf(::GetGameInteractor)
     singleOf(::GetOutletInteractor)
+    singleOf(::GetOutletReviewsInteractor)
 
     single<GameDetailsRepository> { GameDetailsRepositoryImpl(get()) }
 
     viewModelOf(::GameDetailsViewModel)
     viewModelOf(::GameMediaViewModel)
     viewModelOf(::GameReviewsViewModel)
+    viewModelOf(::OutletReviewsViewModel)
 }

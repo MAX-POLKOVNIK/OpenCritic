@@ -36,7 +36,7 @@ interface GameReviewsState : ViewModelState {
 }
 
 @Suppress("FunctionName")
-fun ReviewsStateContent_PreviewData(
+fun GameReviewsStateContent_PreviewData(
     imageResourceProvider: ImageResourceProvider,
 ): GameReviewsState.Content =
     GameReviewsState.Content(

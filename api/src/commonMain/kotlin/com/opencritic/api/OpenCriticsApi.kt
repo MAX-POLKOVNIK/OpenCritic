@@ -37,4 +37,6 @@ interface OpenCriticsApi {
     suspend fun search(criteria: String): List<SearchItemDto>
 
     suspend fun getOutlet(outletId: Int): OutletDto
+
+    suspend fun getOutletReviews(outletId: Int, skip: Int, sort: ReviewSortKey): List<ReviewDto>
 }

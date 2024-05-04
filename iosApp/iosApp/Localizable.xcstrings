@@ -7,6 +7,17 @@
     "Loading..." : {
 
     },
+    "str_average_score_formatted" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%@ average score"
+          }
+        }
+      }
+    },
     "str_buy_now_on" : {
       "extractionState" : "manual",
       "localizations" : {
@@ -161,6 +172,28 @@
         }
       }
     },
+    "str_games_recommended_formatted" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%@ of games recommended"
+          }
+        }
+      }
+    },
+    "str_games_reviewed_formatted" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%@ games reviewed"
+          }
+        }
+      }
+    },
     "str_hall_of_fame" : {
       "extractionState" : "manual",
       "localizations" : {
@@ -183,6 +216,17 @@
         }
       }
     },
+    "str_home_page" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Homepage"
+          }
+        }
+      }
+    },
     "str_media" : {
       "extractionState" : "manual",
       "localizations" : {
@@ -190,6 +234,17 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Media"
+          }
+        }
+      }
+    },
+    "str_median_score_formatted" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%@ median score"
           }
         }
       }
@@ -300,6 +355,28 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "REVIEWED TODAY"
+          }
+        }
+      }
+    },
+    "str_reviews" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Reviews"
+          }
+        }
+      }
+    },
+    "str_reviews_of" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%@'s reviews"
           }
         }
       }

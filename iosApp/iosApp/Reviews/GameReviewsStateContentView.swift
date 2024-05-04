@@ -23,10 +23,6 @@ struct GameReviewsStateContentView: View {
     
     var body: some View {
         List {
-            Text(state.titleText)
-                .font(.title)
-                .listRowSeparator(.hidden)
-            
             ZStack(alignment: .bottomLeading) {
                 CachedAsyncImage(
                     url: URL(string: state.imageUrl),
@@ -76,6 +72,7 @@ struct GameReviewsStateContentView: View {
                 }
                 .padding()
             }
+            .listRowSeparator(.hidden)
             
             if state.isRankedDescriptionVisible {
                 Text(state.rankedDescription)
@@ -105,12 +102,12 @@ struct GameReviewsStateContentView: View {
             }
         }
         .listStyle(.plain)
-        
+        .navigationBarTitle(state.titleText, displayMode: .large)
     }
 }
 
 #Preview {
     GameReviewsStateContentView(
-        state: GameReviewsStateKt.ReviewsStateContent_PreviewData(imageResourceProvider: IosImagesResourceProvider())
+        state: GameReviewsStateKt.GameReviewsStateContent_PreviewData(imageResourceProvider: IosImagesResourceProvider())
     )
 }

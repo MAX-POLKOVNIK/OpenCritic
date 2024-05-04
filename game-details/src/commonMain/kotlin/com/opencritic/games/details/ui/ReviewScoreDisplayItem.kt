@@ -37,13 +37,15 @@ fun ReviewScoreDisplayItem(
             )
         scoreFormat.isStars ->
             ReviewScoreDisplayItem.Stars(
-                score = score / requireNotNull(scoreFormat.base),
-                totalStars = 100 / requireNotNull(scoreFormat.base),
+                score = score / requireNotNull(scoreFormat.base) { "Hasn't base in format: ${scoreFormat.id}" },
+                totalStars = 100 / requireNotNull(scoreFormat.base) { "Hasn't base in format: ${scoreFormat.id}" },
             )
+        scoreFormat.base == null ->
+            ReviewScoreDisplayItem.String(scoreFormat.shortName)
         else ->
             ReviewScoreDisplayItem.String(
-                value = (score.toFloat() / requireNotNull(scoreFormat.base)).formatScore() +
+                value = (score.toFloat() / requireNotNull(scoreFormat.base) { "Hasn't base in format: ${scoreFormat.id}" }).formatScore() +
                         if (scoreFormat.isPercent) "%"
-                        else " / ${ 100 / requireNotNull(scoreFormat.base)}"
+                        else " / ${ 100 / requireNotNull(scoreFormat.base) { "Hasn't base in format: ${scoreFormat.id}" }}"
             )
     }

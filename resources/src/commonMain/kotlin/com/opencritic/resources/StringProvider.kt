@@ -73,4 +73,14 @@ interface StringProvider {
     val sortOldestFirst: String
 
     fun gameScreenshotsAndTrailers(name: String): String
+
+    val reviews: String
+    fun reviewsOf(name: String): String
+
+    val homepage: String
+
+    fun gamesReviewedFormatted(number: String): String
+    fun averageScoreFormatted(number: String): String
+    fun medianScoreFormatted(number: String): String
+    fun gamesRecommendedFormatted(number: String): String
 }

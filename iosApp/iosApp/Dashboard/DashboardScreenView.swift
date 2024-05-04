@@ -10,12 +10,9 @@ import SwiftUI
 import shared
 
 struct DashboardScreenView: View {
-    @EnvironmentObject var router: IosRouter
-    
-    private let viewModel: DashboardViewModel = koinViewModel(DashboardViewModel.self)
+    let viewModel: DashboardViewModel
     
     var body: some View {
-        viewModel.setRouter(router: router)
         
         return FlowView(of: viewModel.state) { state in
             switch state {

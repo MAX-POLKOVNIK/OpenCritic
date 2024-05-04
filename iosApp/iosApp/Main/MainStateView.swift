@@ -8,54 +8,72 @@
 
 import SwiftUI
 import shared
+import Combine
+
+// temporary workaround
+private let dashboardViewModel: DashboardViewModel = koinViewModel(DashboardViewModel.self)
+private let searchViewModel: SearchViewModel = koinViewModel(SearchViewModel.self)
 
 struct MainStateView: View {
     let state: MainState
     
+    @EnvironmentObject var router: IosRouter
+    @State private var activeTab: TabType = TabType.main
+    
     var body: some View {
-        VStack {
-            TabView {
+        dashboardViewModel.setRouter(router: router)
+        searchViewModel.setRouter(router: router)
+        
+        return VStack {
+            TabView(selection: $activeTab) {
                 ForEach(state.tabs, id: \.self) { tab in
                     if tab.id == TabType.main {
-                        DashboardScreenView()
+                        DashboardScreenView(viewModel: dashboardViewModel)
                             .tabItem {
                                 Label(tab.name, systemImage: tab.imageResource)
                             }
-                            .navigationBarTitle(tab.name, displayMode: .large)
+                            .tag(tab.id)
+                            .navigationTitle(tab.name)
                     }
                     if tab.id == TabType.search {
-                        SearchScreenView()
+                        SearchScreenView(viewModel: searchViewModel)
                             .tabItem {
                                 Label(tab.name, systemImage: tab.imageResource)
                             }
-                            .navigationBarTitle(tab.name, displayMode: .large)
+                            .tag(tab.id)
+                            .navigationTitle(tab.name)
                     }
                     if tab.id == TabType.browse {
                         ContentView()
                             .tabItem {
                                 Label(tab.name, systemImage: tab.imageResource)
                             }
-                            .navigationBarTitle(tab.name, displayMode: .large)
+                            .tag(tab.id)
+                            .navigationTitle(tab.name)
                     }
                     if tab.id == TabType.calendar {
                         ContentView()
                             .tabItem {
                                 Label(tab.name, systemImage: tab.imageResource)
                             }
-                            .navigationBarTitle(tab.name, displayMode: .large)
+                            .tag(tab.id)
+                            .navigationTitle(tab.name)
                     }
                     if tab.id == TabType.yourlists {
                         ContentView()
                             .tabItem {
                                 Label(tab.name, systemImage: tab.imageResource)
                             }
-                            .navigationBarTitle(tab.name, displayMode: .large)
+                            .tag(tab.id)
+                            .navigationTitle(tab.name)
                     }
                 }
             }
         }
-        
-        .navigationBarTitle("OpenCritic", displayMode: .inline)
+        .navigationBarTitle(
+            state.tabs.first { $0.id == activeTab }?.name ?? "",
+            displayMode: .inline
+        )
         .overlay(alignment: .top) {
             Color.clear // Or any view or color
                 .background(.regularMaterial) // I put clear here because I prefer to put a blur in this case. This modifier and the material it contains are optional.

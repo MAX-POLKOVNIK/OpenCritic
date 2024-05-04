@@ -10,14 +10,10 @@ import SwiftUI
 import shared
 
 struct SearchScreenView: View {
-    @EnvironmentObject var router: IosRouter
-    
-    private let viewModel: SearchViewModel = koinViewModel(SearchViewModel.self)
+    let viewModel: SearchViewModel
     
     var body: some View {
-        viewModel.setRouter(router: router)
-        
-        return FlowView(of: viewModel.state) { state in
+        FlowView(of: viewModel.state) { state in
             SearchStateView(state: state)
         }
     }

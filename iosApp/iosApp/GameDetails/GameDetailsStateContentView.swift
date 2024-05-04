@@ -39,11 +39,7 @@ struct GameDetailsStateContentView: View {
                 }
                     .frame(minWidth: 0, maxWidth: .infinity)
                     .padding(.vertical)
-                    .background(
-                        RoundedRectangle(cornerRadius: 8)
-                            .fill(Color.white)
-                            .shadow(color: .gray, radius: 2, x: 0, y: 2)
-                    )
+                    .card()
                     .padding()
                 
                 VStack(
@@ -116,11 +112,7 @@ struct GameDetailsStateContentView: View {
                     }
                 }
                     .frame(minWidth: 0, maxWidth: .infinity, alignment: .leading)
-                    .background(
-                        RoundedRectangle(cornerRadius: 8)
-                            .fill(Color.white)
-                            .shadow(color: .gray, radius: 2, x: 0, y: 2)
-                    )
+                    .card()
                     .padding(.horizontal)
                 
                 if state.isMediaVisible {

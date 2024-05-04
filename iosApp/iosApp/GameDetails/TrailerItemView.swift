@@ -33,12 +33,7 @@ struct TrailerItemView: View {
             Text(item.titleText)
                 .padding()
         }
-        .clipShape(.rect(cornerRadius: 8))
-        .background(
-            RoundedRectangle(cornerRadius: 8)
-                .fill(Color.white)
-                .shadow(color: .gray, radius: 2, x: 0, y: 2)
-        )
+        .card()
         .onTapGesture {
             item.click()
         }

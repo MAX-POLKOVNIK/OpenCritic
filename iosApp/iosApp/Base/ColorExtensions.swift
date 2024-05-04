@@ -9,9 +9,16 @@
 import Foundation
 import UIKit
 import SwiftUI
+import shared
 
 extension UIColor {
-    func toColor() -> Color {
+    func toColor() -> SwiftUI.Color {
         Color(self)
+    }
+}
+
+extension shared.Color {
+    var color: SwiftUI.Color {
+        self.toUIColor().toColor()
     }
 }

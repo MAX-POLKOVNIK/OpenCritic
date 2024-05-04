@@ -37,4 +37,6 @@ object Colors {
     val WeakCriticsRecommendGradient = listOf(
         Color(106, 128, 85),
     )
+
+    val CircleIndicatorBackground = Color(46, 46, 46)
 }

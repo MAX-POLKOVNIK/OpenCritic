@@ -58,6 +58,7 @@
 		42F844302BE5E51A00408FE7 /* IconTextItemView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42F8442F2BE5E51A00408FE7 /* IconTextItemView.swift */; };
 		42F844322BE5E5DF00408FE7 /* OutletReviewsStateContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42F844312BE5E5DF00408FE7 /* OutletReviewsStateContentView.swift */; };
 		42F844342BE5E97E00408FE7 /* OutletReviewsScreenView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42F844332BE5E97E00408FE7 /* OutletReviewsScreenView.swift */; };
+		42F844362BE6004F00408FE7 /* ViewExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42F844352BE6004F00408FE7 /* ViewExtensions.swift */; };
 		7555FF83242A565900829871 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7555FF82242A565900829871 /* ContentView.swift */; };
 /* End PBXBuildFile section */
 
@@ -126,6 +127,7 @@
 		42F8442F2BE5E51A00408FE7 /* IconTextItemView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IconTextItemView.swift; sourceTree = "<group>"; };
 		42F844312BE5E5DF00408FE7 /* OutletReviewsStateContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OutletReviewsStateContentView.swift; sourceTree = "<group>"; };
 		42F844332BE5E97E00408FE7 /* OutletReviewsScreenView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OutletReviewsScreenView.swift; sourceTree = "<group>"; };
+		42F844352BE6004F00408FE7 /* ViewExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewExtensions.swift; sourceTree = "<group>"; };
 		7555FF7B242A565900829871 /* iosApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = iosApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		7555FF82242A565900829871 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		7555FF8C242A565B00829871 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -179,6 +181,7 @@
 				425627AA2BE124A500EDEEEB /* KoinViewModel.swift */,
 				425627AD2BE135F300EDEEEB /* CachedAsyncImage.swift */,
 				42F844222BE49EEE00408FE7 /* ColorExtensions.swift */,
+				42F844352BE6004F00408FE7 /* ViewExtensions.swift */,
 			);
 			path = Base;
 			sourceTree = "<group>";
@@ -435,6 +438,7 @@
 				4256279D2BE119FB00EDEEEB /* DashboardStateErrorView.swift in Sources */,
 				42E2F0A22BE226B700B76F14 /* DashboardMightyManItemListItemView.swift in Sources */,
 				42E2F0A92BE234CF00B76F14 /* RouterView.swift in Sources */,
+				42F844362BE6004F00408FE7 /* ViewExtensions.swift in Sources */,
 				42E2F0A72BE2334000B76F14 /* IosRouter.swift in Sources */,
 				425627B72BE1EAD300EDEEEB /* DashboardDealListItemView.swift in Sources */,
 				425627932BE109F400EDEEEB /* DashboardPosterGameListItemView.swift in Sources */,

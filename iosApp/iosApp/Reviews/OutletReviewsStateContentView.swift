@@ -51,12 +51,7 @@ struct OutletReviewsStateContentView: View {
             }
             .padding()
             .listRowSeparator(.hidden)
-            .clipShape(.rect(cornerRadius: 8))
-            .background(
-                RoundedRectangle(cornerRadius: 8)
-                    .fill(Color.white)
-                    .shadow(color: .gray, radius: 2, x: 0, y: 2)
-            )
+            .card()
             
             Picker(state.sortTitleText, selection: $selection) {
                 ForEach(state.availableSorts, id: \.self) {

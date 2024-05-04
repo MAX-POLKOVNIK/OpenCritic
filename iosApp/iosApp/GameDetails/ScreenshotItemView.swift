@@ -22,12 +22,7 @@ struct ScreenshotItemView: View {
             Color.gray
         }
             .aspectRatio(1.77, contentMode: .fit)
-            .clipShape(.rect(cornerRadius: 8))
-            .background(
-                RoundedRectangle(cornerRadius: 8)
-                    .fill(Color.white)
-                    .shadow(color: .gray, radius: 2, x: 0, y: 2)
-            )
+            .card()
     }
 }
 

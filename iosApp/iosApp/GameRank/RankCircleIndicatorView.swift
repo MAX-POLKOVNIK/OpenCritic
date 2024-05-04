@@ -28,6 +28,7 @@ struct RankCircleIndicatorView: View {
         GeometryReader { proxy in
             ZStack {
                 Circle()
+                    .foregroundColor(item.backgroundColor.color)
                 
                 Circle()
                     .trim(from: CGFloat(trimStart), to: CGFloat(trimEnd))

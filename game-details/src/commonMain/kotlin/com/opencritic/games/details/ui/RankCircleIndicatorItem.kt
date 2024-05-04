@@ -8,7 +8,8 @@ import com.opencritic.resources.Colors
 data class RankCircleIndicatorItem(
     val scoreText: String,
     val progress: Float, // in range 0..1
-    val colors: List<Color>
+    val colors: List<Color>,
+    val backgroundColor: Color = Colors.CircleIndicatorBackground
 )
 
 fun createTopCriticAverageIndicator(gameRank: GameRank): RankCircleIndicatorItem =

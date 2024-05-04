@@ -27,11 +27,6 @@ class MainViewModel(
                     imageResource = imageResourceProvider.tabBrowse,
                 ),
                 Tab(
-                    id = TabType.Calendar,
-                    name = stringProvider.tabCalendar,
-                    imageResource = imageResourceProvider.tabCalendar,
-                ),
-                Tab(
                     id = TabType.YourLists,
                     name = stringProvider.tabYourList,
                     imageResource = imageResourceProvider.tabYourList,

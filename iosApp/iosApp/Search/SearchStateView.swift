@@ -18,20 +18,11 @@ struct SearchStateView: View {
     var body: some View {
         ScrollView {
             LazyVStack {
-                TextField(
-                        state.searchHint,
-                        text: $criteria
-                )
-                    .onSubmit {
-                        state.changeSearch(criteria: criteria)
-                    }
+                SearchBar(text: $criteria, placeholder: state.searchHint)
                     .onReceive(Just(criteria)) { _ in
                         state.changeSearch(criteria: criteria)
                     }
-                    .textInputAutocapitalization(.never)
-                    .disableAutocorrection(true)
                     .padding()
-                    .textFieldStyle(.roundedBorder)
                 
                 switch state.searchListItemsState {
                 case let content as SearchItemsStateContent:
@@ -50,6 +41,41 @@ struct SearchStateView: View {
                 }
             }
         }
+    }
+}
+
+struct SearchBar: UIViewRepresentable {
+
+    @Binding var text: String
+    let placeholder: String
+
+    class Coordinator: NSObject, UISearchBarDelegate {
+
+        @Binding var text: String
+
+        init(text: Binding<String>) {
+            _text = text
+        }
+
+        func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
+            text = searchText
+        }
+    }
+    func makeCoordinator() -> SearchBar.Coordinator {
+        return Coordinator(text: $text)
+    }
+
+    func makeUIView(context: UIViewRepresentableContext<SearchBar>) -> UISearchBar {
+        let searchBar = UISearchBar(frame: .zero)
+        searchBar.placeholder = placeholder
+        searchBar.delegate = context.coordinator
+        searchBar.autocapitalizationType = .none
+        searchBar.backgroundImage = UIImage()
+        return searchBar
+    }
+
+    func updateUIView(_ uiView: UISearchBar, context: UIViewRepresentableContext<SearchBar>) {
+        uiView.text = text
     }
 }
 

@@ -24,9 +24,9 @@ class IosImagesResourceProvider : ImageResourceProvider {
     var strongHead: String { "strong-head" }
     var weakHead: String { "weak-head" }
     
-    var tabBrowse: String { "list.dash.header.rectangle" }
+    var tabBrowse: String { "gamecontroller.fill" }
     var tabCalendar: String { "calendar" }
-    var tabMain: String { "newspaper" }
+    var tabMain: String { "doc.text.image" }
     var tabSearch: String { "magnifyingglass" }
     var tabYourList: String { "star" }
     

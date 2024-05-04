@@ -105,4 +105,7 @@ internal class OpenCriticsApiImpl(
         skip: Int,
     ): List<BrowseGameDto> =
         client.get(baseUrl + "game?platforms=$platformShortName&skip=$skip&sort=${sort.queryValue}&time=${time.queryKey}").body()
+
+    override suspend fun getReviewedThisWeek(): List<BrowseGameDto> =
+        client.get(baseUrl + "game/reviewed-this-week").body()
 }

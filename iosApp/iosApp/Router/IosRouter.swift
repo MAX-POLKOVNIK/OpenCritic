@@ -62,6 +62,10 @@ class IosRouter: ObservableObject, Router {
             AuthorReviewsScreenView(
                 viewModel: viewModel(for: route, arg: authorRoute.authorId)
             )
+        case let periodGameBrowserRoute as PeriodGameBrowserRoute:
+            PeriodGameBrowserScreenView(
+                viewModel: viewModel(for: route, arg: periodGameBrowserRoute.period)
+            )
         default:
             ContentView()
         }

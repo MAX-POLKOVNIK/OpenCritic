@@ -4,6 +4,7 @@ import com.opencritic.dashboard.domain.GetDashboardInteractor
 import com.opencritic.logs.Logger
 import com.opencritic.mvvm.BaseViewModel
 import com.opencritic.navigation.GameDetailsRoute
+import com.opencritic.navigation.PeriodGameBrowserRoute
 import com.opencritic.navigation.UrlRoute
 import com.opencritic.resources.DateFormatter
 import com.opencritic.resources.ImageResourceProvider
@@ -72,7 +73,11 @@ class DashboardViewModel(
                                 imageResourceProvider = imageResourceProvider,
                                 dateFormatter = dateFormatter,
                                 onItemClick = { navigateToGame(it.id) },
-                                onMoreClick = {},
+                                onMoreClick = {
+                                    requireRouter().navigateTo(
+                                        PeriodGameBrowserRoute(PeriodGameBrowserRoute.Period.ReviewedThisWeek)
+                                    )
+                                },
                             ),
                             upcomingReleases = DashboardSublistListItem.upcomingReleases(
                                 gameItems = dashboard.upcoming,
@@ -80,7 +85,11 @@ class DashboardViewModel(
                                 imageResourceProvider = imageResourceProvider,
                                 dateFormatter = dateFormatter,
                                 onItemClick = { navigateToGame(it.id) },
-                                onMoreClick = {},
+                                onMoreClick = {
+                                    requireRouter().navigateTo(
+                                        PeriodGameBrowserRoute(PeriodGameBrowserRoute.Period.UpcomingReleases)
+                                    )
+                                },
                             ),
                             recentlyReleased = DashboardSublistListItem.recentlyReleased(
                                 gameItems = dashboard.recentlyReleased,
@@ -88,7 +97,11 @@ class DashboardViewModel(
                                 imageResourceProvider = imageResourceProvider,
                                 dateFormatter = dateFormatter,
                                 onItemClick = { navigateToGame(it.id) },
-                                onMoreClick = {},
+                                onMoreClick = {
+                                    requireRouter().navigateTo(
+                                        PeriodGameBrowserRoute(PeriodGameBrowserRoute.Period.RecentlyReleased)
+                                    )
+                                },
                             ),
                             hallOfFameTitle = DashboardTitleListItem(
                                 title = stringProvider.hallOfFameFormatted(currentYear.toString()),

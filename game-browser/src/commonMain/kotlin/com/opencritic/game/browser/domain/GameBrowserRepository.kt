@@ -10,4 +10,6 @@ interface GameBrowserRepository {
         sorting: GameSorting,
         skip: Int,
     ): List<BrowseGame>
+
+    suspend fun getReviewedThisWeek(): List<BrowseGame>
 }

@@ -1,6 +1,7 @@
 package com.opencritic.game.browser.data
 
 import com.opencritic.api.OpenCriticsApi
+import com.opencritic.api.dto.game.BrowseGameDto
 import com.opencritic.api.dto.game.GameSortKey
 import com.opencritic.api.dto.game.GameTimeKey
 import com.opencritic.api.dto.image.prefixedImageUrl
@@ -56,15 +57,22 @@ internal class GameBrowserRepositoryImpl(
                     },
                     skip = skip
                 )
-                .map { dto ->
-                    BrowseGame(
-                        id = dto.id,
-                        name = dto.name,
-                        rank = GameRank(dto.tier, dto.topCriticScore),
-                        percentRecommended = dto.percentRecommended,
-                        releaseDate = dto.firstReleaseDate,
-                        imageUrl = dto.images?.banner?.sm?.prefixedImageUrl() ?: "",
-                    )
-                }
+                .map { it.toModel() }
         }
+
+    override suspend fun getReviewedThisWeek(): List<BrowseGame> =
+        withContext(defaultDispatcher) {
+            openCriticsApi.getReviewedThisWeek()
+                .map { it.toModel() }
+        }
+
+    private fun BrowseGameDto.toModel(): BrowseGame =
+        BrowseGame(
+            id = id,
+            name = name,
+            rank = GameRank(tier, topCriticScore),
+            percentRecommended = percentRecommended,
+            releaseDate = firstReleaseDate,
+            imageUrl = images?.banner?.sm?.prefixedImageUrl() ?: "",
+        )
 }

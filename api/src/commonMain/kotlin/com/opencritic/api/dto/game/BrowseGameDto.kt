@@ -12,9 +12,9 @@ data class BrowseGameDto(
     val name: String,
     val firstReleaseDate: Instant,
     val images: ImagesDto? = null,
-    @SerialName("Platforms") val platforms: List<PlatformBriefDto>,
-    val percentRecommended: Float,
+    @SerialName("Platforms") val platforms: List<PlatformBriefDto> = emptyList(),
+    val percentRecommended: Float = -1f,
     val tier: String = "",
-    val numReviews: Int,
+    val numReviews: Int = 0,
     val topCriticScore: Float,
 )

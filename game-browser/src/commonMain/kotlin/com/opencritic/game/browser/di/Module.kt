@@ -4,7 +4,9 @@ import com.opencritic.game.browser.data.GameBrowserRepositoryImpl
 import com.opencritic.game.browser.domain.GameBrowserRepository
 import com.opencritic.game.browser.domain.GetBrowseGamesInteractor
 import com.opencritic.game.browser.domain.GetPlatformsInteractor
+import com.opencritic.game.browser.domain.GetReviewedThisWeekInteractor
 import com.opencritic.game.browser.ui.GameBrowserViewModel
+import com.opencritic.game.browser.ui.period.PeriodGameBrowserViewModel
 import com.opencritic.mvvm.viewModelOf
 import org.koin.core.module.dsl.singleOf
 import org.koin.dsl.module
@@ -14,6 +16,8 @@ val gameBrowserModule = module {
 
     singleOf(::GetPlatformsInteractor)
     singleOf(::GetBrowseGamesInteractor)
+    singleOf(::GetReviewedThisWeekInteractor)
 
     viewModelOf(::GameBrowserViewModel)
+    viewModelOf(::PeriodGameBrowserViewModel)
 }

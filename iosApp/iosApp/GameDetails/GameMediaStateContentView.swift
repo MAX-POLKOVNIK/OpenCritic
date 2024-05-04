@@ -17,9 +17,6 @@ struct GameMediaStateContentView: View {
             LazyVStack(
                 alignment: .leading
             ) {
-                Text(state.titleText)
-                    .font(.title)
-                
                 if state.isTrailersVisible {
                     Text(state.trailersText)
                         .font(.title)
@@ -41,7 +38,7 @@ struct GameMediaStateContentView: View {
                 }
             }
             .padding(.horizontal)
-            .navigationTitle(state.navigationTitle)
+            .navigationBarTitle(state.titleText, displayMode: .large)
         }
     }
 }

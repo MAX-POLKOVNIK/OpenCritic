@@ -17,6 +17,7 @@ class IosRouter: ObservableObject, Router {
             let routes = Set(path).subtracting(newValue)
             
             routes.forEach {
+                print("removing vm for route: \($0)")
                 viewModels[$0] = nil
             }
         }
@@ -26,12 +27,14 @@ class IosRouter: ObservableObject, Router {
     
     func viewModel<S: ViewModelState, T: BaseViewModel<S>>(for route: Route, arg: Any = Void()) -> T {
         if let viewModel = viewModels[route] {
+            print("returning cached vm for route: \(route)")
             return viewModel as! T
         } else {
             let vm = koinViewModel(T.self, arg: arg)
             
             vm.setRouter(router: self)
             
+            print("adding vm for route: \(route)")
             viewModels[route] = vm as! BaseViewModel<AnyObject>
             return vm
         }
@@ -54,6 +57,10 @@ class IosRouter: ObservableObject, Router {
         case let outletRoute as OutletReviewsRoute:
             OutletReviewsScreenView(
                 viewModel: viewModel(for: route, arg: outletRoute.outletId)
+            )
+        case let authorRoute as AuthorReviewsRoute:
+            AuthorReviewsScreenView(
+                viewModel: viewModel(for: route, arg: authorRoute.authorId)
             )
         default:
             ContentView()

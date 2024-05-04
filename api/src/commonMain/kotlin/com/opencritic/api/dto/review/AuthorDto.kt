@@ -7,6 +7,5 @@ import kotlinx.serialization.Serializable
 data class AuthorDto(
     val id: Int,
     val name: String,
-    val image: Boolean,
     val imageSrc: ImageLinksDto? = null,
 )

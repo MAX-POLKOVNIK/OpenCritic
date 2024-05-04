@@ -14,9 +14,9 @@ data class AuthorDto(
     val medianScore: Int,
     val averageScore: Float,
 
-    val favoriteGames: List<String> = emptyList(),
-    val bio: String = "",
-    val hometown: String = "",
-    val xboxLive: String = "",
-    val psn: String = ""
+    val favoriteGames: List<String>? = null,
+    val bio: String? = null,
+    val hometown: String? = null,
+    val xboxLive: String? = null,
+    val psn: String? = null
 )

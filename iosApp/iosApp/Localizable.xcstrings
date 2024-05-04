@@ -7,6 +7,17 @@
     "Loading..." : {
 
     },
+    "str_author_is_not_claimed" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Are you %@? If so, email critics@opencritic.com to claim this critic page."
+          }
+        }
+      }
+    },
     "str_average_score_formatted" : {
       "extractionState" : "manual",
       "localizations" : {
@@ -80,6 +91,17 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Games scored in the 30th - 60th percentiles. Some issues hold these games. "
+          }
+        }
+      }
+    },
+    "str_favorite_games" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Favorite Games"
           }
         }
       }

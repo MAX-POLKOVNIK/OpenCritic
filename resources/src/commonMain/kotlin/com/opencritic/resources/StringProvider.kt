@@ -83,4 +83,8 @@ interface StringProvider {
     fun averageScoreFormatted(number: String): String
     fun medianScoreFormatted(number: String): String
     fun gamesRecommendedFormatted(number: String): String
+
+    fun authorIsNotClaimedFormatted(name: String): String
+
+    val favoriteGames: String
 }

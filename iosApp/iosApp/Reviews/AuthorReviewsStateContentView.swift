@@ -1,5 +1,5 @@
 //
-//  OutletReviewsStateContent.swift
+//  AuthorReviewsStateContentView.swift
 //  iosApp
 //
 //  Created by Max Polkovnik on 04/05/2024.
@@ -10,12 +10,12 @@ import SwiftUI
 import shared
 import Combine
 
-struct OutletReviewsStateContentView: View {
-    let state: OutletReviewsStateContent
+struct AuthorReviewsStateContentView: View {
+    let state: AuthorReviewsStateContent
     
     @State private var selection = ReviewSortItem(key: ReviewSorting.default_, name: "Def")
     
-    init(state: OutletReviewsStateContent) {
+    init(state: AuthorReviewsStateContent) {
         self.state = state
         
         selection = state.sortText
@@ -25,28 +25,56 @@ struct OutletReviewsStateContentView: View {
         List {
             VStack(alignment: .center) {
                 CachedAsyncImage(
-                    url: URL(string: state.outletImageUrl),
+                    url: URL(string: state.imageUrl),
                     urlCache: .imageCache
                 ) { image in
                     image.resizable()
                 } placeholder: {
-                    Color.gray
+                    Image(systemName: "person.crop.circle.fill")
+                        .resizable()
                 }
                 .frame(width: 128, height: 128)
                 .clipShape(Circle())
                 
-                Text(state.outletNameText)
+                Text(state.nameText)
                     .font(.title)
                     .bold()
                 
-                if state.isHomepageVisible {
-                    Button(state.homepageText) { state.onHomepageClick() }
-                        .buttonStyle(BorderlessButtonStyle())
+                Spacer()
+                
+                ForEach(state.personalInfoItems, id: \.self) { item in
+                    IconTextItemView(item: item)
                 }
                 
                 Spacer()
                 
-                ForEach(state.infoItems, id: \.self) { item in
+                if state.isFavoritesGamesVisible {
+                    Divider()
+                    
+                    HStack {
+                        Image(systemName: "heart.fill")
+                            .foregroundColor(.red)
+                        
+                        Text(state.favoritesGamesTitleText)
+                        Spacer()
+                    }
+                    
+                    VStack(alignment: .leading) {
+                        ForEach(state.favoritesGames, id: \.self) { item in
+                            HStack {
+                                Text(item)
+                                    .multilineTextAlignment(.leading)
+                                
+                                Spacer()
+                            }
+                            .padding(.horizontal, 28)
+                        }
+                    }
+        
+                    Divider()
+                }
+                
+                ForEach(state.countersInfoItems, id: \.self) { item in
                     IconTextItemView(item: item)
                 }
             }
@@ -82,8 +110,8 @@ struct OutletReviewsStateContentView: View {
 }
 
 #Preview {
-    OutletReviewsStateContentView(
-        state: OutletReviewsStateKt.OutletReviewsStateContent_PreviewData(
+    AuthorReviewsStateContentView(
+        state: AuthorReviewsStateKt.AuthorReviewsStateContent_PreviewData(
             imageResourceProvider: IosImagesResourceProvider()
         )
     )

@@ -18,7 +18,9 @@ struct ReviewListItemView: View {
                 VStack(alignment: .leading) {
                     Text(item.authorText)
                         .font(.title2)
-                        .onTapGesture { item.authorClick() }
+                        .onTapGesture {
+                            item.authorClick()
+                        }
                     Text(item.outletText)
                         .italic()
                         .onTapGesture {

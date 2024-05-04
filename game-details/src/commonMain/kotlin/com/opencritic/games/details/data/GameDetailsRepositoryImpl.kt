@@ -103,11 +103,11 @@ internal class GameDetailsRepositoryImpl(
                 reviewCount = dto.numReviews,
                 medianScore = dto.medianScore,
                 averageScore = dto.averageScore,
-                favoriteGames = dto.favoriteGames,
-                bio = dto.bio,
-                hometown = dto.hometown,
-                xboxLive = dto.xboxLive,
-                psn = dto.psn,
+                favoriteGames = dto.favoriteGames ?: emptyList(),
+                bio = dto.bio ?: "",
+                hometown = dto.hometown ?: "",
+                xboxLive = dto.xboxLive ?: "",
+                psn = dto.psn ?: "",
             )
         }
 

@@ -30,7 +30,7 @@ fun ReviewScoreDisplayItem(
         scoreFormat.isSelect ->
             ReviewScoreDisplayItem.String(
                 value = scoreFormat.options
-                    ?.filter { score > it.value }
+                    ?.filter { score >= it.value }
                     ?.maxBy { it.value }
                     ?.label
                     ?: ""

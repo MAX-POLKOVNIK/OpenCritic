@@ -10,6 +10,7 @@ import com.opencritic.games.details.domain.interactor.GetGameMediaInteractor
 import com.opencritic.games.details.domain.interactor.GetGameReviewsInteractor
 import com.opencritic.games.details.domain.interactor.GetOutletInteractor
 import com.opencritic.games.details.domain.interactor.GetOutletReviewsInteractor
+import com.opencritic.games.details.ui.AuthorReviewsViewModel
 import com.opencritic.games.details.ui.GameDetailsViewModel
 import com.opencritic.games.details.ui.GameMediaViewModel
 import com.opencritic.games.details.ui.GameReviewsViewModel
@@ -34,4 +35,5 @@ val gameDetailsModule = module {
     viewModelOf(::GameMediaViewModel)
     viewModelOf(::GameReviewsViewModel)
     viewModelOf(::OutletReviewsViewModel)
+    viewModelOf(::AuthorReviewsViewModel)
 }

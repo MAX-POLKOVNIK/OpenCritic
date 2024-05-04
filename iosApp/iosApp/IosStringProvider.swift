@@ -94,6 +94,10 @@ class IosStringProvider : StringProvider {
     
     var homepage: String { string("str_home_page") }
     
+    func authorIsNotClaimedFormatted(name: String) -> String { string("str_author_is_not_claimed", args: [name]) }
+    
+    var favoriteGames: String { string("str_favorite_games") }
+    
     private func string(_ stringResource: String, args: [String] = []) -> String {
         String(format: NSLocalizedString(stringResource, comment: stringResource), args.map { $0 as CVarArg })
     }

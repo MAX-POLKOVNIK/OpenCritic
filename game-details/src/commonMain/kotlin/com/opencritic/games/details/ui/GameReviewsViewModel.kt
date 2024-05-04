@@ -9,6 +9,7 @@ import com.opencritic.games.details.domain.ReviewSorting
 import com.opencritic.games.details.domain.sortNameOf
 import com.opencritic.logs.Logger
 import com.opencritic.mvvm.BaseViewModel
+import com.opencritic.navigation.AuthorReviewsRoute
 import com.opencritic.navigation.OutletReviewsRoute
 import com.opencritic.navigation.UrlRoute
 import com.opencritic.resources.DateFormatter
@@ -64,7 +65,10 @@ class GameReviewsViewModel(
                                             stringProvider = stringProvider,
                                             dateFormatter = dateFormatter,
                                             onClick = {},
-                                            onAuthorClick = {},
+                                            onAuthorClick = {
+                                                review.authors.firstOrNull()
+                                                    ?.let { openAuthor(it.id) }
+                                            },
                                             onImageClick = {},
                                             onOutletClick = { openOutlet(review.outlet.id) },
                                             onGameClick = {},
@@ -137,7 +141,10 @@ class GameReviewsViewModel(
                                 stringProvider = stringProvider,
                                 dateFormatter = dateFormatter,
                                 onClick = { openUrl(review.externalUrl) },
-                                onAuthorClick = {},
+                                onAuthorClick = {
+                                    review.authors.firstOrNull()
+                                        ?.let { openAuthor(it.id) }
+                                },
                                 onImageClick = {},
                                 onOutletClick = { openOutlet(review.outlet.id) },
                                 onGameClick = {},
@@ -179,6 +186,13 @@ class GameReviewsViewModel(
         requireRouter()
             .navigateTo(
                 OutletReviewsRoute(outletId)
+            )
+    }
+
+    private fun openAuthor(authorId: Int) {
+        requireRouter()
+            .navigateTo(
+                AuthorReviewsRoute(authorId)
             )
     }
 }

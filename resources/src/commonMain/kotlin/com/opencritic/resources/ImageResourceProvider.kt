@@ -25,4 +25,8 @@ interface ImageResourceProvider {
     val chartPie: ImageResource
     val bullseye: ImageResource
     val thumbUp: ImageResource
+
+    val xbox: ImageResource
+    val playstation: ImageResource
+    val home: ImageResource
 }

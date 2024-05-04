@@ -1,6 +1,7 @@
 package com.opencritic.search.ui
 
 import com.opencritic.mvvm.BaseViewModel
+import com.opencritic.navigation.AuthorReviewsRoute
 import com.opencritic.navigation.GameDetailsRoute
 import com.opencritic.navigation.OutletReviewsRoute
 import com.opencritic.resources.StringProvider
@@ -100,7 +101,7 @@ class SearchViewModel(
             SearchItemKind.Game ->
                 requireRouter().navigateTo(GameDetailsRoute(item.id))
             SearchItemKind.Critic ->
-                println("Selected: $item")
+                requireRouter().navigateTo(AuthorReviewsRoute(item.id.toInt()))
             SearchItemKind.Outlet ->
                 requireRouter().navigateTo(OutletReviewsRoute(item.id.toInt()))
         }

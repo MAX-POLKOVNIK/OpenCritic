@@ -24,6 +24,8 @@ kotlin {
         projects.gameDetails,
         projects.search,
         projects.gameBrowser,
+        projects.database,
+        projects.gameYour
     )
 
     listOf(

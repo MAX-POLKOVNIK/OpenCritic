@@ -29,18 +29,9 @@ struct GameDetailsStateContentView: View {
                         .aspectRatio(1.0, contentMode: .fit)
                 }
                 
-                HStack(spacing: 0) {
-                    ForEach(state.gameActionItems, id: \.self) { action in
-                        GameActionItemView(item: action)
-                            .frame(minWidth: 0, maxWidth: .infinity)
-                        
-                        Divider()
-                    }
-                }
-                    .frame(minWidth: 0, maxWidth: .infinity)
-                    .padding(.vertical)
-                    .card()
-                    .padding()
+                YourGameIndicatorItemView(
+                    item: state.yourGameIndicatorItem
+                ).padding()
                 
                 VStack(
                     alignment: .leading
@@ -211,14 +202,8 @@ struct GameDetailsStateContentView: View {
             isImageVisible: true,
             imageUrl: "https://img.opencritic.com/game/14353/a7GST4so.jpg",
             name: "Game title",
-            gameActionItems: GameActionItemKt.gameActionItems(
-                imageResourceProvider: IosImagesResourceProvider(),
-                stringProvider: IosStringProvider(),
-                isWanted: false,
-                isPlayed: false,
-                isFavorite: false,
-                onClick: { _ in }
-            ),
+            yourGameIndicatorItem: YourGameIndicatorItemKt
+                .YourGameIndicatorItem_PreviewData(imageResourceProvider: IosImagesResourceProvider()),
             companiesText: "Some companies",
             releaseDateText: "MAY 25, 2505",
             platformsText: "Playstation, Xbox, PC",

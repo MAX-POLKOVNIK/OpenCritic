@@ -39,4 +39,10 @@ object Colors {
     )
 
     val CircleIndicatorBackground = Color(46, 46, 46)
+
+    val WantedGameColor = Color(143, 28, 175)
+    val PlayedGameColor = Color(231, 85, 39)
+    val FavoriteGameColor = Color(196, 47, 73)
+
+    val Transparent = Color(0, 0, 0, 0f)
 }

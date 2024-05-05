@@ -1,5 +1,6 @@
 package com.opencritic.games.details.domain
 
+import com.opencritic.game.your.domain.YourGame
 import com.opencritic.games.Company
 import com.opencritic.games.GameRank
 import com.opencritic.games.Platform
@@ -9,9 +10,7 @@ import kotlinx.datetime.Instant
 
 data class GameDetails(
     val posterUrl: String,
-    val isWanted: Boolean,
-    val isPlayed: Boolean,
-    val isFavorite: Boolean,
+    val yourGame: YourGame,
     val name: String,
     val companies: List<Company>,
     val releaseDate: Instant,

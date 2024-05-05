@@ -29,6 +29,7 @@ struct SearchListItemView: View {
             
             Spacer()
         }
+        .contentShape(Rectangle())
         .onTapGesture {
             item.click()
         }

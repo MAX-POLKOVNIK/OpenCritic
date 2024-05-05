@@ -1,5 +1,9 @@
 package com.opencritic.games.details.ui
 
+import com.opencritic.game.your.domain.SaveYourGameInteractor
+import com.opencritic.game.your.domain.YourGame
+import com.opencritic.game.your.domain.YourGameAction
+import com.opencritic.game.your.ui.YourGameIndicatorItem
 import com.opencritic.games.GameRank
 import com.opencritic.games.Tier
 import com.opencritic.games.Trailer
@@ -19,6 +23,7 @@ import kotlinx.datetime.toLocalDateTime
 class GameDetailsViewModel(
     private val gameId: Long,
     private val getGameDetailsInteractor: GetGameDetailsInteractor,
+    private val saveYourGameInteractor: SaveYourGameInteractor,
     private val stringProvider: StringProvider,
     private val imageResourceProvider: ImageResourceProvider,
     private val dateFormatter: DateFormatter,
@@ -26,6 +31,8 @@ class GameDetailsViewModel(
 ) : BaseViewModel<GameDetailsState>() {
     override val initialState: GameDetailsState
         get() = GameDetailsState.Loading
+
+    private var yourGame: YourGame? = null
 
     init {
         scope.launch {
@@ -39,19 +46,14 @@ class GameDetailsViewModel(
                     logger.log(it.toString())
                 }
                 .onSuccess { details ->
+                    yourGame = details.yourGame
+
                     mutableState.tryEmit(
                         GameDetailsState.Content(
                             isImageVisible = details.posterUrl.isNotBlank(),
                             imageUrl = details.posterUrl,
                             name = details.name,
-                            gameActionItems = gameActionItems(
-                                imageResourceProvider = imageResourceProvider,
-                                stringProvider = stringProvider,
-                                isWanted = false,
-                                isPlayed = false,
-                                isFavorite = false,
-                                onClick = {},
-                            ),
+                            yourGameIndicatorItem = createYourGameIndicatorItem(details.yourGame),
                             companiesText = details.companies.joinToString(", ") { it.name },
                             releaseDateText = dateFormatter.format(
                                 details.releaseDate.toLocalDateTime(TimeZone.UTC).date
@@ -92,8 +94,8 @@ class GameDetailsViewModel(
                                 } + details.screenshotUrls
                                     .take(3)
                                     .map {
-                                        ScreenshotItem(it, {})
-                                },
+                                        ScreenshotItem(it) {}
+                                    },
                             viewAllMedia = "${stringProvider.viewAll} ${stringProvider.media}",
                             isTrailersVisible = details.trailers.size > 1,
                             trailersText = "${details.name} ${stringProvider.trailers}",
@@ -105,7 +107,7 @@ class GameDetailsViewModel(
                             viewAllTrailers = "${stringProvider.viewAll} ${stringProvider.trailers}",
                             isScreenshotsVisible = details.screenshotUrls.isNotEmpty() && details.trailers.size > 1,
                             screenshotsText = "${details.name} ${stringProvider.screenshots}",
-                            screenshots = details.screenshotUrls.take(3).map { ScreenshotItem(it, {}) },
+                            screenshots = details.screenshotUrls.take(3).map { ScreenshotItem(it) {} },
                             viewAllScreenshots = "${stringProvider.viewAll} ${stringProvider.screenshots}",
                             isReviewsVisible = details.reviewCount != 0,
                             reviewTitleText = stringProvider.criticReviewsForFormatted(details.name),
@@ -127,6 +129,32 @@ class GameDetailsViewModel(
                         )
                     )
                 }
+        }
+    }
+
+    private fun createYourGameIndicatorItem(game: YourGame): YourGameIndicatorItem =
+        YourGameIndicatorItem(game, stringProvider, imageResourceProvider) {
+            onGameAction(it)
+        }
+
+    private fun onGameAction(action: YourGameAction) {
+        val game = yourGame ?: return
+
+        val state = requireNotNull(mutableState.value as? GameDetailsState.Content)
+
+        val new = game.actioned(action)
+        val indicator = createYourGameIndicatorItem(new)
+
+        yourGame = new
+
+        mutableState.tryEmit(
+            state.copy(
+                yourGameIndicatorItem = indicator
+            )
+        )
+
+        scope.launch {
+            saveYourGameInteractor(new)
         }
     }
 

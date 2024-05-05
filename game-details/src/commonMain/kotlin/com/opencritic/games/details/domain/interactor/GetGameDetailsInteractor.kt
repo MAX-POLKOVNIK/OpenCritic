@@ -1,21 +1,24 @@
 package com.opencritic.games.details.domain.interactor
 
+import com.opencritic.game.your.domain.GetYourGameInteractor
 import com.opencritic.games.details.domain.GameDetails
 import com.opencritic.games.details.domain.GameDetailsRepository
 
 class GetGameDetailsInteractor(
-    private val repository: GameDetailsRepository
+    private val repository: GameDetailsRepository,
+    private val getYourGameInteractor: GetYourGameInteractor,
 ) {
     suspend operator fun invoke(gameId: Long): Result<GameDetails> =
         runCatching {
             val game = repository.getGame(gameId)
             val reviews = repository.getGameReviews(gameId)
 
+            val yourGame = getYourGameInteractor(gameId, game.name)
+                .getOrThrow()
+
             GameDetails(
                 posterUrl = game.squareImageUrl,
-                isWanted = false,
-                isPlayed = false,
-                isFavorite = false,
+                yourGame = yourGame,
                 name = game.name,
                 companies = game.companies,
                 platforms = game.platforms,

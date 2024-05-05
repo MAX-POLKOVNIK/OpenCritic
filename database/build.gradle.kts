@@ -1,6 +1,7 @@
 plugins {
     alias(libs.plugins.kotlinMultiplatform)
     alias(libs.plugins.androidLibrary)
+    alias(libs.plugins.realm)
 }
 
 kotlin {
@@ -18,23 +19,14 @@ kotlin {
         iosSimulatorArm64()
     ).forEach {
         it.binaries.framework {
-            baseName = "game-details"
+            baseName = "database"
             isStatic = true
         }
     }
 
     sourceSets {
         commonMain.dependencies {
-            implementation(projects.mvvm)
-            implementation(projects.resources)
-            implementation(projects.games)
-            implementation(projects.api)
-            implementation(projects.logs)
-            implementation(projects.navigation)
-            implementation(projects.gameYour)
-
-            implementation(libs.kotlinx.coroutines.core)
-            implementation(libs.kotlinx.datetime)
+            implementation(libs.realm)
             implementation(libs.koin.core)
         }
         commonTest.dependencies {
@@ -44,7 +36,7 @@ kotlin {
 }
 
 android {
-    namespace = "com.opencritic.games.details"
+    namespace = "com.opencritic.database"
     compileSdk = 34
     defaultConfig {
         minSdk = 28

@@ -1,5 +1,6 @@
 package com.opencritic.games.details.ui
 
+import com.opencritic.game.your.ui.YourGameIndicatorItem
 import com.opencritic.games.Tier
 import com.opencritic.mvvm.ViewModelState
 import com.opencritic.resources.ImageResource
@@ -11,7 +12,7 @@ sealed interface GameDetailsState : ViewModelState {
         val isImageVisible: Boolean,
         val imageUrl: String,
         val name: String,
-        val gameActionItems: List<GameActionItem>,
+        val yourGameIndicatorItem: YourGameIndicatorItem,
         val companiesText: String,
         val releaseDateText: String,
         val platformsText: String,

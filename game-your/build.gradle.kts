@@ -18,7 +18,7 @@ kotlin {
         iosSimulatorArm64()
     ).forEach {
         it.binaries.framework {
-            baseName = "game-details"
+            baseName = "game-your"
             isStatic = true
         }
     }
@@ -27,14 +27,12 @@ kotlin {
         commonMain.dependencies {
             implementation(projects.mvvm)
             implementation(projects.resources)
-            implementation(projects.games)
-            implementation(projects.api)
             implementation(projects.logs)
             implementation(projects.navigation)
-            implementation(projects.gameYour)
+            implementation(projects.database)
+            implementation(libs.realm)
 
             implementation(libs.kotlinx.coroutines.core)
-            implementation(libs.kotlinx.datetime)
             implementation(libs.koin.core)
         }
         commonTest.dependencies {
@@ -44,7 +42,7 @@ kotlin {
 }
 
 android {
-    namespace = "com.opencritic.games.details"
+    namespace = "com.opencritic.game.your"
     compileSdk = 34
     defaultConfig {
         minSdk = 28

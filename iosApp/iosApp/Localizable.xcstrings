@@ -607,7 +607,7 @@
         "en" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Browse Games"
+            "value" : "Games"
           }
         }
       }
@@ -629,7 +629,7 @@
         "en" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Main"
+            "value" : "Today"
           }
         }
       }

@@ -155,6 +155,8 @@ class GameDetailsViewModel(
 
         scope.launch {
             saveYourGameInteractor(new)
+                .onSuccess { logger.log("Updated: $new") }
+                .onFailure { logger.log("FAILED UPDATE: $it $new") }
         }
     }
 

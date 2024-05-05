@@ -33,6 +33,35 @@ internal class YourGameRepositoryImpl(
             )
         }
 
+    override suspend fun remoteNotInterested() =
+        withContext(defaultDispatcher) {
+            yourGameDao.removeNotInterested()
+        }
+
+    override suspend fun getAll(): List<YourGame> =
+        withContext(defaultDispatcher) {
+            yourGameDao.getAll()
+                .map { YourGame(it) }
+        }
+
+    override suspend fun getWanted(): List<YourGame> =
+        withContext(defaultDispatcher) {
+            yourGameDao.getWanted()
+                .map { YourGame(it) }
+        }
+
+    override suspend fun getPlayed(): List<YourGame> =
+        withContext(defaultDispatcher) {
+            yourGameDao.getPlayed()
+                .map { YourGame(it) }
+        }
+
+    override suspend fun getFavorites(): List<YourGame> =
+        withContext(defaultDispatcher) {
+            yourGameDao.getFavorites()
+                .map { YourGame(it) }
+        }
+
     private fun YourGame(entity: YourGameEntity): YourGame =
         YourGame(
             id = entity.id,

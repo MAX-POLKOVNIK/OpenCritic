@@ -66,6 +66,10 @@
 		42F844492BE687E100408FE7 /* PeriodGameBrowserStateContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42F844482BE687E100408FE7 /* PeriodGameBrowserStateContentView.swift */; };
 		42F8444B2BE6887500408FE7 /* PeriodGameBrowserScreenView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42F8444A2BE6887500408FE7 /* PeriodGameBrowserScreenView.swift */; };
 		42F8444E2BE747D600408FE7 /* YourGameIndicatorItemView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42F8444D2BE747D600408FE7 /* YourGameIndicatorItemView.swift */; };
+		42F844502BE75C0500408FE7 /* YourGameListStateView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42F8444F2BE75C0500408FE7 /* YourGameListStateView.swift */; };
+		42F844522BE75DD000408FE7 /* YourGameListScreenView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42F844512BE75DD000408FE7 /* YourGameListScreenView.swift */; };
+		42F844542BE7639600408FE7 /* YourGameIndicatorSmallItemView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42F844532BE7639600408FE7 /* YourGameIndicatorSmallItemView.swift */; };
+		42F844562BE7652000408FE7 /* YourGameListItemView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42F844552BE7652000408FE7 /* YourGameListItemView.swift */; };
 		7555FF83242A565900829871 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7555FF82242A565900829871 /* ContentView.swift */; };
 /* End PBXBuildFile section */
 
@@ -142,6 +146,10 @@
 		42F844482BE687E100408FE7 /* PeriodGameBrowserStateContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PeriodGameBrowserStateContentView.swift; sourceTree = "<group>"; };
 		42F8444A2BE6887500408FE7 /* PeriodGameBrowserScreenView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PeriodGameBrowserScreenView.swift; sourceTree = "<group>"; };
 		42F8444D2BE747D600408FE7 /* YourGameIndicatorItemView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = YourGameIndicatorItemView.swift; sourceTree = "<group>"; };
+		42F8444F2BE75C0500408FE7 /* YourGameListStateView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = YourGameListStateView.swift; sourceTree = "<group>"; };
+		42F844512BE75DD000408FE7 /* YourGameListScreenView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = YourGameListScreenView.swift; sourceTree = "<group>"; };
+		42F844532BE7639600408FE7 /* YourGameIndicatorSmallItemView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = YourGameIndicatorSmallItemView.swift; sourceTree = "<group>"; };
+		42F844552BE7652000408FE7 /* YourGameListItemView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = YourGameListItemView.swift; sourceTree = "<group>"; };
 		7555FF7B242A565900829871 /* iosApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = iosApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		7555FF82242A565900829871 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		7555FF8C242A565B00829871 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -283,6 +291,10 @@
 			isa = PBXGroup;
 			children = (
 				42F8444D2BE747D600408FE7 /* YourGameIndicatorItemView.swift */,
+				42F8444F2BE75C0500408FE7 /* YourGameListStateView.swift */,
+				42F844512BE75DD000408FE7 /* YourGameListScreenView.swift */,
+				42F844532BE7639600408FE7 /* YourGameIndicatorSmallItemView.swift */,
+				42F844552BE7652000408FE7 /* YourGameListItemView.swift */,
 			);
 			path = GameYour;
 			sourceTree = "<group>";
@@ -446,11 +458,13 @@
 				42F844412BE6565000408FE7 /* GameBrowserScreenView.swift in Sources */,
 				42E2F0B02BE273CE00B76F14 /* GameDetailsStateContentView.swift in Sources */,
 				4256279B2BE1174B00EDEEEB /* DashboardTitleListItemView.swift in Sources */,
+				42F844542BE7639600408FE7 /* YourGameIndicatorSmallItemView.swift in Sources */,
 				4256279F2BE11A9200EDEEEB /* DashboardStateLoadingView.swift in Sources */,
 				42F8442A2BE4DC5400408FE7 /* GameReviewsStateContentView.swift in Sources */,
 				425627A92BE11F5400EDEEEB /* DashboardScreenView.swift in Sources */,
 				425627902BE0F17E00EDEEEB /* IosImagesResourceProvider.swift in Sources */,
 				42E2F0B82BE3817E00B76F14 /* ScreenshotItemView.swift in Sources */,
+				42F844522BE75DD000408FE7 /* YourGameListScreenView.swift in Sources */,
 				425627A52BE11EAD00EDEEEB /* ObservableViewModelState.swift in Sources */,
 				425627B92BE1EE8700EDEEEB /* DashboardDealsHorizontalListItemView.swift in Sources */,
 				425627B12BE14A6A00EDEEEB /* MainStateView.swift in Sources */,
@@ -464,7 +478,9 @@
 				42E2F0BA2BE396F700B76F14 /* CardReviewItemView.swift in Sources */,
 				42F8441F2BE3E3CA00408FE7 /* SearchStateView.swift in Sources */,
 				42F844252BE4A75F00408FE7 /* GameMediaStateContentView.swift in Sources */,
+				42F844502BE75C0500408FE7 /* YourGameListStateView.swift in Sources */,
 				425627A32BE11E5F00EDEEEB /* FlowView.swift in Sources */,
+				42F844562BE7652000408FE7 /* YourGameListItemView.swift in Sources */,
 				42F8443A2BE612AE00408FE7 /* AuthorReviewsScreenView.swift in Sources */,
 				42F8441D2BE3E10400408FE7 /* SearchListItemView.swift in Sources */,
 				42F844212BE3E80900408FE7 /* SearchScreenView.swift in Sources */,

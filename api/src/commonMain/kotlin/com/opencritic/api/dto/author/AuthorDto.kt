@@ -11,7 +11,7 @@ data class AuthorDto(
     val claimed: Boolean,
     val percentRecommended: Float,
     val numReviews: Int,
-    val medianScore: Int,
+    val medianScore: Float,
     val averageScore: Float,
 
     val favoriteGames: List<String>? = null,

@@ -9,7 +9,7 @@ data class OutletDto(
     val imageSrc: ImageLinksDto,
     val percentRecommended: Float,
     val numReviews: Int,
-    val medianScore: Int,
+    val medianScore: Float,
     val averageScore: Float,
     val name: String,
     val externalUrl: String,

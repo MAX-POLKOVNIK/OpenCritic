@@ -31,7 +31,7 @@ struct MainStateView: View {
         return VStack {
             TabView(selection: $activeTab) {
                 ForEach(state.tabs, id: \.self) { tab in
-                    if tab.id == TabType.main {
+                    if tab.id.destination.path == TabType.main.destination.path {
                         DashboardScreenView(viewModel: dashboardViewModel)
                             .tabItem {
                                 Label(tab.name, systemImage: tab.imageResource)
@@ -49,14 +49,6 @@ struct MainStateView: View {
                     }
                     if tab.id == TabType.browse {
                         GameBrowserScreenView(viewModel: gameBrowserViewModel)
-                            .tabItem {
-                                Label(tab.name, systemImage: tab.imageResource)
-                            }
-                            .tag(tab.id)
-                            .navigationTitle(tab.name)
-                    }
-                    if tab.id == TabType.calendar {
-                        ContentView()
                             .tabItem {
                                 Label(tab.name, systemImage: tab.imageResource)
                             }

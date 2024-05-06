@@ -31,6 +31,8 @@ kotlin {
             implementation(projects.logs)
             implementation(projects.navigation)
 
+            implementation(projects.dashboard)
+
             implementation(libs.kotlinx.coroutines.core)
             implementation(libs.koin.core)
             implementation(libs.androidx.lifecycle.viewmodel)

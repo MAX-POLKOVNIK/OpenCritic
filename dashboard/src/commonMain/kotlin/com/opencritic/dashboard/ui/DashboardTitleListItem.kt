@@ -1,8 +1,8 @@
 package com.opencritic.dashboard.ui
 
 data class DashboardTitleListItem(
-    val title: String,
-    val subtitle: String?,
+    private val title: String,
+    private val subtitle: String?,
 ) {
     val titleText: String
         get() = title

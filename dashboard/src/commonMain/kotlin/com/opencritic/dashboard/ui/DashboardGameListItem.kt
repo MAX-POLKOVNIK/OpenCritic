@@ -36,3 +36,15 @@ data class DashboardGameListItem(
 
     fun click() = onClick(this)
 }
+
+@Suppress("FunctionName")
+fun DashboardGameListItem_PreviewData(
+    imageResourceProvider: ImageResourceProvider,
+): DashboardGameListItem =
+    DashboardGameListItem(
+        id = 1,
+        rank = GameRankModel(headImageResource = imageResourceProvider.fairHead, scoreText = "15"),
+        nameText = "Game ldskfhds  sdkjhfjsd",
+        dateText = "MAY 16",
+        onClick = {}
+    )

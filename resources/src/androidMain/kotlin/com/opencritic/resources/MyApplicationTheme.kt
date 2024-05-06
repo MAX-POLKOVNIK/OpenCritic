@@ -37,8 +37,9 @@ fun MyApplicationTheme(
         bodyMedium = TextStyle(
             fontFamily = FontFamily.Default,
             fontWeight = FontWeight.Normal,
-            fontSize = 16.sp
-        )
+            fontSize = 16.sp,
+            letterSpacing = 0.sp,
+        ),
     )
     val shapes = Shapes(
         small = RoundedCornerShape(4.dp),

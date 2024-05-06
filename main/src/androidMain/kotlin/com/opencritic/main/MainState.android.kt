@@ -25,6 +25,7 @@ import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.currentBackStackEntryAsState
+import com.opencritic.dashboard.DashboardScreen
 import com.opencritic.main.ui.MainState
 import com.opencritic.main.ui.TabType
 import com.opencritic.navigation.GameBrowserDestination
@@ -95,7 +96,7 @@ fun MainState(state: MainState, navController: NavHostController) {
         },
         content = { innerPadding ->
             NavHost(navController, startDestination = MainDestination.path, Modifier.padding(innerPadding)) {
-                composable(MainDestination.path) { Text(text = "string") }
+                composable(MainDestination.path) { DashboardScreen(navController = navController) }
                 composable(SearchDestination.path) { Text(text = "string3") }
                 composable(GameBrowserDestination.path) { Text(text = "string4") }
                 composable(YourListDestination.path) { Text(text = "string5") }

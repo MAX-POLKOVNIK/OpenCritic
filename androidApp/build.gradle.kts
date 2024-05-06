@@ -39,6 +39,8 @@ android {
 }
 
 dependencies {
+    implementation(libs.koin.compose)
+
     implementation(projects.shared)
     implementation(libs.androidx.lifecycle.viewmodel)
     implementation(libs.androidx.lifecycle.runtime.ktx)

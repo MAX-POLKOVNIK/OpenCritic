@@ -39,6 +39,12 @@ kotlin {
         commonTest.dependencies {
             implementation(libs.kotlin.test)
         }
+        androidMain.dependencies {
+            implementation(libs.compose.ui)
+            implementation(libs.compose.ui.tooling.preview)
+            implementation(libs.compose.material3)
+            implementation(libs.compose.navigation.compose)
+        }
     }
 }
 
@@ -51,5 +57,11 @@ android {
     compileOptions {
         sourceCompatibility = JavaVersion.VERSION_1_8
         targetCompatibility = JavaVersion.VERSION_1_8
+    }
+    buildFeatures { // Enables Jetpack Compose for this module
+        compose = true
+    }
+    composeOptions {
+        kotlinCompilerExtensionVersion = libs.versions.compose.compiler.get()
     }
 }

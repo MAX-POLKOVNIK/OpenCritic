@@ -1,4 +1,4 @@
-package com.opencritic.app.android
+package com.opencritic.resources
 
 import androidx.compose.foundation.isSystemInDarkTheme
 import androidx.compose.foundation.shape.RoundedCornerShape

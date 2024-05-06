@@ -1,6 +1,10 @@
 package com.opencritic.navigation
 
-data class GameDetailsRoute(val gameId: Long) : Route("game/${gameId}")
+private const val argName: String = "argName"
+
+object GameDetailsDestination : Destination("game/{$argName}")
+
+data class GameDetailsRoute(val gameId: Long) : Routed(GameDetailsDestination, argName, gameId)
 data class GameMediaRoute(val gameId: Long) : Route("game/${gameId}/media")
 data class UrlRoute(val url: String) : Route(url)
 data class GameReviewsRoute(val gameId: Long) : Route("game/${gameId}/reviews")
@@ -13,3 +17,8 @@ data class PeriodGameBrowserRoute(val period: Period) : Route("games/$period") {
         UpcomingReleases,
     }
 }
+
+data object MainDestination : Destination("main")
+data object SearchDestination : Destination("search")
+data object GameBrowserDestination : Destination("browser")
+data object YourListDestination : Destination("your_lists")

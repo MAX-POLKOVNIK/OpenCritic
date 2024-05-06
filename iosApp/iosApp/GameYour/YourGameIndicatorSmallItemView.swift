@@ -16,6 +16,7 @@ struct YourGameIndicatorSmallItemView: View {
         HStack(spacing: 0) {
             Image(systemName: item.wantedImageResource)
                 .resizable()
+                .aspectRatio(contentMode: .fit)
                 .frame(width: 24, height: 24)
                 .padding(8)
                 .frame(minWidth: 0, maxWidth: .infinity)
@@ -26,6 +27,7 @@ struct YourGameIndicatorSmallItemView: View {
             
             Image(systemName: item.playedImageResource)
                 .resizable()
+                .aspectRatio(contentMode: .fit)
                 .frame(width: 24, height: 24)
                 .padding(8)
                 .frame(minWidth: 0, maxWidth: .infinity)
@@ -36,6 +38,7 @@ struct YourGameIndicatorSmallItemView: View {
             
             Image(systemName: item.favoriteImageResource)
                 .resizable()
+                .aspectRatio(contentMode: .fit)
                 .frame(width: 24, height: 24)
                 .padding(8)
                 .frame(minWidth: 0, maxWidth: .infinity)

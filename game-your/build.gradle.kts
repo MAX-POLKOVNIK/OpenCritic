@@ -34,6 +34,7 @@ kotlin {
 
             implementation(libs.kotlinx.coroutines.core)
             implementation(libs.koin.core)
+            implementation(libs.androidx.lifecycle.viewmodel)
         }
         commonTest.dependencies {
             implementation(libs.kotlin.test)

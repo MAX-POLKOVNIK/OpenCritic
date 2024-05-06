@@ -48,6 +48,7 @@ struct BrowseGameItemView: View {
                     if item.isTierVisible {
                         Image(item.tierImageResource)
                             .resizable()
+                            .aspectRatio(contentMode: .fit)
                             .frame(width: 56, height: 56)
                     }
                     

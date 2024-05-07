@@ -52,11 +52,11 @@ class IosRouter: ObservableObject, Router {
             )
         case let reviewsRoute as GameReviewsRoute:
             GameReviewsScreenView(
-                viewModel: viewModel(for: route, args: [reviewsRoute.gameId])
+                viewModel: viewModel(for: route, args: [reviewsRoute.gameId, reviewsRoute.gameName])
             )
         case let outletRoute as OutletReviewsRoute:
             OutletReviewsScreenView(
-                viewModel: viewModel(for: route, args: [outletRoute.outletId])
+                viewModel: viewModel(for: route, args: [outletRoute.outletId, outletRoute.outletName])
             )
         case let authorRoute as AuthorReviewsRoute:
             AuthorReviewsScreenView(

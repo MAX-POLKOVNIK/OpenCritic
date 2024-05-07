@@ -32,6 +32,7 @@ import com.opencritic.dashboard.DashboardScreen
 import com.opencritic.games.details.gameDetailsComposeRoute
 import com.opencritic.games.details.gameMediaComposeRoute
 import com.opencritic.games.details.reviews.game.gameReviewsComposeRoute
+import com.opencritic.games.details.reviews.outlet.outletReviewsComposeRoute
 import com.opencritic.main.ui.MainState
 import com.opencritic.main.ui.TabType
 import com.opencritic.navigation.GameBrowserDestination
@@ -124,6 +125,7 @@ fun MainState(state: MainState, navController: NavHostController) {
                 gameDetailsComposeRoute(navController)
                 gameMediaComposeRoute(navController)
                 gameReviewsComposeRoute(navController)
+                outletReviewsComposeRoute(navController)
             }
         }
     )

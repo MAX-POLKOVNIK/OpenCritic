@@ -74,7 +74,7 @@ class GameReviewsViewModel(
                                                     ?.let { openAuthor(it.id) }
                                             },
                                             onImageClick = {},
-                                            onOutletClick = { openOutlet(review.outlet.id) },
+                                            onOutletClick = { openOutlet(review.outlet.id, review.outlet.name) },
                                             onGameClick = {},
                                         )
                                     },
@@ -150,7 +150,7 @@ class GameReviewsViewModel(
                                         ?.let { openAuthor(it.id) }
                                 },
                                 onImageClick = {},
-                                onOutletClick = { openOutlet(review.outlet.id) },
+                                onOutletClick = { openOutlet(review.outlet.id, review.outlet.name) },
                                 onGameClick = {},
                             )
                         },
@@ -187,10 +187,10 @@ class GameReviewsViewModel(
             .navigateTo(UrlRoute(url))
     }
 
-    private fun openOutlet(outletId: Int) {
+    private fun openOutlet(outletId: Int, outletName: String) {
         requireRouter()
             .navigateTo(
-                OutletReviewsRoute(outletId)
+                OutletReviewsRoute(outletId, outletName)
             )
     }
 

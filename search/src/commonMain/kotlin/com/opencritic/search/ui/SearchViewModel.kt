@@ -103,6 +103,6 @@ class SearchViewModel(
             SearchItemKind.Critic ->
                 requireRouter().navigateTo(AuthorReviewsRoute(item.id.toInt()))
             SearchItemKind.Outlet ->
-                requireRouter().navigateTo(OutletReviewsRoute(item.id.toInt()))
+                requireRouter().navigateTo(OutletReviewsRoute(item.id.toInt(), item.name))
         }
 }

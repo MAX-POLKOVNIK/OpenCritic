@@ -1,14 +1,24 @@
 package com.opencritic.games.details.ui
 
 import com.opencritic.games.details.domain.ReviewSorting
+import com.opencritic.mvvm.BaseErrorState
+import com.opencritic.mvvm.BaseLoadingState
 import com.opencritic.mvvm.ViewModelState
 import com.opencritic.resources.ImageResourceProvider
 
 interface OutletReviewsState : ViewModelState {
-    data class Error(val message: String) : OutletReviewsState
-    data object Loading : OutletReviewsState
+    val titleText: String
+    data class Error(
+        override val titleText: String,
+        override val message: String
+    ) : BaseErrorState(message), OutletReviewsState
+
+    data class Loading(
+        override val titleText: String,
+    ) : BaseLoadingState(), OutletReviewsState
+
     data class Content(
-        val titleText: String,
+        override val titleText: String,
         val outletNameText: String,
         val outletImageUrl: String,
         val isHomepageVisible: Boolean,

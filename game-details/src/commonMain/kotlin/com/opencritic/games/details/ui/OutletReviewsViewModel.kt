@@ -18,6 +18,7 @@ import kotlinx.coroutines.launch
 
 class OutletReviewsViewModel(
     private val outletId: Int,
+    private val outletName: String,
     private val getOutletInteractor: GetOutletInteractor,
     private val getOutletReviewsInteractor: GetOutletReviewsInteractor,
     private val imageResourceProvider: ImageResourceProvider,
@@ -26,7 +27,7 @@ class OutletReviewsViewModel(
     private val logger: Logger,
 ) : BaseViewModel<OutletReviewsState>() {
     override val initialState: OutletReviewsState =
-        OutletReviewsState.Loading
+        OutletReviewsState.Loading(stringProvider.reviewsOf(outletName))
 
     private var outlet: Outlet? = null
     private var canLoadMore: Boolean = true
@@ -37,7 +38,7 @@ class OutletReviewsViewModel(
             getOutletInteractor(outletId)
                 .onFailure {
                     mutableState.tryEmit(
-                        OutletReviewsState.Error(it.toString())
+                        OutletReviewsState.Error(stringProvider.reviewsOf(outletName), it.toString())
                     )
                 }
                 .onSuccess {
@@ -163,6 +164,7 @@ class OutletReviewsViewModel(
 
         mutableState.tryEmit(
             state.copy(
+                sortText = item,
                 reviewItems = emptyList(),
                 isLoadingItemVisible = true
             )

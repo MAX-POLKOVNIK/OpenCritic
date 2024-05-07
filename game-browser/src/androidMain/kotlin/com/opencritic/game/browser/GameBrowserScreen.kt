@@ -1,20 +1,20 @@
-package com.opencritic.dashboard
+package com.opencritic.game.browser
 
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.navigation.NavController
-import com.opencritic.dashboard.ui.DashboardState
-import com.opencritic.dashboard.ui.DashboardViewModel
+import com.opencritic.game.browser.ui.GameBrowserState
+import com.opencritic.game.browser.ui.GameBrowserViewModel
 import com.opencritic.mvvm.ErrorBox
 import com.opencritic.mvvm.LoadingBox
 import com.opencritic.navigation.router
 import org.koin.androidx.compose.koinViewModel
 
 @Composable
-fun DashboardScreen(
+fun GameBrowserScreen(
     navController: NavController,
-    viewModel: DashboardViewModel = koinViewModel(),
+    viewModel: GameBrowserViewModel = koinViewModel()
 ) {
     val state by viewModel.state.collectAsState()
     val router = navController.router()
@@ -22,8 +22,8 @@ fun DashboardScreen(
     viewModel.setRouter(router)
 
     when (val s = state) {
-        is DashboardState.Content -> DashboardStateContent(s)
-        is DashboardState.Error -> ErrorBox(s)
-        is DashboardState.Loading -> LoadingBox(s)
+        is GameBrowserState.Content -> GameBrowserStateContent(s)
+        is GameBrowserState.Error -> ErrorBox(s)
+        is GameBrowserState.Loading -> LoadingBox(s)
     }
 }

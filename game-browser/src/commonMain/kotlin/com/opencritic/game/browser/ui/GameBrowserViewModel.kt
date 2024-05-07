@@ -161,6 +161,7 @@ class GameBrowserViewModel(
 
         mutableState.tryEmit(
             state.copy(
+                sortText = item,
                 browseGameItems = emptyList(),
                 isLoadingItemVisible = true
             )
@@ -180,6 +181,7 @@ class GameBrowserViewModel(
 
         mutableState.tryEmit(
             state.copy(
+                timeframeText = item,
                 browseGameItems = emptyList(),
                 isLoadingItemVisible = true
             )
@@ -199,6 +201,7 @@ class GameBrowserViewModel(
 
         mutableState.tryEmit(
             state.copy(
+                platformText = item,
                 browseGameItems = emptyList(),
                 isLoadingItemVisible = true
             )

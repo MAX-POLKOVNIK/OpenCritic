@@ -3,11 +3,13 @@ package com.opencritic.game.browser.ui
 import com.opencritic.game.browser.domain.GameSorting
 import com.opencritic.game.browser.domain.GameTimeframe
 import com.opencritic.games.details.ui.LoadingItem
+import com.opencritic.mvvm.BaseErrorState
+import com.opencritic.mvvm.BaseLoadingState
 import com.opencritic.mvvm.ViewModelState
 
 interface GameBrowserState : ViewModelState {
-    data class Error(val message: String) : GameBrowserState
-    data object Loading : GameBrowserState
+    data class Error(override val message: String) : BaseErrorState(message), GameBrowserState
+    data object Loading : BaseLoadingState(), GameBrowserState
     data class Content(
         val platformTitleText: String,
         val platformText: PlatformItem,

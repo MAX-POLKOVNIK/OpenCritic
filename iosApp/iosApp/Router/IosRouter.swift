@@ -60,7 +60,7 @@ class IosRouter: ObservableObject, Router {
             )
         case let authorRoute as AuthorReviewsRoute:
             AuthorReviewsScreenView(
-                viewModel: viewModel(for: route, args: [authorRoute.authorId])
+                viewModel: viewModel(for: route, args: [authorRoute.authorId, authorRoute.authorName])
             )
         case let periodGameBrowserRoute as PeriodGameBrowserRoute:
             PeriodGameBrowserScreenView(

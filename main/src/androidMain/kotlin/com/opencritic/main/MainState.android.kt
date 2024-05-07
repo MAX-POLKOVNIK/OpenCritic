@@ -31,6 +31,7 @@ import androidx.navigation.compose.currentBackStackEntryAsState
 import com.opencritic.dashboard.DashboardScreen
 import com.opencritic.games.details.gameDetailsComposeRoute
 import com.opencritic.games.details.gameMediaComposeRoute
+import com.opencritic.games.details.reviews.author.authorReviewsComposeRoute
 import com.opencritic.games.details.reviews.game.gameReviewsComposeRoute
 import com.opencritic.games.details.reviews.outlet.outletReviewsComposeRoute
 import com.opencritic.main.ui.MainState
@@ -126,6 +127,7 @@ fun MainState(state: MainState, navController: NavHostController) {
                 gameMediaComposeRoute(navController)
                 gameReviewsComposeRoute(navController)
                 outletReviewsComposeRoute(navController)
+                authorReviewsComposeRoute(navController)
             }
         }
     )

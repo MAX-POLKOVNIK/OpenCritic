@@ -17,6 +17,7 @@ import kotlinx.coroutines.launch
 
 class AuthorReviewsViewModel(
     private val authorId: Int,
+    private val authorName: String,
     private val getAuthorInteractor: GetAuthorInteractor,
     private val getAuthorReviewsInteractor: GetAuthorReviewsInteractor,
     private val stringProvider: StringProvider,
@@ -25,7 +26,7 @@ class AuthorReviewsViewModel(
     private val logger: Logger,
 ) : BaseViewModel<AuthorReviewsState>() {
     override val initialState: AuthorReviewsState =
-        AuthorReviewsState.Loading
+        AuthorReviewsState.Loading(stringProvider.reviewsOf(authorName))
 
     private var author: Author? = null
     private var canLoadMore: Boolean = true
@@ -36,7 +37,7 @@ class AuthorReviewsViewModel(
             getAuthorInteractor(authorId)
                 .onFailure {
                     mutableState.tryEmit(
-                        AuthorReviewsState.Error(it.toString())
+                        AuthorReviewsState.Error(stringProvider.reviewsOf(authorName), it.toString())
                     )
                 }
                 .onSuccess {

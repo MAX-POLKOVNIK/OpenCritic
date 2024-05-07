@@ -101,7 +101,7 @@ class SearchViewModel(
             SearchItemKind.Game ->
                 requireRouter().navigateTo(GameDetailsRoute(item.id, item.name))
             SearchItemKind.Critic ->
-                requireRouter().navigateTo(AuthorReviewsRoute(item.id.toInt()))
+                requireRouter().navigateTo(AuthorReviewsRoute(item.id.toInt(), item.name))
             SearchItemKind.Outlet ->
                 requireRouter().navigateTo(OutletReviewsRoute(item.id.toInt(), item.name))
         }

@@ -146,7 +146,7 @@ class OutletReviewsViewModel(
             onClick = { openUrl(review.externalUrl) },
             onAuthorClick = {
                 review.authors.firstOrNull()
-                    ?.let { openAuthor(it.id) }
+                    ?.let { openAuthor(it.id, it.name) }
             },
             onImageClick = {},
             onOutletClick = {},
@@ -185,10 +185,10 @@ class OutletReviewsViewModel(
             )
     }
 
-    private fun openAuthor(authorId: Int) {
+    private fun openAuthor(authorId: Int, authorName: String) {
         requireRouter()
             .navigateTo(
-                AuthorReviewsRoute(authorId)
+                AuthorReviewsRoute(authorId, authorName)
             )
     }
 }

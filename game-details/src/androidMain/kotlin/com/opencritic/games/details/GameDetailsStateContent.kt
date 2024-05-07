@@ -37,8 +37,11 @@ import coil.compose.SubcomposeAsyncImage
 import com.opencritic.game.your.YourGameIndicatorItem
 import com.opencritic.games.details.ui.GameDetailsState
 import com.opencritic.games.details.ui.GameDetailsStateContent_PreviewData
+import com.opencritic.games.details.ui.ScreenshotItem
+import com.opencritic.games.details.ui.TrailerItem
 import com.opencritic.resources.AndroidImageResourceProvider
 import com.opencritic.resources.defaultPadding
+import com.opencritic.resources.smallPadding
 
 @Composable
 fun GameDetailsStateContent(state: GameDetailsState.Content, modifier: Modifier = Modifier) {
@@ -174,6 +177,153 @@ fun GameDetailsStateContent(state: GameDetailsState.Content, modifier: Modifier 
                                 )
                             }
                         }
+                    }
+                }
+            }
+
+            if (state.isMediaVisible) {
+                Spacer(modifier = Modifier.height(32.dp))
+
+                Text(
+                    text = state.mediaText,
+                    style = MaterialTheme.typography.titleLarge,
+                    modifier = Modifier
+                        .padding(defaultPadding)
+                )
+
+                state.media.forEachIndexed { index, mediaItem ->
+                    when (mediaItem) {
+                        is TrailerItem ->
+                            TrailerItem(
+                                item = mediaItem,
+                                modifier = Modifier
+                                    .padding(horizontal = defaultPadding)
+                            )
+                        is ScreenshotItem ->
+                            ScreenshotItem(
+                                item = mediaItem,
+                                modifier = Modifier
+                                    .padding(horizontal = defaultPadding)
+                            )
+                    }
+
+                    if (index != state.media.lastIndex) {
+                        Spacer(modifier = Modifier.height(smallPadding))
+                    }
+                }
+
+                Column(
+                    horizontalAlignment = Alignment.End,
+                    modifier = Modifier
+                        .fillMaxWidth()
+                ) {
+                    TextButton(onClick = state::viewAllMediaClick) {
+                        Text(
+                            text = state.viewAllMedia,
+                        )
+                    }
+                }
+            }
+
+            if (state.isTrailersVisible) {
+                Spacer(modifier = Modifier.height(32.dp))
+
+                Text(
+                    text = state.trailersText,
+                    style = MaterialTheme.typography.titleLarge,
+                    modifier = Modifier
+                        .padding(defaultPadding)
+                )
+
+                state.trailers.forEachIndexed { index, mediaItem ->
+                    TrailerItem(
+                        item = mediaItem,
+                        modifier = Modifier
+                            .padding(horizontal = defaultPadding)
+                    )
+
+                    if (index != state.trailers.lastIndex) {
+                        Spacer(modifier = Modifier.height(smallPadding))
+                    }
+                }
+
+                Column(
+                    horizontalAlignment = Alignment.End,
+                    modifier = Modifier
+                        .fillMaxWidth()
+                ) {
+                    TextButton(onClick = state::viewAllTrailersClick) {
+                        Text(
+                            text = state.viewAllTrailers,
+                        )
+                    }
+                }
+            }
+
+            if (state.isScreenshotsVisible) {
+                Spacer(modifier = Modifier.height(32.dp))
+
+                Text(
+                    text = state.screenshotsText,
+                    style = MaterialTheme.typography.titleLarge,
+                    modifier = Modifier
+                        .padding(defaultPadding)
+                )
+
+                state.screenshots.forEachIndexed { index, mediaItem ->
+                    ScreenshotItem(
+                        item = mediaItem,
+                        modifier = Modifier
+                            .padding(horizontal = defaultPadding)
+                    )
+
+                    if (index != state.screenshots.lastIndex) {
+                        Spacer(modifier = Modifier.height(smallPadding))
+                    }
+                }
+
+                Column(
+                    horizontalAlignment = Alignment.End,
+                    modifier = Modifier
+                        .fillMaxWidth()
+                ) {
+                    TextButton(onClick = state::viewAllScreenshotsClick) {
+                        Text(
+                            text = state.viewAllScreenshots,
+                        )
+                    }
+                }
+            }
+
+            if (state.isReviewsVisible) {
+                Text(
+                    text = state.reviewTitleText,
+                    style = MaterialTheme.typography.titleLarge,
+                    modifier = Modifier
+                        .padding(defaultPadding)
+                )
+
+                state.reviews.forEachIndexed { index, review ->
+                    CardReviewItem(
+                        item = review,
+                        modifier = Modifier
+                            .padding(horizontal = defaultPadding)
+                    )
+
+                    if (index != state.reviews.lastIndex) {
+                        Spacer(modifier = Modifier.height(smallPadding))
+                    }
+                }
+
+                Column(
+                    horizontalAlignment = Alignment.End,
+                    modifier = Modifier
+                        .fillMaxWidth()
+                ) {
+                    TextButton(onClick = state::viewAllReviewsClick) {
+                        Text(
+                            text = state.viewAllText,
+                        )
                     }
                 }
             }

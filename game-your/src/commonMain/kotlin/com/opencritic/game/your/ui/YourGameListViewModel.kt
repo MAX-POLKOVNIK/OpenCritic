@@ -68,7 +68,7 @@ class YourGameListViewModel(
                                     ) {
                                         onGameAction(game, it)
                                     }
-                                ) { navigateToGame(game.id) }
+                                ) { navigateToGame(game.id, game.name) }
                             }
                         )
                     )
@@ -86,9 +86,9 @@ class YourGameListViewModel(
         }
     }
 
-    private fun navigateToGame(gameId: Long) {
+    private fun navigateToGame(gameId: Long, gameName: String) {
         requireRouter().navigateTo(
-            GameDetailsRoute(gameId)
+            GameDetailsRoute(gameId, gameName)
         )
     }
 }

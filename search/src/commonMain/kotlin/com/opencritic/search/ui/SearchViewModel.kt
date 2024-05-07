@@ -99,7 +99,7 @@ class SearchViewModel(
     private fun onSearchItemClick(item: SearchItem) =
         when (item.kind) {
             SearchItemKind.Game ->
-                requireRouter().navigateTo(GameDetailsRoute(item.id))
+                requireRouter().navigateTo(GameDetailsRoute(item.id, item.name))
             SearchItemKind.Critic ->
                 requireRouter().navigateTo(AuthorReviewsRoute(item.id.toInt()))
             SearchItemKind.Outlet ->

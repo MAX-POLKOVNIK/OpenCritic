@@ -132,13 +132,13 @@ class PeriodGameBrowserViewModel(
             isPercentRecommendedVisible = false,
             imageResourceProvider = imageResourceProvider,
             dateFormatter = dateFormatter,
-            onClick = { openGame(game.id) },
+            onClick = { openGame(game.id, game.name) },
         )
 
-    private fun openGame(gameId: Long) {
+    private fun openGame(gameId: Long, gameName: String) {
         requireRouter()
             .navigateTo(
-                GameDetailsRoute(gameId)
+                GameDetailsRoute(gameId, gameName)
             )
     }
 }

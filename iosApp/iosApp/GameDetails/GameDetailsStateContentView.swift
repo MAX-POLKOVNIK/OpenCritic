@@ -199,6 +199,7 @@ struct GameDetailsStateContentView: View {
 #Preview {
     GameDetailsStateContentView(
         state: GameDetailsStateContent(
+            titleText: "Game name",
             isImageVisible: true,
             imageUrl: "https://img.opencritic.com/game/14353/a7GST4so.jpg",
             name: "Game title",

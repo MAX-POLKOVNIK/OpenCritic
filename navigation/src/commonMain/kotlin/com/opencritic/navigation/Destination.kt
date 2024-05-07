@@ -2,4 +2,16 @@ package com.opencritic.navigation
 
 abstract class Destination(val path: String)
 
-abstract class Routed(destination: Destination, argName: String, value: Any) : Route(destination.path.replace("{${argName}}", value.toString()))
+abstract class Routed(
+    destination: Destination,
+    args: Map<String, Any>,
+) : Route(
+    destination.path
+        .let {
+            var path = it
+            args.forEach { (argName, value) ->
+                path = path.replace("{${argName}}", value.toString())
+            }
+            path
+        }
+)

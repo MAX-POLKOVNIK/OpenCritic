@@ -1,5 +1,7 @@
 package com.opencritic.main
 
+import androidx.compose.animation.EnterTransition
+import androidx.compose.animation.ExitTransition
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.CenterAlignedTopAppBar
 import androidx.compose.material3.ExperimentalMaterial3Api
@@ -27,10 +29,10 @@ import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.currentBackStackEntryAsState
 import com.opencritic.dashboard.DashboardScreen
+import com.opencritic.games.details.gameDetailsRoute
 import com.opencritic.main.ui.MainState
 import com.opencritic.main.ui.TabType
 import com.opencritic.navigation.GameBrowserDestination
-import com.opencritic.navigation.GameDetailsDestination
 import com.opencritic.navigation.MainDestination
 import com.opencritic.navigation.SearchDestination
 import com.opencritic.navigation.YourListDestination
@@ -106,12 +108,18 @@ fun MainState(state: MainState, navController: NavHostController) {
             }
         },
         content = { innerPadding ->
-            NavHost(navController, startDestination = MainDestination.path, Modifier.padding(innerPadding)) {
+            NavHost(
+                navController = navController,
+                startDestination = MainDestination.path,
+                enterTransition = { EnterTransition.None },
+                exitTransition = { ExitTransition.None },
+                modifier = Modifier.padding(innerPadding)
+            ) {
                 composable(MainDestination.path) { DashboardScreen(navController = navController) }
                 composable(SearchDestination.path) { Text(text = "string3") }
                 composable(GameBrowserDestination.path) { Text(text = "string4") }
                 composable(YourListDestination.path) { Text(text = "string5") }
-                composable(GameDetailsDestination.path) { Text(text = "gameDetails") }
+                gameDetailsRoute(navController)
             }
         }
     )

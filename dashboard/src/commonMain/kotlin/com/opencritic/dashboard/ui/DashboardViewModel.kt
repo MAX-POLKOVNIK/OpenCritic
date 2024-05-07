@@ -49,7 +49,7 @@ class DashboardViewModel(
                                 dashboard.popularGames,
                                 imageResourceProvider,
                             ) {
-                                navigateToGame(it.id)
+                                navigateToGame(it.id, it.nameText)
                             },
                             dealsTitle = DashboardTitleListItem(
                                 stringProvider.featuredDeals,
@@ -59,7 +59,7 @@ class DashboardViewModel(
                                 deals = dashboard.deals,
                                 stringProvider = stringProvider,
                                 imageResourceProvider = imageResourceProvider,
-                                onClick = { navigateToGame(it.id) },
+                                onClick = { navigateToGame(it.id, it.gameDeal.game.name) },
                                 onBuyNowClick = {
                                     requireRouter()
                                         .navigateTo(
@@ -72,7 +72,7 @@ class DashboardViewModel(
                                 stringProvider = stringProvider,
                                 imageResourceProvider = imageResourceProvider,
                                 dateFormatter = dateFormatter,
-                                onItemClick = { navigateToGame(it.id) },
+                                onItemClick = { navigateToGame(it.id, it.nameText) },
                                 onMoreClick = {
                                     requireRouter().navigateTo(
                                         PeriodGameBrowserRoute(PeriodGameBrowserRoute.Period.ReviewedThisWeek)
@@ -84,7 +84,7 @@ class DashboardViewModel(
                                 stringProvider = stringProvider,
                                 imageResourceProvider = imageResourceProvider,
                                 dateFormatter = dateFormatter,
-                                onItemClick = { navigateToGame(it.id) },
+                                onItemClick = { navigateToGame(it.id, it.nameText) },
                                 onMoreClick = {
                                     requireRouter().navigateTo(
                                         PeriodGameBrowserRoute(PeriodGameBrowserRoute.Period.UpcomingReleases)
@@ -96,7 +96,7 @@ class DashboardViewModel(
                                 stringProvider = stringProvider,
                                 imageResourceProvider = imageResourceProvider,
                                 dateFormatter = dateFormatter,
-                                onItemClick = { navigateToGame(it.id) },
+                                onItemClick = { navigateToGame(it.id, it.nameText) },
                                 onMoreClick = {
                                     requireRouter().navigateTo(
                                         PeriodGameBrowserRoute(PeriodGameBrowserRoute.Period.RecentlyReleased)
@@ -110,7 +110,7 @@ class DashboardViewModel(
                             hallOfFame = DashboardPosterGamesHorizontalListItem(
                                 popularGames = dashboard.hallOfFame,
                                 imageResourceProvider = imageResourceProvider,
-                                onClick = { navigateToGame(it.id) }
+                                onClick = { navigateToGame(it.id, it.nameText) }
                             ),
                             whoIsMightyMan = DashboardMightyManListItem(
                                 stringProvider,
@@ -123,7 +123,7 @@ class DashboardViewModel(
                             switchGames = DashboardPosterGamesHorizontalListItem(
                                 popularGames = dashboard.switchFeatured.games,
                                 imageResourceProvider = imageResourceProvider,
-                                onClick = { navigateToGame(it.id) }
+                                onClick = { navigateToGame(it.id, it.nameText) }
                             ),
                             xboxTitle = DashboardTitleListItem(
                                 title = dashboard.xboxFeatured.name,
@@ -132,7 +132,7 @@ class DashboardViewModel(
                             xboxGames = DashboardPosterGamesHorizontalListItem(
                                 popularGames = dashboard.xboxFeatured.games,
                                 imageResourceProvider = imageResourceProvider,
-                                onClick = { navigateToGame(it.id) }
+                                onClick = { navigateToGame(it.id, it.nameText) }
                             ),
                             playstationTitle = DashboardTitleListItem(
                                 title = dashboard.playstationFeatured.name,
@@ -141,7 +141,7 @@ class DashboardViewModel(
                             playstationGames = DashboardPosterGamesHorizontalListItem(
                                 popularGames = dashboard.playstationFeatured.games,
                                 imageResourceProvider = imageResourceProvider,
-                                onClick = { navigateToGame(it.id) }
+                                onClick = { navigateToGame(it.id, it.nameText) }
                             ),
                         )
                     )
@@ -149,9 +149,9 @@ class DashboardViewModel(
         }
     }
 
-    private fun navigateToGame(gameId: Long) =
+    private fun navigateToGame(gameId: Long, gameName: String) =
         requireRouter()
             .navigateTo(
-                GameDetailsRoute(gameId)
+                GameDetailsRoute(gameId, gameName)
             )
 }

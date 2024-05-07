@@ -147,7 +147,7 @@ class GameBrowserViewModel(
             isPercentRecommendedVisible = sorting == GameSorting.PercentRecommended,
             imageResourceProvider = imageResourceProvider,
             dateFormatter = dateFormatter,
-            onClick = { openGame(game.id) },
+            onClick = { openGame(game.id, game.name) },
         )
 
     private fun onSortSelected(item: GameSortItem) {
@@ -207,10 +207,10 @@ class GameBrowserViewModel(
         loadMore()
     }
 
-    private fun openGame(gameId: Long) {
+    private fun openGame(gameId: Long, gameName: String) {
         requireRouter()
             .navigateTo(
-                GameDetailsRoute(gameId)
+                GameDetailsRoute(gameId, gameName)
             )
     }
 }

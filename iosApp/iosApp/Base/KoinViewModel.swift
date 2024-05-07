@@ -9,6 +9,6 @@
 import Foundation
 import shared
 
-func koinViewModel<S: ViewModelState, T: BaseViewModel<S>>(_ t: T.Type = T.self, arg: Any = Void()) -> T {
-    KoinViewModelKt.koinViewModel(T.self, arg: arg) as! T
+func koinViewModel<S: ViewModelState, T: BaseViewModel<S>>(_ t: T.Type = T.self, args: [Any] = []) -> T {
+    KoinViewModelKt.koinViewModel(T.self, args: args) as! T
 }

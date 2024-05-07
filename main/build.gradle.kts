@@ -30,6 +30,7 @@ kotlin {
             implementation(projects.api)
             implementation(projects.logs)
             implementation(projects.navigation)
+            implementation(projects.gameDetails)
 
             implementation(projects.dashboard)
 

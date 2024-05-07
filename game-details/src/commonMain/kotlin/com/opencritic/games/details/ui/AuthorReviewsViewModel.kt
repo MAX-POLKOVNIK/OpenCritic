@@ -163,7 +163,7 @@ class AuthorReviewsViewModel(
             onAuthorClick = {},
             onImageClick = {},
             onOutletClick = {},
-            onGameClick = { openGame(review.gameId) },
+            onGameClick = { openGame(review.gameId, review.gameName) },
         )
 
     private fun onSortSelected(item: ReviewSortItem) {
@@ -190,10 +190,10 @@ class AuthorReviewsViewModel(
             .navigateTo(UrlRoute(url))
     }
 
-    private fun openGame(gameId: Long) {
+    private fun openGame(gameId: Long, gameName: String) {
         requireRouter()
             .navigateTo(
-                GameDetailsRoute(gameId)
+                GameDetailsRoute(gameId, gameName)
             )
     }
 }

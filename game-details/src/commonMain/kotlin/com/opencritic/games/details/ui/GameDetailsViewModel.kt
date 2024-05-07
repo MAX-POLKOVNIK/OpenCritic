@@ -22,6 +22,7 @@ import kotlinx.datetime.toLocalDateTime
 
 class GameDetailsViewModel(
     private val gameId: Long,
+    private val gameName: String,
     private val getGameDetailsInteractor: GetGameDetailsInteractor,
     private val saveYourGameInteractor: SaveYourGameInteractor,
     private val stringProvider: StringProvider,
@@ -30,7 +31,7 @@ class GameDetailsViewModel(
     private val logger: Logger,
 ) : BaseViewModel<GameDetailsState>() {
     override val initialState: GameDetailsState
-        get() = GameDetailsState.Loading
+        get() = GameDetailsState.Loading(gameName)
 
     private var yourGame: YourGame? = null
 
@@ -40,6 +41,7 @@ class GameDetailsViewModel(
                 .onFailure {
                     mutableState.tryEmit(
                         GameDetailsState.Error(
+                            titleText = gameName,
                             message = it.toString()
                         )
                     )
@@ -125,7 +127,8 @@ class GameDetailsViewModel(
                             onViewAllMediaClick = { openMedia() },
                             onViewAllScreenshotsClick = { openMedia() },
                             onViewAllTrailersClick = { openMedia() },
-                            onViewAllReviewsClick = { openReviews() }
+                            onViewAllReviewsClick = { openReviews() },
+                            titleText = gameName,
                         )
                     )
                 }

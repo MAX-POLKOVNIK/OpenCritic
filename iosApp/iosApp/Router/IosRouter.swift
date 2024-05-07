@@ -25,12 +25,12 @@ class IosRouter: ObservableObject, Router {
     
     private var viewModels: [Route: BaseViewModel<AnyObject>?] = [:]
     
-    func viewModel<S: ViewModelState, T: BaseViewModel<S>>(for route: Route, arg: Any = Void()) -> T {
+    func viewModel<S: ViewModelState, T: BaseViewModel<S>>(for route: Route, args: [Any] = []) -> T {
         if let viewModel = viewModels[route] {
             print("returning cached vm for route: \(route)")
             return viewModel as! T
         } else {
-            let vm = koinViewModel(T.self, arg: arg)
+            let vm = koinViewModel(T.self, args: args)
             
             vm.setRouter(router: self)
             
@@ -44,27 +44,27 @@ class IosRouter: ObservableObject, Router {
         switch route {
         case let gameRoute as GameDetailsRoute:
             GameDetailsScreenView(
-                viewModel: viewModel(for: route, arg: gameRoute.gameId)
+                viewModel: viewModel(for: route, args: [gameRoute.gameId, gameRoute.gameName])
             )
         case let mediaRoute as GameMediaRoute:
             GameMediaScreenView(
-                viewModel: viewModel(for: route, arg: mediaRoute.gameId)
+                viewModel: viewModel(for: route, args: [mediaRoute.gameId])
             )
         case let reviewsRoute as GameReviewsRoute:
             GameReviewsScreenView(
-                viewModel: viewModel(for: route, arg: reviewsRoute.gameId)
+                viewModel: viewModel(for: route, args: [reviewsRoute.gameId])
             )
         case let outletRoute as OutletReviewsRoute:
             OutletReviewsScreenView(
-                viewModel: viewModel(for: route, arg: outletRoute.outletId)
+                viewModel: viewModel(for: route, args: [outletRoute.outletId])
             )
         case let authorRoute as AuthorReviewsRoute:
             AuthorReviewsScreenView(
-                viewModel: viewModel(for: route, arg: authorRoute.authorId)
+                viewModel: viewModel(for: route, args: [authorRoute.authorId])
             )
         case let periodGameBrowserRoute as PeriodGameBrowserRoute:
             PeriodGameBrowserScreenView(
-                viewModel: viewModel(for: route, arg: periodGameBrowserRoute.period)
+                viewModel: viewModel(for: route, args: [periodGameBrowserRoute.period])
             )
         default:
             ContentView()

@@ -4,14 +4,25 @@ import com.opencritic.game.your.ui.YourGameIndicatorItem
 import com.opencritic.game.your.ui.YourGameIndicatorItem_PreviewData
 import com.opencritic.games.GameRank
 import com.opencritic.games.Tier
+import com.opencritic.mvvm.BaseErrorState
+import com.opencritic.mvvm.BaseLoadingState
 import com.opencritic.mvvm.ViewModelState
 import com.opencritic.resources.ImageResource
 import com.opencritic.resources.ImageResourceProvider
 
 sealed interface GameDetailsState : ViewModelState {
-    data class Error(val message: String) : GameDetailsState
-    data object Loading : GameDetailsState
+    val titleText: String
+
+    data class Error(override val titleText: String, override val message: String) :
+        BaseErrorState(message),
+        GameDetailsState
+
+    data class Loading(override val titleText: String) :
+        BaseLoadingState(),
+        GameDetailsState
+
     data class Content(
+        override val titleText: String,
         val isImageVisible: Boolean,
         val imageUrl: String,
         val name: String,
@@ -104,5 +115,6 @@ fun GameDetailsStateContent_PreviewData(
         isReviewsVisible = false,
         reviewTitleText = "",
         reviews = emptyList(),
-        onViewAllReviewsClick = {}
+        onViewAllReviewsClick = {},
+        titleText = "Game",
     )

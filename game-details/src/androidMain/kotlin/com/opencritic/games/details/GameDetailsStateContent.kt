@@ -77,6 +77,7 @@ fun GameDetailsStateContent(state: GameDetailsState.Content, modifier: Modifier 
                 containerColor = MaterialTheme.colorScheme.surfaceVariant,
             ),
             modifier = Modifier
+                .fillMaxWidth()
                 .padding(horizontal = defaultPadding)
         ) {
             Column {

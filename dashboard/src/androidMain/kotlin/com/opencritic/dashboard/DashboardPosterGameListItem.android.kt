@@ -7,6 +7,7 @@ import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.defaultMinSize
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.heightIn
+import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.widthIn
 import androidx.compose.foundation.shape.RoundedCornerShape
@@ -26,6 +27,7 @@ import com.opencritic.games.GameRank
 import com.opencritic.games.GameRankItem
 import com.opencritic.games.Tier
 import com.opencritic.resources.AndroidImageResourceProvider
+import com.opencritic.resources.smallPadding
 
 @Composable
 fun DashboardPosterGameListItem(
@@ -57,7 +59,11 @@ fun DashboardPosterGameListItem(
                 )
         )
 
-        GameRankItem(model = item.rank)
+        GameRankItem(
+            model = item.rank,
+            modifier = Modifier
+                .padding(top = smallPadding)
+        )
 
         Text(
             text = item.nameText,

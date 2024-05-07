@@ -15,6 +15,7 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.opencritic.resources.AndroidImageResourceProvider
+import com.opencritic.resources.smallPadding
 
 @Composable
 fun GameRankItem(
@@ -36,6 +37,8 @@ fun GameRankItem(
             Text(
                 text = model.scoreText,
                 fontWeight = FontWeight.Bold,
+                modifier = Modifier
+                    .padding(start = smallPadding)
             )
         }
     } else {

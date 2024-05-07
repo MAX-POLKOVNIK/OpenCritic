@@ -2,6 +2,7 @@ package com.opencritic.main
 
 import androidx.compose.animation.EnterTransition
 import androidx.compose.animation.ExitTransition
+import androidx.compose.foundation.layout.WindowInsets
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.CenterAlignedTopAppBar
 import androidx.compose.material3.ExperimentalMaterial3Api
@@ -57,6 +58,7 @@ fun MainState(state: MainState, navController: NavHostController) {
     showBottomBar = navBackStackEntry?.destination?.route in state.tabs.map { it.id.destination.path }
 
     Scaffold(
+        contentWindowInsets = WindowInsets(top = 0),
         topBar = {
             if (showTopBar) {
                 CenterAlignedTopAppBar(

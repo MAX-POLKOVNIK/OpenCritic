@@ -38,7 +38,7 @@ fun DashboardGameListItem(
             overflow = TextOverflow.Ellipsis,
             maxLines = 1,
             modifier = Modifier.weight(1f)
-                .padding(end = defaultPadding),
+                .padding(horizontal = defaultPadding),
         )
         Text(
             text = item.dateText,

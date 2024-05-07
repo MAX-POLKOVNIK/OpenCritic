@@ -1,9 +1,12 @@
 package com.opencritic.games.details.ui
 
 import com.opencritic.game.your.ui.YourGameIndicatorItem
+import com.opencritic.game.your.ui.YourGameIndicatorItem_PreviewData
+import com.opencritic.games.GameRank
 import com.opencritic.games.Tier
 import com.opencritic.mvvm.ViewModelState
 import com.opencritic.resources.ImageResource
+import com.opencritic.resources.ImageResourceProvider
 
 sealed interface GameDetailsState : ViewModelState {
     data class Error(val message: String) : GameDetailsState
@@ -53,3 +56,53 @@ sealed interface GameDetailsState : ViewModelState {
         fun viewAllReviewsClick() = onViewAllReviewsClick()
     }
 }
+
+
+@Suppress("FunctionName")
+fun GameDetailsStateContent_PreviewData(
+    imageResourceProvider: ImageResourceProvider
+): GameDetailsState.Content =
+    GameDetailsState.Content(
+        isImageVisible = true,
+        imageUrl = "https://img.opencritic.com/game/14353/a7GST4so.jpg",
+        name = "Game title",
+        yourGameIndicatorItem = YourGameIndicatorItem_PreviewData(imageResourceProvider),
+        companiesText = "Some companies",
+        releaseDateText = "MAY 25, 2505",
+        platformsText = "Playstation, Xbox, PC",
+        isTierVisible = true,
+        tier = Tier.Fair,
+        tierDescription = "Tier description",
+        tierImageResource = imageResourceProvider.fairMan,
+        topCriticScore = createTopCriticAverageIndicator(GameRank(Tier.Fair, 20)),
+        topCriticScoreDescription = "Top critic description",
+        recommendedPercent = createCriticsRecommendIndicator(Tier.Fair, 40),
+        criticsRecommendDescription = "Critics recommends",
+        briefReviews = listOf(
+            ReviewBriefListItem(nameText = "IGN", scoreText = "100 / 100"),
+            ReviewBriefListItem(nameText = "IGN", scoreText =  "100 / 100"),
+            ReviewBriefListItem(nameText = "IGN", scoreText =  "100 / 100"),
+            ReviewBriefListItem(nameText = "IGN", scoreText =  "100 / 100"),
+        ),
+        isViewAllVisible = true,
+        viewAllText = "View all 1000 reviews",
+        isMediaVisible = false,
+        mediaText = "",
+        media = emptyList(),
+        viewAllMedia = "",
+        onViewAllMediaClick = {},
+        isTrailersVisible = false,
+        trailersText = "",
+        trailers = emptyList(),
+        viewAllTrailers = "",
+        onViewAllTrailersClick = {},
+        isScreenshotsVisible = false,
+        screenshotsText = "",
+        screenshots = emptyList(),
+        viewAllScreenshots = "",
+        onViewAllScreenshotsClick = {},
+        isReviewsVisible = false,
+        reviewTitleText = "",
+        reviews = emptyList(),
+        onViewAllReviewsClick = {}
+    )

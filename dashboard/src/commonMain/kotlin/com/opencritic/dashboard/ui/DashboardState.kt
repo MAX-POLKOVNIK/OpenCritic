@@ -1,10 +1,12 @@
 package com.opencritic.dashboard.ui
 
+import com.opencritic.mvvm.BaseErrorState
+import com.opencritic.mvvm.BaseLoadingState
 import com.opencritic.mvvm.ViewModelState
 
 sealed interface DashboardState : ViewModelState {
-    data object Loading : DashboardState
-    data class Error(val error: String) : DashboardState
+    data object Loading : BaseLoadingState(), DashboardState
+    data class Error(val error: String) : BaseErrorState(error), DashboardState
     data class Content(
         val popularGamesTitle: DashboardTitleListItem,
         val popularGames: DashboardPosterGamesHorizontalListItem,

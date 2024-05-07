@@ -15,6 +15,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
+import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.painterResource
@@ -29,6 +30,7 @@ import com.opencritic.dashboard.DashboardScreen
 import com.opencritic.main.ui.MainState
 import com.opencritic.main.ui.TabType
 import com.opencritic.navigation.GameBrowserDestination
+import com.opencritic.navigation.GameDetailsDestination
 import com.opencritic.navigation.MainDestination
 import com.opencritic.navigation.SearchDestination
 import com.opencritic.navigation.YourListDestination
@@ -39,60 +41,69 @@ fun MainState(state: MainState, navController: NavHostController) {
     val scrollBehavior = TopAppBarDefaults.pinnedScrollBehavior(rememberTopAppBarState())
     var selectedTab by remember { mutableStateOf(state.tabs.first()) }
 
+    var showTopBar by rememberSaveable { mutableStateOf(true) }
+    var showBottomBar by rememberSaveable { mutableStateOf(true) }
+    val navBackStackEntry by navController.currentBackStackEntryAsState()
+
+    showTopBar = navBackStackEntry?.destination?.route in state.tabs.map { it.id.destination.path }
+    showBottomBar = navBackStackEntry?.destination?.route in state.tabs.map { it.id.destination.path }
+
     Scaffold(
         topBar = {
-            CenterAlignedTopAppBar(
-                colors = TopAppBarDefaults.topAppBarColors(
-                    containerColor = MaterialTheme.colorScheme.primaryContainer,
-                    titleContentColor = MaterialTheme.colorScheme.primary,
-                ),
-                title = {
-                    Text(
-                        text = selectedTab.name,
-                        maxLines = 1,
-                        overflow = TextOverflow.Ellipsis
-                    )
-                },
-                scrollBehavior = scrollBehavior,
-            )
+            if (showTopBar) {
+                CenterAlignedTopAppBar(
+                    colors = TopAppBarDefaults.topAppBarColors(
+                        containerColor = MaterialTheme.colorScheme.primaryContainer,
+                        titleContentColor = MaterialTheme.colorScheme.primary,
+                    ),
+                    title = {
+                        Text(
+                            text = selectedTab.name,
+                            maxLines = 1,
+                            overflow = TextOverflow.Ellipsis
+                        )
+                    },
+                    scrollBehavior = scrollBehavior,
+                )
+            }
         },
         bottomBar = {
-            NavigationBar {
-                val navBackStackEntry by navController.currentBackStackEntryAsState()
-                val currentDestination = navBackStackEntry?.destination
-                state.tabs.forEach { tab ->
-                    NavigationBarItem(
-                        icon = { Icon(painter = painterResource(tab.imageResource), contentDescription = null) },
-                        label = { Text(tab.name) },
-                        selected = currentDestination?.hierarchy?.any { it.route == tab.id.destination.path } == true,
-                        onClick = {
-                            selectedTab = tab
+            if (showBottomBar) {
+                NavigationBar {
+                    val currentDestination = navBackStackEntry?.destination
+                    state.tabs.forEach { tab ->
+                        NavigationBarItem(
+                            icon = { Icon(painter = painterResource(tab.imageResource), contentDescription = null) },
+                            label = { Text(tab.name) },
+                            selected = currentDestination?.hierarchy?.any { it.route == tab.id.destination.path } == true,
+                            onClick = {
+                                selectedTab = tab
 
-                            val s = when (tab.id) {
-                                TabType.Main -> MainDestination
-                                TabType.Search -> SearchDestination
-                                TabType.Browse -> GameBrowserDestination
-                                TabType.YourLists -> YourListDestination
-                            }.path
+                                val s = when (tab.id) {
+                                    TabType.Main -> MainDestination
+                                    TabType.Search -> SearchDestination
+                                    TabType.Browse -> GameBrowserDestination
+                                    TabType.YourLists -> YourListDestination
+                                }.path
 
-                            navController.navigate(s) {
-                                // Pop up to the start destination of the graph to
-                                // avoid building up a large stack of destinations
-                                // on the back stack as users select items
-                                popUpTo(navController.graph.findStartDestination().id) {
-                                    saveState = true
+                                navController.navigate(s) {
+                                    // Pop up to the start destination of the graph to
+                                    // avoid building up a large stack of destinations
+                                    // on the back stack as users select items
+                                    popUpTo(navController.graph.findStartDestination().id) {
+                                        saveState = true
+                                    }
+                                    // Avoid multiple copies of the same destination when
+                                    // reselecting the same item
+                                    launchSingleTop = true
+                                    // Restore state when reselecting a previously selected item
+                                    restoreState = true
                                 }
-                                // Avoid multiple copies of the same destination when
-                                // reselecting the same item
-                                launchSingleTop = true
-                                // Restore state when reselecting a previously selected item
-                                restoreState = true
                             }
-                        }
-                    )
+                        )
+                    }
                 }
             }
-
         },
         content = { innerPadding ->
             NavHost(navController, startDestination = MainDestination.path, Modifier.padding(innerPadding)) {
@@ -100,6 +111,7 @@ fun MainState(state: MainState, navController: NavHostController) {
                 composable(SearchDestination.path) { Text(text = "string3") }
                 composable(GameBrowserDestination.path) { Text(text = "string4") }
                 composable(YourListDestination.path) { Text(text = "string5") }
+                composable(GameDetailsDestination.path) { Text(text = "gameDetails") }
             }
         }
     )

@@ -19,6 +19,7 @@ import kotlinx.coroutines.launch
 
 class GameReviewsViewModel(
     private val gameId: Long,
+    private val gameName: String,
     private val getGameInteractor: GetGameInteractor,
     private val getGameReviewsInteractor: GetGameReviewsInteractor,
     private val imageResourceProvider: ImageResourceProvider,
@@ -27,7 +28,7 @@ class GameReviewsViewModel(
     private val logger: Logger,
 ) : BaseViewModel<GameReviewsState>() {
     override val initialState: GameReviewsState
-        get() = GameReviewsState.Loading
+        get() = GameReviewsState.Loading("$gameName ${stringProvider.reviews}")
 
     private var game: Game? = null
     private var canLoadMore: Boolean = true
@@ -38,7 +39,10 @@ class GameReviewsViewModel(
             getGameInteractor(gameId)
                 .onFailure {
                     mutableState.tryEmit(
-                        GameReviewsState.Error(it.toString())
+                        GameReviewsState.Error(
+                            titleText = "$gameName ${stringProvider.reviews}",
+                            message = it.toString()
+                        )
                     )
                 }
                 .onSuccess {
@@ -64,7 +68,7 @@ class GameReviewsViewModel(
                                             isGameVisible = false,
                                             stringProvider = stringProvider,
                                             dateFormatter = dateFormatter,
-                                            onClick = {},
+                                            onClick = { openUrl(review.externalUrl) },
                                             onAuthorClick = {
                                                 review.authors.firstOrNull()
                                                     ?.let { openAuthor(it.id) }
@@ -169,6 +173,7 @@ class GameReviewsViewModel(
 
         mutableState.tryEmit(
             state.copy(
+                sortText = item,
                 reviewItems = emptyList(),
                 isLoadingItemVisible = true
             )

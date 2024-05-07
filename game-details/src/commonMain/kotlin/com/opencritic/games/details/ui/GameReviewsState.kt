@@ -3,15 +3,26 @@ package com.opencritic.games.details.ui
 import com.opencritic.games.GameRank
 import com.opencritic.games.Tier
 import com.opencritic.games.details.domain.ReviewSorting
+import com.opencritic.mvvm.BaseErrorState
+import com.opencritic.mvvm.BaseLoadingState
 import com.opencritic.mvvm.ViewModelState
 import com.opencritic.resources.ImageResource
 import com.opencritic.resources.ImageResourceProvider
 
 interface GameReviewsState : ViewModelState {
-    data class Error(val message: String) : GameReviewsState
-    data object Loading : GameReviewsState
+    val titleText: String
+
+    data class Error(
+        override val titleText: String,
+        override val message: String
+    ) : BaseErrorState(message), GameReviewsState
+
+    data class Loading(
+        override val titleText: String
+    ) : BaseLoadingState(), GameReviewsState
+
     data class Content(
-        val titleText: String,
+        override val titleText: String,
         val imageUrl: String,
         val isTierVisible: Boolean,
         val tierImageResource: ImageResource,

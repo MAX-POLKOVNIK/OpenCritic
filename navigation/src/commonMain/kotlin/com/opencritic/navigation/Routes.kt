@@ -18,7 +18,6 @@ object GameMediaDestination : Destination("game/{gameId}/{gameName}/media") {
     const val GAME_NAME_KEY = "gameName"
 }
 
-
 data class GameMediaRoute(val gameId: Long, val gameName: String) : Routed(
     destination = GameMediaDestination,
     args = mapOf(
@@ -27,8 +26,19 @@ data class GameMediaRoute(val gameId: Long, val gameName: String) : Routed(
     )
 )
 
-data class UrlRoute(val url: String) : Route(url)
-data class GameReviewsRoute(val gameId: Long) : Route("game/${gameId}/reviews")
+object GameReviewsDestination : Destination("game/{gameId}/{gameName}/reviews") {
+    const val GAME_ID_KEY = "gameId"
+    const val GAME_NAME_KEY = "gameName"
+}
+
+data class GameReviewsRoute(val gameId: Long, val gameName: String) : Routed(
+    destination = GameReviewsDestination,
+    args = mapOf(
+        GameReviewsDestination.GAME_ID_KEY to gameId,
+        GameReviewsDestination.GAME_NAME_KEY to gameName,
+    )
+)
+
 data class OutletReviewsRoute(val outletId: Int) : Route("outlet/${outletId}")
 data class AuthorReviewsRoute(val authorId: Int) : Route("author/${authorId}")
 data class PeriodGameBrowserRoute(val period: Period) : Route("games/$period") {
@@ -38,6 +48,8 @@ data class PeriodGameBrowserRoute(val period: Period) : Route("games/$period") {
         UpcomingReleases,
     }
 }
+
+data class UrlRoute(val url: String) : Route(url)
 
 data object MainDestination : Destination("main")
 data object SearchDestination : Destination("search")

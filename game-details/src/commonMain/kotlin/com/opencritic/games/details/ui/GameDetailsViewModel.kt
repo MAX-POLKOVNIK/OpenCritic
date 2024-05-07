@@ -173,7 +173,7 @@ class GameDetailsViewModel(
     private fun openReviews() {
         requireRouter()
             .navigateTo(
-                GameReviewsRoute(gameId)
+                GameReviewsRoute(gameId, gameName)
             )
     }
 

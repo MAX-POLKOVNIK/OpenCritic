@@ -31,6 +31,7 @@ kotlin {
             implementation(projects.logs)
             implementation(projects.navigation)
             implementation(projects.gameDetails)
+            implementation(projects.search)
 
             implementation(projects.dashboard)
 

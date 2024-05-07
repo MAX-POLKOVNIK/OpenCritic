@@ -64,267 +64,267 @@ fun GameDetailsStateContent(state: GameDetailsState.Content, modifier: Modifier 
                     .fillMaxWidth()
                     .aspectRatio(1f)
             )
+        }
 
-            YourGameIndicatorItem(
-                item = state.yourGameIndicatorItem,
+        YourGameIndicatorItem(
+            item = state.yourGameIndicatorItem,
+            modifier = Modifier
+                .padding(defaultPadding)
+        )
+
+        Card(
+            colors = CardDefaults.cardColors(
+                containerColor = MaterialTheme.colorScheme.surfaceVariant,
+            ),
+            modifier = Modifier
+                .padding(horizontal = defaultPadding)
+        ) {
+            Column {
+                Text(
+                    text = state.name,
+                    fontWeight = FontWeight.Bold,
+                    style = MaterialTheme.typography.titleLarge,
+                    modifier = Modifier
+                        .padding(horizontal = defaultPadding)
+                        .padding(top = defaultPadding)
+                )
+
+                Text(
+                    text = state.companiesText,
+                    modifier = Modifier
+                        .padding(horizontal = defaultPadding)
+                )
+
+                Text(
+                    text = state.releaseDateText,
+                    modifier = Modifier
+                        .padding(horizontal = defaultPadding)
+                )
+
+                Text(
+                    text = state.platformsText,
+                    fontWeight = FontWeight.Bold,
+                    modifier = Modifier
+                        .padding(horizontal = defaultPadding)
+                )
+
+                Spacer(modifier = Modifier.height(defaultPadding))
+
+                if (state.isTierVisible) {
+                    Row(
+                        horizontalArrangement = Arrangement.SpaceAround,
+                        verticalAlignment = Alignment.CenterVertically,
+                        modifier = Modifier
+                            .padding(horizontal = defaultPadding)
+                            .fillMaxWidth()
+                    ) {
+                        Image(
+                            painter = painterResource(id = state.tierImageResource),
+                            contentDescription = "",
+                            contentScale = ContentScale.FillWidth,
+                            modifier = Modifier
+                                .width(76.dp)
+                        )
+                        RankCircleIndicatorItem(
+                            item = state.topCriticScore,
+                            modifier = Modifier
+                                .size(76.dp)
+                        )
+                        RankCircleIndicatorItem(
+                            item = state.recommendedPercent,
+                            modifier = Modifier
+                                .size(76.dp)
+                        )
+                    }
+                    Row(
+                        horizontalArrangement = Arrangement.SpaceAround,
+                        modifier = Modifier
+                            .padding(horizontal = defaultPadding)
+                            .fillMaxWidth()
+                    ) {
+                        Text(
+                            text = state.tierDescription,
+                            textAlign = TextAlign.Center,
+                            modifier = Modifier.weight(1f),
+                        )
+                        Text(
+                            text = state.topCriticScoreDescription,
+                            textAlign = TextAlign.Center,
+                            modifier = Modifier.weight(1f),
+                        )
+                        Text(
+                            text = state.criticsRecommendDescription,
+                            textAlign = TextAlign.Center,
+                            modifier = Modifier.weight(1f),
+                        )
+                    }
+                }
+
+                Spacer(modifier = Modifier.height(defaultPadding))
+
+                state.briefReviews.forEach {
+                    ReviewBriefListItem(item = it)
+                }
+
+                if (state.isViewAllVisible) {
+                    Column(
+                        horizontalAlignment = Alignment.End,
+                        modifier = Modifier
+                            .fillMaxWidth()
+                    ) {
+                        TextButton(onClick = state::viewAllReviewsClick) {
+                            Text(
+                                text = state.viewAllText,
+                            )
+                        }
+                    }
+                }
+            }
+        }
+
+        if (state.isMediaVisible) {
+            Spacer(modifier = Modifier.height(32.dp))
+
+            Text(
+                text = state.mediaText,
+                style = MaterialTheme.typography.titleLarge,
                 modifier = Modifier
                     .padding(defaultPadding)
             )
 
-            Card(
-                colors = CardDefaults.cardColors(
-                    containerColor = MaterialTheme.colorScheme.surfaceVariant,
-                ),
+            state.media.forEachIndexed { index, mediaItem ->
+                when (mediaItem) {
+                    is TrailerItem ->
+                        TrailerItem(
+                            item = mediaItem,
+                            modifier = Modifier
+                                .padding(horizontal = defaultPadding)
+                        )
+                    is ScreenshotItem ->
+                        ScreenshotItem(
+                            item = mediaItem,
+                            modifier = Modifier
+                                .padding(horizontal = defaultPadding)
+                        )
+                }
+
+                if (index != state.media.lastIndex) {
+                    Spacer(modifier = Modifier.height(smallPadding))
+                }
+            }
+
+            Column(
+                horizontalAlignment = Alignment.End,
                 modifier = Modifier
-                    .padding(horizontal = defaultPadding)
+                    .fillMaxWidth()
             ) {
-                Column {
+                TextButton(onClick = state::viewAllMediaClick) {
                     Text(
-                        text = state.name,
-                        fontWeight = FontWeight.Bold,
-                        style = MaterialTheme.typography.titleLarge,
-                        modifier = Modifier
-                            .padding(horizontal = defaultPadding)
-                            .padding(top = defaultPadding)
+                        text = state.viewAllMedia,
                     )
+                }
+            }
+        }
 
-                    Text(
-                        text = state.companiesText,
-                        modifier = Modifier
-                            .padding(horizontal = defaultPadding)
-                    )
+        if (state.isTrailersVisible) {
+            Spacer(modifier = Modifier.height(32.dp))
 
-                    Text(
-                        text = state.releaseDateText,
-                        modifier = Modifier
-                            .padding(horizontal = defaultPadding)
-                    )
+            Text(
+                text = state.trailersText,
+                style = MaterialTheme.typography.titleLarge,
+                modifier = Modifier
+                    .padding(defaultPadding)
+            )
 
-                    Text(
-                        text = state.platformsText,
-                        fontWeight = FontWeight.Bold,
-                        modifier = Modifier
-                            .padding(horizontal = defaultPadding)
-                    )
+            state.trailers.forEachIndexed { index, mediaItem ->
+                TrailerItem(
+                    item = mediaItem,
+                    modifier = Modifier
+                        .padding(horizontal = defaultPadding)
+                )
 
-                    Spacer(modifier = Modifier.height(defaultPadding))
-
-                    if (state.isTierVisible) {
-                        Row(
-                            horizontalArrangement = Arrangement.SpaceAround,
-                            verticalAlignment = Alignment.CenterVertically,
-                            modifier = Modifier
-                                .padding(horizontal = defaultPadding)
-                                .fillMaxWidth()
-                        ) {
-                            Image(
-                                painter = painterResource(id = state.tierImageResource),
-                                contentDescription = "",
-                                contentScale = ContentScale.FillWidth,
-                                modifier = Modifier
-                                    .width(76.dp)
-                            )
-                            RankCircleIndicatorItem(
-                                item = state.topCriticScore,
-                                modifier = Modifier
-                                    .size(76.dp)
-                            )
-                            RankCircleIndicatorItem(
-                                item = state.recommendedPercent,
-                                modifier = Modifier
-                                    .size(76.dp)
-                            )
-                        }
-                        Row(
-                            horizontalArrangement = Arrangement.SpaceAround,
-                            modifier = Modifier
-                                .padding(horizontal = defaultPadding)
-                                .fillMaxWidth()
-                        ) {
-                            Text(
-                                text = state.tierDescription,
-                                textAlign = TextAlign.Center,
-                                modifier = Modifier.weight(1f),
-                            )
-                            Text(
-                                text = state.topCriticScoreDescription,
-                                textAlign = TextAlign.Center,
-                                modifier = Modifier.weight(1f),
-                            )
-                            Text(
-                                text = state.criticsRecommendDescription,
-                                textAlign = TextAlign.Center,
-                                modifier = Modifier.weight(1f),
-                            )
-                        }
-                    }
-
-                    Spacer(modifier = Modifier.height(defaultPadding))
-
-                    state.briefReviews.forEach {
-                        ReviewBriefListItem(item = it)
-                    }
-
-                    if (state.isViewAllVisible) {
-                        Column(
-                            horizontalAlignment = Alignment.End,
-                            modifier = Modifier
-                                .fillMaxWidth()
-                        ) {
-                            TextButton(onClick = state::viewAllReviewsClick) {
-                                Text(
-                                    text = state.viewAllText,
-                                )
-                            }
-                        }
-                    }
+                if (index != state.trailers.lastIndex) {
+                    Spacer(modifier = Modifier.height(smallPadding))
                 }
             }
 
-            if (state.isMediaVisible) {
-                Spacer(modifier = Modifier.height(32.dp))
+            Column(
+                horizontalAlignment = Alignment.End,
+                modifier = Modifier
+                    .fillMaxWidth()
+            ) {
+                TextButton(onClick = state::viewAllTrailersClick) {
+                    Text(
+                        text = state.viewAllTrailers,
+                    )
+                }
+            }
+        }
 
-                Text(
-                    text = state.mediaText,
-                    style = MaterialTheme.typography.titleLarge,
+        if (state.isScreenshotsVisible) {
+            Spacer(modifier = Modifier.height(32.dp))
+
+            Text(
+                text = state.screenshotsText,
+                style = MaterialTheme.typography.titleLarge,
+                modifier = Modifier
+                    .padding(defaultPadding)
+            )
+
+            state.screenshots.forEachIndexed { index, mediaItem ->
+                ScreenshotItem(
+                    item = mediaItem,
                     modifier = Modifier
-                        .padding(defaultPadding)
+                        .padding(horizontal = defaultPadding)
                 )
 
-                state.media.forEachIndexed { index, mediaItem ->
-                    when (mediaItem) {
-                        is TrailerItem ->
-                            TrailerItem(
-                                item = mediaItem,
-                                modifier = Modifier
-                                    .padding(horizontal = defaultPadding)
-                            )
-                        is ScreenshotItem ->
-                            ScreenshotItem(
-                                item = mediaItem,
-                                modifier = Modifier
-                                    .padding(horizontal = defaultPadding)
-                            )
-                    }
-
-                    if (index != state.media.lastIndex) {
-                        Spacer(modifier = Modifier.height(smallPadding))
-                    }
-                }
-
-                Column(
-                    horizontalAlignment = Alignment.End,
-                    modifier = Modifier
-                        .fillMaxWidth()
-                ) {
-                    TextButton(onClick = state::viewAllMediaClick) {
-                        Text(
-                            text = state.viewAllMedia,
-                        )
-                    }
+                if (index != state.screenshots.lastIndex) {
+                    Spacer(modifier = Modifier.height(smallPadding))
                 }
             }
 
-            if (state.isTrailersVisible) {
-                Spacer(modifier = Modifier.height(32.dp))
+            Column(
+                horizontalAlignment = Alignment.End,
+                modifier = Modifier
+                    .fillMaxWidth()
+            ) {
+                TextButton(onClick = state::viewAllScreenshotsClick) {
+                    Text(
+                        text = state.viewAllScreenshots,
+                    )
+                }
+            }
+        }
 
-                Text(
-                    text = state.trailersText,
-                    style = MaterialTheme.typography.titleLarge,
+        if (state.isReviewsVisible) {
+            Text(
+                text = state.reviewTitleText,
+                style = MaterialTheme.typography.titleLarge,
+                modifier = Modifier
+                    .padding(defaultPadding)
+            )
+
+            state.reviews.forEachIndexed { index, review ->
+                CardReviewItem(
+                    item = review,
                     modifier = Modifier
-                        .padding(defaultPadding)
+                        .padding(horizontal = defaultPadding)
                 )
 
-                state.trailers.forEachIndexed { index, mediaItem ->
-                    TrailerItem(
-                        item = mediaItem,
-                        modifier = Modifier
-                            .padding(horizontal = defaultPadding)
-                    )
-
-                    if (index != state.trailers.lastIndex) {
-                        Spacer(modifier = Modifier.height(smallPadding))
-                    }
-                }
-
-                Column(
-                    horizontalAlignment = Alignment.End,
-                    modifier = Modifier
-                        .fillMaxWidth()
-                ) {
-                    TextButton(onClick = state::viewAllTrailersClick) {
-                        Text(
-                            text = state.viewAllTrailers,
-                        )
-                    }
+                if (index != state.reviews.lastIndex) {
+                    Spacer(modifier = Modifier.height(smallPadding))
                 }
             }
 
-            if (state.isScreenshotsVisible) {
-                Spacer(modifier = Modifier.height(32.dp))
-
-                Text(
-                    text = state.screenshotsText,
-                    style = MaterialTheme.typography.titleLarge,
-                    modifier = Modifier
-                        .padding(defaultPadding)
-                )
-
-                state.screenshots.forEachIndexed { index, mediaItem ->
-                    ScreenshotItem(
-                        item = mediaItem,
-                        modifier = Modifier
-                            .padding(horizontal = defaultPadding)
+            Column(
+                horizontalAlignment = Alignment.End,
+                modifier = Modifier
+                    .fillMaxWidth()
+            ) {
+                TextButton(onClick = state::viewAllReviewsClick) {
+                    Text(
+                        text = state.viewAllText,
                     )
-
-                    if (index != state.screenshots.lastIndex) {
-                        Spacer(modifier = Modifier.height(smallPadding))
-                    }
-                }
-
-                Column(
-                    horizontalAlignment = Alignment.End,
-                    modifier = Modifier
-                        .fillMaxWidth()
-                ) {
-                    TextButton(onClick = state::viewAllScreenshotsClick) {
-                        Text(
-                            text = state.viewAllScreenshots,
-                        )
-                    }
-                }
-            }
-
-            if (state.isReviewsVisible) {
-                Text(
-                    text = state.reviewTitleText,
-                    style = MaterialTheme.typography.titleLarge,
-                    modifier = Modifier
-                        .padding(defaultPadding)
-                )
-
-                state.reviews.forEachIndexed { index, review ->
-                    CardReviewItem(
-                        item = review,
-                        modifier = Modifier
-                            .padding(horizontal = defaultPadding)
-                    )
-
-                    if (index != state.reviews.lastIndex) {
-                        Spacer(modifier = Modifier.height(smallPadding))
-                    }
-                }
-
-                Column(
-                    horizontalAlignment = Alignment.End,
-                    modifier = Modifier
-                        .fillMaxWidth()
-                ) {
-                    TextButton(onClick = state::viewAllReviewsClick) {
-                        Text(
-                            text = state.viewAllText,
-                        )
-                    }
                 }
             }
         }

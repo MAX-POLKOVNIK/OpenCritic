@@ -40,7 +40,7 @@
     <string name="str_reviews">Reviews</string>
     <string name="str_reviews_of">%s\'s reviews</string>
     <string name="str_screenshots">Screenshots</string>
-    <string name="str_search_hint">Type something</string>
+    <string name="str_search_hint">Search game, critic, outlet</string>
     <string name="str_sort">Sort</string>
     <string name="str_sort_a_to_z">A - Z</string>
     <string name="str_sort_default">Default</string>

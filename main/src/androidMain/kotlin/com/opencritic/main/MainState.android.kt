@@ -40,6 +40,7 @@ import com.opencritic.navigation.GameBrowserDestination
 import com.opencritic.navigation.MainDestination
 import com.opencritic.navigation.SearchDestination
 import com.opencritic.navigation.YourListDestination
+import com.opencritic.search.SearchScreen
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
@@ -120,7 +121,7 @@ fun MainState(state: MainState, navController: NavHostController) {
                 modifier = Modifier.padding(innerPadding)
             ) {
                 composable(MainDestination.path) { DashboardScreen(navController = navController) }
-                composable(SearchDestination.path) { Text(text = "string3") }
+                composable(SearchDestination.path) { SearchScreen(navController = navController) }
                 composable(GameBrowserDestination.path) { Text(text = "string4") }
                 composable(YourListDestination.path) { Text(text = "string5") }
                 gameDetailsComposeRoute(navController)

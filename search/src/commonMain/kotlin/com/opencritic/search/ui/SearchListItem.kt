@@ -37,3 +37,13 @@ fun SearchListItem(
         },
         onClick = onClick,
     )
+
+@Suppress("FunctionName")
+fun SearchListItem_PreviewData(): SearchListItem =
+    SearchListItem(
+        id = 1,
+        nameText = "Game name",
+        kindText = "Game",
+        kindColor = Colors.Cyan,
+        onClick = {}
+    )

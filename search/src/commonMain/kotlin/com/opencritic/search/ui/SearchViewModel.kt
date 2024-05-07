@@ -93,6 +93,9 @@ class SearchViewModel(
 
 
     private fun onCriteriaChanged(newCriteria: String) {
+        mutableState.tryEmit(
+            state.value.copy(searchText = newCriteria)
+        )
         criteriaFlow.tryEmit(newCriteria)
     }
 

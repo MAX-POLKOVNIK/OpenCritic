@@ -29,7 +29,8 @@ import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.currentBackStackEntryAsState
 import com.opencritic.dashboard.DashboardScreen
-import com.opencritic.games.details.gameDetailsRoute
+import com.opencritic.games.details.gameDetailsComposeRoute
+import com.opencritic.games.details.gameMediaComposeRoute
 import com.opencritic.main.ui.MainState
 import com.opencritic.main.ui.TabType
 import com.opencritic.navigation.GameBrowserDestination
@@ -119,7 +120,8 @@ fun MainState(state: MainState, navController: NavHostController) {
                 composable(SearchDestination.path) { Text(text = "string3") }
                 composable(GameBrowserDestination.path) { Text(text = "string4") }
                 composable(YourListDestination.path) { Text(text = "string5") }
-                gameDetailsRoute(navController)
+                gameDetailsComposeRoute(navController)
+                gameMediaComposeRoute(navController)
             }
         }
     )

@@ -9,12 +9,13 @@ import kotlinx.coroutines.launch
 
 class GameMediaViewModel(
     private val gameId: Long,
+    private val gameName: String,
     private val getGameMediaInteractor: GetGameMediaInteractor,
     private val stringProvider: StringProvider,
     private val logger: Logger,
 ) : BaseViewModel<GameMediaState>() {
     override val initialState: GameMediaState =
-        GameMediaState.Loading
+        GameMediaState.Loading(stringProvider.gameScreenshotsAndTrailers(gameName))
 
     init {
         scope.launch {
@@ -22,6 +23,7 @@ class GameMediaViewModel(
                 .onFailure {
                     mutableState.tryEmit(
                         GameMediaState.Error(
+                            titleText = stringProvider.gameScreenshotsAndTrailers(gameName),
                             message = it.toString()
                         )
                     )

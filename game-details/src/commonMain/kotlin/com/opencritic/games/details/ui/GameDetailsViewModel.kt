@@ -166,7 +166,7 @@ class GameDetailsViewModel(
     private fun openMedia() {
         requireRouter()
             .navigateTo(
-                GameMediaRoute(gameId)
+                GameMediaRoute(gameId, gameName)
             )
     }
 

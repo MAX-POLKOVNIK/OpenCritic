@@ -1,7 +1,5 @@
 package com.opencritic.navigation
 
-private const val argName: String = "argName"
-
 object GameDetailsDestination : Destination("game/{gameId}/{gameName}") {
     const val GAME_ID_KEY = "gameId"
     const val GAME_NAME_KEY = "gameName"
@@ -15,8 +13,20 @@ data class GameDetailsRoute(val gameId: Long, val gameName: String) : Routed(
     )
 )
 
+object GameMediaDestination : Destination("game/{gameId}/{gameName}/media") {
+    const val GAME_ID_KEY = "gameId"
+    const val GAME_NAME_KEY = "gameName"
+}
 
-data class GameMediaRoute(val gameId: Long) : Route("game/${gameId}/media")
+
+data class GameMediaRoute(val gameId: Long, val gameName: String) : Routed(
+    destination = GameMediaDestination,
+    args = mapOf(
+        GameMediaDestination.GAME_ID_KEY to gameId,
+        GameMediaDestination.GAME_NAME_KEY to gameName,
+    )
+)
+
 data class UrlRoute(val url: String) : Route(url)
 data class GameReviewsRoute(val gameId: Long) : Route("game/${gameId}/reviews")
 data class OutletReviewsRoute(val outletId: Int) : Route("outlet/${outletId}")

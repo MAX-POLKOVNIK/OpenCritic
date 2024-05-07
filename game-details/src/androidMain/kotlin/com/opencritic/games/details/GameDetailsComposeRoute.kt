@@ -7,7 +7,7 @@ import androidx.navigation.compose.composable
 import androidx.navigation.navArgument
 import com.opencritic.navigation.GameDetailsDestination
 
-fun NavGraphBuilder.gameDetailsRoute(navController: NavController) {
+fun NavGraphBuilder.gameDetailsComposeRoute(navController: NavController) {
     composable(
         route = GameDetailsDestination.path,
         arguments = listOf(

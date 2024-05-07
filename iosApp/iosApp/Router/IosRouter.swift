@@ -48,7 +48,7 @@ class IosRouter: ObservableObject, Router {
             )
         case let mediaRoute as GameMediaRoute:
             GameMediaScreenView(
-                viewModel: viewModel(for: route, args: [mediaRoute.gameId])
+                viewModel: viewModel(for: route, args: [mediaRoute.gameId, mediaRoute.gameName])
             )
         case let reviewsRoute as GameReviewsRoute:
             GameReviewsScreenView(

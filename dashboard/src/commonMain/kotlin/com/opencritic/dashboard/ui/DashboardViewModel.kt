@@ -4,6 +4,7 @@ import com.opencritic.dashboard.domain.GetDashboardInteractor
 import com.opencritic.logs.Logger
 import com.opencritic.mvvm.BaseViewModel
 import com.opencritic.navigation.GameDetailsRoute
+import com.opencritic.navigation.PeriodGameBrowserDestination
 import com.opencritic.navigation.PeriodGameBrowserRoute
 import com.opencritic.navigation.UrlRoute
 import com.opencritic.resources.DateFormatter
@@ -75,7 +76,7 @@ class DashboardViewModel(
                                 onItemClick = { navigateToGame(it.id, it.nameText) },
                                 onMoreClick = {
                                     requireRouter().navigateTo(
-                                        PeriodGameBrowserRoute(PeriodGameBrowserRoute.Period.ReviewedThisWeek)
+                                        PeriodGameBrowserRoute(PeriodGameBrowserDestination.Period.ReviewedThisWeek)
                                     )
                                 },
                             ),
@@ -87,7 +88,7 @@ class DashboardViewModel(
                                 onItemClick = { navigateToGame(it.id, it.nameText) },
                                 onMoreClick = {
                                     requireRouter().navigateTo(
-                                        PeriodGameBrowserRoute(PeriodGameBrowserRoute.Period.UpcomingReleases)
+                                        PeriodGameBrowserRoute(PeriodGameBrowserDestination.Period.UpcomingReleases)
                                     )
                                 },
                             ),
@@ -99,7 +100,7 @@ class DashboardViewModel(
                                 onItemClick = { navigateToGame(it.id, it.nameText) },
                                 onMoreClick = {
                                     requireRouter().navigateTo(
-                                        PeriodGameBrowserRoute(PeriodGameBrowserRoute.Period.RecentlyReleased)
+                                        PeriodGameBrowserRoute(PeriodGameBrowserDestination.Period.RecentlyReleased)
                                     )
                                 },
                             ),

@@ -65,13 +65,22 @@ data class AuthorReviewsRoute(val authorId: Int, val authorName: String) : Route
     )
 )
 
-data class PeriodGameBrowserRoute(val period: Period) : Route("games/$period") {
+object PeriodGameBrowserDestination : Destination("games/{period}") {
+    const val PERIOD_KEY = "period"
+
     enum class Period {
         ReviewedThisWeek,
         RecentlyReleased,
         UpcomingReleases,
     }
 }
+
+data class PeriodGameBrowserRoute(val period: PeriodGameBrowserDestination.Period) : Routed(
+    destination = PeriodGameBrowserDestination,
+    args = mapOf(
+        PeriodGameBrowserDestination.PERIOD_KEY to period.name
+    )
+)
 
 data class UrlRoute(val url: String) : Route(url)
 

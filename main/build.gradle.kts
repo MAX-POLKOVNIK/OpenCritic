@@ -33,6 +33,7 @@ kotlin {
             implementation(projects.gameDetails)
             implementation(projects.search)
             implementation(projects.gameBrowser)
+            implementation(projects.gameYour)
 
             implementation(projects.dashboard)
 

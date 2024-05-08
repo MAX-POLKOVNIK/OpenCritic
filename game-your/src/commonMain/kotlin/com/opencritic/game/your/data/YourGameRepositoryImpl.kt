@@ -72,13 +72,12 @@ internal class YourGameRepositoryImpl(
         )
 
     private fun YourGameEntity(model: YourGame): YourGameEntity =
-        YourGameEntity()
-            .apply {
-                id = model.id
-                name = model.name
-                isWanted = model.isWanted
-                isPlayed = model.isPlayed
-                isFavorite = model.isFavorite
-                isInterested = model.isInterested
-            }
+        YourGameEntity(
+            id = model.id,
+            name = model.name,
+            isWanted = model.isWanted,
+            isPlayed = model.isPlayed,
+            isFavorite = model.isFavorite,
+            isInterested = model.isInterested,
+        )
 }

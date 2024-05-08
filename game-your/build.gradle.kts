@@ -30,7 +30,6 @@ kotlin {
             implementation(projects.logs)
             implementation(projects.navigation)
             implementation(projects.database)
-            implementation(libs.realm)
 
             implementation(libs.kotlinx.coroutines.core)
             implementation(libs.koin.core)

@@ -1,14 +1,15 @@
 package com.opencritic.database
 
-import io.realm.kotlin.types.RealmObject
-import io.realm.kotlin.types.annotations.PrimaryKey
+import androidx.room.Entity
+import androidx.room.PrimaryKey
 
-class YourGameEntity : RealmObject {
+@Entity
+data class YourGameEntity(
     @PrimaryKey
-    var id: Long = 0
-    var name: String = ""
-    var isWanted: Boolean = false
-    var isPlayed: Boolean = false
-    var isFavorite: Boolean = false
-    var isInterested: Boolean = false
-}
+    val id: Long,
+    val name: String,
+    val isWanted: Boolean,
+    val isPlayed: Boolean,
+    val isFavorite: Boolean,
+    val isInterested: Boolean,
+)

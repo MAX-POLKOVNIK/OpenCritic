@@ -20,7 +20,9 @@ fun DashboardSublistListItem(
     item: DashboardSublistListItem,
     modifier: Modifier = Modifier,
 ) {
-    Column {
+    Column(
+        modifier = modifier,
+    ) {
         Text(
             text = item.titleText,
             fontWeight = FontWeight.Bold,

@@ -30,4 +30,9 @@ class AndroidImageResourceProvider : ImageResourceProvider {
     override val playstation: ImageResource = R.drawable.ic_playstation
 
     override val home: ImageResource = R.drawable.ic_home
+
+    override val googleLogoImage: ImageResource = R.drawable.google
+    override val facebookLogoImage: ImageResource = R.drawable.facebook
+    override val twitchLogoImage: ImageResource = R.drawable.twitch
+    override val steamLogoImage: ImageResource = R.drawable.steam
 }

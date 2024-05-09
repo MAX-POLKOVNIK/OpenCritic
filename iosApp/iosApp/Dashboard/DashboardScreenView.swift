@@ -19,9 +19,9 @@ struct DashboardScreenView: View {
             case let content as DashboardStateContent:
                 DashboardStateContentView(state: content)
             case let loading as DashboardStateLoading:
-                DashboardStateLoadingView(state: loading)
+                LoadingStateView(state: loading)
             case let error as DashboardStateError:
-                DashboardStateErrorView(state: error)
+                ErrorStateView(state: error)
             default: fatalError("Unknown state")
             }
         }

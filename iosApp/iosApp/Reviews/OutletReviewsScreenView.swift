@@ -18,9 +18,9 @@ struct OutletReviewsScreenView: View {
             case let content as OutletReviewsStateContent:
                 OutletReviewsStateContentView(state: content)
             case let loading as OutletReviewsStateLoading:
-                DashboardStateLoadingView(state: DashboardStateLoading.shared)
+                LoadingStateView(state: loading)
             case let error as OutletReviewsStateError:
-                DashboardStateErrorView(state: DashboardStateError(error: error.message))
+                ErrorStateView(state: error)
             default: fatalError("Unknown state")
             }
         }

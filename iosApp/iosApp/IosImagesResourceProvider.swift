@@ -38,4 +38,9 @@ class IosImagesResourceProvider : ImageResourceProvider {
     var home: String { "house.fill" }
     var playstation: String { "playstation.logo" }
     var xbox: String { "xbox.logo" }
+    
+    var facebookLogoImage: String { "facebook" }
+    var googleLogoImage: String { "google" }
+    var steamLogoImage: String { "steam" }
+    var twitchLogoImage: String { "twitch" }
 }

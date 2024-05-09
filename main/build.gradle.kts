@@ -27,6 +27,7 @@ kotlin {
             implementation(projects.search)
             implementation(projects.gameBrowser)
             implementation(projects.gameYour)
+            implementation(projects.auth)
 
             implementation(projects.dashboard)
 

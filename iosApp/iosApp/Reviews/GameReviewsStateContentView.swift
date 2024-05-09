@@ -95,7 +95,7 @@ struct GameReviewsStateContentView: View {
             }
             
             if state.isLoadingItemVisible {
-                DashboardStateLoadingView(state: DashboardStateLoading.shared)
+                LoadingItemView(item: state.loadingItem)
                     .onAppear {
                         state.loadMore()
                     }

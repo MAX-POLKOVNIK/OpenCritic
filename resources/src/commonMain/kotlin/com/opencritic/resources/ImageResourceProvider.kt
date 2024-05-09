@@ -29,4 +29,9 @@ interface ImageResourceProvider {
     val xbox: ImageResource
     val playstation: ImageResource
     val home: ImageResource
+
+    val googleLogoImage: ImageResource
+    val facebookLogoImage: ImageResource
+    val twitchLogoImage: ImageResource
+    val steamLogoImage: ImageResource
 }

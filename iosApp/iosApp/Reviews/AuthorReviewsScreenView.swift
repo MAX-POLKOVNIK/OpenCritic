@@ -18,9 +18,9 @@ struct AuthorReviewsScreenView: View {
             case let content as AuthorReviewsStateContent:
                 AuthorReviewsStateContentView(state: content)
             case let loading as AuthorReviewsStateLoading:
-                DashboardStateLoadingView(state: DashboardStateLoading.shared)
+                LoadingStateView(state: loading)
             case let error as AuthorReviewsStateError:
-                DashboardStateErrorView(state: DashboardStateError(error: error.message))
+                ErrorStateView(state: error)
             default: fatalError("Unknown state")
             }
         }

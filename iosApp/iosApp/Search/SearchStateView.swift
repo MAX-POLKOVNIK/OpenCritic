@@ -30,12 +30,12 @@ struct SearchStateView: View {
                         SearchListItemView(item: item)
                             .padding(.horizontal)
                     }
-                case _ as SearchItemsStateLoading:
-                    DashboardStateLoadingView(state: DashboardStateLoading.shared)
-                case let empty as SearchItemsStateEmpty:
-                    DashboardStateErrorView(state: DashboardStateError(error: empty.message))
+                case let loading as SearchItemsStateLoading:
+                    LoadingStateView(state: loading)
+//                case let empty as SearchItemsStateEmpty:
+//                    DashboardStateErrorView(state: DashboardStateError(error: empty.message))
                 case let error as SearchItemsStateError:
-                    DashboardStateErrorView(state: DashboardStateError(error: error.message))
+                    ErrorStateView(state: error)
                 default:
                     Spacer()
                 }

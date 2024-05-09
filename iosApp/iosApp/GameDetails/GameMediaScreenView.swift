@@ -18,9 +18,9 @@ struct GameMediaScreenView: View {
             case let content as GameMediaStateContent:
                 GameMediaStateContentView(state: content)
             case let loading as GameMediaStateLoading:
-                DashboardStateLoadingView(state: DashboardStateLoading.shared)
+                LoadingStateView(state: loading)
             case let error as GameMediaStateError:
-                DashboardStateErrorView(state: DashboardStateError(error: error.message))
+                ErrorStateView(state: error)
             default: fatalError("Unknown state")
             }
         }

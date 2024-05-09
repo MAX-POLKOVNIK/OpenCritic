@@ -29,6 +29,7 @@ import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.currentBackStackEntryAsState
+import com.opencritic.auth.ui.authComposeRoute
 import com.opencritic.dashboard.DashboardScreen
 import com.opencritic.game.browser.GameBrowserScreen
 import com.opencritic.game.browser.periodGameBrowserComposeRoute
@@ -135,6 +136,7 @@ fun MainState(state: MainState, navController: NavHostController) {
                 outletReviewsComposeRoute(navController)
                 authorReviewsComposeRoute(navController)
                 periodGameBrowserComposeRoute(navController)
+                authComposeRoute(navController)
             }
         }
     )

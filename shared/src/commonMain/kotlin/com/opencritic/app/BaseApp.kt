@@ -1,6 +1,7 @@
 package com.opencritic.app
 
 import com.opencritic.api.apiModule
+import com.opencritic.auth.di.authModule
 import com.opencritic.dashboard.di.dashboardModule
 import com.opencritic.database.databaseModule
 import com.opencritic.game.browser.di.gameBrowserModule
@@ -41,6 +42,7 @@ abstract class BaseApp : KoinComponent {
                 gameBrowserModule,
                 databaseModule,
                 yourGamesModule,
+                authModule,
             )
         }
 

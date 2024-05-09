@@ -18,9 +18,9 @@ struct PeriodGameBrowserScreenView: View {
             case let content as PeriodGameBrowserStateContent:
                 PeriodGameBrowserStateContentView(state: content)
             case let loading as PeriodGameBrowserStateLoading:
-                DashboardStateLoadingView(state: DashboardStateLoading.shared)
+                LoadingStateView(state: loading)
             case let error as PeriodGameBrowserStateError:
-                DashboardStateErrorView(state: DashboardStateError(error: error.message))
+                ErrorStateView(state: error)
             default: fatalError("Unknown state")
             }
         }

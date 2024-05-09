@@ -75,4 +75,5 @@
     <string name="who_is_mighty_man">Who is "Mighty Man"?</string>
     <string name="who_is_mighty_man_color_description">The color scheme comes from video games, where "orange" loot is often best, with purple, blue, and green tiered loot following.</string>
     <string name="who_is_mighty_man_description">"Mighty Man" is OpenCritic\'s way of tagging games based on the scores awarded to them by top critics.</string>
+    <string name="str_sign_in_title">Sign in</string>
 </resources>

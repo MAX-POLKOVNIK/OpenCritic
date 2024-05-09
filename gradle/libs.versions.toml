@@ -30,6 +30,7 @@ compose-foundation = { module = "androidx.compose.foundation:foundation", versio
 compose-navigation-compose = { module = "androidx.navigation:navigation-compose", version.ref = "nav_version" }
 compose-material3 = { module = "androidx.compose.material3:material3", version.ref = "compose-material3" }
 ktor-client-core = { module = "io.ktor:ktor-client-core", version.ref = "ktor" }
+ktor-client-cio = { module = "io.ktor:ktor-client-cio", version.ref = "ktor" }
 ktor-client-okhttp = { module = "io.ktor:ktor-client-okhttp", version.ref = "ktor" }
 ktor-client-darwin = { module = "io.ktor:ktor-client-darwin", version.ref = "ktor" }
 ktor-client-json = { module = "io.ktor:ktor-serialization-kotlinx-json", version.ref = "ktor" }

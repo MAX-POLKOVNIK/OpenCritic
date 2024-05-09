@@ -75,3 +75,5 @@ dependencies {
     implementation(libs.compose.navigation.compose)
     debugImplementation(libs.compose.ui.tooling)
 }
+
+task("testClasses")

@@ -4,8 +4,8 @@
     "?" : {
 
     },
-    "Loading..." : {
-
+    "Key" : {
+      "extractionState" : "manual"
     },
     "str_all_platforms" : {
       "extractionState" : "manual",
@@ -443,6 +443,17 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Type something"
+          }
+        }
+      }
+    },
+    "str_sign_in_title" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Sign in"
           }
         }
       }

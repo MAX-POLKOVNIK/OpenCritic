@@ -48,9 +48,9 @@ fun ErrorBox(
 
             )
 
-            if (state.action != null) {
+            if (state.actionText != null) {
                 Button(
-                    onClick = { state.action.invoke() }
+                    onClick = { state.action?.invoke() }
                 ) {
                     Text(text = "DO SOMETHING!")
                 }

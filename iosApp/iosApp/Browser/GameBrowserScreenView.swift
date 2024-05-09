@@ -18,9 +18,9 @@ struct GameBrowserScreenView: View {
             case let content as GameBrowserStateContent:
                 GameBrowserStateContentView(state: content)
             case let loading as GameBrowserStateLoading:
-                DashboardStateLoadingView(state: DashboardStateLoading.shared)
+                LoadingStateView(state: loading)
             case let error as GameBrowserStateError:
-                DashboardStateErrorView(state: DashboardStateError(error: error.message))
+                ErrorStateView(state: error)
             default: fatalError("Unknown state")
             }
         }

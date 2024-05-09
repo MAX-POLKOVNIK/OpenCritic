@@ -112,6 +112,8 @@ class IosStringProvider : StringProvider {
     var timeframeLast90Days: String { string("str_timeframe_last_90_days") }
     var timeframeUpcoming: String { string("str_timeframe_upcoming") }
     
+    var signInTitle: String { string("str_sign_in_title") }
+    
     private func string(_ stringResource: String, args: [String] = []) -> String {
         String(format: NSLocalizedString(stringResource, comment: stringResource), args.map { $0 as CVarArg })
     }

@@ -110,4 +110,6 @@ class AndroidStringProvider(
     override val timeframeAllTime: String get() = string(R.string.str_timeframe_all_time)
     override val timeframeLast90Days: String get() = string(R.string.str_timeframe_last_90_days)
     override val timeframeUpcoming: String get() = string(R.string.str_timeframe_upcoming)
+
+    override val signInTitle: String get() = string(R.string.str_sign_in_title)
 }

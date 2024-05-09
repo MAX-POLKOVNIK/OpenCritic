@@ -18,9 +18,9 @@ struct GameDetailsScreenView: View {
             case let content as GameDetailsStateContent:
                 GameDetailsStateContentView(state: content)
             case let loading as GameDetailsStateLoading:
-                DashboardStateLoadingView(state: DashboardStateLoading.shared)
+                LoadingStateView(state: loading)
             case let error as GameDetailsStateError:
-                DashboardStateErrorView(state: DashboardStateError(error: error.message))
+                ErrorStateView(state: error)
             default: fatalError("Unknown state: \(state)")
             }
         }

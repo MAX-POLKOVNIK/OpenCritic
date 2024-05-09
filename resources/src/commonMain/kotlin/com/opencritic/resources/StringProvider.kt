@@ -101,4 +101,6 @@ interface StringProvider {
     val platform: String
     val allPlatforms: String
     val timeframe: String
+
+    val signInTitle: String
 }

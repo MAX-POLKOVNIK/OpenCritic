@@ -59,3 +59,5 @@ android {
         targetCompatibility = JavaVersion.VERSION_1_8
     }
 }
+
+task("testClasses")

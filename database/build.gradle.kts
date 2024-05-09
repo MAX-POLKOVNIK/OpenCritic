@@ -59,3 +59,5 @@ dependencies {
 room {
     schemaDirectory("$projectDir/schemas")
 }
+
+task("testClasses")

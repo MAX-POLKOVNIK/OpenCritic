@@ -28,10 +28,6 @@ struct MainStateView: View {
         gameBrowserViewModel.setRouter(router: router)
         yourGameListViewModel.setRouter(router: router)
         
-        state.tabs.forEach { t in
-            print(t)
-        }
-        
         return VStack {
             TabView(selection: $activeTab) {
                 ForEach(state.tabs, id: \.self) { tab in

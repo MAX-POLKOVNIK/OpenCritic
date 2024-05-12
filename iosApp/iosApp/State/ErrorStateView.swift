@@ -13,19 +13,21 @@ struct ErrorStateView: View {
     let state: BaseErrorState
     
     var body: some View {
-        Image(systemName: "exclamationmark.triangle.fill")
-            .resizable()
-            .aspectRatio(contentMode: .fit)
-            .foregroundColor(.red)
-            .frame(width: 56, height: 56)
-        
-        
-        Text(state.message)
-            .padding(.horizontal)
-        
-        if let actionText = state.actionText, let action = state.action {
-            Button(actionText, action: action)
-                .padding()
+        VStack {
+            Image(systemName: "exclamationmark.triangle.fill")
+                .resizable()
+                .aspectRatio(contentMode: .fit)
+                .foregroundColor(.red)
+                .frame(width: 56, height: 56)
+            
+            
+            Text(state.message)
+                .padding(.horizontal)
+            
+            if let actionText = state.actionText, let action = state.action {
+                Button(actionText, action: action)
+                    .padding()
+            }
         }
     }
 }

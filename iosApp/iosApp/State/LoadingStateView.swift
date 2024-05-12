@@ -13,9 +13,11 @@ struct LoadingStateView: View {
     let state: BaseLoadingState
     
     var body: some View {
-        ProgressView()
-            .padding(.vertical)
-        Text(state.text)
+        VStack {
+            ProgressView()
+                .padding(.vertical)
+            Text(state.text)
+        }
     }
 }
 

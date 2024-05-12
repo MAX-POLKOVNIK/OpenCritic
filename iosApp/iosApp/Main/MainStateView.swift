@@ -28,10 +28,14 @@ struct MainStateView: View {
         gameBrowserViewModel.setRouter(router: router)
         yourGameListViewModel.setRouter(router: router)
         
+        state.tabs.forEach { t in
+            print(t)
+        }
+        
         return VStack {
             TabView(selection: $activeTab) {
                 ForEach(state.tabs, id: \.self) { tab in
-                    if tab.id.destination.path == TabType.main.destination.path {
+                    if tab.id == TabType.main {
                         DashboardScreenView(viewModel: dashboardViewModel)
                             .tabItem {
                                 Label(tab.name, systemImage: tab.imageResource)

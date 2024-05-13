@@ -14,10 +14,12 @@ class GameMediaViewModel(
     private val stringProvider: StringProvider,
     private val logger: Logger,
 ) : BaseViewModel<GameMediaState>() {
-    override val initialState: GameMediaState =
+    override fun initialState(): GameMediaState =
         GameMediaState.Loading(stringProvider.gameScreenshotsAndTrailers(gameName))
 
-    init {
+    override fun onStateInit() {
+        super.onStateInit()
+
         scope.launch {
             getGameMediaInteractor(gameId)
                 .onFailure {

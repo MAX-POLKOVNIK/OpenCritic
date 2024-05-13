@@ -30,12 +30,13 @@ class GameDetailsViewModel(
     private val dateFormatter: DateFormatter,
     private val logger: Logger,
 ) : BaseViewModel<GameDetailsState>() {
-    override val initialState: GameDetailsState
-        get() = GameDetailsState.Loading(gameName)
+    override fun initialState(): GameDetailsState = GameDetailsState.Loading(gameName)
 
     private var yourGame: YourGame? = null
 
-    init {
+    override fun onStateInit() {
+        super.onStateInit()
+
         scope.launch {
             getGameDetailsInteractor(gameId)
                 .onFailure {

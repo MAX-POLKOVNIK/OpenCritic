@@ -10,6 +10,7 @@ import com.opencritic.navigation.UrlRoute
 import com.opencritic.resources.DateFormatter
 import com.opencritic.resources.ImageResourceProvider
 import com.opencritic.resources.StringProvider
+import kotlinx.coroutines.flow.update
 import kotlinx.coroutines.launch
 import kotlinx.datetime.Clock
 import kotlinx.datetime.TimeZone
@@ -23,24 +24,27 @@ class DashboardViewModel(
     private val logger: Logger,
 ) : BaseViewModel<DashboardState>() {
 
-    override val initialState: DashboardState =
+    override fun initialState(): DashboardState =
         DashboardState.Loading
 
-    init {
+    override fun onStateInit() {
+        super.onStateInit()
+
         scope.launch {
             val currentYear = Clock.System.now()
                 .toLocalDateTime(timeZone = TimeZone.UTC)
                 .year
 
             getDashboardInteractor(currentYear)
-                .onFailure {
-                    mutableState.tryEmit(
-                        DashboardState.Error(it.toString())
-                    )
-                    logger.log("Get dashboard error: $it")
+                .onFailure { error ->
+                    mutableState.update {
+                        DashboardState.Error(error.toString())
+                    }
+
+                    logger.log("Get dashboard error: $error")
                 }
                 .onSuccess { dashboard ->
-                    mutableState.tryEmit(
+                    mutableState.update {
                         DashboardState.Content(
                             popularGamesTitle = DashboardTitleListItem(
                                 stringProvider.popularGames,
@@ -145,7 +149,7 @@ class DashboardViewModel(
                                 onClick = { navigateToGame(it.id, it.nameText) }
                             ),
                         )
-                    )
+                    }
                 }
         }
     }

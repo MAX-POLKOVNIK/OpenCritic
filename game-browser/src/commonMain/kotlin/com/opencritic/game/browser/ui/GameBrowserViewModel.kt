@@ -15,6 +15,7 @@ import com.opencritic.navigation.GameDetailsRoute
 import com.opencritic.resources.DateFormatter
 import com.opencritic.resources.ImageResourceProvider
 import com.opencritic.resources.StringProvider
+import kotlinx.coroutines.flow.update
 import kotlinx.coroutines.launch
 
 class GameBrowserViewModel(
@@ -25,7 +26,7 @@ class GameBrowserViewModel(
     private val dateFormatter: DateFormatter,
     private val logger: Logger,
 ) : BaseViewModel<GameBrowserState>() {
-    override val initialState: GameBrowserState =
+    override fun initialState(): GameBrowserState =
         GameBrowserState.Loading
 
     private var platforms: List<Platform>? = null
@@ -34,20 +35,22 @@ class GameBrowserViewModel(
     private var timeframe: GameTimeframe = GameTimeframe.AllTIme
     private var platform: Platform? = null
 
-    init {
+    override fun onStateInit() {
+        super.onStateInit()
+
         scope.launch {
             getPlatformsInteractor()
                 .onFailure {
-                    mutableState.tryEmit(
+                    mutableState.update {
                         GameBrowserState.Error(it.toString())
-                    )
+                    }
                 }
-                .onSuccess {
-                    mutableState.tryEmit(
-                        createContentState(it)
-                    )
+                .onSuccess { platforms ->
+                    mutableState.update {
+                        createContentState(platforms)
+                    }
 
-                    platforms = it
+                    this@GameBrowserViewModel.platforms = platforms
                 }
 
             if (platforms != null) {
@@ -70,8 +73,8 @@ class GameBrowserViewModel(
                                     isLoadingItemVisible = games.isNotEmpty()
                                 )
                             }
-                            .let {
-                                mutableState.tryEmit(it)
+                            .let { content ->
+                                mutableState.update { content }
                             }
 
                         canLoadMore = games.isNotEmpty()

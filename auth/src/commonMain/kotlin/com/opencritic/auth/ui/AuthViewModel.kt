@@ -18,7 +18,7 @@ class AuthViewModel(
     private val imageResourceProvider: ImageResourceProvider,
     private val stringProvider: StringProvider,
 ) : BaseViewModel<AuthState>() {
-    override val initialState: AuthState =
+    override fun initialState(): AuthState =
         AuthState.MethodList(
             titleText = stringProvider.signInTitle,
             items = AuthMethod.entries
@@ -55,7 +55,7 @@ class AuthViewModel(
                                 titleText = stringProvider.signInTitle,
                                 message = it.toString(),
                                 action = {
-                                    mutableState.tryEmit(initialState)
+                                    mutableState.tryEmit(initialState())
                                 }
                             )
                         )

@@ -13,6 +13,7 @@ import com.opencritic.navigation.UrlRoute
 import com.opencritic.resources.DateFormatter
 import com.opencritic.resources.ImageResourceProvider
 import com.opencritic.resources.StringProvider
+import kotlinx.coroutines.flow.update
 import kotlinx.coroutines.launch
 
 class AuthorReviewsViewModel(
@@ -25,27 +26,32 @@ class AuthorReviewsViewModel(
     private val dateFormatter: DateFormatter,
     private val logger: Logger,
 ) : BaseViewModel<AuthorReviewsState>() {
-    override val initialState: AuthorReviewsState =
+    override fun initialState(): AuthorReviewsState =
         AuthorReviewsState.Loading(stringProvider.reviewsOf(authorName))
 
     private var author: Author? = null
     private var canLoadMore: Boolean = true
     private var sorting: ReviewSorting = ReviewSorting.Default
 
-    init {
+    override fun onStateInit() {
+        super.onStateInit()
+
         scope.launch {
             getAuthorInteractor(authorId)
                 .onFailure {
-                    mutableState.tryEmit(
-                        AuthorReviewsState.Error(stringProvider.reviewsOf(authorName), it.toString())
-                    )
+                    mutableState.update {
+                        AuthorReviewsState.Error(
+                            stringProvider.reviewsOf(authorName),
+                            it.toString()
+                        )
+                    }
                 }
-                .onSuccess {
-                    mutableState.tryEmit(
-                        createContentState(it)
-                    )
+                .onSuccess { author ->
+                    mutableState.update {
+                        createContentState(author)
+                    }
 
-                    author = it
+                    this@AuthorReviewsViewModel.author = author
                 }
 
             if (author != null) {
@@ -63,8 +69,8 @@ class AuthorReviewsViewModel(
                                     isLoadingItemVisible = content.reviewItems.size + reviews.size < (author?.reviewCount ?: 0)
                                 )
                             }
-                            .let {
-                                mutableState.tryEmit(it)
+                            .let { content ->
+                                mutableState.update { content }
                             }
 
                         canLoadMore = reviews.isNotEmpty()
@@ -147,8 +153,8 @@ class AuthorReviewsViewModel(
                             ReviewListItem(review)
                         },
                         isLoadingItemVisible = state.reviewItems.size + reviews.size < (author?.reviewCount ?: 0)
-                    ).let {
-                        mutableState.tryEmit(it)
+                    ).let { content ->
+                        mutableState.update { content }
                     }
                 }
         }

@@ -29,7 +29,7 @@ class SearchViewModel(
     private val searchInteractor: SearchInteractor,
     private val stringProvider: StringProvider,
 ) : BaseViewModel<SearchState>() {
-    override val initialState: SearchState =
+    override fun initialState(): SearchState =
         SearchState(
             searchText = "",
             searchHint = stringProvider.searchHint,
@@ -44,7 +44,7 @@ class SearchViewModel(
                 .filter {
                     when {
                         it.isBlank() -> {
-                            mutableState.tryEmit(initialState)
+                            mutableState.tryEmit(initialState())
 
                             false
                         }

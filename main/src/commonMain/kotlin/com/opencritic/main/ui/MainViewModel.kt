@@ -5,10 +5,10 @@ import com.opencritic.resources.ImageResourceProvider
 import com.opencritic.resources.StringProvider
 
 class MainViewModel(
-    stringProvider: StringProvider,
-    imageResourceProvider: ImageResourceProvider,
+    private val stringProvider: StringProvider,
+    private val imageResourceProvider: ImageResourceProvider,
 ) : BaseViewModel<MainState>() {
-    override val initialState: MainState =
+    override fun initialState(): MainState =
         MainState(
             tabs = listOf(
                 Tab(

@@ -27,14 +27,16 @@ class GameReviewsViewModel(
     private val dateFormatter: DateFormatter,
     private val logger: Logger,
 ) : BaseViewModel<GameReviewsState>() {
-    override val initialState: GameReviewsState
-        get() = GameReviewsState.Loading("$gameName ${stringProvider.reviews}")
+    override fun initialState(): GameReviewsState =
+        GameReviewsState.Loading("$gameName ${stringProvider.reviews}")
 
     private var game: Game? = null
     private var canLoadMore: Boolean = true
     private var sorting: ReviewSorting = ReviewSorting.Default
 
-    init {
+    override fun onStateInit() {
+        super.onStateInit()
+
         scope.launch {
             getGameInteractor(gameId)
                 .onFailure {

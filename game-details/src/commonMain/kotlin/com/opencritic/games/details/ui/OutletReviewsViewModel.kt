@@ -26,14 +26,16 @@ class OutletReviewsViewModel(
     private val dateFormatter: DateFormatter,
     private val logger: Logger,
 ) : BaseViewModel<OutletReviewsState>() {
-    override val initialState: OutletReviewsState =
+    override fun initialState(): OutletReviewsState =
         OutletReviewsState.Loading(stringProvider.reviewsOf(outletName))
 
     private var outlet: Outlet? = null
     private var canLoadMore: Boolean = true
     private var sorting: ReviewSorting = ReviewSorting.Default
 
-    init {
+    override fun onStateInit() {
+        super.onStateInit()
+
         scope.launch {
             getOutletInteractor(outletId)
                 .onFailure {

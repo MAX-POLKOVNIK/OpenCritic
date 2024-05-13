@@ -58,7 +58,7 @@ dependencies {
     implementation(libs.koin.compose)
     implementation(libs.coil)
 
-    implementation(libs.androidx.lifecycle.runtime.ktx)
+    implementation(libs.androidx.lifecycle.runtime.compose)
     implementation(libs.androidx.lifecycle.viewmodel.ktx)
     implementation(libs.compose.ui)
     implementation(libs.compose.ui.tooling.preview)

@@ -14,6 +14,7 @@ import com.opencritic.navigation.PeriodGameBrowserDestination
 import com.opencritic.resources.DateFormatter
 import com.opencritic.resources.ImageResourceProvider
 import com.opencritic.resources.StringProvider
+import kotlinx.coroutines.flow.update
 import kotlinx.coroutines.launch
 
 class PeriodGameBrowserViewModel(
@@ -25,12 +26,14 @@ class PeriodGameBrowserViewModel(
     private val dateFormatter: DateFormatter,
     private val logger: Logger,
 ) : BaseViewModel<PeriodGameBrowserState>() {
-    override val initialState: PeriodGameBrowserState =
+    override fun initialState(): PeriodGameBrowserState =
         PeriodGameBrowserState.Loading(titleFor(period))
 
     private var canLoadMore: Boolean = period != PeriodGameBrowserDestination.Period.ReviewedThisWeek
 
-    init {
+    override fun onStateInit() {
+        super.onStateInit()
+
         scope.launch {
             when (period) {
                 PeriodGameBrowserDestination.Period.ReviewedThisWeek ->
@@ -63,8 +66,8 @@ class PeriodGameBrowserViewModel(
                                 isLoadingItemVisible = games.isNotEmpty() && period != PeriodGameBrowserDestination.Period.ReviewedThisWeek
                             )
                         }
-                        .let {
-                            mutableState.tryEmit(it)
+                        .let { content ->
+                            mutableState.update { content }
                         }
 
                     canLoadMore = games.isNotEmpty()

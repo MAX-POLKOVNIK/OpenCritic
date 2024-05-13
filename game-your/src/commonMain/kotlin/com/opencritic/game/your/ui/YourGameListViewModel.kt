@@ -19,7 +19,7 @@ class YourGameListViewModel(
 
     private var selectedFilter: YourGameFilter = YourGameFilter.All
 
-    override val initialState: YourGameListState =
+    override fun initialState(): YourGameListState =
         YourGameListState(
             filtersTitleText = "Filters",
             selectedFilterItem = YourGameFilterItem(selectedFilter, selectedFilter.name),
@@ -29,7 +29,9 @@ class YourGameListViewModel(
             refresh = { loadGames() }
         )
 
-    init {
+    override fun onStateInit() {
+        super.onStateInit()
+
         loadGames()
     }
 

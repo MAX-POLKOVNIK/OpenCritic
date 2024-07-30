@@ -10,7 +10,7 @@ import SwiftUI
 import shared
 
 struct DashboardStateContentView: View {
-    let state: DashboardStateContent
+    let state: DashboardContent
     
     var body: some View {
         ScrollView(.vertical) {
@@ -59,7 +59,7 @@ struct DashboardStateContentView: View {
 
 #Preview {
     DashboardStateContentView(
-        state: DashboardStateContent(
+        state: DashboardContent(
             popularGamesTitle:
                 DashboardTitleListItem(
                     title: "Hello",

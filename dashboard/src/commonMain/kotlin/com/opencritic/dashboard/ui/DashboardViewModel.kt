@@ -10,6 +10,9 @@ import com.opencritic.navigation.UrlRoute
 import com.opencritic.resources.DateFormatter
 import com.opencritic.resources.ImageResourceProvider
 import com.opencritic.resources.StringProvider
+import com.opencritic.resources.StringRes
+import com.opencritic.resources.getFormattedString
+import com.opencritic.resources.getString
 import kotlinx.coroutines.flow.update
 import kotlinx.coroutines.launch
 import kotlinx.datetime.Clock
@@ -47,8 +50,8 @@ class DashboardViewModel(
                     mutableState.update {
                         DashboardState.Content(
                             popularGamesTitle = DashboardTitleListItem(
-                                stringProvider.popularGames,
-                                stringProvider.popularGamesDescription,
+                                stringProvider.getString(StringRes.str_popular_games),
+                                stringProvider.getString(StringRes.str_popular_games_description),
                             ),
                             popularGames = DashboardPosterGamesHorizontalListItem(
                                 dashboard.popularGames,
@@ -57,8 +60,8 @@ class DashboardViewModel(
                                 navigateToGame(it.id, it.nameText)
                             },
                             dealsTitle = DashboardTitleListItem(
-                                stringProvider.featuredDeals,
-                                stringProvider.featuredDealsDescription,
+                                stringProvider.getString(StringRes.str_featured_deals),
+                                stringProvider.getString(StringRes.str_featured_deals_description),
                             ),
                             deals = DashboardDealsHorizontalListItem(
                                 deals = dashboard.deals,
@@ -109,8 +112,8 @@ class DashboardViewModel(
                                 },
                             ),
                             hallOfFameTitle = DashboardTitleListItem(
-                                title = stringProvider.hallOfFameFormatted(currentYear.toString()),
-                                subtitle = stringProvider.hallOfFameDescriptionFormatted(currentYear.toString())
+                                title = stringProvider.getFormattedString(StringRes.str_hall_of_fame, currentYear.toString()),
+                                subtitle = stringProvider.getFormattedString(StringRes.str_hall_of_fame_description, currentYear.toString())
                             ),
                             hallOfFame = DashboardPosterGamesHorizontalListItem(
                                 popularGames = dashboard.hallOfFame,

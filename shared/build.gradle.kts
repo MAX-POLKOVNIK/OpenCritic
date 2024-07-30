@@ -1,6 +1,7 @@
 plugins {
     alias(libs.plugins.kotlinMultiplatform)
     alias(libs.plugins.androidLibrary)
+    alias(libs.plugins.moko.resources)
 }
 
 kotlin {
@@ -27,6 +28,8 @@ kotlin {
         projects.database,
         projects.gameYour,
         projects.auth,
+        libs.moko.resources,
+        libs.moko.graphics,
     )
 
     listOf(
@@ -36,7 +39,7 @@ kotlin {
     ).forEach {
         it.binaries.framework {
             baseName = "shared"
-            isStatic = true
+            isStatic = false
             toExport.forEach { dep ->
                 export(dep)
             }
@@ -67,6 +70,10 @@ android {
         sourceCompatibility = JavaVersion.VERSION_1_8
         targetCompatibility = JavaVersion.VERSION_1_8
     }
+}
+
+multiplatformResources {
+    resourcesPackage.set("com.opencritic.resources") // required
 }
 
 task("testClasses")

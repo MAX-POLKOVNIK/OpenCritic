@@ -15,6 +15,9 @@ import com.opencritic.navigation.UrlRoute
 import com.opencritic.resources.DateFormatter
 import com.opencritic.resources.ImageResourceProvider
 import com.opencritic.resources.StringProvider
+import com.opencritic.resources.StringRes
+import com.opencritic.resources.getFormattedString
+import com.opencritic.resources.getString
 import kotlinx.coroutines.launch
 
 class GameReviewsViewModel(
@@ -28,7 +31,7 @@ class GameReviewsViewModel(
     private val logger: Logger,
 ) : BaseViewModel<GameReviewsState>() {
     override fun initialState(): GameReviewsState =
-        GameReviewsState.Loading("$gameName ${stringProvider.reviews}")
+        GameReviewsState.Loading("$gameName ${stringProvider.getString(StringRes.str_reviews)}")
 
     private var game: Game? = null
     private var canLoadMore: Boolean = true
@@ -42,7 +45,7 @@ class GameReviewsViewModel(
                 .onFailure {
                     mutableState.tryEmit(
                         GameReviewsState.Error(
-                            titleText = "$gameName ${stringProvider.reviews}",
+                            titleText = "$gameName ${stringProvider.getString(StringRes.str_reviews)}",
                             message = it.toString()
                         )
                     )
@@ -98,7 +101,7 @@ class GameReviewsViewModel(
         imageResourceProvider: ImageResourceProvider,
     ): GameReviewsState.Content =
         GameReviewsState.Content(
-            titleText = "${game.name} ${stringProvider.reviews}",
+            titleText = "${game.name} ${stringProvider.getString(StringRes.str_reviews)}",
             imageUrl = game.bannerImageUrl,
             isTierVisible = game.rank != null,
             tierImageResource = when (game.rank?.tier) {
@@ -117,8 +120,8 @@ class GameReviewsViewModel(
                 game.rank?.tier ?: Tier.Weak, game.recommendPercent ?: 0
             ),
             isRankedDescriptionVisible = game.recommendPercent != null,
-            rankedDescription = stringProvider.gameReviewRankedDescription(game.name, (game.recommendPercent ?: 0).toString()),
-            sortTitleText = stringProvider.sort,
+            rankedDescription = stringProvider.getFormattedString(StringRes.str_game_review_ranked_description, game.name, (game.recommendPercent ?: 0).toString()),
+            sortTitleText = stringProvider.getString(StringRes.str_sort),
             sortText = ReviewSortItem(
                 key = ReviewSorting.Default, name = stringProvider.sortNameOf(ReviewSorting.Default)
             ),

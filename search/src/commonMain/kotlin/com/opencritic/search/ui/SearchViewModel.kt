@@ -4,7 +4,9 @@ import com.opencritic.mvvm.BaseViewModel
 import com.opencritic.navigation.AuthorReviewsRoute
 import com.opencritic.navigation.GameDetailsRoute
 import com.opencritic.navigation.OutletReviewsRoute
+import com.opencritic.resources.MR
 import com.opencritic.resources.StringProvider
+import com.opencritic.resources.getString
 import com.opencritic.search.domain.SearchInteractor
 import com.opencritic.search.domain.SearchItem
 import com.opencritic.search.domain.SearchItemKind
@@ -32,8 +34,8 @@ class SearchViewModel(
     override fun initialState(): SearchState =
         SearchState(
             searchText = "",
-            searchHint = stringProvider.searchHint,
-            searchListItemsState = SearchItemsState.Empty(stringProvider.searchHint),
+            searchHint = stringProvider.getString(MR.strings.str_search_hint),
+            searchListItemsState = SearchItemsState.Empty(stringProvider.getString(MR.strings.str_search_hint)),
             onSearchChanged = { _, criteria -> criteriaFlow.tryEmit(criteria) }
         )
 
@@ -63,7 +65,7 @@ class SearchViewModel(
                     mutableState.tryEmit(
                         SearchState(
                             searchText = state.value.searchText,
-                            searchHint = stringProvider.searchHint,
+                            searchHint = stringProvider.getString(MR.strings.str_search_hint),
                             onSearchChanged = { _, c -> onCriteriaChanged(c) },
                             searchListItemsState = SearchItemsState.Error(it.toString())
                         )
@@ -73,7 +75,7 @@ class SearchViewModel(
                     mutableState.tryEmit(
                         SearchState(
                             searchText = state.value.searchText,
-                            searchHint = stringProvider.searchHint,
+                            searchHint = stringProvider.getString(MR.strings.str_search_hint),
                             onSearchChanged = { _, c -> onCriteriaChanged(c) },
                             searchListItemsState = SearchItemsState.Content(
                                 result.map { item ->

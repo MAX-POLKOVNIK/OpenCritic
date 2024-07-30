@@ -3,6 +3,8 @@ package com.opencritic.games.details.ui
 import com.opencritic.games.Review
 import com.opencritic.resources.DateFormatter
 import com.opencritic.resources.StringProvider
+import com.opencritic.resources.StringRes
+import com.opencritic.resources.getString
 import kotlinx.datetime.TimeZone
 import kotlinx.datetime.toLocalDateTime
 
@@ -57,7 +59,7 @@ fun ReviewListItem(
         score = ReviewScoreDisplayItem(review.score, review.scoreFormat),
         dateText = dateFormatter.format(review.publishedDate.toLocalDateTime(TimeZone.UTC).date),
         snippetText = review.snippet,
-        readFullReviewText = stringProvider.readFullReview,
+        readFullReviewText = stringProvider.getString(StringRes.str_read_full_review),
         isGameVisible = isGameVisible,
         gameText = review.gameName,
         onClick = onClick,

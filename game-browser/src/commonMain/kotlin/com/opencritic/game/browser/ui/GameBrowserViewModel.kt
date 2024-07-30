@@ -15,6 +15,8 @@ import com.opencritic.navigation.GameDetailsRoute
 import com.opencritic.resources.DateFormatter
 import com.opencritic.resources.ImageResourceProvider
 import com.opencritic.resources.StringProvider
+import com.opencritic.resources.StringRes
+import com.opencritic.resources.getString
 import kotlinx.coroutines.flow.update
 import kotlinx.coroutines.launch
 
@@ -87,21 +89,21 @@ class GameBrowserViewModel(
         platforms: List<Platform>,
     ): GameBrowserState.Content =
         GameBrowserState.Content(
-            sortTitleText = stringProvider.sort,
+            sortTitleText = stringProvider.getString(StringRes.str_sort),
             sortText = GameSortItem(sorting, stringProvider.sortNameOf(sorting)),
             sortItems = GameSorting.entries
                 .map { GameSortItem(it, stringProvider.sortNameOf(it)) },
-            platformTitleText = stringProvider.platform,
+            platformTitleText = stringProvider.getString(StringRes.str_platform),
             platformText = PlatformItem(
                 key = platform,
-                text = if (platform == null) stringProvider.allPlatforms
+                text = if (platform == null) stringProvider.getString(StringRes.str_all_platforms)
                        else requireNotNull(platform).name
             ),
             platformsItems = listOf(
-                PlatformItem(key = null, stringProvider.allPlatforms),
+                PlatformItem(key = null, stringProvider.getString(StringRes.str_all_platforms)),
                 *platforms.map { PlatformItem(it, it.name) }.toTypedArray()
             ),
-            timeframeTitleText = stringProvider.timeframe,
+            timeframeTitleText = stringProvider.getString(StringRes.str_timeframe),
             timeframeText = TimeframeItem(timeframe, stringProvider.timeframeNameOf(timeframe)),
             timeframeItems = GameTimeframe.entries
                 .map { TimeframeItem(it, stringProvider.timeframeNameOf(it)) },

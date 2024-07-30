@@ -8,7 +8,9 @@ import com.opencritic.logs.Logger
 import com.opencritic.logs.log
 import com.opencritic.mvvm.BaseViewModel
 import com.opencritic.resources.ImageResourceProvider
+import com.opencritic.resources.MR
 import com.opencritic.resources.StringProvider
+import com.opencritic.resources.getString
 import kotlinx.coroutines.launch
 
 class AuthViewModel(
@@ -20,7 +22,7 @@ class AuthViewModel(
 ) : BaseViewModel<AuthState>() {
     override fun initialState(): AuthState =
         AuthState.MethodList(
-            titleText = stringProvider.signInTitle,
+            titleText = stringProvider.getString(MR.strings.str_sign_in_title),
             items = AuthMethod.entries
                 .map { method ->
                     AuthMethodItem(
@@ -42,7 +44,7 @@ class AuthViewModel(
         if (!isAllowed) {
             scope.launch {
                 mutableState.tryEmit(
-                    AuthState.Loading(stringProvider.signInTitle)
+                    AuthState.Loading(stringProvider.getString(MR.strings.str_sign_in_title))
                 )
 
                 authByCallbackInteractor(url)
@@ -52,7 +54,7 @@ class AuthViewModel(
                     .onFailure {
                         mutableState.tryEmit(
                             AuthState.Error(
-                                titleText = stringProvider.signInTitle,
+                                titleText = stringProvider.getString(MR.strings.str_sign_in_title),
                                 message = it.toString(),
                                 action = {
                                     mutableState.tryEmit(initialState())
@@ -70,7 +72,7 @@ class AuthViewModel(
     private fun onMethodSelected(method: AuthMethod) =
         mutableState.tryEmit(
             AuthState.WebView(
-                titleText = stringProvider.signInTitle,
+                titleText = stringProvider.getString(MR.strings.str_sign_in_title),
                 url = method.url,
                 authUserAgent = AuthUserAgent,
                 redirectHandler = ::onUrlRedirect

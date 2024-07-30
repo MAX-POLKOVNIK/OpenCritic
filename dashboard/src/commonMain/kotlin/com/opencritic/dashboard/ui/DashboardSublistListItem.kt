@@ -5,6 +5,8 @@ import com.opencritic.mvvm.ListItem
 import com.opencritic.resources.DateFormatter
 import com.opencritic.resources.ImageResourceProvider
 import com.opencritic.resources.StringProvider
+import com.opencritic.resources.StringRes
+import com.opencritic.resources.getString
 
 data class DashboardSublistListItem(
     override val id: Type,
@@ -34,11 +36,11 @@ data class DashboardSublistListItem(
         ): DashboardSublistListItem =
             DashboardSublistListItem(
                 id = Type.RecentlyReleased,
-                titleText = stringProvider.recentlyReleased,
+                titleText = stringProvider.getString(StringRes.str_recently_released),
                 items = gameItems.map {
                     DashboardGameListItem(it, imageResourceProvider, dateFormatter, onItemClick)
                 },
-                viewMoreText = stringProvider.viewMore,
+                viewMoreText = stringProvider.getString(StringRes.str_view_more),
                 onMoreClick = onMoreClick,
             )
 
@@ -52,11 +54,11 @@ data class DashboardSublistListItem(
         ): DashboardSublistListItem =
             DashboardSublistListItem(
                 id = Type.UpcomingReleases,
-                titleText = stringProvider.upcomingReleases,
+                titleText = stringProvider.getString(StringRes.str_upcoming_releases),
                 items = gameItems.map {
                     DashboardGameListItem(it, imageResourceProvider, dateFormatter, onItemClick)
                 },
-                viewMoreText = stringProvider.viewMore,
+                viewMoreText = stringProvider.getString(StringRes.str_view_more),
                 onMoreClick = onMoreClick,
             )
 
@@ -70,11 +72,11 @@ data class DashboardSublistListItem(
         ): DashboardSublistListItem =
             DashboardSublistListItem(
                 id = Type.ReviewedToday,
-                titleText = stringProvider.reviewedToday,
+                titleText = stringProvider.getString(StringRes.str_reviewed_today),
                 items = gameItems.map {
                     DashboardGameListItem(it, imageResourceProvider, dateFormatter, onItemClick)
                 },
-                viewMoreText = stringProvider.reviewedThisWeek,
+                viewMoreText = stringProvider.getString(StringRes.str_reviewed_this_week),
                 onMoreClick = onMoreClick,
             )
     }

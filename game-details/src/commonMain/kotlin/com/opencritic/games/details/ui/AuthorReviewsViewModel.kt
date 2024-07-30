@@ -13,6 +13,9 @@ import com.opencritic.navigation.UrlRoute
 import com.opencritic.resources.DateFormatter
 import com.opencritic.resources.ImageResourceProvider
 import com.opencritic.resources.StringProvider
+import com.opencritic.resources.StringRes
+import com.opencritic.resources.getFormattedString
+import com.opencritic.resources.getString
 import kotlinx.coroutines.flow.update
 import kotlinx.coroutines.launch
 
@@ -27,7 +30,7 @@ class AuthorReviewsViewModel(
     private val logger: Logger,
 ) : BaseViewModel<AuthorReviewsState>() {
     override fun initialState(): AuthorReviewsState =
-        AuthorReviewsState.Loading(stringProvider.reviewsOf(authorName))
+        AuthorReviewsState.Loading(stringProvider.getFormattedString(StringRes.str_reviews_of, authorName))
 
     private var author: Author? = null
     private var canLoadMore: Boolean = true
@@ -41,7 +44,7 @@ class AuthorReviewsViewModel(
                 .onFailure {
                     mutableState.update {
                         AuthorReviewsState.Error(
-                            stringProvider.reviewsOf(authorName),
+                            stringProvider.getFormattedString(StringRes.str_reviews_of, authorName),
                             it.toString()
                         )
                     }
@@ -83,30 +86,30 @@ class AuthorReviewsViewModel(
         author: Author,
     ): AuthorReviewsState.Content =
         AuthorReviewsState.Content(
-            titleText = stringProvider.reviewsOf(author.name),
+            titleText = stringProvider.getFormattedString(StringRes.str_reviews_of, author.name),
             nameText = author.name,
             bioText =
                 if (author.isClaimed) author.bio
-                else stringProvider.authorIsNotClaimedFormatted(author.name),
+                else stringProvider.getFormattedString(StringRes.str_author_is_not_claimed, author.name),
             isBioVisible = !author.isClaimed || author.bio.isNotBlank(),
             imageUrl = author.imageUrl,
-            sortTitleText = stringProvider.sort,
+            sortTitleText = stringProvider.getString(StringRes.str_sort),
             countersInfoItems = listOfNotNull(
                 IconTextItem(
                     icon = imageResourceProvider.hashTag,
-                    text = stringProvider.gamesReviewedFormatted(author.reviewCount.toString()),
+                    text = stringProvider.getFormattedString(StringRes.str_games_reviewed_formatted, author.reviewCount.toString()),
                 ).takeIf { author.reviewCount > 0 },
                 IconTextItem(
                     icon = imageResourceProvider.chartPie,
-                    text = stringProvider.averageScoreFormatted(author.averageScore.toInt().toString()),
+                    text = stringProvider.getFormattedString(StringRes.str_average_score_formatted, author.averageScore.toInt().toString()),
                 ).takeIf { author.averageScore > 0 },
                 IconTextItem(
                     icon = imageResourceProvider.bullseye,
-                    text = stringProvider.medianScoreFormatted(author.medianScore.toString())
+                    text = stringProvider.getFormattedString(StringRes.str_median_score_formatted, author.medianScore.toString())
                 ).takeIf { author.medianScore > 0 },
                 IconTextItem(
                     icon = imageResourceProvider.thumbUp,
-                    text = stringProvider.gamesRecommendedFormatted(author.percentRecommended.toInt().toString())
+                    text = stringProvider.getFormattedString(StringRes.str_games_recommended_formatted, author.percentRecommended.toInt().toString())
                 ).takeIf { author.percentRecommended > 0 }
             ),
             sortText = ReviewSortItem(
@@ -121,7 +124,7 @@ class AuthorReviewsViewModel(
             onLoadMore = { loadMore() },
             onSelectedSort = { onSortSelected(it) },
             isFavoritesGamesVisible = author.favoriteGames.isNotEmpty(),
-            favoritesGamesTitleText = stringProvider.favoriteGames,
+            favoritesGamesTitleText = stringProvider.getString(StringRes.str_favorite_games),
             favoritesGames = author.favoriteGames,
             personalInfoItems = listOfNotNull(
                 IconTextItem(

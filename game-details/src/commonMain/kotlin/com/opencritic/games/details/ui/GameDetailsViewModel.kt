@@ -16,6 +16,9 @@ import com.opencritic.navigation.UrlRoute
 import com.opencritic.resources.DateFormatter
 import com.opencritic.resources.ImageResourceProvider
 import com.opencritic.resources.StringProvider
+import com.opencritic.resources.StringRes
+import com.opencritic.resources.getFormattedString
+import com.opencritic.resources.getString
 import kotlinx.coroutines.launch
 import kotlinx.datetime.TimeZone
 import kotlinx.datetime.toLocalDateTime
@@ -71,11 +74,11 @@ class GameDetailsViewModel(
                                 null -> imageResourceProvider.weakMan
                             },
                             tier = details.rank?.tier,
-                            tierDescription = stringProvider.openCriticRating,
+                            tierDescription = stringProvider.getString(StringRes.str_open_critic_rating),
                             topCriticScore = createTopCriticAverageIndicator(details.rank ?: GameRank(Tier.Weak, 0)),
-                            topCriticScoreDescription = stringProvider.topCriticAverage,
+                            topCriticScoreDescription = stringProvider.getString(StringRes.str_top_critic_average),
                             recommendedPercent = createCriticsRecommendIndicator(details.rank?.tier ?: Tier.Weak, details.recommendPercent ?: 0),
-                            criticsRecommendDescription = stringProvider.criticsRecommend,
+                            criticsRecommendDescription = stringProvider.getString(StringRes.str_critics_recommend),
                             briefReviews = details.reviews
                                 .filter { it.score != null }
                                 .filterNot { it.scoreFormat.isSelect }
@@ -88,9 +91,9 @@ class GameDetailsViewModel(
                                     )
                                 },
                             isViewAllVisible = details.reviewCount != 0,
-                            viewAllText = stringProvider.viewAllReviewsFormatted(details.reviewCount.toString()),
+                            viewAllText = stringProvider.getFormattedString(StringRes.str_view_all_reviews, details.reviewCount.toString()),
                             isMediaVisible = details.trailers.size <= 1 && details.screenshotUrls.isNotEmpty(),
-                            mediaText = "${details.name} ${stringProvider.media}",
+                            mediaText = "${details.name} ${stringProvider.getString(StringRes.str_media)}",
                             media = details.trailers
                                 .map {  trailer ->
                                     TrailerItem(trailer) { openTrailer(trailer) }
@@ -99,27 +102,27 @@ class GameDetailsViewModel(
                                     .map {
                                         ScreenshotItem(it) {}
                                     },
-                            viewAllMedia = "${stringProvider.viewAll} ${stringProvider.media}",
+                            viewAllMedia = "${stringProvider.getString(StringRes.str_view_all)} ${stringProvider.getString(StringRes.str_media)}",
                             isTrailersVisible = details.trailers.size > 1,
-                            trailersText = "${details.name} ${stringProvider.trailers}",
+                            trailersText = "${details.name} ${stringProvider.getString(StringRes.str_trailers)}",
                             trailers = details.trailers
                                 .take(3)
                                 .map { trailer ->
                                     TrailerItem(trailer) { openTrailer(trailer) }
                                 },
-                            viewAllTrailers = "${stringProvider.viewAll} ${stringProvider.trailers}",
+                            viewAllTrailers = "${stringProvider.getString(StringRes.str_view_all)} ${stringProvider.getString(StringRes.str_trailers)}",
                             isScreenshotsVisible = details.screenshotUrls.isNotEmpty() && details.trailers.size > 1,
-                            screenshotsText = "${details.name} ${stringProvider.screenshots}",
+                            screenshotsText = "${details.name} ${stringProvider.getString(StringRes.str_screenshots)}",
                             screenshots = details.screenshotUrls.take(3).map { ScreenshotItem(it) {} },
-                            viewAllScreenshots = "${stringProvider.viewAll} ${stringProvider.screenshots}",
+                            viewAllScreenshots = "${stringProvider.getString(StringRes.str_view_all)} ${stringProvider.getString(StringRes.str_screenshots)}",
                             isReviewsVisible = details.reviewCount != 0,
-                            reviewTitleText = stringProvider.criticReviewsForFormatted(details.name),
+                            reviewTitleText = stringProvider.getFormattedString(StringRes.str_critic_reviews_for_formatted, details.name),
                             reviews = details.reviews
                                 .take(8)
                                 .map { review ->
                                     CardReviewItem(
                                         review = review,
-                                        readFullReviewText = stringProvider.readFullReview,
+                                        readFullReviewText = stringProvider.getString(StringRes.str_read_full_review),
                                         onClick = {
                                             requireRouter().navigateTo(UrlRoute(review.externalUrl))
                                         },

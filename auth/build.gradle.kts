@@ -29,6 +29,7 @@ kotlin {
             implementation(libs.koin.core)
             implementation(libs.androidx.lifecycle.viewmodel)
             implementation(libs.kotlinx.serialization)
+            implementation(libs.moko.resources)
         }
         commonTest.dependencies {
             implementation(libs.kotlin.test)

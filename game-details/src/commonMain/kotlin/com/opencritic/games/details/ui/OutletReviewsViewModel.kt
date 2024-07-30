@@ -14,6 +14,9 @@ import com.opencritic.navigation.UrlRoute
 import com.opencritic.resources.DateFormatter
 import com.opencritic.resources.ImageResourceProvider
 import com.opencritic.resources.StringProvider
+import com.opencritic.resources.StringRes
+import com.opencritic.resources.getFormattedString
+import com.opencritic.resources.getString
 import kotlinx.coroutines.launch
 
 class OutletReviewsViewModel(
@@ -27,7 +30,7 @@ class OutletReviewsViewModel(
     private val logger: Logger,
 ) : BaseViewModel<OutletReviewsState>() {
     override fun initialState(): OutletReviewsState =
-        OutletReviewsState.Loading(stringProvider.reviewsOf(outletName))
+        OutletReviewsState.Loading(stringProvider.getFormattedString(StringRes.str_reviews_of, outletName))
 
     private var outlet: Outlet? = null
     private var canLoadMore: Boolean = true
@@ -40,7 +43,7 @@ class OutletReviewsViewModel(
             getOutletInteractor(outletId)
                 .onFailure {
                     mutableState.tryEmit(
-                        OutletReviewsState.Error(stringProvider.reviewsOf(outletName), it.toString())
+                        OutletReviewsState.Error(stringProvider.getFormattedString(StringRes.str_reviews_of, outletName), it.toString())
                     )
                 }
                 .onSuccess {
@@ -80,28 +83,28 @@ class OutletReviewsViewModel(
         outlet: Outlet,
     ): OutletReviewsState.Content =
         OutletReviewsState.Content(
-            titleText = stringProvider.reviewsOf(outlet.name),
+            titleText = stringProvider.getFormattedString(StringRes.str_reviews_of, outlet.name),
             outletNameText = outlet.name,
             outletImageUrl = outlet.imageUrl,
             isHomepageVisible = outlet.externalUrl.isNotBlank(),
-            homepageText = stringProvider.homepage,
-            sortTitleText = stringProvider.sort,
+            homepageText = stringProvider.getString(StringRes.str_home_page),
+            sortTitleText = stringProvider.getString(StringRes.str_sort),
             infoItems = listOf(
                 IconTextItem(
                     icon = imageResourceProvider.hashTag,
-                    text = stringProvider.gamesReviewedFormatted(outlet.reviewsCount.toString()),
+                    text = stringProvider.getFormattedString(StringRes.str_games_reviewed_formatted, outlet.reviewsCount.toString()),
                 ),
                 IconTextItem(
                     icon = imageResourceProvider.chartPie,
-                    text = stringProvider.averageScoreFormatted(outlet.averageScore.toInt().toString()),
+                    text = stringProvider.getFormattedString(StringRes.str_average_score_formatted, outlet.averageScore.toInt().toString()),
                 ),
                 IconTextItem(
                     icon = imageResourceProvider.bullseye,
-                    text = stringProvider.medianScoreFormatted(outlet.medianScore.toString())
+                    text = stringProvider.getFormattedString(StringRes.str_median_score_formatted, outlet.medianScore.toString())
                 ),
                 IconTextItem(
                     icon = imageResourceProvider.thumbUp,
-                    text = stringProvider.gamesRecommendedFormatted(outlet.percentRecommended.toInt().toString())
+                    text = stringProvider.getFormattedString(StringRes.str_games_recommended_formatted, outlet.percentRecommended.toInt().toString())
                 )
             ),
             sortText = ReviewSortItem(

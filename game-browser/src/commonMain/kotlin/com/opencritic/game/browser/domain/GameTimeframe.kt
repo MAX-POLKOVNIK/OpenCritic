@@ -1,6 +1,8 @@
 package com.opencritic.game.browser.domain
 
 import com.opencritic.resources.StringProvider
+import com.opencritic.resources.StringRes
+import com.opencritic.resources.getString
 import kotlinx.datetime.Clock
 import kotlinx.datetime.TimeZone
 import kotlinx.datetime.toLocalDateTime
@@ -27,8 +29,8 @@ sealed interface GameTimeframe {
 
 fun StringProvider.timeframeNameOf(timeframe: GameTimeframe): String =
     when (timeframe) {
-        GameTimeframe.AllTIme -> timeframeAllTime
-        GameTimeframe.Upcoming -> timeframeUpcoming
-        GameTimeframe.Last90Days -> timeframeLast90Days
+        GameTimeframe.AllTIme -> getString(StringRes.str_timeframe_all_time)
+        GameTimeframe.Upcoming -> getString(StringRes.str_timeframe_upcoming)
+        GameTimeframe.Last90Days -> getString(StringRes.str_timeframe_last_90_days)
         is GameTimeframe.Year -> timeframe.year.toString()
     }

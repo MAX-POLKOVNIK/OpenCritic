@@ -14,6 +14,8 @@ import com.opencritic.navigation.PeriodGameBrowserDestination
 import com.opencritic.resources.DateFormatter
 import com.opencritic.resources.ImageResourceProvider
 import com.opencritic.resources.StringProvider
+import com.opencritic.resources.StringRes
+import com.opencritic.resources.getString
 import kotlinx.coroutines.flow.update
 import kotlinx.coroutines.launch
 
@@ -76,10 +78,10 @@ class PeriodGameBrowserViewModel(
     }
 
     private fun titleFor(period: PeriodGameBrowserDestination.Period): String =
-        when (period){
-            PeriodGameBrowserDestination.Period.ReviewedThisWeek -> stringProvider.reviewedThisWeek
-            PeriodGameBrowserDestination.Period.RecentlyReleased -> stringProvider.recentlyReleased
-            PeriodGameBrowserDestination.Period.UpcomingReleases -> stringProvider.upcomingReleases
+        when (period) {
+            PeriodGameBrowserDestination.Period.ReviewedThisWeek -> stringProvider.getString(StringRes.str_reviewed_this_week)
+            PeriodGameBrowserDestination.Period.RecentlyReleased -> stringProvider.getString(StringRes.str_recently_released)
+            PeriodGameBrowserDestination.Period.UpcomingReleases -> stringProvider.getString(StringRes.str_upcoming_releases)
         }
 
     private fun createContentState(): PeriodGameBrowserState.Content =

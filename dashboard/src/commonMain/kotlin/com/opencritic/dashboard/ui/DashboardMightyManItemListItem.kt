@@ -4,7 +4,10 @@ import com.opencritic.games.Tier
 import com.opencritic.mvvm.ListItem
 import com.opencritic.resources.ImageResource
 import com.opencritic.resources.ImageResourceProvider
+import com.opencritic.resources.MR
 import com.opencritic.resources.StringProvider
+import com.opencritic.resources.StringRes
+import com.opencritic.resources.getString
 
 data class DashboardMightyManItemListItem(
     override val id: Tier,
@@ -27,15 +30,15 @@ fun DashboardMightyManItemListItem(
             Tier.Mighty -> imageResourceProvider.mightyHead
         },
         name = when (tier) {
-            Tier.Weak -> stringProvider.weak
-            Tier.Fair -> stringProvider.fair
-            Tier.Strong -> stringProvider.strong
-            Tier.Mighty -> stringProvider.mighty
+            Tier.Weak -> stringProvider.getString(StringRes.str_weak)
+            Tier.Fair -> stringProvider.getString(StringRes.str_fair)
+            Tier.Strong -> stringProvider.getString(StringRes.str_strong)
+            Tier.Mighty -> stringProvider.getString(StringRes.str_mighty)
         },
         description = when (tier) {
-            Tier.Weak -> stringProvider.weakDescription
-            Tier.Fair -> stringProvider.fairDescription
-            Tier.Strong -> stringProvider.strongDescription
-            Tier.Mighty -> stringProvider.mightyDescription
+            Tier.Weak -> stringProvider.getString(StringRes.str_weak_description)
+            Tier.Fair -> stringProvider.getString(StringRes.str_fair_description)
+            Tier.Strong -> stringProvider.getString(StringRes.str_strong_description)
+            Tier.Mighty -> stringProvider.getString(StringRes.str_mighty_description)
         }
     )

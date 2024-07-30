@@ -1,6 +1,7 @@
 plugins {
     alias(libs.plugins.kotlinMultiplatform)
     alias(libs.plugins.androidLibrary)
+    alias(libs.plugins.moko.resources)
 }
 
 kotlin {
@@ -28,6 +29,7 @@ kotlin {
         commonMain.dependencies {
             implementation(libs.koin.core)
             implementation(libs.kotlinx.datetime)
+            implementation(libs.moko.resources)
         }
         commonTest.dependencies {
             implementation(libs.kotlin.test)
@@ -57,6 +59,10 @@ android {
     composeOptions {
         kotlinCompilerExtensionVersion = libs.versions.compose.compiler.get()
     }
+}
+
+multiplatformResources {
+    resourcesPackage.set("com.opencritic.resources") // required
 }
 
 task("testClasses")

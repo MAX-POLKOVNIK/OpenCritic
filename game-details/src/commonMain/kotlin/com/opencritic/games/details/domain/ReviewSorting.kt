@@ -1,6 +1,8 @@
 package com.opencritic.games.details.domain
 
 import com.opencritic.resources.StringProvider
+import com.opencritic.resources.StringRes
+import com.opencritic.resources.getString
 
 enum class ReviewSorting {
     Default,
@@ -13,11 +15,11 @@ enum class ReviewSorting {
 
 fun StringProvider.sortNameOf(sort: ReviewSorting): String {
     return when(sort) {
-        ReviewSorting.Default -> sortDefault
-        ReviewSorting.MostPopular -> sortMostPopular
-        ReviewSorting.ScoreHighestToLowest -> sortScoreHighestToLowest
-        ReviewSorting.ScoreLowestToHighest -> sortScoreLowestToHighest
-        ReviewSorting.NewestFirst -> sortNewestFirst
-        ReviewSorting.OldestFirst -> sortOldestFirst
+        ReviewSorting.Default -> getString(StringRes.str_sort_default)
+        ReviewSorting.MostPopular -> getString(StringRes.str_sort_most_popular)
+        ReviewSorting.ScoreHighestToLowest -> getString(StringRes.str_sort_highest)
+        ReviewSorting.ScoreLowestToHighest -> getString(StringRes.str_sort_lowest)
+        ReviewSorting.NewestFirst -> getString(StringRes.str_sort_newest)
+        ReviewSorting.OldestFirst -> getString(StringRes.str_sort_oldest)
     }
 }

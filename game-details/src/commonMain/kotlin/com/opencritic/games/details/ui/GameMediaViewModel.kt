@@ -5,6 +5,9 @@ import com.opencritic.logs.Logger
 import com.opencritic.mvvm.BaseViewModel
 import com.opencritic.navigation.UrlRoute
 import com.opencritic.resources.StringProvider
+import com.opencritic.resources.StringRes
+import com.opencritic.resources.getFormattedString
+import com.opencritic.resources.getString
 import kotlinx.coroutines.launch
 
 class GameMediaViewModel(
@@ -15,7 +18,7 @@ class GameMediaViewModel(
     private val logger: Logger,
 ) : BaseViewModel<GameMediaState>() {
     override fun initialState(): GameMediaState =
-        GameMediaState.Loading(stringProvider.gameScreenshotsAndTrailers(gameName))
+        GameMediaState.Loading(stringProvider.getFormattedString(StringRes.str_game_screenshots_and_trailers, gameName))
 
     override fun onStateInit() {
         super.onStateInit()
@@ -25,7 +28,7 @@ class GameMediaViewModel(
                 .onFailure {
                     mutableState.tryEmit(
                         GameMediaState.Error(
-                            titleText = stringProvider.gameScreenshotsAndTrailers(gameName),
+                            titleText = stringProvider.getFormattedString(StringRes.str_game_screenshots_and_trailers, gameName),
                             message = it.toString()
                         )
                     )
@@ -35,9 +38,9 @@ class GameMediaViewModel(
                     mutableState.tryEmit(
                         GameMediaState.Content(
                             navigationTitle = media.gameName,
-                            titleText = stringProvider.gameScreenshotsAndTrailers(media.gameName),
+                            titleText = stringProvider.getFormattedString(StringRes.str_game_screenshots_and_trailers, media.gameName),
                             isTrailersVisible = media.trailers.isNotEmpty(),
-                            trailersText = stringProvider.trailers,
+                            trailersText = stringProvider.getString(StringRes.str_trailers),
                             trailers =  media.trailers
                                 .map { trailer ->
                                     TrailerItem(trailer) {
@@ -45,7 +48,7 @@ class GameMediaViewModel(
                                     }
                                 },
                             isScreenshotsVisible = media.screenshotUrls.isNotEmpty(),
-                            screenshotsText = stringProvider.screenshots,
+                            screenshotsText = stringProvider.getString(StringRes.str_screenshots),
                             screenshots = media.screenshotUrls.map { ScreenshotItem(it, {}) }
                         )
                     )

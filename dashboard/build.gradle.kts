@@ -29,6 +29,7 @@ kotlin {
             implementation(libs.kotlinx.datetime)
             implementation(libs.koin.core)
             implementation(libs.androidx.lifecycle.viewmodel)
+            implementation(libs.moko.resources)
         }
         commonTest.dependencies {
             implementation(libs.kotlin.test)

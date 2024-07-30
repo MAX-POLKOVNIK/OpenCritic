@@ -13,7 +13,6 @@
 		421A369A2BEC8065003AC257 /* AuthScreenView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 421A36992BEC8065003AC257 /* AuthScreenView.swift */; };
 		421A369C2BEC80B8003AC257 /* WebView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 421A369B2BEC80B8003AC257 /* WebView.swift */; };
 		421A369E2BEC81B3003AC257 /* AuthStateWebViewView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 421A369D2BEC81B3003AC257 /* AuthStateWebViewView.swift */; };
-		4256278C2BE0F05300EDEEEB /* Localizable.xcstrings in Resources */ = {isa = PBXBuildFile; fileRef = 4256278B2BE0F05300EDEEEB /* Localizable.xcstrings */; };
 		4256278E2BE0F0A100EDEEEB /* IosStringProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4256278D2BE0F0A100EDEEEB /* IosStringProvider.swift */; };
 		425627902BE0F17E00EDEEEB /* IosImagesResourceProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4256278F2BE0F17E00EDEEEB /* IosImagesResourceProvider.swift */; };
 		425627932BE109F400EDEEEB /* DashboardPosterGameListItemView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 425627922BE109F400EDEEEB /* DashboardPosterGameListItemView.swift */; };
@@ -98,7 +97,6 @@
 		421A36992BEC8065003AC257 /* AuthScreenView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthScreenView.swift; sourceTree = "<group>"; };
 		421A369B2BEC80B8003AC257 /* WebView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebView.swift; sourceTree = "<group>"; };
 		421A369D2BEC81B3003AC257 /* AuthStateWebViewView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthStateWebViewView.swift; sourceTree = "<group>"; };
-		4256278B2BE0F05300EDEEEB /* Localizable.xcstrings */ = {isa = PBXFileReference; lastKnownFileType = text.json.xcstrings; path = Localizable.xcstrings; sourceTree = "<group>"; };
 		4256278D2BE0F0A100EDEEEB /* IosStringProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IosStringProvider.swift; sourceTree = "<group>"; };
 		4256278F2BE0F17E00EDEEEB /* IosImagesResourceProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IosImagesResourceProvider.swift; sourceTree = "<group>"; };
 		425627922BE109F400EDEEEB /* DashboardPosterGameListItemView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DashboardPosterGameListItemView.swift; sourceTree = "<group>"; };
@@ -365,7 +363,6 @@
 				7555FF8C242A565B00829871 /* Info.plist */,
 				2152FB032600AC8F00CF470E /* iOSApp.swift */,
 				058557D7273AAEEB004C7B11 /* Preview Content */,
-				4256278B2BE0F05300EDEEEB /* Localizable.xcstrings */,
 				4256278D2BE0F0A100EDEEEB /* IosStringProvider.swift */,
 				4256278F2BE0F17E00EDEEEB /* IosImagesResourceProvider.swift */,
 				425627942BE1109600EDEEEB /* Images.xcassets */,
@@ -444,7 +441,6 @@
 				058557D9273AAEEB004C7B11 /* Preview Assets.xcassets in Resources */,
 				425627952BE1109600EDEEEB /* Images.xcassets in Resources */,
 				058557BB273AAA24004C7B11 /* Assets.xcassets in Resources */,
-				4256278C2BE0F05300EDEEEB /* Localizable.xcstrings in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

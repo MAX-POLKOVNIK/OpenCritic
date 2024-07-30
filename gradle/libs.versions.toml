@@ -48,6 +48,8 @@ coil = { module = "io.coil-kt:coil-compose", version.ref = "coil" }
 androidx-room-compiler = { group = "androidx.room", name = "room-compiler", version.ref = "androidxRoom" }
 androidx-room-runtime = { group = "androidx.room", name = "room-runtime", version.ref = "androidxRoom" }
 sqlite-bundled = { module = "androidx.sqlite:sqlite-bundled", version.ref = "sqlite" }
+moko-resources = { module = "dev.icerock.moko:resources", version = "0.24.1" }
+moko-graphics = { module = "dev.icerock.moko:graphics", version = "0.9.0" }
 
 [plugins]
 androidApplication = { id = "com.android.application", version.ref = "agp" }
@@ -58,3 +60,4 @@ kotlinCocoapods = { id = "org.jetbrains.kotlin.native.cocoapods", version.ref = 
 kotlin-serialization = { id = "org.jetbrains.kotlin.plugin.serialization", version.ref = "kotlin" }
 room = { id = "androidx.room", version.ref = "androidxRoom" }
 kotlin-ksp = { id = "com.google.devtools.ksp", version = "1.9.22-1.0.18" }
+moko-resources = { id = "dev.icerock.mobile.multiplatform-resources", version = "0.24.1" }

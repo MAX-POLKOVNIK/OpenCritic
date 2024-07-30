@@ -29,6 +29,6 @@ private class P : BaseLoadingState {
 
 #Preview {
     LoadingStateView(
-        state: P(text: "Loading...")
+        state: P(text: MR.strings().str_loading.desc().localized())
     )
 }

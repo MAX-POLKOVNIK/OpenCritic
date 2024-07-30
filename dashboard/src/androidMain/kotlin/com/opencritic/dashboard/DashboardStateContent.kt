@@ -7,12 +7,12 @@ import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
-import com.opencritic.dashboard.ui.DashboardState
+import com.opencritic.dashboard.ui.DashboardContent
 import com.opencritic.resources.defaultPadding
 
 @Composable
-fun DashboardStateContent(state: DashboardState.Content) {
-    LazyColumn {
+fun DashboardStateContent(state: DashboardContent, modifier: Modifier = Modifier) {
+    LazyColumn(modifier = modifier) {
         item {
             DashboardTitleListItem(
                 item = state.popularGamesTitle,

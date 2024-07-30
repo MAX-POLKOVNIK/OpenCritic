@@ -13,16 +13,9 @@ struct DashboardScreenView: View {
     let viewModel: DashboardViewModel
     
     var body: some View {
-        
-        return FlowView(of: viewModel.state) { state in
-            switch state {
-            case let content as DashboardStateContent:
+        FlowView(of: viewModel.state) { state in
+            CommonScreenView(state: state) { content in
                 DashboardStateContentView(state: content)
-            case let loading as DashboardStateLoading:
-                LoadingStateView(state: loading)
-            case let error as DashboardStateError:
-                ErrorStateView(state: error)
-            default: fatalError("Unknown state")
             }
         }
     }

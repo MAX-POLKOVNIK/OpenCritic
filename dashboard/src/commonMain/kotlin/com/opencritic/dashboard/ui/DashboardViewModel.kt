@@ -2,7 +2,10 @@ package com.opencritic.dashboard.ui
 
 import com.opencritic.dashboard.domain.GetDashboardInteractor
 import com.opencritic.logs.Logger
+import com.opencritic.mvvm.BaseContentViewModel
 import com.opencritic.mvvm.BaseViewModel
+import com.opencritic.mvvm.CommonViewModelState
+import com.opencritic.mvvm.LoadingState
 import com.opencritic.navigation.GameDetailsRoute
 import com.opencritic.navigation.PeriodGameBrowserDestination
 import com.opencritic.navigation.PeriodGameBrowserRoute
@@ -25,10 +28,10 @@ class DashboardViewModel(
     private val imageResourceProvider: ImageResourceProvider,
     private val dateFormatter: DateFormatter,
     private val logger: Logger,
-) : BaseViewModel<DashboardState>() {
+) : BaseContentViewModel<DashboardContent>() {
 
-    override fun initialState(): DashboardState =
-        DashboardState.Loading
+    override fun initialState(): CommonViewModelState<DashboardContent> =
+        CommonViewModelState.loading()
 
     override fun onStateInit() {
         super.onStateInit()
@@ -41,116 +44,118 @@ class DashboardViewModel(
             getDashboardInteractor(currentYear)
                 .onFailure { error ->
                     mutableState.update {
-                        DashboardState.Error(error.toString())
+                        it.error(error.toString())
                     }
 
                     logger.log("Get dashboard error: $error")
                 }
                 .onSuccess { dashboard ->
                     mutableState.update {
-                        DashboardState.Content(
-                            popularGamesTitle = DashboardTitleListItem(
-                                stringProvider.getString(StringRes.str_popular_games),
-                                stringProvider.getString(StringRes.str_popular_games_description),
-                            ),
-                            popularGames = DashboardPosterGamesHorizontalListItem(
-                                dashboard.popularGames,
-                                imageResourceProvider,
-                            ) {
-                                navigateToGame(it.id, it.nameText)
-                            },
-                            dealsTitle = DashboardTitleListItem(
-                                stringProvider.getString(StringRes.str_featured_deals),
-                                stringProvider.getString(StringRes.str_featured_deals_description),
-                            ),
-                            deals = DashboardDealsHorizontalListItem(
-                                deals = dashboard.deals,
-                                stringProvider = stringProvider,
-                                imageResourceProvider = imageResourceProvider,
-                                onClick = { navigateToGame(it.id, it.gameDeal.game.name) },
-                                onBuyNowClick = {
-                                    requireRouter()
-                                        .navigateTo(
-                                            UrlRoute(it.gameDeal.externalUrl)
+                        it.content(
+                            DashboardContent(
+                                popularGamesTitle = DashboardTitleListItem(
+                                    stringProvider.getString(StringRes.str_popular_games),
+                                    stringProvider.getString(StringRes.str_popular_games_description),
+                                ),
+                                popularGames = DashboardPosterGamesHorizontalListItem(
+                                    dashboard.popularGames,
+                                    imageResourceProvider,
+                                ) {
+                                    navigateToGame(it.id, it.nameText)
+                                },
+                                dealsTitle = DashboardTitleListItem(
+                                    stringProvider.getString(StringRes.str_featured_deals),
+                                    stringProvider.getString(StringRes.str_featured_deals_description),
+                                ),
+                                deals = DashboardDealsHorizontalListItem(
+                                    deals = dashboard.deals,
+                                    stringProvider = stringProvider,
+                                    imageResourceProvider = imageResourceProvider,
+                                    onClick = { navigateToGame(it.id, it.gameDeal.game.name) },
+                                    onBuyNowClick = {
+                                        requireRouter()
+                                            .navigateTo(
+                                                UrlRoute(it.gameDeal.externalUrl)
+                                            )
+                                    },
+                                ),
+                                reviewedToday = DashboardSublistListItem.reviewedToday(
+                                    gameItems = dashboard.reviewedToday,
+                                    stringProvider = stringProvider,
+                                    imageResourceProvider = imageResourceProvider,
+                                    dateFormatter = dateFormatter,
+                                    onItemClick = { navigateToGame(it.id, it.nameText) },
+                                    onMoreClick = {
+                                        requireRouter().navigateTo(
+                                            PeriodGameBrowserRoute(PeriodGameBrowserDestination.Period.ReviewedThisWeek)
                                         )
-                                },
-                            ),
-                            reviewedToday = DashboardSublistListItem.reviewedToday(
-                                gameItems = dashboard.reviewedToday,
-                                stringProvider = stringProvider,
-                                imageResourceProvider = imageResourceProvider,
-                                dateFormatter = dateFormatter,
-                                onItemClick = { navigateToGame(it.id, it.nameText) },
-                                onMoreClick = {
-                                    requireRouter().navigateTo(
-                                        PeriodGameBrowserRoute(PeriodGameBrowserDestination.Period.ReviewedThisWeek)
-                                    )
-                                },
-                            ),
-                            upcomingReleases = DashboardSublistListItem.upcomingReleases(
-                                gameItems = dashboard.upcoming,
-                                stringProvider = stringProvider,
-                                imageResourceProvider = imageResourceProvider,
-                                dateFormatter = dateFormatter,
-                                onItemClick = { navigateToGame(it.id, it.nameText) },
-                                onMoreClick = {
-                                    requireRouter().navigateTo(
-                                        PeriodGameBrowserRoute(PeriodGameBrowserDestination.Period.UpcomingReleases)
-                                    )
-                                },
-                            ),
-                            recentlyReleased = DashboardSublistListItem.recentlyReleased(
-                                gameItems = dashboard.recentlyReleased,
-                                stringProvider = stringProvider,
-                                imageResourceProvider = imageResourceProvider,
-                                dateFormatter = dateFormatter,
-                                onItemClick = { navigateToGame(it.id, it.nameText) },
-                                onMoreClick = {
-                                    requireRouter().navigateTo(
-                                        PeriodGameBrowserRoute(PeriodGameBrowserDestination.Period.RecentlyReleased)
-                                    )
-                                },
-                            ),
-                            hallOfFameTitle = DashboardTitleListItem(
-                                title = stringProvider.getFormattedString(StringRes.str_hall_of_fame, currentYear.toString()),
-                                subtitle = stringProvider.getFormattedString(StringRes.str_hall_of_fame_description, currentYear.toString())
-                            ),
-                            hallOfFame = DashboardPosterGamesHorizontalListItem(
-                                popularGames = dashboard.hallOfFame,
-                                imageResourceProvider = imageResourceProvider,
-                                onClick = { navigateToGame(it.id, it.nameText) }
-                            ),
-                            whoIsMightyMan = DashboardMightyManListItem(
-                                stringProvider,
-                                imageResourceProvider
-                            ),
-                            switchTitle = DashboardTitleListItem(
-                                title = dashboard.switchFeatured.name,
-                                subtitle = dashboard.switchFeatured.description,
-                            ),
-                            switchGames = DashboardPosterGamesHorizontalListItem(
-                                popularGames = dashboard.switchFeatured.games,
-                                imageResourceProvider = imageResourceProvider,
-                                onClick = { navigateToGame(it.id, it.nameText) }
-                            ),
-                            xboxTitle = DashboardTitleListItem(
-                                title = dashboard.xboxFeatured.name,
-                                subtitle = dashboard.xboxFeatured.description,
-                            ),
-                            xboxGames = DashboardPosterGamesHorizontalListItem(
-                                popularGames = dashboard.xboxFeatured.games,
-                                imageResourceProvider = imageResourceProvider,
-                                onClick = { navigateToGame(it.id, it.nameText) }
-                            ),
-                            playstationTitle = DashboardTitleListItem(
-                                title = dashboard.playstationFeatured.name,
-                                subtitle = dashboard.playstationFeatured.description,
-                            ),
-                            playstationGames = DashboardPosterGamesHorizontalListItem(
-                                popularGames = dashboard.playstationFeatured.games,
-                                imageResourceProvider = imageResourceProvider,
-                                onClick = { navigateToGame(it.id, it.nameText) }
-                            ),
+                                    },
+                                ),
+                                upcomingReleases = DashboardSublistListItem.upcomingReleases(
+                                    gameItems = dashboard.upcoming,
+                                    stringProvider = stringProvider,
+                                    imageResourceProvider = imageResourceProvider,
+                                    dateFormatter = dateFormatter,
+                                    onItemClick = { navigateToGame(it.id, it.nameText) },
+                                    onMoreClick = {
+                                        requireRouter().navigateTo(
+                                            PeriodGameBrowserRoute(PeriodGameBrowserDestination.Period.UpcomingReleases)
+                                        )
+                                    },
+                                ),
+                                recentlyReleased = DashboardSublistListItem.recentlyReleased(
+                                    gameItems = dashboard.recentlyReleased,
+                                    stringProvider = stringProvider,
+                                    imageResourceProvider = imageResourceProvider,
+                                    dateFormatter = dateFormatter,
+                                    onItemClick = { navigateToGame(it.id, it.nameText) },
+                                    onMoreClick = {
+                                        requireRouter().navigateTo(
+                                            PeriodGameBrowserRoute(PeriodGameBrowserDestination.Period.RecentlyReleased)
+                                        )
+                                    },
+                                ),
+                                hallOfFameTitle = DashboardTitleListItem(
+                                    title = stringProvider.getFormattedString(StringRes.str_hall_of_fame, currentYear.toString()),
+                                    subtitle = stringProvider.getFormattedString(StringRes.str_hall_of_fame_description, currentYear.toString())
+                                ),
+                                hallOfFame = DashboardPosterGamesHorizontalListItem(
+                                    popularGames = dashboard.hallOfFame,
+                                    imageResourceProvider = imageResourceProvider,
+                                    onClick = { navigateToGame(it.id, it.nameText) }
+                                ),
+                                whoIsMightyMan = DashboardMightyManListItem(
+                                    stringProvider,
+                                    imageResourceProvider
+                                ),
+                                switchTitle = DashboardTitleListItem(
+                                    title = dashboard.switchFeatured.name,
+                                    subtitle = dashboard.switchFeatured.description,
+                                ),
+                                switchGames = DashboardPosterGamesHorizontalListItem(
+                                    popularGames = dashboard.switchFeatured.games,
+                                    imageResourceProvider = imageResourceProvider,
+                                    onClick = { navigateToGame(it.id, it.nameText) }
+                                ),
+                                xboxTitle = DashboardTitleListItem(
+                                    title = dashboard.xboxFeatured.name,
+                                    subtitle = dashboard.xboxFeatured.description,
+                                ),
+                                xboxGames = DashboardPosterGamesHorizontalListItem(
+                                    popularGames = dashboard.xboxFeatured.games,
+                                    imageResourceProvider = imageResourceProvider,
+                                    onClick = { navigateToGame(it.id, it.nameText) }
+                                ),
+                                playstationTitle = DashboardTitleListItem(
+                                    title = dashboard.playstationFeatured.name,
+                                    subtitle = dashboard.playstationFeatured.description,
+                                ),
+                                playstationGames = DashboardPosterGamesHorizontalListItem(
+                                    popularGames = dashboard.playstationFeatured.games,
+                                    imageResourceProvider = imageResourceProvider,
+                                    onClick = { navigateToGame(it.id, it.nameText) }
+                                ),
+                            )
                         )
                     }
                 }

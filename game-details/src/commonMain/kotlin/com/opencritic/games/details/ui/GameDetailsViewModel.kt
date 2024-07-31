@@ -140,7 +140,7 @@ class GameDetailsViewModel(
     }
 
     private fun createYourGameIndicatorItem(game: YourGame): YourGameIndicatorItem =
-        YourGameIndicatorItem(game, stringProvider, imageResourceProvider) {
+        YourGameIndicatorItem(game, stringProvider) {
             onGameAction(it)
         }
 

@@ -204,7 +204,7 @@ struct GameDetailsStateContentView: View {
             imageUrl: "https://img.opencritic.com/game/14353/a7GST4so.jpg",
             name: "Game title",
             yourGameIndicatorItem: YourGameIndicatorItemKt
-                .YourGameIndicatorItem_PreviewData(imageResourceProvider: IosImagesResourceProvider()),
+                .YourGameIndicatorItem_PreviewData(),
             companiesText: "Some companies",
             releaseDateText: "MAY 25, 2505",
             platformsText: "Playstation, Xbox, PC",

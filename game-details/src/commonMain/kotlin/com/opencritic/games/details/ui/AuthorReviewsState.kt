@@ -4,6 +4,7 @@ import com.opencritic.games.details.domain.ReviewSorting
 import com.opencritic.mvvm.BaseErrorState
 import com.opencritic.mvvm.BaseLoadingState
 import com.opencritic.mvvm.ViewModelState
+import com.opencritic.resources.Icons
 import com.opencritic.resources.ImageResourceProvider
 
 interface AuthorReviewsState : ViewModelState {
@@ -39,9 +40,7 @@ interface AuthorReviewsState : ViewModelState {
 }
 
 @Suppress("FunctionName")
-fun AuthorReviewsStateContent_PreviewData(
-    imageResourceProvider: ImageResourceProvider,
-): AuthorReviewsState.Content =
+fun AuthorReviewsStateContent_PreviewData(): AuthorReviewsState.Content =
     AuthorReviewsState.Content(
         titleText = "Travis Northup's Reviews",
         nameText = "Travis Northup",
@@ -51,19 +50,19 @@ fun AuthorReviewsStateContent_PreviewData(
         sortTitleText = "Sort",
         countersInfoItems = listOf(
             IconTextItem(
-                icon = imageResourceProvider.hashTag,
+                icon = Icons.hashTag,
                 text = "178 games reviewed",
             ),
             IconTextItem(
-                icon = imageResourceProvider.chartPie,
+                icon = Icons.chartPie,
                 text = "74.4 average score",
             ),
             IconTextItem(
-                icon = imageResourceProvider.bullseye,
+                icon = Icons.bullseye,
                 text = "80 median score",
             ),
             IconTextItem(
-                icon = imageResourceProvider.thumbUp,
+                icon = Icons.thumbUp,
                 text = "65.2% of games recommended"
             )
         ),
@@ -87,15 +86,15 @@ fun AuthorReviewsStateContent_PreviewData(
         ),
         personalInfoItems = listOfNotNull(
             IconTextItem(
-                icon = imageResourceProvider.home,
+                icon = Icons.home,
                 text = "San Francisco"
             ),
             IconTextItem(
-                icon = imageResourceProvider.xbox,
+                icon = Icons.xbox,
                 text = "TieGuyTravis"
             ),
             IconTextItem(
-                icon = imageResourceProvider.playstation,
+                icon = Icons.playstation,
                 text = "TieGuyTravis"
             ),
         )

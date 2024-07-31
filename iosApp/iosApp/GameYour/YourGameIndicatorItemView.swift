@@ -14,7 +14,7 @@ struct YourGameIndicatorItemView: View {
     var body: some View {
         HStack(spacing: 0) {
             VStack {
-                Image(systemName: item.wantedImageResource)
+                Image(iconRes: item.wantedImageResource)
                     .resizable()
                     .scaledToFit()
                     .frame(width: 28, height: 28)
@@ -32,7 +32,7 @@ struct YourGameIndicatorItemView: View {
             Divider()
             
             VStack {
-                Image(systemName: item.playedImageResource)
+                Image(iconRes: item.playedImageResource)
                     .resizable()
                     .scaledToFit()
                     .frame(width: 28, height: 28)
@@ -50,7 +50,7 @@ struct YourGameIndicatorItemView: View {
             Divider()
             
             VStack {
-                Image(systemName: item.favoriteImageResource)
+                Image(iconRes: item.favoriteImageResource)
                     .resizable()
                     .scaledToFit()
                     .frame(width: 28, height: 28)
@@ -72,8 +72,6 @@ struct YourGameIndicatorItemView: View {
 #Preview {
     YourGameIndicatorItemView(
         item: YourGameIndicatorItemKt
-            .YourGameIndicatorItem_PreviewData(
-                imageResourceProvider: IosImagesResourceProvider()
-            )
+            .YourGameIndicatorItem_PreviewData()
     )
 }

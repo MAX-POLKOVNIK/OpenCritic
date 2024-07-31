@@ -4,6 +4,7 @@ import com.opencritic.games.details.domain.ReviewSorting
 import com.opencritic.mvvm.BaseErrorState
 import com.opencritic.mvvm.BaseLoadingState
 import com.opencritic.mvvm.ViewModelState
+import com.opencritic.resources.Icons
 import com.opencritic.resources.ImageResourceProvider
 
 interface OutletReviewsState : ViewModelState {
@@ -37,9 +38,7 @@ interface OutletReviewsState : ViewModelState {
 }
 
 @Suppress("FunctionName")
-fun OutletReviewsStateContent_PreviewData(
-    imageResourceProvider: ImageResourceProvider,
-): OutletReviewsState.Content =
+fun OutletReviewsStateContent_PreviewData(): OutletReviewsState.Content =
     OutletReviewsState.Content(
         titleText = "IGN's reviews",
         outletNameText = "IGN",
@@ -49,19 +48,19 @@ fun OutletReviewsStateContent_PreviewData(
         sortTitleText = "Sort",
         infoItems = listOf(
             IconTextItem(
-                icon = imageResourceProvider.hashTag,
+                icon = Icons.hashTag,
                 text = "2188 games reviewed",
             ),
             IconTextItem(
-                icon = imageResourceProvider.chartPie,
+                icon = Icons.chartPie,
                 text = "74.4 average score",
             ),
             IconTextItem(
-                icon = imageResourceProvider.bullseye,
+                icon = Icons.bullseye,
                 text = "78 median score",
             ),
             IconTextItem(
-                icon = imageResourceProvider.thumbUp,
+                icon = Icons.thumbUp,
                 text = "55.6% of games recommended"
             )
         ),

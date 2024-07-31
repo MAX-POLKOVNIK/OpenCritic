@@ -68,7 +68,7 @@ struct BrowseGameItemView: View {
                     .foregroundStyle(.white)
                 
                 HStack {
-                    Image(systemName: item.dateImageResource)
+                    Image(iconRes: item.dateImageResource)
                         .foregroundColor(.gray)
                     
                     Text(item.dateText)

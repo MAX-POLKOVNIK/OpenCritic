@@ -11,6 +11,7 @@ import com.opencritic.mvvm.BaseViewModel
 import com.opencritic.navigation.GameDetailsRoute
 import com.opencritic.navigation.UrlRoute
 import com.opencritic.resources.DateFormatter
+import com.opencritic.resources.Icons
 import com.opencritic.resources.ImageResourceProvider
 import com.opencritic.resources.StringProvider
 import com.opencritic.resources.StringRes
@@ -25,7 +26,6 @@ class AuthorReviewsViewModel(
     private val getAuthorInteractor: GetAuthorInteractor,
     private val getAuthorReviewsInteractor: GetAuthorReviewsInteractor,
     private val stringProvider: StringProvider,
-    private val imageResourceProvider: ImageResourceProvider,
     private val dateFormatter: DateFormatter,
     private val logger: Logger,
 ) : BaseViewModel<AuthorReviewsState>() {
@@ -96,19 +96,19 @@ class AuthorReviewsViewModel(
             sortTitleText = stringProvider.getString(StringRes.str_sort),
             countersInfoItems = listOfNotNull(
                 IconTextItem(
-                    icon = imageResourceProvider.hashTag,
+                    icon = Icons.hashTag,
                     text = stringProvider.getFormattedString(StringRes.str_games_reviewed_formatted, author.reviewCount.toString()),
                 ).takeIf { author.reviewCount > 0 },
                 IconTextItem(
-                    icon = imageResourceProvider.chartPie,
+                    icon = Icons.chartPie,
                     text = stringProvider.getFormattedString(StringRes.str_average_score_formatted, author.averageScore.toInt().toString()),
                 ).takeIf { author.averageScore > 0 },
                 IconTextItem(
-                    icon = imageResourceProvider.bullseye,
+                    icon = Icons.bullseye,
                     text = stringProvider.getFormattedString(StringRes.str_median_score_formatted, author.medianScore.toString())
                 ).takeIf { author.medianScore > 0 },
                 IconTextItem(
-                    icon = imageResourceProvider.thumbUp,
+                    icon = Icons.thumbUp,
                     text = stringProvider.getFormattedString(StringRes.str_games_recommended_formatted, author.percentRecommended.toInt().toString())
                 ).takeIf { author.percentRecommended > 0 }
             ),
@@ -128,15 +128,15 @@ class AuthorReviewsViewModel(
             favoritesGames = author.favoriteGames,
             personalInfoItems = listOfNotNull(
                 IconTextItem(
-                    icon = imageResourceProvider.home,
+                    icon = Icons.home,
                     text = author.hometown
                 ).takeIf { author.hometown.isNotBlank() },
                 IconTextItem(
-                    icon = imageResourceProvider.xbox,
+                    icon = Icons.xbox,
                     text = author.xboxLive
                 ).takeIf { author.xboxLive.isNotBlank() },
                 IconTextItem(
-                    icon = imageResourceProvider.playstation,
+                    icon = Icons.playstation,
                     text = author.psn
                 ).takeIf { author.psn.isNotBlank() },
             )

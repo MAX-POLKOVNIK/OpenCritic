@@ -11,24 +11,24 @@ interface ImageResourceProvider {
     val strongMan: ImageResource
     val mightyMan: ImageResource
 
-    val tabMain: ImageResource
-    val tabSearch: ImageResource
-    val tabBrowse: ImageResource
-    val tabCalendar: ImageResource
-    val tabYourList: ImageResource
-
-    val gameActionWant: ImageResource
-    val gameActionPlayed: ImageResource
-    val gameActionFavorite: ImageResource
-
-    val hashTag: ImageResource
-    val chartPie: ImageResource
-    val bullseye: ImageResource
-    val thumbUp: ImageResource
-
-    val xbox: ImageResource
-    val playstation: ImageResource
-    val home: ImageResource
+//    val tabMain: ImageResource
+//    val tabSearch: ImageResource
+//    val tabBrowse: ImageResource
+//    val tabCalendar: ImageResource
+//    val tabYourList: ImageResource
+//
+//    val gameActionWant: ImageResource
+//    val gameActionPlayed: ImageResource
+//    val gameActionFavorite: ImageResource
+//
+//    val hashTag: ImageResource
+//    val chartPie: ImageResource
+//    val bullseye: ImageResource
+//    val thumbUp: ImageResource
+//
+//    val xbox: ImageResource
+//    val playstation: ImageResource
+//    val home: ImageResource
 
     val googleLogoImage: ImageResource
     val facebookLogoImage: ImageResource

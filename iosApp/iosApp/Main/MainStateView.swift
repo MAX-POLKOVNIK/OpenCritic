@@ -34,7 +34,7 @@ struct MainStateView: View {
                     if tab.id == TabType.main {
                         DashboardScreenView(viewModel: dashboardViewModel)
                             .tabItem {
-                                Label(tab.name, systemImage: tab.imageResource)
+                                Label(tab.name, iconRes: tab.imageResource)
                             }
                             .tag(tab.id)
                             .navigationTitle(tab.name)
@@ -42,7 +42,7 @@ struct MainStateView: View {
                     if tab.id == TabType.search {
                         SearchScreenView(viewModel: searchViewModel)
                             .tabItem {
-                                Label(tab.name, systemImage: tab.imageResource)
+                                Label(tab.name, iconRes: tab.imageResource)
                             }
                             .tag(tab.id)
                             .navigationTitle(tab.name)
@@ -50,7 +50,7 @@ struct MainStateView: View {
                     if tab.id == TabType.browse {
                         GameBrowserScreenView(viewModel: gameBrowserViewModel)
                             .tabItem {
-                                Label(tab.name, systemImage: tab.imageResource)
+                                Label(tab.name, iconRes: tab.imageResource)
                             }
                             .tag(tab.id)
                             .navigationTitle(tab.name)
@@ -58,7 +58,7 @@ struct MainStateView: View {
                     if tab.id == TabType.yourlists {
                         YourGameListScreenView(viewModel: yourGameListViewModel)
                             .tabItem {
-                                Label(tab.name, systemImage: tab.imageResource)
+                                Label(tab.name, iconRes: tab.imageResource)
                             }
                             .tag(tab.id)
                             .navigationTitle(tab.name)

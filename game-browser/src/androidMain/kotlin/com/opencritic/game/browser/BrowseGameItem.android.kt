@@ -12,7 +12,6 @@ import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
-import androidx.compose.material.icons.Icons
 import androidx.compose.material3.Card
 import androidx.compose.material3.Icon
 import androidx.compose.material3.Text
@@ -32,6 +31,7 @@ import com.opencritic.game.browser.ui.BrowseGameItem_PreviewData
 import com.opencritic.games.details.RankCircleIndicatorItem
 import com.opencritic.resources.AndroidImageResourceProvider
 import com.opencritic.resources.R
+import com.opencritic.resources.asPainter
 import com.opencritic.resources.defaultPadding
 import com.opencritic.resources.smallPadding
 
@@ -124,7 +124,7 @@ fun BrowseGameItem(
                         .padding(bottom = defaultPadding)
                 ) {
                     Icon(
-                        painter = painterResource(id = R.drawable.ic_calendar),
+                        painter = com.opencritic.resources.Icons.calendar.asPainter(),
                         contentDescription = "",
                         tint = Color.Gray,
                         modifier = Modifier

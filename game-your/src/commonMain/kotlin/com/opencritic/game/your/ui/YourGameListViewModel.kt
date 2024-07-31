@@ -64,10 +64,7 @@ class YourGameListViewModel(
                             items = list.map { game ->
                                 YourGameListItem(
                                     text = game.name,
-                                    indicatorItem = YourGameIndicatorSmallItem(
-                                        game,
-                                        imageResourceProvider
-                                    ) {
+                                    indicatorItem = YourGameIndicatorSmallItem(game) {
                                         onGameAction(game, it)
                                     }
                                 ) { navigateToGame(game.id, game.name) }

@@ -42,6 +42,6 @@ fun YourGameListItem(
 @Composable
 fun YourGameListItem_Preview() {
     YourGameListItem(
-        item = YourGameListItem_PreviewData(AndroidImageResourceProvider())
+        item = YourGameListItem_PreviewData()
     )
 }

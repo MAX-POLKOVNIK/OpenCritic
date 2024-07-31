@@ -4,6 +4,8 @@ import com.opencritic.game.your.domain.YourGame
 import com.opencritic.game.your.domain.YourGameAction
 import com.opencritic.resources.Color
 import com.opencritic.resources.Colors
+import com.opencritic.resources.IconResource
+import com.opencritic.resources.Icons
 import com.opencritic.resources.ImageResource
 import com.opencritic.resources.ImageResourceProvider
 import com.opencritic.resources.MR
@@ -11,15 +13,15 @@ import com.opencritic.resources.StringProvider
 import com.opencritic.resources.getString
 
 data class YourGameIndicatorItem(
-    val wantedImageResource: ImageResource,
+    val wantedImageResource: IconResource,
     val wantedText: String,
     val wantedTextColor: Color?,
     val wantedBackgroundColor: Color,
-    val playedImageResource: ImageResource,
+    val playedImageResource: IconResource,
     val playedText: String,
     val playedTextColor: Color?,
     val playedBackgroundColor: Color,
-    val favoriteImageResource: ImageResource,
+    val favoriteImageResource: IconResource,
     val favoriteText: String,
     val favoriteTextColor: Color?,
     val favoriteBackgroundColor: Color,
@@ -33,19 +35,18 @@ data class YourGameIndicatorItem(
 fun YourGameIndicatorItem(
     game: YourGame,
     stringProvider: StringProvider,
-    imageResourceProvider: ImageResourceProvider,
     onClick: (YourGameAction) -> Unit,
 ): YourGameIndicatorItem =
     YourGameIndicatorItem(
-        wantedImageResource = imageResourceProvider.gameActionWant,
+        wantedImageResource = Icons.gameActionWant,
         wantedText = stringProvider.getString(MR.strings.str_game_action_want),
         wantedTextColor = Colors.White.takeIf { game.isWanted },
         wantedBackgroundColor = if (game.isWanted) Colors.WantedGameColor else Colors.Transparent,
-        playedImageResource = imageResourceProvider.gameActionPlayed,
+        playedImageResource = Icons.gameActionPlayed,
         playedText = stringProvider.getString(MR.strings.str_game_action_played),
         playedTextColor = Colors.White.takeIf { game.isPlayed },
         playedBackgroundColor = if (game.isPlayed) Colors.PlayedGameColor else Colors.Transparent,
-        favoriteImageResource = imageResourceProvider.gameActionFavorite,
+        favoriteImageResource = Icons.gameActionFavorite,
         favoriteText = stringProvider.getString(MR.strings.str_game_action_favorite),
         favoriteTextColor = Colors.White.takeIf { game.isFavorite },
         favoriteBackgroundColor = if (game.isFavorite) Colors.FavoriteGameColor else Colors.Transparent,
@@ -53,19 +54,17 @@ fun YourGameIndicatorItem(
     )
 
 @Suppress("FunctionName")
-fun YourGameIndicatorItem_PreviewData(
-    imageResourceProvider: ImageResourceProvider,
-): YourGameIndicatorItem =
+fun YourGameIndicatorItem_PreviewData(): YourGameIndicatorItem =
     YourGameIndicatorItem(
-        wantedImageResource = imageResourceProvider.gameActionWant,
+        wantedImageResource = Icons.gameActionWant,
         wantedText = "Want",
         wantedTextColor = Colors.White,
         wantedBackgroundColor = Colors.WantedGameColor,
-        playedImageResource = imageResourceProvider.gameActionPlayed,
+        playedImageResource = Icons.gameActionPlayed,
         playedText = "Played",
         playedTextColor = null,
         playedBackgroundColor = Colors.Transparent,
-        favoriteImageResource = imageResourceProvider.gameActionFavorite,
+        favoriteImageResource = Icons.gameActionFavorite,
         favoriteText = "Favorite",
         favoriteTextColor = Colors.White,
         favoriteBackgroundColor = Colors.FavoriteGameColor,

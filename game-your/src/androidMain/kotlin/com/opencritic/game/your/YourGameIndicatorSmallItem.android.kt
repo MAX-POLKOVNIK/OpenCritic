@@ -24,6 +24,7 @@ import androidx.compose.ui.unit.dp
 import com.opencritic.game.your.ui.YourGameIndicatorSmallItem
 import com.opencritic.game.your.ui.YourGameIndicatorSmallItem_PreviewData
 import com.opencritic.resources.AndroidImageResourceProvider
+import com.opencritic.resources.asPainter
 import com.opencritic.resources.smallPadding
 import com.opencritic.resources.toCompose
 
@@ -44,7 +45,7 @@ fun YourGameIndicatorSmallItem(
                 .height(intrinsicSize = IntrinsicSize.Max)
         ) {
             Image(
-                painter = painterResource(id = item.wantedImageResource),
+                painter = item.wantedImageResource.asPainter(),
                 contentDescription = "",
                 colorFilter = ColorFilter.tint(item.wantedIconColor?.toCompose() ?: LocalContentColor.current),
                 modifier = Modifier
@@ -60,7 +61,7 @@ fun YourGameIndicatorSmallItem(
             )
 
             Image(
-                painter = painterResource(id = item.playedImageResource),
+                painter = item.playedImageResource.asPainter(),
                 contentDescription = "",
                 colorFilter = ColorFilter.tint(item.playedIconColor?.toCompose() ?: LocalContentColor.current),
                 modifier = Modifier
@@ -73,7 +74,7 @@ fun YourGameIndicatorSmallItem(
             VerticalDivider()
 
             Image(
-                painter = painterResource(id = item.favoriteImageResource),
+                painter = item.favoriteImageResource.asPainter(),
                 contentDescription = "",
                 colorFilter = ColorFilter.tint(item.favoriteIconColor?.toCompose() ?: LocalContentColor.current),
                 modifier = Modifier
@@ -90,6 +91,6 @@ fun YourGameIndicatorSmallItem(
 @Composable
 fun YourGameIndicatorSmallItem_Preview() {
     YourGameIndicatorSmallItem(
-        item = YourGameIndicatorSmallItem_PreviewData(AndroidImageResourceProvider())
+        item = YourGameIndicatorSmallItem_PreviewData()
     )
 }

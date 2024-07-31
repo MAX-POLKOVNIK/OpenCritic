@@ -12,6 +12,7 @@ import com.opencritic.navigation.AuthorReviewsRoute
 import com.opencritic.navigation.GameDetailsRoute
 import com.opencritic.navigation.UrlRoute
 import com.opencritic.resources.DateFormatter
+import com.opencritic.resources.Icons
 import com.opencritic.resources.ImageResourceProvider
 import com.opencritic.resources.StringProvider
 import com.opencritic.resources.StringRes
@@ -91,19 +92,19 @@ class OutletReviewsViewModel(
             sortTitleText = stringProvider.getString(StringRes.str_sort),
             infoItems = listOf(
                 IconTextItem(
-                    icon = imageResourceProvider.hashTag,
+                    icon = Icons.hashTag,
                     text = stringProvider.getFormattedString(StringRes.str_games_reviewed_formatted, outlet.reviewsCount.toString()),
                 ),
                 IconTextItem(
-                    icon = imageResourceProvider.chartPie,
+                    icon = Icons.chartPie,
                     text = stringProvider.getFormattedString(StringRes.str_average_score_formatted, outlet.averageScore.toInt().toString()),
                 ),
                 IconTextItem(
-                    icon = imageResourceProvider.bullseye,
+                    icon = Icons.bullseye,
                     text = stringProvider.getFormattedString(StringRes.str_median_score_formatted, outlet.medianScore.toString())
                 ),
                 IconTextItem(
-                    icon = imageResourceProvider.thumbUp,
+                    icon = Icons.thumbUp,
                     text = stringProvider.getFormattedString(StringRes.str_games_recommended_formatted, outlet.percentRecommended.toInt().toString())
                 )
             ),

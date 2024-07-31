@@ -30,8 +30,6 @@ struct YourGameListItemView: View {
 
 #Preview {
     YourGameListItemView(
-        item: YourGameListItemKt.YourGameListItem_PreviewData(
-            imageResourceProvider: IosImagesResourceProvider()
-        )
+        item: YourGameListItemKt.YourGameListItem_PreviewData()
     )
 }

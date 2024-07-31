@@ -10,10 +10,6 @@ import Foundation
 import shared
 
 class IosImagesResourceProvider : ImageResourceProvider {
-    var gameActionFavorite: String { "heart.fill" }
-    var gameActionPlayed: String { "checkmark" }
-    var gameActionWant: String { "plus" }
-    
     var fairMan: String { "fair-man" }
     var mightyMan: String { "mighty-man" }
     var strongMan: String { "strong-man" }
@@ -23,21 +19,6 @@ class IosImagesResourceProvider : ImageResourceProvider {
     var mightyHead: String { "mighty-head" }
     var strongHead: String { "strong-head" }
     var weakHead: String { "weak-head" }
-    
-    var tabBrowse: String { "gamecontroller.fill" }
-    var tabCalendar: String { "calendar" }
-    var tabMain: String { "doc.text.image" }
-    var tabSearch: String { "magnifyingglass" }
-    var tabYourList: String { "star" }
-    
-    var bullseye: String { "circle.circle" }
-    var chartPie: String { "chart.pie.fill" }
-    var hashTag: String { "number" }
-    var thumbUp: String { "hand.thumbsup.fill" }
-    
-    var home: String { "house.fill" }
-    var playstation: String { "playstation.logo" }
-    var xbox: String { "xbox.logo" }
     
     var facebookLogoImage: String { "facebook" }
     var googleLogoImage: String { "google" }

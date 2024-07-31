@@ -29,6 +29,7 @@ import androidx.compose.ui.unit.dp
 import com.opencritic.game.your.ui.YourGameIndicatorItem
 import com.opencritic.game.your.ui.YourGameIndicatorItem_PreviewData
 import com.opencritic.resources.AndroidImageResourceProvider
+import com.opencritic.resources.asPainter
 import com.opencritic.resources.defaultPadding
 import com.opencritic.resources.toCompose
 
@@ -58,7 +59,7 @@ fun YourGameIndicatorItem(
                     .padding(defaultPadding)
             ) {
                 Image(
-                    painter = painterResource(id = item.wantedImageResource),
+                    painter = item.wantedImageResource.asPainter(),
                     contentDescription = "",
                     colorFilter = ColorFilter.tint(item.wantedTextColor?.toCompose() ?: LocalContentColor.current),
                     modifier = Modifier
@@ -84,7 +85,7 @@ fun YourGameIndicatorItem(
                     .padding(defaultPadding)
             ) {
                 Image(
-                    painter = painterResource(id = item.playedImageResource),
+                    painter = item.playedImageResource.asPainter(),
                     contentDescription = "",
                     colorFilter = ColorFilter.tint(item.playedTextColor?.toCompose() ?: LocalContentColor.current),
                     modifier = Modifier
@@ -107,7 +108,7 @@ fun YourGameIndicatorItem(
                     .padding(defaultPadding)
             ) {
                 Image(
-                    painter = painterResource(id = item.favoriteImageResource),
+                    painter = item.favoriteImageResource.asPainter(),
                     contentDescription = "",
                     colorFilter = ColorFilter.tint(item.favoriteTextColor?.toCompose() ?: LocalContentColor.current),
                     modifier = Modifier
@@ -126,6 +127,6 @@ fun YourGameIndicatorItem(
 @Preview
 fun YourGameIndicatorItem_Preview() {
     YourGameIndicatorItem(
-        YourGameIndicatorItem_PreviewData(AndroidImageResourceProvider())
+        YourGameIndicatorItem_PreviewData()
     )
 }

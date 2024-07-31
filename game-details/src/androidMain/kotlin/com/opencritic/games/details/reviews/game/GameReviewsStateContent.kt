@@ -14,8 +14,6 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.lazy.LazyColumn
-import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.sharp.KeyboardArrowDown
 import androidx.compose.material3.Card
 import androidx.compose.material3.HorizontalDivider
 import androidx.compose.material3.Icon
@@ -38,6 +36,8 @@ import com.opencritic.games.details.ui.GameReviewsState
 import com.opencritic.games.details.ui.GameReviewsStateContent_PreviewData
 import com.opencritic.mvvm.Spinner
 import com.opencritic.resources.AndroidImageResourceProvider
+import com.opencritic.resources.Icons
+import com.opencritic.resources.asPainter
 import com.opencritic.resources.defaultPadding
 import com.opencritic.resources.smallPadding
 
@@ -153,7 +153,7 @@ fun GameReviewsStateContent(
                                 text = item.name,
                             )
                             Icon(
-                                imageVector = Icons.Sharp.KeyboardArrowDown,
+                                painter = Icons.arrowDown.asPainter(),
                                 contentDescription = "drop down arrow"
                             )
                         }

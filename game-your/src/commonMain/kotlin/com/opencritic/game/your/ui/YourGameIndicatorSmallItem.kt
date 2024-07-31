@@ -4,17 +4,19 @@ import com.opencritic.game.your.domain.YourGame
 import com.opencritic.game.your.domain.YourGameAction
 import com.opencritic.resources.Color
 import com.opencritic.resources.Colors
+import com.opencritic.resources.IconResource
+import com.opencritic.resources.Icons
 import com.opencritic.resources.ImageResource
 import com.opencritic.resources.ImageResourceProvider
 
 data class YourGameIndicatorSmallItem(
-    val wantedImageResource: ImageResource,
+    val wantedImageResource: IconResource,
     val wantedBackgroundColor: Color?,
     val wantedIconColor: Color?,
-    val playedImageResource: ImageResource,
+    val playedImageResource: IconResource,
     val playedBackgroundColor: Color?,
     val playedIconColor: Color?,
-    val favoriteImageResource: ImageResource,
+    val favoriteImageResource: IconResource,
     val favoriteBackgroundColor: Color?,
     val favoriteIconColor: Color?,
     private val onClick: (YourGameAction) -> Unit,
@@ -26,34 +28,31 @@ data class YourGameIndicatorSmallItem(
 
 fun YourGameIndicatorSmallItem(
     game: YourGame,
-    imageResourceProvider: ImageResourceProvider,
     onClick: (YourGameAction) -> Unit,
 ): YourGameIndicatorSmallItem =
     YourGameIndicatorSmallItem(
-        wantedImageResource = imageResourceProvider.gameActionWant,
+        wantedImageResource = Icons.gameActionWant,
         wantedBackgroundColor = Colors.WantedGameColor.takeIf { game.isWanted },
         wantedIconColor = Colors.White.takeIf { game.isWanted },
-        playedImageResource = imageResourceProvider.gameActionPlayed,
+        playedImageResource = Icons.gameActionPlayed,
         playedBackgroundColor = Colors.PlayedGameColor.takeIf { game.isPlayed },
         playedIconColor = Colors.White.takeIf { game.isPlayed },
-        favoriteImageResource = imageResourceProvider.gameActionFavorite,
+        favoriteImageResource = Icons.gameActionFavorite,
         favoriteBackgroundColor = Colors.FavoriteGameColor.takeIf { game.isFavorite },
         favoriteIconColor = Colors.White.takeIf { game.isFavorite },
         onClick = onClick,
     )
 
 @Suppress("FunctionName")
-fun YourGameIndicatorSmallItem_PreviewData(
-    imageResourceProvider: ImageResourceProvider,
-): YourGameIndicatorSmallItem =
+fun YourGameIndicatorSmallItem_PreviewData(): YourGameIndicatorSmallItem =
     YourGameIndicatorSmallItem(
-        wantedImageResource = imageResourceProvider.gameActionWant,
+        wantedImageResource = Icons.gameActionWant,
         wantedBackgroundColor = Colors.WantedGameColor,
         wantedIconColor = Colors.White,
-        playedImageResource = imageResourceProvider.gameActionPlayed,
+        playedImageResource = Icons.gameActionPlayed,
         playedBackgroundColor = null,
         playedIconColor = null,
-        favoriteImageResource = imageResourceProvider.gameActionFavorite,
+        favoriteImageResource = Icons.gameActionFavorite,
         favoriteBackgroundColor = Colors.FavoriteGameColor,
         favoriteIconColor = Colors.White,
         onClick = {},

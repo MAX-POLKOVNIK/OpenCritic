@@ -26,7 +26,9 @@ import androidx.compose.ui.unit.dp
 import coil.compose.SubcomposeAsyncImage
 import com.opencritic.games.details.ui.CardReviewItem
 import com.opencritic.games.details.ui.ReviewScoreDisplayItem
+import com.opencritic.resources.Icons
 import com.opencritic.resources.R
+import com.opencritic.resources.asPainter
 import com.opencritic.resources.defaultPadding
 import com.opencritic.resources.smallPadding
 
@@ -86,19 +88,19 @@ fun CardReviewItem(
                     Row {
                         repeat(item.score.filledStars) {
                             Icon(
-                                painter = painterResource(id = R.drawable.ic_star_filled),
+                                painter = Icons.starFilled.asPainter(),
                                 contentDescription = ""
                             )
                         }
                         repeat(item.score.halfStars) {
                             Icon(
-                                painter = painterResource(id = R.drawable.ic_star_half),
+                                painter = Icons.starHalf.asPainter(),
                                 contentDescription = ""
                             )
                         }
                         repeat(item.score.emptyStars) {
                             Icon(
-                                painter = painterResource(id = R.drawable.ic_star),
+                                painter = Icons.star.asPainter(),
                                 contentDescription = ""
                             )
                         }

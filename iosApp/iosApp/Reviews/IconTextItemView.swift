@@ -14,7 +14,7 @@ struct IconTextItemView: View {
     
     var body: some View {
         HStack {
-            Image(systemName: item.icon)
+            Image(iconRes: item.icon)
             Text(item.text)
             Spacer()
         }
@@ -24,7 +24,7 @@ struct IconTextItemView: View {
 #Preview {
     IconTextItemView(
         item: IconTextItem(
-            icon: "hand.thumbsup.fill",
+            icon: Icons.shared.thumbUp,
             text: "55.6% of games recommended"
         )
     )

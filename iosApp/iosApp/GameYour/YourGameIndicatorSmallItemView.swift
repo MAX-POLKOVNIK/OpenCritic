@@ -14,7 +14,7 @@ struct YourGameIndicatorSmallItemView: View {
     
     var body: some View {
         HStack(spacing: 0) {
-            Image(systemName: item.wantedImageResource)
+            Image(iconRes: item.wantedImageResource)
                 .resizable()
                 .aspectRatio(contentMode: .fit)
                 .frame(width: 24, height: 24)
@@ -25,7 +25,7 @@ struct YourGameIndicatorSmallItemView: View {
                 .contentShape(Rectangle())
                 .onTapGesture { item.wantedClick() }
             
-            Image(systemName: item.playedImageResource)
+            Image(iconRes: item.playedImageResource)
                 .resizable()
                 .aspectRatio(contentMode: .fit)
                 .frame(width: 24, height: 24)
@@ -36,7 +36,7 @@ struct YourGameIndicatorSmallItemView: View {
                 .contentShape(Rectangle())
                 .onTapGesture { item.playedClick() }
             
-            Image(systemName: item.favoriteImageResource)
+            Image(iconRes: item.favoriteImageResource)
                 .resizable()
                 .aspectRatio(contentMode: .fit)
                 .frame(width: 24, height: 24)
@@ -53,8 +53,6 @@ struct YourGameIndicatorSmallItemView: View {
 
 #Preview {
     YourGameIndicatorSmallItemView(
-        item: YourGameIndicatorSmallItemKt.YourGameIndicatorSmallItem_PreviewData(
-            imageResourceProvider: IosImagesResourceProvider()
-        )
+        item: YourGameIndicatorSmallItemKt.YourGameIndicatorSmallItem_PreviewData()
     )
 }

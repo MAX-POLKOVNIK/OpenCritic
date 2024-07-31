@@ -52,13 +52,13 @@ struct ReviewListItemView: View {
                 if let scoreStars = item.score as? ReviewScoreDisplayItemStars {
                     HStack(spacing: 0) {
                         ForEach(0..<scoreStars.filledStars, id: \.self) { _ in
-                            Image(systemName: "star.fill")
+                            Image(iconRes: Icons.shared.starFilled)
                         }
                         ForEach(0..<scoreStars.halfStars, id: \.self) { _ in
-                            Image(systemName: "star.leadinghalf.filled")
+                            Image(iconRes: Icons.shared.starHalf)
                         }
                         ForEach(0..<scoreStars.emptyStars, id: \.self) { _ in
-                            Image(systemName: "star")
+                            Image(iconRes: Icons.shared.star)
                         }
                     }
                 }

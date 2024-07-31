@@ -14,7 +14,7 @@ struct ErrorStateView: View {
     
     var body: some View {
         VStack {
-            Image(systemName: "exclamationmark.triangle.fill")
+            Image(iconRes: Icons.shared.warning)
                 .resizable()
                 .aspectRatio(contentMode: .fit)
                 .foregroundColor(.red)

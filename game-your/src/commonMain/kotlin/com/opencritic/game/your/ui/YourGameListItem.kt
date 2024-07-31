@@ -9,11 +9,9 @@ data class YourGameListItem(
 )
 
 @Suppress("FunctionName")
-fun YourGameListItem_PreviewData(
-    imageResourceProvider: ImageResourceProvider,
-): YourGameListItem =
+fun YourGameListItem_PreviewData(): YourGameListItem =
     YourGameListItem(
         text = "Some long game name = jdsf sjkadf jksdafjasjkf sjkdafjsadfk",
-        indicatorItem = YourGameIndicatorSmallItem_PreviewData(imageResourceProvider),
+        indicatorItem = YourGameIndicatorSmallItem_PreviewData(),
         click = {}
     )

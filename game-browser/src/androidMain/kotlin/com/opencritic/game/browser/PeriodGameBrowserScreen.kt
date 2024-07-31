@@ -1,8 +1,6 @@
 package com.opencritic.game.browser
 
 import androidx.compose.foundation.layout.padding
-import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.automirrored.filled.ArrowBack
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
@@ -23,6 +21,8 @@ import com.opencritic.mvvm.ErrorBox
 import com.opencritic.mvvm.LoadingBox
 import com.opencritic.navigation.PeriodGameBrowserDestination
 import com.opencritic.navigation.router
+import com.opencritic.resources.Icons
+import com.opencritic.resources.asPainter
 import org.koin.androidx.compose.koinViewModel
 import org.koin.core.parameter.parametersOf
 
@@ -55,7 +55,7 @@ fun PeriodGameBrowserScreen(
                 navigationIcon = {
                     IconButton(onClick = { router.navigateBack() }) {
                         Icon(
-                            imageVector = Icons.AutoMirrored.Filled.ArrowBack,
+                            painter = Icons.arrowBack.asPainter(),
                             contentDescription = "Localized description"
                         )
                     }

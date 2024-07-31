@@ -45,6 +45,7 @@ import com.opencritic.navigation.GameBrowserDestination
 import com.opencritic.navigation.MainDestination
 import com.opencritic.navigation.SearchDestination
 import com.opencritic.navigation.YourListDestination
+import com.opencritic.resources.asPainter
 import com.opencritic.search.SearchScreen
 
 @OptIn(ExperimentalMaterial3Api::class)
@@ -86,7 +87,7 @@ fun MainState(state: MainState, navController: NavHostController) {
                     val currentDestination = navBackStackEntry?.destination
                     state.tabs.forEach { tab ->
                         NavigationBarItem(
-                            icon = { Icon(painter = painterResource(tab.imageResource), contentDescription = null) },
+                            icon = { Icon(painter = tab.imageResource.asPainter(), contentDescription = null) },
                             label = { Text(tab.name) },
                             selected = currentDestination?.hierarchy?.any { it.route == tab.id.destination.path } == true,
                             onClick = {

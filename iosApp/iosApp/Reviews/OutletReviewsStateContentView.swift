@@ -83,8 +83,6 @@ struct OutletReviewsStateContentView: View {
 
 #Preview {
     OutletReviewsStateContentView(
-        state: OutletReviewsStateKt.OutletReviewsStateContent_PreviewData(
-            imageResourceProvider: IosImagesResourceProvider()
-        )
+        state: OutletReviewsStateKt.OutletReviewsStateContent_PreviewData()
     )
 }

@@ -52,7 +52,7 @@ struct AuthorReviewsStateContentView: View {
                     Divider()
                     
                     HStack {
-                        Image(systemName: "heart.fill")
+                        Image(iconRes: Icons.shared.heart)
                             .foregroundColor(.red)
                         
                         Text(state.favoritesGamesTitleText)
@@ -111,8 +111,6 @@ struct AuthorReviewsStateContentView: View {
 
 #Preview {
     AuthorReviewsStateContentView(
-        state: AuthorReviewsStateKt.AuthorReviewsStateContent_PreviewData(
-            imageResourceProvider: IosImagesResourceProvider()
-        )
+        state: AuthorReviewsStateKt.AuthorReviewsStateContent_PreviewData()
     )
 }

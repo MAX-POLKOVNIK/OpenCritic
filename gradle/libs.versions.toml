@@ -30,6 +30,7 @@ compose-ui-tooling-preview = { module = "androidx.compose.ui:ui-tooling-preview"
 compose-foundation = { module = "androidx.compose.foundation:foundation", version.ref = "compose" }
 compose-navigation-compose = { module = "androidx.navigation:navigation-compose", version.ref = "nav_version" }
 compose-material3 = { module = "androidx.compose.material3:material3", version.ref = "compose-material3" }
+compose-icons = { module = "androidx.compose.material:material-icons-extended", version.ref = "compose" }
 ktor-client-core = { module = "io.ktor:ktor-client-core", version.ref = "ktor" }
 ktor-client-cio = { module = "io.ktor:ktor-client-cio", version.ref = "ktor" }
 ktor-client-okhttp = { module = "io.ktor:ktor-client-okhttp", version.ref = "ktor" }
@@ -61,3 +62,4 @@ kotlin-serialization = { id = "org.jetbrains.kotlin.plugin.serialization", versi
 room = { id = "androidx.room", version.ref = "androidxRoom" }
 kotlin-ksp = { id = "com.google.devtools.ksp", version = "1.9.22-1.0.18" }
 moko-resources = { id = "dev.icerock.mobile.multiplatform-resources", version = "0.24.1" }
+

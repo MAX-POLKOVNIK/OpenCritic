@@ -77,7 +77,7 @@ fun GameDetailsStateContent_PreviewData(
         isImageVisible = true,
         imageUrl = "https://img.opencritic.com/game/14353/a7GST4so.jpg",
         name = "Game title",
-        yourGameIndicatorItem = YourGameIndicatorItem_PreviewData(imageResourceProvider),
+        yourGameIndicatorItem = YourGameIndicatorItem_PreviewData(),
         companiesText = "Some companies",
         releaseDateText = "MAY 25, 2505",
         platformsText = "Playstation, Xbox, PC",

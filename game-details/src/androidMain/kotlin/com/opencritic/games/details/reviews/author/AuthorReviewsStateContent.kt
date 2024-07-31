@@ -13,8 +13,6 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.shape.CircleShape
-import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.sharp.KeyboardArrowDown
 import androidx.compose.material3.Card
 import androidx.compose.material3.HorizontalDivider
 import androidx.compose.material3.Icon
@@ -38,6 +36,8 @@ import com.opencritic.games.details.ui.AuthorReviewsState
 import com.opencritic.games.details.ui.AuthorReviewsStateContent_PreviewData
 import com.opencritic.mvvm.Spinner
 import com.opencritic.resources.AndroidImageResourceProvider
+import com.opencritic.resources.Icons
+import com.opencritic.resources.asPainter
 import com.opencritic.resources.defaultPadding
 import com.opencritic.resources.smallPadding
 
@@ -101,7 +101,7 @@ fun AuthorReviewsStateContent(
                                 .fillMaxWidth()
                         ) {
                             Icon(
-                                painterResource(id = com.opencritic.resources.R.drawable.ic_heart),
+                                painter = com.opencritic.resources.Icons.heart.asPainter(),
                                 contentDescription = "",
                                 tint = Color.Red
                             )
@@ -162,7 +162,7 @@ fun AuthorReviewsStateContent(
                                 text = item.name,
                             )
                             Icon(
-                                imageVector = Icons.Sharp.KeyboardArrowDown,
+                                painter = Icons.arrowDown.asPainter(),
                                 contentDescription = "drop down arrow"
                             )
                         }
@@ -203,6 +203,6 @@ fun AuthorReviewsStateContent(
 @Composable
 fun AuthorReviewsStateContent_Preview() {
     AuthorReviewsStateContent(
-        state = AuthorReviewsStateContent_PreviewData(AndroidImageResourceProvider())
+        state = AuthorReviewsStateContent_PreviewData()
     )
 }

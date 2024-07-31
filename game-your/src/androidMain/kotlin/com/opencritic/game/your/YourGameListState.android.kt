@@ -7,8 +7,6 @@ import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.LazyColumn
-import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.sharp.KeyboardArrowDown
 import androidx.compose.material3.Icon
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
@@ -20,6 +18,8 @@ import androidx.compose.ui.unit.dp
 import com.opencritic.game.your.ui.YourGameListState
 import com.opencritic.game.your.ui.YourGameListState_PreviewData
 import com.opencritic.mvvm.Spinner
+import com.opencritic.resources.Icons
+import com.opencritic.resources.asPainter
 import com.opencritic.resources.defaultPadding
 import com.opencritic.resources.smallPadding
 
@@ -58,7 +58,7 @@ fun YourGameListState(
                                 text = item.text,
                             )
                             Icon(
-                                imageVector = Icons.Sharp.KeyboardArrowDown,
+                                painter = Icons.arrowDown.asPainter(),
                                 contentDescription = "drop down arrow"
                             )
                         }

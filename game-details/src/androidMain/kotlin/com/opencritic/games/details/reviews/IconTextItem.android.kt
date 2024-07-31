@@ -13,6 +13,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.unit.dp
 import com.opencritic.games.details.ui.IconTextItem
+import com.opencritic.resources.asPainter
 import com.opencritic.resources.smallPadding
 
 @Composable
@@ -26,7 +27,7 @@ fun IconTextItem(
             .fillMaxWidth()
     ) {
         Icon(
-            painter = painterResource(id = item.icon),
+            painter = item.icon.asPainter(),
             contentDescription = "",
             modifier = Modifier
                 .size(24.dp, 24.dp)

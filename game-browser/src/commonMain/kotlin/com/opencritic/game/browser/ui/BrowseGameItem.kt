@@ -7,6 +7,8 @@ import com.opencritic.games.details.ui.RankCircleIndicatorItem
 import com.opencritic.games.details.ui.createCriticsRecommendIndicator
 import com.opencritic.games.details.ui.createTopCriticAverageIndicator
 import com.opencritic.resources.DateFormatter
+import com.opencritic.resources.IconResource
+import com.opencritic.resources.Icons
 import com.opencritic.resources.ImageResource
 import com.opencritic.resources.ImageResourceProvider
 import kotlinx.datetime.TimeZone
@@ -22,7 +24,7 @@ data class BrowseGameItem(
     val isPercentRecommendedIndicatorVisible: Boolean,
     val percentRecommendedIndicator: RankCircleIndicatorItem,
     val nameText: String,
-    val dateImageResource: ImageResource,
+    val dateImageResource: IconResource,
     val dateText: String,
     val onClick: () -> Unit,
 )
@@ -38,7 +40,7 @@ fun BrowseGameItem(
         id = game.id,
         imageUrl = game.imageUrl,
         nameText = game.name,
-        dateImageResource = imageResourceProvider.tabCalendar,
+        dateImageResource = Icons.tabCalendar,
         dateText = dateFormatter.formatFull(game.releaseDate.toLocalDateTime(TimeZone.UTC).date),
         isTierVisible = game.rank != null,
         tierImageResource = when (game.rank?.tier) {
@@ -65,7 +67,7 @@ fun BrowseGameItem_PreviewData(
         id = 1,
         imageUrl = "https://img.opencritic.com/game/4504/BZrxOMDi.jpg",
         nameText = "Super Mario Odyssey",
-        dateImageResource = imageResourceProvider.tabCalendar,
+        dateImageResource = Icons.tabCalendar,
         dateText = "October 27, 2017",
         isTierVisible = true,
         tierImageResource = imageResourceProvider.mightyMan,

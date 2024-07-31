@@ -5,6 +5,9 @@ import com.opencritic.games.Review
 
 interface GameDetailsRepository {
     suspend fun getGame(gameId: Long): Game
+
+    suspend fun getGameReviewsLanding(gameId: Long): List<Review>
+
     suspend fun getGameReviews(
         gameId: Long,
         skip: Int = 0,

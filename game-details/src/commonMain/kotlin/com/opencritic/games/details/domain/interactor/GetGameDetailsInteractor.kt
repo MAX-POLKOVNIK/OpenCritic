@@ -11,7 +11,7 @@ class GetGameDetailsInteractor(
     suspend operator fun invoke(gameId: Long): Result<GameDetails> =
         runCatching {
             val game = repository.getGame(gameId)
-            val reviews = repository.getGameReviews(gameId)
+            val reviews = repository.getGameReviewsLanding(gameId)
 
             val yourGame = getYourGameInteractor(gameId, game.name)
                 .getOrThrow()

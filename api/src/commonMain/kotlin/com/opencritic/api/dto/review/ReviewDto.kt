@@ -19,4 +19,6 @@ data class ReviewDto(
     val score: Float? = null,
     val snippet: String? = null,
     val game: GameIdNameDto,
+    val isYoutube: Boolean = false,
+    val youtubeVideoId: String? = null,
 )

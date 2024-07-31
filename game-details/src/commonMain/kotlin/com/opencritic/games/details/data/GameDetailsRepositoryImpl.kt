@@ -194,5 +194,6 @@ internal class GameDetailsRepositoryImpl(
             snippet = snippet ?: "",
             gameId = game.id,
             gameName = game.name,
+            youtubePlaceholderUrl = youtubeVideoId?.let { "https://img.youtube.com/vi/$it/maxresdefault.jpg" },
         )
 }

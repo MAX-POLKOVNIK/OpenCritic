@@ -6,7 +6,6 @@ struct iOSApp: App {
     init() {
         IosApp.shared.doInit(
             stringProvider: IosStringProvider(),
-            imageResourceProvider: IosImagesResourceProvider(),
             dateFormatter: IosDateFormatter()
         )
     }

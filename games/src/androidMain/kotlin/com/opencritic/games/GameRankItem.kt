@@ -14,7 +14,8 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
-import com.opencritic.resources.AndroidImageResourceProvider
+import com.opencritic.resources.SharedImages
+import com.opencritic.resources.asPainter
 import com.opencritic.resources.smallPadding
 
 @Composable
@@ -29,7 +30,7 @@ fun GameRankItem(
                 .width(56.dp),
         ) {
             Image(
-                painter = painterResource(id = model.headImageResource),
+                painter = model.headImageResource.asPainter(),
                 contentDescription = "",
                 modifier = Modifier
                     .size(24.dp, 24.dp)
@@ -56,7 +57,7 @@ fun GameRankItem(
 fun GameRankItem_Preview() {
     GameRankItem(
         model = GameRankModel(
-            headImageResource = AndroidImageResourceProvider().fairHead,
+            headImageResource = SharedImages.fairHead,
             scoreText = "16",
         )
     )

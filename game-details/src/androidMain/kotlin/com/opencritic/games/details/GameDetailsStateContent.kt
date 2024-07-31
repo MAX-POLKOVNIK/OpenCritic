@@ -39,7 +39,7 @@ import com.opencritic.games.details.ui.GameDetailsState
 import com.opencritic.games.details.ui.GameDetailsStateContent_PreviewData
 import com.opencritic.games.details.ui.ScreenshotItem
 import com.opencritic.games.details.ui.TrailerItem
-import com.opencritic.resources.AndroidImageResourceProvider
+import com.opencritic.resources.asPainter
 import com.opencritic.resources.defaultPadding
 import com.opencritic.resources.smallPadding
 
@@ -120,7 +120,7 @@ fun GameDetailsStateContent(state: GameDetailsState.Content, modifier: Modifier 
                             .fillMaxWidth()
                     ) {
                         Image(
-                            painter = painterResource(id = state.tierImageResource),
+                            painter = state.tierImageResource.asPainter(),
                             contentDescription = "",
                             contentScale = ContentScale.FillWidth,
                             modifier = Modifier
@@ -336,6 +336,6 @@ fun GameDetailsStateContent(state: GameDetailsState.Content, modifier: Modifier 
 @Preview
 fun GameDetailsStateContent_Preview() {
     GameDetailsStateContent(
-        state = GameDetailsStateContent_PreviewData(AndroidImageResourceProvider())
+        state = GameDetailsStateContent_PreviewData()
     )
 }

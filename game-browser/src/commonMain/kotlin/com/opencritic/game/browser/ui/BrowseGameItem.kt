@@ -9,8 +9,8 @@ import com.opencritic.games.details.ui.createTopCriticAverageIndicator
 import com.opencritic.resources.DateFormatter
 import com.opencritic.resources.IconResource
 import com.opencritic.resources.Icons
-import com.opencritic.resources.ImageResource
-import com.opencritic.resources.ImageResourceProvider
+import com.opencritic.resources.SharedImageResource
+import com.opencritic.resources.SharedImages
 import kotlinx.datetime.TimeZone
 import kotlinx.datetime.toLocalDateTime
 
@@ -18,7 +18,7 @@ data class BrowseGameItem(
     val id: Long,
     val imageUrl: String,
     val isTierVisible: Boolean,
-    val tierImageResource: ImageResource,
+    val tierImageResource: SharedImageResource,
     val isTopCriticVisibleIndicator: Boolean,
     val topCriticScoreIndicator: RankCircleIndicatorItem,
     val isPercentRecommendedIndicatorVisible: Boolean,
@@ -32,7 +32,6 @@ data class BrowseGameItem(
 fun BrowseGameItem(
     game: BrowseGame,
     isPercentRecommendedVisible: Boolean,
-    imageResourceProvider: ImageResourceProvider,
     dateFormatter: DateFormatter,
     onClick: () -> Unit,
 ): BrowseGameItem =
@@ -44,11 +43,11 @@ fun BrowseGameItem(
         dateText = dateFormatter.formatFull(game.releaseDate.toLocalDateTime(TimeZone.UTC).date),
         isTierVisible = game.rank != null,
         tierImageResource = when (game.rank?.tier) {
-            Tier.Mighty -> imageResourceProvider.mightyMan
-            Tier.Strong -> imageResourceProvider.strongMan
-            Tier.Fair -> imageResourceProvider.fairMan
-            Tier.Weak -> imageResourceProvider.weakMan
-            null -> imageResourceProvider.weakMan
+            Tier.Mighty -> SharedImages.mightyMan
+            Tier.Strong -> SharedImages.strongMan
+            Tier.Fair -> SharedImages.fairMan
+            Tier.Weak -> SharedImages.weakMan
+            null -> SharedImages.weakMan
         },
         isTopCriticVisibleIndicator = game.rank != null,
         topCriticScoreIndicator = createTopCriticAverageIndicator(
@@ -60,9 +59,7 @@ fun BrowseGameItem(
     )
 
 @Suppress("FunctionName")
-fun BrowseGameItem_PreviewData(
-    imageResourceProvider: ImageResourceProvider
-): BrowseGameItem =
+fun BrowseGameItem_PreviewData(): BrowseGameItem =
     BrowseGameItem(
         id = 1,
         imageUrl = "https://img.opencritic.com/game/4504/BZrxOMDi.jpg",
@@ -70,7 +67,7 @@ fun BrowseGameItem_PreviewData(
         dateImageResource = Icons.tabCalendar,
         dateText = "October 27, 2017",
         isTierVisible = true,
-        tierImageResource = imageResourceProvider.mightyMan,
+        tierImageResource = SharedImages.mightyMan,
         isTopCriticVisibleIndicator = true,
         topCriticScoreIndicator = createTopCriticAverageIndicator(
             gameRank = GameRank(Tier.Mighty, 97)

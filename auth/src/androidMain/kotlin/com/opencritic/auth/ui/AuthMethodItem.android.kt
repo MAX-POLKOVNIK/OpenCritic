@@ -13,6 +13,7 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.unit.dp
+import com.opencritic.resources.asPainter
 import com.opencritic.resources.defaultPadding
 
 @Composable
@@ -28,7 +29,7 @@ fun AuthMethodItem(
             .padding(horizontal = defaultPadding)
     ) {
         Image(
-            painter = painterResource(item.imageResource),
+            painter = item.imageResource.asPainter(),
             contentDescription = null,
             modifier = Modifier
                 .size(56.dp)

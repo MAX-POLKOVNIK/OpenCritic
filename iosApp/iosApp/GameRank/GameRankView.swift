@@ -34,7 +34,7 @@ struct GameRankView: View {
 
 struct GameRankView_Previews: PreviewProvider {
     static var previews: some View {
-        GameRankView(model: GameRankModel(headImageResource: IosImagesResourceProvider().fairHead, scoreText: "16"))
+        GameRankView(model: GameRankModel(headImageResource: SharedImages.shared.fairHead, scoreText: "16"))
             .previewLayout(.fixed(width: 56, height: 24))
     }
 }

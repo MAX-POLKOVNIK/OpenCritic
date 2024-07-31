@@ -16,7 +16,6 @@ import androidx.compose.ui.unit.dp
 import com.opencritic.dashboard.ui.DashboardGameListItem
 import com.opencritic.dashboard.ui.DashboardGameListItem_PreviewData
 import com.opencritic.games.GameRankItem
-import com.opencritic.resources.AndroidImageResourceProvider
 import com.opencritic.resources.defaultPadding
 
 @Composable
@@ -52,6 +51,6 @@ fun DashboardGameListItem(
 @Preview
 fun DashboardGameListItem_Preview() {
     DashboardGameListItem(
-        item = DashboardGameListItem_PreviewData(AndroidImageResourceProvider())
+        item = DashboardGameListItem_PreviewData()
     )
 }

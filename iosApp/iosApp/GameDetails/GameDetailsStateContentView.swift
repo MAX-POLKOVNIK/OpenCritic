@@ -210,7 +210,7 @@ struct GameDetailsStateContentView: View {
             platformsText: "Playstation, Xbox, PC",
             isTierVisible: true,
             tier: Tier.fair,
-            tierImageResource: IosImagesResourceProvider().fairMan,
+            tierImageResource: SharedImages.shared.fairMan,
             tierDescription: "Tier description",
             topCriticScore: RankCircleIndicatorItemKt.createTopCriticAverageIndicator(gameRank: GameRank(tier: Tier.fair, score: 0)),
             topCriticScoreDescription: "Top critic description",

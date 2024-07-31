@@ -13,7 +13,6 @@ import com.opencritic.navigation.GameDetailsRoute
 import com.opencritic.navigation.UrlRoute
 import com.opencritic.resources.DateFormatter
 import com.opencritic.resources.Icons
-import com.opencritic.resources.ImageResourceProvider
 import com.opencritic.resources.StringProvider
 import com.opencritic.resources.StringRes
 import com.opencritic.resources.getFormattedString
@@ -25,7 +24,6 @@ class OutletReviewsViewModel(
     private val outletName: String,
     private val getOutletInteractor: GetOutletInteractor,
     private val getOutletReviewsInteractor: GetOutletReviewsInteractor,
-    private val imageResourceProvider: ImageResourceProvider,
     private val stringProvider: StringProvider,
     private val dateFormatter: DateFormatter,
     private val logger: Logger,

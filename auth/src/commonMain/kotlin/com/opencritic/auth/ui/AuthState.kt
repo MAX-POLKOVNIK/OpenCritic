@@ -5,7 +5,7 @@ import com.opencritic.auth.domain.AuthUserAgent
 import com.opencritic.mvvm.BaseErrorState
 import com.opencritic.mvvm.BaseLoadingState
 import com.opencritic.mvvm.ViewModelState
-import com.opencritic.resources.ImageResourceProvider
+import com.opencritic.resources.SharedImages
 
 sealed interface AuthState : ViewModelState {
     val titleText: String
@@ -34,19 +34,17 @@ sealed interface AuthState : ViewModelState {
 }
 
 @Suppress("FunctionName")
-fun AuthStateMethodList_PreviewData(
-    imageResourceProvider: ImageResourceProvider
-): AuthState.MethodList =
+fun AuthStateMethodList_PreviewData(): AuthState.MethodList =
     AuthState.MethodList(
         titleText = "Sign in",
         items = AuthMethod.entries
             .map { method ->
                 AuthMethodItem(
                     imageResource = when (method) {
-                        AuthMethod.Facebook -> imageResourceProvider.facebookLogoImage
-                        AuthMethod.Google -> imageResourceProvider.googleLogoImage
-                        AuthMethod.Twitch -> imageResourceProvider.twitchLogoImage
-                        AuthMethod.Steam -> imageResourceProvider.steamLogoImage
+                        AuthMethod.Facebook -> SharedImages.facebook
+                        AuthMethod.Google -> SharedImages.google
+                        AuthMethod.Twitch -> SharedImages.twitch
+                        AuthMethod.Steam -> SharedImages.steam
                     },
                     text = method.name,
                     onClick = { }

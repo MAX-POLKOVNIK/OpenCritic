@@ -14,7 +14,7 @@ import com.opencritic.navigation.GameMediaRoute
 import com.opencritic.navigation.GameReviewsRoute
 import com.opencritic.navigation.UrlRoute
 import com.opencritic.resources.DateFormatter
-import com.opencritic.resources.ImageResourceProvider
+import com.opencritic.resources.SharedImages
 import com.opencritic.resources.StringProvider
 import com.opencritic.resources.StringRes
 import com.opencritic.resources.getFormattedString
@@ -29,7 +29,6 @@ class GameDetailsViewModel(
     private val getGameDetailsInteractor: GetGameDetailsInteractor,
     private val saveYourGameInteractor: SaveYourGameInteractor,
     private val stringProvider: StringProvider,
-    private val imageResourceProvider: ImageResourceProvider,
     private val dateFormatter: DateFormatter,
     private val logger: Logger,
 ) : BaseViewModel<GameDetailsState>() {
@@ -67,11 +66,11 @@ class GameDetailsViewModel(
                             platformsText = details.platforms.joinToString(", ") { it.name },
                             isTierVisible = details.rank != null,
                             tierImageResource = when(details.rank?.tier) {
-                                Tier.Mighty -> imageResourceProvider.mightyMan
-                                Tier.Strong -> imageResourceProvider.strongMan
-                                Tier.Fair -> imageResourceProvider.fairMan
-                                Tier.Weak -> imageResourceProvider.weakMan
-                                null -> imageResourceProvider.weakMan
+                                Tier.Mighty -> SharedImages.mightyMan
+                                Tier.Strong -> SharedImages.strongMan
+                                Tier.Fair -> SharedImages.fairMan
+                                Tier.Weak -> SharedImages.weakMan
+                                null -> SharedImages.weakMan
                             },
                             tier = details.rank?.tier,
                             tierDescription = stringProvider.getString(StringRes.str_open_critic_rating),

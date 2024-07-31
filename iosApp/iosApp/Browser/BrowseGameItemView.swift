@@ -83,8 +83,6 @@ struct BrowseGameItemView: View {
 
 #Preview {
     BrowseGameItemView(
-        item: BrowseGameItemKt.BrowseGameItem_PreviewData(
-            imageResourceProvider: IosImagesResourceProvider()
-        )
+        item: BrowseGameItemKt.BrowseGameItem_PreviewData()
     )
 }

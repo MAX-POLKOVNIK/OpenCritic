@@ -23,7 +23,6 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.opencritic.game.your.ui.YourGameIndicatorSmallItem
 import com.opencritic.game.your.ui.YourGameIndicatorSmallItem_PreviewData
-import com.opencritic.resources.AndroidImageResourceProvider
 import com.opencritic.resources.asPainter
 import com.opencritic.resources.smallPadding
 import com.opencritic.resources.toCompose

@@ -87,7 +87,6 @@ struct DashboardStateContentView: View {
                             rank: GameRank(tier: Tier.fair, score: 32)
                         )
                     ],
-                    imageResourceProvider: IosImagesResourceProvider(),
                     onClick: {_ in }
                 ),
             dealsTitle: DashboardTitleListItem(
@@ -131,7 +130,6 @@ struct DashboardStateContentView: View {
                     ),
                 ],
                 stringProvider: IosStringProvider(),
-                imageResourceProvider: IosImagesResourceProvider(),
                 onClick: { _ in },
                 onBuyNowClick: { _ in }
             ),
@@ -142,23 +140,23 @@ struct DashboardStateContentView: View {
                 title: "Hall of fame",
                 subtitle: "Hall of fame description"
             ),
-            hallOfFame: DashboardPosterGamesHorizontalListItem(popularGames: [], imageResourceProvider: IosImagesResourceProvider(), onClick: { _ in }),
-            whoIsMightyMan: DashboardMightyManListItemKt.DashboardMightyManListItem(stringProvider: IosStringProvider(), imageResourceProvider: IosImagesResourceProvider()),
+            hallOfFame: DashboardPosterGamesHorizontalListItem(popularGames: [], onClick: { _ in }),
+            whoIsMightyMan: DashboardMightyManListItemKt.DashboardMightyManListItem(stringProvider: IosStringProvider()),
             switchTitle: DashboardTitleListItem(
                 title: "Hall of fame",
                 subtitle: "Hall of fame description"
             ),
-            switchGames: DashboardPosterGamesHorizontalListItem(popularGames: [], imageResourceProvider: IosImagesResourceProvider(), onClick: { _ in }),
+            switchGames: DashboardPosterGamesHorizontalListItem(popularGames: [], onClick: { _ in }),
             xboxTitle: DashboardTitleListItem(
                 title: "Hall of fame",
                 subtitle: "Hall of fame description"
             ),
-            xboxGames: DashboardPosterGamesHorizontalListItem(popularGames: [], imageResourceProvider: IosImagesResourceProvider(), onClick: { _ in }),
+            xboxGames: DashboardPosterGamesHorizontalListItem(popularGames: [], onClick: { _ in }),
             playstationTitle: DashboardTitleListItem(
                 title: "Hall of fame",
                 subtitle: "Hall of fame description"
             ),
-            playstationGames: DashboardPosterGamesHorizontalListItem(popularGames: [], imageResourceProvider: IosImagesResourceProvider(), onClick: { _ in })
+            playstationGames: DashboardPosterGamesHorizontalListItem(popularGames: [], onClick: { _ in })
         )
     )
 }

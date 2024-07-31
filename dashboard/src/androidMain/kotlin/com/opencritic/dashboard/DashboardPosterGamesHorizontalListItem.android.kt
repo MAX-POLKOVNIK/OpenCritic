@@ -11,7 +11,6 @@ import com.opencritic.dashboard.domain.PosterGame
 import com.opencritic.dashboard.ui.DashboardPosterGamesHorizontalListItem
 import com.opencritic.games.GameRank
 import com.opencritic.games.Tier
-import com.opencritic.resources.AndroidImageResourceProvider
 import com.opencritic.resources.defaultPadding
 
 @Composable
@@ -57,7 +56,6 @@ fun DashboardPosterGamesHorizontalListItem_Preview() {
                     rank = GameRank(tier = Tier.Fair, score = 32)
                ),
             ),
-            imageResourceProvider = AndroidImageResourceProvider(),
             onClick = {}
         )
     )

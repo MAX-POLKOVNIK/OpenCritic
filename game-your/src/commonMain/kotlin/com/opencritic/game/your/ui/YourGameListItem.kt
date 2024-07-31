@@ -1,7 +1,5 @@
 package com.opencritic.game.your.ui
 
-import com.opencritic.resources.ImageResourceProvider
-
 data class YourGameListItem(
     val text: String,
     val indicatorItem: YourGameIndicatorSmallItem,

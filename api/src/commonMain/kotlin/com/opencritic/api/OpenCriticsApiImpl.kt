@@ -58,6 +58,9 @@ internal class OpenCriticsApiImpl(
     override suspend fun getGame(gameId: Long): GameDetailsDto =
         client.get(baseUrl + "game/${gameId}", headers()).body()
 
+    override suspend fun getGameReviewsLanding(gameId: Long): List<ReviewDto> =
+        client.get(baseUrl + "reviews/game/$gameId/landing", headers()).body()
+
     override suspend fun getGameReviews(gameId: Long, skip: Int, sort: ReviewSortKey): List<ReviewDto> =
         client.get(baseUrl + "reviews/game/$gameId/?skip=$skip&sort=${sort.queryValue}", headers()).body()
 

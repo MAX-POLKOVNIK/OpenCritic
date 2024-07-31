@@ -37,6 +37,8 @@ interface OpenCriticsApi {
 
     suspend fun getGame(gameId: Long): GameDetailsDto
 
+    suspend fun getGameReviewsLanding(gameId: Long): List<ReviewDto>
+
     suspend fun getGameReviews(gameId: Long, skip: Int, sort: ReviewSortKey): List<ReviewDto>
 
     suspend fun search(criteria: String): List<SearchItemDto>

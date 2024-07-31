@@ -52,6 +52,12 @@ internal class GameDetailsRepositoryImpl(
             )
         }
 
+    override suspend fun getGameReviewsLanding(gameId: Long): List<Review> =
+        withContext(defaultDispatcher) {
+            openCriticsApi.getGameReviewsLanding(gameId)
+                .map { it.toModel() }
+        }
+
     override suspend fun getGameReviews(gameId: Long, skip: Int, sort: ReviewSorting): List<Review> =
         withContext(defaultDispatcher) {
             openCriticsApi

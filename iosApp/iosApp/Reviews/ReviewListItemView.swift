@@ -74,8 +74,24 @@ struct ReviewListItemView: View {
                     .padding(.top)
             }
             
-            Text(item.snippetText)
-                .padding(.top)
+            if item.isYoutubeVisible {
+                CachedAsyncImage(
+                    url: URL(string: item.youtubePlaceholderUrl!),
+                    urlCache: .imageCache
+                ) { image in
+                    image.resizable()
+                } placeholder: {
+                    Color.gray
+                }
+                    .aspectRatio(1.77, contentMode: .fit)
+                    .card()
+                    .padding(.top)
+            }
+            
+            if item.isSnipperVisible {
+                Text(item.snippetText)
+                    .padding(.top)
+            }
             
             Button(item.readFullReviewText) { item.click() }
                 .padding(.top)

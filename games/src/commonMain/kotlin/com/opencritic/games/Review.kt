@@ -16,4 +16,5 @@ data class Review(
     val title: String?,
     val score: Float?,
     val snippet: String,
+    val youtubePlaceholderUrl: String?,
 )

@@ -6,8 +6,8 @@ import com.opencritic.games.details.domain.ReviewSorting
 import com.opencritic.mvvm.BaseErrorState
 import com.opencritic.mvvm.BaseLoadingState
 import com.opencritic.mvvm.ViewModelState
-import com.opencritic.resources.SharedImageResource
-import com.opencritic.resources.SharedImages
+import com.opencritic.resources.images.SharedImageResource
+import com.opencritic.resources.images.SharedImages
 
 interface GameReviewsState : ViewModelState {
     val titleText: String

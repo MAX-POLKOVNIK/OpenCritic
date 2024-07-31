@@ -1,7 +1,6 @@
 package com.opencritic.games.details.reviews.outlet
 
 import androidx.compose.foundation.background
-import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
@@ -36,8 +35,8 @@ import com.opencritic.games.details.reviews.ReviewListItem
 import com.opencritic.games.details.ui.OutletReviewsState
 import com.opencritic.games.details.ui.OutletReviewsStateContent_PreviewData
 import com.opencritic.mvvm.Spinner
-import com.opencritic.resources.Icons
-import com.opencritic.resources.asPainter
+import com.opencritic.resources.images.Icons
+import com.opencritic.resources.images.asPainter
 import com.opencritic.resources.defaultPadding
 
 @Composable

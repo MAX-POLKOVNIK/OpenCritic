@@ -10,7 +10,6 @@ import com.opencritic.games.details.di.gameDetailsModule
 import com.opencritic.logs.Logger
 import com.opencritic.logs.logsModule
 import com.opencritic.main.di.mainModule
-import com.opencritic.resources.DateFormatter
 import com.opencritic.resources.StringProvider
 import com.opencritic.resources.resourcesModule
 import com.opencritic.search.di.searchModule
@@ -24,7 +23,6 @@ abstract class BaseApp : KoinComponent {
 
     internal fun onInit(
         stringProvider: StringProvider,
-        dateFormatter: DateFormatter,
     ) {
         startKoin {
             onKoinInit(this)
@@ -32,7 +30,7 @@ abstract class BaseApp : KoinComponent {
             modules(
                 apiModule,
                 logsModule,
-                resourcesModule(stringProvider, dateFormatter),
+                resourcesModule(stringProvider),
                 dashboardModule,
                 mainModule,
                 gameDetailsModule,

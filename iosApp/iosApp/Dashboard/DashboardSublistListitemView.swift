@@ -53,7 +53,7 @@ struct DashboardSublistListitemView: View {
                         scoreText: "15"
                     ),
                     nameText: "Game",
-                    dateText: "MAY 16",
+                    dateText: StringTextSource(string: "MAY 16"),
                     onClick: {_ in }
                 ),
                 DashboardGameListItem(
@@ -63,7 +63,7 @@ struct DashboardSublistListitemView: View {
                         scoreText: "15"
                     ),
                     nameText: "Game",
-                    dateText: "MAY 16",
+                    dateText: StringTextSource(string: "MAY 16"),
                     onClick: {_ in }
                 ),
                 DashboardGameListItem(
@@ -73,7 +73,7 @@ struct DashboardSublistListitemView: View {
                         scoreText: "15"
                     ),
                     nameText: "Game",
-                    dateText: "MAY 16",
+                    dateText: StringTextSource(string: "MAY 16"),
                     onClick: {_ in }
                 )
             ],

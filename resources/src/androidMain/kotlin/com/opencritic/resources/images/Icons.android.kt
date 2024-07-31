@@ -1,11 +1,10 @@
-package com.opencritic.resources
+package com.opencritic.resources.images
 
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.automirrored.filled.ArrowBack
 import androidx.compose.material.icons.automirrored.filled.StarHalf
 import androidx.compose.material.icons.filled.Favorite
 import androidx.compose.material.icons.filled.Star
-import androidx.compose.material.icons.filled.StarHalf
 import androidx.compose.material.icons.outlined.Add
 import androidx.compose.material.icons.outlined.Adjust
 import androidx.compose.material.icons.outlined.CalendarMonth
@@ -14,9 +13,7 @@ import androidx.compose.material.icons.outlined.Home
 import androidx.compose.material.icons.outlined.*
 import androidx.compose.material.icons.rounded.Warning
 import androidx.compose.material.icons.sharp.KeyboardArrowDown
-import androidx.compose.ui.graphics.vector.ImageVector
-import androidx.compose.ui.res.painterResource
-import androidx.compose.ui.res.vectorResource
+import com.opencritic.resources.R
 
 actual object Icons {
     actual val tabMain: IconResource = Icons.Outlined.Newspaper.iconRes()

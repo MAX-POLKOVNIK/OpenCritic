@@ -18,8 +18,8 @@ import com.opencritic.game.browser.ui.GameBrowserState
 import com.opencritic.game.browser.ui.GameBrowserStateContent_PreviewData
 import com.opencritic.games.details.LoadingItem
 import com.opencritic.mvvm.Spinner
-import com.opencritic.resources.Icons
-import com.opencritic.resources.asPainter
+import com.opencritic.resources.images.Icons
+import com.opencritic.resources.images.asPainter
 import com.opencritic.resources.defaultPadding
 import com.opencritic.resources.smallPadding
 

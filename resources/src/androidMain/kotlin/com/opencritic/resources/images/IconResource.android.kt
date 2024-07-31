@@ -1,4 +1,4 @@
-package com.opencritic.resources
+package com.opencritic.resources.images
 
 import androidx.annotation.DrawableRes
 import androidx.compose.runtime.Composable

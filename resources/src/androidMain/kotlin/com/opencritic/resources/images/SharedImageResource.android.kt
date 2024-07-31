@@ -1,4 +1,4 @@
-package com.opencritic.resources
+package com.opencritic.resources.images
 
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.graphics.painter.Painter

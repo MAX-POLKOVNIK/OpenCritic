@@ -7,8 +7,10 @@ import com.opencritic.games.Tier
 import com.opencritic.mvvm.BaseErrorState
 import com.opencritic.mvvm.BaseLoadingState
 import com.opencritic.mvvm.ViewModelState
-import com.opencritic.resources.SharedImageResource
-import com.opencritic.resources.SharedImages
+import com.opencritic.resources.text.TextSource
+import com.opencritic.resources.text.asTextSource
+import com.opencritic.resources.images.SharedImageResource
+import com.opencritic.resources.images.SharedImages
 
 sealed interface GameDetailsState : ViewModelState {
     val titleText: String
@@ -28,7 +30,7 @@ sealed interface GameDetailsState : ViewModelState {
         val name: String,
         val yourGameIndicatorItem: YourGameIndicatorItem,
         val companiesText: String,
-        val releaseDateText: String,
+        val releaseDateText: TextSource,
         val platformsText: String,
         val isTierVisible: Boolean,
         val tier: Tier?,
@@ -77,7 +79,7 @@ fun GameDetailsStateContent_PreviewData(): GameDetailsState.Content =
         name = "Game title",
         yourGameIndicatorItem = YourGameIndicatorItem_PreviewData(),
         companiesText = "Some companies",
-        releaseDateText = "MAY 25, 2505",
+        releaseDateText = "MAY 25, 2505".asTextSource(),
         platformsText = "Playstation, Xbox, PC",
         isTierVisible = true,
         tier = Tier.Fair,

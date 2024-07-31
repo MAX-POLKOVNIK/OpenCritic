@@ -1,8 +1,8 @@
 package com.opencritic.games
 
 import com.opencritic.games.Tier.*
-import com.opencritic.resources.SharedImageResource
-import com.opencritic.resources.SharedImages
+import com.opencritic.resources.images.SharedImageResource
+import com.opencritic.resources.images.SharedImages
 
 data class GameRankModel(
     val headImageResource: SharedImageResource,

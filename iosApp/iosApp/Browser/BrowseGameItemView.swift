@@ -71,7 +71,7 @@ struct BrowseGameItemView: View {
                     Image(iconRes: item.dateImageResource)
                         .foregroundColor(.gray)
                     
-                    Text(item.dateText)
+                    Text(item.dateText.text())
                         .foregroundStyle(.gray)
                 }
             }

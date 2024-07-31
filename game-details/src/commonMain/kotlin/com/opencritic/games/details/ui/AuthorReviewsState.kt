@@ -4,7 +4,7 @@ import com.opencritic.games.details.domain.ReviewSorting
 import com.opencritic.mvvm.BaseErrorState
 import com.opencritic.mvvm.BaseLoadingState
 import com.opencritic.mvvm.ViewModelState
-import com.opencritic.resources.Icons
+import com.opencritic.resources.images.Icons
 
 interface AuthorReviewsState : ViewModelState {
     val titleText: String

@@ -17,6 +17,7 @@ import com.opencritic.dashboard.ui.DashboardGameListItem
 import com.opencritic.dashboard.ui.DashboardGameListItem_PreviewData
 import com.opencritic.games.GameRankItem
 import com.opencritic.resources.defaultPadding
+import com.opencritic.resources.text.text
 
 @Composable
 fun DashboardGameListItem(
@@ -40,7 +41,7 @@ fun DashboardGameListItem(
                 .padding(horizontal = defaultPadding),
         )
         Text(
-            text = item.dateText,
+            text = item.dateText.text(),
             modifier = Modifier
                 .widthIn(min = 70.dp)
         )

@@ -5,7 +5,7 @@ import com.opencritic.auth.domain.AuthUserAgent
 import com.opencritic.mvvm.BaseErrorState
 import com.opencritic.mvvm.BaseLoadingState
 import com.opencritic.mvvm.ViewModelState
-import com.opencritic.resources.SharedImages
+import com.opencritic.resources.images.SharedImages
 
 sealed interface AuthState : ViewModelState {
     val titleText: String

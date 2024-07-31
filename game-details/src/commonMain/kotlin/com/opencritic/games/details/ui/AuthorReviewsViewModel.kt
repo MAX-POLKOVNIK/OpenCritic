@@ -10,8 +10,7 @@ import com.opencritic.logs.Logger
 import com.opencritic.mvvm.BaseViewModel
 import com.opencritic.navigation.GameDetailsRoute
 import com.opencritic.navigation.UrlRoute
-import com.opencritic.resources.DateFormatter
-import com.opencritic.resources.Icons
+import com.opencritic.resources.images.Icons
 import com.opencritic.resources.StringProvider
 import com.opencritic.resources.StringRes
 import com.opencritic.resources.getFormattedString
@@ -25,7 +24,6 @@ class AuthorReviewsViewModel(
     private val getAuthorInteractor: GetAuthorInteractor,
     private val getAuthorReviewsInteractor: GetAuthorReviewsInteractor,
     private val stringProvider: StringProvider,
-    private val dateFormatter: DateFormatter,
     private val logger: Logger,
 ) : BaseViewModel<AuthorReviewsState>() {
     override fun initialState(): AuthorReviewsState =
@@ -167,7 +165,6 @@ class AuthorReviewsViewModel(
             review = review,
             isGameVisible = true,
             stringProvider = stringProvider,
-            dateFormatter = dateFormatter,
             onClick = { openUrl(review.externalUrl) },
             onAuthorClick = {},
             onImageClick = {},

@@ -11,8 +11,7 @@ import com.opencritic.mvvm.BaseViewModel
 import com.opencritic.navigation.AuthorReviewsRoute
 import com.opencritic.navigation.GameDetailsRoute
 import com.opencritic.navigation.UrlRoute
-import com.opencritic.resources.DateFormatter
-import com.opencritic.resources.Icons
+import com.opencritic.resources.images.Icons
 import com.opencritic.resources.StringProvider
 import com.opencritic.resources.StringRes
 import com.opencritic.resources.getFormattedString
@@ -25,7 +24,6 @@ class OutletReviewsViewModel(
     private val getOutletInteractor: GetOutletInteractor,
     private val getOutletReviewsInteractor: GetOutletReviewsInteractor,
     private val stringProvider: StringProvider,
-    private val dateFormatter: DateFormatter,
     private val logger: Logger,
 ) : BaseViewModel<OutletReviewsState>() {
     override fun initialState(): OutletReviewsState =
@@ -146,7 +144,6 @@ class OutletReviewsViewModel(
             review = review,
             isGameVisible = true,
             stringProvider = stringProvider,
-            dateFormatter = dateFormatter,
             onClick = { openUrl(review.externalUrl) },
             onAuthorClick = {
                 review.authors.firstOrNull()

@@ -1,6 +1,6 @@
-package com.opencritic.resources
+package com.opencritic.resources.images
 
-import dev.icerock.moko.resources.ImageResource
+import com.opencritic.resources.MR
 
 object SharedImages {
     val facebook: SharedImageResource = MR.images.facebook.shared()

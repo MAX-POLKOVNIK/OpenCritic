@@ -2,9 +2,8 @@ package com.opencritic.dashboard.ui
 
 import com.opencritic.games.Tier
 import com.opencritic.mvvm.ListItem
-import com.opencritic.resources.MR
-import com.opencritic.resources.SharedImageResource
-import com.opencritic.resources.SharedImages
+import com.opencritic.resources.images.SharedImageResource
+import com.opencritic.resources.images.SharedImages
 import com.opencritic.resources.StringProvider
 import com.opencritic.resources.StringRes
 import com.opencritic.resources.getString

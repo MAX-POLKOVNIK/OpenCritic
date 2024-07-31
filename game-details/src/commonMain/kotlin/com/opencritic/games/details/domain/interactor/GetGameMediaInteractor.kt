@@ -8,7 +8,7 @@ class GetGameMediaInteractor(
 ) {
     suspend operator fun invoke(gameId: Long): Result<GameMedia> =
         runCatching {
-            val game = repository.getGame(gameId)
+            val game = repository.getGameMedia(gameId)
 
             GameMedia(
                 gameName = game.name,

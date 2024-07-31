@@ -12,6 +12,7 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import com.opencritic.dashboard.ui.DashboardMightyManItemListItem
 import com.opencritic.resources.images.asPainter
+import com.opencritic.resources.text.text
 
 @Composable
 fun DashboardMightyManItemListItem(
@@ -30,10 +31,10 @@ fun DashboardMightyManItemListItem(
         )
         Column {
             Text(
-                text = item.name,
+                text = item.name.text(),
                 fontWeight = FontWeight.Bold,
             )
-            Text(text = item.description)
+            Text(text = item.description.text())
         }
     }
 }

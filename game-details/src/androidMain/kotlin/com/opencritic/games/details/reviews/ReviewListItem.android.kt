@@ -143,7 +143,7 @@ fun ReviewListItem(
             modifier = Modifier
                 .padding(top = defaultPadding)
         ) {
-            Text(text = item.readFullReviewText)
+            Text(text = item.readFullReviewText.text())
         }
     }
 }

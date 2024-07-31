@@ -1,6 +1,7 @@
 package com.opencritic.games.details.ui
 
 import com.opencritic.games.Review
+import com.opencritic.resources.text.TextSource
 
 data class CardReviewItem(
     val id: String,
@@ -9,7 +10,7 @@ data class CardReviewItem(
     val outletThumbnailUrl: String,
     val score: ReviewScoreDisplayItem,
     val snippetText: String,
-    val readFullReviewText: String,
+    val readFullReviewText: TextSource,
     private val onClick: (CardReviewItem) -> Unit,
 ) {
     fun click() = onClick(this)
@@ -17,7 +18,7 @@ data class CardReviewItem(
 
 fun CardReviewItem(
     review: Review,
-    readFullReviewText: String,
+    readFullReviewText: TextSource,
     onClick: (CardReviewItem) -> Unit,
 ): CardReviewItem =
     CardReviewItem(

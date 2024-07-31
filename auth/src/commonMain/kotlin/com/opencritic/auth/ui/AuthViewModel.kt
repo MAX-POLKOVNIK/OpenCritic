@@ -9,19 +9,17 @@ import com.opencritic.logs.log
 import com.opencritic.mvvm.BaseViewModel
 import com.opencritic.resources.MR
 import com.opencritic.resources.images.SharedImages
-import com.opencritic.resources.StringProvider
-import com.opencritic.resources.getString
+import com.opencritic.resources.text.asTextSource
 import kotlinx.coroutines.launch
 
 class AuthViewModel(
     private val authRedirectInteractor: AuthRedirectInteractor,
     private val authByCallbackInteractor: AuthByCallbackInteractor,
     private val logger: Logger,
-    private val stringProvider: StringProvider,
 ) : BaseViewModel<AuthState>() {
     override fun initialState(): AuthState =
         AuthState.MethodList(
-            titleText = stringProvider.getString(MR.strings.str_sign_in_title),
+            titleText = MR.strings.str_sign_in_title.asTextSource(),
             items = AuthMethod.entries
                 .map { method ->
                     AuthMethodItem(
@@ -43,7 +41,7 @@ class AuthViewModel(
         if (!isAllowed) {
             scope.launch {
                 mutableState.tryEmit(
-                    AuthState.Loading(stringProvider.getString(MR.strings.str_sign_in_title))
+                    AuthState.Loading(MR.strings.str_sign_in_title.asTextSource())
                 )
 
                 authByCallbackInteractor(url)
@@ -53,7 +51,7 @@ class AuthViewModel(
                     .onFailure {
                         mutableState.tryEmit(
                             AuthState.Error(
-                                titleText = stringProvider.getString(MR.strings.str_sign_in_title),
+                                titleText = MR.strings.str_sign_in_title.asTextSource(),
                                 message = it.toString(),
                                 action = {
                                     mutableState.tryEmit(initialState())
@@ -71,7 +69,7 @@ class AuthViewModel(
     private fun onMethodSelected(method: AuthMethod) =
         mutableState.tryEmit(
             AuthState.WebView(
-                titleText = stringProvider.getString(MR.strings.str_sign_in_title),
+                titleText = MR.strings.str_sign_in_title.asTextSource(),
                 url = method.url,
                 authUserAgent = AuthUserAgent,
                 redirectHandler = ::onUrlRedirect

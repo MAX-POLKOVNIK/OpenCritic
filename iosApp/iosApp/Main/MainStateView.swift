@@ -67,7 +67,7 @@ struct MainStateView: View {
             }
         }
         .navigationBarTitle(
-            state.tabs.first { $0.id == activeTab }?.name ?? "",
+            state.tabs.first { $0.id == activeTab }?.name.text() ?? "",
             displayMode: .inline
         )
         .overlay(alignment: .top) {

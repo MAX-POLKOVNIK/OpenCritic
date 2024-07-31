@@ -25,7 +25,7 @@ struct IconTextItemView: View {
     IconTextItemView(
         item: IconTextItem(
             icon: Icons.shared.thumbUp,
-            text: "55.6% of games recommended"
+            text: "55.6% of games recommended".asTextSource()
         )
     )
 }

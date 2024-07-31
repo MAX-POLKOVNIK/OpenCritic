@@ -22,6 +22,7 @@ import com.opencritic.mvvm.LoadingBox
 import com.opencritic.navigation.router
 import com.opencritic.resources.images.Icons
 import com.opencritic.resources.images.asPainter
+import com.opencritic.resources.text.text
 import org.koin.androidx.compose.koinViewModel
 import org.koin.core.parameter.parametersOf
 
@@ -47,7 +48,7 @@ fun GameReviewsScreen(
                 ),
                 title = {
                     Text(
-                        text = state.titleText,
+                        text = state.titleText.text(),
                         maxLines = 1,
                         overflow = TextOverflow.Ellipsis,
                     )

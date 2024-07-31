@@ -4,19 +4,18 @@ import com.opencritic.games.Tier
 import com.opencritic.mvvm.ListItem
 import com.opencritic.resources.images.SharedImageResource
 import com.opencritic.resources.images.SharedImages
-import com.opencritic.resources.StringProvider
-import com.opencritic.resources.StringRes
-import com.opencritic.resources.getString
+import com.opencritic.resources.text.StringRes
+import com.opencritic.resources.text.TextSource
+import com.opencritic.resources.text.asTextSource
 
 data class DashboardMightyManItemListItem(
     override val id: Tier,
     val imageResource: SharedImageResource,
-    val name: String,
-    val description: String,
+    val name: TextSource,
+    val description: TextSource,
 ) : ListItem<Tier>
 
 fun DashboardMightyManItemListItem(
-    stringProvider: StringProvider,
     tier: Tier,
 ): DashboardMightyManItemListItem =
     DashboardMightyManItemListItem(
@@ -28,15 +27,15 @@ fun DashboardMightyManItemListItem(
             Tier.Mighty -> SharedImages.mightyHead
         },
         name = when (tier) {
-            Tier.Weak -> stringProvider.getString(StringRes.str_weak)
-            Tier.Fair -> stringProvider.getString(StringRes.str_fair)
-            Tier.Strong -> stringProvider.getString(StringRes.str_strong)
-            Tier.Mighty -> stringProvider.getString(StringRes.str_mighty)
+            Tier.Weak -> StringRes.str_weak.asTextSource()
+            Tier.Fair -> StringRes.str_fair.asTextSource()
+            Tier.Strong -> StringRes.str_strong.asTextSource()
+            Tier.Mighty -> StringRes.str_mighty.asTextSource()
         },
         description = when (tier) {
-            Tier.Weak -> stringProvider.getString(StringRes.str_weak_description)
-            Tier.Fair -> stringProvider.getString(StringRes.str_fair_description)
-            Tier.Strong -> stringProvider.getString(StringRes.str_strong_description)
-            Tier.Mighty -> stringProvider.getString(StringRes.str_mighty_description)
+            Tier.Weak -> StringRes.str_weak_description.asTextSource()
+            Tier.Fair -> StringRes.str_fair_description.asTextSource()
+            Tier.Strong -> StringRes.str_strong_description.asTextSource()
+            Tier.Mighty -> StringRes.str_mighty_description.asTextSource()
         }
     )

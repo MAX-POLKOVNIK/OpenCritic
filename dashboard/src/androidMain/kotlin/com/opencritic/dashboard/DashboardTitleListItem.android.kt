@@ -11,6 +11,8 @@ import androidx.compose.ui.unit.dp
 import com.opencritic.dashboard.ui.DashboardTitleListItem
 import com.opencritic.resources.MyApplicationTheme
 import com.opencritic.resources.defaultPadding
+import com.opencritic.resources.text.asTextSource
+import com.opencritic.resources.text.text
 
 @Composable
 fun DashboardTitleListItem(
@@ -22,10 +24,10 @@ fun DashboardTitleListItem(
             .padding(horizontal = defaultPadding)
     ) {
         Text(
-            text = item.titleText,
+            text = item.titleText.text(),
             style = MaterialTheme.typography.titleLarge
         )
-        Text(text = item.subtitleText)
+        Text(text = item.subtitleText.text())
     }
 }
 
@@ -35,8 +37,8 @@ fun DashboardTitleListItem_Preview() {
     MyApplicationTheme {
         DashboardTitleListItem(
             item = DashboardTitleListItem(
-                title = "Hello",
-                subtitle = "Second string"
+                title = "Hello".asTextSource(),
+                subtitle = "Second string".asTextSource()
             )
         )
     }

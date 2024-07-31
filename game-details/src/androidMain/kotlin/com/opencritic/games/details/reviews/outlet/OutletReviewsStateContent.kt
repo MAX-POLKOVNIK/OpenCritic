@@ -38,6 +38,7 @@ import com.opencritic.mvvm.Spinner
 import com.opencritic.resources.images.Icons
 import com.opencritic.resources.images.asPainter
 import com.opencritic.resources.defaultPadding
+import com.opencritic.resources.text.text
 
 @Composable
 fun OutletReviewsStateContent(
@@ -80,7 +81,7 @@ fun OutletReviewsStateContent(
 
                     if (state.isHomepageVisible) {
                         TextButton(onClick = state.onHomepageClick) {
-                            Text(text = state.homepageText)
+                            Text(text = state.homepageText.text())
                         }
                     }
 
@@ -99,7 +100,7 @@ fun OutletReviewsStateContent(
                 modifier = Modifier
                     .padding(top = defaultPadding)
             ) {
-                Text(text = state.sortTitleText)
+                Text(text = state.sortTitleText.text())
 
                 Spacer(modifier = Modifier.weight(1f))
 
@@ -116,7 +117,7 @@ fun OutletReviewsStateContent(
                                 .padding(8.dp)
                         ) {
                             Text(
-                                text = item.name,
+                                text = item.name.text(),
                             )
                             Icon(
                                 painter = Icons.arrowDown.asPainter(),
@@ -125,7 +126,7 @@ fun OutletReviewsStateContent(
                         }
                     },
                     dropdownItemFactory = { item, _ ->
-                        Text(text = item.name)
+                        Text(text = item.name.text())
                     }
                 )
             }

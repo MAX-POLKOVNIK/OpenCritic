@@ -29,6 +29,8 @@ import com.opencritic.resources.images.Icons
 import com.opencritic.resources.images.asPainter
 import com.opencritic.resources.defaultPadding
 import com.opencritic.resources.smallPadding
+import com.opencritic.resources.text.asTextSource
+import com.opencritic.resources.text.text
 
 @Composable
 fun CardReviewItem(
@@ -127,7 +129,7 @@ fun CardReviewItem(
                 .padding(top = defaultPadding)
                 .padding(start = smallPadding)
         ) {
-            Text(text = item.readFullReviewText)
+            Text(text = item.readFullReviewText.text())
         }
     }
 }
@@ -147,7 +149,7 @@ fun CardReviewItem_Preview() {
                 emptyStars = 5
             ),
             snippetText = "Everything that made GT Sport so good, plus everything that made early Gran Turismo games so good. A simply stunning driving game and a superb showcase for PS5.",
-            readFullReviewText = "Read full review",
+            readFullReviewText = "Read full review".asTextSource(),
             onClick = {}
         )
     )

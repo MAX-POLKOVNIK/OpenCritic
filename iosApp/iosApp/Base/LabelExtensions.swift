@@ -11,9 +11,9 @@ import SwiftUI
 import shared
 
 extension Label where Title == Text, Icon == Image {
-    init<S>(_ title: S, iconRes: IconResource) where S : StringProtocol {
+    init(_ title: TextSource, iconRes: IconResource) {
         if let iconResourceSfSymbol = iconRes as? IconResourceSfSymbol {
-            self.init(title, systemImage: iconResourceSfSymbol.name)
+            self.init(title.text(), systemImage: iconResourceSfSymbol.name)
         } else {
             fatalError("Can't instantiate label with \(iconRes)")
         }

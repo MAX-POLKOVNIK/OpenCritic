@@ -13,6 +13,7 @@ import androidx.compose.ui.unit.dp
 import com.opencritic.games.details.ui.IconTextItem
 import com.opencritic.resources.images.asPainter
 import com.opencritic.resources.smallPadding
+import com.opencritic.resources.text.text
 
 @Composable
 fun IconTextItem(
@@ -32,7 +33,7 @@ fun IconTextItem(
         )
 
         Text(
-            text = item.text,
+            text = item.text.text(),
             modifier = Modifier
                 .padding(start = smallPadding)
         )

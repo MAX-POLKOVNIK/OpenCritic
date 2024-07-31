@@ -5,8 +5,7 @@ import com.opencritic.navigation.AuthorReviewsRoute
 import com.opencritic.navigation.GameDetailsRoute
 import com.opencritic.navigation.OutletReviewsRoute
 import com.opencritic.resources.MR
-import com.opencritic.resources.StringProvider
-import com.opencritic.resources.getString
+import com.opencritic.resources.text.asTextSource
 import com.opencritic.search.domain.SearchInteractor
 import com.opencritic.search.domain.SearchItem
 import com.opencritic.search.domain.SearchItemKind
@@ -29,13 +28,12 @@ import kotlin.time.Duration.Companion.milliseconds
 
 class SearchViewModel(
     private val searchInteractor: SearchInteractor,
-    private val stringProvider: StringProvider,
 ) : BaseViewModel<SearchState>() {
     override fun initialState(): SearchState =
         SearchState(
             searchText = "",
-            searchHint = stringProvider.getString(MR.strings.str_search_hint),
-            searchListItemsState = SearchItemsState.Empty(stringProvider.getString(MR.strings.str_search_hint)),
+            searchHint = MR.strings.str_search_hint.asTextSource(),
+            searchListItemsState = SearchItemsState.Empty(MR.strings.str_search_hint.asTextSource()),
             onSearchChanged = { _, criteria -> criteriaFlow.tryEmit(criteria) }
         )
 
@@ -65,7 +63,7 @@ class SearchViewModel(
                     mutableState.tryEmit(
                         SearchState(
                             searchText = state.value.searchText,
-                            searchHint = stringProvider.getString(MR.strings.str_search_hint),
+                            searchHint = MR.strings.str_search_hint.asTextSource(),
                             onSearchChanged = { _, c -> onCriteriaChanged(c) },
                             searchListItemsState = SearchItemsState.Error(it.toString())
                         )
@@ -75,13 +73,12 @@ class SearchViewModel(
                     mutableState.tryEmit(
                         SearchState(
                             searchText = state.value.searchText,
-                            searchHint = stringProvider.getString(MR.strings.str_search_hint),
+                            searchHint = MR.strings.str_search_hint.asTextSource(),
                             onSearchChanged = { _, c -> onCriteriaChanged(c) },
                             searchListItemsState = SearchItemsState.Content(
                                 result.map { item ->
                                     SearchListItem(
                                         item = item,
-                                        stringProvider = stringProvider,
                                     ) {
                                         onSearchItemClick(item)
                                     }

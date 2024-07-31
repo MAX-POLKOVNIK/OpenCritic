@@ -3,12 +3,11 @@ package com.opencritic.dashboard.ui
 import com.opencritic.dashboard.domain.GameDeal
 import com.opencritic.mvvm.ListItem
 import com.opencritic.resources.MR
-import com.opencritic.resources.StringProvider
-import com.opencritic.resources.getFormattedString
+import com.opencritic.resources.text.TextSource
+import com.opencritic.resources.text.asTextSource
 
 data class DashboardDealListItem(
     val gameDeal: GameDeal,
-    private val stringProvider: StringProvider,
     private val onClick: (DashboardDealListItem) -> Unit,
     private val onBuyNowClick: (DashboardDealListItem) -> Unit,
 ) : ListItem<Long> {
@@ -24,8 +23,8 @@ data class DashboardDealListItem(
     val priceText: String
         get() = "$${gameDeal.price}"
 
-    val buyNowText: String
-        get() = stringProvider.getFormattedString(MR.strings.str_buy_now_on, gameDeal.name)
+    val buyNowText: TextSource
+        get() = MR.strings.str_buy_now_on.asTextSource(gameDeal.name)
 
     fun buyNowClick() =
         onBuyNowClick(this)

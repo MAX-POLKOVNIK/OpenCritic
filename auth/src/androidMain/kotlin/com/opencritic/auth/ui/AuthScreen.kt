@@ -20,6 +20,7 @@ import com.opencritic.mvvm.LoadingBox
 import com.opencritic.navigation.router
 import com.opencritic.resources.images.Icons
 import com.opencritic.resources.images.asPainter
+import com.opencritic.resources.text.text
 import org.koin.androidx.compose.koinViewModel
 
 @OptIn(ExperimentalMaterial3Api::class)
@@ -42,7 +43,7 @@ fun AuthScreen(
                 ),
                 title = {
                     Text(
-                        text = state.titleText,
+                        text = state.titleText.text(),
                         maxLines = 1,
                         overflow = TextOverflow.Ellipsis,
                     )

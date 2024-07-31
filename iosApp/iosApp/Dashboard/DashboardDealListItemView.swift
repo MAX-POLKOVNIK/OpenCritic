@@ -17,7 +17,7 @@ struct DashboardDealListItemView: View {
             DashboardPosterGameListItemView(item: item.gameItem)
             Button(item.priceText) { item.buyNowClick() }
                 .bold()
-            Button(item.buyNowText) { item.buyNowClick() }
+            Button(item.buyNowText.text()) { item.buyNowClick() }
                 .frame(maxWidth: 128, minHeight: 48)
                 .fixedSize(horizontal: false, vertical: /*@START_MENU_TOKEN@*/true/*@END_MENU_TOKEN@*/)
         }
@@ -39,7 +39,6 @@ struct DashboardDealListItemView_Previews: PreviewProvider {
                     price: 49.99,
                     externalUrl: ""
                 ),
-                stringProvider: IosStringProvider(),
                 onClick: { _ in },
                 onBuyNowClick: { _ in }
             )

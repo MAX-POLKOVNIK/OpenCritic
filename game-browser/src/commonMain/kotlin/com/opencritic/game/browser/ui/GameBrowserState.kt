@@ -2,22 +2,25 @@ package com.opencritic.game.browser.ui
 
 import com.opencritic.game.browser.domain.GameSorting
 import com.opencritic.game.browser.domain.GameTimeframe
+import com.opencritic.game.browser.domain.asTextSource
 import com.opencritic.games.details.ui.LoadingItem
 import com.opencritic.mvvm.BaseErrorState
 import com.opencritic.mvvm.BaseLoadingState
 import com.opencritic.mvvm.ViewModelState
+import com.opencritic.resources.text.TextSource
+import com.opencritic.resources.text.asTextSource
 
 interface GameBrowserState : ViewModelState {
     data class Error(override val message: String) : BaseErrorState(message), GameBrowserState
     data object Loading : BaseLoadingState(), GameBrowserState
     data class Content(
-        val platformTitleText: String,
+        val platformTitleText: TextSource,
         val platformText: PlatformItem,
         val platformsItems: List<PlatformItem>,
-        val timeframeTitleText: String,
+        val timeframeTitleText: TextSource,
         val timeframeText: TimeframeItem,
         val timeframeItems: List<TimeframeItem>,
-        val sortTitleText: String,
+        val sortTitleText: TextSource,
         val sortText: GameSortItem,
         val sortItems: List<GameSortItem>,
         val browseGameItems: List<BrowseGameItem>,
@@ -33,22 +36,22 @@ interface GameBrowserState : ViewModelState {
 @Suppress("FunctionName")
 fun GameBrowserStateContent_PreviewData(): GameBrowserState.Content =
     GameBrowserState.Content(
-        sortTitleText = "Sort",
-        sortText = GameSortItem(GameSorting.Score, "Score"),
+        sortTitleText = "Sort".asTextSource(),
+        sortText = GameSortItem(GameSorting.Score, "Score".asTextSource()),
         sortItems = GameSorting.entries
-            .map { GameSortItem(it, it.name) },
-        platformTitleText = "Platform",
+            .map { GameSortItem(it, it.asTextSource()) },
+        platformTitleText = "Platform".asTextSource(),
         platformText = PlatformItem(
             key = null,
-            text = "AllPlatforms"
+            text = "AllPlatforms".asTextSource()
         ),
         platformsItems = listOf(
-            PlatformItem(key = null, "AllPlatforms"),
+            PlatformItem(key = null, "AllPlatforms".asTextSource()),
         ),
-        timeframeTitleText = "Timeframe",
-        timeframeText = TimeframeItem(GameTimeframe.AllTIme, "AllTime"),
+        timeframeTitleText = "Timeframe".asTextSource(),
+        timeframeText = TimeframeItem(GameTimeframe.AllTIme, "AllTime".asTextSource()),
         timeframeItems = GameTimeframe.entries
-            .map { TimeframeItem(it, it.toString()) },
+            .map { TimeframeItem(it, it.asTextSource()) },
         browseGameItems = emptyList(),
         isLoadingItemVisible = true,
         loadingItem = LoadingItem,

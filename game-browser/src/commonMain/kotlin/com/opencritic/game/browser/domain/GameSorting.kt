@@ -1,9 +1,8 @@
 package com.opencritic.game.browser.domain
 
-import com.opencritic.games.details.domain.ReviewSorting
-import com.opencritic.resources.StringProvider
-import com.opencritic.resources.StringRes
-import com.opencritic.resources.getString
+import com.opencritic.resources.text.StringRes
+import com.opencritic.resources.text.TextSource
+import com.opencritic.resources.text.asTextSource
 
 enum class GameSorting {
     ReleaseDate,
@@ -13,12 +12,12 @@ enum class GameSorting {
     AtoZ,
 }
 
-fun StringProvider.sortNameOf(sort: GameSorting): String {
-    return when(sort) {
-        GameSorting.ReleaseDate -> getString(StringRes.str_sort_release_date)
-        GameSorting.Score -> getString(StringRes.str_sort_score)
-        GameSorting.ReviewsCount -> getString(StringRes.str_sort_review_count)
-        GameSorting.PercentRecommended -> getString(StringRes.str_sort_percent_recommended)
-        GameSorting.AtoZ -> getString(StringRes.str_sort_a_to_z)
+fun GameSorting.asTextSource(): TextSource {
+    return when (this) {
+        GameSorting.ReleaseDate -> StringRes.str_sort_release_date.asTextSource()
+        GameSorting.Score -> StringRes.str_sort_score.asTextSource()
+        GameSorting.ReviewsCount -> StringRes.str_sort_review_count.asTextSource()
+        GameSorting.PercentRecommended -> StringRes.str_sort_percent_recommended.asTextSource()
+        GameSorting.AtoZ -> StringRes.str_sort_a_to_z.asTextSource()
     }
 }

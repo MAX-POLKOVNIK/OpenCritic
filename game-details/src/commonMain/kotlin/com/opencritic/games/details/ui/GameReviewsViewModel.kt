@@ -6,17 +6,15 @@ import com.opencritic.games.Tier
 import com.opencritic.games.details.domain.interactor.GetGameInteractor
 import com.opencritic.games.details.domain.interactor.GetGameReviewsInteractor
 import com.opencritic.games.details.domain.ReviewSorting
-import com.opencritic.games.details.domain.sortNameOf
+import com.opencritic.games.details.domain.asTextSource
 import com.opencritic.logs.Logger
 import com.opencritic.mvvm.BaseViewModel
 import com.opencritic.navigation.AuthorReviewsRoute
 import com.opencritic.navigation.OutletReviewsRoute
 import com.opencritic.navigation.UrlRoute
 import com.opencritic.resources.images.SharedImages
-import com.opencritic.resources.StringProvider
-import com.opencritic.resources.StringRes
-import com.opencritic.resources.getFormattedString
-import com.opencritic.resources.getString
+import com.opencritic.resources.text.StringRes
+import com.opencritic.resources.text.asTextSource
 import kotlinx.coroutines.launch
 
 class GameReviewsViewModel(
@@ -24,11 +22,10 @@ class GameReviewsViewModel(
     private val gameName: String,
     private val getGameInteractor: GetGameInteractor,
     private val getGameReviewsInteractor: GetGameReviewsInteractor,
-    private val stringProvider: StringProvider,
     private val logger: Logger,
 ) : BaseViewModel<GameReviewsState>() {
     override fun initialState(): GameReviewsState =
-        GameReviewsState.Loading("$gameName ${stringProvider.getString(StringRes.str_reviews)}")
+        GameReviewsState.Loading(StringRes.str_game_reviews.asTextSource(gameName))
 
     private var game: Game? = null
     private var canLoadMore: Boolean = true
@@ -42,7 +39,7 @@ class GameReviewsViewModel(
                 .onFailure {
                     mutableState.tryEmit(
                         GameReviewsState.Error(
-                            titleText = "$gameName ${stringProvider.getString(StringRes.str_reviews)}",
+                            titleText = StringRes.str_game_reviews.asTextSource(gameName),
                             message = it.toString()
                         )
                     )
@@ -68,7 +65,6 @@ class GameReviewsViewModel(
                                         ReviewListItem(
                                             review = review,
                                             isGameVisible = false,
-                                            stringProvider = stringProvider,
                                             onClick = { openUrl(review.externalUrl) },
                                             onAuthorClick = {
                                                 review.authors.firstOrNull()
@@ -96,7 +92,7 @@ class GameReviewsViewModel(
         game: Game,
     ): GameReviewsState.Content =
         GameReviewsState.Content(
-            titleText = "${game.name} ${stringProvider.getString(StringRes.str_reviews)}",
+            titleText = StringRes.str_game_reviews.asTextSource(game.name),
             imageUrl = game.bannerImageUrl,
             isTierVisible = game.rank != null,
             tierImageResource = when (game.rank?.tier) {
@@ -115,12 +111,12 @@ class GameReviewsViewModel(
                 game.rank?.tier ?: Tier.Weak, game.recommendPercent ?: 0
             ),
             isRankedDescriptionVisible = game.recommendPercent != null,
-            rankedDescription = stringProvider.getFormattedString(StringRes.str_game_review_ranked_description, game.name, (game.recommendPercent ?: 0).toString()),
-            sortTitleText = stringProvider.getString(StringRes.str_sort),
+            rankedDescription = StringRes.str_game_review_ranked_description.asTextSource(game.name, (game.recommendPercent ?: 0).toString()),
+            sortTitleText = StringRes.str_sort.asTextSource(),
             sortText = ReviewSortItem(
-                key = ReviewSorting.Default, name = stringProvider.sortNameOf(ReviewSorting.Default)
+                key = ReviewSorting.Default, name = ReviewSorting.Default.asTextSource()
             ),
-            availableSorts = ReviewSorting.entries.map { ReviewSortItem(it, stringProvider.sortNameOf(it)) },
+            availableSorts = ReviewSorting.entries.map { ReviewSortItem(it, it.asTextSource()) },
             reviewItems = emptyList(),
             isLoadingItemVisible = true,
             loadingItem = LoadingItem,
@@ -142,7 +138,6 @@ class GameReviewsViewModel(
                             ReviewListItem(
                                 review = review,
                                 isGameVisible = false,
-                                stringProvider = stringProvider,
                                 onClick = { openUrl(review.externalUrl) },
                                 onAuthorClick = {
                                     review.authors.firstOrNull()

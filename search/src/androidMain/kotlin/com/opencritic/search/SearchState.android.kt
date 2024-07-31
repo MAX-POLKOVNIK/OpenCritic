@@ -33,6 +33,7 @@ import com.opencritic.mvvm.ErrorBox
 import com.opencritic.mvvm.LoadingBox
 import com.opencritic.resources.defaultPadding
 import com.opencritic.resources.smallPadding
+import com.opencritic.resources.text.text
 import com.opencritic.search.ui.SearchItemsState
 import com.opencritic.search.ui.SearchState
 import com.opencritic.search.ui.SearchState_PreviewData
@@ -55,7 +56,7 @@ fun SearchState(
                 text = it
                 state.changeSearch(it)
             },
-            label = { Text(state.searchHint) },
+            label = { Text(state.searchHint.text()) },
             singleLine = true,
             modifier = Modifier
                 .padding(defaultPadding)

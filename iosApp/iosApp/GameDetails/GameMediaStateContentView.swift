@@ -47,9 +47,9 @@ struct GameMediaStateContentView: View {
     GameMediaStateContentView(
         state: GameMediaStateContent(
             navigationTitle: "Stellar Blade",
-            titleText: "Stellar Blade Screenshots and Trailers",
+            titleText: "Stellar Blade Screenshots and Trailers".asTextSource(),
             isTrailersVisible: true,
-            trailersText: "Trailers",
+            trailersText: "Trailers".asTextSource(),
             trailers: [
                 TrailerItem(
                     titleText: "1Stellar Blade - Demo Teaser | PS5 Games",
@@ -68,7 +68,7 @@ struct GameMediaStateContentView: View {
                 )
             ],
             isScreenshotsVisible: true,
-            screenshotsText: "Screenshots",
+            screenshotsText: "Screenshots".asTextSource(),
             screenshots: [
                 ScreenshotItem(
                     thumbnailUrl: "https://img.opencritic.com/game/16510/QtAqzcBg.jpg",

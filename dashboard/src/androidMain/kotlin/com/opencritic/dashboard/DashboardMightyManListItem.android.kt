@@ -12,6 +12,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import com.opencritic.dashboard.ui.DashboardMightyManListItem
 import com.opencritic.resources.defaultPadding
+import com.opencritic.resources.text.text
 
 @Composable
 fun DashboardMightyManListItem(
@@ -30,13 +31,13 @@ fun DashboardMightyManListItem(
 
 
             Text(
-                text = item.title,
+                text = item.title.text(),
                 style = MaterialTheme.typography.titleLarge,
             )
             Spacer(modifier = Modifier.height(16.dp))
-            Text(text = item.description)
+            Text(text = item.description.text())
             Spacer(modifier = Modifier.height(16.dp))
-            Text(text = item.colorDescription)
+            Text(text = item.colorDescription.text())
 
             item.items.forEach {
                 DashboardMightyManItemListItem(item = it)

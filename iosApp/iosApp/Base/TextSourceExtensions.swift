@@ -14,3 +14,9 @@ extension TextSource {
         TextSource_iosKt.text(self)
     }
 }
+
+extension String {
+    func asTextSource() -> TextSource {
+        StringTextSource(string: self)
+    }
+}

@@ -42,7 +42,7 @@ struct SearchListItemView: View {
         item: SearchListItem(
             id: 1,
             nameText: "Game name",
-            kindText: "Game",
+            kindText: "Game".asTextSource(),
             kindColor: Colors.shared.Cyan,
             onClick: { _ in }
         )

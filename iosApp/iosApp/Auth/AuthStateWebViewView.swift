@@ -20,7 +20,7 @@ struct AuthStateWebViewView: View {
             userAgent: state.authUserAgent.description(),
             delegate: NavigationDelegate(predicate: state.redirectHandler)
         )
-        .navigationBarTitle(state.titleText, displayMode: .inline)
+        .navigationBarTitle("", displayMode: .inline)
     }
 }
 

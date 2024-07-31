@@ -141,17 +141,17 @@ fun GameDetailsStateContent(state: GameDetailsState.Content, modifier: Modifier 
                             .fillMaxWidth()
                     ) {
                         Text(
-                            text = state.tierDescription,
+                            text = state.tierDescription.text(),
                             textAlign = TextAlign.Center,
                             modifier = Modifier.weight(1f),
                         )
                         Text(
-                            text = state.topCriticScoreDescription,
+                            text = state.topCriticScoreDescription.text(),
                             textAlign = TextAlign.Center,
                             modifier = Modifier.weight(1f),
                         )
                         Text(
-                            text = state.criticsRecommendDescription,
+                            text = state.criticsRecommendDescription.text(),
                             textAlign = TextAlign.Center,
                             modifier = Modifier.weight(1f),
                         )
@@ -172,7 +172,7 @@ fun GameDetailsStateContent(state: GameDetailsState.Content, modifier: Modifier 
                     ) {
                         TextButton(onClick = state::viewAllReviewsClick) {
                             Text(
-                                text = state.viewAllText,
+                                text = state.viewAllText.text(),
                             )
                         }
                     }
@@ -184,7 +184,7 @@ fun GameDetailsStateContent(state: GameDetailsState.Content, modifier: Modifier 
             Spacer(modifier = Modifier.height(32.dp))
 
             Text(
-                text = state.mediaText,
+                text = state.mediaText.text(),
                 style = MaterialTheme.typography.titleLarge,
                 modifier = Modifier
                     .padding(defaultPadding)
@@ -218,7 +218,7 @@ fun GameDetailsStateContent(state: GameDetailsState.Content, modifier: Modifier 
             ) {
                 TextButton(onClick = state::viewAllMediaClick) {
                     Text(
-                        text = state.viewAllMedia,
+                        text = state.viewAllMedia.text(),
                     )
                 }
             }
@@ -228,7 +228,7 @@ fun GameDetailsStateContent(state: GameDetailsState.Content, modifier: Modifier 
             Spacer(modifier = Modifier.height(32.dp))
 
             Text(
-                text = state.trailersText,
+                text = state.trailersText.text(),
                 style = MaterialTheme.typography.titleLarge,
                 modifier = Modifier
                     .padding(defaultPadding)
@@ -253,7 +253,7 @@ fun GameDetailsStateContent(state: GameDetailsState.Content, modifier: Modifier 
             ) {
                 TextButton(onClick = state::viewAllTrailersClick) {
                     Text(
-                        text = state.viewAllTrailers,
+                        text = state.viewAllTrailers.text(),
                     )
                 }
             }
@@ -263,7 +263,7 @@ fun GameDetailsStateContent(state: GameDetailsState.Content, modifier: Modifier 
             Spacer(modifier = Modifier.height(32.dp))
 
             Text(
-                text = state.screenshotsText,
+                text = state.screenshotsText.text(),
                 style = MaterialTheme.typography.titleLarge,
                 modifier = Modifier
                     .padding(defaultPadding)
@@ -288,7 +288,7 @@ fun GameDetailsStateContent(state: GameDetailsState.Content, modifier: Modifier 
             ) {
                 TextButton(onClick = state::viewAllScreenshotsClick) {
                     Text(
-                        text = state.viewAllScreenshots,
+                        text = state.viewAllScreenshots.text(),
                     )
                 }
             }
@@ -296,7 +296,7 @@ fun GameDetailsStateContent(state: GameDetailsState.Content, modifier: Modifier 
 
         if (state.isReviewsVisible) {
             Text(
-                text = state.reviewTitleText,
+                text = state.reviewTitleText.text(),
                 style = MaterialTheme.typography.titleLarge,
                 modifier = Modifier
                     .padding(defaultPadding)
@@ -321,7 +321,7 @@ fun GameDetailsStateContent(state: GameDetailsState.Content, modifier: Modifier 
             ) {
                 TextButton(onClick = state::viewAllReviewsClick) {
                     Text(
-                        text = state.viewAllText,
+                        text = state.viewAllText.text(),
                     )
                 }
             }

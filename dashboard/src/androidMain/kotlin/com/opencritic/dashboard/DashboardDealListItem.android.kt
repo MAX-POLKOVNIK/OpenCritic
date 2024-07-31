@@ -12,6 +12,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import com.opencritic.dashboard.ui.DashboardDealListItem
+import com.opencritic.resources.text.text
 
 @Composable
 fun DashboardDealListItem(
@@ -34,7 +35,7 @@ fun DashboardDealListItem(
                 Text(text = item.priceText)
                 Text(
                     textAlign = TextAlign.Center,
-                    text = item.buyNowText,
+                    text = item.buyNowText.text(),
                     modifier = Modifier
                         .defaultMinSize(minHeight = 48.dp)
                 )

@@ -35,7 +35,6 @@ import com.opencritic.games.details.reviews.ReviewListItem
 import com.opencritic.games.details.ui.GameReviewsState
 import com.opencritic.games.details.ui.GameReviewsStateContent_PreviewData
 import com.opencritic.mvvm.Spinner
-import com.opencritic.resources.AndroidImageResourceProvider
 import com.opencritic.resources.Icons
 import com.opencritic.resources.asPainter
 import com.opencritic.resources.defaultPadding
@@ -91,7 +90,7 @@ fun GameReviewsStateContent(
                     ) {
                         if (state.isTierVisible) {
                             Image(
-                                painter = painterResource(id = state.tierImageResource),
+                                painter = state.tierImageResource.asPainter(),
                                 contentDescription = "",
                                 contentScale = ContentScale.FillWidth,
                                 modifier = Modifier
@@ -194,6 +193,6 @@ fun GameReviewsStateContent(
 @Composable
 fun GameReviewsStateContent_Preview() {
     GameReviewsStateContent(
-        state = GameReviewsStateContent_PreviewData(AndroidImageResourceProvider())
+        state = GameReviewsStateContent_PreviewData()
     )
 }

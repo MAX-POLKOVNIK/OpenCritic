@@ -7,8 +7,8 @@ import com.opencritic.games.Tier
 import com.opencritic.mvvm.BaseErrorState
 import com.opencritic.mvvm.BaseLoadingState
 import com.opencritic.mvvm.ViewModelState
-import com.opencritic.resources.ImageResource
-import com.opencritic.resources.ImageResourceProvider
+import com.opencritic.resources.SharedImageResource
+import com.opencritic.resources.SharedImages
 
 sealed interface GameDetailsState : ViewModelState {
     val titleText: String
@@ -32,7 +32,7 @@ sealed interface GameDetailsState : ViewModelState {
         val platformsText: String,
         val isTierVisible: Boolean,
         val tier: Tier?,
-        val tierImageResource: ImageResource,
+        val tierImageResource: SharedImageResource,
         val tierDescription: String,
         val topCriticScore: RankCircleIndicatorItem,
         val topCriticScoreDescription: String,
@@ -70,9 +70,7 @@ sealed interface GameDetailsState : ViewModelState {
 
 
 @Suppress("FunctionName")
-fun GameDetailsStateContent_PreviewData(
-    imageResourceProvider: ImageResourceProvider
-): GameDetailsState.Content =
+fun GameDetailsStateContent_PreviewData(): GameDetailsState.Content =
     GameDetailsState.Content(
         isImageVisible = true,
         imageUrl = "https://img.opencritic.com/game/14353/a7GST4so.jpg",
@@ -84,7 +82,7 @@ fun GameDetailsStateContent_PreviewData(
         isTierVisible = true,
         tier = Tier.Fair,
         tierDescription = "Tier description",
-        tierImageResource = imageResourceProvider.fairMan,
+        tierImageResource = SharedImages.fairMan,
         topCriticScore = createTopCriticAverageIndicator(GameRank(Tier.Fair, 20)),
         topCriticScoreDescription = "Top critic description",
         recommendedPercent = createCriticsRecommendIndicator(Tier.Fair, 40),

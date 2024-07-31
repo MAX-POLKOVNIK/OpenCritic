@@ -2,7 +2,6 @@ package com.opencritic.dashboard.ui
 
 import com.opencritic.games.Tier
 import com.opencritic.mvvm.ListItem
-import com.opencritic.resources.ImageResourceProvider
 import com.opencritic.resources.StringProvider
 import com.opencritic.resources.StringRes
 import com.opencritic.resources.getString
@@ -18,7 +17,6 @@ data class DashboardMightyManListItem(
 
 fun DashboardMightyManListItem(
     stringProvider: StringProvider,
-    imageResourceProvider: ImageResourceProvider,
 ): DashboardMightyManListItem =
     DashboardMightyManListItem(
         title = stringProvider.getString(StringRes.who_is_mighty_man),
@@ -27,7 +25,6 @@ fun DashboardMightyManListItem(
         items = Tier.entries.map {
             DashboardMightyManItemListItem(
                 stringProvider = stringProvider,
-                imageResourceProvider = imageResourceProvider,
                 tier = it,
             )
         }

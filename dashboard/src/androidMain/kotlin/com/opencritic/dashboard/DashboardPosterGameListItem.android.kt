@@ -26,7 +26,6 @@ import com.opencritic.dashboard.ui.DashboardPosterGameListItem
 import com.opencritic.games.GameRank
 import com.opencritic.games.GameRankItem
 import com.opencritic.games.Tier
-import com.opencritic.resources.AndroidImageResourceProvider
 import com.opencritic.resources.smallPadding
 
 @Composable
@@ -86,7 +85,6 @@ fun DashboardPosterGameListItem_Preview() {
             posterUrl = "https://img.opencritic.com/game/14353/o/cDwMyHmW.jpg",
             rank = GameRank(Tier.Fair, 32)
         ),
-        imageResourceProvider = AndroidImageResourceProvider(),
         onClick = {}
     )
 }

@@ -40,7 +40,6 @@ struct DashboardDealListItemView_Previews: PreviewProvider {
                     externalUrl: ""
                 ),
                 stringProvider: IosStringProvider(),
-                imageResourceProvider: IosImagesResourceProvider(),
                 onClick: { _ in },
                 onBuyNowClick: { _ in }
             )

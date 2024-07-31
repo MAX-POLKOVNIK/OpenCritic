@@ -36,7 +36,6 @@ import com.opencritic.games.details.reviews.ReviewListItem
 import com.opencritic.games.details.ui.OutletReviewsState
 import com.opencritic.games.details.ui.OutletReviewsStateContent_PreviewData
 import com.opencritic.mvvm.Spinner
-import com.opencritic.resources.AndroidImageResourceProvider
 import com.opencritic.resources.Icons
 import com.opencritic.resources.asPainter
 import com.opencritic.resources.defaultPadding

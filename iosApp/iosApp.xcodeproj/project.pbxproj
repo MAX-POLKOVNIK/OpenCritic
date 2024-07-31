@@ -16,9 +16,7 @@
 		424EE0332C594C330095E994 /* ImageExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 424EE0322C594C330095E994 /* ImageExtensions.swift */; };
 		424EE0352C594DE60095E994 /* LabelExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 424EE0342C594DE60095E994 /* LabelExtensions.swift */; };
 		4256278E2BE0F0A100EDEEEB /* IosStringProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4256278D2BE0F0A100EDEEEB /* IosStringProvider.swift */; };
-		425627902BE0F17E00EDEEEB /* IosImagesResourceProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4256278F2BE0F17E00EDEEEB /* IosImagesResourceProvider.swift */; };
 		425627932BE109F400EDEEEB /* DashboardPosterGameListItemView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 425627922BE109F400EDEEEB /* DashboardPosterGameListItemView.swift */; };
-		425627952BE1109600EDEEEB /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 425627942BE1109600EDEEEB /* Images.xcassets */; };
 		425627992BE113F300EDEEEB /* DashboardPosterGamesHorizontalListItemView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 425627982BE113F300EDEEEB /* DashboardPosterGamesHorizontalListItemView.swift */; };
 		4256279B2BE1174B00EDEEEB /* DashboardTitleListItemView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4256279A2BE1174B00EDEEEB /* DashboardTitleListItemView.swift */; };
 		425627A12BE11AEE00EDEEEB /* DashboardStateContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 425627A02BE11AEE00EDEEEB /* DashboardStateContentView.swift */; };
@@ -103,9 +101,7 @@
 		424EE0322C594C330095E994 /* ImageExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageExtensions.swift; sourceTree = "<group>"; };
 		424EE0342C594DE60095E994 /* LabelExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LabelExtensions.swift; sourceTree = "<group>"; };
 		4256278D2BE0F0A100EDEEEB /* IosStringProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IosStringProvider.swift; sourceTree = "<group>"; };
-		4256278F2BE0F17E00EDEEEB /* IosImagesResourceProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IosImagesResourceProvider.swift; sourceTree = "<group>"; };
 		425627922BE109F400EDEEEB /* DashboardPosterGameListItemView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DashboardPosterGameListItemView.swift; sourceTree = "<group>"; };
-		425627942BE1109600EDEEEB /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		425627982BE113F300EDEEEB /* DashboardPosterGamesHorizontalListItemView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DashboardPosterGamesHorizontalListItemView.swift; sourceTree = "<group>"; };
 		4256279A2BE1174B00EDEEEB /* DashboardTitleListItemView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DashboardTitleListItemView.swift; sourceTree = "<group>"; };
 		425627A02BE11AEE00EDEEEB /* DashboardStateContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DashboardStateContentView.swift; sourceTree = "<group>"; };
@@ -373,8 +369,6 @@
 				2152FB032600AC8F00CF470E /* iOSApp.swift */,
 				058557D7273AAEEB004C7B11 /* Preview Content */,
 				4256278D2BE0F0A100EDEEEB /* IosStringProvider.swift */,
-				4256278F2BE0F17E00EDEEEB /* IosImagesResourceProvider.swift */,
-				425627942BE1109600EDEEEB /* Images.xcassets */,
 				42E2F09F2BE21B7700B76F14 /* IosDateFormatter.swift */,
 			);
 			path = iosApp;
@@ -448,7 +442,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				058557D9273AAEEB004C7B11 /* Preview Assets.xcassets in Resources */,
-				425627952BE1109600EDEEEB /* Images.xcassets in Resources */,
 				058557BB273AAA24004C7B11 /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -503,7 +496,6 @@
 				42FE7B8E2BECE07700229059 /* ErrorStateView.swift in Sources */,
 				421A369C2BEC80B8003AC257 /* WebView.swift in Sources */,
 				425627A92BE11F5400EDEEEB /* DashboardScreenView.swift in Sources */,
-				425627902BE0F17E00EDEEEB /* IosImagesResourceProvider.swift in Sources */,
 				42E2F0B82BE3817E00B76F14 /* ScreenshotItemView.swift in Sources */,
 				42F844522BE75DD000408FE7 /* YourGameListScreenView.swift in Sources */,
 				425627A52BE11EAD00EDEEEB /* ObservableViewModelState.swift in Sources */,

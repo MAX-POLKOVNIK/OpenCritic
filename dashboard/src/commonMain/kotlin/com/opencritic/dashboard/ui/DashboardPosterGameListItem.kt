@@ -4,12 +4,9 @@ import com.opencritic.dashboard.domain.PosterGame
 import com.opencritic.games.GameRankModel
 import com.opencritic.games.Tier
 import com.opencritic.mvvm.ListItem
-import com.opencritic.resources.ImageResource
-import com.opencritic.resources.ImageResourceProvider
 
 data class DashboardPosterGameListItem(
     val game: PosterGame,
-    private val imageResourceProvider: ImageResourceProvider,
     private val onClick: (DashboardPosterGameListItem) -> Unit,
 ) : ListItem<Long> {
     override val id: Long
@@ -19,7 +16,7 @@ data class DashboardPosterGameListItem(
         get() = game.name
 
     val rank: GameRankModel? =
-        GameRankModel(imageResourceProvider, game.rank)
+        GameRankModel(game.rank)
 
     val posterUrl: String
         get() = game.posterUrl

@@ -66,7 +66,6 @@ struct DashboardDealsHorizontalListItemView_Previews: PreviewProvider {
                     ),
                 ],
                 stringProvider: IosStringProvider(),
-                imageResourceProvider: IosImagesResourceProvider(),
                 onClick: {_ in },
                 onBuyNowClick: { _ in }
             )

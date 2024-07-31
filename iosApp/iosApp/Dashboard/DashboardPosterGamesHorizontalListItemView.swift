@@ -50,7 +50,6 @@ struct DashboardPopularGamesHorizontalListItemView_Previews: PreviewProvider {
                         rank: GameRank(tier: Tier.fair, score: 32)
                     ),
                 ],
-                imageResourceProvider: IosImagesResourceProvider(),
                 onClick: {_ in }
             )
         )

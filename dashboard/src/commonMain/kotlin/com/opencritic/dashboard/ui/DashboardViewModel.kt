@@ -11,7 +11,6 @@ import com.opencritic.navigation.PeriodGameBrowserDestination
 import com.opencritic.navigation.PeriodGameBrowserRoute
 import com.opencritic.navigation.UrlRoute
 import com.opencritic.resources.DateFormatter
-import com.opencritic.resources.ImageResourceProvider
 import com.opencritic.resources.StringProvider
 import com.opencritic.resources.StringRes
 import com.opencritic.resources.getFormattedString
@@ -25,7 +24,6 @@ import kotlinx.datetime.toLocalDateTime
 class DashboardViewModel(
     private val getDashboardInteractor: GetDashboardInteractor,
     private val stringProvider: StringProvider,
-    private val imageResourceProvider: ImageResourceProvider,
     private val dateFormatter: DateFormatter,
     private val logger: Logger,
 ) : BaseContentViewModel<DashboardContent>() {
@@ -59,7 +57,6 @@ class DashboardViewModel(
                                 ),
                                 popularGames = DashboardPosterGamesHorizontalListItem(
                                     dashboard.popularGames,
-                                    imageResourceProvider,
                                 ) {
                                     navigateToGame(it.id, it.nameText)
                                 },
@@ -70,7 +67,6 @@ class DashboardViewModel(
                                 deals = DashboardDealsHorizontalListItem(
                                     deals = dashboard.deals,
                                     stringProvider = stringProvider,
-                                    imageResourceProvider = imageResourceProvider,
                                     onClick = { navigateToGame(it.id, it.gameDeal.game.name) },
                                     onBuyNowClick = {
                                         requireRouter()
@@ -82,7 +78,6 @@ class DashboardViewModel(
                                 reviewedToday = DashboardSublistListItem.reviewedToday(
                                     gameItems = dashboard.reviewedToday,
                                     stringProvider = stringProvider,
-                                    imageResourceProvider = imageResourceProvider,
                                     dateFormatter = dateFormatter,
                                     onItemClick = { navigateToGame(it.id, it.nameText) },
                                     onMoreClick = {
@@ -94,7 +89,6 @@ class DashboardViewModel(
                                 upcomingReleases = DashboardSublistListItem.upcomingReleases(
                                     gameItems = dashboard.upcoming,
                                     stringProvider = stringProvider,
-                                    imageResourceProvider = imageResourceProvider,
                                     dateFormatter = dateFormatter,
                                     onItemClick = { navigateToGame(it.id, it.nameText) },
                                     onMoreClick = {
@@ -106,7 +100,6 @@ class DashboardViewModel(
                                 recentlyReleased = DashboardSublistListItem.recentlyReleased(
                                     gameItems = dashboard.recentlyReleased,
                                     stringProvider = stringProvider,
-                                    imageResourceProvider = imageResourceProvider,
                                     dateFormatter = dateFormatter,
                                     onItemClick = { navigateToGame(it.id, it.nameText) },
                                     onMoreClick = {
@@ -121,12 +114,10 @@ class DashboardViewModel(
                                 ),
                                 hallOfFame = DashboardPosterGamesHorizontalListItem(
                                     popularGames = dashboard.hallOfFame,
-                                    imageResourceProvider = imageResourceProvider,
                                     onClick = { navigateToGame(it.id, it.nameText) }
                                 ),
                                 whoIsMightyMan = DashboardMightyManListItem(
                                     stringProvider,
-                                    imageResourceProvider
                                 ),
                                 switchTitle = DashboardTitleListItem(
                                     title = dashboard.switchFeatured.name,
@@ -134,7 +125,6 @@ class DashboardViewModel(
                                 ),
                                 switchGames = DashboardPosterGamesHorizontalListItem(
                                     popularGames = dashboard.switchFeatured.games,
-                                    imageResourceProvider = imageResourceProvider,
                                     onClick = { navigateToGame(it.id, it.nameText) }
                                 ),
                                 xboxTitle = DashboardTitleListItem(
@@ -143,7 +133,6 @@ class DashboardViewModel(
                                 ),
                                 xboxGames = DashboardPosterGamesHorizontalListItem(
                                     popularGames = dashboard.xboxFeatured.games,
-                                    imageResourceProvider = imageResourceProvider,
                                     onClick = { navigateToGame(it.id, it.nameText) }
                                 ),
                                 playstationTitle = DashboardTitleListItem(
@@ -152,7 +141,6 @@ class DashboardViewModel(
                                 ),
                                 playstationGames = DashboardPosterGamesHorizontalListItem(
                                     popularGames = dashboard.playstationFeatured.games,
-                                    imageResourceProvider = imageResourceProvider,
                                     onClick = { navigateToGame(it.id, it.nameText) }
                                 ),
                             )

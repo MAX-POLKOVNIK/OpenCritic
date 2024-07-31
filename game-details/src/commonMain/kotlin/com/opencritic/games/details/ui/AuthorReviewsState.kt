@@ -5,7 +5,6 @@ import com.opencritic.mvvm.BaseErrorState
 import com.opencritic.mvvm.BaseLoadingState
 import com.opencritic.mvvm.ViewModelState
 import com.opencritic.resources.Icons
-import com.opencritic.resources.ImageResourceProvider
 
 interface AuthorReviewsState : ViewModelState {
     val titleText: String

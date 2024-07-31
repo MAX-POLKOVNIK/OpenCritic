@@ -108,6 +108,6 @@ struct GameReviewsStateContentView: View {
 
 #Preview {
     GameReviewsStateContentView(
-        state: GameReviewsStateKt.GameReviewsStateContent_PreviewData(imageResourceProvider: IosImagesResourceProvider())
+        state: GameReviewsStateKt.GameReviewsStateContent_PreviewData()
     )
 }

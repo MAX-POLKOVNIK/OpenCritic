@@ -6,8 +6,6 @@ import com.opencritic.resources.Color
 import com.opencritic.resources.Colors
 import com.opencritic.resources.IconResource
 import com.opencritic.resources.Icons
-import com.opencritic.resources.ImageResource
-import com.opencritic.resources.ImageResourceProvider
 import com.opencritic.resources.MR
 import com.opencritic.resources.StringProvider
 import com.opencritic.resources.getString

@@ -49,7 +49,7 @@ struct DashboardSublistListitemView: View {
                 DashboardGameListItem(
                     id: 1,
                     rank: GameRankModel(
-                        headImageResource: IosImagesResourceProvider().fairHead,
+                        headImageResource: SharedImages.shared.fairHead,
                         scoreText: "15"
                     ),
                     nameText: "Game",
@@ -59,7 +59,7 @@ struct DashboardSublistListitemView: View {
                 DashboardGameListItem(
                     id: 2,
                     rank: GameRankModel(
-                        headImageResource: IosImagesResourceProvider().fairHead,
+                        headImageResource: SharedImages.shared.fairHead,
                         scoreText: "15"
                     ),
                     nameText: "Game",
@@ -69,7 +69,7 @@ struct DashboardSublistListitemView: View {
                 DashboardGameListItem(
                     id: 3,
                     rank: GameRankModel(
-                        headImageResource: IosImagesResourceProvider().fairHead,
+                        headImageResource: SharedImages.shared.fairHead,
                         scoreText: "15"
                     ),
                     nameText: "Game",

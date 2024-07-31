@@ -5,7 +5,7 @@ import com.opencritic.games.GameRank
 import com.opencritic.games.GameRankModel
 import com.opencritic.mvvm.ListItem
 import com.opencritic.resources.DateFormatter
-import com.opencritic.resources.ImageResourceProvider
+import com.opencritic.resources.SharedImages
 import kotlinx.datetime.Instant
 import kotlinx.datetime.LocalDate
 import kotlinx.datetime.TimeZone
@@ -23,12 +23,11 @@ data class DashboardGameListItem(
 ) : ListItem<Long> {
     constructor(
         gameItem: GameItem,
-        imageResourceProvider: ImageResourceProvider,
         dateFormatter: DateFormatter,
         onClick: (DashboardGameListItem) -> Unit,
     ) : this(
         id = gameItem.id,
-        rank = GameRankModel(imageResourceProvider, gameItem.rank),
+        rank = GameRankModel(gameItem.rank),
         nameText = gameItem.name,
         dateText = dateFormatter.formatShort(gameItem.releaseDate.toLocalDateTime(TimeZone.UTC).date),
         onClick = onClick,
@@ -38,12 +37,10 @@ data class DashboardGameListItem(
 }
 
 @Suppress("FunctionName")
-fun DashboardGameListItem_PreviewData(
-    imageResourceProvider: ImageResourceProvider,
-): DashboardGameListItem =
+fun DashboardGameListItem_PreviewData(): DashboardGameListItem =
     DashboardGameListItem(
         id = 1,
-        rank = GameRankModel(headImageResource = imageResourceProvider.fairHead, scoreText = "15"),
+        rank = GameRankModel(headImageResource = SharedImages.fairHead, scoreText = "15"),
         nameText = "Game ldskfhds  sdkjhfjsd",
         dateText = "MAY 16",
         onClick = {}

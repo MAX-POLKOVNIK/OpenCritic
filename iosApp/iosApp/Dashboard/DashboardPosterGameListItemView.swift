@@ -53,7 +53,6 @@ struct DashboardPosterGameListItemView_Previews: PreviewProvider {
                     posterUrl: "https://img.opencritic.com/game/14353/o/cDwMyHmW.jpg",
                     rank: GameRank(tier: Tier.fair, score: 32)
                 ),
-                imageResourceProvider: IosImagesResourceProvider(),
                 onClick: {_ in }
             )
         )

@@ -7,13 +7,11 @@ import com.opencritic.game.your.domain.YourGameAction
 import com.opencritic.logs.Logger
 import com.opencritic.mvvm.BaseViewModel
 import com.opencritic.navigation.GameDetailsRoute
-import com.opencritic.resources.ImageResourceProvider
 import kotlinx.coroutines.launch
 
 class YourGameListViewModel(
     private val getYourGameListInteractor: GetYourGameListInteractor,
     private val saveYourGameInteractor: SaveYourGameInteractor,
-    private val imageResourceProvider: ImageResourceProvider,
     private val logger: Logger,
 ) : BaseViewModel<YourGameListState>() {
 

@@ -33,7 +33,7 @@ struct DashboardGameListItemView_Previews: PreviewProvider {
             item: DashboardGameListItem(
                 id: 1,
                 rank: GameRankModel(
-                    headImageResource: IosImagesResourceProvider().fairHead, 
+                    headImageResource: SharedImages.shared.fairHead, 
                     scoreText: "15"
                 ),
                 nameText: "Game ldskfhds  sdkjhfjsd ",

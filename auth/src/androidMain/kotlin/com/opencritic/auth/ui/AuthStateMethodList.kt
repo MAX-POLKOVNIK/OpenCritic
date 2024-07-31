@@ -6,7 +6,6 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
-import com.opencritic.resources.AndroidImageResourceProvider
 import com.opencritic.resources.defaultPadding
 import com.opencritic.resources.smallPadding
 
@@ -30,6 +29,6 @@ fun AuthStateMethodList(
 @Composable
 fun AuthStateMethodList_Preview() {
     AuthStateMethodList(
-        state = AuthStateMethodList_PreviewData(AndroidImageResourceProvider())
+        state = AuthStateMethodList_PreviewData()
     )
 }

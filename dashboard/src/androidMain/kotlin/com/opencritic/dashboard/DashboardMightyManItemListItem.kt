@@ -12,6 +12,7 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import com.opencritic.dashboard.ui.DashboardMightyManItemListItem
+import com.opencritic.resources.asPainter
 
 @Composable
 fun DashboardMightyManItemListItem(
@@ -22,7 +23,7 @@ fun DashboardMightyManItemListItem(
         modifier = modifier,
     ) {
         Image(
-            painter = painterResource(id = item.imageResource),
+            painter = item.imageResource.asPainter(),
             contentDescription = "",
             modifier = Modifier
                 .width(56.dp)

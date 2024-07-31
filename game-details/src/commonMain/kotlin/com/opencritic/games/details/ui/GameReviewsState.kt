@@ -6,8 +6,8 @@ import com.opencritic.games.details.domain.ReviewSorting
 import com.opencritic.mvvm.BaseErrorState
 import com.opencritic.mvvm.BaseLoadingState
 import com.opencritic.mvvm.ViewModelState
-import com.opencritic.resources.ImageResource
-import com.opencritic.resources.ImageResourceProvider
+import com.opencritic.resources.SharedImageResource
+import com.opencritic.resources.SharedImages
 
 interface GameReviewsState : ViewModelState {
     val titleText: String
@@ -25,7 +25,7 @@ interface GameReviewsState : ViewModelState {
         override val titleText: String,
         val imageUrl: String,
         val isTierVisible: Boolean,
-        val tierImageResource: ImageResource,
+        val tierImageResource: SharedImageResource,
         val isTopScoreIndicatorVisible: Boolean,
         val topScoreIndicator: RankCircleIndicatorItem,
         val isRecommendIndicatorVisible: Boolean,
@@ -47,14 +47,12 @@ interface GameReviewsState : ViewModelState {
 }
 
 @Suppress("FunctionName")
-fun GameReviewsStateContent_PreviewData(
-    imageResourceProvider: ImageResourceProvider,
-): GameReviewsState.Content =
+fun GameReviewsStateContent_PreviewData(): GameReviewsState.Content =
     GameReviewsState.Content(
         titleText = "Stellar Blade Reviews",
         imageUrl = "https://img.opencritic.com/game/14343/ZpFE5hYe.jpg",
         isTierVisible = true,
-        tierImageResource = imageResourceProvider.strongMan,
+        tierImageResource = SharedImages.strongMan,
         isTopScoreIndicatorVisible = true,
         topScoreIndicator = createTopCriticAverageIndicator(
             GameRank(Tier.Strong, 82)

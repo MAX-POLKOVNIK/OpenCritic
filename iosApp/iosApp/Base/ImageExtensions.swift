@@ -18,4 +18,12 @@ extension Image {
             fatalError("Can't instantiate image with \(iconRes)")
         }
     }
+    
+    init(_ sharedImageResource: SharedImageResource) {
+        if let image = sharedImageResource.imageRes.toUIImage() {
+            self.init(uiImage: image)
+        } else {
+            fatalError("Can't instantiate image with \(sharedImageResource)")
+        }
+    }
 }

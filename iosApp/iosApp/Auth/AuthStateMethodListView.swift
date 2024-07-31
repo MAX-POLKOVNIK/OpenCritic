@@ -39,8 +39,6 @@ struct AuthStateMethodListView: View {
 
 #Preview {
     AuthStateMethodListView(
-        state: AuthStateKt.AuthStateMethodList_PreviewData(
-            imageResourceProvider: IosImagesResourceProvider()
-        )
+        state: AuthStateKt.AuthStateMethodList_PreviewData()
     )
 }

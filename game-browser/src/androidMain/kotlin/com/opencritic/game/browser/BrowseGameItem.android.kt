@@ -29,7 +29,6 @@ import coil.compose.SubcomposeAsyncImage
 import com.opencritic.game.browser.ui.BrowseGameItem
 import com.opencritic.game.browser.ui.BrowseGameItem_PreviewData
 import com.opencritic.games.details.RankCircleIndicatorItem
-import com.opencritic.resources.AndroidImageResourceProvider
 import com.opencritic.resources.R
 import com.opencritic.resources.asPainter
 import com.opencritic.resources.defaultPadding
@@ -84,7 +83,7 @@ fun BrowseGameItem(
                 ) {
                     if (item.isTierVisible) {
                         Image(
-                            painter = painterResource(id = item.tierImageResource),
+                            painter = item.tierImageResource.asPainter(),
                             contentDescription = "",
                             contentScale = ContentScale.FillWidth,
                             modifier = Modifier
@@ -145,5 +144,5 @@ fun BrowseGameItem(
 @Preview
 @Composable
 fun BrowseGameItem_Preview() {
-    BrowseGameItem(item = BrowseGameItem_PreviewData(AndroidImageResourceProvider()))
+    BrowseGameItem(item = BrowseGameItem_PreviewData())
 }

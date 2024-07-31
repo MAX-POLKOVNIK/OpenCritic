@@ -13,7 +13,7 @@ import com.opencritic.navigation.AuthorReviewsRoute
 import com.opencritic.navigation.OutletReviewsRoute
 import com.opencritic.navigation.UrlRoute
 import com.opencritic.resources.DateFormatter
-import com.opencritic.resources.ImageResourceProvider
+import com.opencritic.resources.SharedImages
 import com.opencritic.resources.StringProvider
 import com.opencritic.resources.StringRes
 import com.opencritic.resources.getFormattedString
@@ -25,7 +25,6 @@ class GameReviewsViewModel(
     private val gameName: String,
     private val getGameInteractor: GetGameInteractor,
     private val getGameReviewsInteractor: GetGameReviewsInteractor,
-    private val imageResourceProvider: ImageResourceProvider,
     private val stringProvider: StringProvider,
     private val dateFormatter: DateFormatter,
     private val logger: Logger,
@@ -52,7 +51,7 @@ class GameReviewsViewModel(
                 }
                 .onSuccess {
                     mutableState.tryEmit(
-                        createContentState(it, imageResourceProvider)
+                        createContentState(it)
                     )
 
                     game = it
@@ -98,18 +97,17 @@ class GameReviewsViewModel(
 
     private fun createContentState(
         game: Game,
-        imageResourceProvider: ImageResourceProvider,
     ): GameReviewsState.Content =
         GameReviewsState.Content(
             titleText = "${game.name} ${stringProvider.getString(StringRes.str_reviews)}",
             imageUrl = game.bannerImageUrl,
             isTierVisible = game.rank != null,
             tierImageResource = when (game.rank?.tier) {
-                Tier.Mighty -> imageResourceProvider.mightyMan
-                Tier.Strong -> imageResourceProvider.strongMan
-                Tier.Fair -> imageResourceProvider.fairMan
-                Tier.Weak -> imageResourceProvider.weakMan
-                null -> imageResourceProvider.weakMan
+                Tier.Mighty -> SharedImages.mightyMan
+                Tier.Strong -> SharedImages.strongMan
+                Tier.Fair -> SharedImages.fairMan
+                Tier.Weak -> SharedImages.weakMan
+                null -> SharedImages.weakMan
             },
             isTopScoreIndicatorVisible = game.rank != null,
             topScoreIndicator = createTopCriticAverageIndicator(

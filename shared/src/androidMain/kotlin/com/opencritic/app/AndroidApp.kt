@@ -2,7 +2,6 @@ package com.opencritic.app
 
 import android.content.Context
 import com.opencritic.resources.AndroidDateFormatter
-import com.opencritic.resources.AndroidImageResourceProvider
 import com.opencritic.resources.AndroidStringProvider
 import org.koin.android.ext.koin.androidContext
 import org.koin.core.KoinApplication
@@ -15,7 +14,6 @@ object AndroidApp : BaseApp() {
         contextRef = WeakReference(context)
 
         onInit(
-            imageResourceProvider = AndroidImageResourceProvider(),
             stringProvider = AndroidStringProvider(context),
             dateFormatter = AndroidDateFormatter()
         )

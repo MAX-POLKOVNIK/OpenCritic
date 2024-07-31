@@ -12,7 +12,6 @@ import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.tooling.preview.Preview
 import com.opencritic.game.your.ui.YourGameListItem
 import com.opencritic.game.your.ui.YourGameListItem_PreviewData
-import com.opencritic.resources.AndroidImageResourceProvider
 
 @Composable
 fun YourGameListItem(

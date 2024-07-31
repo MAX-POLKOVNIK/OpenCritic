@@ -1,7 +1,7 @@
 package com.opencritic.search.ui
 
 import com.opencritic.mvvm.ViewModelState
-import com.opencritic.resources.Colors
+import com.opencritic.resources.colors.Colors
 import com.opencritic.resources.text.TextSource
 import com.opencritic.resources.text.asTextSource
 

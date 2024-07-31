@@ -2,8 +2,8 @@ package com.opencritic.games.details.ui
 
 import com.opencritic.games.GameRank
 import com.opencritic.games.Tier
-import com.opencritic.resources.Color
-import com.opencritic.resources.Colors
+import com.opencritic.resources.colors.Color
+import com.opencritic.resources.colors.Colors
 
 data class RankCircleIndicatorItem(
     val scoreText: String,

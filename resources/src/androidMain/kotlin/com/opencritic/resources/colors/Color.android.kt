@@ -1,4 +1,4 @@
-package com.opencritic.resources
+package com.opencritic.resources.colors
 
 
 fun Color.toCompose(): androidx.compose.ui.graphics.Color =

@@ -87,7 +87,7 @@ fun GameDetailsStateContent_PreviewData(): GameDetailsState.Content =
         tierImageResource = SharedImages.fairMan,
         topCriticScore = createTopCriticAverageIndicator(GameRank(Tier.Fair, 20)),
         topCriticScoreDescription = "Top critic description".asTextSource(),
-        recommendedPercent = createCriticsRecommendIndicator(Tier.Fair, 40),
+        recommendedPercent = createCriticsRecommendIndicator(Tier.Fair, 40f),
         criticsRecommendDescription = "Critics recommends".asTextSource(),
         briefReviews = listOf(
             ReviewBriefListItem(nameText = "IGN", scoreText = "100 / 100"),

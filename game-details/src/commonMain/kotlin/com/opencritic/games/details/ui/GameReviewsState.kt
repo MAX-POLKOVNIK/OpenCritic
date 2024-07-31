@@ -62,7 +62,8 @@ fun GameReviewsStateContent_PreviewData(): GameReviewsState.Content =
         ),
         isRecommendIndicatorVisible = true,
         recommendScoreIndicator = createCriticsRecommendIndicator(
-            Tier.Strong, 85
+            tier = Tier.Strong,
+            score = 85f
         ),
         isRankedDescriptionVisible = true,
         rankedDescription = "Stellar Blade is ranked in the 86th percentile of games scored on OpenCritic. ".asTextSource(),

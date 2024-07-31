@@ -13,7 +13,7 @@ data class ReviewBriefListItem(
 
 fun ReviewBriefListItem(
     name: String,
-    score: Int?,
+    score: Float?,
     scoreFormat: ReviewScoreFormat
 ): ReviewBriefListItem =
     ReviewBriefListItem(

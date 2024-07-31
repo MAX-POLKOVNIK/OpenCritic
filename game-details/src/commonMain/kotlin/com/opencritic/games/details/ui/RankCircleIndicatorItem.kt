@@ -1,12 +1,15 @@
 package com.opencritic.games.details.ui
 
+import androidx.annotation.FloatRange
 import com.opencritic.games.GameRank
 import com.opencritic.games.Tier
+import com.opencritic.games.roundScore
 import com.opencritic.resources.colors.Color
 import com.opencritic.resources.colors.Colors
 
 data class RankCircleIndicatorItem(
     val scoreText: String,
+    @FloatRange(0.0, 1.0)
     val progress: Float, // in range 0..1
     val colors: List<Color>,
     val backgroundColor: Color = Colors.CircleIndicatorBackground
@@ -24,9 +27,9 @@ fun createTopCriticAverageIndicator(gameRank: GameRank): RankCircleIndicatorItem
         }
     )
 
-fun createCriticsRecommendIndicator(tier: Tier, score: Int): RankCircleIndicatorItem =
+fun createCriticsRecommendIndicator(tier: Tier, score: Float): RankCircleIndicatorItem =
     RankCircleIndicatorItem(
-        scoreText = "$score%",
+        scoreText = "${score.roundScore()}%",
         progress = score.toFloat() / 100f,
         colors = when (tier) {
             Tier.Mighty -> Colors.MightyCriticsRecommendGradient

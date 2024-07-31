@@ -104,11 +104,11 @@ class GameReviewsViewModel(
             },
             isTopScoreIndicatorVisible = game.rank != null,
             topScoreIndicator = createTopCriticAverageIndicator(
-                game.rank ?: GameRank(Tier.Weak, 0)
+                gameRank = game.rank ?: GameRank(Tier.Weak, 0)
             ),
             isRecommendIndicatorVisible = game.rank != null,
             recommendScoreIndicator = createCriticsRecommendIndicator(
-                game.rank?.tier ?: Tier.Weak, game.recommendPercent ?: 0
+                tier = game.rank?.tier ?: Tier.Weak, game.recommendPercent ?: 0f
             ),
             isRankedDescriptionVisible = game.recommendPercent != null,
             rankedDescription = StringRes.str_game_review_ranked_description.asTextSource(game.name, (game.recommendPercent ?: 0).toString()),

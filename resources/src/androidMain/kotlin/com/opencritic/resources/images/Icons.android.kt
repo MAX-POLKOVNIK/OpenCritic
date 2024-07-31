@@ -37,7 +37,7 @@ actual object Icons {
 
     actual val starFilled: IconResource = Icons.Filled.Star.iconRes()
     actual val starHalf: IconResource = Icons.AutoMirrored.Filled.StarHalf.iconRes()
-    actual val star: IconResource = Icons.Outlined.Star.iconRes()
+    actual val star: IconResource = Icons.Outlined.StarOutline.iconRes()
 
     actual val heart: IconResource = Icons.Filled.Favorite.iconRes()
     actual val calendar: IconResource = Icons.Outlined.CalendarMonth.iconRes()

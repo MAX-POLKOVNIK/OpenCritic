@@ -7,7 +7,7 @@ data class Game(
     val name: String,
     val releaseDate: Instant,
     val rank: GameRank?,
-    val recommendPercent: Int?,
+    val recommendPercent: Float?,
     val squareImageUrl: String,
     val bannerImageUrl: String,
     val companies: List<Company>,

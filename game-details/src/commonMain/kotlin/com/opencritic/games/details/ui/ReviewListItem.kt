@@ -81,7 +81,7 @@ fun ReviewListItem_PreviewData(id: String = "1"): ReviewListItem =
         imageUrl = "https://img.opencritic.com/critic/2097/vh2JKJwl.jpg",
         score = ReviewScoreDisplayItem.Stars(
             filledStars = 3,
-            halfStars = 0,
+            halfStars = 1,
             emptyStars = 2,
         ),
         dateText = "May 1, 2024".asTextSource(),

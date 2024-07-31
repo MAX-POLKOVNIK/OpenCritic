@@ -8,6 +8,7 @@ import com.opencritic.games.GameRank
 import com.opencritic.games.Tier
 import com.opencritic.games.Trailer
 import com.opencritic.games.details.domain.interactor.GetGameDetailsInteractor
+import com.opencritic.games.roundScore
 import com.opencritic.logs.Logger
 import com.opencritic.mvvm.BaseViewModel
 import com.opencritic.navigation.GameMediaRoute
@@ -69,18 +70,20 @@ class GameDetailsViewModel(
                             },
                             tier = details.rank?.tier,
                             tierDescription = StringRes.str_open_critic_rating.asTextSource(),
-                            topCriticScore = createTopCriticAverageIndicator(details.rank ?: GameRank(Tier.Weak, 0)),
+                            topCriticScore = createTopCriticAverageIndicator(
+                                gameRank = details.rank ?: GameRank(Tier.Weak, 0)
+                            ),
                             topCriticScoreDescription = StringRes.str_top_critic_average.asTextSource(),
-                            recommendedPercent = createCriticsRecommendIndicator(details.rank?.tier ?: Tier.Weak, details.recommendPercent ?: 0),
+                            recommendedPercent = createCriticsRecommendIndicator(
+                                tier = details.rank?.tier ?: Tier.Weak,
+                                score = details.recommendPercent ?: 0f
+                            ),
                             criticsRecommendDescription = StringRes.str_critics_recommend.asTextSource(),
                             briefReviews = details.reviews
-                                .filter { it.score != null }
-                                .filterNot { it.scoreFormat.isSelect }
-                                .take(8)
                                 .map { review ->
                                     ReviewBriefListItem(
                                         name = review.outlet.name,
-                                        score = review.score?.toInt(),
+                                        score = review.score,
                                         scoreFormat = review.scoreFormat,
                                     )
                                 },

@@ -34,7 +34,7 @@ internal class GameDetailsRepositoryImpl(
                 name = dto.name,
                 releaseDate = dto.firstReleaseDate,
                 rank = GameRank(dto.tier, dto.topCriticScore),
-                recommendPercent = dto.percentRecommended.toInt().takeUnless { it < 0 },
+                recommendPercent = dto.percentRecommended.takeUnless { it < 0f },
                 squareImageUrl = dto.images.square?.sm?.prefixedImageUrl() ?: "",
                 bannerImageUrl = dto.images.banner?.sm?.prefixedImageUrl() ?: "",
                 companies = dto.companies.map { Company(it.name) },

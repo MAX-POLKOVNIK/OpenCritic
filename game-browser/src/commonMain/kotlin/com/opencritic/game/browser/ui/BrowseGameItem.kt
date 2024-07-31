@@ -56,7 +56,7 @@ fun BrowseGameItem(
             gameRank = game.rank ?: GameRank(Tier.Weak, 0)
         ),
         isPercentRecommendedIndicatorVisible = isPercentRecommendedVisible && game.rank != null,
-        percentRecommendedIndicator = createCriticsRecommendIndicator(game.rank?.tier ?: Tier.Weak, game.percentRecommended.toInt()),
+        percentRecommendedIndicator = createCriticsRecommendIndicator(game.rank?.tier ?: Tier.Weak, game.percentRecommended),
         onClick = onClick,
     )
 
@@ -75,6 +75,6 @@ fun BrowseGameItem_PreviewData(): BrowseGameItem =
             gameRank = GameRank(Tier.Mighty, 97)
         ),
         isPercentRecommendedIndicatorVisible = true,
-        percentRecommendedIndicator = createCriticsRecommendIndicator(Tier.Mighty, 90),
+        percentRecommendedIndicator = createCriticsRecommendIndicator(Tier.Mighty, 90f),
         onClick = {},
     )

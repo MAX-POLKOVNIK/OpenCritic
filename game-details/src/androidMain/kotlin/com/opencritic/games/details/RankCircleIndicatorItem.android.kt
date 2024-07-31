@@ -82,6 +82,6 @@ fun RankCircleIndicatorItem(
 @Composable
 fun RankCircleIndicatorItem_Preview() {
     RankCircleIndicatorItem(
-        item = createCriticsRecommendIndicator(Tier.Mighty, 75)
+        item = createCriticsRecommendIndicator(Tier.Mighty, 75f)
     )
 }

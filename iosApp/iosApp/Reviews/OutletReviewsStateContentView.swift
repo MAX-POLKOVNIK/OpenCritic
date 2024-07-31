@@ -13,7 +13,10 @@ import Combine
 struct OutletReviewsStateContentView: View {
     let state: OutletReviewsStateContent
     
-    @State private var selection = ReviewSortItem(key: ReviewSorting.default_, name: "Def")
+    @State private var selection = ReviewSortItem(
+        key: ReviewSorting.default_,
+        name: "Default".asTextSource()
+    )
     
     init(state: OutletReviewsStateContent) {
         self.state = state
@@ -54,7 +57,7 @@ struct OutletReviewsStateContentView: View {
             .listRowSeparator(.hidden)
             .card()
             
-            Picker(state.sortTitleText, selection: $selection) {
+            Picker(state.sortTitleText.text(), selection: $selection) {
                 ForEach(state.availableSorts, id: \.self) {
                     Text($0.name)
                 }

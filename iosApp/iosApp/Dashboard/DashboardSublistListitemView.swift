@@ -44,7 +44,7 @@ struct DashboardSublistListitemView: View {
     DashboardSublistListitemView(
         item: DashboardSublistListItem(
             id: DashboardSublistListItem.Type_.recentlyreleased,
-            titleText: "RECENTLY RELEASED",
+            titleText: "RECENTLY RELEASED".asTextSource(),
             items: [
                 DashboardGameListItem(
                     id: 1,
@@ -53,7 +53,7 @@ struct DashboardSublistListitemView: View {
                         scoreText: "15"
                     ),
                     nameText: "Game",
-                    dateText: StringTextSource(string: "MAY 16"),
+                    dateText: "MAY 16".asTextSource(),
                     onClick: {_ in }
                 ),
                 DashboardGameListItem(
@@ -63,7 +63,7 @@ struct DashboardSublistListitemView: View {
                         scoreText: "15"
                     ),
                     nameText: "Game",
-                    dateText: StringTextSource(string: "MAY 16"),
+                    dateText: "MAY 16".asTextSource(),
                     onClick: {_ in }
                 ),
                 DashboardGameListItem(
@@ -73,11 +73,11 @@ struct DashboardSublistListitemView: View {
                         scoreText: "15"
                     ),
                     nameText: "Game",
-                    dateText: StringTextSource(string: "MAY 16"),
+                    dateText: "MAY 16".asTextSource(),
                     onClick: {_ in }
                 )
             ],
-            viewMoreText: "View More",
+            viewMoreText: "View More".asTextSource(),
             onMoreClick: { _ in }
         )
     )

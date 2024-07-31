@@ -14,6 +14,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.text.font.FontWeight
 import com.opencritic.dashboard.ui.DashboardSublistListItem
 import com.opencritic.resources.defaultPadding
+import com.opencritic.resources.text.text
 
 @Composable
 fun DashboardSublistListItem(
@@ -24,7 +25,7 @@ fun DashboardSublistListItem(
         modifier = modifier,
     ) {
         Text(
-            text = item.titleText,
+            text = item.titleText.text(),
             fontWeight = FontWeight.Bold,
             style = MaterialTheme.typography.titleMedium,
             modifier = Modifier
@@ -45,7 +46,7 @@ fun DashboardSublistListItem(
         ) {
             TextButton(onClick = item::moreClick) {
                 Text(
-                    text = item.viewMoreText,
+                    text = item.viewMoreText.text(),
                     modifier = Modifier
                         .padding(horizontal = defaultPadding)
                 )

@@ -19,6 +19,7 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
 import com.opencritic.resources.defaultPadding
 import com.opencritic.resources.smallPadding
+import com.opencritic.resources.text.text
 import com.opencritic.resources.toCompose
 import com.opencritic.search.ui.SearchListItem
 import com.opencritic.search.ui.SearchListItem_PreviewData
@@ -40,7 +41,7 @@ fun SearchListItem(
             )
         ) {
             Text(
-                text = item.kindText,
+                text = item.kindText.text(),
                 fontWeight = FontWeight.Bold,
                 color = Color.White,
                 modifier = Modifier

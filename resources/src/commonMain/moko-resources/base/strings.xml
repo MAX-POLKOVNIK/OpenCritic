@@ -38,6 +38,7 @@
     <string name="str_reviewed_this_week">Reviewed This Week</string>
     <string name="str_reviewed_today">REVIEWED TODAY</string>
     <string name="str_reviews">Reviews</string>
+    <string name="str_game_reviews">%s Reviews</string>
     <string name="str_reviews_of">%s\'s reviews</string>
     <string name="str_screenshots">Screenshots</string>
     <string name="str_search_hint">Search game, critic, outlet</string>
@@ -67,7 +68,13 @@
     <string name="str_top_critic_average">Top Critic Average</string>
     <string name="str_trailers">Trailers</string>
     <string name="str_upcoming_releases">UPCOMING RELEASES</string>
+    <string name="str_game_media">%s Media</string>
+    <string name="str_game_trailers">%s Trailers</string>
+    <string name="str_game_screenshots">%s Screenshots</string>
     <string name="str_view_all">View All</string>
+    <string name="str_view_all_media">View All Media</string>
+    <string name="str_view_all_trailers">View All Trailers</string>
+    <string name="str_view_all_screenshots">View All Screenshots</string>
     <string name="str_view_all_reviews">View All %s Critic Reviews</string>
     <string name="str_view_more">View More</string>
     <string name="str_weak">Weak</string>

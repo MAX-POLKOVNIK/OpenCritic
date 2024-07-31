@@ -9,6 +9,7 @@
 import Foundation
 import SwiftUI
 import UIKit
+import shared
 
 extension View {
     func card(radius: CGFloat = 8) -> some View {
@@ -30,5 +31,9 @@ extension View {
                     )
             )
         }
+    }
+    
+    func navigationTitle(_ textSource: TextSource) -> some View {
+        navigationBarTitle(textSource.text())
     }
 }

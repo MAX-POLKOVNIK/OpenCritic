@@ -18,7 +18,7 @@ struct SearchStateView: View {
     var body: some View {
         ScrollView {
             LazyVStack {
-                SearchBar(text: $criteria, placeholder: state.searchHint)
+                SearchBar(text: $criteria, placeholder: state.searchHint.text())
                     .onReceive(Just(criteria)) { _ in
                         state.changeSearch(criteria: criteria)
                     }
@@ -84,27 +84,27 @@ struct SearchBar: UIViewRepresentable {
     SearchStateView(
         state: SearchState(
             searchText: "Game to find",
-            searchHint: "Type something",
+            searchHint: "Type something".asTextSource(),
             searchListItemsState: SearchItemsStateContent(
                 items: [
                     SearchListItem(
                         id: 1,
                         nameText: "Game name",
-                        kindText: "Game",
+                        kindText: "Game".asTextSource(),
                         kindColor: Colors.shared.Orange,
                         onClick: { _ in }
                     ),
                     SearchListItem(
                         id: 1,
                         nameText: "Some magazine",
-                        kindText: "Outlet",
+                        kindText: "Outlet".asTextSource(),
                         kindColor: Colors.shared.Cyan,
                         onClick: { _ in }
                     ),
                     SearchListItem(
                         id: 1,
                         nameText: "Max Polkovnik",
-                        kindText: "Critic",
+                        kindText: "Critic".asTextSource(),
                         kindColor: Colors.shared.Purple,
                         onClick: { _ in }
                     ),

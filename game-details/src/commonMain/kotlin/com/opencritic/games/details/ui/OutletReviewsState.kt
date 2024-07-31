@@ -1,30 +1,33 @@
 package com.opencritic.games.details.ui
 
 import com.opencritic.games.details.domain.ReviewSorting
+import com.opencritic.games.details.domain.asTextSource
 import com.opencritic.mvvm.BaseErrorState
 import com.opencritic.mvvm.BaseLoadingState
 import com.opencritic.mvvm.ViewModelState
 import com.opencritic.resources.images.Icons
+import com.opencritic.resources.text.TextSource
+import com.opencritic.resources.text.asTextSource
 
 interface OutletReviewsState : ViewModelState {
-    val titleText: String
+    val titleText: TextSource
     data class Error(
-        override val titleText: String,
+        override val titleText: TextSource,
         override val message: String
     ) : BaseErrorState(message), OutletReviewsState
 
     data class Loading(
-        override val titleText: String,
+        override val titleText: TextSource,
     ) : BaseLoadingState(), OutletReviewsState
 
     data class Content(
-        override val titleText: String,
+        override val titleText: TextSource,
         val outletNameText: String,
         val outletImageUrl: String,
         val isHomepageVisible: Boolean,
-        val homepageText: String,
+        val homepageText: TextSource,
         val infoItems: List<IconTextItem>,
-        val sortTitleText: String,
+        val sortTitleText: TextSource,
         val sortText: ReviewSortItem,
         val availableSorts: List<ReviewSortItem>,
         val reviewItems: List<ReviewListItem>,
@@ -39,36 +42,36 @@ interface OutletReviewsState : ViewModelState {
 @Suppress("FunctionName")
 fun OutletReviewsStateContent_PreviewData(): OutletReviewsState.Content =
     OutletReviewsState.Content(
-        titleText = "IGN's reviews",
+        titleText = "IGN's reviews".asTextSource(),
         outletNameText = "IGN",
         outletImageUrl = "https://img.opencritic.com/outlet/56/1v75XFcW.jpg",
         isHomepageVisible = true,
-        homepageText = "Homepage",
-        sortTitleText = "Sort",
+        homepageText = "Homepage".asTextSource(),
+        sortTitleText = "Sort".asTextSource(),
         infoItems = listOf(
             IconTextItem(
                 icon = Icons.hashTag,
-                text = "2188 games reviewed",
+                text = "2188 games reviewed".asTextSource(),
             ),
             IconTextItem(
                 icon = Icons.chartPie,
-                text = "74.4 average score",
+                text = "74.4 average score".asTextSource(),
             ),
             IconTextItem(
                 icon = Icons.bullseye,
-                text = "78 median score",
+                text = "78 median score".asTextSource(),
             ),
             IconTextItem(
                 icon = Icons.thumbUp,
-                text = "55.6% of games recommended"
+                text = "55.6% of games recommended".asTextSource()
             )
         ),
         sortText = ReviewSortItem(
-            key = ReviewSorting.Default, name = ReviewSorting.Default.name
+            key = ReviewSorting.Default, name = ReviewSorting.Default.asTextSource()
         ),
         availableSorts = ReviewSorting.entries
             .filter { it != ReviewSorting.MostPopular }
-            .map { ReviewSortItem(it, it.name) },
+            .map { ReviewSortItem(it, it.asTextSource()) },
         reviewItems = emptyList(),
         isLoadingItemVisible = true,
         loadingItem = LoadingItem,

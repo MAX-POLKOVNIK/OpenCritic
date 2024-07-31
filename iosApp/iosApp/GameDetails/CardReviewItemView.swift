@@ -75,7 +75,7 @@ struct CardReviewItemView: View {
                 emptyStars: 5
             ),
             snippetText: "Everything that made GT Sport so good, plus everything that made early Gran Turismo games so good. A simply stunning driving game and a superb showcase for PS5.",
-            readFullReviewText: "Read full review",
+            readFullReviewText: "Read full review".asTextSource(),
             onClick: { _ in }
         )
     )

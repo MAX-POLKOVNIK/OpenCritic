@@ -38,6 +38,7 @@ import com.opencritic.resources.images.Icons
 import com.opencritic.resources.images.asPainter
 import com.opencritic.resources.defaultPadding
 import com.opencritic.resources.smallPadding
+import com.opencritic.resources.text.text
 
 @Composable
 fun GameReviewsStateContent(
@@ -120,7 +121,7 @@ fun GameReviewsStateContent(
         if (state.isRankedDescriptionVisible) {
             item {
                 Text(
-                    text = state.rankedDescription,
+                    text = state.rankedDescription.text(),
                     modifier = Modifier
                         .padding(vertical = defaultPadding)
                 )
@@ -131,7 +132,7 @@ fun GameReviewsStateContent(
             Row(
                 verticalAlignment = Alignment.CenterVertically,
             ) {
-                Text(text = state.sortTitleText)
+                Text(text = state.sortTitleText.text())
 
                 Spacer(modifier = Modifier.weight(1f))
 
@@ -148,7 +149,7 @@ fun GameReviewsStateContent(
                                 .padding(8.dp)
                         ) {
                             Text(
-                                text = item.name,
+                                text = item.name.text(),
                             )
                             Icon(
                                 painter = Icons.arrowDown.asPainter(),
@@ -157,7 +158,7 @@ fun GameReviewsStateContent(
                         }
                     },
                     dropdownItemFactory = { item, _ ->
-                        Text(text = item.name)
+                        Text(text = item.name.text())
                     }
                 )
             }

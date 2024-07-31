@@ -5,23 +5,20 @@ import com.opencritic.game.browser.domain.GameSorting
 import com.opencritic.game.browser.domain.GameTimeframe
 import com.opencritic.game.browser.domain.GetBrowseGamesInteractor
 import com.opencritic.game.browser.domain.GetPlatformsInteractor
-import com.opencritic.game.browser.domain.sortNameOf
-import com.opencritic.game.browser.domain.timeframeNameOf
+import com.opencritic.game.browser.domain.asTextSource
 import com.opencritic.games.Platform
 import com.opencritic.games.details.ui.LoadingItem
 import com.opencritic.logs.Logger
 import com.opencritic.mvvm.BaseViewModel
 import com.opencritic.navigation.GameDetailsRoute
-import com.opencritic.resources.StringProvider
-import com.opencritic.resources.StringRes
-import com.opencritic.resources.getString
+import com.opencritic.resources.text.StringRes
+import com.opencritic.resources.text.asTextSource
 import kotlinx.coroutines.flow.update
 import kotlinx.coroutines.launch
 
 class GameBrowserViewModel(
     private val getPlatformsInteractor: GetPlatformsInteractor,
     private val getBrowseGamesInteractor: GetBrowseGamesInteractor,
-    private val stringProvider: StringProvider,
     private val logger: Logger,
 ) : BaseViewModel<GameBrowserState>() {
     override fun initialState(): GameBrowserState =
@@ -85,24 +82,24 @@ class GameBrowserViewModel(
         platforms: List<Platform>,
     ): GameBrowserState.Content =
         GameBrowserState.Content(
-            sortTitleText = stringProvider.getString(StringRes.str_sort),
-            sortText = GameSortItem(sorting, stringProvider.sortNameOf(sorting)),
+            sortTitleText = StringRes.str_sort.asTextSource(),
+            sortText = GameSortItem(sorting, sorting.asTextSource()),
             sortItems = GameSorting.entries
-                .map { GameSortItem(it, stringProvider.sortNameOf(it)) },
-            platformTitleText = stringProvider.getString(StringRes.str_platform),
+                .map { GameSortItem(it, it.asTextSource()) },
+            platformTitleText = StringRes.str_platform.asTextSource(),
             platformText = PlatformItem(
                 key = platform,
-                text = if (platform == null) stringProvider.getString(StringRes.str_all_platforms)
-                       else requireNotNull(platform).name
+                text = if (platform == null) StringRes.str_all_platforms.asTextSource()
+                       else requireNotNull(platform).name.asTextSource()
             ),
             platformsItems = listOf(
-                PlatformItem(key = null, stringProvider.getString(StringRes.str_all_platforms)),
-                *platforms.map { PlatformItem(it, it.name) }.toTypedArray()
+                PlatformItem(key = null, StringRes.str_all_platforms.asTextSource()),
+                *platforms.map { PlatformItem(it, it.name.asTextSource()) }.toTypedArray()
             ),
-            timeframeTitleText = stringProvider.getString(StringRes.str_timeframe),
-            timeframeText = TimeframeItem(timeframe, stringProvider.timeframeNameOf(timeframe)),
+            timeframeTitleText = StringRes.str_timeframe.asTextSource(),
+            timeframeText = TimeframeItem(timeframe, timeframe.asTextSource()),
             timeframeItems = GameTimeframe.entries
-                .map { TimeframeItem(it, stringProvider.timeframeNameOf(it)) },
+                .map { TimeframeItem(it, it.asTextSource()) },
             browseGameItems = emptyList(),
             isLoadingItemVisible = true,
             loadingItem = LoadingItem,

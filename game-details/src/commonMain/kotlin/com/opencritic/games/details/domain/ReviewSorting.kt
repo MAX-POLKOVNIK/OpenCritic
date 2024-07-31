@@ -1,8 +1,8 @@
 package com.opencritic.games.details.domain
 
-import com.opencritic.resources.StringProvider
-import com.opencritic.resources.StringRes
-import com.opencritic.resources.getString
+import com.opencritic.resources.text.StringRes
+import com.opencritic.resources.text.TextSource
+import com.opencritic.resources.text.asTextSource
 
 enum class ReviewSorting {
     Default,
@@ -13,13 +13,13 @@ enum class ReviewSorting {
     OldestFirst,
 }
 
-fun StringProvider.sortNameOf(sort: ReviewSorting): String {
-    return when(sort) {
-        ReviewSorting.Default -> getString(StringRes.str_sort_default)
-        ReviewSorting.MostPopular -> getString(StringRes.str_sort_most_popular)
-        ReviewSorting.ScoreHighestToLowest -> getString(StringRes.str_sort_highest)
-        ReviewSorting.ScoreLowestToHighest -> getString(StringRes.str_sort_lowest)
-        ReviewSorting.NewestFirst -> getString(StringRes.str_sort_newest)
-        ReviewSorting.OldestFirst -> getString(StringRes.str_sort_oldest)
+fun ReviewSorting.asTextSource(): TextSource {
+    return when (this) {
+        ReviewSorting.Default -> StringRes.str_sort_default.asTextSource()
+        ReviewSorting.MostPopular -> StringRes.str_sort_most_popular.asTextSource()
+        ReviewSorting.ScoreHighestToLowest -> StringRes.str_sort_highest.asTextSource()
+        ReviewSorting.ScoreLowestToHighest -> StringRes.str_sort_lowest.asTextSource()
+        ReviewSorting.NewestFirst -> StringRes.str_sort_newest.asTextSource()
+        ReviewSorting.OldestFirst -> StringRes.str_sort_oldest.asTextSource()
     }
 }

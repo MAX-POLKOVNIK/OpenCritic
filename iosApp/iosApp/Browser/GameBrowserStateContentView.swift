@@ -13,9 +13,9 @@ import Combine
 struct GameBrowserStateContentView: View {
     let state: GameBrowserStateContent
 
-    @State private var sort = GameSortItem(key: GameSorting.score, text: "Score")
-    @State private var timeframe = TimeframeItem(key: GameTimeframeAllTIme.shared, text: "All Time")
-    @State private var platform = PlatformItem(key: nil, text: "All Platforms")
+    @State private var sort = GameSortItem(key: GameSorting.score, text: GameSorting.score.asTextSource())
+    @State private var timeframe = TimeframeItem(key: GameTimeframeAllTIme.shared, text: GameTimeframeKt.asTextSource(GameTimeframeAllTIme.shared))
+    @State private var platform = PlatformItem(key: nil, text: StringTextSource(string: "All Platforms"))
 
     init(state: GameBrowserStateContent) {
         self.state = state
@@ -27,7 +27,7 @@ struct GameBrowserStateContentView: View {
     
     var body: some View {
         List {
-            Picker(state.platformTitleText, selection: $platform) {
+            Picker(state.platformTitleText.text(), selection: $platform) {
                 ForEach(state.platformsItems, id: \.self) {
                     Text($0.text)
                 }
@@ -38,7 +38,7 @@ struct GameBrowserStateContentView: View {
             }
             .listRowSeparator(.hidden)
             
-            Picker(state.timeframeTitleText, selection: $timeframe) {
+            Picker(state.timeframeTitleText.text(), selection: $timeframe) {
                 ForEach(state.timeframeItems, id: \.self) {
                     Text($0.text)
                 }
@@ -49,7 +49,7 @@ struct GameBrowserStateContentView: View {
             }
             .listRowSeparator(.hidden)
             
-            Picker(state.sortTitleText, selection: $sort) {
+            Picker(state.sortTitleText.text(), selection: $sort) {
                 ForEach(state.sortItems, id: \.self) {
                     Text($0.text)
                 }

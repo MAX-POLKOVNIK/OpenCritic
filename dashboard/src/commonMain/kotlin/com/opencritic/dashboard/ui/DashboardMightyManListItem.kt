@@ -2,29 +2,26 @@ package com.opencritic.dashboard.ui
 
 import com.opencritic.games.Tier
 import com.opencritic.mvvm.ListItem
-import com.opencritic.resources.StringProvider
-import com.opencritic.resources.StringRes
-import com.opencritic.resources.getString
+import com.opencritic.resources.text.StringRes
+import com.opencritic.resources.text.TextSource
+import com.opencritic.resources.text.asTextSource
 
 data class DashboardMightyManListItem(
     override val id: Unit = Unit,
-    val title: String,
-    val description: String,
-    val colorDescription: String,
+    val title: TextSource,
+    val description: TextSource,
+    val colorDescription: TextSource,
     val items: List<DashboardMightyManItemListItem>,
 ) : ListItem<Unit>
 
 
-fun DashboardMightyManListItem(
-    stringProvider: StringProvider,
-): DashboardMightyManListItem =
+fun DashboardMightyManListItem(): DashboardMightyManListItem =
     DashboardMightyManListItem(
-        title = stringProvider.getString(StringRes.who_is_mighty_man),
-        description = stringProvider.getString(StringRes.who_is_mighty_man_description),
-        colorDescription = stringProvider.getString(StringRes.who_is_mighty_man_color_description),
+        title = StringRes.who_is_mighty_man.asTextSource(),
+        description = StringRes.who_is_mighty_man_description.asTextSource(),
+        colorDescription = StringRes.who_is_mighty_man_color_description.asTextSource(),
         items = Tier.entries.map {
             DashboardMightyManItemListItem(
-                stringProvider = stringProvider,
                 tier = it,
             )
         }

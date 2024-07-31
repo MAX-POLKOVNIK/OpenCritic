@@ -11,9 +11,9 @@ import com.opencritic.logs.Logger
 import com.opencritic.mvvm.BaseViewModel
 import com.opencritic.navigation.GameDetailsRoute
 import com.opencritic.navigation.PeriodGameBrowserDestination
-import com.opencritic.resources.StringProvider
-import com.opencritic.resources.StringRes
-import com.opencritic.resources.getString
+import com.opencritic.resources.text.StringRes
+import com.opencritic.resources.text.TextSource
+import com.opencritic.resources.text.asTextSource
 import kotlinx.coroutines.flow.update
 import kotlinx.coroutines.launch
 
@@ -21,7 +21,6 @@ class PeriodGameBrowserViewModel(
     private val period: PeriodGameBrowserDestination.Period,
     private val getBrowseGamesInteractor: GetBrowseGamesInteractor,
     private val getReviewedThisWeekInteractor: GetReviewedThisWeekInteractor,
-    private val stringProvider: StringProvider,
     private val logger: Logger,
 ) : BaseViewModel<PeriodGameBrowserState>() {
     override fun initialState(): PeriodGameBrowserState =
@@ -73,11 +72,11 @@ class PeriodGameBrowserViewModel(
         }
     }
 
-    private fun titleFor(period: PeriodGameBrowserDestination.Period): String =
+    private fun titleFor(period: PeriodGameBrowserDestination.Period): TextSource =
         when (period) {
-            PeriodGameBrowserDestination.Period.ReviewedThisWeek -> stringProvider.getString(StringRes.str_reviewed_this_week)
-            PeriodGameBrowserDestination.Period.RecentlyReleased -> stringProvider.getString(StringRes.str_recently_released)
-            PeriodGameBrowserDestination.Period.UpcomingReleases -> stringProvider.getString(StringRes.str_upcoming_releases)
+            PeriodGameBrowserDestination.Period.ReviewedThisWeek -> StringRes.str_reviewed_this_week.asTextSource()
+            PeriodGameBrowserDestination.Period.RecentlyReleased -> StringRes.str_recently_released.asTextSource()
+            PeriodGameBrowserDestination.Period.UpcomingReleases -> StringRes.str_upcoming_releases.asTextSource()
         }
 
     private fun createContentState(): PeriodGameBrowserState.Content =

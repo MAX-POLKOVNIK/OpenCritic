@@ -14,6 +14,7 @@ import androidx.compose.ui.unit.dp
 import com.opencritic.games.details.ui.GameMediaState
 import com.opencritic.resources.defaultPadding
 import com.opencritic.resources.smallPadding
+import com.opencritic.resources.text.text
 
 @Composable
 fun GameMediaStateContent(
@@ -27,7 +28,7 @@ fun GameMediaStateContent(
     ) {
         if (state.isTrailersVisible) {
             Text(
-                text = state.trailersText,
+                text = state.trailersText.text(),
                 style = MaterialTheme.typography.titleLarge,
                 modifier = Modifier
                     .padding(defaultPadding)
@@ -50,7 +51,7 @@ fun GameMediaStateContent(
             Spacer(modifier = Modifier.height(32.dp))
 
             Text(
-                text = state.screenshotsText,
+                text = state.screenshotsText.text(),
                 style = MaterialTheme.typography.titleLarge,
                 modifier = Modifier
                     .padding(defaultPadding)

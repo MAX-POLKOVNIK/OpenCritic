@@ -28,6 +28,7 @@ import com.opencritic.game.your.ui.YourGameIndicatorItem
 import com.opencritic.game.your.ui.YourGameIndicatorItem_PreviewData
 import com.opencritic.resources.images.asPainter
 import com.opencritic.resources.defaultPadding
+import com.opencritic.resources.text.text
 import com.opencritic.resources.toCompose
 
 @Composable
@@ -63,7 +64,7 @@ fun YourGameIndicatorItem(
                         .size(38.dp)
                 )
                 Text(
-                    text = item.wantedText,
+                    text = item.wantedText.text(),
                     color = item.wantedTextColor?.toCompose() ?: Color.Unspecified
                 )
             }
@@ -89,7 +90,7 @@ fun YourGameIndicatorItem(
                         .size(38.dp)
                 )
                 Text(
-                    text = item.playedText,
+                    text = item.playedText.text(),
                     color = item.playedTextColor?.toCompose() ?: Color.Unspecified
                 )
             }
@@ -112,7 +113,7 @@ fun YourGameIndicatorItem(
                         .size(38.dp)
                 )
                 Text(
-                    text = item.favoriteText,
+                    text = item.favoriteText.text(),
                     color = item.favoriteTextColor?.toCompose() ?: Color.Unspecified
                 )
             }

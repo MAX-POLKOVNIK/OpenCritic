@@ -3,18 +3,16 @@ package com.opencritic.games.details.ui
 import com.opencritic.games.Review
 import com.opencritic.games.details.domain.Author
 import com.opencritic.games.details.domain.ReviewSorting
+import com.opencritic.games.details.domain.asTextSource
 import com.opencritic.games.details.domain.interactor.GetAuthorInteractor
 import com.opencritic.games.details.domain.interactor.GetAuthorReviewsInteractor
-import com.opencritic.games.details.domain.sortNameOf
 import com.opencritic.logs.Logger
 import com.opencritic.mvvm.BaseViewModel
 import com.opencritic.navigation.GameDetailsRoute
 import com.opencritic.navigation.UrlRoute
 import com.opencritic.resources.images.Icons
-import com.opencritic.resources.StringProvider
-import com.opencritic.resources.StringRes
-import com.opencritic.resources.getFormattedString
-import com.opencritic.resources.getString
+import com.opencritic.resources.text.StringRes
+import com.opencritic.resources.text.asTextSource
 import kotlinx.coroutines.flow.update
 import kotlinx.coroutines.launch
 
@@ -23,11 +21,10 @@ class AuthorReviewsViewModel(
     private val authorName: String,
     private val getAuthorInteractor: GetAuthorInteractor,
     private val getAuthorReviewsInteractor: GetAuthorReviewsInteractor,
-    private val stringProvider: StringProvider,
     private val logger: Logger,
 ) : BaseViewModel<AuthorReviewsState>() {
     override fun initialState(): AuthorReviewsState =
-        AuthorReviewsState.Loading(stringProvider.getFormattedString(StringRes.str_reviews_of, authorName))
+        AuthorReviewsState.Loading(StringRes.str_reviews_of.asTextSource(authorName))
 
     private var author: Author? = null
     private var canLoadMore: Boolean = true
@@ -41,7 +38,7 @@ class AuthorReviewsViewModel(
                 .onFailure {
                     mutableState.update {
                         AuthorReviewsState.Error(
-                            stringProvider.getFormattedString(StringRes.str_reviews_of, authorName),
+                            StringRes.str_reviews_of.asTextSource(authorName),
                             it.toString()
                         )
                     }
@@ -83,58 +80,58 @@ class AuthorReviewsViewModel(
         author: Author,
     ): AuthorReviewsState.Content =
         AuthorReviewsState.Content(
-            titleText = stringProvider.getFormattedString(StringRes.str_reviews_of, author.name),
+            titleText = StringRes.str_reviews_of.asTextSource(author.name),
             nameText = author.name,
             bioText =
-                if (author.isClaimed) author.bio
-                else stringProvider.getFormattedString(StringRes.str_author_is_not_claimed, author.name),
+                if (author.isClaimed) author.bio.asTextSource()
+                else StringRes.str_author_is_not_claimed.asTextSource(author.name),
             isBioVisible = !author.isClaimed || author.bio.isNotBlank(),
             imageUrl = author.imageUrl,
-            sortTitleText = stringProvider.getString(StringRes.str_sort),
+            sortTitleText = StringRes.str_sort.asTextSource(),
             countersInfoItems = listOfNotNull(
                 IconTextItem(
                     icon = Icons.hashTag,
-                    text = stringProvider.getFormattedString(StringRes.str_games_reviewed_formatted, author.reviewCount.toString()),
+                    text = StringRes.str_games_reviewed_formatted.asTextSource(author.reviewCount.toString()),
                 ).takeIf { author.reviewCount > 0 },
                 IconTextItem(
                     icon = Icons.chartPie,
-                    text = stringProvider.getFormattedString(StringRes.str_average_score_formatted, author.averageScore.toInt().toString()),
+                    text = StringRes.str_average_score_formatted.asTextSource(author.averageScore.toInt().toString()),
                 ).takeIf { author.averageScore > 0 },
                 IconTextItem(
                     icon = Icons.bullseye,
-                    text = stringProvider.getFormattedString(StringRes.str_median_score_formatted, author.medianScore.toString())
+                    text = StringRes.str_median_score_formatted.asTextSource(author.medianScore.toString())
                 ).takeIf { author.medianScore > 0 },
                 IconTextItem(
                     icon = Icons.thumbUp,
-                    text = stringProvider.getFormattedString(StringRes.str_games_recommended_formatted, author.percentRecommended.toInt().toString())
+                    text = StringRes.str_games_recommended_formatted.asTextSource(author.percentRecommended.toInt().toString())
                 ).takeIf { author.percentRecommended > 0 }
             ),
             sortText = ReviewSortItem(
-                key = ReviewSorting.Default, name = stringProvider.sortNameOf(ReviewSorting.Default)
+                key = ReviewSorting.Default, name = ReviewSorting.Default.asTextSource()
             ),
             availableSorts = ReviewSorting.entries
                 .filter { it != ReviewSorting.MostPopular }
-                .map { ReviewSortItem(it, stringProvider.sortNameOf(it)) },
+                .map { ReviewSortItem(it, it.asTextSource()) },
             reviewItems = emptyList(),
             isLoadingItemVisible = true,
             loadingItem = LoadingItem,
             onLoadMore = { loadMore() },
             onSelectedSort = { onSortSelected(it) },
             isFavoritesGamesVisible = author.favoriteGames.isNotEmpty(),
-            favoritesGamesTitleText = stringProvider.getString(StringRes.str_favorite_games),
+            favoritesGamesTitleText = StringRes.str_favorite_games.asTextSource(),
             favoritesGames = author.favoriteGames,
             personalInfoItems = listOfNotNull(
                 IconTextItem(
                     icon = Icons.home,
-                    text = author.hometown
+                    text = author.hometown.asTextSource()
                 ).takeIf { author.hometown.isNotBlank() },
                 IconTextItem(
                     icon = Icons.xbox,
-                    text = author.xboxLive
+                    text = author.xboxLive.asTextSource()
                 ).takeIf { author.xboxLive.isNotBlank() },
                 IconTextItem(
                     icon = Icons.playstation,
-                    text = author.psn
+                    text = author.psn.asTextSource()
                 ).takeIf { author.psn.isNotBlank() },
             )
         )
@@ -164,7 +161,6 @@ class AuthorReviewsViewModel(
         ReviewListItem(
             review = review,
             isGameVisible = true,
-            stringProvider = stringProvider,
             onClick = { openUrl(review.externalUrl) },
             onAuthorClick = {},
             onImageClick = {},

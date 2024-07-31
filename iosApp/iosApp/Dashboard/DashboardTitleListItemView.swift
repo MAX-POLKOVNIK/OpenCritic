@@ -31,8 +31,8 @@ struct DashboardTitleListItemView_Previews: PreviewProvider {
     static var previews: some View {
         DashboardTitleListItemView(
             item: DashboardTitleListItem(
-                title: "Hello",
-                subtitle: "Second string"
+                title: "Hello".asTextSource(),
+                subtitle: "Second string".asTextSource()
             )
         )
         .previewLayout(.fixed(width: 300, height: 600))

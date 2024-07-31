@@ -62,8 +62,8 @@ struct DashboardStateContentView: View {
         state: DashboardContent(
             popularGamesTitle:
                 DashboardTitleListItem(
-                    title: "Hello",
-                    subtitle: "Second string"
+                    title: "Hello".asTextSource(),
+                    subtitle: "Second string".asTextSource()
                 ),
             popularGames:
                 DashboardPosterGamesHorizontalListItem(
@@ -90,8 +90,8 @@ struct DashboardStateContentView: View {
                     onClick: {_ in }
                 ),
             dealsTitle: DashboardTitleListItem(
-                title: "Deals",
-                subtitle: "Deals description"
+                title: "Deals".asTextSource(),
+                subtitle: "Deals description".asTextSource()
             ),
             deals: DashboardDealsHorizontalListItem(
                 deals: [
@@ -129,32 +129,49 @@ struct DashboardStateContentView: View {
                         externalUrl: ""
                     ),
                 ],
-                stringProvider: IosStringProvider(),
                 onClick: { _ in },
                 onBuyNowClick: { _ in }
             ),
-            recentlyReleased: DashboardSublistListItem(id: DashboardSublistListItem.Type_.recentlyreleased, titleText: "", items: [], viewMoreText: "", onMoreClick: { _ in }),
-            upcomingReleases: DashboardSublistListItem(id: DashboardSublistListItem.Type_.recentlyreleased, titleText: "", items: [], viewMoreText: "", onMoreClick: { _ in }),
-            reviewedToday: DashboardSublistListItem(id: DashboardSublistListItem.Type_.recentlyreleased, titleText: "", items: [], viewMoreText: "", onMoreClick: { _ in }),
+            recentlyReleased: DashboardSublistListItem(
+                id: DashboardSublistListItem.Type_.recentlyreleased, 
+                titleText: "".asTextSource(),
+                items: [],
+                viewMoreText: "".asTextSource(),
+                onMoreClick: { _ in }
+            ),
+            upcomingReleases: DashboardSublistListItem(
+                id: DashboardSublistListItem.Type_.recentlyreleased,
+                titleText: "".asTextSource(),
+                items: [],
+                viewMoreText: "".asTextSource(),
+                onMoreClick: { _ in }
+            ),
+            reviewedToday: DashboardSublistListItem(
+                id: DashboardSublistListItem.Type_.recentlyreleased,
+                titleText: "".asTextSource(),
+                items: [],
+                viewMoreText: "".asTextSource(),
+                onMoreClick: { _ in }
+            ),
             hallOfFameTitle: DashboardTitleListItem(
-                title: "Hall of fame",
-                subtitle: "Hall of fame description"
+                title: "Hall of fame".asTextSource(),
+                subtitle: "Hall of fame description".asTextSource()
             ),
             hallOfFame: DashboardPosterGamesHorizontalListItem(popularGames: [], onClick: { _ in }),
-            whoIsMightyMan: DashboardMightyManListItemKt.DashboardMightyManListItem(stringProvider: IosStringProvider()),
+            whoIsMightyMan: DashboardMightyManListItemKt.DashboardMightyManListItem(),
             switchTitle: DashboardTitleListItem(
-                title: "Hall of fame",
-                subtitle: "Hall of fame description"
+                title: "Hall of fame".asTextSource(),
+                subtitle: "Hall of fame description".asTextSource()
             ),
             switchGames: DashboardPosterGamesHorizontalListItem(popularGames: [], onClick: { _ in }),
             xboxTitle: DashboardTitleListItem(
-                title: "Hall of fame",
-                subtitle: "Hall of fame description"
+                title: "Hall of fame".asTextSource(),
+                subtitle: "Hall of fame description".asTextSource()
             ),
             xboxGames: DashboardPosterGamesHorizontalListItem(popularGames: [], onClick: { _ in }),
             playstationTitle: DashboardTitleListItem(
-                title: "Hall of fame",
-                subtitle: "Hall of fame description"
+                title: "Hall of fame".asTextSource(),
+                subtitle: "Hall of fame description".asTextSource()
             ),
             playstationGames: DashboardPosterGamesHorizontalListItem(popularGames: [], onClick: { _ in })
         )

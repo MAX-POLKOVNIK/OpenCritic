@@ -2,34 +2,31 @@ package com.opencritic.main.ui
 
 import com.opencritic.mvvm.BaseViewModel
 import com.opencritic.resources.images.Icons
-import com.opencritic.resources.StringProvider
-import com.opencritic.resources.StringRes
-import com.opencritic.resources.getString
+import com.opencritic.resources.text.StringRes
+import com.opencritic.resources.text.asTextSource
 
-class MainViewModel(
-    private val stringProvider: StringProvider,
-) : BaseViewModel<MainState>() {
+class MainViewModel() : BaseViewModel<MainState>() {
     override fun initialState(): MainState =
         MainState(
             tabs = listOf(
                 Tab(
                     id = TabType.Main,
-                    name = stringProvider.getString(StringRes.str_tab_main),
+                    name = StringRes.str_tab_main.asTextSource(),
                     imageResource = Icons.tabMain,
                 ),
                 Tab(
                     id = TabType.Search,
-                    name = stringProvider.getString(StringRes.str_tab_search),
+                    name = StringRes.str_tab_search.asTextSource(),
                     imageResource = Icons.tabSearch,
                 ),
                 Tab(
                     id = TabType.Browse,
-                    name = stringProvider.getString(StringRes.str_tab_browse),
+                    name = StringRes.str_tab_browse.asTextSource(),
                     imageResource = Icons.tabBrowse,
                 ),
                 Tab(
                     id = TabType.YourLists,
-                    name = stringProvider.getString(StringRes.str_tab_your_list),
+                    name = StringRes.str_tab_your_list.asTextSource(),
                     imageResource = Icons.tabYourList,
                 ),
             )

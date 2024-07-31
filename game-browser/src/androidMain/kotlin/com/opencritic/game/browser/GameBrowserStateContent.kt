@@ -22,6 +22,7 @@ import com.opencritic.resources.images.Icons
 import com.opencritic.resources.images.asPainter
 import com.opencritic.resources.defaultPadding
 import com.opencritic.resources.smallPadding
+import com.opencritic.resources.text.text
 
 @Composable
 fun GameBrowserStateContent(
@@ -36,7 +37,7 @@ fun GameBrowserStateContent(
             Row(
                 verticalAlignment = Alignment.CenterVertically,
             ) {
-                Text(text = state.platformTitleText)
+                Text(text = state.platformTitleText.text())
 
                 Spacer(modifier = Modifier.weight(1f))
 
@@ -53,7 +54,7 @@ fun GameBrowserStateContent(
                                 .padding(8.dp)
                         ) {
                             Text(
-                                text = item.text,
+                                text = item.text.text(),
                             )
                             Icon(
                                 painter = Icons.arrowDown.asPainter(),
@@ -62,7 +63,7 @@ fun GameBrowserStateContent(
                         }
                     },
                     dropdownItemFactory = { item, _ ->
-                        Text(text = item.text)
+                        Text(text = item.text.text())
                     }
                 )
             }
@@ -72,7 +73,7 @@ fun GameBrowserStateContent(
             Row(
                 verticalAlignment = Alignment.CenterVertically,
             ) {
-                Text(text = state.timeframeTitleText)
+                Text(text = state.timeframeTitleText.text())
 
                 Spacer(modifier = Modifier.weight(1f))
 
@@ -89,7 +90,7 @@ fun GameBrowserStateContent(
                                 .padding(8.dp)
                         ) {
                             Text(
-                                text = item.text,
+                                text = item.text.text(),
                             )
                             Icon(
                                 painter = Icons.arrowDown.asPainter(),
@@ -98,7 +99,7 @@ fun GameBrowserStateContent(
                         }
                     },
                     dropdownItemFactory = { item, _ ->
-                        Text(text = item.text)
+                        Text(text = item.text.text())
                     }
                 )
             }
@@ -108,7 +109,7 @@ fun GameBrowserStateContent(
             Row(
                 verticalAlignment = Alignment.CenterVertically,
             ) {
-                Text(text = state.sortTitleText)
+                Text(text = state.sortTitleText.text())
 
                 Spacer(modifier = Modifier.weight(1f))
 
@@ -125,7 +126,7 @@ fun GameBrowserStateContent(
                                 .padding(8.dp)
                         ) {
                             Text(
-                                text = item.text,
+                                text = item.text.text(),
                             )
                             Icon(
                                 painter = Icons.arrowDown.asPainter(),
@@ -134,7 +135,7 @@ fun GameBrowserStateContent(
                         }
                     },
                     dropdownItemFactory = { item, _ ->
-                        Text(text = item.text)
+                        Text(text = item.text.text())
                     }
                 )
             }

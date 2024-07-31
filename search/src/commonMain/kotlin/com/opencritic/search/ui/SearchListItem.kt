@@ -3,15 +3,15 @@ package com.opencritic.search.ui
 import com.opencritic.resources.Color
 import com.opencritic.resources.Colors
 import com.opencritic.resources.MR
-import com.opencritic.resources.StringProvider
-import com.opencritic.resources.getString
+import com.opencritic.resources.text.TextSource
+import com.opencritic.resources.text.asTextSource
 import com.opencritic.search.domain.SearchItem
 import com.opencritic.search.domain.SearchItemKind
 
 data class SearchListItem(
     val id: Long,
     val nameText: String,
-    val kindText: String,
+    val kindText: TextSource,
     val kindColor: Color,
     private val onClick: (SearchListItem) -> Unit,
 ) {
@@ -21,16 +21,15 @@ data class SearchListItem(
 
 fun SearchListItem(
     item: SearchItem,
-    stringProvider: StringProvider,
     onClick: (SearchListItem) -> Unit,
 ): SearchListItem =
     SearchListItem(
         id = item.id,
         nameText = item.name,
         kindText = when (item.kind) {
-            SearchItemKind.Game -> stringProvider.getString(MR.strings.str_game)
-            SearchItemKind.Critic -> stringProvider.getString(MR.strings.str_critic)
-            SearchItemKind.Outlet -> stringProvider.getString(MR.strings.str_outlet)
+            SearchItemKind.Game -> MR.strings.str_game.asTextSource()
+            SearchItemKind.Critic -> MR.strings.str_critic.asTextSource()
+            SearchItemKind.Outlet -> MR.strings.str_outlet.asTextSource()
         },
         kindColor = when (item.kind) {
             SearchItemKind.Game -> Colors.Orange
@@ -45,7 +44,7 @@ fun SearchListItem_PreviewData(): SearchListItem =
     SearchListItem(
         id = 1,
         nameText = "Game name",
-        kindText = "Game",
+        kindText = "Game".asTextSource(),
         kindColor = Colors.Cyan,
         onClick = {}
     )

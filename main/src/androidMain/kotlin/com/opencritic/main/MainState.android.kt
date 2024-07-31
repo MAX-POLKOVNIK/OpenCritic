@@ -45,6 +45,7 @@ import com.opencritic.navigation.MainDestination
 import com.opencritic.navigation.SearchDestination
 import com.opencritic.navigation.YourListDestination
 import com.opencritic.resources.images.asPainter
+import com.opencritic.resources.text.text
 import com.opencritic.search.SearchScreen
 
 @OptIn(ExperimentalMaterial3Api::class)
@@ -71,7 +72,7 @@ fun MainState(state: MainState, navController: NavHostController) {
                     ),
                     title = {
                         Text(
-                            text = selectedTab.name,
+                            text = selectedTab.name.text(),
                             maxLines = 1,
                             overflow = TextOverflow.Ellipsis
                         )
@@ -87,7 +88,7 @@ fun MainState(state: MainState, navController: NavHostController) {
                     state.tabs.forEach { tab ->
                         NavigationBarItem(
                             icon = { Icon(painter = tab.imageResource.asPainter(), contentDescription = null) },
-                            label = { Text(tab.name) },
+                            label = { Text(tab.name.text()) },
                             selected = currentDestination?.hierarchy?.any { it.route == tab.id.destination.path } == true,
                             onClick = {
                                 selectedTab = tab

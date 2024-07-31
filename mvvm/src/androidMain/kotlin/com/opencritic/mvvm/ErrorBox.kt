@@ -15,8 +15,8 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
-import com.opencritic.resources.Icons
-import com.opencritic.resources.asPainter
+import com.opencritic.resources.images.Icons
+import com.opencritic.resources.images.asPainter
 import com.opencritic.resources.defaultPadding
 
 @Composable

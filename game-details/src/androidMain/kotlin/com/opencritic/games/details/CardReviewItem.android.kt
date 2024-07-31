@@ -19,16 +19,14 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import coil.compose.SubcomposeAsyncImage
 import com.opencritic.games.details.ui.CardReviewItem
 import com.opencritic.games.details.ui.ReviewScoreDisplayItem
-import com.opencritic.resources.Icons
-import com.opencritic.resources.R
-import com.opencritic.resources.asPainter
+import com.opencritic.resources.images.Icons
+import com.opencritic.resources.images.asPainter
 import com.opencritic.resources.defaultPadding
 import com.opencritic.resources.smallPadding
 

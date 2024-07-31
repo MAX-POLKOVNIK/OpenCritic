@@ -19,7 +19,6 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontStyle
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
@@ -28,10 +27,10 @@ import coil.compose.SubcomposeAsyncImage
 import com.opencritic.games.details.ui.ReviewListItem
 import com.opencritic.games.details.ui.ReviewListItem_PreviewData
 import com.opencritic.games.details.ui.ReviewScoreDisplayItem
-import com.opencritic.resources.Icons
-import com.opencritic.resources.R
-import com.opencritic.resources.asPainter
+import com.opencritic.resources.images.Icons
+import com.opencritic.resources.images.asPainter
 import com.opencritic.resources.defaultPadding
+import com.opencritic.resources.text.text
 
 @Composable
 fun ReviewListItem(
@@ -120,7 +119,7 @@ fun ReviewListItem(
                 }
             }
 
-            Text(text = item.dateText)
+            Text(text = item.dateText.text())
         }
 
         if (item.isGameVisible) {

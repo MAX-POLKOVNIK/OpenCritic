@@ -1,9 +1,12 @@
 package com.opencritic.games.details.ui
 
 import com.opencritic.games.Review
-import com.opencritic.resources.DateFormatter
+import com.opencritic.resources.text.DateTextSource
 import com.opencritic.resources.StringProvider
 import com.opencritic.resources.StringRes
+import com.opencritic.resources.text.TextSource
+import com.opencritic.resources.text.asTextSource
+import com.opencritic.resources.text.format
 import com.opencritic.resources.getString
 import kotlinx.datetime.TimeZone
 import kotlinx.datetime.toLocalDateTime
@@ -17,7 +20,7 @@ data class ReviewListItem(
     val isGameVisible: Boolean,
     val gameText: String,
     val score: ReviewScoreDisplayItem,
-    val dateText: String,
+    val dateText: TextSource,
     val snippetText: String,
     val readFullReviewText: String,
     private val onClick: (ReviewListItem) -> Unit,
@@ -37,7 +40,6 @@ fun ReviewListItem(
     review: Review,
     isGameVisible: Boolean,
     stringProvider: StringProvider,
-    dateFormatter: DateFormatter,
     onClick: (ReviewListItem) -> Unit,
     onGameClick: (ReviewListItem) -> Unit,
     onImageClick: (ReviewListItem) -> Unit,
@@ -57,7 +59,7 @@ fun ReviewListItem(
         imageUrl = review.authors.map { it.imageUrl }.firstOrNull()
             ?: review.outlet.imageUrl,
         score = ReviewScoreDisplayItem(review.score, review.scoreFormat),
-        dateText = dateFormatter.format(review.publishedDate.toLocalDateTime(TimeZone.UTC).date),
+        dateText = review.publishedDate.toLocalDateTime(TimeZone.UTC).date format DateTextSource.Format.Medium,
         snippetText = review.snippet,
         readFullReviewText = stringProvider.getString(StringRes.str_read_full_review),
         isGameVisible = isGameVisible,
@@ -85,7 +87,7 @@ fun ReviewListItem_PreviewData(id: String = "1"): ReviewListItem =
             halfStars = 0,
             emptyStars = 2,
         ),
-        dateText = "May 1, 2024",
+        dateText = "May 1, 2024".asTextSource(),
         snippetText = "Stellar Blade is a journey through the depths of human resilience and the cost of redemption, and stands as a testament to the power of storytelling in gaming. As players embark on Eve’s quest for truth and justice, they’ll find themselves immersed in a world where every choice carries weight, and the fate of humanity hangs in the balance.",
         readFullReviewText = "Read full review",
         onClick = {},

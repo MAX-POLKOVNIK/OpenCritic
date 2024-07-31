@@ -11,7 +11,6 @@ import com.opencritic.logs.Logger
 import com.opencritic.mvvm.BaseViewModel
 import com.opencritic.navigation.GameDetailsRoute
 import com.opencritic.navigation.PeriodGameBrowserDestination
-import com.opencritic.resources.DateFormatter
 import com.opencritic.resources.StringProvider
 import com.opencritic.resources.StringRes
 import com.opencritic.resources.getString
@@ -23,7 +22,6 @@ class PeriodGameBrowserViewModel(
     private val getBrowseGamesInteractor: GetBrowseGamesInteractor,
     private val getReviewedThisWeekInteractor: GetReviewedThisWeekInteractor,
     private val stringProvider: StringProvider,
-    private val dateFormatter: DateFormatter,
     private val logger: Logger,
 ) : BaseViewModel<PeriodGameBrowserState>() {
     override fun initialState(): PeriodGameBrowserState =
@@ -136,7 +134,6 @@ class PeriodGameBrowserViewModel(
         BrowseGameItem(
             game = game,
             isPercentRecommendedVisible = false,
-            dateFormatter = dateFormatter,
             onClick = { openGame(game.id, game.name) },
         )
 

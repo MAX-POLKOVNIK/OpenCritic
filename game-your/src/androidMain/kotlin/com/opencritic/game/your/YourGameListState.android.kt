@@ -18,8 +18,8 @@ import androidx.compose.ui.unit.dp
 import com.opencritic.game.your.ui.YourGameListState
 import com.opencritic.game.your.ui.YourGameListState_PreviewData
 import com.opencritic.mvvm.Spinner
-import com.opencritic.resources.Icons
-import com.opencritic.resources.asPainter
+import com.opencritic.resources.images.Icons
+import com.opencritic.resources.images.asPainter
 import com.opencritic.resources.defaultPadding
 import com.opencritic.resources.smallPadding
 

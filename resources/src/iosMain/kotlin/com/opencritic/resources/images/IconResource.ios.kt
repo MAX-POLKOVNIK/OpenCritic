@@ -1,4 +1,4 @@
-package com.opencritic.resources
+package com.opencritic.resources.images
 
 actual sealed interface IconResource {
     data class SfSymbol(val name: String) : IconResource

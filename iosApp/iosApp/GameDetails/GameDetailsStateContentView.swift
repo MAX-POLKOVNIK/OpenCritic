@@ -43,7 +43,7 @@ struct GameDetailsStateContentView: View {
                 
                     Text(state.companiesText)
                         .padding(.horizontal)
-                    Text(state.releaseDateText)
+                    Text(state.releaseDateText.text())
                         .padding(.horizontal)
                     Text(state.platformsText)
                         .padding(.horizontal)
@@ -206,7 +206,7 @@ struct GameDetailsStateContentView: View {
             yourGameIndicatorItem: YourGameIndicatorItemKt
                 .YourGameIndicatorItem_PreviewData(),
             companiesText: "Some companies",
-            releaseDateText: "MAY 25, 2505",
+            releaseDateText: StringTextSource(string: "MAY 25, 2505"),
             platformsText: "Playstation, Xbox, PC",
             isTierVisible: true,
             tier: Tier.fair,

@@ -18,8 +18,8 @@ import androidx.navigation.NavController
 import com.opencritic.mvvm.ErrorBox
 import com.opencritic.mvvm.LoadingBox
 import com.opencritic.navigation.router
-import com.opencritic.resources.Icons
-import com.opencritic.resources.asPainter
+import com.opencritic.resources.images.Icons
+import com.opencritic.resources.images.asPainter
 import org.koin.androidx.compose.koinViewModel
 
 @OptIn(ExperimentalMaterial3Api::class)

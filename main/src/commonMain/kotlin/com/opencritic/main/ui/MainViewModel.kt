@@ -1,7 +1,7 @@
 package com.opencritic.main.ui
 
 import com.opencritic.mvvm.BaseViewModel
-import com.opencritic.resources.Icons
+import com.opencritic.resources.images.Icons
 import com.opencritic.resources.StringProvider
 import com.opencritic.resources.StringRes
 import com.opencritic.resources.getString

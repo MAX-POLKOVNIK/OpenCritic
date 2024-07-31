@@ -8,7 +8,7 @@ import com.opencritic.logs.Logger
 import com.opencritic.logs.log
 import com.opencritic.mvvm.BaseViewModel
 import com.opencritic.resources.MR
-import com.opencritic.resources.SharedImages
+import com.opencritic.resources.images.SharedImages
 import com.opencritic.resources.StringProvider
 import com.opencritic.resources.getString
 import kotlinx.coroutines.launch

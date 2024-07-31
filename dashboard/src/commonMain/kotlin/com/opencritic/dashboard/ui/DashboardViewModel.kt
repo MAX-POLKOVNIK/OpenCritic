@@ -10,7 +10,6 @@ import com.opencritic.navigation.GameDetailsRoute
 import com.opencritic.navigation.PeriodGameBrowserDestination
 import com.opencritic.navigation.PeriodGameBrowserRoute
 import com.opencritic.navigation.UrlRoute
-import com.opencritic.resources.DateFormatter
 import com.opencritic.resources.StringProvider
 import com.opencritic.resources.StringRes
 import com.opencritic.resources.getFormattedString
@@ -24,7 +23,6 @@ import kotlinx.datetime.toLocalDateTime
 class DashboardViewModel(
     private val getDashboardInteractor: GetDashboardInteractor,
     private val stringProvider: StringProvider,
-    private val dateFormatter: DateFormatter,
     private val logger: Logger,
 ) : BaseContentViewModel<DashboardContent>() {
 
@@ -78,7 +76,6 @@ class DashboardViewModel(
                                 reviewedToday = DashboardSublistListItem.reviewedToday(
                                     gameItems = dashboard.reviewedToday,
                                     stringProvider = stringProvider,
-                                    dateFormatter = dateFormatter,
                                     onItemClick = { navigateToGame(it.id, it.nameText) },
                                     onMoreClick = {
                                         requireRouter().navigateTo(
@@ -89,7 +86,6 @@ class DashboardViewModel(
                                 upcomingReleases = DashboardSublistListItem.upcomingReleases(
                                     gameItems = dashboard.upcoming,
                                     stringProvider = stringProvider,
-                                    dateFormatter = dateFormatter,
                                     onItemClick = { navigateToGame(it.id, it.nameText) },
                                     onMoreClick = {
                                         requireRouter().navigateTo(
@@ -100,7 +96,6 @@ class DashboardViewModel(
                                 recentlyReleased = DashboardSublistListItem.recentlyReleased(
                                     gameItems = dashboard.recentlyReleased,
                                     stringProvider = stringProvider,
-                                    dateFormatter = dateFormatter,
                                     onItemClick = { navigateToGame(it.id, it.nameText) },
                                     onMoreClick = {
                                         requireRouter().navigateTo(

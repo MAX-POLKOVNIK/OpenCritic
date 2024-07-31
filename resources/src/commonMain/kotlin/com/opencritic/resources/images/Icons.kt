@@ -1,4 +1,4 @@
-package com.opencritic.resources
+package com.opencritic.resources.images
 
 expect object Icons {
     val tabMain: IconResource

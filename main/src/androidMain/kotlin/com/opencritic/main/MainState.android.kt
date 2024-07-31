@@ -21,7 +21,6 @@ import androidx.compose.runtime.remember
 import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.navigation.NavDestination.Companion.hierarchy
 import androidx.navigation.NavGraph.Companion.findStartDestination
@@ -45,7 +44,7 @@ import com.opencritic.navigation.GameBrowserDestination
 import com.opencritic.navigation.MainDestination
 import com.opencritic.navigation.SearchDestination
 import com.opencritic.navigation.YourListDestination
-import com.opencritic.resources.asPainter
+import com.opencritic.resources.images.asPainter
 import com.opencritic.search.SearchScreen
 
 @OptIn(ExperimentalMaterial3Api::class)

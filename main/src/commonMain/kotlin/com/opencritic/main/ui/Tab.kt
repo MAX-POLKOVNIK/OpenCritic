@@ -1,7 +1,7 @@
 package com.opencritic.main.ui
 
 import com.opencritic.mvvm.ListItem
-import com.opencritic.resources.IconResource
+import com.opencritic.resources.images.IconResource
 
 data class Tab(
     override val id: TabType,

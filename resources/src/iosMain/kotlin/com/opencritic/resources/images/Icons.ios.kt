@@ -1,4 +1,4 @@
-package com.opencritic.resources
+package com.opencritic.resources.images
 
 actual object Icons {
     actual val tabMain: IconResource = "doc.text.image".iconRes()

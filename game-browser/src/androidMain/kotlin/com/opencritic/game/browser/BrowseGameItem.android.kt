@@ -21,7 +21,6 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
-import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
@@ -29,10 +28,11 @@ import coil.compose.SubcomposeAsyncImage
 import com.opencritic.game.browser.ui.BrowseGameItem
 import com.opencritic.game.browser.ui.BrowseGameItem_PreviewData
 import com.opencritic.games.details.RankCircleIndicatorItem
-import com.opencritic.resources.R
-import com.opencritic.resources.asPainter
+import com.opencritic.resources.images.asPainter
 import com.opencritic.resources.defaultPadding
+import com.opencritic.resources.images.Icons
 import com.opencritic.resources.smallPadding
+import com.opencritic.resources.text.text
 
 @Composable
 fun BrowseGameItem(
@@ -123,14 +123,14 @@ fun BrowseGameItem(
                         .padding(bottom = defaultPadding)
                 ) {
                     Icon(
-                        painter = com.opencritic.resources.Icons.calendar.asPainter(),
+                        painter = Icons.calendar.asPainter(),
                         contentDescription = "",
                         tint = Color.Gray,
                         modifier = Modifier
                             .size(24.dp)
                     )
                     Text(
-                        text = item.dateText,
+                        text = item.dateText.text(),
                         color = Color.Gray,
                         modifier = Modifier
                             .padding(horizontal = smallPadding)

@@ -18,7 +18,7 @@ struct DashboardGameListItemView: View {
             Text(item.nameText)
                 .lineLimit(1)
             Spacer()
-            Text(item.dateText)
+            Text(item.dateText.text())
                 .frame(minWidth: 70, alignment: .leading)
         }
             .padding(.horizontal)
@@ -37,7 +37,7 @@ struct DashboardGameListItemView_Previews: PreviewProvider {
                     scoreText: "15"
                 ),
                 nameText: "Game ldskfhds  sdkjhfjsd ",
-                dateText: "MAY 16",
+                dateText: StringTextSource(string: "MAY 16"),
                 onClick: {_ in }
             )
         )

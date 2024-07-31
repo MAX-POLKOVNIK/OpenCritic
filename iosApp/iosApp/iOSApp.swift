@@ -5,8 +5,7 @@ import shared
 struct iOSApp: App {
     init() {
         IosApp.shared.doInit(
-            stringProvider: IosStringProvider(),
-            dateFormatter: IosDateFormatter()
+            stringProvider: IosStringProvider()
         )
     }
 	var body: some Scene {

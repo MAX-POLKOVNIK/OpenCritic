@@ -12,7 +12,6 @@ import com.opencritic.games.details.ui.LoadingItem
 import com.opencritic.logs.Logger
 import com.opencritic.mvvm.BaseViewModel
 import com.opencritic.navigation.GameDetailsRoute
-import com.opencritic.resources.DateFormatter
 import com.opencritic.resources.StringProvider
 import com.opencritic.resources.StringRes
 import com.opencritic.resources.getString
@@ -23,7 +22,6 @@ class GameBrowserViewModel(
     private val getPlatformsInteractor: GetPlatformsInteractor,
     private val getBrowseGamesInteractor: GetBrowseGamesInteractor,
     private val stringProvider: StringProvider,
-    private val dateFormatter: DateFormatter,
     private val logger: Logger,
 ) : BaseViewModel<GameBrowserState>() {
     override fun initialState(): GameBrowserState =
@@ -148,7 +146,6 @@ class GameBrowserViewModel(
         BrowseGameItem(
             game = game,
             isPercentRecommendedVisible = sorting == GameSorting.PercentRecommended,
-            dateFormatter = dateFormatter,
             onClick = { openGame(game.id, game.name) },
         )
 

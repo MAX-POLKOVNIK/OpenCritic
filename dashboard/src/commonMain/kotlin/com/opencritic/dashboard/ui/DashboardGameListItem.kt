@@ -1,35 +1,31 @@
 package com.opencritic.dashboard.ui
 
 import com.opencritic.dashboard.domain.GameItem
-import com.opencritic.games.GameRank
 import com.opencritic.games.GameRankModel
 import com.opencritic.mvvm.ListItem
-import com.opencritic.resources.DateFormatter
-import com.opencritic.resources.SharedImages
-import kotlinx.datetime.Instant
-import kotlinx.datetime.LocalDate
+import com.opencritic.resources.text.DateTextSource
+import com.opencritic.resources.text.TextSource
+import com.opencritic.resources.text.asTextSource
+import com.opencritic.resources.text.format
+import com.opencritic.resources.images.SharedImages
 import kotlinx.datetime.TimeZone
-import kotlinx.datetime.format
-import kotlinx.datetime.format.FormatStringsInDatetimeFormats
-import kotlinx.datetime.format.byUnicodePattern
 import kotlinx.datetime.toLocalDateTime
 
 data class DashboardGameListItem(
     override val id: Long,
     val rank: GameRankModel?,
     val nameText: String,
-    val dateText: String,
+    val dateText: TextSource,
     private val onClick: (DashboardGameListItem) -> Unit,
 ) : ListItem<Long> {
     constructor(
         gameItem: GameItem,
-        dateFormatter: DateFormatter,
         onClick: (DashboardGameListItem) -> Unit,
     ) : this(
         id = gameItem.id,
         rank = GameRankModel(gameItem.rank),
         nameText = gameItem.name,
-        dateText = dateFormatter.formatShort(gameItem.releaseDate.toLocalDateTime(TimeZone.UTC).date),
+        dateText = gameItem.releaseDate.toLocalDateTime(TimeZone.UTC).date format DateTextSource.Format.Short,
         onClick = onClick,
     )
 
@@ -42,6 +38,6 @@ fun DashboardGameListItem_PreviewData(): DashboardGameListItem =
         id = 1,
         rank = GameRankModel(headImageResource = SharedImages.fairHead, scoreText = "15"),
         nameText = "Game ldskfhds  sdkjhfjsd",
-        dateText = "MAY 16",
+        dateText = "MAY 16".asTextSource(),
         onClick = {}
     )

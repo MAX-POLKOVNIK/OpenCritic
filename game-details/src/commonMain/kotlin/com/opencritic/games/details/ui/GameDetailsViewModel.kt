@@ -13,10 +13,11 @@ import com.opencritic.mvvm.BaseViewModel
 import com.opencritic.navigation.GameMediaRoute
 import com.opencritic.navigation.GameReviewsRoute
 import com.opencritic.navigation.UrlRoute
-import com.opencritic.resources.DateFormatter
-import com.opencritic.resources.SharedImages
+import com.opencritic.resources.text.DateTextSource
+import com.opencritic.resources.images.SharedImages
 import com.opencritic.resources.StringProvider
 import com.opencritic.resources.StringRes
+import com.opencritic.resources.text.format
 import com.opencritic.resources.getFormattedString
 import com.opencritic.resources.getString
 import kotlinx.coroutines.launch
@@ -29,7 +30,6 @@ class GameDetailsViewModel(
     private val getGameDetailsInteractor: GetGameDetailsInteractor,
     private val saveYourGameInteractor: SaveYourGameInteractor,
     private val stringProvider: StringProvider,
-    private val dateFormatter: DateFormatter,
     private val logger: Logger,
 ) : BaseViewModel<GameDetailsState>() {
     override fun initialState(): GameDetailsState = GameDetailsState.Loading(gameName)
@@ -60,9 +60,7 @@ class GameDetailsViewModel(
                             name = details.name,
                             yourGameIndicatorItem = createYourGameIndicatorItem(details.yourGame),
                             companiesText = details.companies.joinToString(", ") { it.name },
-                            releaseDateText = dateFormatter.format(
-                                details.releaseDate.toLocalDateTime(TimeZone.UTC).date
-                            ),
+                            releaseDateText = details.releaseDate.toLocalDateTime(TimeZone.UTC).date format DateTextSource.Format.Medium,
                             platformsText = details.platforms.joinToString(", ") { it.name },
                             isTierVisible = details.rank != null,
                             tierImageResource = when(details.rank?.tier) {

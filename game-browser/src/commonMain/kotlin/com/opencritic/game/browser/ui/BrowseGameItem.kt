@@ -6,11 +6,14 @@ import com.opencritic.games.Tier
 import com.opencritic.games.details.ui.RankCircleIndicatorItem
 import com.opencritic.games.details.ui.createCriticsRecommendIndicator
 import com.opencritic.games.details.ui.createTopCriticAverageIndicator
-import com.opencritic.resources.DateFormatter
-import com.opencritic.resources.IconResource
-import com.opencritic.resources.Icons
-import com.opencritic.resources.SharedImageResource
-import com.opencritic.resources.SharedImages
+import com.opencritic.resources.text.DateTextSource
+import com.opencritic.resources.text.TextSource
+import com.opencritic.resources.text.asTextSource
+import com.opencritic.resources.text.format
+import com.opencritic.resources.images.IconResource
+import com.opencritic.resources.images.Icons
+import com.opencritic.resources.images.SharedImageResource
+import com.opencritic.resources.images.SharedImages
 import kotlinx.datetime.TimeZone
 import kotlinx.datetime.toLocalDateTime
 
@@ -25,14 +28,13 @@ data class BrowseGameItem(
     val percentRecommendedIndicator: RankCircleIndicatorItem,
     val nameText: String,
     val dateImageResource: IconResource,
-    val dateText: String,
+    val dateText: TextSource,
     val onClick: () -> Unit,
 )
 
 fun BrowseGameItem(
     game: BrowseGame,
     isPercentRecommendedVisible: Boolean,
-    dateFormatter: DateFormatter,
     onClick: () -> Unit,
 ): BrowseGameItem =
     BrowseGameItem(
@@ -40,7 +42,7 @@ fun BrowseGameItem(
         imageUrl = game.imageUrl,
         nameText = game.name,
         dateImageResource = Icons.tabCalendar,
-        dateText = dateFormatter.formatFull(game.releaseDate.toLocalDateTime(TimeZone.UTC).date),
+        dateText = game.releaseDate.toLocalDateTime(TimeZone.UTC).date format DateTextSource.Format.Long,
         isTierVisible = game.rank != null,
         tierImageResource = when (game.rank?.tier) {
             Tier.Mighty -> SharedImages.mightyMan
@@ -65,7 +67,7 @@ fun BrowseGameItem_PreviewData(): BrowseGameItem =
         imageUrl = "https://img.opencritic.com/game/4504/BZrxOMDi.jpg",
         nameText = "Super Mario Odyssey",
         dateImageResource = Icons.tabCalendar,
-        dateText = "October 27, 2017",
+        dateText = "October 27, 2017".asTextSource(),
         isTierVisible = true,
         tierImageResource = SharedImages.mightyMan,
         isTopCriticVisibleIndicator = true,

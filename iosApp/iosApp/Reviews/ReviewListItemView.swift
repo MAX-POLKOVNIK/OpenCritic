@@ -65,7 +65,7 @@ struct ReviewListItemView: View {
                 
                 Spacer()
                 
-                Text(item.dateText)
+                Text(item.dateText.text())
             }
             
             if item.isGameVisible {

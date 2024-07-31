@@ -4,8 +4,8 @@ import com.opencritic.game.your.domain.YourGame
 import com.opencritic.game.your.domain.YourGameAction
 import com.opencritic.resources.Color
 import com.opencritic.resources.Colors
-import com.opencritic.resources.IconResource
-import com.opencritic.resources.Icons
+import com.opencritic.resources.images.IconResource
+import com.opencritic.resources.images.Icons
 import com.opencritic.resources.MR
 import com.opencritic.resources.StringProvider
 import com.opencritic.resources.getString

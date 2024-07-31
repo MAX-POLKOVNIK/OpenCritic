@@ -15,6 +15,7 @@
 		421A369E2BEC81B3003AC257 /* AuthStateWebViewView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 421A369D2BEC81B3003AC257 /* AuthStateWebViewView.swift */; };
 		424EE0332C594C330095E994 /* ImageExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 424EE0322C594C330095E994 /* ImageExtensions.swift */; };
 		424EE0352C594DE60095E994 /* LabelExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 424EE0342C594DE60095E994 /* LabelExtensions.swift */; };
+		424EE0372C59F0E10095E994 /* TextSourceExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 424EE0362C59F0E10095E994 /* TextSourceExtensions.swift */; };
 		4256278E2BE0F0A100EDEEEB /* IosStringProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4256278D2BE0F0A100EDEEEB /* IosStringProvider.swift */; };
 		425627932BE109F400EDEEEB /* DashboardPosterGameListItemView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 425627922BE109F400EDEEEB /* DashboardPosterGameListItemView.swift */; };
 		425627992BE113F300EDEEEB /* DashboardPosterGamesHorizontalListItemView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 425627982BE113F300EDEEEB /* DashboardPosterGamesHorizontalListItemView.swift */; };
@@ -34,7 +35,6 @@
 		42E2F09A2BE2010E00B76F14 /* GameRankView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42E2F0992BE2010E00B76F14 /* GameRankView.swift */; };
 		42E2F09C2BE2085800B76F14 /* DashboardGameListItemView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42E2F09B2BE2085800B76F14 /* DashboardGameListItemView.swift */; };
 		42E2F09E2BE2098C00B76F14 /* DashboardSublistListitemView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42E2F09D2BE2098C00B76F14 /* DashboardSublistListitemView.swift */; };
-		42E2F0A02BE21B7700B76F14 /* IosDateFormatter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42E2F09F2BE21B7700B76F14 /* IosDateFormatter.swift */; };
 		42E2F0A22BE226B700B76F14 /* DashboardMightyManItemListItemView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42E2F0A12BE226B700B76F14 /* DashboardMightyManItemListItemView.swift */; };
 		42E2F0A42BE2288200B76F14 /* DashboardMightyManListItemView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42E2F0A32BE2288200B76F14 /* DashboardMightyManListItemView.swift */; };
 		42E2F0A72BE2334000B76F14 /* IosRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42E2F0A62BE2334000B76F14 /* IosRouter.swift */; };
@@ -100,6 +100,7 @@
 		421A369D2BEC81B3003AC257 /* AuthStateWebViewView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthStateWebViewView.swift; sourceTree = "<group>"; };
 		424EE0322C594C330095E994 /* ImageExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageExtensions.swift; sourceTree = "<group>"; };
 		424EE0342C594DE60095E994 /* LabelExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LabelExtensions.swift; sourceTree = "<group>"; };
+		424EE0362C59F0E10095E994 /* TextSourceExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextSourceExtensions.swift; sourceTree = "<group>"; };
 		4256278D2BE0F0A100EDEEEB /* IosStringProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IosStringProvider.swift; sourceTree = "<group>"; };
 		425627922BE109F400EDEEEB /* DashboardPosterGameListItemView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DashboardPosterGameListItemView.swift; sourceTree = "<group>"; };
 		425627982BE113F300EDEEEB /* DashboardPosterGamesHorizontalListItemView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DashboardPosterGamesHorizontalListItemView.swift; sourceTree = "<group>"; };
@@ -119,7 +120,6 @@
 		42E2F0992BE2010E00B76F14 /* GameRankView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameRankView.swift; sourceTree = "<group>"; };
 		42E2F09B2BE2085800B76F14 /* DashboardGameListItemView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DashboardGameListItemView.swift; sourceTree = "<group>"; };
 		42E2F09D2BE2098C00B76F14 /* DashboardSublistListitemView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DashboardSublistListitemView.swift; sourceTree = "<group>"; };
-		42E2F09F2BE21B7700B76F14 /* IosDateFormatter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IosDateFormatter.swift; sourceTree = "<group>"; };
 		42E2F0A12BE226B700B76F14 /* DashboardMightyManItemListItemView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DashboardMightyManItemListItemView.swift; sourceTree = "<group>"; };
 		42E2F0A32BE2288200B76F14 /* DashboardMightyManListItemView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DashboardMightyManListItemView.swift; sourceTree = "<group>"; };
 		42E2F0A62BE2334000B76F14 /* IosRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IosRouter.swift; sourceTree = "<group>"; };
@@ -226,6 +226,7 @@
 				42784DFF2C58AB500064E2EF /* CommonScreenView.swift */,
 				424EE0322C594C330095E994 /* ImageExtensions.swift */,
 				424EE0342C594DE60095E994 /* LabelExtensions.swift */,
+				424EE0362C59F0E10095E994 /* TextSourceExtensions.swift */,
 			);
 			path = Base;
 			sourceTree = "<group>";
@@ -369,7 +370,6 @@
 				2152FB032600AC8F00CF470E /* iOSApp.swift */,
 				058557D7273AAEEB004C7B11 /* Preview Content */,
 				4256278D2BE0F0A100EDEEEB /* IosStringProvider.swift */,
-				42E2F09F2BE21B7700B76F14 /* IosDateFormatter.swift */,
 			);
 			path = iosApp;
 			sourceTree = "<group>";
@@ -484,8 +484,8 @@
 				2152FB042600AC8F00CF470E /* iOSApp.swift in Sources */,
 				7555FF83242A565900829871 /* ContentView.swift in Sources */,
 				425627A72BE11EFE00EDEEEB /* FlowPublisher.swift in Sources */,
+				424EE0372C59F0E10095E994 /* TextSourceExtensions.swift in Sources */,
 				42FE7B8C2BECDFB600229059 /* LoadingStateView.swift in Sources */,
-				42E2F0A02BE21B7700B76F14 /* IosDateFormatter.swift in Sources */,
 				42FE7B902BECE40600229059 /* AuthStateMethodListView.swift in Sources */,
 				42FE7B922BECE84500229059 /* LoadingItemView.swift in Sources */,
 				42F844412BE6565000408FE7 /* GameBrowserScreenView.swift in Sources */,

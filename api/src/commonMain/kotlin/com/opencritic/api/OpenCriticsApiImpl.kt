@@ -20,6 +20,7 @@ import io.ktor.client.call.body
 import io.ktor.client.request.HttpRequestBuilder
 import io.ktor.client.request.get
 import io.ktor.client.request.headers
+import io.ktor.client.statement.HttpResponse
 import io.ktor.http.HttpHeaders
 
 
@@ -57,6 +58,9 @@ internal class OpenCriticsApiImpl(
 
     override suspend fun getGame(gameId: Long): GameDetailsDto =
         client.get(baseUrl + "game/${gameId}", headers()).body()
+
+    override suspend fun getGameMedia(gameId: Long): GameDetailsDto =
+        client.get(baseUrl + "game/${gameId}/?fullmedia=true", headers()).body()
 
     override suspend fun getGameReviewsLanding(gameId: Long): List<ReviewDto> =
         client.get(baseUrl + "reviews/game/$gameId/landing", headers()).body()

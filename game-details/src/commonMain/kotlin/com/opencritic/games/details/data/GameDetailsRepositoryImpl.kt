@@ -1,6 +1,7 @@
 package com.opencritic.games.details.data
 
 import com.opencritic.api.OpenCriticsApi
+import com.opencritic.api.dto.details.GameDetailsDto
 import com.opencritic.api.dto.image.prefixedImageUrl
 import com.opencritic.api.dto.review.ReviewDto
 import com.opencritic.api.dto.review.ReviewSortKey
@@ -27,29 +28,12 @@ internal class GameDetailsRepositoryImpl(
 ) : GameDetailsRepository {
     override suspend fun getGame(gameId: Long): Game =
         withContext(defaultDispatcher) {
-            val dto = openCriticsApi.getGame(gameId)
+            openCriticsApi.getGame(gameId).toGame()
+        }
 
-            Game(
-                id = dto.id,
-                name = dto.name,
-                releaseDate = dto.firstReleaseDate,
-                rank = GameRank(dto.tier, dto.topCriticScore),
-                recommendPercent = dto.percentRecommended.takeUnless { it < 0f },
-                squareImageUrl = dto.images.square?.sm?.prefixedImageUrl() ?: "",
-                bannerImageUrl = dto.images.banner?.sm?.prefixedImageUrl() ?: "",
-                companies = dto.companies.map { Company(it.name) },
-                platforms = dto.platforms.map { Platform(it.name, it.shortName) },
-                reviewsCount = dto.numReviews,
-                trailers = dto.trailers
-                    .map {
-                    Trailer(
-                        title = it.title,
-                        thumbnailUrl = "https://img.youtube.com/vi/${it.videoId}/maxresdefault.jpg",
-                        externalUrl = it.externalUrl,
-                    )
-                },
-                screenshotUrls = dto.images.screenshots?.mapNotNull { it.sm?.prefixedImageUrl() } ?: emptyList(),
-            )
+    override suspend fun getGameMedia(gameId: Long): Game =
+        withContext(defaultDispatcher) {
+            openCriticsApi.getGameMedia(gameId).toGame()
         }
 
     override suspend fun getGameReviewsLanding(gameId: Long): List<Review> =
@@ -131,6 +115,29 @@ internal class GameDetailsRepositoryImpl(
                 )
                 .map { it.toModel() }
         }
+
+    private fun GameDetailsDto.toGame(): Game =
+        Game(
+            id = id,
+            name = name,
+            releaseDate = firstReleaseDate,
+            rank = GameRank(tier, topCriticScore),
+            recommendPercent = percentRecommended.takeUnless { it < 0f },
+            squareImageUrl = images.square?.sm?.prefixedImageUrl() ?: "",
+            bannerImageUrl = images.banner?.sm?.prefixedImageUrl() ?: "",
+            companies = companies.map { Company(it.name) },
+            platforms = platforms.map { Platform(it.name, it.shortName) },
+            reviewsCount = numReviews,
+            trailers = trailers
+                .map {
+                    Trailer(
+                        title = it.title,
+                        thumbnailUrl = "https://img.youtube.com/vi/${it.videoId}/maxresdefault.jpg",
+                        externalUrl = it.externalUrl,
+                    )
+                },
+            screenshotUrls = images.screenshots?.mapNotNull { it.sm?.prefixedImageUrl() } ?: emptyList(),
+        )
 
     private fun ReviewSorting.toDto(): ReviewSortKey =
         when (this) {

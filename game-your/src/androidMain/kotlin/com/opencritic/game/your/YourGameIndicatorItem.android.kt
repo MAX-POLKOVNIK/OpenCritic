@@ -29,7 +29,7 @@ import com.opencritic.game.your.ui.YourGameIndicatorItem_PreviewData
 import com.opencritic.resources.images.asPainter
 import com.opencritic.resources.defaultPadding
 import com.opencritic.resources.text.text
-import com.opencritic.resources.toCompose
+import com.opencritic.resources.colors.toCompose
 
 @Composable
 fun YourGameIndicatorItem(

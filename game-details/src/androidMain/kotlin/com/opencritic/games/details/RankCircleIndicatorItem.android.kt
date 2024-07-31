@@ -20,7 +20,7 @@ import androidx.compose.ui.tooling.preview.Preview
 import com.opencritic.games.Tier
 import com.opencritic.games.details.ui.RankCircleIndicatorItem
 import com.opencritic.games.details.ui.createCriticsRecommendIndicator
-import com.opencritic.resources.toCompose
+import com.opencritic.resources.colors.toCompose
 
 @Composable
 fun RankCircleIndicatorItem(

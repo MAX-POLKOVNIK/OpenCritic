@@ -1,7 +1,7 @@
 package com.opencritic.search.ui
 
-import com.opencritic.resources.Color
-import com.opencritic.resources.Colors
+import com.opencritic.resources.colors.Color
+import com.opencritic.resources.colors.Colors
 import com.opencritic.resources.MR
 import com.opencritic.resources.text.TextSource
 import com.opencritic.resources.text.asTextSource

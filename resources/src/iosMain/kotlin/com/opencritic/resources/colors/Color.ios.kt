@@ -1,4 +1,4 @@
-package com.opencritic.resources
+package com.opencritic.resources.colors
 
 import platform.UIKit.UIColor
 

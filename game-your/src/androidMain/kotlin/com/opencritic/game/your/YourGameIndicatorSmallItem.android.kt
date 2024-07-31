@@ -24,7 +24,7 @@ import com.opencritic.game.your.ui.YourGameIndicatorSmallItem
 import com.opencritic.game.your.ui.YourGameIndicatorSmallItem_PreviewData
 import com.opencritic.resources.images.asPainter
 import com.opencritic.resources.smallPadding
-import com.opencritic.resources.toCompose
+import com.opencritic.resources.colors.toCompose
 
 @Composable
 fun YourGameIndicatorSmallItem(

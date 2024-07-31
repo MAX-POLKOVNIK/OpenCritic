@@ -2,8 +2,8 @@ package com.opencritic.game.your.ui
 
 import com.opencritic.game.your.domain.YourGame
 import com.opencritic.game.your.domain.YourGameAction
-import com.opencritic.resources.Color
-import com.opencritic.resources.Colors
+import com.opencritic.resources.colors.Color
+import com.opencritic.resources.colors.Colors
 import com.opencritic.resources.images.IconResource
 import com.opencritic.resources.images.Icons
 import com.opencritic.resources.MR

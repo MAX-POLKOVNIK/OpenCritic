@@ -1,4 +1,4 @@
-package com.opencritic.resources
+package com.opencritic.resources.colors
 
 object Colors {
     val Orange = Color(255, 165, 0)

@@ -10,7 +10,9 @@ import com.opencritic.games.Trailer
 import com.opencritic.games.details.domain.interactor.GetGameDetailsInteractor
 import com.opencritic.games.roundScore
 import com.opencritic.logs.Logger
+import com.opencritic.mvvm.BaseContentViewModel
 import com.opencritic.mvvm.BaseViewModel
+import com.opencritic.mvvm.CommonViewModelState
 import com.opencritic.navigation.GameMediaRoute
 import com.opencritic.navigation.GameReviewsRoute
 import com.opencritic.navigation.UrlRoute
@@ -19,6 +21,7 @@ import com.opencritic.resources.images.SharedImages
 import com.opencritic.resources.text.StringRes
 import com.opencritic.resources.text.asTextSource
 import com.opencritic.resources.text.format
+import kotlinx.coroutines.flow.update
 import kotlinx.coroutines.launch
 import kotlinx.datetime.TimeZone
 import kotlinx.datetime.toLocalDateTime
@@ -29,8 +32,9 @@ class GameDetailsViewModel(
     private val getGameDetailsInteractor: GetGameDetailsInteractor,
     private val saveYourGameInteractor: SaveYourGameInteractor,
     private val logger: Logger,
-) : BaseViewModel<GameDetailsState>() {
-    override fun initialState(): GameDetailsState = GameDetailsState.Loading(gameName)
+) : BaseContentViewModel<GameDetailsContent>() {
+    override fun initialState(): CommonViewModelState<GameDetailsContent> =
+        CommonViewModelState.loading(gameName.asTextSource())
 
     private var yourGame: YourGame? = null
 
@@ -40,98 +44,100 @@ class GameDetailsViewModel(
         scope.launch {
             getGameDetailsInteractor(gameId)
                 .onFailure {
-                    mutableState.tryEmit(
-                        GameDetailsState.Error(
-                            titleText = gameName,
-                            message = it.toString()
+                    mutableState.update {
+                        it.error(
+                            title = gameName.asTextSource(),
+                            errorDescription = it.toString()
                         )
-                    )
+                    }
                     logger.log(it.toString())
                 }
                 .onSuccess { details ->
                     yourGame = details.yourGame
 
-                    mutableState.tryEmit(
-                        GameDetailsState.Content(
-                            isImageVisible = details.posterUrl.isNotBlank(),
-                            imageUrl = details.posterUrl,
-                            name = details.name,
-                            yourGameIndicatorItem = createYourGameIndicatorItem(details.yourGame),
-                            companiesText = details.companies.joinToString(", ") { it.name },
-                            releaseDateText = details.releaseDate.toLocalDateTime(TimeZone.UTC).date format DateTextSource.Format.Medium,
-                            platformsText = details.platforms.joinToString(", ") { it.name },
-                            isTierVisible = details.rank != null,
-                            tierImageResource = when(details.rank?.tier) {
-                                Tier.Mighty -> SharedImages.mightyMan
-                                Tier.Strong -> SharedImages.strongMan
-                                Tier.Fair -> SharedImages.fairMan
-                                Tier.Weak -> SharedImages.weakMan
-                                null -> SharedImages.weakMan
-                            },
-                            tier = details.rank?.tier,
-                            tierDescription = StringRes.str_open_critic_rating.asTextSource(),
-                            topCriticScore = createTopCriticAverageIndicator(
-                                gameRank = details.rank ?: GameRank(Tier.Weak, 0)
-                            ),
-                            topCriticScoreDescription = StringRes.str_top_critic_average.asTextSource(),
-                            recommendedPercent = createCriticsRecommendIndicator(
-                                tier = details.rank?.tier ?: Tier.Weak,
-                                score = details.recommendPercent ?: 0f
-                            ),
-                            criticsRecommendDescription = StringRes.str_critics_recommend.asTextSource(),
-                            briefReviews = details.reviews
-                                .map { review ->
-                                    ReviewBriefListItem(
-                                        name = review.outlet.name,
-                                        score = review.score,
-                                        scoreFormat = review.scoreFormat,
-                                    )
+                    mutableState.update {
+                        it.content(
+                            title = gameName.asTextSource(),
+                            content = GameDetailsContent(
+                                isImageVisible = details.posterUrl.isNotBlank(),
+                                imageUrl = details.posterUrl,
+                                name = details.name,
+                                yourGameIndicatorItem = createYourGameIndicatorItem(details.yourGame),
+                                companiesText = details.companies.joinToString(", ") { it.name },
+                                releaseDateText = details.releaseDate.toLocalDateTime(TimeZone.UTC).date format DateTextSource.Format.Medium,
+                                platformsText = details.platforms.joinToString(", ") { it.name },
+                                isTierVisible = details.rank != null,
+                                tierImageResource = when(details.rank?.tier) {
+                                    Tier.Mighty -> SharedImages.mightyMan
+                                    Tier.Strong -> SharedImages.strongMan
+                                    Tier.Fair -> SharedImages.fairMan
+                                    Tier.Weak -> SharedImages.weakMan
+                                    null -> SharedImages.weakMan
                                 },
-                            isViewAllVisible = details.reviewCount != 0,
-                            viewAllText = StringRes.str_view_all_reviews.asTextSource(details.reviewCount.toString()),
-                            isMediaVisible = details.trailers.size <= 1 && details.screenshotUrls.isNotEmpty(),
-                            mediaText = StringRes.str_game_media.asTextSource(details.name),
-                            media = details.trailers
-                                .map {  trailer ->
-                                    TrailerItem(trailer) { openTrailer(trailer) }
-                                } + details.screenshotUrls
+                                tier = details.rank?.tier,
+                                tierDescription = StringRes.str_open_critic_rating.asTextSource(),
+                                topCriticScore = createTopCriticAverageIndicator(
+                                    gameRank = details.rank ?: GameRank(Tier.Weak, 0)
+                                ),
+                                topCriticScoreDescription = StringRes.str_top_critic_average.asTextSource(),
+                                recommendedPercent = createCriticsRecommendIndicator(
+                                    tier = details.rank?.tier ?: Tier.Weak,
+                                    score = details.recommendPercent ?: 0f
+                                ),
+                                criticsRecommendDescription = StringRes.str_critics_recommend.asTextSource(),
+                                briefReviews = details.reviews
+                                    .map { review ->
+                                        ReviewBriefListItem(
+                                            name = review.outlet.name,
+                                            score = review.score,
+                                            scoreFormat = review.scoreFormat,
+                                        )
+                                    },
+                                isViewAllVisible = details.reviewCount != 0,
+                                viewAllText = StringRes.str_view_all_reviews.asTextSource(details.reviewCount.toString()),
+                                isMediaVisible = details.trailers.size <= 1 && details.screenshotUrls.isNotEmpty(),
+                                mediaText = StringRes.str_game_media.asTextSource(details.name),
+                                media = details.trailers
+                                    .map {  trailer ->
+                                        TrailerItem(trailer) { openTrailer(trailer) }
+                                    } + details.screenshotUrls
                                     .take(3)
                                     .map {
                                         ScreenshotItem(it) {}
                                     },
-                            viewAllMedia = StringRes.str_view_all_media.asTextSource(),
-                            isTrailersVisible = details.trailers.size > 1,
-                            trailersText = StringRes.str_game_trailers.asTextSource(details.name),
-                            trailers = details.trailers
-                                .take(3)
-                                .map { trailer ->
-                                    TrailerItem(trailer) { openTrailer(trailer) }
-                                },
-                            viewAllTrailers = StringRes.str_view_all_trailers.asTextSource(),
-                            isScreenshotsVisible = details.screenshotUrls.isNotEmpty() && details.trailers.size > 1,
-                            screenshotsText = StringRes.str_game_screenshots.asTextSource(details.name),
-                            screenshots = details.screenshotUrls.take(3).map { ScreenshotItem(it) {} },
-                            viewAllScreenshots = StringRes.str_view_all_screenshots.asTextSource(),
-                            isReviewsVisible = details.reviewCount != 0,
-                            reviewTitleText = StringRes.str_critic_reviews_for_formatted.asTextSource(details.name),
-                            reviews = details.reviews
-                                .take(8)
-                                .map { review ->
-                                    CardReviewItem(
-                                        review = review,
-                                        readFullReviewText = StringRes.str_read_full_review.asTextSource(),
-                                        onClick = {
-                                            requireRouter().navigateTo(UrlRoute(review.externalUrl))
-                                        },
-                                    )
-                                },
-                            onViewAllMediaClick = { openMedia() },
-                            onViewAllScreenshotsClick = { openMedia() },
-                            onViewAllTrailersClick = { openMedia() },
-                            onViewAllReviewsClick = { openReviews() },
-                            titleText = gameName,
+                                viewAllMedia = StringRes.str_view_all_media.asTextSource(),
+                                isTrailersVisible = details.trailers.size > 1,
+                                trailersText = StringRes.str_game_trailers.asTextSource(details.name),
+                                trailers = details.trailers
+                                    .take(3)
+                                    .map { trailer ->
+                                        TrailerItem(trailer) { openTrailer(trailer) }
+                                    },
+                                viewAllTrailers = StringRes.str_view_all_trailers.asTextSource(),
+                                isScreenshotsVisible = details.screenshotUrls.isNotEmpty() && details.trailers.size > 1,
+                                screenshotsText = StringRes.str_game_screenshots.asTextSource(details.name),
+                                screenshots = details.screenshotUrls.take(3).map { ScreenshotItem(it) {} },
+                                viewAllScreenshots = StringRes.str_view_all_screenshots.asTextSource(),
+                                isReviewsVisible = details.reviewCount != 0,
+                                reviewTitleText = StringRes.str_critic_reviews_for_formatted.asTextSource(details.name),
+                                reviews = details.reviews
+                                    .take(8)
+                                    .map { review ->
+                                        CardReviewItem(
+                                            review = review,
+                                            readFullReviewText = StringRes.str_read_full_review.asTextSource(),
+                                            onClick = {
+                                                requireRouter().navigateTo(UrlRoute(review.externalUrl))
+                                            },
+                                        )
+                                    },
+                                onViewAllMediaClick = { openMedia() },
+                                onViewAllScreenshotsClick = { openMedia() },
+                                onViewAllTrailersClick = { openMedia() },
+                                onViewAllReviewsClick = { openReviews() },
+                            )
                         )
-                    )
+                    }
                 }
         }
     }
@@ -144,18 +150,20 @@ class GameDetailsViewModel(
     private fun onGameAction(action: YourGameAction) {
         val game = yourGame ?: return
 
-        val state = requireNotNull(mutableState.value as? GameDetailsState.Content)
-
         val new = game.actioned(action)
         val indicator = createYourGameIndicatorItem(new)
 
         yourGame = new
 
-        mutableState.tryEmit(
-            state.copy(
-                yourGameIndicatorItem = indicator
-            )
-        )
+        mutableState.update {
+            it.updateContent {
+                copy(
+                    yourGameIndicatorItem = indicator
+                )
+            }
+        }
+
+        showToast("Game has action $action")
 
         scope.launch {
             saveYourGameInteractor(new)

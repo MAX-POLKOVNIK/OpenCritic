@@ -15,13 +15,12 @@ import androidx.compose.runtime.getValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.navigation.NavController
-import com.opencritic.games.details.ui.GameDetailsState
 import com.opencritic.games.details.ui.GameDetailsViewModel
-import com.opencritic.mvvm.ErrorBox
-import com.opencritic.mvvm.LoadingBox
+import com.opencritic.mvvm.CommonScreen
 import com.opencritic.navigation.router
 import com.opencritic.resources.images.Icons
 import com.opencritic.resources.images.asPainter
+import com.opencritic.resources.text.text
 import org.koin.androidx.compose.koinViewModel
 import org.koin.core.parameter.parametersOf
 
@@ -47,7 +46,7 @@ fun GameDetailsScreen(
                 ),
                 title = {
                     Text(
-                        text = state.titleText,
+                        text = state.title?.text() ?: "",
                         maxLines = 1,
                         overflow = TextOverflow.Ellipsis,
                     )
@@ -63,10 +62,11 @@ fun GameDetailsScreen(
             )
         }
     ) { paddings ->
-        when (val s = state) {
-            is GameDetailsState.Content-> GameDetailsStateContent(s, Modifier.padding(paddings))
-            is GameDetailsState.Loading -> LoadingBox(s, Modifier.padding(paddings))
-            is GameDetailsState.Error -> ErrorBox(s, Modifier.padding(paddings))
+        CommonScreen(
+            state = state,
+            modifier = Modifier.padding(paddings)
+        ) { content, modifier ->
+            GameDetailsContent(content, modifier)
         }
     }
 }

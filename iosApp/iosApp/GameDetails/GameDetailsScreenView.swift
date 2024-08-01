@@ -13,15 +13,9 @@ struct GameDetailsScreenView: View {
     let viewModel: GameDetailsViewModel
     
     var body: some View {
-        return FlowView(of: viewModel.state) { state in
-            switch state {
-            case let content as GameDetailsStateContent:
-                GameDetailsStateContentView(state: content)
-            case let loading as GameDetailsStateLoading:
-                LoadingStateView(state: loading)
-            case let error as GameDetailsStateError:
-                ErrorStateView(state: error)
-            default: fatalError("Unknown state: \(state)")
+        FlowView(of: viewModel.state) { state in
+            CommonScreenView(state: state) { content in
+                GameDetailsContentView(state: content)
             }
         }
     }

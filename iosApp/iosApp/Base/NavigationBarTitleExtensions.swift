@@ -11,8 +11,8 @@ import shared
 import SwiftUI
 
 extension View {
-    public func navigationBarTitle(_ title: TextSource, displayMode: NavigationBarItem.TitleDisplayMode) -> some View {
-        return self.navigationTitle(title.text())
+    public func navigationBarTitle(_ title: (any TextSource)?, displayMode: NavigationBarItem.TitleDisplayMode) -> some View {
+        self.navigationTitle(title?.text() ?? "")
             .navigationBarTitleDisplayMode(displayMode)
     }
 }

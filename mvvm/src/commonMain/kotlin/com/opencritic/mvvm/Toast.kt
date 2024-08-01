@@ -6,5 +6,4 @@ import kotlin.time.Duration.Companion.seconds
 
 data class Toast(
     val text: TextSource,
-    val duration: Duration = 3.seconds
 )

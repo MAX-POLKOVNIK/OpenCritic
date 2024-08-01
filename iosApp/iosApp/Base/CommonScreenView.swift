@@ -14,8 +14,6 @@ struct CommonScreenView<Content: AnyObject, ContentView>: View where ContentView
     
     @ViewBuilder let viewProducer: (Content) -> ContentView
     
-//    @State private var shouldShowToast = false
-    
     var body: some View {
         ZStack {
             if let fullScreenError = state.fullScreenError {
@@ -41,5 +39,6 @@ struct CommonScreenView<Content: AnyObject, ContentView>: View where ContentView
                 }
             }
         }
+        .navigationBarTitle(state.title, displayMode: .inline)
     }
 }

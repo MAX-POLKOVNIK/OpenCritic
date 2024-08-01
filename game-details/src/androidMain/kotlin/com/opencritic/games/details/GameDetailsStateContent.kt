@@ -31,8 +31,8 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import coil.compose.SubcomposeAsyncImage
 import com.opencritic.game.your.YourGameIndicatorItem
-import com.opencritic.games.details.ui.GameDetailsState
-import com.opencritic.games.details.ui.GameDetailsStateContent_PreviewData
+import com.opencritic.games.details.ui.GameDetailsContent
+import com.opencritic.games.details.ui.GameDetailsContent_PreviewData
 import com.opencritic.games.details.ui.ScreenshotItem
 import com.opencritic.games.details.ui.TrailerItem
 import com.opencritic.resources.images.asPainter
@@ -41,7 +41,7 @@ import com.opencritic.resources.smallPadding
 import com.opencritic.resources.text.text
 
 @Composable
-fun GameDetailsStateContent(state: GameDetailsState.Content, modifier: Modifier = Modifier) {
+fun GameDetailsContent(state: GameDetailsContent, modifier: Modifier = Modifier) {
     Column(
         modifier = modifier
             .verticalScroll(rememberScrollState())
@@ -332,7 +332,7 @@ fun GameDetailsStateContent(state: GameDetailsState.Content, modifier: Modifier 
 @Composable
 @Preview
 fun GameDetailsStateContent_Preview() {
-    GameDetailsStateContent(
-        state = GameDetailsStateContent_PreviewData()
+    GameDetailsContent(
+        state = GameDetailsContent_PreviewData()
     )
 }

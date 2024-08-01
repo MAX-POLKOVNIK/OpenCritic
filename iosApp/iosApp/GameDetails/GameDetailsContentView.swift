@@ -9,8 +9,8 @@
 import SwiftUI
 import shared
 
-struct GameDetailsStateContentView: View {
-    let state: GameDetailsStateContent
+struct GameDetailsContentView: View {
+    let state: GameDetailsContent
     
     var body: some View {
         ScrollView(.vertical) {
@@ -192,57 +192,12 @@ struct GameDetailsStateContentView: View {
                     }
                 }
             }
-        }.navigationTitle(state.name)
+        }
     }
 }
 
 #Preview {
-    GameDetailsStateContentView(
-        state: GameDetailsStateContent(
-            titleText: "Game name",
-            isImageVisible: true,
-            imageUrl: "https://img.opencritic.com/game/14353/a7GST4so.jpg",
-            name: "Game title",
-            yourGameIndicatorItem: YourGameIndicatorItemKt
-                .YourGameIndicatorItem_PreviewData(),
-            companiesText: "Some companies",
-            releaseDateText: StringTextSource(string: "MAY 25, 2505"),
-            platformsText: "Playstation, Xbox, PC",
-            isTierVisible: true,
-            tier: Tier.fair,
-            tierImageResource: SharedImages.shared.fairMan,
-            tierDescription: "Tier description".asTextSource(),
-            topCriticScore: RankCircleIndicatorItemKt.createTopCriticAverageIndicator(gameRank: GameRank(tier: Tier.fair, score: 0)),
-            topCriticScoreDescription: "Top critic description".asTextSource(),
-            recommendedPercent: RankCircleIndicatorItemKt.createCriticsRecommendIndicator(tier: Tier.fair, score: 0),
-            criticsRecommendDescription: "Critics recommends".asTextSource(),
-            briefReviews: [
-                ReviewBriefListItem(nameText: "IGN", scoreText: "100 / 100"),
-                ReviewBriefListItem(nameText: "IGN", scoreText: "100 / 100"),
-                ReviewBriefListItem(nameText: "IGN", scoreText: "100 / 100"),
-                ReviewBriefListItem(nameText: "IGN", scoreText: "100 / 100"),
-            ],
-            isViewAllVisible: true,
-            viewAllText: "View all 1000 reviews".asTextSource(),
-            isMediaVisible: false,
-            mediaText: "".asTextSource(),
-            media: [],
-            viewAllMedia: "".asTextSource(),
-            onViewAllMediaClick: { _ in },
-            isTrailersVisible: false,
-            trailersText: "".asTextSource(),
-            trailers: [],
-            viewAllTrailers: "".asTextSource(),
-            onViewAllTrailersClick: { _ in },
-            isScreenshotsVisible: false,
-            screenshotsText: "".asTextSource(),
-            screenshots: [],
-            viewAllScreenshots: "".asTextSource(),
-            onViewAllScreenshotsClick: { _ in },
-            isReviewsVisible: false,
-            reviewTitleText: "".asTextSource(),
-            reviews: [],
-            onViewAllReviewsClick: {}
-        )
+    GameDetailsContentView(
+        state: GameDetailsContentKt.GameDetailsContent_PreviewData()
     )
 }

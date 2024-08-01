@@ -1,6 +1,7 @@
 package com.opencritic.mvvm
 
 import com.opencritic.resources.text.TextSource
+import com.opencritic.resources.text.asTextSource
 import kotlinx.coroutines.Job
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.update
@@ -9,26 +10,30 @@ import kotlin.time.Duration
 import kotlin.time.Duration.Companion.seconds
 
 abstract class BaseContentViewModel<Content> : BaseViewModel<CommonViewModelState<Content>>() {
-    private val toastJob: Job? = null
+    private var toastJob: Job? = null
+
+    protected fun showToast(
+        text: String,
+        duration: Duration = 3.seconds
+    ) = showToast(
+        text = text.asTextSource(),
+        duration = duration,
+    )
 
     protected fun showToast(
         text: TextSource,
         duration: Duration = 3.seconds
     ) {
-        if (toastJob != null) {
-            toastJob.cancel()
-        }
+        toastJob?.cancel()
 
-        scope.launch {
+        toastJob = scope.launch {
             mutableState.update {
-                it.copy(
-                    toast = Toast(text, duration)
-                )
+                it.setToast(text)
             }
 
             delay(duration)
 
-            mutableState.update { it.copy(toast = null) }
+            mutableState.update { it.clearToast() }
         }
     }
 }

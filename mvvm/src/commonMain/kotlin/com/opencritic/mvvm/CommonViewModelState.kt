@@ -6,7 +6,7 @@ data class CommonViewModelState<Content>(
     val fullScreenError: BaseErrorState?,
 //    val loadingPopup: LoadingPopupModel?,
 //    val errorPopup: ErrorPopupModel?,
-//    val toast: Toast?,
+    val toast: Toast?,
 ) : ViewModelState {
     val isFullScreenLoading: Boolean =
         fullScreenLoading != null
@@ -55,6 +55,7 @@ data class CommonViewModelState<Content>(
                 content = content,
                 fullScreenLoading = null,
                 fullScreenError = null,
+                toast = null,
             )
 
         fun <Content> loading(loading: BaseLoadingState? = null): CommonViewModelState<Content> =
@@ -62,6 +63,7 @@ data class CommonViewModelState<Content>(
                 content = null,
                 fullScreenLoading = loading ?: LoadingState,
                 fullScreenError = null,
+                toast = null,
             )
     }
 }

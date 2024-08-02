@@ -37,7 +37,10 @@ class OutletReviewsViewModel(
             getOutletInteractor(outletId)
                 .onFailure {
                     mutableState.tryEmit(
-                        OutletReviewsState.Error(StringRes.str_reviews_of.asTextSource(outletName), it.toString())
+                        OutletReviewsState.Error(
+                            titleText = StringRes.str_reviews_of.asTextSource(outletName),
+                            message = it.toString().asTextSource()
+                        )
                     )
                 }
                 .onSuccess {

@@ -14,16 +14,8 @@ struct AuthScreenView: View {
     
     var body: some View {
         FlowView(of: viewModel.state) { state in
-            switch state {
-            case let webview as AuthStateWebView:
-                AuthStateWebViewView(state: webview)
-            case let methodList as AuthStateMethodList:
-                AuthStateMethodListView(state: methodList)
-            case let error as AuthStateError:
-                ErrorStateView(state: error)
-            case let loading as AuthStateLoading:
-                LoadingStateView(state: loading)
-            default: fatalError("Unknown state")
+            CommonScreenView(state: state) { content in
+                AuthContentView(content: content)
             }
         }
     }

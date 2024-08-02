@@ -26,7 +26,7 @@ class GameMediaViewModel(
                     mutableState.tryEmit(
                         GameMediaState.Error(
                             titleText = StringRes.str_game_screenshots_and_trailers.asTextSource(gameName),
-                            message = it.toString()
+                            message = it.toString().asTextSource()
                         )
                     )
                     logger.log(it.toString())

@@ -9,6 +9,37 @@
 import SwiftUI
 import shared
 
+private var displayedLoadingAlert: UIViewController?
+private var displayedErrorPopup: UIViewController?
+
+private func handleLoadingPopup(loadingPopup: BaseLoadingState?) {
+    if let loadingPopup = loadingPopup {
+        let vc = createProgressAlertViewController(loadingPopup: loadingPopup)
+        
+        displayedLoadingAlert = vc
+        UIViewController.getCurrentVC()?.present(vc, animated: true)
+        print("presented loading")
+    } else {
+        displayedLoadingAlert?.dismiss(animated: true)
+        displayedLoadingAlert = nil
+        print("dismissed loading")
+    }
+}
+
+private func handleErrorPopup(state: BaseErrorState?) {
+    if let state = state {
+        let vc = createErrorPopupViewController(state: state)
+        
+        displayedErrorPopup = vc
+        UIViewController.getCurrentVC()?.present(vc, animated: true)
+        print("presented error")
+    } else {
+        displayedErrorPopup?.dismiss(animated: true)
+        displayedErrorPopup = nil
+        print("dismissed error")
+    }
+}
+
 struct CommonScreenView<Content: AnyObject, ContentView>: View where ContentView: View {
     let state: CommonViewModelState<Content>
     
@@ -28,6 +59,10 @@ struct CommonScreenView<Content: AnyObject, ContentView>: View where ContentView
                 viewProducer(content)
             }
             
+            let _ = handleLoadingPopup(loadingPopup: state.loadingPopup)
+            
+            let _ = handleErrorPopup(state: state.errorPopup)
+            
             if state.toast != nil {
                 VStack {
                     Spacer()
@@ -40,5 +75,11 @@ struct CommonScreenView<Content: AnyObject, ContentView>: View where ContentView
             }
         }
         .navigationBarTitle(state.title, displayMode: .inline)
+    }
+}
+
+extension UIViewController {
+    class func getCurrentVC() -> UIViewController? {
+        UIApplication.shared.windows.first!.rootViewController!
     }
 }

@@ -33,7 +33,7 @@ struct ErrorStateView: View {
 }
 
 private class E : BaseErrorState {
-    override init(message: String, actionText: String?, action: (() -> Void)? = nil) {
+    override init(message: TextSource, actionText: TextSource?, action: (() -> Void)? = nil) {
         super.init(message: message, actionText: actionText, action: action)
     }
 }
@@ -41,8 +41,8 @@ private class E : BaseErrorState {
 #Preview {
     ErrorStateView(
         state: E(
-            message: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
-            actionText: "Retry",
+            message: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.".asTextSource(),
+            actionText: "Retry".asTextSource(),
             action: {}
         )
     )

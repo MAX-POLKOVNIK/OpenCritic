@@ -6,7 +6,9 @@ import com.opencritic.game.your.domain.YourGame
 import com.opencritic.game.your.domain.YourGameAction
 import com.opencritic.logs.Logger
 import com.opencritic.mvvm.BaseViewModel
+import com.opencritic.navigation.AuthRoute
 import com.opencritic.navigation.GameDetailsRoute
+import com.opencritic.resources.text.asTextSource
 import kotlinx.coroutines.launch
 
 class YourGameListViewModel(
@@ -24,13 +26,21 @@ class YourGameListViewModel(
             filterItems = YourGameFilter.entries.map { YourGameFilterItem(it, it.name) },
             selectFilterItem = { onFilterItemSelected(it) },
             items = emptyList(),
-            refresh = { loadGames() }
+            refresh = { loadGames() },
+            isLoginVisible = true,
+            loginText = "Login".asTextSource(),
+            onLoginClick = { onLoginClick() }
         )
 
     override fun onStateInit() {
         super.onStateInit()
 
         loadGames()
+    }
+
+    private fun onLoginClick() {
+        requireRouter()
+            .navigateTo(AuthRoute)
     }
 
     private fun onFilterItemSelected(item: YourGameFilterItem) {

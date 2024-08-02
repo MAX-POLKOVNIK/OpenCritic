@@ -12,3 +12,7 @@ fun TextSource.text(): String =
         is ResourceTextSource -> resId.desc().toString(LocalContext.current)
         is ResourceFormattedTextSource -> desc.toString(LocalContext.current)
     }
+
+@Composable
+fun TextSource?.textOrEmpty(): String =
+    this?.text() ?: ""

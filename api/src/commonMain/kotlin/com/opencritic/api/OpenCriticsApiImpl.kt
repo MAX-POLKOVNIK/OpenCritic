@@ -10,6 +10,7 @@ import com.opencritic.api.dto.game.GameTimeKey
 import com.opencritic.api.dto.outlet.OutletDto
 import com.opencritic.api.dto.platform.PlatformDto
 import com.opencritic.api.dto.popular.PopularItemDto
+import com.opencritic.api.dto.profile.ProfileDto
 import com.opencritic.api.dto.review.ReviewedTodayGameDto
 import com.opencritic.api.dto.released.ReleasedGameDto
 import com.opencritic.api.dto.review.ReviewDto
@@ -114,7 +115,10 @@ internal class OpenCriticsApiImpl(
     override suspend fun getReviewedThisWeek(): List<BrowseGameDto> =
         client.get(baseUrl + "game/reviewed-this-week", headers()).body()
 
-    private fun headers(): HttpRequestBuilder.() -> Unit = {
+    override suspend fun getProfile(token: String): ProfileDto =
+        client.get(baseUrl + "profile", headers(token)).body()
+
+    private fun headers(token: String? = null): HttpRequestBuilder.() -> Unit = {
         headers {
             append(HttpHeaders.CacheControl, "no-cache")
             append(HttpHeaders.Host, "api.opencritic.com")
@@ -125,6 +129,7 @@ internal class OpenCriticsApiImpl(
             append("Sec-Fetch-Site", "same-site")
             append("Sec-Fetch-Dest", "empty")
             append("Sec-Fetch-Mode", "cors")
+            token?.let { append("x-access-token", it) }
         }
     }
 }

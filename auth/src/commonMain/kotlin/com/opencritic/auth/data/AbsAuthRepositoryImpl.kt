@@ -10,7 +10,7 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.IO
 import kotlinx.coroutines.withContext
 
-abstract class AbsAuthRepository(
+abstract class AbsAuthRepositoryImpl(
     private val logger: Logger,
     private val defaultDispatcher: CoroutineDispatcher = Dispatchers.IO
 ) : AuthRepository {

@@ -23,6 +23,8 @@ kotlin {
             implementation(projects.resources)
             implementation(projects.logs)
             implementation(projects.navigation)
+            implementation(projects.api)
+            implementation(projects.database)
 
             implementation(libs.ktor.client.core)
             implementation(libs.kotlinx.coroutines.core)

@@ -11,7 +11,7 @@ import com.opencritic.resources.text.TextSource
 import com.opencritic.resources.text.asTextSource
 
 interface GameBrowserState : ViewModelState {
-    data class Error(override val message: String) : BaseErrorState(message), GameBrowserState
+    data class Error(override val message: TextSource) : BaseErrorState(message), GameBrowserState
     data object Loading : BaseLoadingState(), GameBrowserState
     data class Content(
         val platformTitleText: TextSource,

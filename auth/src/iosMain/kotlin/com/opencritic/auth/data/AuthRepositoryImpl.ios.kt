@@ -5,7 +5,7 @@ import com.opencritic.logs.Logger
 import kotlinx.serialization.encodeToString
 import platform.Foundation.NSUserDefaults
 
-class AuthRepositoryImpl(logger: Logger) : AbsAuthRepository(logger) {
+class AuthRepositoryImpl(logger: Logger) : AbsAuthRepositoryImpl(logger) {
     private val userDefaults: NSUserDefaults by lazy { NSUserDefaults.standardUserDefaults }
     override var authToken: AuthToken?
         get() = userDefaults.stringForKey("authToken")

@@ -40,7 +40,7 @@ class GameReviewsViewModel(
                     mutableState.tryEmit(
                         GameReviewsState.Error(
                             titleText = StringRes.str_game_reviews.asTextSource(gameName),
-                            message = it.toString()
+                            message = it.toString().asTextSource()
                         )
                     )
                 }

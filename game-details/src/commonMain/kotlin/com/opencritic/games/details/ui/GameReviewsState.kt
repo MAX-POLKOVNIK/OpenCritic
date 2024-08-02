@@ -17,7 +17,7 @@ interface GameReviewsState : ViewModelState {
 
     data class Error(
         override val titleText: TextSource,
-        override val message: String
+        override val message: TextSource
     ) : BaseErrorState(message), GameReviewsState
 
     data class Loading(

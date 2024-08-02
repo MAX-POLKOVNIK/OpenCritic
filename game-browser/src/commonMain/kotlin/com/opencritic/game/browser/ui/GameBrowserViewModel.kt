@@ -37,7 +37,7 @@ class GameBrowserViewModel(
             getPlatformsInteractor()
                 .onFailure {
                     mutableState.update {
-                        GameBrowserState.Error(it.toString())
+                        GameBrowserState.Error(it.toString().asTextSource())
                     }
                 }
                 .onSuccess { platforms ->

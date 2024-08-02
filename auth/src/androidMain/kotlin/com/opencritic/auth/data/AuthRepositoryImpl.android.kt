@@ -6,7 +6,7 @@ import com.opencritic.auth.domain.AuthToken
 import com.opencritic.logs.Logger
 import kotlinx.serialization.encodeToString
 
-class AuthRepositoryImpl(context: Context, logger: Logger) : AbsAuthRepository(logger) {
+class AuthRepositoryImpl(context: Context, logger: Logger) : AbsAuthRepositoryImpl(logger) {
     private val sharedPreferences: SharedPreferences by lazy {
         context.getSharedPreferences("auth", Context.MODE_PRIVATE)
     }

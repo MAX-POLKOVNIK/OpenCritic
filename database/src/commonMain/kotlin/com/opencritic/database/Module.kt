@@ -7,4 +7,5 @@ val databaseModule = module {
 
     single<AppDatabase> { AppDatabase(get()) }
     single<YourGameDao> { get<AppDatabase>().yourGameDao() }
+    single<UserPreferencesDao> { get<AppDatabase>().userPreferencesDao() }
 }

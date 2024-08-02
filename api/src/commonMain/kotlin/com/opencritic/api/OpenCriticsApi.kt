@@ -10,6 +10,7 @@ import com.opencritic.api.dto.game.BrowseGameDto
 import com.opencritic.api.dto.outlet.OutletDto
 import com.opencritic.api.dto.platform.PlatformDto
 import com.opencritic.api.dto.popular.PopularItemDto
+import com.opencritic.api.dto.profile.ProfileDto
 import com.opencritic.api.dto.review.ReviewedTodayGameDto
 import com.opencritic.api.dto.released.ReleasedGameDto
 import com.opencritic.api.dto.review.ReviewDto
@@ -63,4 +64,6 @@ interface OpenCriticsApi {
     ): List<BrowseGameDto>
 
     suspend fun getReviewedThisWeek(): List<BrowseGameDto>
+
+    suspend fun getProfile(token: String): ProfileDto
 }

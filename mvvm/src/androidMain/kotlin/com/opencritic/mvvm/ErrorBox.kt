@@ -18,6 +18,8 @@ import androidx.compose.ui.unit.dp
 import com.opencritic.resources.images.Icons
 import com.opencritic.resources.images.asPainter
 import com.opencritic.resources.defaultPadding
+import com.opencritic.resources.text.asTextSource
+import com.opencritic.resources.text.text
 
 @Composable
 fun ErrorBox(
@@ -40,7 +42,7 @@ fun ErrorBox(
                     .size(56.dp)
             )
             Text(
-                text = state.message,
+                text = state.message.text(),
                 textAlign = TextAlign.Center,
                 style = MaterialTheme.typography.headlineSmall,
                 modifier = Modifier
@@ -62,5 +64,5 @@ fun ErrorBox(
 @Composable
 @Preview
 fun ErrorBox_Preview() {
-    ErrorBox(state = object : BaseErrorState("Some kind of long error: Connected to the target VM, address: 'localhost:54736', transport: 'socket'") {})
+    ErrorBox(state = object : BaseErrorState("Some kind of long error: Connected to the target VM, address: 'localhost:54736', transport: 'socket'".asTextSource()) {})
 }

@@ -65,7 +65,7 @@ class SearchViewModel(
                             searchText = state.value.searchText,
                             searchHint = MR.strings.str_search_hint.asTextSource(),
                             onSearchChanged = { _, c -> onCriteriaChanged(c) },
-                            searchListItemsState = SearchItemsState.Error(it.toString())
+                            searchListItemsState = SearchItemsState.Error(it.toString().asTextSource())
                         )
                     )
                 }

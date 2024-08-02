@@ -21,6 +21,13 @@ struct YourGameListStateView: View {
     
     var body: some View {
         List {
+            if (state.isLoginVisible) {
+                Button(state.loginText) {
+                    state.onLoginClick()
+                }
+                .listStyle(.sidebar)
+            }
+            
             Picker(state.filtersTitleText, selection: $selectedFilterItem) {
                 ForEach(state.filterItems, id: \.self) {
                     Text($0.text)

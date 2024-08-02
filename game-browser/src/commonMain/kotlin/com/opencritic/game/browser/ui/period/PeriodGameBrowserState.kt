@@ -12,7 +12,7 @@ interface PeriodGameBrowserState : ViewModelState {
     val titleText: TextSource
     data class Error(
         override val titleText: TextSource,
-        override val message: String,
+        override val message: TextSource,
     ) : BaseErrorState(message), PeriodGameBrowserState
 
     data class Loading(

@@ -10,7 +10,7 @@ interface GameMediaState : ViewModelState {
 
     data class Error(
         override val titleText: TextSource,
-        override val message: String
+        override val message: TextSource
     ) : BaseErrorState(message), GameMediaState
     data class Loading(override val titleText: TextSource) : BaseLoadingState(), GameMediaState
     data class Content(

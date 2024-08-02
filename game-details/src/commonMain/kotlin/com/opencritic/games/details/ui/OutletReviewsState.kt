@@ -13,7 +13,7 @@ interface OutletReviewsState : ViewModelState {
     val titleText: TextSource
     data class Error(
         override val titleText: TextSource,
-        override val message: String
+        override val message: TextSource
     ) : BaseErrorState(message), OutletReviewsState
 
     data class Loading(

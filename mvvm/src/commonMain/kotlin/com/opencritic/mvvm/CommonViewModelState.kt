@@ -1,14 +1,15 @@
 package com.opencritic.mvvm
 
 import com.opencritic.resources.text.TextSource
+import com.opencritic.resources.text.asTextSource
 
 data class CommonViewModelState<Content>(
     val title: TextSource?,
     val content: Content?,
     val fullScreenLoading: BaseLoadingState?,
     val fullScreenError: BaseErrorState?,
-//    val loadingPopup: LoadingPopupModel?,
-//    val errorPopup: ErrorPopupModel?,
+    val loadingPopup: BaseLoadingState?,
+    val errorPopup: BaseErrorState?,
     val toast: Toast?,
 ) : ViewModelState {
     val isFullScreenLoading: Boolean =
@@ -48,7 +49,7 @@ data class CommonViewModelState<Content>(
     ): CommonViewModelState<Content> =
         error(
             title = title,
-            fullScreenError = ErrorState(errorDescription)
+            fullScreenError = ErrorState(errorDescription.asTextSource())
         )
 
     fun error(
@@ -83,6 +84,31 @@ data class CommonViewModelState<Content>(
     fun clearToast(): CommonViewModelState<Content> =
         copy(toast = null)
 
+    fun setLoadingPopup(loadingPopup: BaseLoadingState): CommonViewModelState<Content> =
+        copy(loadingPopup = loadingPopup)
+
+    fun clearLoadingPopup(): CommonViewModelState<Content> =
+        copy(loadingPopup = null)
+
+    fun setErrorPopup(
+        message: TextSource,
+        actionText: TextSource? = null,
+        action: (() -> Unit)? = null
+    ): CommonViewModelState<Content> =
+        setErrorPopup(
+            errorPopup = ErrorState(
+                message = message,
+                actionText = actionText,
+                action = action
+            )
+        )
+
+    fun setErrorPopup(errorPopup: BaseErrorState?): CommonViewModelState<Content> =
+        copy(errorPopup = errorPopup)
+
+    fun clearErrorPopup(): CommonViewModelState<Content> =
+        copy(errorPopup = null)
+
     companion object {
         fun <Content> content(
             content: Content,
@@ -94,6 +120,8 @@ data class CommonViewModelState<Content>(
                 fullScreenLoading = null,
                 fullScreenError = null,
                 toast = null,
+                loadingPopup = null,
+                errorPopup = null,
             )
 
         fun <Content> loading(
@@ -106,6 +134,8 @@ data class CommonViewModelState<Content>(
                 fullScreenLoading = loading ?: LoadingState,
                 fullScreenError = null,
                 toast = null,
+                loadingPopup = null,
+                errorPopup = null,
             )
     }
 }

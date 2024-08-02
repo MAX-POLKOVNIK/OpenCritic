@@ -15,12 +15,14 @@ import androidx.compose.runtime.getValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.navigation.NavController
+import com.opencritic.mvvm.CommonScreen
 import com.opencritic.mvvm.ErrorBox
 import com.opencritic.mvvm.LoadingBox
 import com.opencritic.navigation.router
 import com.opencritic.resources.images.Icons
 import com.opencritic.resources.images.asPainter
 import com.opencritic.resources.text.text
+import com.opencritic.resources.text.textOrEmpty
 import org.koin.androidx.compose.koinViewModel
 
 @OptIn(ExperimentalMaterial3Api::class)
@@ -43,7 +45,7 @@ fun AuthScreen(
                 ),
                 title = {
                     Text(
-                        text = state.titleText.text(),
+                        text = state.title.textOrEmpty(),
                         maxLines = 1,
                         overflow = TextOverflow.Ellipsis,
                     )
@@ -59,11 +61,11 @@ fun AuthScreen(
             )
         }
     ) { paddings ->
-        when (val s = state) {
-            is AuthState.MethodList-> AuthStateMethodList(s, Modifier.padding(paddings))
-            is AuthState.WebView -> AuthStateWebView(s, Modifier.padding(paddings))
-            is AuthState.Loading -> LoadingBox(s, Modifier.padding(paddings))
-            is AuthState.Error -> ErrorBox(s, Modifier.padding(paddings))
+        CommonScreen(
+            state = state,
+            modifier = Modifier.padding(paddings)
+        ) { content, modifier ->
+            AuthContent(content, modifier)
         }
     }
 }

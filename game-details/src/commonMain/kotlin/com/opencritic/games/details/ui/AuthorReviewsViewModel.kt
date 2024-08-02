@@ -39,7 +39,7 @@ class AuthorReviewsViewModel(
                     mutableState.update {
                         AuthorReviewsState.Error(
                             StringRes.str_reviews_of.asTextSource(authorName),
-                            it.toString()
+                            it.toString().asTextSource()
                         )
                     }
                 }

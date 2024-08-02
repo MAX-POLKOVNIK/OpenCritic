@@ -7,6 +7,7 @@ import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.LazyColumn
+import androidx.compose.material3.Button
 import androidx.compose.material3.Icon
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
@@ -22,6 +23,7 @@ import com.opencritic.resources.images.Icons
 import com.opencritic.resources.images.asPainter
 import com.opencritic.resources.defaultPadding
 import com.opencritic.resources.smallPadding
+import com.opencritic.resources.text.text
 
 @Composable
 fun YourGameListState(
@@ -34,6 +36,14 @@ fun YourGameListState(
         modifier = modifier
             .fillMaxSize(),
     ) {
+        if (state.isLoginVisible) {
+            item {
+                Button(onClick = state.onLoginClick) {
+                    Text(text = state.loginText.text())
+                }
+            }
+        }
+
         item {
             Row(
                 verticalAlignment = Alignment.CenterVertically,

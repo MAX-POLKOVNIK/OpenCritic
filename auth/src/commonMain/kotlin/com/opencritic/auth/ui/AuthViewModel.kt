@@ -1,78 +1,77 @@
 package com.opencritic.auth.ui
 
-import com.opencritic.auth.domain.AuthByCallbackInteractor
-import com.opencritic.auth.domain.AuthMethod
-import com.opencritic.auth.domain.AuthRedirectInteractor
-import com.opencritic.auth.domain.AuthUserAgent
+import com.opencritic.auth.domain.AuthByTokenInteractor
+import com.opencritic.auth.domain.GetAuthStateInteractor
 import com.opencritic.logs.Logger
-import com.opencritic.logs.log
-import com.opencritic.mvvm.BaseViewModel
-import com.opencritic.resources.MR
-import com.opencritic.resources.images.SharedImages
+import com.opencritic.mvvm.BaseContentViewModel
+import com.opencritic.mvvm.CommonViewModelState
+import com.opencritic.mvvm.LoadingState
 import com.opencritic.resources.text.asTextSource
+import kotlinx.coroutines.delay
+import kotlinx.coroutines.flow.update
 import kotlinx.coroutines.launch
+import kotlin.time.Duration.Companion.seconds
 
 class AuthViewModel(
-    private val authRedirectInteractor: AuthRedirectInteractor,
-    private val authByCallbackInteractor: AuthByCallbackInteractor,
+    private val authByTokenInteractor: AuthByTokenInteractor,
+    private val getAuthStateInteractor: GetAuthStateInteractor,
     private val logger: Logger,
-) : BaseViewModel<AuthState>() {
-    override fun initialState(): AuthState =
-        AuthState.MethodList(
-            titleText = MR.strings.str_sign_in_title.asTextSource(),
-            items = AuthMethod.entries
-                .map { method ->
-                    AuthMethodItem(
-                        imageResource = when (method) {
-                            AuthMethod.Facebook -> SharedImages.facebook
-                            AuthMethod.Google -> SharedImages.google
-                            AuthMethod.Twitch -> SharedImages.twitch
-                            AuthMethod.Steam -> SharedImages.steam
-                        },
-                        text = method.name,
-                        onClick = { onMethodSelected(method) }
-                    )
-                }
-        )
+) : BaseContentViewModel<AuthContent>() {
+    override fun initialState(): CommonViewModelState<AuthContent> =
+        CommonViewModelState.loading("Auth".asTextSource())
 
-    private fun onUrlRedirect(url: String): Boolean {
-        val isAllowed = authRedirectInteractor(url)
+    override fun onStateInit() {
+        super.onStateInit()
 
-        if (!isAllowed) {
-            scope.launch {
-                mutableState.tryEmit(
-                    AuthState.Loading(MR.strings.str_sign_in_title.asTextSource())
+        scope.launch {
+            val token = getAuthStateInteractor().getOrNull()?.authToken ?: ""
+
+            setContent {
+                AuthContent(
+                    token = token,
+                    tokenHint = "Token".asTextSource(),
+                    descriptionText = "Get token from site. It is required to get your games from OpenCritics".asTextSource(),
+                    authButtonText = "Auth".asTextSource(),
+                    onAuthButtonClicked = { onAuth() },
+                    onTokenChanged = { onTokenChanged(it) }
                 )
-
-                authByCallbackInteractor(url)
-                    .onSuccess {
-                        requireRouter().navigateBack()
-                    }
-                    .onFailure {
-                        mutableState.tryEmit(
-                            AuthState.Error(
-                                titleText = MR.strings.str_sign_in_title.asTextSource(),
-                                message = it.toString(),
-                                action = {
-                                    mutableState.tryEmit(initialState())
-                                }
-                            )
-                        )
-                        logger.log(it)
-                    }
             }
         }
-
-        return isAllowed
     }
 
-    private fun onMethodSelected(method: AuthMethod) =
-        mutableState.tryEmit(
-            AuthState.WebView(
-                titleText = MR.strings.str_sign_in_title.asTextSource(),
-                url = method.url,
-                authUserAgent = AuthUserAgent,
-                redirectHandler = ::onUrlRedirect
-            )
-        )
+    private fun onAuth() {
+        scope.launch {
+            if (!isContentSet) {
+                return@launch
+            }
+
+            setLoadingPopup(LoadingState)
+
+            delay(5.seconds)
+
+            authByTokenInteractor.invoke(token = requireContent().token)
+                .onSuccess {
+                    clearLoadingPopup()
+
+                    requireRouter().navigateBack()
+                }
+                .onFailure { error ->
+                    clearLoadingPopup()
+
+                    setErrorPopup(
+                        message = error.toString().asTextSource(),
+                        actionText = "Ok".asTextSource(),
+                        action = { clearErrorPopup() }
+                    )
+
+                    logger.log("Failed to login: $error")
+                }
+        }
+    }
+
+    private fun onTokenChanged(token: String) {
+        mutableState.update {
+            it.updateContent { copy(token = token) }
+        }
+    }
 }

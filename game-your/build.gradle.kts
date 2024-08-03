@@ -23,6 +23,8 @@ kotlin {
             implementation(projects.logs)
             implementation(projects.navigation)
             implementation(projects.database)
+            implementation(projects.api)
+            implementation(projects.auth)
 
             implementation(libs.kotlinx.coroutines.core)
             implementation(libs.koin.core)
@@ -55,6 +57,7 @@ android {
 
 dependencies {
     implementation(libs.koin.compose)
+    implementation(libs.coil)
 
     implementation(libs.androidx.lifecycle.runtime.ktx)
     implementation(libs.androidx.lifecycle.viewmodel.ktx)

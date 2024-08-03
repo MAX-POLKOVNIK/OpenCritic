@@ -5,6 +5,7 @@ import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.navigation.NavController
 import com.opencritic.game.your.ui.YourGameListViewModel
+import com.opencritic.mvvm.CommonScreen
 import com.opencritic.navigation.router
 import org.koin.androidx.compose.koinViewModel
 
@@ -18,5 +19,7 @@ fun YourGameListScreen(
 
     viewModel.setRouter(router)
 
-    YourGameListState(state)
+    CommonScreen(state = state) { content, modifier ->
+        YourGameListState(state = content, modifier = modifier)
+    }
 }

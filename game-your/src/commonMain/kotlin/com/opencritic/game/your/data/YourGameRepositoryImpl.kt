@@ -1,7 +1,12 @@
 package com.opencritic.game.your.data
 
+import com.opencritic.api.OpenCriticsApi
+import com.opencritic.api.dto.image.prefixedImageUrl
+import com.opencritic.api.dto.list.GameListDto
+import com.opencritic.auth.domain.GetAuthStateInteractor
 import com.opencritic.database.YourGameDao
 import com.opencritic.database.YourGameEntity
+import com.opencritic.game.your.domain.GameList
 import com.opencritic.game.your.domain.YourGame
 import com.opencritic.game.your.domain.YourGameRepository
 import kotlinx.coroutines.CoroutineDispatcher
@@ -11,6 +16,8 @@ import kotlinx.coroutines.withContext
 
 internal class YourGameRepositoryImpl(
     private val yourGameDao: YourGameDao,
+    private val openCriticApi: OpenCriticsApi,
+    private val getAuthStateInteractor: GetAuthStateInteractor,
     private val defaultDispatcher: CoroutineDispatcher = Dispatchers.IO,
 ) : YourGameRepository {
     override suspend fun get(gameId: Long, gameName: String): YourGame =
@@ -61,6 +68,23 @@ internal class YourGameRepositoryImpl(
             yourGameDao.getFavorites()
                 .map { YourGame(it) }
         }
+
+    override suspend fun getLists(): List<GameList> =
+        withContext(defaultDispatcher) {
+            val token = getAuthStateInteractor().getOrThrow().authToken ?: throw Exception("No token")
+
+            openCriticApi.getLists(token)
+                .map { GameList(it) }
+        }
+
+    private fun GameList(dto: GameListDto): GameList =
+        GameList(
+            id = dto.id,
+            posters = dto.gamesPopulated.map { it.images.box?.sm?.prefixedImageUrl() ?: "" },
+            name = dto.label,
+            gamesCount = dto.numGames,
+            shareLink = "https://opencritic.com/list/${dto.id}"
+        )
 
     private fun YourGame(entity: YourGameEntity): YourGame =
         YourGame(

@@ -11,4 +11,6 @@ interface YourGameRepository {
     suspend fun getWanted(): List<YourGame>
     suspend fun getPlayed(): List<YourGame>
     suspend fun getFavorites(): List<YourGame>
+
+    suspend fun getLists(): List<GameList>
 }

@@ -9,37 +9,6 @@
 import SwiftUI
 import shared
 
-private var displayedLoadingAlert: UIViewController?
-private var displayedErrorPopup: UIViewController?
-
-private func handleLoadingPopup(loadingPopup: BaseLoadingState?) {
-    if let loadingPopup = loadingPopup {
-        let vc = createProgressAlertViewController(loadingPopup: loadingPopup)
-        
-        displayedLoadingAlert = vc
-        UIViewController.getCurrentVC()?.present(vc, animated: true)
-        print("presented loading")
-    } else {
-        displayedLoadingAlert?.dismiss(animated: true)
-        displayedLoadingAlert = nil
-        print("dismissed loading")
-    }
-}
-
-private func handleErrorPopup(state: BaseErrorState?) {
-    if let state = state {
-        let vc = createErrorPopupViewController(state: state)
-        
-        displayedErrorPopup = vc
-        UIViewController.getCurrentVC()?.present(vc, animated: true)
-        print("presented error")
-    } else {
-        displayedErrorPopup?.dismiss(animated: true)
-        displayedErrorPopup = nil
-        print("dismissed error")
-    }
-}
-
 struct CommonScreenView<Content: AnyObject, ContentView>: View where ContentView: View {
     let state: CommonViewModelState<Content>
     
@@ -77,6 +46,35 @@ struct CommonScreenView<Content: AnyObject, ContentView>: View where ContentView
         .navigationBarTitle(state.title, displayMode: .inline)
     }
 }
+
+// Жесткие хаки. Надо от этого уйти
+private var displayedLoadingAlert: UIViewController?
+private var displayedErrorPopup: UIViewController?
+
+private func handleLoadingPopup(loadingPopup: BaseLoadingState?) {
+    if let loadingPopup = loadingPopup {
+        let vc = createProgressAlertViewController(loadingPopup: loadingPopup)
+        
+        displayedLoadingAlert = vc
+        UIViewController.getCurrentVC()?.present(vc, animated: true)
+    } else {
+        displayedLoadingAlert?.dismiss(animated: true)
+        displayedLoadingAlert = nil
+    }
+}
+
+private func handleErrorPopup(state: BaseErrorState?) {
+    if let state = state {
+        let vc = createErrorPopupViewController(state: state)
+        
+        displayedErrorPopup = vc
+        UIViewController.getCurrentVC()?.present(vc, animated: true)
+    } else {
+        displayedErrorPopup?.dismiss(animated: true)
+        displayedErrorPopup = nil
+    }
+}
+
 
 extension UIViewController {
     class func getCurrentVC() -> UIViewController? {

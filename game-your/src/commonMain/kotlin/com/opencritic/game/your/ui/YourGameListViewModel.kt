@@ -1,36 +1,30 @@
 package com.opencritic.game.your.ui
 
+import com.opencritic.auth.domain.GetAuthStateInteractor
+import com.opencritic.game.your.domain.GetListsInteractor
 import com.opencritic.game.your.domain.GetYourGameListInteractor
 import com.opencritic.game.your.domain.SaveYourGameInteractor
 import com.opencritic.game.your.domain.YourGame
 import com.opencritic.game.your.domain.YourGameAction
 import com.opencritic.logs.Logger
+import com.opencritic.mvvm.BaseContentViewModel
 import com.opencritic.mvvm.BaseViewModel
+import com.opencritic.mvvm.CommonViewModelState
+import com.opencritic.mvvm.ErrorState
 import com.opencritic.navigation.AuthRoute
 import com.opencritic.navigation.GameDetailsRoute
+import com.opencritic.navigation.LinkShareRoute
 import com.opencritic.resources.text.asTextSource
 import kotlinx.coroutines.launch
 
 class YourGameListViewModel(
-    private val getYourGameListInteractor: GetYourGameListInteractor,
-    private val saveYourGameInteractor: SaveYourGameInteractor,
+    private val getListsInteractor: GetListsInteractor,
+    private val getAuthStateInteractor: GetAuthStateInteractor,
     private val logger: Logger,
-) : BaseViewModel<YourGameListState>() {
+) : BaseContentViewModel<YourGameListState>() {
 
-    private var selectedFilter: YourGameFilter = YourGameFilter.All
-
-    override fun initialState(): YourGameListState =
-        YourGameListState(
-            filtersTitleText = "Filters",
-            selectedFilterItem = YourGameFilterItem(selectedFilter, selectedFilter.name),
-            filterItems = YourGameFilter.entries.map { YourGameFilterItem(it, it.name) },
-            selectFilterItem = { onFilterItemSelected(it) },
-            items = emptyList(),
-            refresh = { loadGames() },
-            isLoginVisible = true,
-            loginText = "Login".asTextSource(),
-            onLoginClick = { onLoginClick() }
-        )
+    override fun initialState(): CommonViewModelState<YourGameListState> =
+        CommonViewModelState.loading()
 
     override fun onStateInit() {
         super.onStateInit()
@@ -43,54 +37,73 @@ class YourGameListViewModel(
             .navigateTo(AuthRoute)
     }
 
-    private fun onFilterItemSelected(item: YourGameFilterItem) {
-        if (selectedFilter == item.key)
-            return
-
-        selectedFilter = item.key
-
-        mutableState.tryEmit(
-            state.value.copy(
-                selectedFilterItem = YourGameFilterItem(selectedFilter, selectedFilter.name)
-            )
-        )
-
-        loadGames()
-    }
-
     private fun loadGames() {
         logger.log("LOAD GAMES")
 
         scope.launch {
-            getYourGameListInteractor(selectedFilter)
-                .onFailure {
-                    logger.log(it.toString())
-                }
-                .onSuccess { list ->
-                    mutableState.tryEmit(
-                        state.value.copy(
-                            items = list.map { game ->
-                                YourGameListItem(
-                                    text = game.name,
-                                    indicatorItem = YourGameIndicatorSmallItem(game) {
-                                        onGameAction(game, it)
-                                    }
-                                ) { navigateToGame(game.id, game.name) }
-                            }
-                        )
+            loading()
+
+            val authResult = getAuthStateInteractor()
+
+            if (authResult.isFailure) {
+                error(
+                    ErrorState(
+                        message = authResult.exceptionOrNull()?.toString().asTextSource(),
+                        action = { loadGames() }
+                    )
+                )
+
+                return@launch
+            }
+
+            val isLoggedIn = authResult.getOrThrow().isLoggedIn
+
+            if (!isLoggedIn) {
+                setContent {
+                    YourGameListState(
+                        items = emptyList(),
+                        onLoginClick = { navigateToAuth() },
+                        isLoginVisible = true,
+                        loginText = "Login to profile".asTextSource(),
+                        refresh = { loadGames() }
                     )
                 }
+            } else {
+                getListsInteractor()
+                    .onFailure {
+                        error(
+                            ErrorState(it.toString().asTextSource())
+                        )
+                    }
+                    .onSuccess { gameLists ->
+                        hideLoading()
+                        setContent {
+                            YourGameListState(
+                                items = gameLists.map {
+                                    GameListListItem(
+                                        gameList = it,
+                                        onClick = {},
+                                        onShareClick = { navigateToShare(it.shareLink) },
+                                        onEditClick = {}
+                                    )
+                                },
+                                onLoginClick = {},
+                                isLoginVisible = false,
+                                loginText = "".asTextSource(),
+                                refresh = { loadGames() }
+                            )
+                        }
+                    }
+            }
         }
     }
 
-    private fun onGameAction(game: YourGame, action: YourGameAction) {
-        val new = game.actioned(action)
+    private fun navigateToShare(url: String) {
+        requireRouter().navigateTo(LinkShareRoute(url))
+    }
 
-        scope.launch {
-            saveYourGameInteractor(new)
-
-            loadGames()
-        }
+    private fun navigateToAuth() {
+        requireRouter().navigateTo(AuthRoute)
     }
 
     private fun navigateToGame(gameId: Long, gameName: String) {

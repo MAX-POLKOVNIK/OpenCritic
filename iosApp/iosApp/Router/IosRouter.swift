@@ -86,6 +86,20 @@ class IosRouter: ObservableObject, Router {
             return
         }
         
+        if let linkShareRoute = route as? LinkShareRoute {
+            
+            let text = linkShareRoute.url
+            
+            // set up activity view controller
+            let textToShare = [text]
+            let activityViewController = UIActivityViewController(activityItems: textToShare, applicationActivities: nil)
+            activityViewController.popoverPresentationController?.sourceView = UIViewController.getCurrentVC()?.view // so that iPads won't crash
+            
+            UIViewController.getCurrentVC()?.present(activityViewController, animated: true)
+            
+            return
+        }
+        
         path.append(route)
     }
     

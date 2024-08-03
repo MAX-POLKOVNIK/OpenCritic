@@ -34,6 +34,24 @@ abstract class BaseContentViewModel<Content> : BaseViewModel<CommonViewModelStat
         }
     }
 
+    protected fun loading(baseLoadingState: BaseLoadingState = LoadingState) {
+        mutableState.update {
+            it.loading(baseLoadingState)
+        }
+    }
+
+    protected fun hideLoading() {
+        mutableState.update {
+            it.clearLoading()
+        }
+    }
+
+    protected fun error(baseErrorState: BaseErrorState) {
+        mutableState.update {
+            it.error(baseErrorState)
+        }
+    }
+
     protected fun setLoadingPopup(loadingPopup: BaseLoadingState) {
         mutableState.update { state ->
             state.setLoadingPopup(loadingPopup)

@@ -54,11 +54,13 @@ data class CommonViewModelState<Content>(
 
     fun error(
         fullScreenError: BaseErrorState,
-        title: TextSource? = null
+        title: TextSource? = null,
+        shouldNullifyLoading: Boolean = true,
     ): CommonViewModelState<Content> =
         copy(
             title = title,
-            fullScreenError = fullScreenError
+            fullScreenError = fullScreenError,
+            fullScreenLoading = fullScreenLoading.takeUnless { shouldNullifyLoading }
         )
 
     fun loading(
@@ -77,6 +79,9 @@ data class CommonViewModelState<Content>(
                 fullScreenLoading = fullScreenLoading
             )
         }
+
+    fun clearLoading(): CommonViewModelState<Content> =
+        copy(fullScreenLoading = null)
 
     fun setToast(text: TextSource): CommonViewModelState<Content> =
         copy(toast = Toast(text))

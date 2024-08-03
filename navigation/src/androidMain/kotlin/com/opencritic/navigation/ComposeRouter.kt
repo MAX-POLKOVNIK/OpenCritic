@@ -12,6 +12,20 @@ class ComposeRouter(
     private val context: Context,
 ) : Router {
     override fun navigateTo(route: Route) {
+        if (route is LinkShareRoute) {
+            val share = Intent.createChooser(
+                /* target = */ Intent().apply {
+                    action = Intent.ACTION_SEND
+                    setType("text/plain")
+                    putExtra(Intent.EXTRA_TEXT, route.url)
+                },
+                /* title = */ "Share URL"
+            )
+            context.startActivity(share)
+
+            return
+        }
+
         if (route is UrlRoute) {
             val intent = Intent(Intent.ACTION_VIEW, Uri.parse(route.url))
             context.startActivity(intent)

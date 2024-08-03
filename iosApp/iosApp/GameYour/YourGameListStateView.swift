@@ -20,32 +20,24 @@ struct YourGameListStateView: View {
     }
     
     var body: some View {
-        List {
+        ZStack {
+            List {
+                ForEach(state.items, id: \.self) { item in
+                    GameListItemView(item: item)
+                        .listRowInsets(.init(top: 5, leading: 20, bottom: 5, trailing: 16))
+                        .listRowSeparator(.hidden)
+                        .buttonStyle(BorderlessButtonStyle())
+                }
+            }
+            .listStyle(.plain)
+            
+            
             if (state.isLoginVisible) {
                 Button(state.loginText) {
                     state.onLoginClick()
                 }
-                .listStyle(.sidebar)
-            }
-            
-            Picker(state.filtersTitleText, selection: $selectedFilterItem) {
-                ForEach(state.filterItems, id: \.self) {
-                    Text($0.text)
-                }
-            }
-            .pickerStyle(.menu)
-            .onReceive(Just(selectedFilterItem)) { _ in
-                state.selectFilterItem(selectedFilterItem)
-            }
-            .listRowSeparator(.hidden)
-            
-            ForEach(state.items, id: \.self) { item in
-                YourGameListItemView(item: item)
-                    .listRowInsets(.init(top: 5, leading: 20, bottom: 5, trailing: 16))
-                    .listRowSeparator(.hidden)
             }
         }
-        .listStyle(.plain)
         .onAppear { state.refresh() }
     }
 }

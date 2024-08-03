@@ -1,6 +1,7 @@
 package com.opencritic.game.your
 
 import androidx.compose.foundation.layout.Arrangement
+import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
@@ -30,59 +31,27 @@ fun YourGameListState(
     state: YourGameListState,
     modifier: Modifier = Modifier,
 ) {
-    LazyColumn(
-        verticalArrangement = Arrangement.spacedBy(smallPadding),
-        contentPadding = PaddingValues(defaultPadding),
-        modifier = modifier
+    Box(
+        contentAlignment = Alignment.Center,
+        modifier = Modifier
             .fillMaxSize(),
     ) {
-        if (state.isLoginVisible) {
-            item {
-                Button(onClick = state.onLoginClick) {
-                    Text(text = state.loginText.text())
+        LazyColumn(
+            verticalArrangement = Arrangement.spacedBy(smallPadding),
+            contentPadding = PaddingValues(defaultPadding),
+            modifier = modifier
+                .fillMaxSize(),
+        ) {
+            state.items.forEach {
+                item {
+                    GameListListItem(item = it)
                 }
             }
         }
 
-        item {
-            Row(
-                verticalAlignment = Alignment.CenterVertically,
-            ) {
-                Text(text = state.filtersTitleText)
-
-                Spacer(modifier = Modifier.weight(1f))
-
-                Spinner(
-                    items = state.filterItems,
-                    selectedItem = state.selectedFilterItem,
-                    onItemSelected = {
-                        state.selectFilterItem(it)
-                    },
-                    selectedItemFactory = { modifier, item ->
-                        Row(
-                            horizontalArrangement = Arrangement.Start,
-                            modifier = modifier
-                                .padding(8.dp)
-                        ) {
-                            Text(
-                                text = item.text,
-                            )
-                            Icon(
-                                painter = Icons.arrowDown.asPainter(),
-                                contentDescription = "drop down arrow"
-                            )
-                        }
-                    },
-                    dropdownItemFactory = { item, _ ->
-                        Text(text = item.text)
-                    }
-                )
-            }
-        }
-
-        state.items.forEach {
-            item {
-                YourGameListItem(item = it)
+        if (state.isLoginVisible) {
+            Button(onClick = state.onLoginClick) {
+                Text(text = state.loginText.text())
             }
         }
     }

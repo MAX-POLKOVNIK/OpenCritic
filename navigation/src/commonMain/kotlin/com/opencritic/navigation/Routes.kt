@@ -84,6 +84,8 @@ data class PeriodGameBrowserRoute(val period: PeriodGameBrowserDestination.Perio
 
 data class UrlRoute(val url: String) : Route(url)
 
+data class LinkShareRoute(val url: String) : Route(url)
+
 data object MainDestination : Destination("main")
 data object SearchDestination : Destination("search")
 data object GameBrowserDestination : Destination("browser")

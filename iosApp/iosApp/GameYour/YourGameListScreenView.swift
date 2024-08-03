@@ -14,7 +14,9 @@ struct YourGameListScreenView: View {
     
     var body: some View {
         FlowView(of: viewModel.state) { state in
-            YourGameListStateView(state: state)
+            CommonScreenView(state: state) { content in
+                YourGameListStateView(state: content)
+            }
         }
     }
 }

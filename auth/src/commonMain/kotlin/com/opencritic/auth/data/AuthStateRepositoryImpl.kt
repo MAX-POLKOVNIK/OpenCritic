@@ -11,7 +11,7 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.IO
 import kotlinx.coroutines.withContext
 
-class AuthStateRepositoryImpl(
+internal class AuthStateRepositoryImpl(
     private val userPreferencesDao: UserPreferencesDao,
     private val openCriticsApi: OpenCriticsApi,
     private val dispatcher: CoroutineDispatcher = Dispatchers.IO,

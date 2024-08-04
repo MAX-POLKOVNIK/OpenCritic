@@ -10,6 +10,7 @@ import com.opencritic.games.details.di.gameDetailsModule
 import com.opencritic.logs.Logger
 import com.opencritic.logs.logsModule
 import com.opencritic.main.di.mainModule
+import com.opencritic.news.di.newsModule
 import com.opencritic.search.di.searchModule
 import org.koin.core.KoinApplication
 import org.koin.core.component.KoinComponent
@@ -34,6 +35,7 @@ abstract class BaseApp : KoinComponent {
                 databaseModule,
                 yourGamesModule,
                 authModule,
+                newsModule,
             )
         }
 

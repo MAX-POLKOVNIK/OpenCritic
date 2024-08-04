@@ -1,5 +1,6 @@
 package com.opencritic.api
 
+import com.opencritic.api.dto.article.ArticlePreviewDto
 import com.opencritic.api.dto.author.AuthorDto
 import com.opencritic.api.dto.deal.DealItemDto
 import com.opencritic.api.dto.details.GameDetailsDto
@@ -80,4 +81,6 @@ interface OpenCriticsApi {
         action: VitalListGameActionDto,
         token: String,
     ): GameListDto
+
+    suspend fun getArticlePreviews(skip: Int): List<ArticlePreviewDto>
 }

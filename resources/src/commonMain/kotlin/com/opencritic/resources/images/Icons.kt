@@ -4,6 +4,7 @@ expect object Icons {
     val tabMain: IconResource
     val tabSearch: IconResource
     val tabBrowse: IconResource
+    val tabNews: IconResource
     val tabCalendar: IconResource
     val tabYourList: IconResource
 

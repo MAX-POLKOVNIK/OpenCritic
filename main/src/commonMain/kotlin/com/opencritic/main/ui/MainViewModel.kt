@@ -15,6 +15,11 @@ class MainViewModel() : BaseViewModel<MainState>() {
                     imageResource = Icons.tabMain,
                 ),
                 Tab(
+                    id = TabType.News,
+                    name = StringRes.str_tab_news.asTextSource(),
+                    imageResource = Icons.tabNews,
+                ),
+                Tab(
                     id = TabType.Search,
                     name = StringRes.str_tab_search.asTextSource(),
                     imageResource = Icons.tabSearch,

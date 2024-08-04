@@ -43,8 +43,10 @@ import com.opencritic.main.ui.MainState
 import com.opencritic.main.ui.TabType
 import com.opencritic.navigation.GameBrowserDestination
 import com.opencritic.navigation.MainDestination
+import com.opencritic.navigation.NewsDestination
 import com.opencritic.navigation.SearchDestination
 import com.opencritic.navigation.YourListDestination
+import com.opencritic.news.ui.ArticleListScreen
 import com.opencritic.resources.images.asPainter
 import com.opencritic.resources.text.text
 import com.opencritic.search.SearchScreen
@@ -99,6 +101,7 @@ fun MainState(state: MainState, navController: NavHostController) {
                                     TabType.Search -> SearchDestination
                                     TabType.Browse -> GameBrowserDestination
                                     TabType.YourLists -> YourListDestination
+                                    TabType.News -> NewsDestination
                                 }.path
 
                                 navController.navigate(s) {
@@ -128,6 +131,7 @@ fun MainState(state: MainState, navController: NavHostController) {
                 exitTransition = { ExitTransition.None },
                 modifier = Modifier.padding(innerPadding)
             ) {
+                composable(NewsDestination.path) { ArticleListScreen(navController) }
                 composable(MainDestination.path) { DashboardScreen(navController) }
                 composable(SearchDestination.path) { SearchScreen(navController) }
                 composable(GameBrowserDestination.path) { GameBrowserScreen(navController) }

@@ -20,18 +20,16 @@ kotlin {
         commonMain.dependencies {
             implementation(projects.mvvm)
             implementation(projects.resources)
+            implementation(projects.games)
             implementation(projects.api)
             implementation(projects.logs)
             implementation(projects.navigation)
-            implementation(projects.gameDetails)
-            implementation(projects.search)
-            implementation(projects.gameBrowser)
             implementation(projects.gameYour)
             implementation(projects.auth)
-            implementation(projects.news)
-            implementation(projects.dashboard)
+            implementation(projects.gameDetails)
 
             implementation(libs.kotlinx.coroutines.core)
+            implementation(libs.kotlinx.datetime)
             implementation(libs.koin.core)
             implementation(libs.androidx.lifecycle.viewmodel)
             implementation(libs.moko.resources)
@@ -43,7 +41,7 @@ kotlin {
 }
 
 android {
-    namespace = "com.opencritic.main"
+    namespace = "com.opencritic.news"
     compileSdk = 34
     defaultConfig {
         minSdk = 28
@@ -62,6 +60,7 @@ android {
 
 dependencies {
     implementation(libs.koin.compose)
+    implementation(libs.coil)
 
     implementation(libs.androidx.lifecycle.runtime.ktx)
     implementation(libs.androidx.lifecycle.viewmodel.ktx)

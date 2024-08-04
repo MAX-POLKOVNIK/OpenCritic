@@ -103,6 +103,7 @@ data object MainDestination : Destination("main")
 data object SearchDestination : Destination("search")
 data object GameBrowserDestination : Destination("browser")
 data object YourListDestination : Destination("your_lists")
+data object NewsDestination : Destination("news")
 
 data object AuthDestination : Destination("auth")
 data object AuthRoute : Routed(

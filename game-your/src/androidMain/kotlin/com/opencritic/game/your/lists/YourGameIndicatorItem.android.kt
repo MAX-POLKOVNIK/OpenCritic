@@ -1,4 +1,4 @@
-package com.opencritic.game.your
+package com.opencritic.game.your.lists
 
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
@@ -24,8 +24,8 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.ColorFilter
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
-import com.opencritic.game.your.ui.YourGameIndicatorItem
-import com.opencritic.game.your.ui.YourGameIndicatorItem_PreviewData
+import com.opencritic.game.your.ui.lists.YourGameIndicatorItem
+import com.opencritic.game.your.ui.lists.YourGameIndicatorItem_PreviewData
 import com.opencritic.resources.images.asPainter
 import com.opencritic.resources.defaultPadding
 import com.opencritic.resources.text.text

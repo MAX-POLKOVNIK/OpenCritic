@@ -30,7 +30,7 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import coil.compose.SubcomposeAsyncImage
-import com.opencritic.game.your.YourGameIndicatorItem
+import com.opencritic.game.your.lists.YourGameIndicatorItem
 import com.opencritic.games.details.ui.GameDetailsContent
 import com.opencritic.games.details.ui.GameDetailsContent_PreviewData
 import com.opencritic.games.details.ui.ScreenshotItem

@@ -46,6 +46,16 @@ abstract class BaseContentViewModel<Content> : BaseViewModel<CommonViewModelStat
         }
     }
 
+    protected fun error(ex: Throwable) {
+        mutableState.update {
+            it.error(
+                ErrorState(
+                    ex.toString().asTextSource()
+                )
+            )
+        }
+    }
+
     protected fun error(baseErrorState: BaseErrorState) {
         mutableState.update {
             it.error(baseErrorState)

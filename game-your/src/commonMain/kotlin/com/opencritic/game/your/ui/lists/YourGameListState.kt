@@ -1,4 +1,4 @@
-package com.opencritic.game.your.ui
+package com.opencritic.game.your.ui.lists
 
 import com.opencritic.mvvm.ViewModelState
 import com.opencritic.resources.text.TextSource

@@ -6,15 +6,13 @@ import com.opencritic.game.your.domain.GameListId
 import com.opencritic.game.your.domain.UpdateGameListInteractor
 import com.opencritic.game.your.domain.YourGame
 import com.opencritic.game.your.domain.YourGameAction
-import com.opencritic.game.your.ui.YourGameIndicatorItem
+import com.opencritic.game.your.ui.lists.YourGameIndicatorItem
 import com.opencritic.games.GameRank
 import com.opencritic.games.Tier
 import com.opencritic.games.Trailer
 import com.opencritic.games.details.domain.interactor.GetGameDetailsInteractor
-import com.opencritic.games.roundScore
 import com.opencritic.logs.Logger
 import com.opencritic.mvvm.BaseContentViewModel
-import com.opencritic.mvvm.BaseViewModel
 import com.opencritic.mvvm.CommonViewModelState
 import com.opencritic.navigation.AuthRoute
 import com.opencritic.navigation.GameMediaRoute

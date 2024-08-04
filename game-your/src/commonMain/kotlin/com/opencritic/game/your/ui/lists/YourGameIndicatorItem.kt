@@ -1,4 +1,4 @@
-package com.opencritic.game.your.ui
+package com.opencritic.game.your.ui.lists
 
 import com.opencritic.game.your.domain.YourGame
 import com.opencritic.game.your.domain.YourGameAction

@@ -25,6 +25,7 @@ kotlin {
             implementation(projects.database)
             implementation(projects.api)
             implementation(projects.auth)
+            implementation(projects.games)
 
             implementation(libs.kotlinx.coroutines.core)
             implementation(libs.koin.core)

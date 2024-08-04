@@ -13,6 +13,19 @@ data class GameDetailsRoute(val gameId: Long, val gameName: String) : Routed(
     )
 )
 
+object GameListDestination : Destination("list/{listId}/{listName}") {
+    const val GAME_LIST_ID_KEY = "listId"
+    const val GAME_LIST_NAME_KEY = "listName"
+}
+
+data class GameListRoute(val listId: String, val listName: String) : Routed(
+    destination = GameListDestination,
+    args = mapOf(
+        GameListDestination.GAME_LIST_ID_KEY to listId,
+        GameListDestination.GAME_LIST_NAME_KEY to listName,
+    )
+)
+
 object GameMediaDestination : Destination("game/{gameId}/{gameName}/media") {
     const val GAME_ID_KEY = "gameId"
     const val GAME_NAME_KEY = "gameName"

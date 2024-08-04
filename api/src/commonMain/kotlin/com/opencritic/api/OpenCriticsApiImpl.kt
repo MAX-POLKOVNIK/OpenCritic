@@ -129,6 +129,9 @@ internal class OpenCriticsApiImpl(
     override suspend fun getLists(token: String): List<GameListDto> =
         client.get(baseUrl + "game-list", headers(token)).body()
 
+    override suspend fun getList(listId: String, token: String): GameListDto =
+        client.get(baseUrl + "game-list/$listId", headers(token)).body()
+
     override suspend fun postListAction(
         list: VitalListTypeDto,
         action: VitalListGameActionDto,

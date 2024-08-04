@@ -1,10 +1,10 @@
-package com.opencritic.game.your
+package com.opencritic.game.your.lists
 
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.navigation.NavController
-import com.opencritic.game.your.ui.YourGameListViewModel
+import com.opencritic.game.your.ui.lists.YourGameListViewModel
 import com.opencritic.mvvm.CommonScreen
 import com.opencritic.navigation.router
 import org.koin.androidx.compose.koinViewModel

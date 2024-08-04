@@ -1,7 +1,7 @@
 package com.opencritic.games.details.ui
 
-import com.opencritic.game.your.ui.YourGameIndicatorItem
-import com.opencritic.game.your.ui.YourGameIndicatorItem_PreviewData
+import com.opencritic.game.your.ui.lists.YourGameIndicatorItem
+import com.opencritic.game.your.ui.lists.YourGameIndicatorItem_PreviewData
 import com.opencritic.games.GameRank
 import com.opencritic.games.Tier
 import com.opencritic.resources.images.SharedImageResource

@@ -25,6 +25,7 @@ kotlin {
             implementation(projects.logs)
             implementation(projects.navigation)
             implementation(projects.gameYour)
+            implementation(projects.auth)
 
             implementation(libs.kotlinx.coroutines.core)
             implementation(libs.kotlinx.datetime)

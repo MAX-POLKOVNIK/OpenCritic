@@ -8,6 +8,9 @@ import com.opencritic.api.dto.game.BrowseGameDto
 import com.opencritic.api.dto.game.GameSortKey
 import com.opencritic.api.dto.game.GameTimeKey
 import com.opencritic.api.dto.list.GameListDto
+import com.opencritic.api.dto.list.ListGameActionDto
+import com.opencritic.api.dto.list.VitalListGameActionDto
+import com.opencritic.api.dto.list.VitalListTypeDto
 import com.opencritic.api.dto.outlet.OutletDto
 import com.opencritic.api.dto.platform.PlatformDto
 import com.opencritic.api.dto.popular.PopularItemDto
@@ -22,8 +25,12 @@ import io.ktor.client.call.body
 import io.ktor.client.request.HttpRequestBuilder
 import io.ktor.client.request.get
 import io.ktor.client.request.headers
+import io.ktor.client.request.post
+import io.ktor.client.request.setBody
 import io.ktor.client.statement.HttpResponse
+import io.ktor.http.ContentType
 import io.ktor.http.HttpHeaders
+import io.ktor.http.contentType
 
 
 private const val baseUrl = "https://api.opencritic.com/api/"
@@ -58,8 +65,8 @@ internal class OpenCriticsApiImpl(
     override suspend fun getPlaystationFeatured(): FeaturedGameListDto =
         client.get(baseUrl + "editor-sequence/playstation-featured", headers()).body()
 
-    override suspend fun getGame(gameId: Long): GameDetailsDto =
-        client.get(baseUrl + "game/${gameId}", headers()).body()
+    override suspend fun getGame(gameId: Long, token: String?): GameDetailsDto =
+        client.get(baseUrl + "game/${gameId}", headers(token)).body()
 
     override suspend fun getGameMedia(gameId: Long): GameDetailsDto =
         client.get(baseUrl + "game/${gameId}/?fullmedia=true", headers()).body()
@@ -121,6 +128,37 @@ internal class OpenCriticsApiImpl(
 
     override suspend fun getLists(token: String): List<GameListDto> =
         client.get(baseUrl + "game-list", headers(token)).body()
+
+    override suspend fun postListAction(
+        list: VitalListTypeDto,
+        action: VitalListGameActionDto,
+        token: String,
+    ): GameListDto =
+        client.post(
+            urlString = baseUrl + "game-list/common/${list.value}",
+            block = headersAndBody(token, action),
+        ).body()
+
+    private inline fun <reified T> headersAndBody(
+        token: String? = null,
+        body: T
+    ): HttpRequestBuilder.() -> Unit = {
+        headers {
+            append(HttpHeaders.CacheControl, "no-cache")
+            append(HttpHeaders.Host, "api.opencritic.com")
+            append(HttpHeaders.Origin, "https://opencritic.com")
+            append(HttpHeaders.Referrer, "https://opencritic.com/")
+            append(HttpHeaders.Accept, "application/json")
+            append(HttpHeaders.UserAgent, "Mozilla/5.0 (Macintosh; Intel Mac OS X 10.15; rv:124.0) Gecko/20100101 Firefox/124.0")
+            append("Sec-Fetch-Site", "same-site")
+            append("Sec-Fetch-Dest", "empty")
+            append("Sec-Fetch-Mode", "cors")
+            token?.let { append("x-access-token", it) }
+        }
+
+        contentType(ContentType.Application.Json)
+        setBody(body)
+    }
 
     private fun headers(token: String? = null): HttpRequestBuilder.() -> Unit = {
         headers {

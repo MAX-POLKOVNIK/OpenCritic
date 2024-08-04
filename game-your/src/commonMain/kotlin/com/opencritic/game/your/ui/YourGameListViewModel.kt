@@ -2,8 +2,6 @@ package com.opencritic.game.your.ui
 
 import com.opencritic.auth.domain.GetAuthStateInteractor
 import com.opencritic.game.your.domain.GetListsInteractor
-import com.opencritic.game.your.domain.GetYourGameListInteractor
-import com.opencritic.game.your.domain.SaveYourGameInteractor
 import com.opencritic.game.your.domain.YourGame
 import com.opencritic.game.your.domain.YourGameAction
 import com.opencritic.logs.Logger

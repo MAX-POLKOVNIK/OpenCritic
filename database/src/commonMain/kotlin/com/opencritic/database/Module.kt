@@ -6,6 +6,5 @@ val databaseModule = module {
     registerBuilder(this)
 
     single<AppDatabase> { AppDatabase(get()) }
-    single<YourGameDao> { get<AppDatabase>().yourGameDao() }
     single<UserPreferencesDao> { get<AppDatabase>().userPreferencesDao() }
 }

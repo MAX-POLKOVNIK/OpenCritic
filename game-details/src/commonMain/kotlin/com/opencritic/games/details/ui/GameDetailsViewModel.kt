@@ -1,6 +1,9 @@
 package com.opencritic.games.details.ui
 
-import com.opencritic.game.your.domain.SaveYourGameInteractor
+import com.opencritic.auth.domain.GetAuthStateInteractor
+import com.opencritic.game.your.domain.GameListAction
+import com.opencritic.game.your.domain.GameListId
+import com.opencritic.game.your.domain.UpdateGameListInteractor
 import com.opencritic.game.your.domain.YourGame
 import com.opencritic.game.your.domain.YourGameAction
 import com.opencritic.game.your.ui.YourGameIndicatorItem
@@ -13,6 +16,7 @@ import com.opencritic.logs.Logger
 import com.opencritic.mvvm.BaseContentViewModel
 import com.opencritic.mvvm.BaseViewModel
 import com.opencritic.mvvm.CommonViewModelState
+import com.opencritic.navigation.AuthRoute
 import com.opencritic.navigation.GameMediaRoute
 import com.opencritic.navigation.GameReviewsRoute
 import com.opencritic.navigation.UrlRoute
@@ -30,7 +34,8 @@ class GameDetailsViewModel(
     private val gameId: Long,
     private val gameName: String,
     private val getGameDetailsInteractor: GetGameDetailsInteractor,
-    private val saveYourGameInteractor: SaveYourGameInteractor,
+    private val updateGameListInteractor: UpdateGameListInteractor,
+    private val getAuthStateInteractor: GetAuthStateInteractor,
     private val logger: Logger,
 ) : BaseContentViewModel<GameDetailsContent>() {
     override fun initialState(): CommonViewModelState<GameDetailsContent> =
@@ -148,27 +153,46 @@ class GameDetailsViewModel(
         }
 
     private fun onGameAction(action: YourGameAction) {
-        val game = yourGame ?: return
-
-        val new = game.actioned(action)
-        val indicator = createYourGameIndicatorItem(new)
-
-        yourGame = new
-
-        mutableState.update {
-            it.updateContent {
-                copy(
-                    yourGameIndicatorItem = indicator
-                )
-            }
-        }
-
-        showToast("Game has action $action")
-
         scope.launch {
-            saveYourGameInteractor(new)
-                .onSuccess { logger.log("Updated: $new") }
-                .onFailure { logger.log("FAILED UPDATE: $it $new") }
+            val auth = getAuthStateInteractor()
+
+            if (auth.isFailure) {
+                return@launch
+            }
+
+            if (!auth.getOrThrow().isLoggedIn) {
+                requireRouter().navigateTo(AuthRoute)
+                return@launch
+            }
+
+            val game = yourGame ?: return@launch
+
+            val new = game.actioned(action)
+            val indicator = createYourGameIndicatorItem(new)
+
+            yourGame = new
+
+            mutableState.update {
+                it.updateContent {
+                    copy(
+                        yourGameIndicatorItem = indicator
+                    )
+                }
+            }
+
+            val (list, act) = when (action) {
+                YourGameAction.Want -> GameListId.Want to if (new.isWanted) GameListAction.Add else GameListAction.Remove
+                YourGameAction.Played -> GameListId.Played to if (new.isPlayed) GameListAction.Add else GameListAction.Remove
+                YourGameAction.Favorite -> GameListId.Favorite to if (new.isFavorite) GameListAction.Add else GameListAction.Remove
+            }
+
+            updateGameListInteractor(
+                gameListId = list,
+                action = act,
+                gameId = gameId,
+            ).onFailure {
+                logger.log("Error add something: $it")
+            }
         }
     }
 

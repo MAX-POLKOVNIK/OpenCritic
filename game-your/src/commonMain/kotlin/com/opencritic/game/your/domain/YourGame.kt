@@ -2,7 +2,6 @@ package com.opencritic.game.your.domain
 
 data class YourGame(
     val id: Long,
-    val name: String,
     val isWanted: Boolean,
     val isPlayed: Boolean,
     val isFavorite: Boolean,

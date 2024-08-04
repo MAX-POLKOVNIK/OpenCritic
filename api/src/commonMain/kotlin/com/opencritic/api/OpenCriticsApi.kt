@@ -8,6 +8,9 @@ import com.opencritic.api.dto.game.GameSortKey
 import com.opencritic.api.dto.game.GameTimeKey
 import com.opencritic.api.dto.game.BrowseGameDto
 import com.opencritic.api.dto.list.GameListDto
+import com.opencritic.api.dto.list.ListGameActionDto
+import com.opencritic.api.dto.list.VitalListGameActionDto
+import com.opencritic.api.dto.list.VitalListTypeDto
 import com.opencritic.api.dto.outlet.OutletDto
 import com.opencritic.api.dto.platform.PlatformDto
 import com.opencritic.api.dto.popular.PopularItemDto
@@ -37,7 +40,7 @@ interface OpenCriticsApi {
 
     suspend fun getPlaystationFeatured(): FeaturedGameListDto
 
-    suspend fun getGame(gameId: Long): GameDetailsDto
+    suspend fun getGame(gameId: Long, token: String?): GameDetailsDto
 
     suspend fun getGameMedia(gameId: Long): GameDetailsDto
 
@@ -69,4 +72,10 @@ interface OpenCriticsApi {
     suspend fun getProfile(token: String): ProfileDto
 
     suspend fun getLists(token: String): List<GameListDto>
+
+    suspend fun postListAction(
+        list: VitalListTypeDto,
+        action: VitalListGameActionDto,
+        token: String,
+    ): GameListDto
 }

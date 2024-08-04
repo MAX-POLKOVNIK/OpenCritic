@@ -1,20 +1,30 @@
 package com.opencritic.games.details.domain.interactor
 
-import com.opencritic.game.your.domain.GetYourGameInteractor
+import com.opencritic.auth.domain.GetAuthStateInteractor
+import com.opencritic.game.your.domain.GameListId
+import com.opencritic.game.your.domain.YourGame
+import com.opencritic.game.your.domain.YourGameRepository
 import com.opencritic.games.details.domain.GameDetails
 import com.opencritic.games.details.domain.GameDetailsRepository
 
 class GetGameDetailsInteractor(
     private val repository: GameDetailsRepository,
-    private val getYourGameInteractor: GetYourGameInteractor,
+    private val yourGameRepository: YourGameRepository,
+    private val getAuthStateInteractor: GetAuthStateInteractor,
 ) {
     suspend operator fun invoke(gameId: Long): Result<GameDetails> =
         runCatching {
-            val game = repository.getGame(gameId)
+            val token = getAuthStateInteractor().getOrNull()?.authToken
+            val game = repository.getGame(gameId, token)
             val reviews = repository.getGameReviewsLanding(gameId)
+            val lists = yourGameRepository.getVitalLists()
 
-            val yourGame = getYourGameInteractor(gameId, game.name)
-                .getOrThrow()
+            val yourGame = YourGame(
+                id = gameId,
+                isWanted = lists[GameListId.Want]?.contains(gameId) ?: false,
+                isFavorite = lists[GameListId.Favorite]?.contains(gameId) ?: false,
+                isPlayed = lists[GameListId.Played]?.contains(gameId) ?: false
+            )
 
             GameDetails(
                 posterUrl = game.squareImageUrl,

@@ -6,9 +6,8 @@ import androidx.sqlite.driver.bundled.BundledSQLiteDriver
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.IO
 
-@Database(entities = [YourGameEntity::class, UserPreferencesEntity::class], version = 2)
+@Database(entities = [UserPreferencesEntity::class], version = 3)
 abstract class AppDatabase : RoomDatabase() {
-    abstract fun yourGameDao(): YourGameDao
     abstract fun userPreferencesDao(): UserPreferencesDao
 
     companion object {

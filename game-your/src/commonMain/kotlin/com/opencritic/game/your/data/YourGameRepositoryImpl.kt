@@ -3,10 +3,14 @@ package com.opencritic.game.your.data
 import com.opencritic.api.OpenCriticsApi
 import com.opencritic.api.dto.image.prefixedImageUrl
 import com.opencritic.api.dto.list.GameListDto
+import com.opencritic.api.dto.list.ListGameActionDto
+import com.opencritic.api.dto.list.VitalListGameActionDto
+import com.opencritic.api.dto.list.VitalListTypeDto
 import com.opencritic.auth.domain.GetAuthStateInteractor
-import com.opencritic.database.YourGameDao
-import com.opencritic.database.YourGameEntity
+import com.opencritic.auth.domain.NoTokenException
 import com.opencritic.game.your.domain.GameList
+import com.opencritic.game.your.domain.GameListAction
+import com.opencritic.game.your.domain.GameListId
 import com.opencritic.game.your.domain.YourGame
 import com.opencritic.game.your.domain.YourGameRepository
 import kotlinx.coroutines.CoroutineDispatcher
@@ -15,67 +19,68 @@ import kotlinx.coroutines.IO
 import kotlinx.coroutines.withContext
 
 internal class YourGameRepositoryImpl(
-    private val yourGameDao: YourGameDao,
     private val openCriticApi: OpenCriticsApi,
     private val getAuthStateInteractor: GetAuthStateInteractor,
     private val defaultDispatcher: CoroutineDispatcher = Dispatchers.IO,
 ) : YourGameRepository {
-    override suspend fun get(gameId: Long, gameName: String): YourGame =
-        withContext(defaultDispatcher) {
-            yourGameDao.get(gameId)
-                ?.let { YourGame(it) }
-                ?: YourGame(
-                    id = gameId,
-                    name = gameName,
-                    isFavorite = false,
-                    isPlayed = false,
-                    isWanted = false,
-                )
-        }
-
-    override suspend fun update(game: YourGame) =
-        withContext(defaultDispatcher) {
-            yourGameDao.insert(
-                YourGameEntity(game)
-            )
-        }
-
-    override suspend fun remoteNotInterested() =
-        withContext(defaultDispatcher) {
-            yourGameDao.removeNotInterested()
-        }
-
-    override suspend fun getAll(): List<YourGame> =
-        withContext(defaultDispatcher) {
-            yourGameDao.getAll()
-                .map { YourGame(it) }
-        }
-
-    override suspend fun getWanted(): List<YourGame> =
-        withContext(defaultDispatcher) {
-            yourGameDao.getWanted()
-                .map { YourGame(it) }
-        }
-
-    override suspend fun getPlayed(): List<YourGame> =
-        withContext(defaultDispatcher) {
-            yourGameDao.getPlayed()
-                .map { YourGame(it) }
-        }
-
-    override suspend fun getFavorites(): List<YourGame> =
-        withContext(defaultDispatcher) {
-            yourGameDao.getFavorites()
-                .map { YourGame(it) }
-        }
-
     override suspend fun getLists(): List<GameList> =
         withContext(defaultDispatcher) {
-            val token = getAuthStateInteractor().getOrThrow().authToken ?: throw Exception("No token")
-
-            openCriticApi.getLists(token)
+            openCriticApi.getLists(token())
                 .map { GameList(it) }
         }
+
+    override suspend fun updateGameList(
+        gameListId: GameListId,
+        action: GameListAction,
+        gameId: Long,
+    ) {
+        withContext(defaultDispatcher) {
+            val listDto = when (gameListId) {
+                is GameListId.Custon -> throw Exception("Not supported yet")
+                GameListId.Favorite -> VitalListTypeDto.Favorite
+                GameListId.Played -> VitalListTypeDto.Played
+                GameListId.Want -> VitalListTypeDto.Want
+            }
+
+            val actionDto = VitalListGameActionDto(
+                action = when (action) {
+                    GameListAction.Add -> ListGameActionDto.Add
+                    GameListAction.Remove -> ListGameActionDto.Remove
+                },
+                gameId = gameId,
+            )
+
+            openCriticApi.postListAction(
+                list = listDto,
+                action = actionDto,
+                token = token()
+            )
+        }
+    }
+
+    override suspend fun getVitalLists(): Map<GameListId, List<Long>> =
+        withContext(defaultDispatcher) {
+            val token = getAuthStateInteractor().getOrNull()?.authToken
+
+            if (token.isNullOrBlank()) {
+                mapOf(
+                    GameListId.Want to emptyList(),
+                    GameListId.Played to emptyList(),
+                    GameListId.Favorite to emptyList(),
+                )
+            } else {
+                val profile = openCriticApi.getProfile(token)
+
+                mapOf(
+                    GameListId.Want to profile.vitalLists.wantList.gamesEnhanced.map { it.id },
+                    GameListId.Played to profile.vitalLists.playedList.gamesEnhanced.map { it.id },
+                    GameListId.Favorite to profile.vitalLists.favoriteList.gamesEnhanced.map { it.id },
+                )
+            }
+        }
+
+    private suspend fun token(): String =
+        getAuthStateInteractor().getOrThrow().authToken ?: throw NoTokenException()
 
     private fun GameList(dto: GameListDto): GameList =
         GameList(
@@ -84,24 +89,5 @@ internal class YourGameRepositoryImpl(
             name = dto.label,
             gamesCount = dto.numGames,
             shareLink = "https://opencritic.com/list/${dto.id}"
-        )
-
-    private fun YourGame(entity: YourGameEntity): YourGame =
-        YourGame(
-            id = entity.id,
-            name = entity.name,
-            isWanted = entity.isWanted,
-            isPlayed = entity.isPlayed,
-            isFavorite = entity.isFavorite
-        )
-
-    private fun YourGameEntity(model: YourGame): YourGameEntity =
-        YourGameEntity(
-            id = model.id,
-            name = model.name,
-            isWanted = model.isWanted,
-            isPlayed = model.isPlayed,
-            isFavorite = model.isFavorite,
-            isInterested = model.isInterested,
         )
 }

@@ -11,6 +11,6 @@ data class GameListDto(
     val label: String,
     val isVital: Boolean,
     val vitalIdentifier: String? = null,
-    val numGames: Int,
-    val gamesPopulated: List<PopularItemDto>,
+    val numGames: Int = 0,
+    val gamesPopulated: List<PopularItemDto> = emptyList(),
 )

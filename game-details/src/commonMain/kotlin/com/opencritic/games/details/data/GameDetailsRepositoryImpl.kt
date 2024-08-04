@@ -26,9 +26,9 @@ internal class GameDetailsRepositoryImpl(
     private val openCriticsApi: OpenCriticsApi,
     private val defaultDispatcher: CoroutineDispatcher = Dispatchers.IO,
 ) : GameDetailsRepository {
-    override suspend fun getGame(gameId: Long): Game =
+    override suspend fun getGame(gameId: Long, token: String?): Game =
         withContext(defaultDispatcher) {
-            openCriticsApi.getGame(gameId).toGame()
+            openCriticsApi.getGame(gameId, token).toGame()
         }
 
     override suspend fun getGameMedia(gameId: Long): Game =

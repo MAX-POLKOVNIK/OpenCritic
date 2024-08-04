@@ -1,16 +1,14 @@
-package com.opencritic.game.your.ui
+package com.opencritic.game.your.ui.lists
 
 import com.opencritic.auth.domain.GetAuthStateInteractor
 import com.opencritic.game.your.domain.GetListsInteractor
-import com.opencritic.game.your.domain.YourGame
-import com.opencritic.game.your.domain.YourGameAction
 import com.opencritic.logs.Logger
 import com.opencritic.mvvm.BaseContentViewModel
-import com.opencritic.mvvm.BaseViewModel
 import com.opencritic.mvvm.CommonViewModelState
 import com.opencritic.mvvm.ErrorState
 import com.opencritic.navigation.AuthRoute
 import com.opencritic.navigation.GameDetailsRoute
+import com.opencritic.navigation.GameListRoute
 import com.opencritic.navigation.LinkShareRoute
 import com.opencritic.resources.text.asTextSource
 import kotlinx.coroutines.launch
@@ -80,7 +78,9 @@ class YourGameListViewModel(
                                 items = gameLists.map {
                                     GameListListItem(
                                         gameList = it,
-                                        onClick = {},
+                                        onClick = {
+                                            navigateToList(it.id, it.name)
+                                        },
                                         onShareClick = { navigateToShare(it.shareLink) },
                                         onEditClick = {}
                                     )
@@ -94,6 +94,13 @@ class YourGameListViewModel(
                     }
             }
         }
+    }
+
+    private fun navigateToList(listId: String, listName: String) {
+        requireRouter()
+            .navigateTo(
+                GameListRoute(listId, listName)
+            )
     }
 
     private fun navigateToShare(url: String) {

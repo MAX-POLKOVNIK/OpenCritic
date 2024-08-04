@@ -73,6 +73,8 @@ interface OpenCriticsApi {
 
     suspend fun getLists(token: String): List<GameListDto>
 
+    suspend fun getList(listId: String, token: String): GameListDto
+
     suspend fun postListAction(
         list: VitalListTypeDto,
         action: VitalListGameActionDto,

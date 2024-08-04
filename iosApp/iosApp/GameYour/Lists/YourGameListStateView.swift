@@ -13,8 +13,6 @@ import Combine
 struct YourGameListStateView: View {
     let state: YourGameListState
     
-    @State private var selectedFilterItem = YourGameFilterItem(key: YourGameFilter.all, text: "All")
-    
     init(state: YourGameListState) {
         self.state = state
     }

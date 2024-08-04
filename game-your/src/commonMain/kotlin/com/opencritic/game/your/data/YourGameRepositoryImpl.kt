@@ -6,13 +6,16 @@ import com.opencritic.api.dto.list.GameListDto
 import com.opencritic.api.dto.list.ListGameActionDto
 import com.opencritic.api.dto.list.VitalListGameActionDto
 import com.opencritic.api.dto.list.VitalListTypeDto
+import com.opencritic.api.dto.popular.PopularItemDto
 import com.opencritic.auth.domain.GetAuthStateInteractor
 import com.opencritic.auth.domain.NoTokenException
+import com.opencritic.game.your.domain.GameInList
 import com.opencritic.game.your.domain.GameList
 import com.opencritic.game.your.domain.GameListAction
 import com.opencritic.game.your.domain.GameListId
 import com.opencritic.game.your.domain.YourGame
 import com.opencritic.game.your.domain.YourGameRepository
+import com.opencritic.games.GameRank
 import kotlinx.coroutines.CoroutineDispatcher
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.IO
@@ -27,6 +30,12 @@ internal class YourGameRepositoryImpl(
         withContext(defaultDispatcher) {
             openCriticApi.getLists(token())
                 .map { GameList(it) }
+        }
+
+    override suspend fun getList(listId: String): GameList =
+        withContext(defaultDispatcher) {
+            openCriticApi.getList(listId, token())
+                .let { GameList(it) }
         }
 
     override suspend fun updateGameList(
@@ -85,9 +94,17 @@ internal class YourGameRepositoryImpl(
     private fun GameList(dto: GameListDto): GameList =
         GameList(
             id = dto.id,
-            posters = dto.gamesPopulated.map { it.images.box?.sm?.prefixedImageUrl() ?: "" },
             name = dto.label,
             gamesCount = dto.numGames,
-            shareLink = "https://opencritic.com/list/${dto.id}"
+            shareLink = "https://opencritic.com/list/${dto.id}",
+            games = dto.gamesPopulated.map { GameInList(it) }
+        )
+
+    private fun GameInList(dto: PopularItemDto): GameInList =
+        GameInList(
+            id = dto.id,
+            name = dto.name,
+            posterUrl = dto.images.box?.sm?.prefixedImageUrl() ?: dto.images.banner?.sm?.prefixedImageUrl() ?: "",
+            rank = GameRank(dto.tier, dto.topCriticScore),
         )
 }

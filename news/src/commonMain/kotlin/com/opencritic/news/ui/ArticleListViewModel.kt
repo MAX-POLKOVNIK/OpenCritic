@@ -5,7 +5,9 @@ import com.opencritic.games.details.ui.LoadingItem
 import com.opencritic.logs.Logger
 import com.opencritic.mvvm.BaseContentViewModel
 import com.opencritic.mvvm.CommonViewModelState
+import com.opencritic.navigation.ArticleRoute
 import com.opencritic.navigation.OutletReviewsRoute
+import com.opencritic.news.domain.ArticlePreview
 import com.opencritic.news.domain.GetArticlesInteractor
 import kotlinx.coroutines.launch
 
@@ -41,7 +43,7 @@ class ArticleListViewModel(
                     val newListItems = articles.map {
                         ArticleListItem(
                             articlePreview = it,
-                            onClick = {},
+                            onClick = { navigateToArticle(it) },
                             onOutletClick = { navigateToOutlet(it.outlet) }
                         )
                     }
@@ -69,6 +71,16 @@ class ArticleListViewModel(
                     logger.log(it.toString())
                 }
         }
+    }
+
+    private fun navigateToArticle(articlePreview: ArticlePreview) {
+        requireRouter()
+            .navigateTo(
+                ArticleRoute(
+                    articleId = articlePreview.id,
+                    title = articlePreview.teaser,
+                )
+            )
     }
 
     private fun navigateToOutlet(outlet: Outlet?) {

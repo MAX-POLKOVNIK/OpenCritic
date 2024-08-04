@@ -7,7 +7,7 @@ import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
 
 @Serializable
-data class ArticlePreviewDto(
+data class ArticleDto(
     val id: Long,
     val imageV2: ArticleImagesDto,
     val title: String = "",
@@ -17,5 +17,8 @@ data class ArticlePreviewDto(
     val description: String,
     val publishedDate: Instant,
     @SerialName("Outlet") val outlet: OutletDto? = null,
-    val syndicatedAuthor: String? = null
+    val syndicatedAuthor: String? = null,
+    val html: String = "",
+    val originalUrl: String? = null,
+    val relatedGames: List<ArticleGame> = emptyList()
 )

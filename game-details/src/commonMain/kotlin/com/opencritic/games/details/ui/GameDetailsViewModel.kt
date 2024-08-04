@@ -138,7 +138,23 @@ class GameDetailsViewModel(
                                 onViewAllScreenshotsClick = { openMedia() },
                                 onViewAllTrailersClick = { openMedia() },
                                 onViewAllReviewsClick = { openReviews() },
+                                onRefresh = ::onRefresh
                             )
+                        )
+                    }
+                }
+        }
+    }
+
+    private fun onRefresh() {
+        scope.launch {
+            getGameDetailsInteractor(gameId)
+                .onSuccess { details ->
+                    yourGame = details.yourGame
+
+                    updateContentIfSet {
+                        copy(
+                            yourGameIndicatorItem = createYourGameIndicatorItem(details.yourGame)
                         )
                     }
                 }

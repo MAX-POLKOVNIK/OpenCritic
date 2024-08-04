@@ -97,7 +97,7 @@ struct GameDetailsContentView: View {
                     if state.isViewAllVisible {
                         HStack {
                             Spacer()
-                            Button(state.viewAllText) { state.viewAllReviewsClick() }
+                            Button(state.viewAllText) { state.onViewAllReviewsClick() }
                                 .padding()
                         }
                     }
@@ -128,7 +128,7 @@ struct GameDetailsContentView: View {
                     
                     HStack {
                         Spacer()
-                        Button(state.viewAllMedia) { state.viewAllMediaClick() }
+                        Button(state.viewAllMedia) { state.onViewAllMediaClick() }
                             .padding()
                     }
                 }
@@ -148,7 +148,7 @@ struct GameDetailsContentView: View {
                     
                     HStack {
                         Spacer()
-                        Button(state.viewAllTrailers) { state.viewAllTrailersClick() }
+                        Button(state.viewAllTrailers) { state.onViewAllTrailersClick() }
                             .padding()
                     }
                 }
@@ -168,7 +168,7 @@ struct GameDetailsContentView: View {
                     
                     HStack {
                         Spacer()
-                        Button(state.viewAllScreenshots) { state.viewAllScreenshotsClick() }
+                        Button(state.viewAllScreenshots) { state.onViewAllScreenshotsClick() }
                             .padding()
                     }
                 }
@@ -186,13 +186,14 @@ struct GameDetailsContentView: View {
                     if state.isViewAllVisible {
                         HStack {
                             Spacer()
-                            Button(state.viewAllText) { state.viewAllReviewsClick() }
+                            Button(state.viewAllText) { state.onViewAllReviewsClick() }
                                 .padding()
                         }
                     }
                 }
             }
         }
+        .onAppear { state.onRefresh() }
     }
 }
 

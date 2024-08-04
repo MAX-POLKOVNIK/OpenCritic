@@ -193,6 +193,14 @@ struct GameDetailsContentView: View {
                 }
             }
         }
+        .toolbar {
+            if state.isShareVisible {
+                Button(
+                    action: state.onShareClick,
+                    label: { Image(iconRes: state.shareIconResource) }
+                )
+            }
+        }
         .onAppear { state.onRefresh() }
     }
 }

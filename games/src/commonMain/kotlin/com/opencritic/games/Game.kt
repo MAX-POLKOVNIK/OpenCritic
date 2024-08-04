@@ -5,6 +5,7 @@ import kotlinx.datetime.Instant
 data class Game(
     val id: Long,
     val name: String,
+    val url: String,
     val releaseDate: Instant,
     val rank: GameRank?,
     val recommendPercent: Float?,

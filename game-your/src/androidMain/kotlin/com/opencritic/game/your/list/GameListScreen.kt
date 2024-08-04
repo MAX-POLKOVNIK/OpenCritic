@@ -15,7 +15,6 @@ import androidx.compose.runtime.getValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.navigation.NavController
-import com.opencritic.game.your.domain.GameList
 import com.opencritic.game.your.ui.list.GameListViewModel
 import com.opencritic.mvvm.CommonScreen
 import com.opencritic.navigation.router
@@ -60,6 +59,14 @@ fun GameListScreen(
                         )
                     }
                 },
+                actions = {
+                    val content = state.content
+                    if (content != null && content.isShareVisible) {
+                        IconButton(onClick = { state.content?.onShareClick?.invoke() }) {
+                            Icon(content.shareIconResource.asPainter(), contentDescription = null)
+                        }
+                    }
+                }
             )
         }
     ) { paddings ->

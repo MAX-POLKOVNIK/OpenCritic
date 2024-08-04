@@ -28,11 +28,6 @@ class YourGameListViewModel(
         loadGames()
     }
 
-    private fun onLoginClick() {
-        requireRouter()
-            .navigateTo(AuthRoute)
-    }
-
     private fun loadGames() {
         logger.log("LOAD GAMES")
 
@@ -109,11 +104,5 @@ class YourGameListViewModel(
 
     private fun navigateToAuth() {
         requireRouter().navigateTo(AuthRoute)
-    }
-
-    private fun navigateToGame(gameId: Long, gameName: String) {
-        requireRouter().navigateTo(
-            GameDetailsRoute(gameId, gameName)
-        )
     }
 }

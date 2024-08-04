@@ -22,6 +22,14 @@ struct GameListContentView: View {
             }
         }
         .listStyle(.plain)
+        .toolbar {
+            if content.isShareVisible {
+                Button(
+                    action: content.onShareClick,
+                    label: { Image(iconRes: content.shareIconResource) }
+                )
+            }
+        }
     }
 }
 

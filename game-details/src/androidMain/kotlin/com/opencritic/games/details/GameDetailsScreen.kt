@@ -59,6 +59,14 @@ fun GameDetailsScreen(
                         )
                     }
                 },
+                actions = {
+                    val content = state.content
+                    if (content != null && content.isShareVisible) {
+                        IconButton(onClick = { state.content?.onShareClick?.invoke() }) {
+                            Icon(content.shareIconResource.asPainter(), contentDescription = null)
+                        }
+                    }
+                }
             )
         }
     ) { paddings ->

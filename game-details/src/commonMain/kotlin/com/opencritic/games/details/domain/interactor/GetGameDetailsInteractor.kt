@@ -39,6 +39,7 @@ class GetGameDetailsInteractor(
                 reviewCount = game.reviewsCount,
                 trailers = game.trailers,
                 screenshotUrls = game.screenshotUrls,
+                url = game.url,
             )
         }
 }

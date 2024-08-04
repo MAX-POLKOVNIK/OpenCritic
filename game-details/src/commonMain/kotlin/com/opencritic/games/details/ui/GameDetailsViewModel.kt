@@ -17,7 +17,9 @@ import com.opencritic.mvvm.CommonViewModelState
 import com.opencritic.navigation.AuthRoute
 import com.opencritic.navigation.GameMediaRoute
 import com.opencritic.navigation.GameReviewsRoute
+import com.opencritic.navigation.LinkShareRoute
 import com.opencritic.navigation.UrlRoute
+import com.opencritic.resources.images.Icons
 import com.opencritic.resources.text.DateTextSource
 import com.opencritic.resources.images.SharedImages
 import com.opencritic.resources.text.StringRes
@@ -47,8 +49,8 @@ class GameDetailsViewModel(
         scope.launch {
             getGameDetailsInteractor(gameId)
                 .onFailure {
-                    mutableState.update {
-                        it.error(
+                    mutableState.update { state ->
+                        state.error(
                             title = gameName.asTextSource(),
                             errorDescription = it.toString()
                         )
@@ -58,8 +60,8 @@ class GameDetailsViewModel(
                 .onSuccess { details ->
                     yourGame = details.yourGame
 
-                    mutableState.update {
-                        it.content(
+                    mutableState.update { state ->
+                        state.content(
                             title = gameName.asTextSource(),
                             content = GameDetailsContent(
                                 isImageVisible = details.posterUrl.isNotBlank(),
@@ -138,7 +140,10 @@ class GameDetailsViewModel(
                                 onViewAllScreenshotsClick = { openMedia() },
                                 onViewAllTrailersClick = { openMedia() },
                                 onViewAllReviewsClick = { openReviews() },
-                                onRefresh = ::onRefresh
+                                onRefresh = ::onRefresh,
+                                isShareVisible = true,
+                                shareIconResource = Icons.share,
+                                onShareClick = { shareGameUrl(details.url) }
                             )
                         )
                     }
@@ -208,6 +213,13 @@ class GameDetailsViewModel(
                 logger.log("Error add something: $it")
             }
         }
+    }
+
+    private fun shareGameUrl(url: String) {
+        requireRouter()
+            .navigateTo(
+                LinkShareRoute(url)
+            )
     }
 
     private fun openMedia() {

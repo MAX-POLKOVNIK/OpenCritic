@@ -6,6 +6,8 @@ import com.opencritic.game.your.domain.GetGameListInteractor
 import com.opencritic.mvvm.BaseContentViewModel
 import com.opencritic.mvvm.CommonViewModelState
 import com.opencritic.navigation.GameDetailsRoute
+import com.opencritic.navigation.LinkShareRoute
+import com.opencritic.resources.images.Icons
 import com.opencritic.resources.text.asTextSource
 import kotlinx.coroutines.launch
 
@@ -38,11 +40,21 @@ class GameListViewModel(
                                 GameRowListItem(it) {
                                     onClick(it)
                                 }
-                            }
+                            },
+                            isShareVisible = true,
+                            shareIconResource = Icons.share,
+                            onShareClick = { shareListUrl(list.shareLink) }
                         )
                     }
                 }
         }
+    }
+
+    private fun shareListUrl(url: String) {
+        requireRouter()
+            .navigateTo(
+                LinkShareRoute(url)
+            )
     }
 
     private fun onClick(gameInList: GameInList) {

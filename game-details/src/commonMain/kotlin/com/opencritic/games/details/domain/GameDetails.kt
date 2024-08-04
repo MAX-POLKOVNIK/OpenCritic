@@ -9,6 +9,7 @@ import com.opencritic.games.Trailer
 import kotlinx.datetime.Instant
 
 data class GameDetails(
+    val url: String,
     val posterUrl: String,
     val yourGame: YourGame,
     val name: String,

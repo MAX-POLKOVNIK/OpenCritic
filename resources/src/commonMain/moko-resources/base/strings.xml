@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <resources>
+    <string name="str_ok">OK</string>
     <string name="str_loading">Loading…</string>
     <string name="str_all_platforms">All Platforms</string>
     <string name="str_author_is_not_claimed">Are you %s? If so, email critics@opencritic.com to claim this critic page.</string>
@@ -83,4 +84,8 @@
     <string name="who_is_mighty_man_color_description">The color scheme comes from video games, where "orange" loot is often best, with purple, blue, and green tiered loot following.</string>
     <string name="who_is_mighty_man_description">"Mighty Man" is OpenCritic\'s way of tagging games based on the scores awarded to them by top critics.</string>
     <string name="str_sign_in_title">Sign in</string>
+    <string name="str_auth_title">Authorization</string>
+    <string name="str_auth_token">Token</string>
+    <string name="str_auth_description">Get token from site. It is required to get your games from OpenCritics</string>
+    <string name="str_auth_button">Authorize</string>
 </resources>

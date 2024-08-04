@@ -6,6 +6,7 @@ import com.opencritic.logs.Logger
 import com.opencritic.mvvm.BaseContentViewModel
 import com.opencritic.mvvm.CommonViewModelState
 import com.opencritic.mvvm.LoadingState
+import com.opencritic.resources.text.StringRes
 import com.opencritic.resources.text.asTextSource
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.update
@@ -18,7 +19,7 @@ class AuthViewModel(
     private val logger: Logger,
 ) : BaseContentViewModel<AuthContent>() {
     override fun initialState(): CommonViewModelState<AuthContent> =
-        CommonViewModelState.loading("Auth".asTextSource())
+        CommonViewModelState.loading(StringRes.str_auth_title.asTextSource())
 
     override fun onStateInit() {
         super.onStateInit()
@@ -29,9 +30,9 @@ class AuthViewModel(
             setContent {
                 AuthContent(
                     token = token,
-                    tokenHint = "Token".asTextSource(),
-                    descriptionText = "Get token from site. It is required to get your games from OpenCritics".asTextSource(),
-                    authButtonText = "Auth".asTextSource(),
+                    tokenHint = StringRes.str_auth_token.asTextSource(),
+                    descriptionText = StringRes.str_auth_description.asTextSource(),
+                    authButtonText = StringRes.str_auth_button.asTextSource(),
                     onAuthButtonClicked = { onAuth() },
                     onTokenChanged = { onTokenChanged(it) }
                 )
@@ -47,8 +48,6 @@ class AuthViewModel(
 
             setLoadingPopup(LoadingState)
 
-            delay(5.seconds)
-
             authByTokenInteractor.invoke(token = requireContent().token)
                 .onSuccess {
                     clearLoadingPopup()
@@ -60,7 +59,7 @@ class AuthViewModel(
 
                     setErrorPopup(
                         message = error.toString().asTextSource(),
-                        actionText = "Ok".asTextSource(),
+                        actionText = StringRes.str_ok.asTextSource(),
                         action = { clearErrorPopup() }
                     )
 

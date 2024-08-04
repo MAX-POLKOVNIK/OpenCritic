@@ -1,5 +1,6 @@
 package com.opencritic.api
 
+import com.opencritic.api.dto.article.ArticlePreviewDto
 import com.opencritic.api.dto.author.AuthorDto
 import com.opencritic.api.dto.deal.DealItemDto
 import com.opencritic.api.dto.details.GameDetailsDto
@@ -141,6 +142,9 @@ internal class OpenCriticsApiImpl(
             urlString = baseUrl + "game-list/common/${list.value}",
             block = headersAndBody(token, action),
         ).body()
+
+    override suspend fun getArticlePreviews(skip: Int): List<ArticlePreviewDto> =
+        client.get(baseUrl + "article/list?skip=$skip", headers()).body()
 
     private inline fun <reified T> headersAndBody(
         token: String? = null,

@@ -28,6 +28,7 @@ kotlin {
         projects.database,
         projects.gameYour,
         projects.auth,
+        projects.news,
         libs.moko.resources,
         libs.moko.graphics,
     )

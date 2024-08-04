@@ -21,6 +21,7 @@ import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.material3.TextButton
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
@@ -170,7 +171,7 @@ fun GameDetailsContent(state: GameDetailsContent, modifier: Modifier = Modifier)
                         modifier = Modifier
                             .fillMaxWidth()
                     ) {
-                        TextButton(onClick = state::viewAllReviewsClick) {
+                        TextButton(onClick = state.onViewAllReviewsClick) {
                             Text(
                                 text = state.viewAllText.text(),
                             )
@@ -216,7 +217,7 @@ fun GameDetailsContent(state: GameDetailsContent, modifier: Modifier = Modifier)
                 modifier = Modifier
                     .fillMaxWidth()
             ) {
-                TextButton(onClick = state::viewAllMediaClick) {
+                TextButton(onClick = state.onViewAllMediaClick) {
                     Text(
                         text = state.viewAllMedia.text(),
                     )
@@ -251,7 +252,7 @@ fun GameDetailsContent(state: GameDetailsContent, modifier: Modifier = Modifier)
                 modifier = Modifier
                     .fillMaxWidth()
             ) {
-                TextButton(onClick = state::viewAllTrailersClick) {
+                TextButton(onClick = state.onViewAllTrailersClick) {
                     Text(
                         text = state.viewAllTrailers.text(),
                     )
@@ -286,7 +287,7 @@ fun GameDetailsContent(state: GameDetailsContent, modifier: Modifier = Modifier)
                 modifier = Modifier
                     .fillMaxWidth()
             ) {
-                TextButton(onClick = state::viewAllScreenshotsClick) {
+                TextButton(onClick = state.onViewAllScreenshotsClick) {
                     Text(
                         text = state.viewAllScreenshots.text(),
                     )
@@ -319,13 +320,17 @@ fun GameDetailsContent(state: GameDetailsContent, modifier: Modifier = Modifier)
                 modifier = Modifier
                     .fillMaxWidth()
             ) {
-                TextButton(onClick = state::viewAllReviewsClick) {
+                TextButton(onClick = state.onViewAllReviewsClick) {
                     Text(
                         text = state.viewAllText.text(),
                     )
                 }
             }
         }
+    }
+
+    LaunchedEffect(Unit) {
+        state.onRefresh()
     }
 }
 

@@ -32,27 +32,23 @@ data class GameDetailsContent(
     val mediaText: TextSource,
     val media: List<MediaItem>,
     val viewAllMedia: TextSource,
-    private val onViewAllMediaClick: (GameDetailsContent) -> Unit,
+    val onViewAllMediaClick: () -> Unit,
     val isTrailersVisible: Boolean,
     val trailersText: TextSource,
     val trailers: List<TrailerItem>,
     val viewAllTrailers: TextSource,
-    private val onViewAllTrailersClick: (GameDetailsContent) -> Unit,
+    val onViewAllTrailersClick: () -> Unit,
     val isScreenshotsVisible: Boolean,
     val screenshotsText: TextSource,
     val screenshots: List<ScreenshotItem>,
     val viewAllScreenshots: TextSource,
-    private val onViewAllScreenshotsClick: (GameDetailsContent) -> Unit,
+    val onViewAllScreenshotsClick: () -> Unit,
     val isReviewsVisible: Boolean,
     val reviewTitleText: TextSource,
     val reviews: List<CardReviewItem>,
-    private val onViewAllReviewsClick: () -> Unit,
-) {
-    fun viewAllMediaClick() = onViewAllMediaClick(this)
-    fun viewAllTrailersClick() = onViewAllTrailersClick(this)
-    fun viewAllScreenshotsClick() = onViewAllScreenshotsClick(this)
-    fun viewAllReviewsClick() = onViewAllReviewsClick()
-}
+    val onViewAllReviewsClick: () -> Unit,
+    val onRefresh: () -> Unit,
+)
 
 @Suppress("FunctionName")
 fun GameDetailsContent_PreviewData(): GameDetailsContent =
@@ -99,4 +95,5 @@ fun GameDetailsContent_PreviewData(): GameDetailsContent =
         reviewTitleText = "".asTextSource(),
         reviews = emptyList(),
         onViewAllReviewsClick = {},
+        onRefresh = {},
     )

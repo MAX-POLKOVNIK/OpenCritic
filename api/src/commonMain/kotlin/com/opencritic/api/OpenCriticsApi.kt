@@ -1,6 +1,6 @@
 package com.opencritic.api
 
-import com.opencritic.api.dto.article.ArticlePreviewDto
+import com.opencritic.api.dto.article.ArticleDto
 import com.opencritic.api.dto.author.AuthorDto
 import com.opencritic.api.dto.deal.DealItemDto
 import com.opencritic.api.dto.details.GameDetailsDto
@@ -9,7 +9,6 @@ import com.opencritic.api.dto.game.GameSortKey
 import com.opencritic.api.dto.game.GameTimeKey
 import com.opencritic.api.dto.game.BrowseGameDto
 import com.opencritic.api.dto.list.GameListDto
-import com.opencritic.api.dto.list.ListGameActionDto
 import com.opencritic.api.dto.list.VitalListGameActionDto
 import com.opencritic.api.dto.list.VitalListTypeDto
 import com.opencritic.api.dto.outlet.OutletDto
@@ -82,5 +81,7 @@ interface OpenCriticsApi {
         token: String,
     ): GameListDto
 
-    suspend fun getArticlePreviews(skip: Int): List<ArticlePreviewDto>
+    suspend fun getArticlePreviews(skip: Int): List<ArticleDto>
+
+    suspend fun getArticle(articleId: Long): ArticleDto
 }

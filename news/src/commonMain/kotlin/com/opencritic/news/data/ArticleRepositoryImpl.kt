@@ -1,9 +1,11 @@
 package com.opencritic.news.data
 
 import com.opencritic.api.OpenCriticsApi
-import com.opencritic.api.dto.article.ArticlePreviewDto
+import com.opencritic.api.dto.article.ArticleDto
 import com.opencritic.games.Author
 import com.opencritic.games.Outlet
+import com.opencritic.news.domain.Article
+import com.opencritic.news.domain.ArticleGame
 import com.opencritic.news.domain.ArticlePreview
 import com.opencritic.news.domain.ArticleRepository
 import kotlinx.coroutines.CoroutineDispatcher
@@ -23,7 +25,36 @@ internal class ArticleRepositoryImpl(
                 .map { ArticlePreview(it) }
         }
 
-    private fun ArticlePreview(dto: ArticlePreviewDto): ArticlePreview =
+    override suspend fun getArticle(articleId: Long): Article =
+        withContext(defaultDispatcher) {
+            Article(openCriticsApi.getArticle(articleId))
+        }
+
+    private fun Article(dto: ArticleDto): Article =
+        Article(
+            id = dto.id,
+            bannerUrl = dto.imageV2.sm.prefixedArticleImageUrl(),
+            teaser = dto.title,
+            description = dto.description,
+            outlet = dto.outlet
+                ?.let {
+                    Outlet(
+                        id = it.id,
+                        name = it.name,
+                        imageUrl = "",
+                        isContributor = false
+                    )
+                },
+            author =
+                if (dto.type == "SYNDICATED") Author(id = -1, name = dto.syndicatedAuthor ?: "")
+                else dto.authors.first().let { Author(id = it.id, name = it.name) },
+            publicationDate = dto.publishedDate.toLocalDateTime(TimeZone.currentSystemDefault()).date,
+            html = dto.html,
+            originalUrl = dto.originalUrl,
+            relatedGames = dto.relatedGames.map { ArticleGame(id = it.id, name = it.name) }
+        )
+
+    private fun ArticlePreview(dto: ArticleDto): ArticlePreview =
         ArticlePreview(
             id = dto.id,
             bannerUrl = dto.imageV2.sm.prefixedArticleImageUrl(),

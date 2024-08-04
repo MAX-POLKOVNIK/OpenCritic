@@ -1,6 +1,6 @@
 package com.opencritic.api
 
-import com.opencritic.api.dto.article.ArticlePreviewDto
+import com.opencritic.api.dto.article.ArticleDto
 import com.opencritic.api.dto.author.AuthorDto
 import com.opencritic.api.dto.deal.DealItemDto
 import com.opencritic.api.dto.details.GameDetailsDto
@@ -9,7 +9,6 @@ import com.opencritic.api.dto.game.BrowseGameDto
 import com.opencritic.api.dto.game.GameSortKey
 import com.opencritic.api.dto.game.GameTimeKey
 import com.opencritic.api.dto.list.GameListDto
-import com.opencritic.api.dto.list.ListGameActionDto
 import com.opencritic.api.dto.list.VitalListGameActionDto
 import com.opencritic.api.dto.list.VitalListTypeDto
 import com.opencritic.api.dto.outlet.OutletDto
@@ -28,7 +27,6 @@ import io.ktor.client.request.get
 import io.ktor.client.request.headers
 import io.ktor.client.request.post
 import io.ktor.client.request.setBody
-import io.ktor.client.statement.HttpResponse
 import io.ktor.http.ContentType
 import io.ktor.http.HttpHeaders
 import io.ktor.http.contentType
@@ -143,8 +141,11 @@ internal class OpenCriticsApiImpl(
             block = headersAndBody(token, action),
         ).body()
 
-    override suspend fun getArticlePreviews(skip: Int): List<ArticlePreviewDto> =
+    override suspend fun getArticlePreviews(skip: Int): List<ArticleDto> =
         client.get(baseUrl + "article/list?skip=$skip", headers()).body()
+
+    override suspend fun getArticle(articleId: Long): ArticleDto =
+        client.get(baseUrl + "article/$articleId", headers()).body()
 
     private inline fun <reified T> headersAndBody(
         token: String? = null,

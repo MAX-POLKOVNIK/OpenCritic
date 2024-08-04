@@ -8,6 +8,7 @@ import kotlinx.serialization.Serializable
 @Serializable
 data class GameDetailsDto(
     val id: Long,
+    val url: String,
     val images: ImagesDto,
     val percentRecommended: Float,
     val numReviews: Int,

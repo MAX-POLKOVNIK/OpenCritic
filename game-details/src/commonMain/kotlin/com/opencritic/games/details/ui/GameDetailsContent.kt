@@ -4,6 +4,8 @@ import com.opencritic.game.your.ui.lists.YourGameIndicatorItem
 import com.opencritic.game.your.ui.lists.YourGameIndicatorItem_PreviewData
 import com.opencritic.games.GameRank
 import com.opencritic.games.Tier
+import com.opencritic.resources.images.IconResource
+import com.opencritic.resources.images.Icons
 import com.opencritic.resources.images.SharedImageResource
 import com.opencritic.resources.images.SharedImages
 import com.opencritic.resources.text.TextSource
@@ -48,6 +50,9 @@ data class GameDetailsContent(
     val reviews: List<CardReviewItem>,
     val onViewAllReviewsClick: () -> Unit,
     val onRefresh: () -> Unit,
+    val isShareVisible: Boolean,
+    val shareIconResource: IconResource,
+    val onShareClick: () -> Unit,
 )
 
 @Suppress("FunctionName")
@@ -96,4 +101,7 @@ fun GameDetailsContent_PreviewData(): GameDetailsContent =
         reviews = emptyList(),
         onViewAllReviewsClick = {},
         onRefresh = {},
+        isShareVisible = true,
+        shareIconResource = Icons.share,
+        onShareClick = {}
     )

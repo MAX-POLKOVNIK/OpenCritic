@@ -30,4 +30,6 @@ actual object Icons {
 
     actual val arrowBack: IconResource = "chevron.backward".iconRes()
     actual val arrowDown: IconResource = "chevron.down".iconRes()
+
+    actual val share: IconResource = "square.and.arrow.up".iconRes()
 }

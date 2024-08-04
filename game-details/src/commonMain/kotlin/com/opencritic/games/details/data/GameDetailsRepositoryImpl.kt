@@ -137,6 +137,7 @@ internal class GameDetailsRepositoryImpl(
                     )
                 },
             screenshotUrls = images.screenshots?.mapNotNull { it.sm?.prefixedImageUrl() } ?: emptyList(),
+            url = url,
         )
 
     private fun ReviewSorting.toDto(): ReviewSortKey =

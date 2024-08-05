@@ -48,16 +48,17 @@ class ArticleListViewModel(
                         )
                     }
 
-                    skip += newListItems.size
-
                     if (isContentSet) {
                         updateContentIfSet {
-                            copy(
-                                items = (if (clearList) emptyList() else items) + newListItems
-                            )
+                            val items = (if (clearList) emptyList() else items) + newListItems
+                            skip = items.size
+
+                            copy(items = items)
                         }
                     } else {
                         setContent {
+                            skip = newListItems.size
+
                             ArticleListContent(
                                 items = newListItems,
                                 isLoadingItemVisible = true,

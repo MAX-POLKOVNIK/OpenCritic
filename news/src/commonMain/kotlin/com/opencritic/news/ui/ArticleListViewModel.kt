@@ -50,7 +50,9 @@ class ArticleListViewModel(
 
                     if (isContentSet) {
                         updateContentIfSet {
-                            val items = (if (clearList) emptyList() else items) + newListItems
+                            val items = ((if (clearList) emptyList() else items) + newListItems)
+                                .distinctBy { it.id }
+
                             skip = items.size
 
                             copy(items = items)

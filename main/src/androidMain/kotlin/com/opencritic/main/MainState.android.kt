@@ -47,6 +47,7 @@ import com.opencritic.navigation.NewsDestination
 import com.opencritic.navigation.SearchDestination
 import com.opencritic.navigation.YourListDestination
 import com.opencritic.news.ui.ArticleListScreen
+import com.opencritic.news.ui.articleComposeRoute
 import com.opencritic.resources.images.asPainter
 import com.opencritic.resources.text.text
 import com.opencritic.search.SearchScreen
@@ -144,6 +145,7 @@ fun MainState(state: MainState, navController: NavHostController) {
                 periodGameBrowserComposeRoute(navController)
                 authComposeRoute(navController)
                 gameListRoute(navController)
+                articleComposeRoute(navController)
             }
         }
     )

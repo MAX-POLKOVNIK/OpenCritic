@@ -20,7 +20,7 @@ fun DashboardDealsHorizontalListItem(
         modifier = modifier,
     ) {
         item.items.forEach {
-            item {
+            item(key = it.id) {
                 DashboardDealListItem(item = it)
             }
         }

@@ -24,7 +24,7 @@ fun DashboardPosterGamesHorizontalListItem(
         modifier = modifier,
     ) {
         item.items.forEach {
-            item {
+            item(key = it.id) {
                 DashboardPosterGameListItem(item = it)
             }
         }

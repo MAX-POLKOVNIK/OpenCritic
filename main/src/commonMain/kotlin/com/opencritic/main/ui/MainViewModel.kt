@@ -1,16 +1,17 @@
 package com.opencritic.main.ui
 
-import com.opencritic.mvvm.BaseViewModel
+import com.opencritic.mvvm.BaseContentViewModel
+import com.opencritic.mvvm.CommonViewModelState
 import com.opencritic.resources.images.Icons
 import com.opencritic.resources.text.StringRes
 import com.opencritic.resources.text.asTextSource
 
-class MainViewModel() : BaseViewModel<MainState>() {
-    override fun initialState(): MainState =
-        MainState(
-            tabs = listOf(
+class MainViewModel : BaseContentViewModel<MainContent>() {
+    override fun initialState(): CommonViewModelState<MainContent> =
+        CommonViewModelState.content(
+            content = listOf(
                 Tab(
-                    id = TabType.Main,
+                    id = TabType.Dashboard,
                     name = StringRes.str_tab_main.asTextSource(),
                     imageResource = Icons.tabMain,
                 ),
@@ -34,6 +35,16 @@ class MainViewModel() : BaseViewModel<MainState>() {
                     name = StringRes.str_tab_your_list.asTextSource(),
                     imageResource = Icons.tabYourList,
                 ),
-            )
+            ).let {
+                MainContent(
+                    currentTab = it.first(),
+                    tabs = it,
+                    onTabSelected = ::onTabSelected
+                )
+            }
         )
+
+    private fun onTabSelected(tab: Tab) {
+        updateContentIfSet { copy(currentTab = tab) }
+    }
 }

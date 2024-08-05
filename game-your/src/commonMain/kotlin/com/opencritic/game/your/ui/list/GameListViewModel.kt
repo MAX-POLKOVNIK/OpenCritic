@@ -46,9 +46,9 @@ class GameListViewModel(
                                     onClick(it)
                                 }
                             },
-                            isShareVisible = true,
-                            shareIconResource = Icons.share,
-                            onShareClick = { shareListUrl(list.shareLink) }
+                            isActionVisible = true,
+                            actionIconResource = Icons.share,
+                            onAction = { shareListUrl(list.shareLink) }
                         )
                     }
                 }

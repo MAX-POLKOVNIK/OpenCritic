@@ -1,5 +1,7 @@
 package com.opencritic.dashboard.ui
 
+import com.opencritic.mvvm.ScreenContent
+
 data class DashboardContent(
     val popularGamesTitle: DashboardTitleListItem,
     val popularGames: DashboardPosterGamesHorizontalListItem,
@@ -17,4 +19,4 @@ data class DashboardContent(
     val xboxGames: DashboardPosterGamesHorizontalListItem,
     val playstationTitle: DashboardTitleListItem,
     val playstationGames: DashboardPosterGamesHorizontalListItem,
-)
+) : ScreenContent

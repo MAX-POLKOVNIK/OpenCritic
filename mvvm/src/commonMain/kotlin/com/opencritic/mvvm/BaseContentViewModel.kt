@@ -10,7 +10,9 @@ import kotlinx.coroutines.launch
 import kotlin.time.Duration
 import kotlin.time.Duration.Companion.seconds
 
-abstract class BaseContentViewModel<Content> : BaseViewModel<CommonViewModelState<Content>>() {
+abstract class BaseContentViewModel<Content : ScreenContent> :
+    BaseViewModel<CommonViewModelState<Content>>() {
+
     private var toastJob: Job? = null
 
     protected val isContentSet: Boolean

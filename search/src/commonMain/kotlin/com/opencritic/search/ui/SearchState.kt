@@ -1,5 +1,6 @@
 package com.opencritic.search.ui
 
+import com.opencritic.mvvm.ScreenContent
 import com.opencritic.mvvm.ViewModelState
 import com.opencritic.resources.colors.Colors
 import com.opencritic.resources.text.TextSource
@@ -10,7 +11,7 @@ data class SearchState(
     val searchHint: TextSource,
     val searchListItemsState: SearchItemsState,
     private val onSearchChanged: (SearchState, String) -> Unit,
-) : ViewModelState {
+) : ScreenContent {
     fun changeSearch(criteria: String) =
         onSearchChanged(this, criteria)
 }

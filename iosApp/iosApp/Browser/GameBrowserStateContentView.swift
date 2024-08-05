@@ -11,13 +11,13 @@ import shared
 import Combine
 
 struct GameBrowserStateContentView: View {
-    let state: GameBrowserStateContent
+    let state: GameBrowserContent
 
     @State private var sort = GameSortItem(key: GameSorting.score, text: GameSorting.score.asTextSource())
     @State private var timeframe = TimeframeItem(key: GameTimeframeAllTIme.shared, text: GameTimeframeKt.asTextSource(GameTimeframeAllTIme.shared))
     @State private var platform = PlatformItem(key: nil, text: StringTextSource(string: "All Platforms"))
 
-    init(state: GameBrowserStateContent) {
+    init(state: GameBrowserContent) {
         self.state = state
         
         sort = state.sortText
@@ -79,7 +79,7 @@ struct GameBrowserStateContentView: View {
 
 #Preview {
     GameBrowserStateContentView(
-        state: GameBrowserStateKt
-            .GameBrowserStateContent_PreviewData()
+        state: GameBrowserContentKt
+            .GameBrowserContent_PreviewData()
     )
 }

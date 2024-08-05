@@ -8,7 +8,9 @@ import com.opencritic.game.browser.domain.GetReviewedThisWeekInteractor
 import com.opencritic.game.browser.ui.BrowseGameItem
 import com.opencritic.games.details.ui.LoadingItem
 import com.opencritic.logs.Logger
+import com.opencritic.mvvm.BaseContentViewModel
 import com.opencritic.mvvm.BaseViewModel
+import com.opencritic.mvvm.CommonViewModelState
 import com.opencritic.navigation.GameDetailsRoute
 import com.opencritic.navigation.PeriodGameBrowserDestination
 import com.opencritic.resources.text.StringRes
@@ -22,9 +24,9 @@ class PeriodGameBrowserViewModel(
     private val getBrowseGamesInteractor: GetBrowseGamesInteractor,
     private val getReviewedThisWeekInteractor: GetReviewedThisWeekInteractor,
     private val logger: Logger,
-) : BaseViewModel<PeriodGameBrowserState>() {
-    override fun initialState(): PeriodGameBrowserState =
-        PeriodGameBrowserState.Loading(titleFor(period))
+) : BaseContentViewModel<PeriodGameBrowserContent>() {
+    override fun initialState(): CommonViewModelState<PeriodGameBrowserContent> =
+        CommonViewModelState.loading(titleFor(period))
 
     private var canLoadMore: Boolean = period != PeriodGameBrowserDestination.Period.ReviewedThisWeek
 
@@ -64,7 +66,7 @@ class PeriodGameBrowserViewModel(
                             )
                         }
                         .let { content ->
-                            mutableState.update { content }
+                            setContent { content }
                         }
 
                     canLoadMore = games.isNotEmpty()
@@ -79,9 +81,8 @@ class PeriodGameBrowserViewModel(
             PeriodGameBrowserDestination.Period.UpcomingReleases -> StringRes.str_upcoming_releases.asTextSource()
         }
 
-    private fun createContentState(): PeriodGameBrowserState.Content =
-        PeriodGameBrowserState.Content(
-            titleText = titleFor(period),
+    private fun createContentState(): PeriodGameBrowserContent =
+        PeriodGameBrowserContent(
             browseGameItems = emptyList(),
             isLoadingItemVisible = true,
             loadingItem = LoadingItem,
@@ -92,7 +93,7 @@ class PeriodGameBrowserViewModel(
         if (!canLoadMore || period == PeriodGameBrowserDestination.Period.ReviewedThisWeek)
             return
 
-        val state = requireNotNull(state.value as? PeriodGameBrowserState.Content)
+        val content = requireContent()
 
         scope.launch {
             when (period) {
@@ -101,26 +102,26 @@ class PeriodGameBrowserViewModel(
                 PeriodGameBrowserDestination.Period.RecentlyReleased ->
                     getBrowseGamesInteractor(
                         platformCode = "",
-                        skip = state.browseGameItems.size,
+                        skip = content.browseGameItems.size,
                         sorting = GameSorting.ReleaseDate,
                         time = GameTimeframe.Last90Days,
                     )
                 PeriodGameBrowserDestination.Period.UpcomingReleases ->
                     getBrowseGamesInteractor(
                         platformCode = "",
-                        skip = state.browseGameItems.size,
+                        skip = content.browseGameItems.size,
                         sorting = GameSorting.ReleaseDate,
                         time = GameTimeframe.Upcoming,
                     )
             }
                 .onSuccess { reviews ->
-                    state.copy(
-                        browseGameItems = state.browseGameItems + reviews.map { game ->
-                            BrowseGameItem(game)
-                        },
-                        isLoadingItemVisible = reviews.isNotEmpty()
-                    ).let {
-                        mutableState.tryEmit(it)
+                    updateContentIfSet {
+                        copy(
+                            browseGameItems = content.browseGameItems + reviews.map { game ->
+                                BrowseGameItem(game)
+                            },
+                            isLoadingItemVisible = reviews.isNotEmpty()
+                        )
                     }
                 }
                 .onFailure {

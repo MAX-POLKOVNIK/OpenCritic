@@ -2,13 +2,12 @@ package com.opencritic.game.your.ui.lists
 
 import com.opencritic.auth.domain.GetAuthStateInteractor
 import com.opencritic.game.your.domain.GetListsInteractor
-import com.opencritic.logs.Logger
 import com.opencritic.mvvm.BaseContentViewModel
 import com.opencritic.mvvm.CommonViewModelState
-import com.opencritic.mvvm.ErrorState
 import com.opencritic.navigation.AuthRoute
 import com.opencritic.navigation.GameListRoute
 import com.opencritic.navigation.LinkShareRoute
+import com.opencritic.resources.text.StringRes
 import com.opencritic.resources.text.asTextSource
 import kotlinx.coroutines.launch
 
@@ -18,7 +17,7 @@ class YourGameListViewModel(
 ) : BaseContentViewModel<YourGameListState>() {
 
     override fun initialState(): CommonViewModelState<YourGameListState> =
-        CommonViewModelState.loading()
+        CommonViewModelState.loading(title = StringRes.str_tab_your_list.asTextSource())
 
     override fun onStateInit() {
         super.onStateInit()
@@ -26,9 +25,11 @@ class YourGameListViewModel(
         loadLists()
     }
 
-    private fun loadLists() {
+    private fun loadLists(shouldShowLoading: Boolean = true) {
         scope.launch {
-            showLoading()
+            if (shouldShowLoading) {
+                showLoading()
+            }
 
             val authResult = getAuthStateInteractor()
 
@@ -49,7 +50,7 @@ class YourGameListViewModel(
                         onLoginClick = { navigateToAuth() },
                         isLoginVisible = true,
                         loginText = "Login to profile".asTextSource(),
-                        refresh = { loadLists() }
+                        refresh = { loadLists(shouldShowLoading = false) }
                     )
                 }
             } else {
@@ -76,7 +77,7 @@ class YourGameListViewModel(
                                 onLoginClick = {},
                                 isLoginVisible = false,
                                 loginText = "".asTextSource(),
-                                refresh = { loadLists() }
+                                refresh = { loadLists(shouldShowLoading = false) }
                             )
                         }
                     }

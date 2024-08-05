@@ -27,6 +27,7 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import coil.compose.SubcomposeAsyncImage
 import com.opencritic.resources.defaultPadding
+import com.opencritic.resources.largePadding
 import com.opencritic.resources.smallPadding
 import com.opencritic.resources.text.text
 
@@ -45,7 +46,9 @@ fun ArticleContent(
                 .padding(defaultPadding)
         ) {
             Column(
-                horizontalAlignment = Alignment.CenterHorizontally
+                horizontalAlignment = Alignment.CenterHorizontally,
+                modifier = Modifier
+                    .padding(bottom = smallPadding)
             ) {
                 Box(
                     contentAlignment = Alignment.BottomStart,
@@ -101,8 +104,6 @@ fun ArticleContent(
                 if (content.isGameDiscussedVisible) {
                     Row(
                         verticalAlignment = Alignment.CenterVertically,
-                        modifier = Modifier
-                            .padding(bottom = smallPadding)
                     ) {
                         Text(text = content.gamesTitleDiscussedText.text())
                         Text(
@@ -131,6 +132,7 @@ fun ArticleContent(
                 onClick = content.onSeeFullArticleClick,
                 modifier = Modifier
                     .padding(horizontal = defaultPadding)
+                    .padding(bottom = largePadding)
             ) {
                 Text(text = content.seeFullArticleText.text())
             }

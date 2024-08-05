@@ -1,20 +1,21 @@
 package com.opencritic.game.your.ui.list
 
+import com.opencritic.mvvm.ActionedScreenContent
 import com.opencritic.resources.images.IconResource
 import com.opencritic.resources.images.Icons
 
 data class GameListContent(
     val items: List<GameRowListItem>,
-    val isShareVisible: Boolean,
-    val shareIconResource: IconResource,
-    val onShareClick: () -> Unit,
-)
+    override val isActionVisible: Boolean,
+    override val actionIconResource: IconResource,
+    override val onAction: () -> Unit,
+) : ActionedScreenContent
 
 @Suppress("FunctionName")
 fun GameListContent_PreviewData(): GameListContent =
     GameListContent(
         items = listOf(GameRowListItem_PreviewData()),
-        isShareVisible = true,
-        shareIconResource = Icons.share,
-        onShareClick = {}
+        isActionVisible = true,
+        actionIconResource = Icons.share,
+        onAction = {}
     )

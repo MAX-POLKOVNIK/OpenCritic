@@ -18,7 +18,9 @@ struct MainScreenView: View {
         viewModel.setRouter(router: router)
         
         return FlowView(of: viewModel.state) { state in
-            MainStateView(state: state)
+            CommonScreenView(state: state) { content in
+                MainStateView(state: content)
+            }
         }
     }
 }

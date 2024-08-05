@@ -1,5 +1,6 @@
 package com.opencritic.game.your.ui.lists
 
+import com.opencritic.mvvm.ScreenContent
 import com.opencritic.mvvm.ViewModelState
 import com.opencritic.resources.text.TextSource
 import com.opencritic.resources.text.asTextSource
@@ -10,7 +11,7 @@ data class YourGameListState(
     val isLoginVisible: Boolean,
     val loginText: TextSource,
     val onLoginClick: () -> Unit,
-) : ViewModelState
+) : ScreenContent
 
 @Suppress("FunctionName")
 fun YourGameListState_PreviewData(): YourGameListState =

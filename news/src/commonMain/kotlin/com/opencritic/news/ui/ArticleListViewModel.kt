@@ -9,6 +9,8 @@ import com.opencritic.navigation.ArticleRoute
 import com.opencritic.navigation.OutletReviewsRoute
 import com.opencritic.news.domain.ArticlePreview
 import com.opencritic.news.domain.GetArticlesInteractor
+import com.opencritic.resources.text.StringRes
+import com.opencritic.resources.text.asTextSource
 import kotlinx.coroutines.launch
 
 class ArticleListViewModel(
@@ -16,7 +18,7 @@ class ArticleListViewModel(
     private val logger: Logger,
 ) : BaseContentViewModel<ArticleListContent>() {
     override fun initialState(): CommonViewModelState<ArticleListContent> =
-        CommonViewModelState.loading()
+        CommonViewModelState.loading(title = StringRes.str_tab_news.asTextSource())
 
     private var canLoadMore: Boolean = true
     private var skip: Int = 0

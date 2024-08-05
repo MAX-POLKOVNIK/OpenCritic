@@ -14,14 +14,8 @@ struct GameBrowserScreenView: View {
     
     var body: some View {
         FlowView(of: viewModel.state) { state in
-            switch state {
-            case let content as GameBrowserStateContent:
+            CommonScreenView(state: state) { content in
                 GameBrowserStateContentView(state: content)
-            case let loading as GameBrowserStateLoading:
-                LoadingStateView(state: loading)
-            case let error as GameBrowserStateError:
-                ErrorStateView(state: error)
-            default: fatalError("Unknown state")
             }
         }
     }

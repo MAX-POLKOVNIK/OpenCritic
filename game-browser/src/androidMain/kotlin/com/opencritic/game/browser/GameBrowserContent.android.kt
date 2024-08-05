@@ -14,8 +14,8 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
-import com.opencritic.game.browser.ui.GameBrowserState
-import com.opencritic.game.browser.ui.GameBrowserStateContent_PreviewData
+import com.opencritic.game.browser.ui.GameBrowserContent
+import com.opencritic.game.browser.ui.GameBrowserContent_PreviewData
 import com.opencritic.games.details.LoadingItem
 import com.opencritic.mvvm.Spinner
 import com.opencritic.resources.images.Icons
@@ -26,7 +26,7 @@ import com.opencritic.resources.text.text
 
 @Composable
 fun GameBrowserStateContent(
-    state: GameBrowserState.Content,
+    state: GameBrowserContent,
     modifier: Modifier = Modifier,
 ) {
     LazyColumn(
@@ -168,6 +168,6 @@ fun GameBrowserStateContent(
 @Composable
 fun GameBrowserStateContent_Preview() {
     GameBrowserStateContent(
-        state = GameBrowserStateContent_PreviewData()
+        state = GameBrowserContent_PreviewData()
     )
 }

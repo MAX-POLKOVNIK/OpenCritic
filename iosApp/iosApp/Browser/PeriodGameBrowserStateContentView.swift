@@ -10,7 +10,7 @@ import SwiftUI
 import shared
 
 struct PeriodGameBrowserStateContentView: View {
-    let state: PeriodGameBrowserStateContent
+    let state: PeriodGameBrowserContent
     
     var body: some View {
         List {
@@ -28,12 +28,12 @@ struct PeriodGameBrowserStateContentView: View {
             }
         }
         .listStyle(.plain)
-        .navigationBarTitle(state.titleText, displayMode: .large)
+        
     }
 }
 
 #Preview {
     PeriodGameBrowserStateContentView(
-        state: PeriodGameBrowserStateKt.PeriodGameBrowserStateContent_PreviewData()
+        state: PeriodGameBrowserContentKt.PeriodGameBrowserContent_PreviewData()
     )
 }

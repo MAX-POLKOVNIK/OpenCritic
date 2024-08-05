@@ -1,10 +1,12 @@
 package com.opencritic.search.ui
 
-import com.opencritic.mvvm.BaseViewModel
+import com.opencritic.mvvm.BaseContentViewModel
+import com.opencritic.mvvm.CommonViewModelState
 import com.opencritic.navigation.AuthorReviewsRoute
 import com.opencritic.navigation.GameDetailsRoute
 import com.opencritic.navigation.OutletReviewsRoute
 import com.opencritic.resources.MR
+import com.opencritic.resources.text.StringRes
 import com.opencritic.resources.text.asTextSource
 import com.opencritic.search.domain.SearchInteractor
 import com.opencritic.search.domain.SearchItem
@@ -28,13 +30,16 @@ import kotlin.time.Duration.Companion.milliseconds
 
 class SearchViewModel(
     private val searchInteractor: SearchInteractor,
-) : BaseViewModel<SearchState>() {
-    override fun initialState(): SearchState =
-        SearchState(
-            searchText = "",
-            searchHint = MR.strings.str_search_hint.asTextSource(),
-            searchListItemsState = SearchItemsState.Empty(MR.strings.str_search_hint.asTextSource()),
-            onSearchChanged = { _, criteria -> criteriaFlow.tryEmit(criteria) }
+) : BaseContentViewModel<SearchState>() {
+    override fun initialState(): CommonViewModelState<SearchState> =
+        CommonViewModelState.content(
+            title = StringRes.str_tab_search.asTextSource(),
+            content = SearchState(
+                searchText = "",
+                searchHint = MR.strings.str_search_hint.asTextSource(),
+                searchListItemsState = SearchItemsState.Empty(MR.strings.str_search_hint.asTextSource()),
+                onSearchChanged = { _, criteria -> criteriaFlow.tryEmit(criteria) }
+            )
         )
 
     @OptIn(FlowPreview::class, ExperimentalCoroutinesApi::class)
@@ -60,20 +65,20 @@ class SearchViewModel(
                 .flowOn(Dispatchers.IO)
                 .map { it.getOrThrow() }
                 .catch {
-                    mutableState.tryEmit(
+                    updateContentIfSet {
                         SearchState(
-                            searchText = state.value.searchText,
+                            searchText = searchText,
                             searchHint = MR.strings.str_search_hint.asTextSource(),
                             onSearchChanged = { _, c -> onCriteriaChanged(c) },
                             searchListItemsState = SearchItemsState.Error(it.toString().asTextSource())
                         )
-                    )
+                    }
                 }
                 .onEach { result ->
-                    mutableState.tryEmit(
+                    updateContentIfSet {
                         SearchState(
-                            searchText = state.value.searchText,
-                            searchHint = MR.strings.str_search_hint.asTextSource(),
+                            searchText = searchText,
+                            searchHint = StringRes.str_search_hint.asTextSource(),
                             onSearchChanged = { _, c -> onCriteriaChanged(c) },
                             searchListItemsState = SearchItemsState.Content(
                                 result.map { item ->
@@ -85,16 +90,16 @@ class SearchViewModel(
                                 }
                             )
                         )
-                    )
+                    }
                 }
                 .launchIn(scope)
         }
 
 
     private fun onCriteriaChanged(newCriteria: String) {
-        mutableState.tryEmit(
-            state.value.copy(searchText = newCriteria)
-        )
+        updateContentIfSet {
+            copy(searchText = newCriteria)
+        }
         criteriaFlow.tryEmit(newCriteria)
     }
 

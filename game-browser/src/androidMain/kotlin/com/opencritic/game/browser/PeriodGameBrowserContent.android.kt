@@ -7,15 +7,15 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
-import com.opencritic.game.browser.ui.period.PeriodGameBrowserState
-import com.opencritic.game.browser.ui.period.PeriodGameBrowserStateContent_PreviewData
+import com.opencritic.game.browser.ui.period.PeriodGameBrowserContent
+import com.opencritic.game.browser.ui.period.PeriodGameBrowserContent_PreviewData
 import com.opencritic.games.details.LoadingItem
 import com.opencritic.resources.defaultPadding
 import com.opencritic.resources.smallPadding
 
 @Composable
-fun PeriodGameBrowserStateContent(
-    state: PeriodGameBrowserState.Content,
+fun PeriodGameBrowserContent(
+    state: PeriodGameBrowserContent,
     modifier: Modifier = Modifier,
 ) {
     LazyColumn(
@@ -48,7 +48,7 @@ fun PeriodGameBrowserStateContent(
 @Preview
 @Composable
 fun PeriodGameBrowserStateContent_Preview() {
-    PeriodGameBrowserStateContent(
-        state = PeriodGameBrowserStateContent_PreviewData()
+    PeriodGameBrowserContent(
+        state = PeriodGameBrowserContent_PreviewData()
     )
 }

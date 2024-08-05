@@ -78,10 +78,10 @@ struct ArticleContentView: View {
             }
         }
         .toolbar {
-            if content.isShareVisible {
+            if content.isActionVisible {
                 Button(
-                    action: content.onShareClick,
-                    label: { Image(iconRes: content.shareIconResource) }
+                    action: content.onAction,
+                    label: { Image(iconRes: content.actionIconResource) }
                 )
             }
         }

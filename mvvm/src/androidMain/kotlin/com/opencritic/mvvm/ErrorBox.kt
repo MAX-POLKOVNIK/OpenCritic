@@ -8,6 +8,7 @@ import androidx.compose.foundation.layout.size
 import androidx.compose.material3.Button
 import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
+import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
@@ -26,35 +27,36 @@ fun ErrorBox(
     state: BaseErrorState,
     modifier: Modifier = Modifier,
 ) {
-    Box(
-        contentAlignment = Alignment.Center,
+    Surface(
         modifier = modifier
             .fillMaxSize(),
     ) {
-        Column(
-            horizontalAlignment = Alignment.CenterHorizontally,
+        Box(
+            contentAlignment = Alignment.Center,
         ) {
-            Icon(
-                painter = Icons.warning.asPainter(),
-                contentDescription = "",
-                tint = MaterialTheme.colorScheme.error,
-                modifier = Modifier
-                    .size(56.dp)
-            )
-            Text(
-                text = state.message.text(),
-                textAlign = TextAlign.Center,
-                style = MaterialTheme.typography.headlineSmall,
-                modifier = Modifier
-                    .padding(defaultPadding)
+            Column(
+                horizontalAlignment = Alignment.CenterHorizontally,
+            ) {
+                Icon(
+                    painter = Icons.warning.asPainter(),
+                    contentDescription = "",
+                    tint = MaterialTheme.colorScheme.error,
+                    modifier = Modifier
+                        .size(56.dp)
+                )
+                Text(
+                    text = state.message.text(),
+                    textAlign = TextAlign.Center,
+                    style = MaterialTheme.typography.headlineSmall,
+                    modifier = Modifier
+                        .padding(defaultPadding)
 
-            )
+                )
 
-            if (state.actionText != null) {
                 Button(
-                    onClick = { state.action?.invoke() }
+                    onClick = { state.action() }
                 ) {
-                    Text(text = "DO SOMETHING!")
+                    Text(text = state.actionText.text())
                 }
             }
         }
@@ -64,5 +66,9 @@ fun ErrorBox(
 @Composable
 @Preview
 fun ErrorBox_Preview() {
-    ErrorBox(state = object : BaseErrorState("Some kind of long error: Connected to the target VM, address: 'localhost:54736', transport: 'socket'".asTextSource()) {})
+    ErrorBox(
+        state = ErrorState(
+            "Some kind of long error: Connected to the target VM, address: 'localhost:54736', transport: 'socket'".asTextSource()
+        ) {}
+    )
 }

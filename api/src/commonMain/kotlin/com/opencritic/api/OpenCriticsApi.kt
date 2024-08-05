@@ -40,7 +40,7 @@ interface OpenCriticsApi {
 
     suspend fun getPlaystationFeatured(): FeaturedGameListDto
 
-    suspend fun getGame(gameId: Long, token: String?): GameDetailsDto
+    suspend fun getGame(gameId: Long): GameDetailsDto
 
     suspend fun getGameMedia(gameId: Long): GameDetailsDto
 

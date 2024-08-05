@@ -63,12 +63,10 @@ fun ErrorPopup(
 
                 )
 
-                if (state.actionText != null) {
-                    Button(
-                        onClick = { state.action?.invoke() }
-                    ) {
-                        Text(text = state.actionText?.text() ?: "DO SOMETHING!")
-                    }
+                Button(
+                    onClick = { state.action() }
+                ) {
+                    Text(text = state.actionText.text())
                 }
             }
         }
@@ -85,5 +83,7 @@ fun ErrorPopup(
 @Composable
 @Preview
 fun ErrorPopup_Preview() {
-    ErrorPopup(state = object : BaseErrorState("Some kind of long error: Connected to the target VM, address: 'localhost:54736', transport: 'socket'".asTextSource()) {})
+    ErrorPopup(
+        state = ErrorState("Some kind of long error: Connected to the target VM, address: 'localhost:54736', transport: 'socket'".asTextSource()) {}
+    )
 }

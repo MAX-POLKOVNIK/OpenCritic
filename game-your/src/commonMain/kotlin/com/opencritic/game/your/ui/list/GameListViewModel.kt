@@ -1,7 +1,6 @@
 package com.opencritic.game.your.ui.list
 
 import com.opencritic.game.your.domain.GameInList
-import com.opencritic.game.your.domain.GameList
 import com.opencritic.game.your.domain.GetGameListInteractor
 import com.opencritic.mvvm.BaseContentViewModel
 import com.opencritic.mvvm.CommonViewModelState
@@ -22,14 +21,20 @@ class GameListViewModel(
     override fun onStateInit() {
         super.onStateInit()
 
+        loadList()
+    }
+
+    private fun loadList() {
         scope.launch {
-            loading()
+            showLoading()
 
             getGameListInteractor(listId)
                 .onFailure {
                     hideLoading()
 
-                    error(it)
+                    showError(it) {
+                        loadList()
+                    }
                 }
                 .onSuccess { list ->
                     hideLoading()

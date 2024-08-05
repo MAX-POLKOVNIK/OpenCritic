@@ -46,15 +46,19 @@ class GameDetailsViewModel(
     override fun onStateInit() {
         super.onStateInit()
 
+        loadGame()
+    }
+
+    private fun loadGame() {
         scope.launch {
+            showLoading()
+
             getGameDetailsInteractor(gameId)
                 .onFailure {
-                    mutableState.update { state ->
-                        state.error(
-                            title = gameName.asTextSource(),
-                            errorDescription = it.toString()
-                        )
+                    showError(it) {
+                        loadGame()
                     }
+
                     logger.log(it.toString())
                 }
                 .onSuccess { details ->

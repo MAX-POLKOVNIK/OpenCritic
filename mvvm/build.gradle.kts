@@ -28,9 +28,11 @@ kotlin {
         commonMain.dependencies {
             implementation(projects.navigation)
             implementation(projects.resources)
+            implementation(projects.api)
 
             implementation(libs.androidx.lifecycle.viewmodel)
             implementation(libs.koin.core)
+            implementation(libs.moko.resources)
         }
         commonTest.dependencies {
             implementation(libs.kotlin.test)

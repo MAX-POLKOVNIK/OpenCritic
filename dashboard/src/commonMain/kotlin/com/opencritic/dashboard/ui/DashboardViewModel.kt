@@ -27,17 +27,22 @@ class DashboardViewModel(
     override fun onStateInit() {
         super.onStateInit()
 
+        loadDashboard()
+    }
+
+    private fun loadDashboard() {
         scope.launch {
+            showLoading()
+
             val currentYear = Clock.System.now()
                 .toLocalDateTime(timeZone = TimeZone.UTC)
                 .year
 
             getDashboardInteractor(currentYear)
                 .onFailure { error ->
-                    mutableState.update {
-                        it.error(error.toString())
+                    showError(error) {
+                        loadDashboard()
                     }
-
                     logger.log("Get dashboard error: $error")
                 }
                 .onSuccess { dashboard ->

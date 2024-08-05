@@ -20,6 +20,9 @@ import com.opencritic.api.dto.released.ReleasedGameDto
 import com.opencritic.api.dto.review.ReviewDto
 import com.opencritic.api.dto.review.ReviewSortKey
 import com.opencritic.api.dto.search.SearchItemDto
+import com.opencritic.api.exceptions.NoInternetException
+import com.opencritic.api.exceptions.UnknownException
+import com.opencritic.api.exceptions.UnsuccessfulResponseException
 import io.ktor.client.HttpClient
 import io.ktor.client.call.body
 import io.ktor.client.request.HttpRequestBuilder
@@ -30,6 +33,7 @@ import io.ktor.client.request.setBody
 import io.ktor.http.ContentType
 import io.ktor.http.HttpHeaders
 import io.ktor.http.contentType
+import io.ktor.utils.io.errors.IOException
 
 
 private const val baseUrl = "https://api.opencritic.com/api/"
@@ -38,75 +42,69 @@ internal class OpenCriticsApiImpl(
     private val client: HttpClient,
 ) : OpenCriticsApi {
     override suspend fun getGamePopular(): List<PopularItemDto> =
-        client.get(baseUrl + "game/popular", headers()).body()
+        get(baseUrl + "game/popular")
 
     override suspend fun getDeals(): List<DealItemDto> =
-        client.get(baseUrl + "game/deals", headers()).body()
+        get(baseUrl + "game/deals")
 
     override suspend fun getTodayReviewed(): List<ReviewedTodayGameDto> =
-        client.get(baseUrl + "game/reviewed-today", headers()).body()
+       get(baseUrl + "game/reviewed-today")
 
     override suspend fun getUpcoming(): List<ReleasedGameDto> =
-        client.get(baseUrl + "game/upcoming", headers()).body()
+       get(baseUrl + "game/upcoming")
 
     override suspend fun getRecentlyReleased(): List<ReleasedGameDto> =
-        client.get(baseUrl + "game/recently-released", headers()).body()
+        get(baseUrl + "game/recently-released")
 
     override suspend fun getHallOfFame(year: Int): List<ReleasedGameDto> =
-        client.get(baseUrl + "game/hall-of-fame/$year", headers()).body()
+        get(baseUrl + "game/hall-of-fame/$year")
 
     override suspend fun getSwitchFeatured(): FeaturedGameListDto =
-        client.get(baseUrl + "editor-sequence/switch-featured", headers()).body()
+        get(baseUrl + "editor-sequence/switch-featured")
 
     override suspend fun getXboxFeatured(): FeaturedGameListDto =
-        client.get(baseUrl + "editor-sequence/xbox-featured", headers()).body()
+        get(baseUrl + "editor-sequence/xbox-featured")
 
     override suspend fun getPlaystationFeatured(): FeaturedGameListDto =
-        client.get(baseUrl + "editor-sequence/playstation-featured", headers()).body()
+        get(baseUrl + "editor-sequence/playstation-featured")
 
-    override suspend fun getGame(gameId: Long, token: String?): GameDetailsDto =
-        client.get(baseUrl + "game/${gameId}", headers(token)).body()
+    override suspend fun getGame(gameId: Long): GameDetailsDto =
+        get(baseUrl + "game/${gameId}")
 
     override suspend fun getGameMedia(gameId: Long): GameDetailsDto =
-        client.get(baseUrl + "game/${gameId}/?fullmedia=true", headers()).body()
+        get(baseUrl + "game/${gameId}/?fullmedia=true")
 
     override suspend fun getGameReviewsLanding(gameId: Long): List<ReviewDto> =
-        client.get(baseUrl + "reviews/game/$gameId/landing", headers()).body()
+        get(baseUrl + "reviews/game/$gameId/landing")
 
     override suspend fun getGameReviews(gameId: Long, skip: Int, sort: ReviewSortKey): List<ReviewDto> =
-        client.get(baseUrl + "reviews/game/$gameId/?skip=$skip&sort=${sort.queryValue}", headers()).body()
+        get(baseUrl + "reviews/game/$gameId/?skip=$skip&sort=${sort.queryValue}")
 
     override suspend fun search(criteria: String): List<SearchItemDto> =
-        client.get(baseUrl + "meta/search?criteria=$criteria", headers()).body()
+        get(baseUrl + "meta/search?criteria=$criteria")
 
     override suspend fun getOutlet(outletId: Int): OutletDto =
-        client.get(baseUrl + "outlet/$outletId", headers()).body()
+        get(baseUrl + "outlet/$outletId")
 
     override suspend fun getOutletReviews(
         outletId: Int,
         skip: Int,
         sort: ReviewSortKey
     ): List<ReviewDto> =
-        client.get(
-            baseUrl + "reviews/outlet/$outletId/?skip=$skip&sort=${sort.queryValue}",
-            headers()
-        ).body()
+        get(baseUrl + "reviews/outlet/$outletId/?skip=$skip&sort=${sort.queryValue}")
 
     override suspend fun getAuthor(authorId: Int): AuthorDto =
-        client.get(baseUrl + "author/$authorId", headers()).body()
+        get(baseUrl + "author/$authorId")
 
     override suspend fun getAuthorReviews(
         authorId: Int,
         skip: Int,
         sort: ReviewSortKey
     ): List<ReviewDto> =
-        client.get(
-            baseUrl + "reviews/author/$authorId/?skip=$skip&sort=${sort.queryValue}",
-            headers()
-        ).body()
+        get(baseUrl + "reviews/author/$authorId/?skip=$skip&sort=${sort.queryValue}")
 
     override suspend fun getPlatforms(): List<PlatformDto> =
-        client.get(baseUrl + "platform", headers()).body()
+        get(baseUrl + "platform")
 
     override suspend fun getGames(
         platformShortName: String,
@@ -114,38 +112,74 @@ internal class OpenCriticsApiImpl(
         sort: GameSortKey,
         skip: Int,
     ): List<BrowseGameDto> =
-        client.get(
-            baseUrl + "game?platforms=$platformShortName&skip=$skip&sort=${sort.queryValue}&time=${time.queryKey}",
-            headers()
-        ).body()
+        get(baseUrl + "game?platforms=$platformShortName&skip=$skip&sort=${sort.queryValue}&time=${time.queryKey}")
 
     override suspend fun getReviewedThisWeek(): List<BrowseGameDto> =
-        client.get(baseUrl + "game/reviewed-this-week", headers()).body()
+        get(baseUrl + "game/reviewed-this-week")
 
     override suspend fun getProfile(token: String): ProfileDto =
-        client.get(baseUrl + "profile", headers(token)).body()
+        get(baseUrl + "profile", token)
 
     override suspend fun getLists(token: String): List<GameListDto> =
-        client.get(baseUrl + "game-list", headers(token)).body()
+        get(baseUrl + "game-list", token)
 
     override suspend fun getList(listId: String, token: String): GameListDto =
-        client.get(baseUrl + "game-list/$listId", headers(token)).body()
+        get(baseUrl + "game-list/$listId", token)
 
     override suspend fun postListAction(
         list: VitalListTypeDto,
         action: VitalListGameActionDto,
         token: String,
     ): GameListDto =
-        client.post(
-            urlString = baseUrl + "game-list/common/${list.value}",
-            block = headersAndBody(token, action),
-        ).body()
+        post(
+            url = baseUrl + "game-list/common/${list.value}",
+            body = action,
+            token = token
+        )
 
     override suspend fun getArticlePreviews(skip: Int): List<ArticleDto> =
-        client.get(baseUrl + "article/list?skip=$skip", headers()).body()
+        get(baseUrl + "article/list?skip=$skip")
 
     override suspend fun getArticle(articleId: Long): ArticleDto =
-        client.get(baseUrl + "article/$articleId", headers()).body()
+        get(baseUrl + "article/$articleId")
+
+    private suspend inline fun <reified ResponseBody, reified RequestBody> post(
+        url: String,
+        body: RequestBody,
+        token: String? = null,
+    ): ResponseBody =
+        try {
+            val response = client.post(url, headersAndBody(token, body))
+
+            if (response.status.value >= 400) {
+                throw UnsuccessfulResponseException(response.status.value)
+            } else {
+                response.body()
+            }
+        } catch (ex: Throwable) {
+            throw if (ex is IOException) NoInternetException(ex)
+            else UnknownException()
+        }
+
+    private suspend inline fun <reified ResponseBody> get(
+        url: String,
+        token: String? = null,
+    ): ResponseBody =
+        try {
+            val response = client.get(url, headers(token))
+
+            if (response.status.value >= 400) {
+                throw UnsuccessfulResponseException(response.status.value)
+            } else {
+                response.body()
+            }
+        } catch (ex: Throwable) {
+            throw when (ex) {
+                is IOException -> NoInternetException(ex)
+                is UnsuccessfulResponseException -> ex
+                else -> UnknownException()
+            }
+        }
 
     private inline fun <reified T> headersAndBody(
         token: String? = null,

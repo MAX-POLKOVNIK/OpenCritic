@@ -8,6 +8,7 @@
 
 import SwiftUI
 import WebKit
+import shared
 
 struct Webview : UIViewRepresentable {
     let html: String
@@ -42,11 +43,9 @@ struct Webview : UIViewRepresentable {
         webview.scrollView.bounces = false
         webview.navigationDelegate = context.coordinator
         webview.isOpaque = false
-        let htmlStart = "<HTML><HEAD><meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0, shrink-to-fit=no\"></HEAD><BODY><font color=\"#FFFFFF\" size=\"4\" face=\"sans-serif\">"
-        let htmlEnd = "</font></BODY></HTML>"
-        let dummy_html = html
-        let htmlString = "\(htmlStart)\(dummy_html)\(htmlEnd)"
-        webview.loadHTMLString(htmlString, baseURL:  nil)
+        let color = UITraitCollection.current.userInterfaceStyle == .dark ? "#ffffff" : "#000000"
+        let htmlContent = ArticleHtmlContentKt.articleHtmlContent(html: html, color: color)
+        webview.loadHTMLString(htmlContent, baseURL:  nil)
         return webview
     }
 

@@ -119,7 +119,7 @@ class ArticleViewModel(
             .replace(article.teaser, "-")
             .lowercase()
             .replace(" ", "-")
-        
+
         val link = "https://opencritic.com/news/${article.id}/${title}"
 
         requireRouter()

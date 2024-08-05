@@ -23,7 +23,7 @@ fun ReviewBriefListItem(
                 score == null -> "Unscored"
                 scoreFormat.isSelect ->
                     scoreFormat.options
-                        ?.filter { score > it.value }
+                        ?.filter { score >= it.value }
                         ?.maxBy { it.value }
                         ?.label
                         ?: ""

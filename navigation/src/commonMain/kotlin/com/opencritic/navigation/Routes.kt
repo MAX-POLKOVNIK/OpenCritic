@@ -78,6 +78,19 @@ data class AuthorReviewsRoute(val authorId: Int, val authorName: String) : Route
     )
 )
 
+object ArticleDestination : Destination("article/{articleId}/{title}") {
+    const val ARTICLE_ID_KEY = "articleId"
+    const val ARTICLE_NAME_KEY = "title"
+}
+
+data class ArticleRoute(val articleId: Long, val title: String) : Routed(
+    destination = ArticleDestination,
+    args = mapOf(
+        ArticleDestination.ARTICLE_ID_KEY to articleId,
+        ArticleDestination.ARTICLE_NAME_KEY to title,
+    )
+)
+
 object PeriodGameBrowserDestination : Destination("games/{period}") {
     const val PERIOD_KEY = "period"
 
@@ -103,6 +116,7 @@ data object MainDestination : Destination("main")
 data object SearchDestination : Destination("search")
 data object GameBrowserDestination : Destination("browser")
 data object YourListDestination : Destination("your_lists")
+data object NewsDestination : Destination("news")
 
 data object AuthDestination : Destination("auth")
 data object AuthRoute : Routed(

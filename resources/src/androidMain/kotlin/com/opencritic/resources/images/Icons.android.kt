@@ -17,6 +17,7 @@ import com.opencritic.resources.R
 
 actual object Icons {
     actual val tabMain: IconResource = Icons.Outlined.Dashboard.iconRes()
+    actual val tabNews: IconResource = Icons.Outlined.Newspaper.iconRes()
     actual val tabSearch: IconResource = Icons.Outlined.Search.iconRes()
     actual val tabBrowse: IconResource = Icons.Outlined.SportsEsports.iconRes()
     actual val tabCalendar: IconResource = Icons.Outlined.CalendarMonth.iconRes()

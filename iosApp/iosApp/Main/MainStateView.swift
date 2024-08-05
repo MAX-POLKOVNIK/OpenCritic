@@ -15,6 +15,7 @@ private let dashboardViewModel: DashboardViewModel = koinViewModel(DashboardView
 private let searchViewModel: SearchViewModel = koinViewModel(SearchViewModel.self)
 private let gameBrowserViewModel: GameBrowserViewModel = koinViewModel(GameBrowserViewModel.self)
 private let yourGameListViewModel: YourGameListViewModel = koinViewModel(YourGameListViewModel.self)
+private let articleListViewModel: ArticleListViewModel = koinViewModel(ArticleListViewModel.self)
 
 struct MainStateView: View {
     let state: MainState
@@ -27,6 +28,7 @@ struct MainStateView: View {
         searchViewModel.setRouter(router: router)
         gameBrowserViewModel.setRouter(router: router)
         yourGameListViewModel.setRouter(router: router)
+        articleListViewModel.setRouter(router: router)
         
         return VStack {
             TabView(selection: $activeTab) {
@@ -57,6 +59,14 @@ struct MainStateView: View {
                     }
                     if tab.id == TabType.yourlists {
                         YourGameListScreenView(viewModel: yourGameListViewModel)
+                            .tabItem {
+                                Label(tab.name, iconRes: tab.imageResource)
+                            }
+                            .tag(tab.id)
+                            .navigationTitle(tab.name)
+                    }
+                    if tab.id == TabType.news {
+                        ArticleListScreenView(viewModel: articleListViewModel)
                             .tabItem {
                                 Label(tab.name, iconRes: tab.imageResource)
                             }

@@ -7,6 +7,6 @@ import kotlinx.serialization.Serializable
 data class OutletDto(
     val id: Int,
     val name: String,
-    val isContributor: Boolean,
-    val imageSrc: ImageLinksDto,
+    val isContributor: Boolean = false,
+    val imageSrc: ImageLinksDto = ImageLinksDto(),
 )

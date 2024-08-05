@@ -2,6 +2,7 @@ package com.opencritic.resources.images
 
 actual object Icons {
     actual val tabMain: IconResource = "doc.text.image".iconRes()
+    actual val tabNews: IconResource = "newspaper.fill".iconRes()
     actual val tabSearch: IconResource = "magnifyingglass".iconRes()
     actual val tabBrowse: IconResource = "gamecontroller.fill".iconRes()
     actual val tabCalendar: IconResource = "calendar".iconRes()

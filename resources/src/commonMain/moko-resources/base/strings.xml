@@ -60,6 +60,7 @@
     <string name="str_tab_browse">Games</string>
     <string name="str_tab_calendar">Calendar</string>
     <string name="str_tab_main">Today</string>
+    <string name="str_tab_news">News</string>
     <string name="str_tab_search">Search</string>
     <string name="str_tab_your_list">Your Lists</string>
     <string name="str_timeframe">Timeframe</string>

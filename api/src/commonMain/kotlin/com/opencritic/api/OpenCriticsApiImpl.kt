@@ -2,6 +2,7 @@ package com.opencritic.api
 
 import com.opencritic.api.dto.article.ArticleDto
 import com.opencritic.api.dto.author.AuthorDto
+import com.opencritic.api.dto.calendar.CalendarDto
 import com.opencritic.api.dto.deal.DealItemDto
 import com.opencritic.api.dto.details.GameDetailsDto
 import com.opencritic.api.dto.featured.FeaturedGameListDto
@@ -139,6 +140,9 @@ internal class OpenCriticsApiImpl(
 
     override suspend fun getArticle(articleId: Long): ArticleDto =
         get("article/$articleId")
+
+    override suspend fun getCalendar(): CalendarDto =
+        get("calendar/v2")
 
     private val baseUrl = "https://api.opencritic.com/api/"
 

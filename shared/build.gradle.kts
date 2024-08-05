@@ -29,6 +29,7 @@ kotlin {
         projects.gameYour,
         projects.auth,
         projects.news,
+        projects.calendar,
         libs.moko.resources,
         libs.moko.graphics,
     )

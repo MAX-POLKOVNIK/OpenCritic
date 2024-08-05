@@ -175,7 +175,8 @@ internal class GameDetailsRepositoryImpl(
                 options = scoreFormat.options?.map { optionDto ->
                     ReviewScoreFormatOption(
                         value = optionDto.value,
-                        label = optionDto.label,
+                        label = if (optionDto.label == "No Recommendation / Blank") "No Recommendation"
+                                else optionDto.label,
                     )
                 },
             ),

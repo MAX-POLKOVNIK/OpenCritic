@@ -35,76 +35,73 @@ import io.ktor.http.HttpHeaders
 import io.ktor.http.contentType
 import io.ktor.utils.io.errors.IOException
 
-
-private const val baseUrl = "https://api.opencritic.com/api/"
-
 internal class OpenCriticsApiImpl(
     private val client: HttpClient,
 ) : OpenCriticsApi {
     override suspend fun getGamePopular(): List<PopularItemDto> =
-        get(baseUrl + "game/popular")
+        get("game/popular")
 
     override suspend fun getDeals(): List<DealItemDto> =
-        get(baseUrl + "game/deals")
+        get("game/deals")
 
     override suspend fun getTodayReviewed(): List<ReviewedTodayGameDto> =
-       get(baseUrl + "game/reviewed-today")
+       get("game/reviewed-today")
 
     override suspend fun getUpcoming(): List<ReleasedGameDto> =
-       get(baseUrl + "game/upcoming")
+       get("game/upcoming")
 
     override suspend fun getRecentlyReleased(): List<ReleasedGameDto> =
-        get(baseUrl + "game/recently-released")
+        get("game/recently-released")
 
     override suspend fun getHallOfFame(year: Int): List<ReleasedGameDto> =
-        get(baseUrl + "game/hall-of-fame/$year")
+        get("game/hall-of-fame/$year")
 
     override suspend fun getSwitchFeatured(): FeaturedGameListDto =
-        get(baseUrl + "editor-sequence/switch-featured")
+        get("editor-sequence/switch-featured")
 
     override suspend fun getXboxFeatured(): FeaturedGameListDto =
-        get(baseUrl + "editor-sequence/xbox-featured")
+        get("editor-sequence/xbox-featured")
 
     override suspend fun getPlaystationFeatured(): FeaturedGameListDto =
-        get(baseUrl + "editor-sequence/playstation-featured")
+        get("editor-sequence/playstation-featured")
 
     override suspend fun getGame(gameId: Long): GameDetailsDto =
-        get(baseUrl + "game/${gameId}")
+        get("game/${gameId}")
 
     override suspend fun getGameMedia(gameId: Long): GameDetailsDto =
-        get(baseUrl + "game/${gameId}/?fullmedia=true")
+        get("game/${gameId}/?fullmedia=true")
 
     override suspend fun getGameReviewsLanding(gameId: Long): List<ReviewDto> =
-        get(baseUrl + "reviews/game/$gameId/landing")
+        get("reviews/game/$gameId/landing")
 
     override suspend fun getGameReviews(gameId: Long, skip: Int, sort: ReviewSortKey): List<ReviewDto> =
-        get(baseUrl + "reviews/game/$gameId/?skip=$skip&sort=${sort.queryValue}")
+        get("reviews/game/$gameId/?skip=$skip&sort=${sort.queryValue}")
 
     override suspend fun search(criteria: String): List<SearchItemDto> =
-        get(baseUrl + "meta/search?criteria=$criteria")
+        get("meta/search?criteria=$criteria")
 
     override suspend fun getOutlet(outletId: Int): OutletDto =
-        get(baseUrl + "outlet/$outletId")
+        get("outlet/$outletId")
 
     override suspend fun getOutletReviews(
         outletId: Int,
         skip: Int,
         sort: ReviewSortKey
     ): List<ReviewDto> =
-        get(baseUrl + "reviews/outlet/$outletId/?skip=$skip&sort=${sort.queryValue}")
+        get("reviews/outlet/$outletId/?skip=$skip&sort=${sort.queryValue}")
 
     override suspend fun getAuthor(authorId: Int): AuthorDto =
-        get(baseUrl + "author/$authorId")
+        get("author/$authorId")
 
     override suspend fun getAuthorReviews(
         authorId: Int,
         skip: Int,
         sort: ReviewSortKey
     ): List<ReviewDto> =
-        get(baseUrl + "reviews/author/$authorId/?skip=$skip&sort=${sort.queryValue}")
+        get("reviews/author/$authorId/?skip=$skip&sort=${sort.queryValue}")
 
     override suspend fun getPlatforms(): List<PlatformDto> =
-        get(baseUrl + "platform")
+        get("platform")
 
     override suspend fun getGames(
         platformShortName: String,
@@ -112,19 +109,19 @@ internal class OpenCriticsApiImpl(
         sort: GameSortKey,
         skip: Int,
     ): List<BrowseGameDto> =
-        get(baseUrl + "game?platforms=$platformShortName&skip=$skip&sort=${sort.queryValue}&time=${time.queryKey}")
+        get("game?platforms=$platformShortName&skip=$skip&sort=${sort.queryValue}&time=${time.queryKey}")
 
     override suspend fun getReviewedThisWeek(): List<BrowseGameDto> =
-        get(baseUrl + "game/reviewed-this-week")
+        get("game/reviewed-this-week")
 
     override suspend fun getProfile(token: String): ProfileDto =
-        get(baseUrl + "profile", token)
+        get("profile", token)
 
     override suspend fun getLists(token: String): List<GameListDto> =
-        get(baseUrl + "game-list", token)
+        get("game-list", token)
 
     override suspend fun getList(listId: String, token: String): GameListDto =
-        get(baseUrl + "game-list/$listId", token)
+        get("game-list/$listId", token)
 
     override suspend fun postListAction(
         list: VitalListTypeDto,
@@ -132,16 +129,18 @@ internal class OpenCriticsApiImpl(
         token: String,
     ): GameListDto =
         post(
-            url = baseUrl + "game-list/common/${list.value}",
+            url = "game-list/common/${list.value}",
             body = action,
             token = token
         )
 
     override suspend fun getArticlePreviews(skip: Int): List<ArticleDto> =
-        get(baseUrl + "article/list?skip=$skip")
+        get("article/list?skip=$skip")
 
     override suspend fun getArticle(articleId: Long): ArticleDto =
-        get(baseUrl + "article/$articleId")
+        get("article/$articleId")
+
+    private val baseUrl = "https://api.opencritic.com/api/"
 
     private suspend inline fun <reified ResponseBody, reified RequestBody> post(
         url: String,
@@ -149,7 +148,7 @@ internal class OpenCriticsApiImpl(
         token: String? = null,
     ): ResponseBody =
         try {
-            val response = client.post(url, headersAndBody(token, body))
+            val response = client.post(baseUrl + url, headersAndBody(token, body))
 
             if (response.status.value >= 400) {
                 throw UnsuccessfulResponseException(response.status.value)
@@ -166,7 +165,7 @@ internal class OpenCriticsApiImpl(
         token: String? = null,
     ): ResponseBody =
         try {
-            val response = client.get(url, headers(token))
+            val response = client.get(baseUrl + url, headers(token))
 
             if (response.status.value >= 400) {
                 throw UnsuccessfulResponseException(response.status.value)

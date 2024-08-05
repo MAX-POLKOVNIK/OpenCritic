@@ -115,7 +115,14 @@ data class LinkShareRoute(val url: String) : Route(url)
 data object MainDestination : Destination("Main")
 
 data object AuthDestination : Destination("auth")
+
 data object AuthRoute : Routed(
     destination = AuthDestination,
+    args = emptyMap()
+)
+
+data object CalendarDestination : Destination("calendar")
+data object CalendarRoute : Routed(
+    destination = CalendarDestination,
     args = emptyMap()
 )

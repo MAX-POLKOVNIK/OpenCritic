@@ -1,5 +1,6 @@
 package com.opencritic.auth.ui
 
+import com.opencritic.mvvm.ScreenContent
 import com.opencritic.resources.text.TextSource
 import com.opencritic.resources.text.asTextSource
 
@@ -10,7 +11,7 @@ data class AuthContent(
     val authButtonText: TextSource,
     val onAuthButtonClicked: () -> Unit,
     val onTokenChanged: (String) -> Unit,
-)
+) : ScreenContent
 
 @Suppress("FunctionName")
 fun AuthContent_PreviewData(): AuthContent =

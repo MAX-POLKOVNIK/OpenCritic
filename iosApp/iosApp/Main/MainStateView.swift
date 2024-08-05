@@ -18,10 +18,15 @@ private let yourGameListViewModel: YourGameListViewModel = koinViewModel(YourGam
 private let articleListViewModel: ArticleListViewModel = koinViewModel(ArticleListViewModel.self)
 
 struct MainStateView: View {
-    let state: MainState
+    let state: MainContent
     
     @EnvironmentObject var router: IosRouter
-    @State private var activeTab: TabType = TabType.main
+    @State private var activeTab: TabType
+    
+    init(state: MainContent) {
+        self.state = state
+        self.activeTab = state.currentTab.id
+    }
     
     var body: some View {
         dashboardViewModel.setRouter(router: router)
@@ -33,7 +38,7 @@ struct MainStateView: View {
         return VStack {
             TabView(selection: $activeTab) {
                 ForEach(state.tabs, id: \.self) { tab in
-                    if tab.id == TabType.main {
+                    if tab.id == TabType.dashboard {
                         DashboardScreenView(viewModel: dashboardViewModel)
                             .tabItem {
                                 Label(tab.name, iconRes: tab.imageResource)

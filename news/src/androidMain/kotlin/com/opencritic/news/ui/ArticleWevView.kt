@@ -26,6 +26,7 @@ fun ArticleWevView(
     AndroidView(
         factory = {
             WebView(it).apply {
+                alpha = 0.99f // https://stackoverflow.com/questions/74829526/webview-crashes-on-navigation-popbackstack-with-jetpack-compose-lazycolumn
                 setBackgroundColor(Color.TRANSPARENT)
                 isVerticalScrollBarEnabled = false
                 layoutParams = ViewGroup.LayoutParams(

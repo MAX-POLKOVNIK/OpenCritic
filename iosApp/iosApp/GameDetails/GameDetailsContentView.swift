@@ -194,10 +194,10 @@ struct GameDetailsContentView: View {
             }
         }
         .toolbar {
-            if state.isShareVisible {
+            if state.isActionVisible {
                 Button(
-                    action: state.onShareClick,
-                    label: { Image(iconRes: state.shareIconResource) }
+                    action: state.onAction,
+                    label: { Image(iconRes: state.actionIconResource) }
                 )
             }
         }

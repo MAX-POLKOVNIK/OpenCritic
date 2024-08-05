@@ -3,7 +3,7 @@ package com.opencritic.mvvm
 import com.opencritic.resources.text.TextSource
 import com.opencritic.resources.text.asTextSource
 
-data class CommonViewModelState<Content>(
+data class CommonViewModelState<Content : ScreenContent>(
     val title: TextSource?,
     val content: Content?,
     val fullScreenLoading: BaseLoadingState?,
@@ -115,7 +115,7 @@ data class CommonViewModelState<Content>(
         copy(errorPopup = null)
 
     companion object {
-        fun <Content> content(
+        fun <Content : ScreenContent> content(
             content: Content,
             title: TextSource? = null
         ): CommonViewModelState<Content> =
@@ -129,14 +129,14 @@ data class CommonViewModelState<Content>(
                 errorPopup = null,
             )
 
-        fun <Content> loading(
+        fun <Content : ScreenContent> loading(
             title: TextSource? = null,
-            loading: BaseLoadingState? = null
+            loading: BaseLoadingState = LoadingState
         ): CommonViewModelState<Content> =
-            CommonViewModelState<Content>(
+            CommonViewModelState(
                 title = title,
                 content = null,
-                fullScreenLoading = loading ?: LoadingState,
+                fullScreenLoading = loading,
                 fullScreenError = null,
                 toast = null,
                 loadingPopup = null,

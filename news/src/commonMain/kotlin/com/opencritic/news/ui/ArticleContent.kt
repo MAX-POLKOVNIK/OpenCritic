@@ -1,5 +1,6 @@
 package com.opencritic.news.ui
 
+import com.opencritic.mvvm.ActionedScreenContent
 import com.opencritic.resources.images.IconResource
 import com.opencritic.resources.images.Icons
 import com.opencritic.resources.text.TextSource
@@ -16,16 +17,16 @@ data class ArticleContent(
     val isGameDiscussedVisible: Boolean,
     val gamesTitleDiscussedText: TextSource,
     val gamesDiscussedText: String,
-    val isShareVisible: Boolean,
     val htmlToRender: String,
-    val shareIconResource: IconResource,
     val isSeeFullArticleVisible: Boolean,
     val seeFullArticleText: TextSource,
-    val onShareClick: () -> Unit,
     val onOutletClick: () -> Unit,
     val onGameClick: () -> Unit,
     val onSeeFullArticleClick: () -> Unit,
-)
+    override val isActionVisible: Boolean,
+    override val actionIconResource: IconResource,
+    override val onAction: () -> Unit,
+) : ActionedScreenContent
 
 @Suppress("FunctionName")
 fun ArticleContent_PreviewData(): ArticleContent =
@@ -40,12 +41,12 @@ fun ArticleContent_PreviewData(): ArticleContent =
         isGameDiscussedVisible = true,
         gamesTitleDiscussedText = "Games discussed:".asTextSource(),
         gamesDiscussedText = "Nintendo Switch Sports",
-        isShareVisible = true,
-        shareIconResource = Icons.share,
+        isActionVisible = true,
+        actionIconResource = Icons.share,
         htmlToRender = "Hello",
         isSeeFullArticleVisible = true,
         seeFullArticleText = "See full article at Game Rant".asTextSource(),
-        onShareClick = {},
+        onAction = {},
         onOutletClick = {},
         onGameClick = {},
         onSeeFullArticleClick = {}

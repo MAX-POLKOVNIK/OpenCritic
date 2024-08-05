@@ -14,7 +14,9 @@ struct SearchScreenView: View {
     
     var body: some View {
         FlowView(of: viewModel.state) { state in
-            SearchStateView(state: state)
+            CommonScreenView(state: state) { content in
+                SearchStateView(state: content)
+            }
         }
     }
 }

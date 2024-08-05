@@ -112,11 +112,7 @@ data class UrlRoute(val url: String) : Route(url)
 
 data class LinkShareRoute(val url: String) : Route(url)
 
-data object MainDestination : Destination("main")
-data object SearchDestination : Destination("search")
-data object GameBrowserDestination : Destination("browser")
-data object YourListDestination : Destination("your_lists")
-data object NewsDestination : Destination("news")
+data object MainDestination : Destination("Main")
 
 data object AuthDestination : Destination("auth")
 data object AuthRoute : Routed(

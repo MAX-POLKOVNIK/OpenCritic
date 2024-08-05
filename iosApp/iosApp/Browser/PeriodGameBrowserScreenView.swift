@@ -14,14 +14,8 @@ struct PeriodGameBrowserScreenView: View {
     
     var body: some View {
         FlowView(of: viewModel.state) { state in
-            switch state {
-            case let content as PeriodGameBrowserStateContent:
+            CommonScreenView(state: state) { content in
                 PeriodGameBrowserStateContentView(state: content)
-            case let loading as PeriodGameBrowserStateLoading:
-                LoadingStateView(state: loading)
-            case let error as PeriodGameBrowserStateError:
-                ErrorStateView(state: error)
-            default: fatalError("Unknown state")
             }
         }
     }

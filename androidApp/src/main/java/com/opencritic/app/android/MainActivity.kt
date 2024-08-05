@@ -8,7 +8,10 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Surface
 import androidx.compose.ui.Modifier
-import com.opencritic.main.MainScreen
+import androidx.navigation.compose.NavHost
+import androidx.navigation.compose.rememberNavController
+import com.opencritic.app.registerRoutes
+import com.opencritic.navigation.MainDestination
 import com.opencritic.resources.MyApplicationTheme
 
 class MainActivity : ComponentActivity() {
@@ -23,7 +26,13 @@ class MainActivity : ComponentActivity() {
                     modifier = Modifier.fillMaxSize(),
                     color = MaterialTheme.colorScheme.background
                 ) {
-                    MainScreen()
+                    val navController = rememberNavController()
+
+                    NavHost(
+                        navController = navController,
+                        startDestination = MainDestination.path,
+                        builder = registerRoutes(navController)
+                    )
                 }
             }
         }

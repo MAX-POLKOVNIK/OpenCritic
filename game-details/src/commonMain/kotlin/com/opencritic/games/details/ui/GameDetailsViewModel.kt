@@ -145,9 +145,9 @@ class GameDetailsViewModel(
                                 onViewAllTrailersClick = { openMedia() },
                                 onViewAllReviewsClick = { openReviews() },
                                 onRefresh = ::onRefresh,
-                                isShareVisible = true,
-                                shareIconResource = Icons.share,
-                                onShareClick = { shareGameUrl(details.url) }
+                                isActionVisible = true,
+                                actionIconResource = Icons.share,
+                                onAction = { shareGameUrl(details.url) }
                             )
                         )
                     }

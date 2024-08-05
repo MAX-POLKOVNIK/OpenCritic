@@ -9,20 +9,20 @@ import com.opencritic.game.browser.domain.asTextSource
 import com.opencritic.games.Platform
 import com.opencritic.games.details.ui.LoadingItem
 import com.opencritic.logs.Logger
-import com.opencritic.mvvm.BaseViewModel
+import com.opencritic.mvvm.BaseContentViewModel
+import com.opencritic.mvvm.CommonViewModelState
 import com.opencritic.navigation.GameDetailsRoute
 import com.opencritic.resources.text.StringRes
 import com.opencritic.resources.text.asTextSource
-import kotlinx.coroutines.flow.update
 import kotlinx.coroutines.launch
 
 class GameBrowserViewModel(
     private val getPlatformsInteractor: GetPlatformsInteractor,
     private val getBrowseGamesInteractor: GetBrowseGamesInteractor,
     private val logger: Logger,
-) : BaseViewModel<GameBrowserState>() {
-    override fun initialState(): GameBrowserState =
-        GameBrowserState.Loading
+) : BaseContentViewModel<GameBrowserContent>() {
+    override fun initialState(): CommonViewModelState<GameBrowserContent> =
+        CommonViewModelState.loading(title = StringRes.str_tab_browse.asTextSource())
 
     private var platforms: List<Platform>? = null
     private var canLoadMore: Boolean = true
@@ -36,12 +36,12 @@ class GameBrowserViewModel(
         scope.launch {
             getPlatformsInteractor()
                 .onFailure {
-                    mutableState.update {
-                        GameBrowserState.Error(it.toString().asTextSource())
+                    showError(it) {
+                        onStateInit()
                     }
                 }
                 .onSuccess { platforms ->
-                    mutableState.update {
+                    setContent {
                         createContentState(platforms)
                     }
 
@@ -59,18 +59,16 @@ class GameBrowserViewModel(
                         logger.log(it.toString())
                     }
                     .onSuccess { games ->
-                        requireNotNull(state.value as? GameBrowserState.Content)
-                            .let { content ->
-                                content.copy(
-                                    browseGameItems = content.browseGameItems + games.map { game ->
-                                        BrowseGameItem(game)
-                                    },
-                                    isLoadingItemVisible = games.isNotEmpty()
-                                )
-                            }
-                            .let { content ->
-                                mutableState.update { content }
-                            }
+                        val content = requireContent()
+
+                        updateContentIfSet {
+                            content.copy(
+                                browseGameItems = content.browseGameItems + games.map { game ->
+                                    BrowseGameItem(game)
+                                },
+                                isLoadingItemVisible = games.isNotEmpty()
+                            )
+                        }
 
                         canLoadMore = games.isNotEmpty()
                     }
@@ -80,8 +78,8 @@ class GameBrowserViewModel(
 
     private fun createContentState(
         platforms: List<Platform>,
-    ): GameBrowserState.Content =
-        GameBrowserState.Content(
+    ): GameBrowserContent =
+        GameBrowserContent(
             sortTitleText = StringRes.str_sort.asTextSource(),
             sortText = GameSortItem(sorting, sorting.asTextSource()),
             sortItems = GameSorting.entries
@@ -113,24 +111,25 @@ class GameBrowserViewModel(
         if (!canLoadMore)
             return
 
-        val state = requireNotNull(state.value as? GameBrowserState.Content)
+        val content = requireContent()
 
         scope.launch {
             getBrowseGamesInteractor(
                 platformCode = platform?.code ?: "",
-                skip = state.browseGameItems.size,
+                skip = content.browseGameItems.size,
                 sorting = sorting,
                 time = timeframe,
             )
                 .onSuccess { reviews ->
-                    logger.log("Loaded reviews count: ${reviews.size} --- $platform $sorting $timeframe ${state.browseGameItems.size}")
-                    state.copy(
-                        browseGameItems = state.browseGameItems + reviews.map { game ->
-                            BrowseGameItem(game)
-                        },
-                        isLoadingItemVisible = reviews.isNotEmpty()
-                    ).let {
-                        mutableState.tryEmit(it)
+                    logger.log("Loaded reviews count: ${reviews.size} --- $platform $sorting $timeframe ${content.browseGameItems.size}")
+
+                    updateContentIfSet {
+                        copy(
+                            browseGameItems = content.browseGameItems + reviews.map { game ->
+                                BrowseGameItem(game)
+                            },
+                            isLoadingItemVisible = reviews.isNotEmpty()
+                        )
                     }
                 }
                 .onFailure {
@@ -153,15 +152,13 @@ class GameBrowserViewModel(
         sorting = item.key
         canLoadMore = true
 
-        val state = requireNotNull(state.value as? GameBrowserState.Content)
-
-        mutableState.tryEmit(
-            state.copy(
+        updateContentIfSet {
+            copy(
                 sortText = item,
                 browseGameItems = emptyList(),
                 isLoadingItemVisible = true
             )
-        )
+        }
 
         loadMore()
     }
@@ -173,15 +170,13 @@ class GameBrowserViewModel(
         timeframe = item.key
         canLoadMore = true
 
-        val state = requireNotNull(state.value as? GameBrowserState.Content)
-
-        mutableState.tryEmit(
-            state.copy(
+        updateContentIfSet {
+            copy(
                 timeframeText = item,
                 browseGameItems = emptyList(),
                 isLoadingItemVisible = true
             )
-        )
+        }
 
         loadMore()
     }
@@ -193,15 +188,13 @@ class GameBrowserViewModel(
         platform = item.key
         canLoadMore = true
 
-        val state = requireNotNull(state.value as? GameBrowserState.Content)
-
-        mutableState.tryEmit(
-            state.copy(
+        updateContentIfSet {
+            copy(
                 platformText = item,
                 browseGameItems = emptyList(),
                 isLoadingItemVisible = true
             )
-        )
+        }
 
         loadMore()
     }

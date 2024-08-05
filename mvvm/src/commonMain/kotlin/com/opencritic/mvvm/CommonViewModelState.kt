@@ -36,7 +36,7 @@ data class CommonViewModelState<Content>(
             true to false -> copy(content = content, fullScreenLoading = null)
             false to true -> copy(content = content, fullScreenError = null)
             else -> copy(
-                title = title,
+                title = title ?: title,
                 content = content,
                 fullScreenLoading = null,
                 fullScreenError = null,
@@ -48,7 +48,7 @@ data class CommonViewModelState<Content>(
         title: TextSource? = null
     ): CommonViewModelState<Content> =
         error(
-            title = title,
+            title = title ?: this.title,
             fullScreenError = ErrorState(errorDescription.asTextSource())
         )
 
@@ -58,7 +58,7 @@ data class CommonViewModelState<Content>(
         shouldNullifyLoading: Boolean = true,
     ): CommonViewModelState<Content> =
         copy(
-            title = title,
+            title = title ?: this.title,
             fullScreenError = fullScreenError,
             fullScreenLoading = fullScreenLoading.takeUnless { shouldNullifyLoading }
         )
@@ -97,8 +97,8 @@ data class CommonViewModelState<Content>(
 
     fun setErrorPopup(
         message: TextSource,
-        actionText: TextSource? = null,
-        action: (() -> Unit)? = null
+        actionText: TextSource,
+        action: () -> Unit
     ): CommonViewModelState<Content> =
         setErrorPopup(
             errorPopup = ErrorState(

@@ -1,6 +1,5 @@
 package com.opencritic.games.details.domain.interactor
 
-import com.opencritic.auth.domain.GetAuthStateInteractor
 import com.opencritic.game.your.domain.GameListId
 import com.opencritic.game.your.domain.YourGame
 import com.opencritic.game.your.domain.YourGameRepository
@@ -10,12 +9,10 @@ import com.opencritic.games.details.domain.GameDetailsRepository
 class GetGameDetailsInteractor(
     private val repository: GameDetailsRepository,
     private val yourGameRepository: YourGameRepository,
-    private val getAuthStateInteractor: GetAuthStateInteractor,
 ) {
     suspend operator fun invoke(gameId: Long): Result<GameDetails> =
         runCatching {
-            val token = getAuthStateInteractor().getOrNull()?.authToken
-            val game = repository.getGame(gameId, token)
+            val game = repository.getGame(gameId)
             val reviews = repository.getGameReviewsLanding(gameId)
             val lists = yourGameRepository.getVitalLists()
 

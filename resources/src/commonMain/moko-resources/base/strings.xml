@@ -1,6 +1,10 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <resources>
     <string name="str_ok">OK</string>
+    <string name="str_retry">Retry</string>
+    <string name="str_error_no_internet">No internet connection</string>
+    <string name="str_error_server_error">Error on OpenCritic. Trying to fix it</string>
+    <string name="str_error_unknown">Something went wrong. Trying to fix it</string>
     <string name="str_loading">Loading…</string>
     <string name="str_all_platforms">All Platforms</string>
     <string name="str_author_is_not_claimed">Are you %s? If so, email critics@opencritic.com to claim this critic page.</string>

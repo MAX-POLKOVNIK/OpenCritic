@@ -1,5 +1,6 @@
 package com.opencritic.mvvm
 
+import com.opencritic.resources.text.StringRes
 import com.opencritic.resources.text.TextSource
 import com.opencritic.resources.text.asTextSource
 import kotlinx.coroutines.Job
@@ -34,7 +35,7 @@ abstract class BaseContentViewModel<Content> : BaseViewModel<CommonViewModelStat
         }
     }
 
-    protected fun loading(baseLoadingState: BaseLoadingState = LoadingState) {
+    protected fun showLoading(baseLoadingState: BaseLoadingState = LoadingState) {
         mutableState.update {
             it.loading(baseLoadingState)
         }
@@ -46,21 +47,27 @@ abstract class BaseContentViewModel<Content> : BaseViewModel<CommonViewModelStat
         }
     }
 
-    protected fun error(ex: Throwable) {
+    protected fun showError(
+        ex: Throwable,
+        actionText: TextSource = StringRes.str_retry.asTextSource(),
+        action: () -> Unit,
+    ) {
         mutableState.update {
             it.error(
                 ErrorState(
-                    ex.toString().asTextSource()
+                    message = ex.asTextSource(),
+                    actionText = actionText,
+                    action = action
                 )
             )
         }
     }
 
-    protected fun error(baseErrorState: BaseErrorState) {
-        mutableState.update {
-            it.error(baseErrorState)
-        }
-    }
+//    protected fun showError(baseErrorState: BaseErrorState) {
+//        mutableState.update {
+//            it.error(baseErrorState)
+//        }
+//    }
 
     protected fun setLoadingPopup(loadingPopup: BaseLoadingState) {
         mutableState.update { state ->
@@ -74,8 +81,8 @@ abstract class BaseContentViewModel<Content> : BaseViewModel<CommonViewModelStat
 
     fun setErrorPopup(
         message: TextSource,
-        actionText: TextSource? = null,
-        action: (() -> Unit)? = null
+        actionText: TextSource,
+        action: (() -> Unit)
     ) {
         mutableState.update { state ->
             state.setErrorPopup(message, actionText, action)

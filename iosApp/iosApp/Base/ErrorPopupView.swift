@@ -25,10 +25,8 @@ struct ErrorPopupView: View {
             Text(state.message)
                 .padding(.horizontal)
             
-            if let actionText = state.actionText, let action = state.action {
-                Button(actionText, action: action)
-                    .padding()
-            }
+            Button(state.actionText, action: state.action)
+                .padding()
         }
         .card()
         .padding()

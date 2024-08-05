@@ -4,7 +4,7 @@ import com.opencritic.games.Game
 import com.opencritic.games.Review
 
 interface GameDetailsRepository {
-    suspend fun getGame(gameId: Long, token: String?): Game
+    suspend fun getGame(gameId: Long): Game
 
     suspend fun getGameMedia(gameId: Long): Game
 

@@ -7,6 +7,7 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.material3.CircularProgressIndicator
 import androidx.compose.material3.MaterialTheme
+import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
@@ -20,24 +21,27 @@ fun LoadingBox(
     state: BaseLoadingState,
     modifier: Modifier = Modifier,
 ) {
-    Box(
-        contentAlignment = Alignment.Center,
+    Surface(
         modifier = modifier
             .fillMaxSize(),
     ) {
-        Column(
-            horizontalAlignment = Alignment.CenterHorizontally,
+        Box(
+            contentAlignment = Alignment.Center,
         ) {
-            CircularProgressIndicator(
-                modifier = Modifier
-                    .size(56.dp)
-            )
-            Text(
-                text = state.text,
-                style = MaterialTheme.typography.headlineSmall,
-                modifier = Modifier
-                    .padding(top = defaultPadding)
-            )
+            Column(
+                horizontalAlignment = Alignment.CenterHorizontally,
+            ) {
+                CircularProgressIndicator(
+                    modifier = Modifier
+                        .size(56.dp)
+                )
+                Text(
+                    text = state.text,
+                    style = MaterialTheme.typography.headlineSmall,
+                    modifier = Modifier
+                        .padding(top = defaultPadding)
+                )
+            }
         }
     }
 }

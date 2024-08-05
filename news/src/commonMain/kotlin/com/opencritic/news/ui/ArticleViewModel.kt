@@ -27,10 +27,14 @@ class ArticleViewModel(
     override fun onStateInit() {
         super.onStateInit()
 
+        loadArticle()
+    }
+
+    private fun loadArticle() {
         scope.launch {
             getArticleInteractor(articleId)
                 .onFailure {
-                    error(it)
+                    showError(it) { loadArticle() }
                 }
                 .onSuccess { article ->
                     setContent {

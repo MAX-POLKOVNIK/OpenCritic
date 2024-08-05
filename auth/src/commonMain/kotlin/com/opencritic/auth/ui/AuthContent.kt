@@ -12,6 +12,7 @@ data class AuthContent(
     val onTokenChanged: (String) -> Unit,
 )
 
+@Suppress("FunctionName")
 fun AuthContent_PreviewData(): AuthContent =
     AuthContent(
         token = "kfjhgsdjhfjkdshfjksdhfjhsdfjhsdkjfhajshfkjadshfjasdhfkjhsdfkjhasdfjkhasdjfhsdkjhfsdh",

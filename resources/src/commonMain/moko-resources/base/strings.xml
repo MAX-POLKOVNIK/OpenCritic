@@ -95,4 +95,19 @@
     <string name="str_auth_button">Authorize</string>
     <string name="str_calendar_title">Gaming Calendar</string>
     <string name="str_calendar_description">See all of the top releases in gaming for the upcoming season. Games are evaluated for placement on the calendar on a case-by-case basis. If you think we're missing a game, email us at factcheck@opencritic.com.</string>
+    <string name="str_about_title">About</string>
+    <string name="str_about_version">App version: %s</string>
+    <string name="str_about_disclosure_title">Affiliate Disclosure</string>
+    <string name="str_about_disclosure">A portion of the sale from items purchased through the Amazon, GamesPlanet, Best Buy, Walmart, GameStop, and other 3rd party retailer links on this page directly support OpenCritic.</string>
+    <string name="str_about_links_title">Important Links</string>
+    <string name="str_about_link_title_author">Mobile app site</string>
+    <string name="str_about_link_title_faq">Faq</string>
+    <string name="str_about_link_title_submit_review">Submit a Review</string>
+    <string name="str_about_link_title_partners">Our Partners</string>
+    <string name="str_about_link_title_contacts">Contact Us</string>
+    <string name="str_about_link_title_supporters">Our Supporters</string>
+    <string name="str_about_link_title_privacy">Privacy Policy</string>
+    <string name="str_about_link_title_terms">Terms of Use</string>
+    <string name="str_about_link_title_press">Press Assets</string>
+    <string name="str_about_link_title_donate">Donate on Patreon</string>
 </resources>

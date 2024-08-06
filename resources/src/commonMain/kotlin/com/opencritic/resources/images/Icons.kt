@@ -33,4 +33,6 @@ expect object Icons {
     val arrowDown: IconResource
 
     val share: IconResource
+
+    val info: IconResource
 }

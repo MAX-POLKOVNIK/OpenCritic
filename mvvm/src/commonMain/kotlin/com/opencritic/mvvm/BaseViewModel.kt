@@ -8,10 +8,13 @@ import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.flow.MutableStateFlow
 
 abstract class BaseViewModel<State : ViewModelState> : ViewModel() {
+    private var alreadyInitializedMutableStateFlow: MutableStateFlow<State>? = null
 
-    protected val mutableState: MutableStateFlow<State> by lazy {
-        MutableStateFlow(initialState())
-            .also { onStateInit() }
+    protected val mutableState: MutableStateFlow<State> by lazy(LazyThreadSafetyMode.SYNCHRONIZED) {
+        alreadyInitializedMutableStateFlow
+            ?: MutableStateFlow(initialState())
+                .also { alreadyInitializedMutableStateFlow = it }
+                .also { onStateInit() }
     }
 
     val state: ViewModelStateFlow<State> by lazy { mutableState.toViewModelStateFlow() }

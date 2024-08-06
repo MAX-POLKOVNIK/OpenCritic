@@ -113,6 +113,14 @@ private fun <Content : ScreenContent> CenterAppBar(
                 overflow = TextOverflow.Ellipsis
             )
         },
+        actions = {
+            val content = state.content as? ActionedScreenContent
+            if (content != null && content.isActionVisible) {
+                IconButton(onClick = { state.content.onAction() }) {
+                    Icon(content.actionIconResource.asPainter(), contentDescription = null)
+                }
+            }
+        },
         modifier = modifier,
     )
 }

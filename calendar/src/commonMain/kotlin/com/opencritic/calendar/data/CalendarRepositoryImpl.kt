@@ -34,7 +34,7 @@ internal class CalendarRepositoryImpl(
         CalendarGame(
             id = dto.id,
             name = dto.name,
-            posterImageUrl = dto.images.sm?.prefixedImageUrl(),
+            posterImageUrl = dto.images.box?.sm?.prefixedImageUrl(),
             releaseDate = dto.firstReleaseDate.toLocalDateTime(TimeZone.UTC).date
         )
 

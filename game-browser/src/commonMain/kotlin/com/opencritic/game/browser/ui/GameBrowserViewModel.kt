@@ -11,7 +11,9 @@ import com.opencritic.games.details.ui.LoadingItem
 import com.opencritic.logs.Logger
 import com.opencritic.mvvm.BaseContentViewModel
 import com.opencritic.mvvm.CommonViewModelState
+import com.opencritic.navigation.CalendarRoute
 import com.opencritic.navigation.GameDetailsRoute
+import com.opencritic.resources.images.Icons
 import com.opencritic.resources.text.StringRes
 import com.opencritic.resources.text.asTextSource
 import kotlinx.coroutines.launch
@@ -104,7 +106,10 @@ class GameBrowserViewModel(
             onLoadMore = { loadMore() },
             onSelectedSort = { onSortSelected(it) },
             onSelectedPlatform = { onPlatformSelected(it) },
-            onSelectedTimeframe = { onTimeframeSelected(it) }
+            onSelectedTimeframe = { onTimeframeSelected(it) },
+            isActionVisible = true,
+            actionIconResource = Icons.calendar,
+            onAction = { navigateToCalendar() },
         )
 
     private fun loadMore() {
@@ -204,5 +209,10 @@ class GameBrowserViewModel(
             .navigateTo(
                 GameDetailsRoute(gameId, gameName)
             )
+    }
+
+    private fun navigateToCalendar() {
+        requireRouter()
+            .navigateTo(CalendarRoute)
     }
 }

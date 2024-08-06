@@ -5,6 +5,7 @@ import com.opencritic.calendar.domain.GetGameCalendarInteractor
 import com.opencritic.mvvm.BaseContentViewModel
 import com.opencritic.mvvm.CommonViewModelState
 import com.opencritic.navigation.GameDetailsRoute
+import com.opencritic.resources.text.StringRes
 import com.opencritic.resources.text.asTextSource
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
@@ -14,7 +15,7 @@ class CalendarViewModel(
     private val getGameCalendarInteractor: GetGameCalendarInteractor,
 ) : BaseContentViewModel<CalendarContent>() {
     override fun initialState(): CommonViewModelState<CalendarContent> =
-        CommonViewModelState.loading(title = "Gaming Calendar".asTextSource())
+        CommonViewModelState.loading(title = StringRes.str_calendar_title.asTextSource())
 
     override fun onStateInit() {
         super.onStateInit()
@@ -35,7 +36,7 @@ class CalendarViewModel(
                 .onSuccess { calendar ->
                     setContent {
                         CalendarContent(
-                            description = "See all of the top releases in gaming for the upcoming season. Games are evaluated for placement on the calendar on a case-by-case basis. If you think we're missing a game, email us at factcheck@opencritic.com.".asTextSource(),
+                            description = StringRes.str_calendar_description.asTextSource(),
                             cards = calendar.months.map {
                                 CalendarGameMonthCard(
                                     month = it,

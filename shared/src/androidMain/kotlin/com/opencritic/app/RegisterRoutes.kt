@@ -3,6 +3,7 @@ package com.opencritic.app
 import androidx.navigation.NavController
 import androidx.navigation.NavGraphBuilder
 import androidx.navigation.compose.composable
+import com.opencritic.about.ui.aboutComposeRoute
 import com.opencritic.auth.ui.authComposeRoute
 import com.opencritic.calendar.ui.calendarComposeRoute
 import com.opencritic.game.browser.periodGameBrowserComposeRoute
@@ -28,4 +29,5 @@ fun registerRoutes(navController: NavController): NavGraphBuilder.() -> Unit = {
     gameListRoute(navController)
     articleComposeRoute(navController)
     calendarComposeRoute(navController)
+    aboutComposeRoute(navController)
 }

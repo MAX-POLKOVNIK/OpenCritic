@@ -12,6 +12,6 @@ internal actual fun HttpClient(): HttpClient =
     HttpClient(Darwin) {
         install(ContentNegotiation) { json(ApiJson) }
         install(Logging) {
-            level = LogLevel.ALL
+            level = LogLevel.NONE
         }
     }

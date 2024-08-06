@@ -12,6 +12,8 @@ import SwiftUI
 import UIKit
 
 class IosRouter: ObservableObject, Router {
+    static let shared = IosRouter()
+    
     @Published var path: [Route] = [] {
         willSet(newValue) {
             let routes = Set(path).subtracting(newValue)
@@ -77,6 +79,10 @@ class IosRouter: ObservableObject, Router {
         case let articleRoute as ArticleRoute:
             ArticleScreenView(
                 viewModel: viewModel(for: route, args: [articleRoute.articleId, articleRoute.title])
+            )
+        case _ as CalendarRoute:
+            CalendarScreenView(
+                viewModel: viewModel(for: route, args: [])
             )
         default:
             ContentView()

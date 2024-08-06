@@ -11,9 +11,11 @@ import SwiftUI
 import shared
 
 struct RouterView<Content: View>: View {
-    @StateObject var router: IosRouter = IosRouter()
+    @StateObject var router: IosRouter = IosRouter.shared
     
     private let content: Content
+    
+    @State private var isShow: Bool = true
     
     init(@ViewBuilder content: @escaping () -> Content) {
         self.content = content()
@@ -23,7 +25,17 @@ struct RouterView<Content: View>: View {
         NavigationStack(path: $router.path) {
             content
                 .navigationDestination(for: Route.self) { route in
+                    let _ = withAnimation {
+                        isShow = $router.path.isEmpty
+                    }
+                    
                     router.view(for: route)
+                }
+                .toolbar(isShow ? .visible : .hidden, for: .tabBar)
+                .onAppear {
+                    withAnimation {
+                        isShow = true
+                    }
                 }
         }
         .environmentObject(router)

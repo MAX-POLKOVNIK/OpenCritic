@@ -19,8 +19,8 @@ private let articleListViewModel: ArticleListViewModel = koinViewModel(ArticleLi
 
 struct MainStateView: View {
     let state: MainContent
+    private let router = IosRouter.shared
     
-    @EnvironmentObject var router: IosRouter
     @State private var activeTab: TabType
     
     init(state: MainContent) {
@@ -35,61 +35,54 @@ struct MainStateView: View {
         yourGameListViewModel.setRouter(router: router)
         articleListViewModel.setRouter(router: router)
         
-        return VStack {
-            TabView(selection: $activeTab) {
-                ForEach(state.tabs, id: \.self) { tab in
-                    if tab.id == TabType.dashboard {
+        return TabView(selection: $activeTab) {
+            ForEach(state.tabs, id: \.self) { tab in
+                if tab.id == TabType.dashboard {
+                    RouterView {
                         DashboardScreenView(viewModel: dashboardViewModel)
-                            .tabItem {
-                                Label(tab.name, iconRes: tab.imageResource)
-                            }
-                            .tag(tab.id)
-                            .navigationTitle(tab.name)
                     }
-                    if tab.id == TabType.search {
+                        .tabItem {
+                            Label(tab.name, iconRes: tab.imageResource)
+                        }
+                        .tag(tab.id)
+                }
+                if tab.id == TabType.search {
+                    RouterView {
                         SearchScreenView(viewModel: searchViewModel)
-                            .tabItem {
-                                Label(tab.name, iconRes: tab.imageResource)
-                            }
-                            .tag(tab.id)
-                            .navigationTitle(tab.name)
                     }
-                    if tab.id == TabType.browse {
+                        .tabItem {
+                            Label(tab.name, iconRes: tab.imageResource)
+                        }
+                        .tag(tab.id)
+                }
+                if tab.id == TabType.browse {
+                    RouterView {
                         GameBrowserScreenView(viewModel: gameBrowserViewModel)
-                            .tabItem {
-                                Label(tab.name, iconRes: tab.imageResource)
-                            }
-                            .tag(tab.id)
-                            .navigationTitle(tab.name)
                     }
-                    if tab.id == TabType.yourlists {
+                        .tabItem {
+                            Label(tab.name, iconRes: tab.imageResource)
+                        }
+                        .tag(tab.id)
+                }
+                if tab.id == TabType.yourlists {
+                    RouterView {
                         YourGameListScreenView(viewModel: yourGameListViewModel)
-                            .tabItem {
-                                Label(tab.name, iconRes: tab.imageResource)
-                            }
-                            .tag(tab.id)
-                            .navigationTitle(tab.name)
                     }
-                    if tab.id == TabType.news {
+                        .tabItem {
+                            Label(tab.name, iconRes: tab.imageResource)
+                        }
+                        .tag(tab.id)
+                }
+                if tab.id == TabType.news {
+                    RouterView {
                         ArticleListScreenView(viewModel: articleListViewModel)
-                            .tabItem {
-                                Label(tab.name, iconRes: tab.imageResource)
-                            }
-                            .tag(tab.id)
-                            .navigationTitle(tab.name)
                     }
+                        .tabItem {
+                            Label(tab.name, iconRes: tab.imageResource)
+                        }
+                        .tag(tab.id)
                 }
             }
-        }
-        .navigationBarTitle(
-            state.tabs.first { $0.id == activeTab }?.name.text() ?? "",
-            displayMode: .inline
-        )
-        .overlay(alignment: .top) {
-            Color.clear // Or any view or color
-                .background(.regularMaterial) // I put clear here because I prefer to put a blur in this case. This modifier and the material it contains are optional.
-                .ignoresSafeArea(edges: .top)
-                .frame(height: 0) // This will constrain the overlay to only go above the top safe area and not under.
         }
     }
 }

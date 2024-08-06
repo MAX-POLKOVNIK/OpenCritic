@@ -74,6 +74,14 @@ struct GameBrowserStateContentView: View {
             }
         }
         .listStyle(.plain)
+        .toolbar {
+            if state.isActionVisible {
+                Button(
+                    action: state.onAction,
+                    label: { Image(iconRes: state.actionIconResource) }
+                )
+            }
+        }
     }
 }
 

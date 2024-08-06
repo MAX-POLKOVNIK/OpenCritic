@@ -2,6 +2,7 @@ package com.opencritic.api
 
 import com.opencritic.api.dto.article.ArticleDto
 import com.opencritic.api.dto.author.AuthorDto
+import com.opencritic.api.dto.calendar.CalendarDto
 import com.opencritic.api.dto.deal.DealItemDto
 import com.opencritic.api.dto.details.GameDetailsDto
 import com.opencritic.api.dto.featured.FeaturedGameListDto
@@ -84,4 +85,6 @@ interface OpenCriticsApi {
     suspend fun getArticlePreviews(skip: Int): List<ArticleDto>
 
     suspend fun getArticle(articleId: Long): ArticleDto
+
+    suspend fun getCalendar(): CalendarDto
 }

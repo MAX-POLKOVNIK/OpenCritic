@@ -27,6 +27,9 @@ struct ArticleListContentView: View {
             }
         }
         .listStyle(.plain)
+        .refreshable {
+            let _ = try? await content.onRefresh.invoke()
+        }
     }
 }
 

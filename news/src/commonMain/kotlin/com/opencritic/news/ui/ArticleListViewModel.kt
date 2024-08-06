@@ -29,53 +29,63 @@ class ArticleListViewModel(
         loadMore()
     }
 
-    private fun loadMore(clearList: Boolean = false) {
+    private suspend fun loadMore(clearList: Boolean = false) {
         if (!canLoadMore)
             return
 
-        scope.launch {
-            getArticlesInteractor(
-                skip = skip,
-            )
-                .onSuccess { articles ->
-                    logger.log("Loaded articles count: ${articles.size} --- ${state.value.content?.items?.size}")
+        getArticlesInteractor(
+            skip = if (clearList) 0 else skip,
+        )
+            .onSuccess { articles ->
+                logger.log("Loaded articles count: ${articles.size} --- ${state.value.content?.items?.size}")
+                logger.log("Loaded articles: ${articles.map { it.id }}")
 
-                    hideLoading()
+                hideLoading()
 
-                    val newListItems = articles.map {
-                        ArticleListItem(
-                            articlePreview = it,
-                            onClick = { navigateToArticle(it) },
-                            onOutletClick = { navigateToOutlet(it.outlet) }
+                val newListItems = articles.map {
+                    ArticleListItem(
+                        articlePreview = it,
+                        onClick = { navigateToArticle(it) },
+                        onOutletClick = { navigateToOutlet(it.outlet) }
+                    )
+                }
+
+                if (isContentSet) {
+                    updateContentIfSet {
+                        val items = ((if (clearList) emptyList() else items) + newListItems)
+                            .distinctBy { it.id }
+
+                        skip = items.size
+
+                        copy(items = items)
+                    }
+                } else {
+                    setContent {
+                        skip = newListItems.size
+
+                        ArticleListContent(
+                            items = newListItems,
+                            isLoadingItemVisible = true,
+                            loadingItem = LoadingItem,
+                            onLoadMore = { loadMore() },
+                            onRefresh = { refresh() }
                         )
                     }
-
-                    if (isContentSet) {
-                        updateContentIfSet {
-                            val items = ((if (clearList) emptyList() else items) + newListItems)
-                                .distinctBy { it.id }
-
-                            skip = items.size
-
-                            copy(items = items)
-                        }
-                    } else {
-                        setContent {
-                            skip = newListItems.size
-
-                            ArticleListContent(
-                                items = newListItems,
-                                isLoadingItemVisible = true,
-                                loadingItem = LoadingItem,
-                                onLoadMore = { loadMore() },
-                            )
-                        }
-                    }
                 }
-                .onFailure {
-                    logger.log(it.toString())
-                }
+            }
+            .onFailure {
+                logger.log(it.toString())
+            }
+    }
+
+    private fun loadMore() {
+        scope.launch {
+            loadMore(clearList = false)
         }
+    }
+
+    private suspend fun refresh() {
+        loadMore(clearList = true)
     }
 
     private fun navigateToArticle(articlePreview: ArticlePreview) {

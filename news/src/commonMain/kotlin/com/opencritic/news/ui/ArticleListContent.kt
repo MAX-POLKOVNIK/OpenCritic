@@ -8,6 +8,7 @@ data class ArticleListContent(
     val isLoadingItemVisible: Boolean,
     val loadingItem: LoadingItem,
     val onLoadMore: () -> Unit,
+    val onRefresh: suspend () -> Unit
 ) : ScreenContent
 
 @Suppress("FunctionName")
@@ -17,4 +18,5 @@ fun ArticleListContent_PreviewData(): ArticleListContent =
         isLoadingItemVisible = true,
         loadingItem = LoadingItem,
         onLoadMore = {},
+        onRefresh = {},
     )

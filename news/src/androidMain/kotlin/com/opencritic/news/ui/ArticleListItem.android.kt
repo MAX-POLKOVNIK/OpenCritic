@@ -33,7 +33,8 @@ fun ArticleListItem(
 ) {
     Column(
         horizontalAlignment = Alignment.Start,
-        modifier = modifier,
+        modifier = modifier
+            .clickable { item.onReadMoreClick() },
     ) {
         Card {
             Box(

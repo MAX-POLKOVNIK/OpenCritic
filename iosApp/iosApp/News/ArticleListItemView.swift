@@ -56,6 +56,9 @@ struct ArticleListItemView: View {
                 }
             }
         }
+        .onTapGesture {
+            item.onReadMoreClick()
+        }
     }
 }
 

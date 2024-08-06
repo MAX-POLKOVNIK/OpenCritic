@@ -1,7 +1,22 @@
 # OpenCritic
-OpenCritic unofficial mobile app
+[OpenCritic](https://opencritic.com/) unofficial mobile app
 
 Access your favorite site with mobile app
+
+# Features/Screen List
+
+- Main screen
+- Game Review screen
+- Author's Reviews screen
+- Outlet's Reviews screen
+- Game Browser screen
+- Calendar screen
+- Your Lists screen
+- Your List (Wanted/Played/Favorite/Custom) screen
+- Sign In screen (in some way...)
+- About screen
+- News screen
+- Article screen
 
 # Android
 

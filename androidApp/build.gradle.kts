@@ -10,8 +10,8 @@ android {
         applicationId = "com.opencritic.app.android"
         minSdk = 28
         targetSdk = 34
-        versionCode = 2
-        versionName = "1.1"
+        versionCode = 3
+        versionName = "1.2"
     }
     buildFeatures {
         compose = true

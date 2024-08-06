@@ -37,6 +37,11 @@ struct RouterView<Content: View>: View {
                         isShow = true
                     }
                 }
+                .onDisappear {
+                    withAnimation {
+                        isShow = $router.path.isEmpty
+                    }
+                }
         }
         .environmentObject(router)
     }

@@ -1,5 +1,6 @@
 package com.opencritic.app
 
+import com.opencritic.about.di.aboutModule
 import com.opencritic.api.apiModule
 import com.opencritic.auth.di.authModule
 import com.opencritic.calendar.di.calendarModule
@@ -39,6 +40,7 @@ abstract class BaseApp : KoinComponent {
                 authModule,
                 newsModule,
                 calendarModule,
+                aboutModule,
             )
         }
 

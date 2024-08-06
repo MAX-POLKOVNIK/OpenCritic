@@ -126,3 +126,9 @@ data object CalendarRoute : Routed(
     destination = CalendarDestination,
     args = emptyMap()
 )
+
+data object AboutDestination : Destination("about")
+data object AboutRoute : Routed(
+    destination = AboutDestination,
+    args = emptyMap()
+)

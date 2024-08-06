@@ -48,6 +48,8 @@
 		42A2E7362C61EDB2004F2357 /* CalendarGameMonthCardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42A2E7352C61EDB2004F2357 /* CalendarGameMonthCardView.swift */; };
 		42A2E7382C61EE52004F2357 /* CalendarContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42A2E7372C61EE52004F2357 /* CalendarContentView.swift */; };
 		42A2E73A2C61EEE5004F2357 /* CalendarScreenView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42A2E7392C61EEE5004F2357 /* CalendarScreenView.swift */; };
+		42A2E73F2C62304C004F2357 /* AboutContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42A2E73E2C62304C004F2357 /* AboutContentView.swift */; };
+		42A2E7412C62324E004F2357 /* AboutScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42A2E7402C62324E004F2357 /* AboutScreen.swift */; };
 		42E1CACB2C5CE37B006D9C4D /* AuthContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42E1CACA2C5CE37B006D9C4D /* AuthContentView.swift */; };
 		42E1CACE2C5D04A9006D9C4D /* ProgressView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42E1CACD2C5D04A9006D9C4D /* ProgressView.swift */; };
 		42E1CAD02C5D2373006D9C4D /* ErrorPopupView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42E1CACF2C5D2373006D9C4D /* ErrorPopupView.swift */; };
@@ -149,6 +151,8 @@
 		42A2E7352C61EDB2004F2357 /* CalendarGameMonthCardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarGameMonthCardView.swift; sourceTree = "<group>"; };
 		42A2E7372C61EE52004F2357 /* CalendarContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarContentView.swift; sourceTree = "<group>"; };
 		42A2E7392C61EEE5004F2357 /* CalendarScreenView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarScreenView.swift; sourceTree = "<group>"; };
+		42A2E73E2C62304C004F2357 /* AboutContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AboutContentView.swift; sourceTree = "<group>"; };
+		42A2E7402C62324E004F2357 /* AboutScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AboutScreen.swift; sourceTree = "<group>"; };
 		42E1CACA2C5CE37B006D9C4D /* AuthContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthContentView.swift; sourceTree = "<group>"; };
 		42E1CACD2C5D04A9006D9C4D /* ProgressView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProgressView.swift; sourceTree = "<group>"; };
 		42E1CACF2C5D2373006D9C4D /* ErrorPopupView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ErrorPopupView.swift; sourceTree = "<group>"; };
@@ -322,6 +326,15 @@
 			path = Calendar;
 			sourceTree = "<group>";
 		};
+		42A2E73D2C62303E004F2357 /* About */ = {
+			isa = PBXGroup;
+			children = (
+				42A2E73E2C62304C004F2357 /* AboutContentView.swift */,
+				42A2E7402C62324E004F2357 /* AboutScreen.swift */,
+			);
+			path = About;
+			sourceTree = "<group>";
+		};
 		42E2F0982BE200FD00B76F14 /* GameRank */ = {
 			isa = PBXGroup;
 			children = (
@@ -431,6 +444,7 @@
 		7555FF7D242A565900829871 /* iosApp */ = {
 			isa = PBXGroup;
 			children = (
+				42A2E73D2C62303E004F2357 /* About */,
 				42A2E72D2C61E8BD004F2357 /* Calendar */,
 				426627672C5F91E3002F012C /* News */,
 				42FE7B8A2BECDF8900229059 /* State */,
@@ -591,6 +605,7 @@
 				426627742C5FB417002F012C /* ArticleScreenView.swift in Sources */,
 				425627AE2BE135F300EDEEEB /* CachedAsyncImage.swift in Sources */,
 				42F8444B2BE6887500408FE7 /* PeriodGameBrowserScreenView.swift in Sources */,
+				42A2E73F2C62304C004F2357 /* AboutContentView.swift in Sources */,
 				42E2F09C2BE2085800B76F14 /* DashboardGameListItemView.swift in Sources */,
 				42E2F0B42BE34C7600B76F14 /* RankCircleIndicatorView.swift in Sources */,
 				42F8443D2BE6522000408FE7 /* BrowseGameItemView.swift in Sources */,
@@ -625,6 +640,7 @@
 				42E2F0A22BE226B700B76F14 /* DashboardMightyManItemListItemView.swift in Sources */,
 				42E1CACE2C5D04A9006D9C4D /* ProgressView.swift in Sources */,
 				42F844492BE687E100408FE7 /* PeriodGameBrowserStateContentView.swift in Sources */,
+				42A2E7412C62324E004F2357 /* AboutScreen.swift in Sources */,
 				42A2E72F2C61E8D8004F2357 /* CalendarGamePosterCellItemView.swift in Sources */,
 				42E2F0A92BE234CF00B76F14 /* RouterView.swift in Sources */,
 				42F844362BE6004F00408FE7 /* ViewExtensions.swift in Sources */,

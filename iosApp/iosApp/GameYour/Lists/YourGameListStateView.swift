@@ -37,6 +37,14 @@ struct YourGameListStateView: View {
             }
         }
         .onAppear { state.refresh() }
+        .toolbar {
+            if state.isActionVisible {
+                Button(
+                    action: state.onAction,
+                    label: { Image(iconRes: state.actionIconResource) }
+                )
+            }
+        }
     }
 }
 

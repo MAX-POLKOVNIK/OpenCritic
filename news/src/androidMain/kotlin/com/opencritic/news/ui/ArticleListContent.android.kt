@@ -8,6 +8,7 @@ import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import com.opencritic.games.details.LoadingItem
+import com.opencritic.mvvm.rememberForeverLazyListState
 import com.opencritic.resources.defaultPadding
 
 @Composable
@@ -16,6 +17,7 @@ fun ArticleListContent(
     modifier: Modifier = Modifier,
 ) {
     LazyColumn(
+        state = rememberForeverLazyListState(key = "ArticleListContent"),
         contentPadding = PaddingValues(defaultPadding),
         verticalArrangement = Arrangement.spacedBy(defaultPadding),
         modifier = modifier,

@@ -14,6 +14,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import com.opencritic.game.your.ui.lists.YourGameListState
 import com.opencritic.game.your.ui.lists.YourGameListState_PreviewData
+import com.opencritic.mvvm.rememberForeverLazyListState
 import com.opencritic.resources.defaultPadding
 import com.opencritic.resources.smallPadding
 import com.opencritic.resources.text.text
@@ -29,6 +30,7 @@ fun YourGameListState(
             .fillMaxSize(),
     ) {
         LazyColumn(
+            state = rememberForeverLazyListState(key = "YourGameListState"),
             verticalArrangement = Arrangement.spacedBy(smallPadding),
             contentPadding = PaddingValues(defaultPadding),
             modifier = modifier

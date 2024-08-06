@@ -18,6 +18,7 @@ import com.opencritic.game.browser.ui.GameBrowserContent
 import com.opencritic.game.browser.ui.GameBrowserContent_PreviewData
 import com.opencritic.games.details.LoadingItem
 import com.opencritic.mvvm.Spinner
+import com.opencritic.mvvm.rememberForeverLazyListState
 import com.opencritic.resources.images.Icons
 import com.opencritic.resources.images.asPainter
 import com.opencritic.resources.defaultPadding
@@ -30,6 +31,7 @@ fun GameBrowserStateContent(
     modifier: Modifier = Modifier,
 ) {
     LazyColumn(
+        state = rememberForeverLazyListState(key = "GameBrowserStateContent"),
         contentPadding = PaddingValues(defaultPadding),
         modifier = modifier,
     ) {

@@ -8,11 +8,15 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import com.opencritic.dashboard.ui.DashboardContent
+import com.opencritic.mvvm.rememberForeverLazyListState
 import com.opencritic.resources.defaultPadding
 
 @Composable
 fun DashboardStateContent(state: DashboardContent, modifier: Modifier = Modifier) {
-    LazyColumn(modifier = modifier) {
+    LazyColumn(
+        state = rememberForeverLazyListState(key = "DashboardStateContent"),
+        modifier = modifier
+    ) {
         item {
             DashboardTitleListItem(
                 item = state.popularGamesTitle,

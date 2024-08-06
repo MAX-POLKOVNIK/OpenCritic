@@ -5,7 +5,7 @@ data class CalendarGameCellItem(
     private val posters: List<CalendarGamePosterCellItem>,
     val dayText: String,
     val isBackgroundVisible: Boolean,
-    val dotsVisible: Boolean = posters.size > 1,
+    val isDotsVisible: Boolean = posters.size > 1,
     val currentPosterIndex: Int? = 0.takeIf { posters.isNotEmpty() },
     val dotsCount: Int = posters.size,
 ) {

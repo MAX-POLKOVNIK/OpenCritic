@@ -49,26 +49,28 @@ fun CalendarGameCellItem(
                 Text(text = item.dayText)
             }
 
-            Row(
-                Modifier
-                    .wrapContentHeight()
-                    .align(Alignment.BottomCenter)
-                    .padding(bottom = 4.dp),
-                horizontalArrangement = Arrangement.Center
-            ) {
-                repeat(item.dotsCount) { iteration ->
-                    val color = if (item.currentPosterIndex == iteration) {
-                        Color.DarkGray
-                    } else {
-                        Color.LightGray
+            if (item.isDotsVisible) {
+                Row(
+                    Modifier
+                        .wrapContentHeight()
+                        .align(Alignment.BottomCenter)
+                        .padding(bottom = 4.dp),
+                    horizontalArrangement = Arrangement.Center
+                ) {
+                    repeat(item.dotsCount) { iteration ->
+                        val color = if (item.currentPosterIndex == iteration) {
+                            Color.DarkGray
+                        } else {
+                            Color.LightGray
+                        }
+                        Box(
+                            modifier = Modifier
+                                .padding(1.dp)
+                                .clip(CircleShape)
+                                .background(color)
+                                .size(3.dp)
+                        )
                     }
-                    Box(
-                        modifier = Modifier
-                            .padding(1.dp)
-                            .clip(CircleShape)
-                            .background(color)
-                            .size(3.dp)
-                    )
                 }
             }
         }

@@ -10,13 +10,9 @@ import SwiftUI
 import shared
 
 struct MainScreenView: View {
-    @EnvironmentObject var router: IosRouter
-    
     private let viewModel: MainViewModel = koinViewModel(MainViewModel.self)
     
     var body: some View {
-        viewModel.setRouter(router: router)
-        
         return FlowView(of: viewModel.state) { state in
             CommonScreenView(state: state) { content in
                 MainStateView(state: content)

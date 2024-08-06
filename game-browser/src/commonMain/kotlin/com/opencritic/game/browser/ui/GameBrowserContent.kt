@@ -4,7 +4,10 @@ import com.opencritic.game.browser.domain.GameSorting
 import com.opencritic.game.browser.domain.GameTimeframe
 import com.opencritic.game.browser.domain.asTextSource
 import com.opencritic.games.details.ui.LoadingItem
+import com.opencritic.mvvm.ActionedScreenContent
 import com.opencritic.mvvm.ScreenContent
+import com.opencritic.resources.images.IconResource
+import com.opencritic.resources.images.Icons
 import com.opencritic.resources.text.TextSource
 import com.opencritic.resources.text.asTextSource
 
@@ -25,7 +28,10 @@ data class GameBrowserContent(
     val onSelectedSort: (GameSortItem) -> Unit,
     val onSelectedTimeframe: (TimeframeItem) -> Unit,
     val onSelectedPlatform: (PlatformItem) -> Unit,
-) : ScreenContent
+    override val isActionVisible: Boolean,
+    override val actionIconResource: IconResource,
+    override val onAction: () -> Unit,
+) : ActionedScreenContent
 
 @Suppress("FunctionName")
 fun GameBrowserContent_PreviewData(): GameBrowserContent =
@@ -52,5 +58,8 @@ fun GameBrowserContent_PreviewData(): GameBrowserContent =
         onLoadMore = { },
         onSelectedSort = { },
         onSelectedPlatform = { },
-        onSelectedTimeframe = { }
+        onSelectedTimeframe = { },
+        isActionVisible = true,
+        actionIconResource = Icons.calendar,
+        onAction = {},
     )

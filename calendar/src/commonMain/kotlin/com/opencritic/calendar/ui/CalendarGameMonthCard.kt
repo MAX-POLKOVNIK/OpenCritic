@@ -2,11 +2,13 @@ package com.opencritic.calendar.ui
 
 import com.opencritic.calendar.domain.CalendarGame
 import com.opencritic.calendar.domain.GameMonth
+import com.opencritic.mvvm.ListItem
 
 data class CalendarGameMonthCard(
     val nameText: String,
     val rows: List<CalendarGameRowItem>,
-) {
+    override val id: String = nameText,
+) : ListItem<String> {
     fun switchedNext(): CalendarGameMonthCard =
         copy(rows = rows.map { it.switchedNext() })
 }
@@ -33,5 +35,16 @@ fun CalendarGameMonthCard(
                     )
                 }
             )
+        }
+    )
+
+@Suppress("FunctionName")
+fun CalendarGameMonthCard_PreviewData(nameText: String = "September"): CalendarGameMonthCard =
+    CalendarGameMonthCard(
+        nameText = nameText,
+        rows = buildList {
+            repeat(5) {
+                CalendarGameRowItem_PreviewData()
+            }
         }
     )

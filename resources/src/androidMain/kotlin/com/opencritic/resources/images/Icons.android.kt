@@ -48,4 +48,6 @@ actual object Icons {
     actual val arrowDown: IconResource = Icons.Sharp.KeyboardArrowDown.iconRes()
 
     actual val share: IconResource = Icons.Outlined.Share.iconRes()
+
+    actual val info: IconResource = Icons.Outlined.Info.iconRes()
 }

@@ -1,7 +1,10 @@
 package com.opencritic.game.your.ui.lists
 
+import com.opencritic.mvvm.ActionedScreenContent
 import com.opencritic.mvvm.ScreenContent
 import com.opencritic.mvvm.ViewModelState
+import com.opencritic.resources.images.IconResource
+import com.opencritic.resources.images.Icons
 import com.opencritic.resources.text.TextSource
 import com.opencritic.resources.text.asTextSource
 
@@ -11,7 +14,10 @@ data class YourGameListState(
     val isLoginVisible: Boolean,
     val loginText: TextSource,
     val onLoginClick: () -> Unit,
-) : ScreenContent
+    override val isActionVisible: Boolean,
+    override val actionIconResource: IconResource,
+    override val onAction: () -> Unit,
+) : ActionedScreenContent
 
 @Suppress("FunctionName")
 fun YourGameListState_PreviewData(): YourGameListState =
@@ -20,5 +26,8 @@ fun YourGameListState_PreviewData(): YourGameListState =
         refresh = { },
         isLoginVisible = true,
         loginText = "Login to profile".asTextSource(),
-        onLoginClick = {}
+        onLoginClick = {},
+        isActionVisible = true,
+        actionIconResource = Icons.info,
+        onAction = {}
     )

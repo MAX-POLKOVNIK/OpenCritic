@@ -30,6 +30,7 @@ kotlin {
         projects.auth,
         projects.news,
         projects.calendar,
+        projects.about,
         libs.moko.resources,
         libs.moko.graphics,
     )

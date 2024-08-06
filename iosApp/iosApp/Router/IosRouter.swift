@@ -84,6 +84,10 @@ class IosRouter: ObservableObject, Router {
             CalendarScreenView(
                 viewModel: viewModel(for: route, args: [])
             )
+        case _ as AboutRoute:
+            AboutScreenView(
+                viewModel: viewModel(for: route, args: [])
+            )
         default:
             ContentView()
         }

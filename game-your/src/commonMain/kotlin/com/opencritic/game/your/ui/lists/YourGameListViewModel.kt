@@ -4,9 +4,11 @@ import com.opencritic.auth.domain.GetAuthStateInteractor
 import com.opencritic.game.your.domain.GetListsInteractor
 import com.opencritic.mvvm.BaseContentViewModel
 import com.opencritic.mvvm.CommonViewModelState
+import com.opencritic.navigation.AboutRoute
 import com.opencritic.navigation.AuthRoute
 import com.opencritic.navigation.GameListRoute
 import com.opencritic.navigation.LinkShareRoute
+import com.opencritic.resources.images.Icons
 import com.opencritic.resources.text.StringRes
 import com.opencritic.resources.text.asTextSource
 import kotlinx.coroutines.launch
@@ -50,7 +52,10 @@ class YourGameListViewModel(
                         onLoginClick = { navigateToAuth() },
                         isLoginVisible = true,
                         loginText = "Login to profile".asTextSource(),
-                        refresh = { loadLists(shouldShowLoading = false) }
+                        refresh = { loadLists(shouldShowLoading = false) },
+                        isActionVisible = true,
+                        actionIconResource = Icons.info,
+                        onAction = { navigateToAbout() }
                     )
                 }
             } else {
@@ -77,7 +82,10 @@ class YourGameListViewModel(
                                 onLoginClick = {},
                                 isLoginVisible = false,
                                 loginText = "".asTextSource(),
-                                refresh = { loadLists(shouldShowLoading = false) }
+                                refresh = { loadLists(shouldShowLoading = false) },
+                                isActionVisible = true,
+                                actionIconResource = Icons.info,
+                                onAction = { navigateToAbout() }
                             )
                         }
                     }
@@ -98,5 +106,9 @@ class YourGameListViewModel(
 
     private fun navigateToAuth() {
         requireRouter().navigateTo(AuthRoute)
+    }
+
+    private fun navigateToAbout() {
+        requireRouter().navigateTo(AboutRoute)
     }
 }

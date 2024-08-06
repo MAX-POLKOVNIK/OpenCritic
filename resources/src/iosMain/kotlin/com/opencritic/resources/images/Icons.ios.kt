@@ -33,4 +33,6 @@ actual object Icons {
     actual val arrowDown: IconResource = "chevron.down".iconRes()
 
     actual val share: IconResource = "square.and.arrow.up".iconRes()
+
+    actual val info: IconResource = "info.circle.fill".iconRes()
 }

@@ -93,4 +93,6 @@
     <string name="str_auth_token">Token</string>
     <string name="str_auth_description">Get token from site. It is required to get your games from OpenCritics</string>
     <string name="str_auth_button">Authorize</string>
+    <string name="str_calendar_title">Gaming Calendar</string>
+    <string name="str_calendar_description">See all of the top releases in gaming for the upcoming season. Games are evaluated for placement on the calendar on a case-by-case basis. If you think we're missing a game, email us at factcheck@opencritic.com.</string>
 </resources>

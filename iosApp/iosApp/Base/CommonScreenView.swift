@@ -43,7 +43,7 @@ struct CommonScreenView<Content: AnyObject, ContentView>: View where ContentView
                 }
             }
         }
-        .navigationBarTitle(state.title, displayMode: .inline)
+        .navigationBarTitle(state.title, displayMode: .large)
     }
 }
 

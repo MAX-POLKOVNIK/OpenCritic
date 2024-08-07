@@ -88,6 +88,10 @@ class IosRouter: ObservableObject, Router {
             AboutScreenView(
                 viewModel: viewModel(for: route, args: [])
             )
+        case _ as HallOfFameRoute:
+            HallsOfFameScreenView(
+                viewModel: viewModel(for: route, args: [])
+            )
         default:
             ContentView()
         }

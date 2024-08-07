@@ -21,12 +21,6 @@ data class DashboardPosterGameListItem(
     val posterUrl: String
         get() = game.posterUrl
 
-    val isPlayedChecked: Boolean
-        get() = false
-
-    val isWantToPlayChecked: Boolean
-        get() = false
-
     fun click() =
         onClick(this)
 }

@@ -13,16 +13,26 @@ struct DashboardTitleListItemView: View {
     let item: DashboardTitleListItem
     
     var body: some View {
-        VStack(
-            alignment: .leading,
-            content: {
-                Text(item.titleText)
-                    .font(.title)
-                if item.isDescriptionVisible {
-                    Text(item.subtitleText)
+        HStack {
+            VStack(
+                alignment: .leading,
+                content: {
+                    Text(item.titleText)
+                        .font(.title)
+                    if item.isDescriptionVisible {
+                        Text(item.subtitleText)
+                    }
+                }
+            )
+            
+            Spacer()
+            
+            if let buttonTitle = item.buttonTitle {
+                Button(buttonTitle) {
+                    item.onButtonClick()
                 }
             }
-        )
+        }
         .padding(.horizontal)
     }
 }
@@ -32,7 +42,9 @@ struct DashboardTitleListItemView_Previews: PreviewProvider {
         DashboardTitleListItemView(
             item: DashboardTitleListItem(
                 title: "Hello".asTextSource(),
-                subtitle: "Second string".asTextSource()
+                subtitle: "Second string".asTextSource(),
+                buttonTitle: "View all".asTextSource(),
+                onButtonClick: {}
             )
         )
         .previewLayout(.fixed(width: 300, height: 600))

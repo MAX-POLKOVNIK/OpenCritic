@@ -10,6 +10,7 @@ import com.opencritic.database.databaseModule
 import com.opencritic.game.browser.di.gameBrowserModule
 import com.opencritic.game.your.di.yourGamesModule
 import com.opencritic.games.details.di.gameDetailsModule
+import com.opencritic.halloffame.di.hallOfFameModule
 import com.opencritic.logs.Logger
 import com.opencritic.logs.logsModule
 import com.opencritic.main.di.mainModule
@@ -41,6 +42,7 @@ abstract class BaseApp : KoinComponent {
                 newsModule,
                 calendarModule,
                 aboutModule,
+                hallOfFameModule,
             )
         }
 

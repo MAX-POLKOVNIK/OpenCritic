@@ -110,4 +110,7 @@
     <string name="str_about_link_title_terms">Terms of Use</string>
     <string name="str_about_link_title_press">Press Assets</string>
     <string name="str_about_link_title_donate">Donate on Patreon</string>
+    <string name="str_hall_of_fame_title">Halls of fame</string>
+    <string name="str_dashboard_view_all_hall_of_fame">View all</string>
+    <string name="str_hall_of_fame_year_formatted">%s Hall of fame</string>
 </resources>

@@ -6,6 +6,8 @@ import com.opencritic.resources.text.asTextSource
 data class DashboardTitleListItem(
     private val title: TextSource,
     private val subtitle: TextSource?,
+    val buttonTitle: TextSource? = null,
+    val onButtonClick: () -> Unit = {},
 ) {
     val titleText: TextSource
         get() = title

@@ -132,3 +132,9 @@ data object AboutRoute : Routed(
     destination = AboutDestination,
     args = emptyMap()
 )
+
+data object HallOfFameDestination : Destination("hall-of-fame")
+data object HallOfFameRoute : Routed(
+    destination = HallOfFameDestination,
+    args = emptyMap()
+)

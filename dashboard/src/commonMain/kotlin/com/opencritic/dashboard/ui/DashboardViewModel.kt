@@ -5,12 +5,12 @@ import com.opencritic.logs.Logger
 import com.opencritic.mvvm.BaseContentViewModel
 import com.opencritic.mvvm.CommonViewModelState
 import com.opencritic.navigation.GameDetailsRoute
+import com.opencritic.navigation.HallOfFameRoute
 import com.opencritic.navigation.PeriodGameBrowserDestination
 import com.opencritic.navigation.PeriodGameBrowserRoute
 import com.opencritic.navigation.UrlRoute
 import com.opencritic.resources.text.StringRes
 import com.opencritic.resources.text.asTextSource
-import kotlinx.coroutines.flow.update
 import kotlinx.coroutines.launch
 import kotlinx.datetime.Clock
 import kotlinx.datetime.TimeZone
@@ -100,7 +100,9 @@ class DashboardViewModel(
                             ),
                             hallOfFameTitle = DashboardTitleListItem(
                                 title = StringRes.str_hall_of_fame.asTextSource(currentYear.toString()),
-                                subtitle = StringRes.str_hall_of_fame_description.asTextSource(currentYear.toString())
+                                subtitle = StringRes.str_hall_of_fame_description.asTextSource(currentYear.toString()),
+                                buttonTitle = StringRes.str_dashboard_view_all_hall_of_fame.asTextSource(),
+                                onButtonClick = { navigateToHallOfFame() }
                             ),
                             hallOfFame = DashboardPosterGamesHorizontalListItem(
                                 popularGames = dashboard.hallOfFame,
@@ -136,6 +138,10 @@ class DashboardViewModel(
                 }
         }
     }
+
+    private fun navigateToHallOfFame() =
+        requireRouter()
+            .navigateTo(HallOfFameRoute)
 
     private fun navigateToGame(gameId: Long, gameName: String) =
         requireRouter()

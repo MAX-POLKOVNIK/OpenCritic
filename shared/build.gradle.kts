@@ -31,6 +31,7 @@ kotlin {
         projects.news,
         projects.calendar,
         projects.about,
+        projects.hallOfFame,
         libs.moko.resources,
         libs.moko.graphics,
     )

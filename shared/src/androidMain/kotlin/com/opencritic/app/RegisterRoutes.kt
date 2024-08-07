@@ -13,6 +13,7 @@ import com.opencritic.games.details.gameMediaComposeRoute
 import com.opencritic.games.details.reviews.author.authorReviewsComposeRoute
 import com.opencritic.games.details.reviews.game.gameReviewsComposeRoute
 import com.opencritic.games.details.reviews.outlet.outletReviewsComposeRoute
+import com.opencritic.halloffame.ui.hallsOfFameComposeRoute
 import com.opencritic.main.MainScreen
 import com.opencritic.navigation.MainDestination
 import com.opencritic.news.ui.articleComposeRoute
@@ -30,4 +31,5 @@ fun registerRoutes(navController: NavController): NavGraphBuilder.() -> Unit = {
     articleComposeRoute(navController)
     calendarComposeRoute(navController)
     aboutComposeRoute(navController)
+    hallsOfFameComposeRoute(navController)
 }

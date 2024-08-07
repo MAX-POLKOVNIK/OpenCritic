@@ -12,7 +12,7 @@ import shared
 struct ArticleContentView: View {
     let content: ArticleContent
     
-    @State private var webViewHeight: CGFloat = .zero
+    @State private var webViewHeight: CGFloat = 500
     
     var body: some View {
         ScrollView {

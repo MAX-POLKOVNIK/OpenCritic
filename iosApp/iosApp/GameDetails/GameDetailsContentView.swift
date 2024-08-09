@@ -10,101 +10,20 @@ import SwiftUI
 import shared
 
 struct GameDetailsContentView: View {
+    @Environment(\.horizontalSizeClass)
+    private var horizontalSizeClass: UserInterfaceSizeClass?
+    
     let state: GameDetailsContent
     
     var body: some View {
         ScrollView(.vertical) {
             LazyVStack(alignment: .leading) {
-                if state.isImageVisible {
-                    CachedAsyncImage(
-                        url: URL(string: state.imageUrl),
-                        urlCache: .imageCache
-                    ) { image in
-                        image.resizable()
-                            .scaledToFill()
-                    } placeholder: {
-                        Color.gray
-                    }
-                        .frame(minWidth: 0, maxWidth: .infinity)
-                        .aspectRatio(1.0, contentMode: .fit)
+                
+                if horizontalSizeClass == .compact {
+                    GameDetailsCompactView(state: state)
+                } else {
+                    GameDetailsRegularView(state: state)
                 }
-                
-                YourGameIndicatorItemView(
-                    item: state.yourGameIndicatorItem
-                ).padding()
-                
-                VStack(
-                    alignment: .leading
-                ) {
-                    Text(state.name)
-                        .font(.title)
-                        .bold()
-                        .padding()
-                
-                    Text(state.companiesText)
-                        .padding(.horizontal)
-                    Text(state.releaseDateText.text())
-                        .padding(.horizontal)
-                    Text(state.platformsText)
-                        .padding(.horizontal)
-                        .bold()
-                    
-                    Spacer()
-                        .frame(height: 16)
-                    
-                    if state.isTierVisible {
-                        HStack(spacing: 16) {
-                            Image(state.tierImageResource)
-                                .resizable()
-                                .scaledToFill()
-                                .aspectRatio(1.0, contentMode: .fit)
-                                .frame(
-                                    minWidth: /*@START_MENU_TOKEN@*/0/*@END_MENU_TOKEN@*/,
-                                    maxWidth: .infinity
-                                )
-                            
-                            RankCircleIndicatorView(item: state.topCriticScore)
-                                .frame(minWidth: 0, maxWidth: .infinity)
-                            
-                            RankCircleIndicatorView(item: state.recommendedPercent)
-                                .frame(minWidth: 0, maxWidth: .infinity)
-                        }
-                            .padding(.horizontal)
-                        
-                        HStack(spacing: 16) {
-                            Text(state.tierDescription)
-                                .multilineTextAlignment(.center)
-                                .frame(minWidth: 0, maxWidth: .infinity)
-                            
-                            Text(state.topCriticScoreDescription)
-                                .multilineTextAlignment(.center)
-                                .frame(minWidth: 0, maxWidth: .infinity)
-                            
-                            Text(state.criticsRecommendDescription)
-                                .multilineTextAlignment(.center)
-                                .frame(minWidth: 0, maxWidth: .infinity)
-                        }
-                        .padding(.horizontal)
-                    }
-                    
-                    Spacer()
-                        .frame(height: 16)
-                    
-                    ForEach(state.briefReviews, id: \.self) { item in
-                        ReviewBriefListItemView(item: item)
-                    }
-                    
-                    if state.isViewAllVisible {
-                        HStack {
-                            Spacer()
-                            Button(state.viewAllText) { state.onViewAllReviewsClick() }
-                                .padding()
-                        }
-                    }
-                }
-                    .frame(minWidth: 0, maxWidth: .infinity, alignment: .leading)
-                    .card()
-                    .padding(.horizontal)
                 
                 if state.isMediaVisible {
                     Spacer()
@@ -114,15 +33,33 @@ struct GameDetailsContentView: View {
                         .font(.title)
                         .padding(.horizontal)
                     
-                    ForEach(state.media, id: \.self) { m in
-                        switch m {
-                        case let trailer as TrailerItem:
-                            TrailerItemView(item: trailer)
-                                .padding(.horizontal)
-                        case let screenshot as ScreenshotItem:
-                            ScreenshotItemView(item: screenshot)
-                                .padding(.horizontal)
-                        default: fatalError()
+                    if horizontalSizeClass == .compact {
+                        ForEach(state.media, id: \.self) { m in
+                            switch m {
+                            case let trailer as TrailerItem:
+                                TrailerItemView(item: trailer)
+                                    .padding(.horizontal)
+                            case let screenshot as ScreenshotItem:
+                                ScreenshotItemView(item: screenshot)
+                                    .padding(.horizontal)
+                            default: fatalError()
+                            }
+                        }
+                    } else {
+                        ScrollView(.horizontal, showsIndicators: false) {
+                            LazyHStack(spacing: 10) {
+                                ForEach(state.media, id: \.self) { m in
+                                    switch m {
+                                    case let trailer as TrailerItem:
+                                        TrailerItemView(item: trailer)
+                                    case let screenshot as ScreenshotItem:
+                                        ScreenshotItemView(item: screenshot)
+                                    default: fatalError()
+                                    }
+                                }
+                            }
+                            .frame(height: 200)
+                            .padding(.horizontal)
                         }
                     }
                     
@@ -141,9 +78,21 @@ struct GameDetailsContentView: View {
                         .font(.title)
                         .padding(.horizontal)
                     
-                    ForEach(state.trailers, id: \.self) { trailer in
-                        TrailerItemView(item: trailer)
+                    if horizontalSizeClass == .compact {
+                        ForEach(state.trailers, id: \.self) { trailer in
+                            TrailerItemView(item: trailer)
+                                .padding(.horizontal)
+                        }
+                    } else {
+                        ScrollView(.horizontal, showsIndicators: false) {
+                            LazyHStack(spacing: 10) {
+                                ForEach(state.trailers, id: \.self) { trailer in
+                                    TrailerItemView(item: trailer)
+                                }
+                            }
+                            .frame(height: 250)
                             .padding(.horizontal)
+                        }
                     }
                     
                     HStack {
@@ -161,9 +110,21 @@ struct GameDetailsContentView: View {
                         .font(.title)
                         .padding(.horizontal)
                     
-                    ForEach(state.screenshots, id: \.self) { screenshot in
-                        ScreenshotItemView(item: screenshot)
+                    if horizontalSizeClass == .compact {
+                        ForEach(state.screenshots, id: \.self) { screenshot in
+                            ScreenshotItemView(item: screenshot)
+                                .padding(.horizontal)
+                        }
+                    } else {
+                        ScrollView(.horizontal, showsIndicators: false) {
+                            LazyHStack(spacing: 10) {
+                                ForEach(state.screenshots, id: \.self) { screenshot in
+                                    ScreenshotItemView(item: screenshot)
+                                }
+                            }
+                            .frame(height: 200)
                             .padding(.horizontal)
+                        }
                     }
                     
                     HStack {
@@ -178,9 +139,24 @@ struct GameDetailsContentView: View {
                         .font(.title)
                         .padding(.horizontal)
                     
-                    ForEach(state.reviews, id: \.self) { review in
-                        CardReviewItemView(item: review)
-                            .padding(.horizontal)
+                    if horizontalSizeClass == .compact {
+                        ForEach(state.reviews, id: \.self) { review in
+                            CardReviewItemView(item: review)
+                                .padding(.horizontal)
+                        }
+                    } else {
+                        LazyVGrid(
+                            columns: [
+                                .init(.flexible(), alignment: .top),
+                                .init(.flexible(), alignment: .top)
+                            ],
+                            spacing: 20
+                        ) {
+                            ForEach(state.reviews, id: \.self) { item in
+                                CardReviewItemView(item: item)
+                            }
+                        }
+                        .padding()
                     }
                     
                     if state.isViewAllVisible {

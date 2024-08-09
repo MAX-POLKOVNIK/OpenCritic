@@ -124,7 +124,7 @@ internal class GameDetailsRepositoryImpl(
             rank = GameRank(tier, topCriticScore),
             recommendPercent = percentRecommended.takeUnless { it < 0f },
             squareImageUrl = images.square?.sm?.prefixedImageUrl() ?: "",
-            bannerImageUrl = images.banner?.sm?.prefixedImageUrl() ?: "",
+            bannerImageUrl = images.banner?.sm?.prefixedImageUrl() ?: images.masthead?.sm?.prefixedImageUrl()?: "",
             companies = companies.map { Company(it.name) },
             platforms = platforms.map { Platform(it.name, it.shortName) },
             reviewsCount = numReviews,

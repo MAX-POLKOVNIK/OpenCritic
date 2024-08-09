@@ -8,4 +8,5 @@ data class ImagesDto(
     val banner: ImageLinksDto? = null,
     val screenshots: List<ImageLinksDto>? = null,
     val square: ImageLinksDto? = null,
+    val masthead: ImageLinksDto? = null,
 )

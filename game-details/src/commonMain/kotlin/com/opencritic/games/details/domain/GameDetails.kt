@@ -11,6 +11,7 @@ import kotlinx.datetime.Instant
 data class GameDetails(
     val url: String,
     val posterUrl: String,
+    val bannerUrl: String,
     val yourGame: YourGame,
     val name: String,
     val companies: List<Company>,

@@ -11,11 +11,14 @@ import shared
 import Combine
 
 struct GameBrowserStateContentView: View {
+    @Environment(\.horizontalSizeClass)
+    private var horizontalSizeClass: UserInterfaceSizeClass?
+    
     let state: GameBrowserContent
 
-    @State private var sort = GameSortItem(key: GameSorting.score, text: GameSorting.score.asTextSource())
-    @State private var timeframe = TimeframeItem(key: GameTimeframeAllTIme.shared, text: GameTimeframeKt.asTextSource(GameTimeframeAllTIme.shared))
-    @State private var platform = PlatformItem(key: nil, text: StringTextSource(string: "All Platforms"))
+    @State private var sort: GameSortItem
+    @State private var timeframe: TimeframeItem
+    @State private var platform: PlatformItem
 
     init(state: GameBrowserContent) {
         self.state = state
@@ -26,61 +29,26 @@ struct GameBrowserStateContentView: View {
     }
     
     var body: some View {
-        List {
-            Picker(state.platformTitleText.text(), selection: $platform) {
-                ForEach(state.platformsItems, id: \.self) {
-                    Text($0.text)
-                }
-            }
-            .pickerStyle(.menu)
-            .onReceive(Just(platform)) { _ in
-                state.onSelectedPlatform(platform)
-            }
-            .listRowSeparator(.hidden)
-            
-            Picker(state.timeframeTitleText.text(), selection: $timeframe) {
-                ForEach(state.timeframeItems, id: \.self) {
-                    Text($0.text)
-                }
-            }
-            .pickerStyle(.menu)
-            .onReceive(Just(timeframe)) { _ in
-                state.onSelectedTimeframe(timeframe)
-            }
-            .listRowSeparator(.hidden)
-            
-            Picker(state.sortTitleText.text(), selection: $sort) {
-                ForEach(state.sortItems, id: \.self) {
-                    Text($0.text)
-                }
-            }
-            .pickerStyle(.menu)
-            .onReceive(Just(sort)) { _ in
-                state.onSelectedSort(sort)
-            }
-            .listRowSeparator(.hidden)
-            
-            ForEach(state.browseGameItems, id: \.self) { item in
-                BrowseGameItemView(item: item)
-                    .listRowSeparator(.hidden)
-            }
-            
-            if state.isLoadingItemVisible {
-                LoadingItemView(item: state.loadingItem)
-                    .onAppear {
-                        state.onLoadMore()
+        if horizontalSizeClass == .compact {
+            GameBrowserContentCompactView(state: state)
+                .toolbar {
+                    if state.isActionVisible {
+                        Button(
+                            action: state.onAction,
+                            label: { Image(iconRes: state.actionIconResource) }
+                        )
                     }
-                    .listRowSeparator(.hidden)
-            }
-        }
-        .listStyle(.plain)
-        .toolbar {
-            if state.isActionVisible {
-                Button(
-                    action: state.onAction,
-                    label: { Image(iconRes: state.actionIconResource) }
-                )
-            }
+                }
+        } else {
+            GameBrowserContentRegularView(state: state)
+                .toolbar {
+                    if state.isActionVisible {
+                        Button(
+                            action: state.onAction,
+                            label: { Image(iconRes: state.actionIconResource) }
+                        )
+                    }
+                }
         }
     }
 }

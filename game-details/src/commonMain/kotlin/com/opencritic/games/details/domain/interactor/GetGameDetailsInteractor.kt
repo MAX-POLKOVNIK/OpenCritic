@@ -32,6 +32,7 @@ class GetGameDetailsInteractor(
 
                 GameDetails(
                     posterUrl = game.squareImageUrl,
+                    bannerUrl = game.bannerImageUrl,
                     yourGame = yourGame,
                     name = game.name,
                     companies = game.companies,

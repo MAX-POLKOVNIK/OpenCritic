@@ -27,7 +27,7 @@ struct GameRankView: View {
                 .frame(width: 56)
         } else {
             Text("?")
-                .frame(width: 56)
+                .frame(width: 56, height: 24)
         }
     }
 }

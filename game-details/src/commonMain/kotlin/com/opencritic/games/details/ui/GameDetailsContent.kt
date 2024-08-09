@@ -13,8 +13,11 @@ import com.opencritic.resources.text.TextSource
 import com.opencritic.resources.text.asTextSource
 
 data class GameDetailsContent(
-    val isImageVisible: Boolean,
-    val imageUrl: String,
+    @Deprecated("use isSquareImageVisible") val isImageVisible: Boolean,
+    @Deprecated("use squareImageUrl") val imageUrl: String,
+    val isSquareImageVisible: Boolean = isImageVisible,
+    val squareImageUrl: String = imageUrl,
+    val bannerImageUrl: String,
     val name: String,
     val yourGameIndicatorItem: YourGameIndicatorItem,
     val companiesText: String,
@@ -61,6 +64,7 @@ fun GameDetailsContent_PreviewData(): GameDetailsContent =
     GameDetailsContent(
         isImageVisible = true,
         imageUrl = "https://img.opencritic.com/game/14353/a7GST4so.jpg",
+        bannerImageUrl = "https://img.opencritic.com/game/16948/8Uwqfbbn.jpg",
         name = "Game title",
         yourGameIndicatorItem = YourGameIndicatorItem_PreviewData(),
         companiesText = "Some companies",

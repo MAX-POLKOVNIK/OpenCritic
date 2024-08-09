@@ -70,6 +70,7 @@ class GameDetailsViewModel(
                             content = GameDetailsContent(
                                 isImageVisible = details.posterUrl.isNotBlank(),
                                 imageUrl = details.posterUrl,
+                                bannerImageUrl = details.bannerUrl,
                                 name = details.name,
                                 yourGameIndicatorItem = createYourGameIndicatorItem(details.yourGame),
                                 companiesText = details.companies.joinToString(", ") { it.name },

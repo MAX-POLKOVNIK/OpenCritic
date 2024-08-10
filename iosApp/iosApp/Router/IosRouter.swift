@@ -107,12 +107,28 @@ class IosRouter: ObservableObject, Router {
             
             let text = linkShareRoute.url
             
-            // set up activity view controller
-            let textToShare = [text]
-            let activityViewController = UIActivityViewController(activityItems: textToShare, applicationActivities: nil)
-            activityViewController.popoverPresentationController?.sourceView = UIViewController.getCurrentVC()?.view // so that iPads won't crash
-            
-            UIViewController.getCurrentVC()?.present(activityViewController, animated: true)
+            if let vc = UIViewController.getCurrentVC() {
+                // set up activity view controller
+                let textToShare = [text]
+                let activityViewController = UIActivityViewController(activityItems: textToShare, applicationActivities: nil)
+                
+                if UIDevice.current.userInterfaceIdiom == .pad {
+                    activityViewController
+                        .popoverPresentationController?.sourceView = UIApplication.shared.windows.first
+                    
+                    activityViewController.popoverPresentationController?.sourceRect =
+                        CGRect(
+                            x: UIScreen.main.bounds.width / 2,
+                            y: UIScreen.main.bounds.height,
+                            width: 0,
+                            height: 0
+                        )
+                    activityViewController.popoverPresentationController?.permittedArrowDirections = UIPopoverArrowDirection.down
+                    vc.present(activityViewController, animated: true, completion: nil)
+                }
+                
+                vc.present(activityViewController, animated: true)
+            }
             
             return
         }

@@ -68,6 +68,7 @@ dependencies {
     implementation(libs.compose.material3)
     implementation(libs.androidx.activity.compose)
     implementation(libs.compose.navigation.compose)
+    implementation(libs.androidx.adaptive.android)
     debugImplementation(libs.compose.ui.tooling)
 }
 

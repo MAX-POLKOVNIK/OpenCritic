@@ -94,7 +94,7 @@ class DashboardRepositoryImpl(
                     PosterGame(
                         id = it.id,
                         name = it.name,
-                        posterUrl = it.images.box?.sm?.prefixedImageUrl() ?: it.images.banner?.sm?.prefixedImageUrl() ?: "",
+                        posterUrl = it.images.box?.sm?.prefixedImageUrl() ?: "",
                         rank = GameRank(it.tier, it.topCriticScore),
                     )
                 }

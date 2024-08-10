@@ -45,6 +45,7 @@ struct YourGameListStateView: View {
                                 .buttonStyle(BorderlessButtonStyle())
                         }
                     }
+                    .padding(.horizontal)
                 }
             }
             

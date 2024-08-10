@@ -19,7 +19,6 @@ private let articleListViewModel: ArticleListViewModel = koinViewModel(ArticleLi
 
 struct MainStateView: View {
     let state: MainContent
-    private let router = IosRouter.shared
     
     @State private var activeTab: TabType
     
@@ -29,12 +28,6 @@ struct MainStateView: View {
     }
     
     var body: some View {
-        dashboardViewModel.setRouter(router: router)
-        searchViewModel.setRouter(router: router)
-        gameBrowserViewModel.setRouter(router: router)
-        yourGameListViewModel.setRouter(router: router)
-        articleListViewModel.setRouter(router: router)
-        
         return TabView(selection: $activeTab) {
             ForEach(state.tabs, id: \.self) { tab in
                 if tab.id == TabType.dashboard {

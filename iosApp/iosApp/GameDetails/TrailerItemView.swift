@@ -31,6 +31,7 @@ struct TrailerItemView: View {
             Text(item.titleText)
                 .padding()
                 .frame(width: imageSize.width, alignment: .leading)
+                .lineLimit(2)
                 .multilineTextAlignment(.leading)
         }
         .card()

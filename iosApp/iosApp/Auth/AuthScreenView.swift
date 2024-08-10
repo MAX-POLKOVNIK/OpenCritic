@@ -20,7 +20,3 @@ struct AuthScreenView: View {
         }
     }
 }
-
-//#Preview {
-//    AuthScreenView()
-//}

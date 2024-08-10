@@ -58,7 +58,7 @@ private func handleLoadingPopup(loadingPopup: BaseLoadingState?) {
         displayedLoadingAlert = vc
         UIViewController.getCurrentVC()?.present(vc, animated: true)
     } else {
-        displayedLoadingAlert?.dismiss(animated: true)
+        displayedLoadingAlert?.dismiss(animated: false)
         displayedLoadingAlert = nil
     }
 }
@@ -68,9 +68,13 @@ private func handleErrorPopup(state: BaseErrorState?) {
         let vc = createErrorPopupViewController(state: state)
         
         displayedErrorPopup = vc
-        UIViewController.getCurrentVC()?.present(vc, animated: true)
+        
+        // workaround to present after loading
+        DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
+            UIViewController.getCurrentVC()?.present(vc, animated: true)
+        }
     } else {
-        displayedErrorPopup?.dismiss(animated: true)
+        displayedErrorPopup?.dismiss(animated: false)
         displayedErrorPopup = nil
     }
 }

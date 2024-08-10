@@ -11,7 +11,7 @@ import SwiftUI
 import shared
 
 struct RouterView<Content: View>: View {
-    @StateObject var router: IosRouter = IosRouter.shared
+    @StateObject var router: IosRouter = IosRouter()
     
     private let content: Content
     

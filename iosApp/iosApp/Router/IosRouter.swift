@@ -12,14 +12,11 @@ import SwiftUI
 import UIKit
 
 class IosRouter: ObservableObject, Router {
-    static let shared = IosRouter()
-    
     @Published var path: [Route] = [] {
         willSet(newValue) {
             let routes = Set(path).subtracting(newValue)
             
             routes.forEach {
-                print("removing vm for route: \($0)")
                 viewModels[$0] = nil
             }
         }
@@ -29,14 +26,12 @@ class IosRouter: ObservableObject, Router {
     
     func viewModel<S: ViewModelState, T: BaseViewModel<S>>(for route: Route, args: [Any] = []) -> T {
         if let viewModel = viewModels[route] {
-            print("returning cached vm for route: \(route)")
             return viewModel as! T
         } else {
             let vm = koinViewModel(T.self, args: args)
             
             vm.setRouter(router: self)
             
-            print("adding vm for route: \(route)")
             viewModels[route] = vm as! BaseViewModel<AnyObject>
             return vm
         }

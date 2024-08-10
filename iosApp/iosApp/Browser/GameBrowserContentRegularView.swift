@@ -85,6 +85,7 @@ struct GameBrowserContentRegularView: View {
                         .listRowSeparator(.hidden)
                 }
             }
+            .padding(.horizontal)
         }
     }
 }

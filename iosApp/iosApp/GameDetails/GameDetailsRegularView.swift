@@ -19,9 +19,7 @@ struct GameDetailsRegularView: View {
                     url: URL(string: state.bannerImageUrl),
                     urlCache: .imageCache
                 ) { image in
-                    image.resizable()
-                        .aspectRatio(16 / 9, contentMode: .fill)
-                        .clipped()
+                    image.centerCropped()
                         
                 } placeholder: {
                     Color.gray
@@ -130,3 +128,16 @@ struct GameDetailsRegularView: View {
         state: GameDetailsContentKt.GameDetailsContent_PreviewData()
     )
 }
+
+extension Image {
+    func centerCropped() -> some View {
+        GeometryReader { geo in
+            self
+            .resizable()
+            .scaledToFill()
+            .frame(width: geo.size.width, height: geo.size.height)
+            .clipped()
+        }
+    }
+}
+

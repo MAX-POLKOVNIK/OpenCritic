@@ -11,6 +11,9 @@ import shared
 import Combine
 
 struct YourGameListStateView: View {
+    @Environment(\.horizontalSizeClass)
+    private var horizontalSizeClass: UserInterfaceSizeClass?
+    
     let state: YourGameListState
     
     init(state: YourGameListState) {
@@ -19,16 +22,31 @@ struct YourGameListStateView: View {
     
     var body: some View {
         ZStack {
-            List {
-                ForEach(state.items, id: \.self) { item in
-                    GameListItemView(item: item)
-                        .listRowInsets(.init(top: 5, leading: 20, bottom: 5, trailing: 16))
-                        .listRowSeparator(.hidden)
-                        .buttonStyle(BorderlessButtonStyle())
+            if horizontalSizeClass == .compact {
+                List {
+                    ForEach(state.items, id: \.self) { item in
+                        GameListItemView(item: item)
+                            .listRowInsets(.init(top: 5, leading: 20, bottom: 5, trailing: 16))
+                            .listRowSeparator(.hidden)
+                            .buttonStyle(BorderlessButtonStyle())
+                    }
+                }
+                .listStyle(.plain)
+            } else {
+                ScrollView {
+                    LazyVGrid(
+                        columns: [
+                            .init(.flexible()),
+                            .init(.flexible())
+                        ]
+                    ) {
+                        ForEach(state.items, id: \.self) { item in
+                            GameListItemView(item: item)
+                                .buttonStyle(BorderlessButtonStyle())
+                        }
+                    }
                 }
             }
-            .listStyle(.plain)
-            
             
             if (state.isLoginVisible) {
                 Button(state.loginText) {

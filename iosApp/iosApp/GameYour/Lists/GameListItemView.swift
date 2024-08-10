@@ -14,29 +14,35 @@ struct GameListItemView: View {
     
     var body: some View {
         VStack(alignment: .center) {
-            ZStack(alignment: .leading) {
-                let reversed = Array(item.posterUrls.reversed().enumerated())
-                
-                ForEach(reversed, id: \.0) { index, posterUrl in
-                    let padding = ((item.posterUrls.count - 1 - index) * 64)
+            HStack {
+                Spacer()
+                ZStack(alignment: .leading) {
+                    let reversed = Array(item.posterUrls.reversed().enumerated())
                     
-                    ZStack(alignment: .leading) {
-                        CachedAsyncImage(
-                            url: URL(string: posterUrl),
-                            urlCache: .imageCache
-                        ) { image in
-                            image.resizable()
-                        } placeholder: {
-                            Color.gray
+                    ForEach(reversed, id: \.0) { index, posterUrl in
+                        let padding = ((item.posterUrls.count - 1 - index) * 64)
+                        
+                        ZStack(alignment: .leading) {
+                            CachedAsyncImage(
+                                url: URL(string: posterUrl),
+                                urlCache: .imageCache
+                            ) { image in
+                                image.resizable()
+                            } placeholder: {
+                                Color.gray
+                            }
+                                .frame(width: 128, height: 192)
+                                .clipShape(.rect(cornerRadius: 8))
                         }
-                            .frame(width: 128, height: 192)
-                            .clipShape(.rect(cornerRadius: 8))
+                        .padding(.leading, CGFloat(padding))
                     }
-                    .padding(.leading, CGFloat(padding))
                 }
+                .frame(width: 320, height: 192, alignment: .leading)
+                .padding()
+                
+                Spacer()
             }
-            .frame(width: 320, height: 192, alignment: .leading)
-            .padding()
+            
             
             Text(item.nameText)
                 .font(.title2)

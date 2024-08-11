@@ -10,25 +10,51 @@ import SwiftUI
 import shared
 
 struct PeriodGameBrowserStateContentView: View {
+    @Environment(\.horizontalSizeClass)
+    private var horizontalSizeClass: UserInterfaceSizeClass?
+    
     let state: PeriodGameBrowserContent
     
     var body: some View {
-        List {
-            ForEach(state.browseGameItems, id: \.self) { item in
-                BrowseGameItemView(item: item)
-                    .listRowSeparator(.hidden)
+        if horizontalSizeClass == .compact {
+            List {
+                ForEach(state.browseGameItems, id: \.self) { item in
+                    BrowseGameItemView(item: item)
+                        .listRowSeparator(.hidden)
+                }
+                
+                if state.isLoadingItemVisible {
+                    LoadingItemView(item: state.loadingItem)
+                        .onAppear {
+                            state.onLoadMore()
+                        }
+                        .listRowSeparator(.hidden)
+                }
             }
-            
-            if state.isLoadingItemVisible {
-                LoadingItemView(item: state.loadingItem)
-                    .onAppear {
-                        state.onLoadMore()
+            .listStyle(.plain)
+        } else {
+            ScrollView {
+                LazyVGrid(
+                    columns: [
+                        .init(.flexible()),
+                        .init(.flexible())
+                    ]
+                ) {
+                    ForEach(state.browseGameItems, id: \.self) { item in
+                        BrowseGameItemView(item: item)
+                            .listRowSeparator(.hidden)
                     }
-                    .listRowSeparator(.hidden)
+                    
+                    if state.isLoadingItemVisible {
+                        LoadingItemView(item: state.loadingItem)
+                            .onAppear {
+                                state.onLoadMore()
+                            }
+                    }
+                }
+                .padding(.horizontal)
             }
         }
-        .listStyle(.plain)
-        
     }
 }
 

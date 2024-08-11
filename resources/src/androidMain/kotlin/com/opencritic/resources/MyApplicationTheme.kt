@@ -58,25 +58,25 @@ fun MyApplicationTheme(
     val defaultTypography = Typography()
 
     val typography = Typography(
-        displayLarge = defaultTypography.displayLarge.copy(fontFamily = helveticaNeue),
-        displayMedium = defaultTypography.displayMedium.copy(fontFamily = helveticaNeue),
-        displaySmall = defaultTypography.displaySmall.copy(fontFamily = helveticaNeue),
+        displayLarge = defaultTypography.displayLarge.copy(fontFamily = helveticaNeue, letterSpacing = 0.sp),
+        displayMedium = defaultTypography.displayMedium.copy(fontFamily = helveticaNeue, letterSpacing = 0.sp),
+        displaySmall = defaultTypography.displaySmall.copy(fontFamily = helveticaNeue, letterSpacing = 0.sp),
 
-        headlineLarge = defaultTypography.headlineLarge.copy(fontFamily = helveticaNeue),
-        headlineMedium = defaultTypography.headlineMedium.copy(fontFamily = helveticaNeue),
-        headlineSmall = defaultTypography.headlineSmall.copy(fontFamily = helveticaNeue),
+        headlineLarge = defaultTypography.headlineLarge.copy(fontFamily = helveticaNeue, letterSpacing = 0.sp),
+        headlineMedium = defaultTypography.headlineMedium.copy(fontFamily = helveticaNeue, letterSpacing = 0.sp),
+        headlineSmall = defaultTypography.headlineSmall.copy(fontFamily = helveticaNeue, letterSpacing = 0.sp),
 
-        titleLarge = defaultTypography.titleLarge.copy(fontFamily = helveticaNeue),
-        titleMedium = defaultTypography.titleMedium.copy(fontFamily = helveticaNeue),
-        titleSmall = defaultTypography.titleSmall.copy(fontFamily = helveticaNeue),
+        titleLarge = defaultTypography.titleLarge.copy(fontFamily = helveticaNeue, letterSpacing = 0.sp),
+        titleMedium = defaultTypography.titleMedium.copy(fontFamily = helveticaNeue, letterSpacing = 0.sp),
+        titleSmall = defaultTypography.titleSmall.copy(fontFamily = helveticaNeue, letterSpacing = 0.sp),
 
-        bodyLarge = defaultTypography.bodyLarge.copy(fontFamily = helveticaNeue),
-        bodyMedium = defaultTypography.bodyMedium.copy(fontFamily = helveticaNeue),
-        bodySmall = defaultTypography.bodySmall.copy(fontFamily = helveticaNeue),
+        bodyLarge = defaultTypography.bodyLarge.copy(fontFamily = helveticaNeue, letterSpacing = 0.sp),
+        bodyMedium = defaultTypography.bodyMedium.copy(fontFamily = helveticaNeue, letterSpacing = 0.sp),
+        bodySmall = defaultTypography.bodySmall.copy(fontFamily = helveticaNeue, letterSpacing = 0.sp),
 
-        labelLarge = defaultTypography.labelLarge.copy(fontFamily = helveticaNeue),
-        labelMedium = defaultTypography.labelMedium.copy(fontFamily = helveticaNeue),
-        labelSmall = defaultTypography.labelSmall.copy(fontFamily = helveticaNeue),
+        labelLarge = defaultTypography.labelLarge.copy(fontFamily = helveticaNeue, letterSpacing = 0.sp),
+        labelMedium = defaultTypography.labelMedium.copy(fontFamily = helveticaNeue, letterSpacing = 0.sp),
+        labelSmall = defaultTypography.labelSmall.copy(fontFamily = helveticaNeue, letterSpacing = 0.sp),
     )
 
     val shapes = Shapes(

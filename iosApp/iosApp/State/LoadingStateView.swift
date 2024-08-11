@@ -13,11 +13,27 @@ struct LoadingStateView: View {
     let state: BaseLoadingState
     
     var body: some View {
-        VStack {
-            ProgressView()
-                .padding(.vertical)
-            Text(state.text)
+        GeometryReader { proxy in
+            ScrollView {
+                VStack {
+                    Spacer()
+                    
+                    Image(uiImage: MR.images.shared.open_critic_logo.toUIImage()!)
+                        .resizable()
+                        .colorMultiply(.primary)
+                        .aspectRatio(1, contentMode: .fit)
+                        .frame(maxWidth: 48, maxHeight: 48)
+                        .padding()
+                    
+                    Text(state.text)
+                    
+                    Spacer()
+                }
+                .blinking(duration: 3)
+                .frame(minWidth: proxy.size.width, minHeight: proxy.size.height)
+            }
         }
+        .edgesIgnoringSafeArea(.all)
     }
 }
 

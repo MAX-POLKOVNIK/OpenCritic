@@ -21,7 +21,10 @@ struct NoGamePosterView: View {
             }
             .frame(width: proxy.size.width, height: proxy.size.height)
         }
-        .background(Color(UIColor.lightGray))
+        .background(
+            Color.clear
+                .background(.ultraThinMaterial)
+        )
     }
 }
 

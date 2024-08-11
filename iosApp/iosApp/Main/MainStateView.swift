@@ -28,7 +28,7 @@ struct MainStateView: View {
     }
     
     var body: some View {
-        return TabView(selection: $activeTab) {
+        TabView(selection: $activeTab) {
             ForEach(state.tabs, id: \.self) { tab in
                 if tab.id == TabType.dashboard {
                     RouterView {

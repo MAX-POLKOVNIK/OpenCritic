@@ -25,6 +25,7 @@ import com.opencritic.dashboard.domain.PosterGame
 import com.opencritic.dashboard.ui.DashboardPosterGameListItem
 import com.opencritic.games.GameRank
 import com.opencritic.games.GameRankItem
+import com.opencritic.games.NoGamePoster
 import com.opencritic.games.Tier
 import com.opencritic.resources.smallPadding
 
@@ -42,9 +43,17 @@ fun DashboardPosterGameListItem(
             model = item.posterUrl,
             contentDescription = "",
             loading = {
-                Box(
+                NoGamePoster(
                     modifier = Modifier
-                        .background(Color.Gray)
+                        .size(width = 128.dp, height = 192.dp)
+                        .clip(
+                            shape = RoundedCornerShape(8.dp)
+                        )
+                )
+            },
+            error = {
+                NoGamePoster(
+                    modifier = Modifier
                         .size(width = 128.dp, height = 192.dp)
                         .clip(
                             shape = RoundedCornerShape(8.dp)

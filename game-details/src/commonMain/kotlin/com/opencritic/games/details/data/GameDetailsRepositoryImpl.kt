@@ -123,8 +123,8 @@ internal class GameDetailsRepositoryImpl(
             releaseDate = firstReleaseDate,
             rank = GameRank(tier, topCriticScore),
             recommendPercent = percentRecommended.takeUnless { it < 0f },
-            squareImageUrl = images.square?.sm?.prefixedImageUrl() ?: "",
-            bannerImageUrl = images.banner?.sm?.prefixedImageUrl() ?: images.masthead?.sm?.prefixedImageUrl()?: "",
+            squareImageUrl = images.square?.og?.prefixedImageUrl() ?: "",
+            bannerImageUrl = images.banner?.og?.prefixedImageUrl() ?: images.masthead?.og?.prefixedImageUrl()?: "",
             companies = companies.map { Company(it.name) },
             platforms = platforms.map { Platform(it.name, it.shortName) },
             reviewsCount = numReviews,
@@ -136,7 +136,7 @@ internal class GameDetailsRepositoryImpl(
                         externalUrl = it.externalUrl,
                     )
                 },
-            screenshotUrls = images.screenshots?.mapNotNull { it.sm?.prefixedImageUrl() } ?: emptyList(),
+            screenshotUrls = images.screenshots?.mapNotNull { it.og?.prefixedImageUrl() } ?: emptyList(),
             url = url,
         )
 
@@ -157,7 +157,7 @@ internal class GameDetailsRepositoryImpl(
                 id = outlet.id,
                 name = outlet.name,
                 isContributor = outlet.isContributor,
-                imageUrl =outlet.imageSrc.sm?.prefixedImageUrl() ?: ""
+                imageUrl = outlet.imageSrc.og?.prefixedImageUrl() ?: ""
             ),
             scoreFormat = ReviewScoreFormat(
                 id = scoreFormat.id,
@@ -186,7 +186,7 @@ internal class GameDetailsRepositoryImpl(
                 Author(
                     id = it.id,
                     name = it.name,
-                    imageUrl = it.imageSrc?.sm?.prefixedImageUrl()
+                    imageUrl = it.imageSrc?.og?.prefixedImageUrl()
                 )
             },
             alias = alias,

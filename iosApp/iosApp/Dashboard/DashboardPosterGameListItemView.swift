@@ -22,7 +22,8 @@ struct DashboardPosterGameListItemView: View {
                 ) { image in
                     image.resizable()
                 } placeholder: {
-                    Color.gray
+                    NoGamePosterView()
+                        .frame(width: 128, height: 192)
                 }
                     .frame(width: 128, height: 192)
                     .clipShape(.rect(cornerRadius: 8))

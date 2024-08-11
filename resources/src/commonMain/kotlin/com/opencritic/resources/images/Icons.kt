@@ -35,4 +35,6 @@ expect object Icons {
     val share: IconResource
 
     val info: IconResource
+
+    val videoPlay: IconResource
 }

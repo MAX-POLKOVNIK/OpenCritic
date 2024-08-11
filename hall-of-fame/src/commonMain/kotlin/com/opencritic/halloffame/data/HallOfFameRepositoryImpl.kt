@@ -24,7 +24,7 @@ internal class HallOfFameRepositoryImpl(
                         HallOfFameGame(
                             id = it.id,
                             name = it.name,
-                            posterImageUrl = it.images.box?.sm?.prefixedImageUrl() ?: it.images.banner?.sm?.prefixedImageUrl() ?: "",
+                            posterImageUrl = it.images.box?.og?.prefixedImageUrl() ?: it.images.banner?.og?.prefixedImageUrl() ?: "",
                             rank = GameRank(it.tier, it.topCriticScore),
                         )
                     }

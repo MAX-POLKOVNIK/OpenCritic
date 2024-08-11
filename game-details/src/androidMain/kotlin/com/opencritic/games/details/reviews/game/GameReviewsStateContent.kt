@@ -28,6 +28,7 @@ import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import coil.compose.SubcomposeAsyncImage
+import com.opencritic.games.NoGamePoster
 import com.opencritic.games.details.LoadingItem
 import com.opencritic.games.details.RankCircleIndicatorItem
 import com.opencritic.games.details.reviews.ReviewListItem
@@ -62,9 +63,14 @@ fun GameReviewsStateContent(
                         contentDescription = "",
                         contentScale = ContentScale.Crop,
                         loading = {
-                            Box(
+                            NoGamePoster(
                                 modifier = Modifier
-                                    .background(Color.Gray)
+                                    .fillMaxSize()
+                            )
+                        },
+                        error = {
+                            NoGamePoster(
+                                modifier = Modifier
                                     .fillMaxSize()
                             )
                         },

@@ -73,6 +73,6 @@ internal class GameBrowserRepositoryImpl(
             rank = GameRank(tier, topCriticScore),
             percentRecommended = percentRecommended,
             releaseDate = firstReleaseDate,
-            imageUrl = images?.banner?.sm?.prefixedImageUrl() ?: "",
+            imageUrl = images?.banner?.og?.prefixedImageUrl() ?: "",
         )
 }

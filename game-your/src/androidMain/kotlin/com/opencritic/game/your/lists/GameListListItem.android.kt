@@ -26,6 +26,7 @@ import androidx.compose.ui.unit.dp
 import coil.compose.SubcomposeAsyncImage
 import com.opencritic.game.your.ui.lists.GameListListItem
 import com.opencritic.game.your.ui.lists.GameListListItem_PreviewData
+import com.opencritic.games.NoGamePoster
 import com.opencritic.resources.defaultPadding
 import com.opencritic.resources.smallPadding
 import com.opencritic.resources.text.text
@@ -61,9 +62,17 @@ fun GameListListItem(
                             model = posterUrl,
                             contentDescription = "",
                             loading = {
-                                Box(
+                                NoGamePoster(
                                     modifier = Modifier
-                                        .background(Color.Gray)
+                                        .size(width = 128.dp, height = 192.dp)
+                                        .clip(
+                                            shape = RoundedCornerShape(8.dp)
+                                        )
+                                )
+                            },
+                            error = {
+                                NoGamePoster(
+                                    modifier = Modifier
                                         .size(width = 128.dp, height = 192.dp)
                                         .clip(
                                             shape = RoundedCornerShape(8.dp)

@@ -27,6 +27,7 @@ import androidx.compose.ui.unit.dp
 import coil.compose.SubcomposeAsyncImage
 import com.opencritic.game.browser.ui.BrowseGameItem
 import com.opencritic.game.browser.ui.BrowseGameItem_PreviewData
+import com.opencritic.games.NoGamePoster
 import com.opencritic.games.details.RankCircleIndicatorItem
 import com.opencritic.resources.images.asPainter
 import com.opencritic.resources.defaultPadding
@@ -54,9 +55,14 @@ fun BrowseGameItem(
                 contentDescription = "",
                 contentScale = ContentScale.Crop,
                 loading = {
-                    Box(
+                    NoGamePoster(
                         modifier = Modifier
-                            .background(Color.Gray)
+                            .fillMaxSize()
+                    )
+                },
+                error = {
+                    NoGamePoster(
+                        modifier = Modifier
                             .fillMaxSize()
                     )
                 },

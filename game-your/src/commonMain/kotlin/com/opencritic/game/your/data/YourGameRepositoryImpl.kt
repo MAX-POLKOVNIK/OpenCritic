@@ -104,7 +104,7 @@ internal class YourGameRepositoryImpl(
         GameInList(
             id = dto.id,
             name = dto.name,
-            posterUrl = dto.images.box?.sm?.prefixedImageUrl() ?: dto.images.banner?.sm?.prefixedImageUrl() ?: "",
+            posterUrl = dto.images.box?.og?.prefixedImageUrl() ?: dto.images.banner?.og?.prefixedImageUrl() ?: "",
             rank = GameRank(dto.tier, dto.topCriticScore),
         )
 }

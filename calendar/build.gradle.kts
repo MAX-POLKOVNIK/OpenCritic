@@ -23,6 +23,7 @@ kotlin {
             implementation(projects.api)
             implementation(projects.logs)
             implementation(projects.navigation)
+            implementation(projects.games)
 
             implementation(libs.kotlinx.coroutines.core)
             implementation(libs.koin.core)

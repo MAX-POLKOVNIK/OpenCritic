@@ -20,6 +20,7 @@ import coil.compose.SubcomposeAsyncImage
 import com.opencritic.game.your.ui.list.GameRowListItem
 import com.opencritic.game.your.ui.list.GameRowListItem_PreviewData
 import com.opencritic.games.GameRankItem
+import com.opencritic.games.NoGamePoster
 import com.opencritic.resources.defaultPadding
 
 @Composable
@@ -36,9 +37,17 @@ fun GameRowListItem(
             model = item.posterUrl,
             contentDescription = "",
             loading = {
-                Box(
+                NoGamePoster(
                     modifier = Modifier
-                        .background(Color.Gray)
+                        .size(width = 64.dp, height = 96.dp)
+                        .clip(
+                            shape = RoundedCornerShape(4.dp)
+                        )
+                )
+            },
+            error = {
+                NoGamePoster(
+                    modifier = Modifier
                         .size(width = 64.dp, height = 96.dp)
                         .clip(
                             shape = RoundedCornerShape(4.dp)

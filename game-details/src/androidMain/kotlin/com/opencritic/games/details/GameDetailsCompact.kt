@@ -29,6 +29,7 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import coil.compose.SubcomposeAsyncImage
 import com.opencritic.game.your.lists.YourGameIndicatorItem
+import com.opencritic.games.NoGamePoster
 import com.opencritic.games.details.ui.GameDetailsContent
 import com.opencritic.games.details.ui.GameDetailsContent_PreviewData
 import com.opencritic.resources.defaultPadding
@@ -47,10 +48,10 @@ fun GameDetailsCompact(
                 contentDescription = "",
                 contentScale = ContentScale.Crop,
                 loading = {
-                    Box(
-                        modifier = Modifier
-                            .background(Color.Gray)
-                    )
+                    NoGamePoster()
+                },
+                error = {
+                    NoGamePoster()
                 },
                 modifier = Modifier
                     .fillMaxWidth()

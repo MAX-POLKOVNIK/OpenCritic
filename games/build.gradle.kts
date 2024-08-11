@@ -21,6 +21,8 @@ kotlin {
             implementation(projects.resources)
 
             implementation(libs.kotlinx.datetime)
+
+            implementation(libs.moko.resources)
         }
         commonTest.dependencies {
             implementation(libs.kotlin.test)

@@ -8,6 +8,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.tooling.preview.Preview
 import coil.compose.SubcomposeAsyncImage
+import com.opencritic.games.NoGamePoster
 
 @Composable
 fun CalendarGamePosterCellItem(
@@ -19,7 +20,13 @@ fun CalendarGamePosterCellItem(
         contentDescription = "",
         contentScale = ContentScale.Crop,
         loading = {
-            Box(
+            NoGamePoster(
+                modifier = Modifier
+                    .aspectRatio(9f / 16f)
+            )
+        },
+        error = {
+            NoGamePoster(
                 modifier = Modifier
                     .aspectRatio(9f / 16f)
             )

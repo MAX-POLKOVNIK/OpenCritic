@@ -25,7 +25,7 @@ fun CalendarGameCellItem(
     modifier: Modifier = Modifier,
 ) {
     val backgroundColor = if (item.isBackgroundVisible) {
-        Color.Gray
+        Color.LightGray
     } else {
         Color.Transparent
     }

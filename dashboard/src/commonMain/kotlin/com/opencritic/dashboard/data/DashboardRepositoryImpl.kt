@@ -24,7 +24,7 @@ class DashboardRepositoryImpl(
                     PosterGame(
                         id = it.id,
                         name = it.name,
-                        posterUrl = it.images.box?.sm?.prefixedImageUrl() ?: it.images.banner?.sm?.prefixedImageUrl() ?: "",
+                        posterUrl = it.images.box?.og?.prefixedImageUrl() ?: it.images.banner?.og?.prefixedImageUrl() ?: "",
                         rank = GameRank(it.tier, it.topCriticScore),
                     )
                 }
@@ -38,7 +38,7 @@ class DashboardRepositoryImpl(
                         game = PosterGame(
                             id = it.id,
                             name = it.name,
-                            posterUrl = it.images.box?.sm?.prefixedImageUrl() ?: it.images.banner?.sm?.prefixedImageUrl() ?: "",
+                            posterUrl = it.images.box?.og?.prefixedImageUrl() ?: it.images.banner?.og?.prefixedImageUrl() ?: "",
                             rank = GameRank(it.tier, it.topCriticScore),
                         ),
                         name = it.featuredDeal.name,
@@ -94,7 +94,7 @@ class DashboardRepositoryImpl(
                     PosterGame(
                         id = it.id,
                         name = it.name,
-                        posterUrl = it.images.box?.sm?.prefixedImageUrl() ?: "",
+                        posterUrl = it.images.box?.og?.prefixedImageUrl() ?: "",
                         rank = GameRank(it.tier, it.topCriticScore),
                     )
                 }
@@ -111,7 +111,7 @@ class DashboardRepositoryImpl(
                     PosterGame(
                         id = it.id,
                         name = it.name,
-                        posterUrl = it.images.box?.sm?.prefixedImageUrl() ?: it.images.banner?.sm?.prefixedImageUrl() ?: "",
+                        posterUrl = it.images.box?.og?.prefixedImageUrl() ?: it.images.banner?.og?.prefixedImageUrl() ?: "",
                         rank = GameRank(it.tier, it.topCriticScore),
                     )
                 }
@@ -129,7 +129,7 @@ class DashboardRepositoryImpl(
                     PosterGame(
                         id = it.id,
                         name = it.name,
-                        posterUrl = it.images.box?.sm?.prefixedImageUrl() ?: it.images.banner?.sm?.prefixedImageUrl() ?: "",
+                        posterUrl = it.images.box?.og?.prefixedImageUrl() ?: it.images.banner?.og?.prefixedImageUrl() ?: "",
                         rank = GameRank(it.tier, it.topCriticScore),
                     )
                 }
@@ -147,7 +147,7 @@ class DashboardRepositoryImpl(
                     PosterGame(
                         id = it.id,
                         name = it.name,
-                        posterUrl = it.images.box?.sm?.prefixedImageUrl() ?: it.images.banner?.sm?.prefixedImageUrl() ?: "",
+                        posterUrl = it.images.box?.og?.prefixedImageUrl() ?: it.images.banner?.og?.prefixedImageUrl() ?: "",
                         rank = GameRank(it.tier, it.topCriticScore),
                     )
                 }

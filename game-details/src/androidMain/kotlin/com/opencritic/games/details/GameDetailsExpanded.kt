@@ -1,14 +1,12 @@
 package com.opencritic.games.details
 
 import androidx.compose.foundation.Image
-import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.aspectRatio
-import androidx.compose.foundation.layout.fillMaxHeight
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
@@ -21,7 +19,6 @@ import androidx.compose.material3.TextButton
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
@@ -37,40 +34,49 @@ import com.opencritic.resources.images.asPainter
 import com.opencritic.resources.text.text
 
 @Composable
-fun GameDetailsRegular(
+fun GameDetailsExpanded(
     state: GameDetailsContent,
     modifier: Modifier = Modifier,
 ) {
-    Column(modifier = modifier) {
-        Box(
-            contentAlignment = Alignment.BottomEnd,
+    Row(
+        verticalAlignment = Alignment.Top,
+        horizontalArrangement = Arrangement.spacedBy(defaultPadding),
+        modifier = modifier
+            .padding(defaultPadding)
+    ) {
+        Card(
+            modifier = Modifier
+                .weight(0.8f)
         ) {
-            SubcomposeAsyncImage(
-                model = state.bannerImageUrl,
-                contentDescription = "",
-                contentScale = ContentScale.Crop,
-                loading = {
-                    NoGamePoster()
-                },
-                error = {
-                    NoGamePoster()
-                },
-                modifier = Modifier
-                    .fillMaxWidth()
-                    .aspectRatio(16f / 9f)
-            )
+            Box(
+                contentAlignment = Alignment.BottomEnd,
+            ) {
+                SubcomposeAsyncImage(
+                    model = state.bannerImageUrl,
+                    contentDescription = "",
+                    contentScale = ContentScale.Crop,
+                    loading = {
+                        NoGamePoster()
+                    },
+                    error = {
+                        NoGamePoster()
+                    },
+                    modifier = Modifier
+                        .aspectRatio(16f / 9f)
+                )
 
-            YourGameIndicatorItem(
-                item = state.yourGameIndicatorItem,
-                modifier = Modifier
-                    .padding(defaultPadding)
-                    .width(350.dp)
-            )
+                YourGameIndicatorItem(
+                    item = state.yourGameIndicatorItem,
+                    modifier = Modifier
+                        .padding(defaultPadding)
+                        .width(350.dp)
+                )
+            }
         }
 
         Card(
             modifier = Modifier
-                .padding(defaultPadding)
+                .weight(1f)
         ) {
             Text(
                 text = state.name,
@@ -190,8 +196,8 @@ fun GameDetailsRegular(
 
 @Preview
 @Composable
-fun GameDetailsRegular_Preview() {
-    GameDetailsRegular(
+fun GameDetailsExpanded_Preview() {
+    GameDetailsExpanded(
         state = GameDetailsContent_PreviewData()
     )
 }

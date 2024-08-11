@@ -1,6 +1,5 @@
 package com.opencritic.games.details
 
-import android.widget.Space
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.PaddingValues
@@ -9,9 +8,6 @@ import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.LazyRow
-import androidx.compose.foundation.lazy.grid.GridCells
-import androidx.compose.foundation.lazy.staggeredgrid.LazyVerticalStaggeredGrid
-import androidx.compose.foundation.lazy.staggeredgrid.StaggeredGridCells
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.verticalScroll
 import androidx.compose.material3.MaterialTheme
@@ -44,10 +40,10 @@ fun GameDetailsContent(
         modifier = modifier
             .verticalScroll(rememberScrollState())
     ) {
-        if (windowSizeClass.windowWidthSizeClass == WindowWidthSizeClass.COMPACT) {
-            GameDetailsCompact(state = state)
-        } else {
-            GameDetailsRegular(state = state)
+        when (windowSizeClass.windowWidthSizeClass) {
+            WindowWidthSizeClass.EXPANDED -> GameDetailsExpanded(state = state)
+            WindowWidthSizeClass.MEDIUM -> GameDetailsRegular(state = state)
+            else -> GameDetailsCompact(state = state)
         }
 
         if (state.isMediaVisible) {

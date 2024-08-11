@@ -19,7 +19,8 @@ struct CalendarGamePosterCellItemView: View {
         ) { image in
             image.resizable()
         } placeholder: {
-            Color.gray
+            NoGamePosterView()
+                .aspectRatio(10 / 16, contentMode: .fit)
         }
         .aspectRatio(10 / 16, contentMode: .fit)
         .onTapGesture { item.onClick() }

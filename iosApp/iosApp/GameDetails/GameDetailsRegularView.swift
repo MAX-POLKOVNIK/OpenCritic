@@ -22,7 +22,7 @@ struct GameDetailsRegularView: View {
                     image.centerCropped()
                         
                 } placeholder: {
-                    Color.gray
+                    NoGamePosterView()
                 }
                 .frame(minWidth: 0, maxWidth: .infinity)
                 .aspectRatio(16 / 9, contentMode: .fit)

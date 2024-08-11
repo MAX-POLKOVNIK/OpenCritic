@@ -37,9 +37,7 @@ struct GameReviewsStateContentView: View {
                         .frame(minWidth: 0, maxWidth: .infinity)
                         .clipped()
                 } placeholder: {
-                    Rectangle()
-                        .foregroundColor(.gray)
-                        .background(.gray)
+                    NoGamePosterView()
                         .aspectRatio(16 / 9, contentMode: .fit)
                 }
                     

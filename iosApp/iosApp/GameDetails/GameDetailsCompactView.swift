@@ -22,7 +22,7 @@ struct GameDetailsCompactView: View {
                     image.resizable()
                         .scaledToFill()
                 } placeholder: {
-                    Color.gray
+                    NoGamePosterView()
                 }
                     .frame(minWidth: 0, maxWidth: .infinity)
                     .aspectRatio(1.0, contentMode: .fit)

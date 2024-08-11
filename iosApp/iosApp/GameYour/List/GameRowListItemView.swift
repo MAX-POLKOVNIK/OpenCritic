@@ -20,7 +20,8 @@ struct GameRowListItemView: View {
             ) { image in
                 image.resizable()
             } placeholder: {
-                Color.gray
+                NoGamePosterView()
+                    .frame(width: 64, height: 96)
             }
                 .frame(width: 64, height: 96)
                 .clipShape(.rect(cornerRadius: 4))

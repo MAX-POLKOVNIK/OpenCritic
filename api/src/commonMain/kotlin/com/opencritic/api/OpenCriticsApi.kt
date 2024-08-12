@@ -66,6 +66,7 @@ interface OpenCriticsApi {
         time: GameTimeKey,
         sort: GameSortKey,
         skip: Int,
+        isExclusive: Boolean,
     ): List<BrowseGameDto>
 
     suspend fun getReviewedThisWeek(): List<BrowseGameDto>

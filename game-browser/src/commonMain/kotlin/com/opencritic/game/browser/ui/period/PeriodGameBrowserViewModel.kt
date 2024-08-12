@@ -9,14 +9,12 @@ import com.opencritic.game.browser.ui.BrowseGameItem
 import com.opencritic.games.details.ui.LoadingItem
 import com.opencritic.logs.Logger
 import com.opencritic.mvvm.BaseContentViewModel
-import com.opencritic.mvvm.BaseViewModel
 import com.opencritic.mvvm.CommonViewModelState
 import com.opencritic.navigation.GameDetailsRoute
 import com.opencritic.navigation.PeriodGameBrowserDestination
 import com.opencritic.resources.text.StringRes
 import com.opencritic.resources.text.TextSource
 import com.opencritic.resources.text.asTextSource
-import kotlinx.coroutines.flow.update
 import kotlinx.coroutines.launch
 
 class PeriodGameBrowserViewModel(
@@ -43,6 +41,7 @@ class PeriodGameBrowserViewModel(
                         skip = 0,
                         sorting = GameSorting.ReleaseDate,
                         time = GameTimeframe.Last90Days,
+                        isExclusive = false,
                     )
                 PeriodGameBrowserDestination.Period.UpcomingReleases ->
                     getBrowseGamesInteractor(
@@ -50,6 +49,7 @@ class PeriodGameBrowserViewModel(
                         skip = 0,
                         sorting = GameSorting.ReleaseDate,
                         time = GameTimeframe.Upcoming,
+                        isExclusive = false,
                     )
             }
                 .onFailure {
@@ -105,6 +105,7 @@ class PeriodGameBrowserViewModel(
                         skip = content.browseGameItems.size,
                         sorting = GameSorting.ReleaseDate,
                         time = GameTimeframe.Last90Days,
+                        isExclusive = false,
                     )
                 PeriodGameBrowserDestination.Period.UpcomingReleases ->
                     getBrowseGamesInteractor(
@@ -112,6 +113,7 @@ class PeriodGameBrowserViewModel(
                         skip = content.browseGameItems.size,
                         sorting = GameSorting.ReleaseDate,
                         time = GameTimeframe.Upcoming,
+                        isExclusive = false,
                     )
             }
                 .onSuccess { reviews ->

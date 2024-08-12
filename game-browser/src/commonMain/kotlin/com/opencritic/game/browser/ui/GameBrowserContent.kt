@@ -8,6 +8,7 @@ import com.opencritic.mvvm.ActionedScreenContent
 import com.opencritic.mvvm.ScreenContent
 import com.opencritic.resources.images.IconResource
 import com.opencritic.resources.images.Icons
+import com.opencritic.resources.text.StringRes
 import com.opencritic.resources.text.TextSource
 import com.opencritic.resources.text.asTextSource
 
@@ -21,6 +22,9 @@ data class GameBrowserContent(
     val sortTitleText: TextSource,
     val sortText: GameSortItem,
     val sortItems: List<GameSortItem>,
+    val isNextGenVisible: Boolean,
+    val nextGenTitle: TextSource,
+    val isNextGenChecked: Boolean,
     val browseGameItems: List<BrowseGameItem>,
     val isLoadingItemVisible: Boolean,
     val loadingItem: LoadingItem,
@@ -28,6 +32,7 @@ data class GameBrowserContent(
     val onSelectedSort: (GameSortItem) -> Unit,
     val onSelectedTimeframe: (TimeframeItem) -> Unit,
     val onSelectedPlatform: (PlatformItem) -> Unit,
+    val onNextGenChecked: (Boolean) -> Unit,
     override val isActionVisible: Boolean,
     override val actionIconResource: IconResource,
     override val onAction: () -> Unit,
@@ -52,6 +57,10 @@ fun GameBrowserContent_PreviewData(): GameBrowserContent =
         timeframeText = TimeframeItem(GameTimeframe.AllTIme, "AllTime".asTextSource()),
         timeframeItems = GameTimeframe.entries
             .map { TimeframeItem(it, it.asTextSource()) },
+        isNextGenVisible = true,
+        isNextGenChecked = true,
+        onNextGenChecked = {},
+        nextGenTitle = StringRes.str_next_get_only.asTextSource(),
         browseGameItems = emptyList(),
         isLoadingItemVisible = true,
         loadingItem = LoadingItem,

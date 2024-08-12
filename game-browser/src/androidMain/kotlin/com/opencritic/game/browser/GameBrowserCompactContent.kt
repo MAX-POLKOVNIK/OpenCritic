@@ -6,6 +6,7 @@ import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.LazyColumn
+import androidx.compose.material3.Checkbox
 import androidx.compose.material3.Icon
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
@@ -140,6 +141,25 @@ fun GameBrowserCompactContent(
                         Text(text = item.text.text())
                     }
                 )
+            }
+        }
+
+        if (state.isNextGenVisible) {
+            item {
+                Row(
+                    verticalAlignment = Alignment.CenterVertically,
+                ) {
+                    Text(text = state.nextGenTitle.text())
+
+                    Spacer(modifier = Modifier.weight(1f))
+
+                    Checkbox(
+                        checked = state.isNextGenChecked,
+                        onCheckedChange = { isChecked ->
+                            state.onNextGenChecked(isChecked)
+                        }
+                    )
+                }
             }
         }
 

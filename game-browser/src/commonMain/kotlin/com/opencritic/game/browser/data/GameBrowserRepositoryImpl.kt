@@ -37,6 +37,7 @@ internal class GameBrowserRepositoryImpl(
         time: GameTimeframe,
         sorting: GameSorting,
         skip: Int,
+        isExclusive: Boolean,
     ): List<BrowseGame> =
         withContext(defaultDispatcher) {
             openCriticsApi
@@ -55,7 +56,8 @@ internal class GameBrowserRepositoryImpl(
                         GameSorting.PercentRecommended -> GameSortKey.PercentRecommended
                         GameSorting.AtoZ -> GameSortKey.Name
                     },
-                    skip = skip
+                    skip = skip,
+                    isExclusive = isExclusive,
                 )
                 .map { it.toModel() }
         }

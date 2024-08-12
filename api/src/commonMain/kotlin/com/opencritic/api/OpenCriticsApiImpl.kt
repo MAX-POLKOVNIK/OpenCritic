@@ -109,8 +109,9 @@ internal class OpenCriticsApiImpl(
         time: GameTimeKey,
         sort: GameSortKey,
         skip: Int,
+        isExclusive: Boolean,
     ): List<BrowseGameDto> =
-        get("game?platforms=$platformShortName&skip=$skip&sort=${sort.queryValue}&time=${time.queryKey}")
+        get("game?platforms=$platformShortName&skip=$skip&sort=${sort.queryValue}&time=${time.queryKey}&exclusive=$isExclusive")
 
     override suspend fun getReviewedThisWeek(): List<BrowseGameDto> =
         get("game/reviewed-this-week")

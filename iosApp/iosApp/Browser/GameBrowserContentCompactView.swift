@@ -16,6 +16,7 @@ struct GameBrowserContentCompactView: View {
     @State private var sort: GameSortItem
     @State private var timeframe: TimeframeItem
     @State private var platform: PlatformItem
+    @State private var isNextGenOnly: Bool
     
     init(state: GameBrowserContent) {
         self.state = state
@@ -23,6 +24,7 @@ struct GameBrowserContentCompactView: View {
         sort = state.sortText
         timeframe = state.timeframeText
         platform = state.platformText
+        isNextGenOnly = state.isNextGenChecked
     }
     
     var body: some View {
@@ -59,6 +61,15 @@ struct GameBrowserContentCompactView: View {
                 state.onSelectedSort(sort)
             }
             .listRowSeparator(.hidden)
+            
+            if state.isNextGenVisible {
+                Toggle(state.nextGenTitle.text(), isOn: $isNextGenOnly)
+                    .onReceive(Just(isNextGenOnly)) { _ in
+                        state.onNextGenChecked(
+                            KotlinBoolean(bool: isNextGenOnly)
+                        )
+                    }
+            }
             
             ForEach(state.browseGameItems, id: \.self) { item in
                 BrowseGameItemView(item: item)

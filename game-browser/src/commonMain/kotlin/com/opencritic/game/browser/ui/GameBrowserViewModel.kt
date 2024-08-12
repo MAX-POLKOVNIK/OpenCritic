@@ -17,6 +17,8 @@ import com.opencritic.resources.images.Icons
 import com.opencritic.resources.text.StringRes
 import com.opencritic.resources.text.asTextSource
 import kotlinx.coroutines.launch
+import kotlin.properties.Delegates
+import kotlin.properties.Delegates.observable
 
 class GameBrowserViewModel(
     private val getPlatformsInteractor: GetPlatformsInteractor,
@@ -31,6 +33,8 @@ class GameBrowserViewModel(
     private var sorting: GameSorting = GameSorting.Score
     private var timeframe: GameTimeframe = GameTimeframe.AllTIme
     private var platform: Platform? = null
+    private var isNextGenVisible: Boolean = false
+    private var isNextGenChecked: Boolean = true
 
     override fun onStateInit() {
         super.onStateInit()
@@ -56,6 +60,7 @@ class GameBrowserViewModel(
                     skip = 0,
                     sorting = sorting,
                     time = timeframe,
+                    isExclusive = isNextGenVisible && isNextGenChecked
                 )
                     .onFailure {
                         logger.log(it.toString())
@@ -100,6 +105,9 @@ class GameBrowserViewModel(
             timeframeText = TimeframeItem(timeframe, timeframe.asTextSource()),
             timeframeItems = GameTimeframe.entries
                 .map { TimeframeItem(it, it.asTextSource()) },
+            isNextGenVisible = isNextGenVisible,
+            isNextGenChecked = isNextGenChecked,
+            nextGenTitle = StringRes.str_next_get_only.asTextSource(),
             browseGameItems = emptyList(),
             isLoadingItemVisible = true,
             loadingItem = LoadingItem,
@@ -107,23 +115,25 @@ class GameBrowserViewModel(
             onSelectedSort = { onSortSelected(it) },
             onSelectedPlatform = { onPlatformSelected(it) },
             onSelectedTimeframe = { onTimeframeSelected(it) },
+            onNextGenChecked = { onNextGenChecked(it) },
             isActionVisible = true,
             actionIconResource = Icons.calendar,
             onAction = { navigateToCalendar() },
         )
 
     private fun loadMore() {
-        if (!canLoadMore)
-            return
-
-        val content = requireContent()
-
         scope.launch {
+            if (!canLoadMore)
+                return@launch
+
+            val content = requireContent()
+
             getBrowseGamesInteractor(
                 platformCode = platform?.code ?: "",
                 skip = content.browseGameItems.size,
                 sorting = sorting,
                 time = timeframe,
+                isExclusive = isNextGenVisible && isNextGenChecked
             )
                 .onSuccess { reviews ->
                     logger.log("Loaded reviews count: ${reviews.size} --- $platform $sorting $timeframe ${content.browseGameItems.size}")
@@ -168,6 +178,24 @@ class GameBrowserViewModel(
         loadMore()
     }
 
+    private fun onNextGenChecked(isChecked: Boolean) {
+        if (isNextGenChecked == isChecked)
+            return
+
+        isNextGenChecked = isChecked
+        canLoadMore = true
+
+        updateContentIfSet {
+            copy(
+                isNextGenChecked = isChecked,
+                browseGameItems = emptyList(),
+                isLoadingItemVisible = true
+            )
+        }
+
+        loadMore()
+    }
+
     private fun onTimeframeSelected(item: TimeframeItem) {
         if (item.key == timeframe)
             return
@@ -193,8 +221,13 @@ class GameBrowserViewModel(
         platform = item.key
         canLoadMore = true
 
+        isNextGenChecked = true
+        isNextGenVisible = item.key?.isNextGenAvailable == true
+
         updateContentIfSet {
             copy(
+                isNextGenChecked = this@GameBrowserViewModel.isNextGenChecked,
+                isNextGenVisible = this@GameBrowserViewModel.isNextGenVisible,
                 platformText = item,
                 browseGameItems = emptyList(),
                 isLoadingItemVisible = true

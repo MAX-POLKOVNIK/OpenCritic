@@ -9,6 +9,7 @@ interface GameBrowserRepository {
         time: GameTimeframe,
         sorting: GameSorting,
         skip: Int,
+        isExclusive: Boolean,
     ): List<BrowseGame>
 
     suspend fun getReviewedThisWeek(): List<BrowseGame>

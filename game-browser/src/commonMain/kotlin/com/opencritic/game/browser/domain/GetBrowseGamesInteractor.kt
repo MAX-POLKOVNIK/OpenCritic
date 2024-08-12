@@ -8,6 +8,7 @@ class GetBrowseGamesInteractor(
         time: GameTimeframe,
         sorting: GameSorting,
         skip: Int,
+        isExclusive: Boolean,
     ): Result<List<BrowseGame>> =
-        runCatching { repository.getGames(platformCode, time, sorting, skip) }
+        runCatching { repository.getGames(platformCode, time, sorting, skip, isExclusive) }
 }

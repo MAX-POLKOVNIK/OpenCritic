@@ -11,6 +11,7 @@ import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.grid.GridCells
 import androidx.compose.foundation.lazy.grid.GridItemSpan
 import androidx.compose.foundation.lazy.grid.LazyVerticalGrid
+import androidx.compose.material3.Checkbox
 import androidx.compose.material3.Icon
 import androidx.compose.material3.Text
 import androidx.compose.material3.adaptive.currentWindowAdaptiveInfo
@@ -49,7 +50,8 @@ fun GameBrowserRegularContent(
         columns = GridCells.Fixed(cellCount),
         contentPadding = PaddingValues(defaultPadding),
         verticalArrangement = Arrangement.spacedBy(defaultPadding),
-        horizontalArrangement = Arrangement.spacedBy(defaultPadding)
+        horizontalArrangement = Arrangement.spacedBy(defaultPadding),
+        modifier = modifier,
     ) {
         item(span = { GridItemSpan(cellCount) }) {
             Row(
@@ -144,6 +146,19 @@ fun GameBrowserRegularContent(
                         Text(text = item.text.text())
                     }
                 )
+
+                if (state.isNextGenVisible) {
+                    Spacer(modifier = Modifier.width(defaultPadding))
+
+                    Text(text = state.nextGenTitle.text())
+
+                    Checkbox(
+                        checked = state.isNextGenChecked,
+                        onCheckedChange = { isChecked ->
+                            state.onNextGenChecked(isChecked)
+                        }
+                    )
+                }
             }
         }
 

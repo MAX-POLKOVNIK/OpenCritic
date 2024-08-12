@@ -16,6 +16,7 @@ struct GameBrowserContentRegularView: View {
     @State private var sort: GameSortItem
     @State private var timeframe: TimeframeItem
     @State private var platform: PlatformItem
+    @State private var isNextGenOnly: Bool
     
     init(state: GameBrowserContent) {
         self.state = state
@@ -23,6 +24,7 @@ struct GameBrowserContentRegularView: View {
         sort = state.sortText
         timeframe = state.timeframeText
         platform = state.platformText
+        isNextGenOnly = state.isNextGenChecked
     }
     
     var body: some View {
@@ -64,6 +66,19 @@ struct GameBrowserContentRegularView: View {
                         state.onSelectedSort(sort)
                     }
                     .listRowSeparator(.hidden)
+                    
+                    if state.isNextGenVisible {
+                        HStack {
+                            Text(state.nextGenTitle)
+                            Toggle("", isOn: $isNextGenOnly)
+                                .labelsHidden()
+                                .onReceive(Just(isNextGenOnly)) { _ in
+                                    state.onNextGenChecked(
+                                        KotlinBoolean(bool: isNextGenOnly)
+                                    )
+                                }
+                        }
+                    }
                 }
             }
             LazyVGrid(

@@ -71,6 +71,7 @@
     <string name="str_timeframe_all_time">All Time</string>
     <string name="str_timeframe_last_90_days">Last 90 Days</string>
     <string name="str_timeframe_upcoming">Upcoming</string>
+    <string name="str_next_get_only">Next-Gen Only</string>
     <string name="str_top_critic_average">Top Critic Average</string>
     <string name="str_trailers">Trailers</string>
     <string name="str_upcoming_releases">UPCOMING RELEASES</string>

@@ -52,8 +52,10 @@ struct GameListItemView: View {
             Text(item.gamesText)
             
             HStack {
-                Button(item.shareButtonText, action: item.onShareClick)
-                    .padding()
+                if item.isShareButtonVisible {
+                    Button(item.shareButtonText, action: item.onShareClick)
+                        .padding()
+                }
                 
                 Button(item.editButtonText, action: item.onEditClick)
                     .padding()

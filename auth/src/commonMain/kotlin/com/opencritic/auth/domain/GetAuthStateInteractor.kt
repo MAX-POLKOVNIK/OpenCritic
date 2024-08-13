@@ -1,7 +1,5 @@
 package com.opencritic.auth.domain
 
-import com.opencritic.database.UserPreferencesDao
-
 class GetAuthStateInteractor(
     private val authStateRepository: AuthStateRepository,
 ) {

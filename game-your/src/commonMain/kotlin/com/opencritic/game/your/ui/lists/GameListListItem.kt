@@ -8,6 +8,7 @@ data class GameListListItem(
     val posterUrls: List<String>,
     val nameText: TextSource,
     val gamesText: TextSource,
+    val isShareButtonVisible: Boolean,
     val shareButtonText: TextSource,
     val editButtonText: TextSource,
     val onShareClick: () -> Unit,
@@ -22,9 +23,10 @@ fun GameListListItem(
     onClick: () -> Unit,
 ): GameListListItem =
     GameListListItem(
-        posterUrls = gameList.posters,
+        posterUrls = gameList.posters.take(4),
         nameText = gameList.name.asTextSource(),
         gamesText = "${gameList.gamesCount} games on list".asTextSource(),
+        isShareButtonVisible = gameList.shareLink.isNotBlank(),
         shareButtonText = "Share".asTextSource(),
         editButtonText = "Edit".asTextSource(),
         onShareClick = onShareClick,
@@ -32,6 +34,7 @@ fun GameListListItem(
         onClick = onClick,
     )
 
+@Suppress("FunctionName")
 fun GameListListItem_PreviewData(): GameListListItem =
     GameListListItem(
         posterUrls = listOf(
@@ -40,6 +43,7 @@ fun GameListListItem_PreviewData(): GameListListItem =
             "https://img.opencritic.com/game/14353/cFkNFNOs.jpg",
             "https://img.opencritic.com/game/14353/cFkNFNOs.jpg",
         ),
+        isShareButtonVisible = true,
         nameText = "Your Want-To-Play Games".asTextSource(),
         gamesText = "44 games on list".asTextSource(),
         shareButtonText = "Share".asTextSource(),

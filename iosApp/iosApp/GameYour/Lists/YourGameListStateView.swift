@@ -50,8 +50,14 @@ struct YourGameListStateView: View {
             }
             
             if (state.isLoginVisible) {
-                Button(state.loginText) {
-                    state.onLoginClick()
+                VStack {
+                    Button(state.loginText) {
+                        state.onLoginClick()
+                    }
+                    Button(state.useOfflineText) {
+                        state.onUseOfflineClick()
+                    }
+                    .padding(.top)
                 }
             }
         }

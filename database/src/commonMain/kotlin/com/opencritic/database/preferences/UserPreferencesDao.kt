@@ -1,4 +1,4 @@
-package com.opencritic.database
+package com.opencritic.database.preferences
 
 import androidx.room.Dao
 import androidx.room.Insert

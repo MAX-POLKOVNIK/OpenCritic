@@ -11,6 +11,7 @@ data class Game(
     val recommendPercent: Float?,
     val squareImageUrl: String,
     val bannerImageUrl: String,
+    val posterImageUrl: String,
     val companies: List<Company>,
     val platforms: List<Platform>,
     val reviewsCount: Int,

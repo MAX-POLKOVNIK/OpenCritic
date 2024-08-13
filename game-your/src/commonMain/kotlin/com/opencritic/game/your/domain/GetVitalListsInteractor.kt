@@ -2,17 +2,17 @@ package com.opencritic.game.your.domain
 
 import com.opencritic.auth.domain.GetAuthStateInteractor
 
-class GetListsInteractor(
+class GetVitalListsInteractor(
     private val getAuthStateInteractor: GetAuthStateInteractor,
     private val gameListRemoteRepository: GameListRemoteRepository,
     private val gameListLocalRepository: GameListLocalRepository,
 ) {
-    suspend operator fun invoke(): Result<List<GameList>> =
+    suspend operator fun invoke(): Result<Map<GameListId, List<Long>>> =
         runCatching {
             if (getAuthStateInteractor().getOrThrow().isOfflineMode) {
-                gameListLocalRepository.getLists()
+                gameListLocalRepository.getVitalLists()
             } else {
-                gameListRemoteRepository.getLists()
+                gameListRemoteRepository.getVitalLists()
             }
         }
 }

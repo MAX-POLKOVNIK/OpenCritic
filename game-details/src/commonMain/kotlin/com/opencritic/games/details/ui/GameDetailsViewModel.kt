@@ -1,6 +1,7 @@
 package com.opencritic.games.details.ui
 
 import com.opencritic.auth.domain.GetAuthStateInteractor
+import com.opencritic.game.your.domain.GameInList
 import com.opencritic.game.your.domain.GameListAction
 import com.opencritic.game.your.domain.GameListId
 import com.opencritic.game.your.domain.UpdateGameListInteractor
@@ -10,6 +11,7 @@ import com.opencritic.game.your.ui.lists.YourGameIndicatorItem
 import com.opencritic.games.GameRank
 import com.opencritic.games.Tier
 import com.opencritic.games.Trailer
+import com.opencritic.games.details.domain.GameDetails
 import com.opencritic.games.details.domain.interactor.GetGameDetailsInteractor
 import com.opencritic.logs.Logger
 import com.opencritic.mvvm.BaseContentViewModel
@@ -68,11 +70,11 @@ class GameDetailsViewModel(
                         state.content(
                             title = gameName.asTextSource(),
                             content = GameDetailsContent(
-                                isImageVisible = details.posterUrl.isNotBlank(),
-                                imageUrl = details.posterUrl,
+                                isImageVisible = details.squareUrl.isNotBlank(),
+                                imageUrl = details.squareUrl,
                                 bannerImageUrl = details.bannerUrl,
                                 name = details.name,
-                                yourGameIndicatorItem = createYourGameIndicatorItem(details.yourGame),
+                                yourGameIndicatorItem = createYourGameIndicatorItem(details.yourGame, details),
                                 companiesText = details.companies.joinToString(", ") { it.name },
                                 releaseDateText = details.releaseDate.toLocalDateTime(TimeZone.UTC).date format DateTextSource.Format.Medium,
                                 platformsText = details.platforms.joinToString(", ") { it.name },
@@ -164,19 +166,19 @@ class GameDetailsViewModel(
 
                     updateContentIfSet {
                         copy(
-                            yourGameIndicatorItem = createYourGameIndicatorItem(details.yourGame)
+                            yourGameIndicatorItem = createYourGameIndicatorItem(details.yourGame, details)
                         )
                     }
                 }
         }
     }
 
-    private fun createYourGameIndicatorItem(game: YourGame): YourGameIndicatorItem =
-        YourGameIndicatorItem(game) {
-            onGameAction(it)
+    private fun createYourGameIndicatorItem(yourGame: YourGame, game: GameDetails): YourGameIndicatorItem =
+        YourGameIndicatorItem(yourGame) {
+            onGameAction(it, game)
         }
 
-    private fun onGameAction(action: YourGameAction) {
+    private fun onGameAction(action: YourGameAction, game: GameDetails) {
         scope.launch {
             val auth = getAuthStateInteractor()
 
@@ -184,17 +186,17 @@ class GameDetailsViewModel(
                 return@launch
             }
 
-            if (!auth.getOrThrow().isLoggedIn) {
+            if (auth.getOrThrow().shouldAskToLogin) {
                 requireRouter().navigateTo(AuthRoute)
                 return@launch
             }
 
-            val game = yourGame ?: return@launch
+            val yourGame = yourGame ?: return@launch
 
-            val new = game.actioned(action)
-            val indicator = createYourGameIndicatorItem(new)
+            val new = yourGame.actioned(action)
+            val indicator = createYourGameIndicatorItem(new, game)
 
-            yourGame = new
+            this@GameDetailsViewModel.yourGame = new
 
             mutableState.update {
                 it.updateContent {
@@ -210,10 +212,17 @@ class GameDetailsViewModel(
                 YourGameAction.Favorite -> GameListId.Favorite to if (new.isFavorite) GameListAction.Add else GameListAction.Remove
             }
 
+            val gameInList = GameInList(
+                id = game.id,
+                name = game.name,
+                posterUrl = game.posterUrl,
+                rank = game.rank,
+            )
+
             updateGameListInteractor(
                 gameListId = list,
                 action = act,
-                gameId = gameId,
+                game = gameInList,
             ).onFailure {
                 logger.log("Error add something: $it")
             }

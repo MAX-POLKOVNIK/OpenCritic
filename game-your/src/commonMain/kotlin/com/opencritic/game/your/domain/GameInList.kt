@@ -1,6 +1,5 @@
 package com.opencritic.game.your.domain
 
-import com.opencritic.api.dto.image.prefixedImageUrl
 import com.opencritic.games.GameRank
 
 data class GameInList(

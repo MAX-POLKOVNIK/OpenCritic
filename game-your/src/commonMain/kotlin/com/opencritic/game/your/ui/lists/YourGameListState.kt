@@ -14,6 +14,8 @@ data class YourGameListState(
     val isLoginVisible: Boolean,
     val loginText: TextSource,
     val onLoginClick: () -> Unit,
+    val useOfflineText: TextSource,
+    val onUseOfflineClick: () -> Unit,
     override val isActionVisible: Boolean,
     override val actionIconResource: IconResource,
     override val onAction: () -> Unit,
@@ -27,6 +29,8 @@ fun YourGameListState_PreviewData(): YourGameListState =
         isLoginVisible = true,
         loginText = "Login to profile".asTextSource(),
         onLoginClick = {},
+        useOfflineText = "Use offline mode".asTextSource(),
+        onUseOfflineClick = {},
         isActionVisible = true,
         actionIconResource = Icons.info,
         onAction = {}

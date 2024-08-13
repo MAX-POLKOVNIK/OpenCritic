@@ -125,6 +125,7 @@ internal class GameDetailsRepositoryImpl(
             recommendPercent = percentRecommended.takeUnless { it < 0f },
             squareImageUrl = images.square?.og?.prefixedImageUrl() ?: "",
             bannerImageUrl = images.banner?.og?.prefixedImageUrl() ?: images.masthead?.og?.prefixedImageUrl()?: "",
+            posterImageUrl = images.box?.og?.prefixedImageUrl() ?: "",
             companies = companies.map { Company(it.name) },
             platforms = platforms.map { Platform(it.name, it.shortName) },
             reviewsCount = numReviews,

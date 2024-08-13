@@ -1,11 +1,10 @@
 package com.opencritic.auth.data
 
 import com.opencritic.api.OpenCriticsApi
-import com.opencritic.api.dto.profile.ProfileDto
 import com.opencritic.auth.domain.AuthState
 import com.opencritic.auth.domain.AuthStateRepository
-import com.opencritic.database.UserPreferencesDao
-import com.opencritic.database.UserPreferencesEntity
+import com.opencritic.database.preferences.UserPreferencesDao
+import com.opencritic.database.preferences.UserPreferencesEntity
 import kotlinx.coroutines.CoroutineDispatcher
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.IO
@@ -40,7 +39,7 @@ internal class AuthStateRepositoryImpl(
             val entity = getOrCreate()
 
             userPreferencesDao.insert(
-                entity.copy(isOfflineModeEnabled = true)
+                entity.copy(isOfflineModeEnabled = isEnabled)
             )
         }
     }
@@ -50,7 +49,7 @@ internal class AuthStateRepositoryImpl(
             openCriticsApi.getProfile(token).id
         }
 
-    suspend fun getOrCreate(): UserPreferencesEntity =
+    private suspend fun getOrCreate(): UserPreferencesEntity =
         userPreferencesDao.get() ?: run {
             UserPreferencesEntity()
                 .also { userPreferencesDao.insert(it) }

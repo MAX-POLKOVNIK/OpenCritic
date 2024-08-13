@@ -1,4 +1,4 @@
-package com.opencritic.database
+package com.opencritic.database.preferences
 
 import androidx.room.Entity
 import androidx.room.PrimaryKey

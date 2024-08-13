@@ -1,12 +1,22 @@
 package com.opencritic.game.your.domain
 
+import com.opencritic.auth.domain.GetAuthStateInteractor
+
 class UpdateGameListInteractor(
-    private val yourGameRepository: YourGameRepository,
+    private val getAuthStateInteractor: GetAuthStateInteractor,
+    private val gameListRemoteRepository: GameListRemoteRepository,
+    private val gameListLocalRepository: GameListLocalRepository,
 ) {
     suspend operator fun invoke(
         gameListId: GameListId,
         action: GameListAction,
-        gameId: Long,
+        game: GameInList,
     ): Result<Unit> =
-        runCatching { yourGameRepository.updateGameList(gameListId, action, gameId) }
+        runCatching {
+            if (getAuthStateInteractor().getOrThrow().isOfflineMode) {
+                gameListLocalRepository.updateGameList(gameListId, action, game)
+            } else {
+                gameListRemoteRepository.updateGameList(gameListId, action, game)
+            }
+        }
 }

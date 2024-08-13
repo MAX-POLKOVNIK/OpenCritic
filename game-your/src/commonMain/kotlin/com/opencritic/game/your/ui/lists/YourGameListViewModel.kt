@@ -1,6 +1,7 @@
 package com.opencritic.game.your.ui.lists
 
 import com.opencritic.auth.domain.GetAuthStateInteractor
+import com.opencritic.auth.domain.SetOfflineModeInteractor
 import com.opencritic.game.your.domain.GetListsInteractor
 import com.opencritic.mvvm.BaseContentViewModel
 import com.opencritic.mvvm.CommonViewModelState
@@ -16,6 +17,7 @@ import kotlinx.coroutines.launch
 class YourGameListViewModel(
     private val getListsInteractor: GetListsInteractor,
     private val getAuthStateInteractor: GetAuthStateInteractor,
+    private val setOfflineModeInteractor: SetOfflineModeInteractor,
 ) : BaseContentViewModel<YourGameListState>() {
 
     override fun initialState(): CommonViewModelState<YourGameListState> =
@@ -43,15 +45,17 @@ class YourGameListViewModel(
                 return@launch
             }
 
-            val isLoggedIn = authResult.getOrThrow().isLoggedIn
+            val isLoggedIn = authResult.getOrThrow().shouldAskToLogin
 
-            if (!isLoggedIn) {
+            if (isLoggedIn) {
                 setContent {
                     YourGameListState(
                         items = emptyList(),
                         onLoginClick = { navigateToAuth() },
                         isLoginVisible = true,
                         loginText = "Login to profile".asTextSource(),
+                        useOfflineText = "Use offline lists".asTextSource(),
+                        onUseOfflineClick = { onUseOfflineClick() },
                         refresh = { loadLists(shouldShowLoading = false) },
                         isActionVisible = true,
                         actionIconResource = Icons.info,
@@ -85,11 +89,21 @@ class YourGameListViewModel(
                                 refresh = { loadLists(shouldShowLoading = false) },
                                 isActionVisible = true,
                                 actionIconResource = Icons.info,
-                                onAction = { navigateToAbout() }
+                                onAction = { navigateToAbout() },
+                                useOfflineText = "Use offline lists".asTextSource(),
+                                onUseOfflineClick = { onUseOfflineClick() },
                             )
                         }
                     }
             }
+        }
+    }
+
+    private fun onUseOfflineClick() {
+        scope.launch {
+            setOfflineModeInteractor(isEnabled = true)
+
+            loadLists(shouldShowLoading = false)
         }
     }
 

@@ -2,7 +2,7 @@ package com.opencritic.games.details.domain.interactor
 
 import com.opencritic.game.your.domain.GameListId
 import com.opencritic.game.your.domain.YourGame
-import com.opencritic.game.your.domain.YourGameRepository
+import com.opencritic.game.your.domain.GetVitalListsInteractor
 import com.opencritic.games.details.domain.GameDetails
 import com.opencritic.games.details.domain.GameDetailsRepository
 import kotlinx.coroutines.async
@@ -10,14 +10,14 @@ import kotlinx.coroutines.coroutineScope
 
 class GetGameDetailsInteractor(
     private val repository: GameDetailsRepository,
-    private val yourGameRepository: YourGameRepository,
+    private val getVitalListsInteractor: GetVitalListsInteractor,
 ) {
     suspend operator fun invoke(gameId: Long): Result<GameDetails> =
         runCatching {
             coroutineScope {
                 val gameDeferred = async { repository.getGame(gameId) }
                 val reviewsDeferred = async { repository.getGameReviewsLanding(gameId) }
-                val listsDeferred = async { yourGameRepository.getVitalLists() }
+                val listsDeferred = async { getVitalListsInteractor().getOrThrow() }
 
                 val game = gameDeferred.await()
                 val reviews = reviewsDeferred.await()
@@ -31,8 +31,10 @@ class GetGameDetailsInteractor(
                 )
 
                 GameDetails(
-                    posterUrl = game.squareImageUrl,
+                    id = game.id,
+                    squareUrl = game.squareImageUrl,
                     bannerUrl = game.bannerImageUrl,
+                    posterUrl = game.posterImageUrl,
                     yourGame = yourGame,
                     name = game.name,
                     companies = game.companies,

@@ -13,19 +13,18 @@ import com.opencritic.game.your.domain.GameInList
 import com.opencritic.game.your.domain.GameList
 import com.opencritic.game.your.domain.GameListAction
 import com.opencritic.game.your.domain.GameListId
-import com.opencritic.game.your.domain.YourGame
-import com.opencritic.game.your.domain.YourGameRepository
+import com.opencritic.game.your.domain.GameListRemoteRepository
 import com.opencritic.games.GameRank
 import kotlinx.coroutines.CoroutineDispatcher
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.IO
 import kotlinx.coroutines.withContext
 
-internal class YourGameRepositoryImpl(
+internal class GameListRemoteRepositoryImpl(
     private val openCriticApi: OpenCriticsApi,
     private val getAuthStateInteractor: GetAuthStateInteractor,
     private val defaultDispatcher: CoroutineDispatcher = Dispatchers.IO,
-) : YourGameRepository {
+) : GameListRemoteRepository {
     override suspend fun getLists(): List<GameList> =
         withContext(defaultDispatcher) {
             openCriticApi.getLists(token())
@@ -41,11 +40,11 @@ internal class YourGameRepositoryImpl(
     override suspend fun updateGameList(
         gameListId: GameListId,
         action: GameListAction,
-        gameId: Long,
+        game: GameInList,
     ) {
         withContext(defaultDispatcher) {
             val listDto = when (gameListId) {
-                is GameListId.Custon -> throw Exception("Not supported yet")
+                is GameListId.Custom -> throw Exception("Not supported yet")
                 GameListId.Favorite -> VitalListTypeDto.Favorite
                 GameListId.Played -> VitalListTypeDto.Played
                 GameListId.Want -> VitalListTypeDto.Want
@@ -56,7 +55,7 @@ internal class YourGameRepositoryImpl(
                     GameListAction.Add -> ListGameActionDto.Add
                     GameListAction.Remove -> ListGameActionDto.Remove
                 },
-                gameId = gameId,
+                gameId = game.id,
             )
 
             openCriticApi.postListAction(

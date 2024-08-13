@@ -105,8 +105,10 @@ fun GameListListItem(
                 horizontalArrangement = Arrangement.spacedBy(defaultPadding),
                 modifier = Modifier.padding(top = smallPadding)
             ) {
-                Button(onClick = item.onShareClick) {
-                    Text(text = item.shareButtonText.text())
+                if (item.isShareButtonVisible) {
+                    Button(onClick = item.onShareClick) {
+                        Text(text = item.shareButtonText.text())
+                    }
                 }
 
                 Button(

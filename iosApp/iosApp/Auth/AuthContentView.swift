@@ -36,6 +36,11 @@ struct AuthContentView: View {
                 content.onAuthButtonClicked()
             }
             
+            Button(content.useOfflineListsText) {
+                content.onUseOfflineListsClick()
+            }
+            .padding(.vertical)
+            
             Spacer()
         }
     }

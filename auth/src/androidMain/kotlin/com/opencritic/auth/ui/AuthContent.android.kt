@@ -58,6 +58,15 @@ fun AuthContent(
         ) {
             Text(text = content.authButtonText.text())
         }
+
+        Button(
+            onClick = content.onUseOfflineListsClick,
+            modifier = Modifier
+                .fillMaxWidth()
+                .padding(horizontal = defaultPadding)
+        ) {
+            Text(text = content.useOfflineListsText.text())
+        }
     }
 }
 

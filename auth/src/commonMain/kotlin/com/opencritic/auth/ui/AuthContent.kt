@@ -9,6 +9,8 @@ data class AuthContent(
     val tokenHint: TextSource,
     val descriptionText: TextSource,
     val authButtonText: TextSource,
+    val useOfflineListsText: TextSource,
+    val onUseOfflineListsClick: () -> Unit,
     val onAuthButtonClicked: () -> Unit,
     val onTokenChanged: (String) -> Unit,
 ) : ScreenContent
@@ -20,6 +22,8 @@ fun AuthContent_PreviewData(): AuthContent =
         tokenHint = "Token".asTextSource(),
         descriptionText = "Some very long description. skdghsdkhf lksdfhklsadhf asdlkfhsdkalhf asdlkfhsdaklh asdlkfhsdakhf".asTextSource(),
         authButtonText = "Auth".asTextSource(),
+        useOfflineListsText = "Use offline lists".asTextSource(),
+        onUseOfflineListsClick = {},
         onTokenChanged = {},
         onAuthButtonClicked = {}
     )

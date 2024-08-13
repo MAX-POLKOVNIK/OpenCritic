@@ -2,6 +2,7 @@ package com.opencritic.auth.ui
 
 import com.opencritic.auth.domain.AuthByTokenInteractor
 import com.opencritic.auth.domain.GetAuthStateInteractor
+import com.opencritic.auth.domain.SetOfflineModeInteractor
 import com.opencritic.logs.Logger
 import com.opencritic.mvvm.BaseContentViewModel
 import com.opencritic.mvvm.CommonViewModelState
@@ -16,6 +17,7 @@ import kotlin.time.Duration.Companion.seconds
 class AuthViewModel(
     private val authByTokenInteractor: AuthByTokenInteractor,
     private val getAuthStateInteractor: GetAuthStateInteractor,
+    private val setOfflineModeInteractor: SetOfflineModeInteractor,
     private val logger: Logger,
 ) : BaseContentViewModel<AuthContent>() {
     override fun initialState(): CommonViewModelState<AuthContent> =
@@ -33,10 +35,20 @@ class AuthViewModel(
                     tokenHint = StringRes.str_auth_token.asTextSource(),
                     descriptionText = StringRes.str_auth_description.asTextSource(),
                     authButtonText = StringRes.str_auth_button.asTextSource(),
+                    useOfflineListsText = StringRes.str_auth_use_offline_button.asTextSource(),
                     onAuthButtonClicked = { onAuth() },
-                    onTokenChanged = { onTokenChanged(it) }
+                    onTokenChanged = { onTokenChanged(it) },
+                    onUseOfflineListsClick = { onUserOffline() }
                 )
             }
+        }
+    }
+
+    private fun onUserOffline() {
+        scope.launch {
+            setOfflineModeInteractor(isEnabled = true)
+
+            requireRouter().navigateBack()
         }
     }
 

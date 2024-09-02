@@ -7,15 +7,11 @@ import androidx.activity.enableEdgeToEdge
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Surface
-import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.ui.Modifier
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.rememberNavController
 import com.opencritic.app.registerRoutes
-import com.opencritic.calendar.domain.GetGameCalendarInteractor
-import com.opencritic.navigation.MainDestination
 import com.opencritic.resources.MyApplicationTheme
-import org.koin.android.ext.android.inject
 
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -33,7 +29,7 @@ class MainActivity : ComponentActivity() {
 
                     NavHost(
                         navController = navController,
-                        startDestination = MainDestination.path,
+                        startDestination = "main",
                         builder = registerRoutes(navController)
                     )
                 }

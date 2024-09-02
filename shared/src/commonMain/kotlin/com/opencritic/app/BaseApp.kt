@@ -20,11 +20,12 @@ import org.koin.core.KoinApplication
 import org.koin.core.component.KoinComponent
 import org.koin.core.component.inject
 import org.koin.core.context.startKoin
+import org.koin.core.module.Module
 
 abstract class BaseApp : KoinComponent {
     private val logger: Logger by inject()
 
-    internal fun onInit() {
+    internal fun onInit(screenModule: Module) {
         startKoin {
             onKoinInit(this)
 
@@ -43,6 +44,7 @@ abstract class BaseApp : KoinComponent {
                 calendarModule,
                 aboutModule,
                 hallOfFameModule,
+                screenModule,
             )
         }
 

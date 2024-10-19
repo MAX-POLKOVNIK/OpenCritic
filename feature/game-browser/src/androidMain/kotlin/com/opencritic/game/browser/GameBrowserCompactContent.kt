@@ -27,7 +27,11 @@ import com.opencritic.resources.smallPadding
 import com.opencritic.resources.text.text
 
 @Composable
+<<<<<<<< HEAD:feature/game-browser/src/androidMain/kotlin/com/opencritic/game/browser/GameBrowserCompactContent.kt
 fun GameBrowserCompactContent(
+========
+fun GameBrowserStateContent(
+>>>>>>>> d9b9f89101ab1a94c05e03cb2a45e332270c81b2:feature/game-browser/src/androidMain/kotlin/com/opencritic/game/browser/GameBrowserContent.android.kt
     state: GameBrowserContent,
     modifier: Modifier = Modifier,
 ) {
@@ -188,8 +192,13 @@ fun GameBrowserCompactContent(
 
 @Preview
 @Composable
+<<<<<<<< HEAD:feature/game-browser/src/androidMain/kotlin/com/opencritic/game/browser/GameBrowserCompactContent.kt
 fun GameBrowserCompactContent_Preview() {
     GameBrowserCompactContent(
+========
+fun GameBrowserStateContent_Preview() {
+    GameBrowserStateContent(
+>>>>>>>> d9b9f89101ab1a94c05e03cb2a45e332270c81b2:feature/game-browser/src/androidMain/kotlin/com/opencritic/game/browser/GameBrowserContent.android.kt
         state = GameBrowserContent_PreviewData()
     )
 }

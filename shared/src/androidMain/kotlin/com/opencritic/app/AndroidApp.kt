@@ -11,7 +11,7 @@ object AndroidApp : BaseApp() {
     fun init(context: Context) {
         contextRef = WeakReference(context)
 
-        onInit()
+        onInit(screenCreatorsModule)
     }
 
     override fun onKoinInit(koinApplication: KoinApplication) {

@@ -27,6 +27,7 @@ android {
     buildTypes {
         getByName("release") {
             isMinifyEnabled = false
+            signingConfig = signingConfigs.getByName("debug")
         }
     }
     compileOptions {
@@ -40,6 +41,8 @@ android {
 
 dependencies {
     implementation(libs.koin.compose)
+    implementation(projects.core.navigation)
+    implementation(projects.feature.main)
 
     implementation(projects.shared)
     implementation(libs.androidx.lifecycle.viewmodel)

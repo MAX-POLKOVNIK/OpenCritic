@@ -10,6 +10,7 @@ import com.opencritic.database.databaseModule
 import com.opencritic.game.browser.di.gameBrowserModule
 import com.opencritic.game.your.di.yourGamesModule
 import com.opencritic.games.details.di.gameDetailsModule
+import com.opencritic.halloffame.di.hallOfFameModule
 import com.opencritic.logs.Logger
 import com.opencritic.logs.logsModule
 import com.opencritic.main.di.mainModule
@@ -19,11 +20,12 @@ import org.koin.core.KoinApplication
 import org.koin.core.component.KoinComponent
 import org.koin.core.component.inject
 import org.koin.core.context.startKoin
+import org.koin.core.module.Module
 
 abstract class BaseApp : KoinComponent {
     private val logger: Logger by inject()
 
-    internal fun onInit() {
+    internal fun onInit(screenModule: Module) {
         startKoin {
             onKoinInit(this)
 
@@ -41,6 +43,8 @@ abstract class BaseApp : KoinComponent {
                 newsModule,
                 calendarModule,
                 aboutModule,
+                hallOfFameModule,
+                screenModule,
             )
         }
 

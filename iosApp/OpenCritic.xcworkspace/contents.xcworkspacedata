@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Workspace
+   version = "1.0">
+   <FileRef
+      location = "group:/Users/maxpolkovnik/OpenCritic/iosApp/App.xcodeproj">
+   </FileRef>
+   <Group
+      location = "container:"
+      name = "Core">
+      <FileRef
+         location = "group:BuildSharedFramework/BuildSharedFramework.xcodeproj">
+      </FileRef>
+      <FileRef
+         location = "group:Resource/Resource.xcodeproj">
+      </FileRef>
+      <FileRef
+         location = "group:Mvvm/Mvvm.xcodeproj">
+      </FileRef>
+      <FileRef
+         location = "group:MvvmBase/MvvmBase.xcodeproj">
+      </FileRef>
+      <FileRef
+         location = "group:Navigation/Navigation.xcodeproj">
+      </FileRef>
+   </Group>
+   <Group
+      location = "container:"
+      name = "Features">
+      <FileRef
+         location = "group:About/About.xcodeproj">
+      </FileRef>
+      <FileRef
+         location = "group:Auth/Auth.xcodeproj">
+      </FileRef>
+      <FileRef
+         location = "group:Calendar/Calendar.xcodeproj">
+      </FileRef>
+      <FileRef
+         location = "group:Dashboard/Dashboard.xcodeproj">
+      </FileRef>
+      <FileRef
+         location = "group:GameBrowser/GameBrowser.xcodeproj">
+      </FileRef>
+      <FileRef
+         location = "group:GameDetails/GameDetails.xcodeproj">
+      </FileRef>
+      <FileRef
+         location = "group:GameList/GameList.xcodeproj">
+      </FileRef>
+      <FileRef
+         location = "group:HallOfFame/HallOfFame.xcodeproj">
+      </FileRef>
+      <FileRef
+         location = "group:Main/Main.xcodeproj">
+      </FileRef>
+      <FileRef
+         location = "group:News/News.xcodeproj">
+      </FileRef>
+      <FileRef
+         location = "group:Reviews/Reviews.xcodeproj">
+      </FileRef>
+      <FileRef
+         location = "group:Search/Search.xcodeproj">
+      </FileRef>
+      <FileRef
+         location = "group:Views/Views.xcodeproj">
+      </FileRef>
+   </Group>
+</Workspace>

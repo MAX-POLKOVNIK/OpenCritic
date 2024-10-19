@@ -1,15 +1,14 @@
 package com.opencritic.app
 
-import com.opencritic.navigation.Router
 import kotlinx.cinterop.BetaInteropApi
 import kotlinx.cinterop.ObjCClassOf
 import kotlinx.cinterop.ObjCObject
 import kotlinx.cinterop.getOriginalKotlinClass
 import org.koin.core.parameter.parametersOf
-import org.koin.mp.KoinPlatform.getKoin
 import org.koin.mp.KoinPlatformTools
 import kotlin.reflect.KClass
 
+@Suppress("unused")
 @OptIn(BetaInteropApi::class)
 fun <T : ObjCObject> ObjCClassOf<T>.koinViewModel(args: List<Any> = emptyList()): T {
     val kClass: KClass<*>? = getOriginalKotlinClass(this)

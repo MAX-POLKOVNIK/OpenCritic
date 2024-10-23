@@ -1,7 +1,7 @@
 package com.opencritic.games.details.ui
 
-import com.opencritic.auth.api.ui.AuthRoute
 import com.opencritic.auth.api.domain.GetAuthStateInteractor
+import com.opencritic.auth.api.ui.AuthRoute
 import com.opencritic.game.your.domain.GameInList
 import com.opencritic.game.your.domain.GameListAction
 import com.opencritic.game.your.domain.GameListId
@@ -11,11 +11,12 @@ import com.opencritic.game.your.domain.YourGameAction
 import com.opencritic.game.your.ui.lists.YourGameIndicatorItem
 import com.opencritic.games.GameRank
 import com.opencritic.games.Tier
-import com.opencritic.games.Trailer
 import com.opencritic.games.details.api.ui.GameDetailsRoute
 import com.opencritic.games.details.api.ui.GameMediaRoute
 import com.opencritic.games.details.api.ui.GameReviewsRoute
+import com.opencritic.games.details.api.ui.RatingReviewsRoute
 import com.opencritic.games.details.domain.GameDetails
+import com.opencritic.games.details.domain.GameRating
 import com.opencritic.games.details.domain.interactor.GetGameDetailsInteractor
 import com.opencritic.logs.Logger
 import com.opencritic.mvvm.BaseContentViewModel
@@ -28,10 +29,10 @@ import com.opencritic.remote.images.ImagePreloader
 import com.opencritic.remote.images.load
 import com.opencritic.resources.images.Icons
 import com.opencritic.resources.images.SharedImages
-import com.opencritic.resources.text.DateTextSource
+import com.opencritic.resources.text.Format
 import com.opencritic.resources.text.StringRes
 import com.opencritic.resources.text.asTextSource
-import com.opencritic.resources.text.format
+import com.opencritic.resources.text.formatDate
 import kotlinx.collections.immutable.toImmutableList
 import kotlinx.coroutines.flow.update
 import kotlinx.coroutines.launch
@@ -49,6 +50,7 @@ class GameDetailsViewModel(
     override fun initialState(): CommonViewModelState<GameDetailsContent> =
         CommonViewModelState.loading(args.gameName.asTextSource())
 
+    private var details: GameDetails? = null
     private var yourGame: YourGame? = null
     private var gameUrl: String? = null
 
@@ -71,6 +73,7 @@ class GameDetailsViewModel(
                     logger.log(it.toString())
                 }
                 .onSuccess { details ->
+                    this@GameDetailsViewModel.details = details
                     yourGame = details.yourGame
                     gameUrl = details.url
 
@@ -80,14 +83,13 @@ class GameDetailsViewModel(
                         state.content(
                             title = args.gameName.asTextSource(),
                             content = GameDetailsContent(
-                                isSquareImageVisible = details.squareUrl.isNotBlank(),
                                 squareImageUrl = details.squareUrl,
                                 bannerImageUrl = details.bannerUrl,
                                 name = details.name,
                                 yourGameIndicatorItem = createYourGameIndicatorItem(details.yourGame, details),
-                                companiesText = details.companies.joinToString(", ") { it.name },
-                                releaseDateText = details.releaseDate.toLocalDateTime(TimeZone.UTC).date format DateTextSource.Format.Medium,
-                                platformsText = details.platforms.joinToString(", ") { it.name },
+                                creatorsText = ("Creators: " + details.companies.joinToString(", ") { it.name }).asTextSource(),
+                                platformsText = ("Platforms: " + details.platforms.joinToString(", ") { it.name }).asTextSource(),
+                                releaseText = ("Release date: " + details.releaseDate.toLocalDateTime(TimeZone.UTC).date.formatDate(Format.Medium)).asTextSource(),
                                 isTierVisible = details.rank != null,
                                 tierImageResource = when (details.rank?.tier) {
                                     Tier.Mighty -> SharedImages.mightyMan
@@ -107,6 +109,10 @@ class GameDetailsViewModel(
                                     score = details.recommendPercent ?: 0f
                                 ),
                                 criticsRecommendDescription = StringRes.str_critics_recommend.asTextSource(),
+                                playerRating = createPlayerRatingIndicator(details.rank?.tier ?: Tier.Weak, details.gameRating),
+                                playerRatingDescription =
+                                    if (details.gameRating.isCalculated) StringRes.str_game_rating.asTextSource()
+                                    else StringRes.str_game_rating_unavailable_formatted.asTextSource(GameRating.minCount),
                                 briefReviews = details.reviews
                                     .map { review ->
                                         ReviewBriefListItem(
@@ -160,6 +166,7 @@ class GameDetailsViewModel(
                                 onViewAllScreenshotsClick = ::openMedia,
                                 onViewAllTrailersClick = ::openMedia,
                                 onViewAllReviewsClick = ::openReviews,
+                                onGameRatingClick = ::onGameRatingClick,
                                 onRefresh = ::onRefresh,
                                 isActionVisible = true,
                                 actionIconResource = Icons.share,
@@ -184,6 +191,18 @@ class GameDetailsViewModel(
                     }
                 }
         }
+    }
+
+    private fun onGameRatingClick() {
+        val rating = details?.gameRating ?: return
+        if (!rating.isCalculated) return
+
+        RatingReviewsRoute.navigate(
+            RatingReviewsRoute.InitArgs(
+                gameId = args.gameId,
+                gameName = args.gameName,
+            )
+        )
     }
 
     private fun createYourGameIndicatorItem(yourGame: YourGame, game: GameDetails): YourGameIndicatorItem =

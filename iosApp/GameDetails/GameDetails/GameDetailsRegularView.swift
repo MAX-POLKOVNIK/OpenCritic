@@ -15,111 +15,110 @@ struct GameDetailsRegularView: View {
     let state: GameDetailsContent
     
     var body: some View {
-        LazyVStack {
-            ZStack(alignment: .bottomTrailing) {
-                LazyImage(url: URL(string: state.bannerImageUrl)) { state in
-                    if let image = state.image {
-                        image.centerCropped()
-                    } else {
-                        NoGamePosterView()
+        HStack(
+            alignment: .top,
+            spacing: 0
+        ) {
+            VStack {
+                ZStack(alignment: .topLeading) {
+                    LazyImage(url: URL(string: state.bannerImageUrl)) { state in
+                        if let image = state.image {
+                            image.resizable()
+                                .aspectRatio(16/9, contentMode: .fit)
+                        } else {
+                            NoGamePosterView()
+                                .aspectRatio(16/9, contentMode: .fit)
+                        }
                     }
+                    
+                    Image(state.tierImageResource)
+                        .resizable()
+                        .scaledToFill()
+                        .aspectRatio(1.0, contentMode: .fit)
+                        .frame(width: 56, height: 56)
+                        .padding()
                 }
-                .frame(minWidth: 0, maxWidth: .infinity)
-                .aspectRatio(16 / 9, contentMode: .fit)
+                .frame(maxWidth: .infinity)
                 
+                Text(state.creatorsText)
+                    .frame(maxWidth: .infinity, alignment: .leading)
+                    .multilineTextAlignment(.leading)
+                    .padding(.horizontal)
+                Text(state.releaseText)
+                    .frame(maxWidth: .infinity, alignment: .leading)
+                    .multilineTextAlignment(.leading)
+                    .padding(.horizontal)
+                Text(state.platformsText)
+                    .bold()
+                    .frame(maxWidth: .infinity, alignment: .leading)
+                    .multilineTextAlignment(.leading)
+                    .padding(.horizontal)
+            }
+            
+            VStack {
                 YourGameIndicatorItemView(
                     item: state.yourGameIndicatorItem
                 )
-                .frame(width: 300, height: 50, alignment: .bottomTrailing)
+                .frame(height: 56)
+                .card(stroke: .gray)
                 .padding()
-            }
-            
-            VStack(alignment: .leading) {
-                Text(state.name)
-                    .font(.title)
-                    .bold()
-                    .padding()
                 
-                HStack {
-                    VStack(
-                        alignment: .leading
+                if state.isTierVisible {
+                    HStack(
+                        alignment: .top
                     ) {
-                        Text(state.companiesText)
-                            .padding(.horizontal)
-                        Text(state.releaseDateText.text())
-                            .padding(.horizontal)
-                        Text(state.platformsText)
-                            .padding(.horizontal)
-                            .bold()
-                        
-                        Spacer()
-                            .frame(height: 16)
-                        
-                        if state.isTierVisible {
-                            HStack(spacing: 32) {
-                                Image(state.tierImageResource)
-                                    .resizable()
-                                    .scaledToFill()
-                                    .aspectRatio(1.0, contentMode: .fit)
-                                    .frame(
-                                        minWidth: /*@START_MENU_TOKEN@*/0/*@END_MENU_TOKEN@*/,
-                                        maxWidth: .infinity
-                                    )
-                                
-                                RankCircleIndicatorView(item: state.topCriticScore)
-                                    .frame(minWidth: 0, maxWidth: .infinity)
-                                
-                                RankCircleIndicatorView(item: state.recommendedPercent)
-                                    .frame(minWidth: 0, maxWidth: .infinity)
-                            }
-                                .padding(.horizontal)
+                        VStack {
+                            RankCircleIndicatorView(item: state.topCriticScore)
+                                .frame(width: 72, height: 72)
                             
-                            HStack(spacing: 32) {
-                                Text(state.tierDescription)
-                                    .multilineTextAlignment(.center)
-                                    .frame(minWidth: 0, maxWidth: .infinity)
-                                
-                                Text(state.topCriticScoreDescription)
-                                    .multilineTextAlignment(.center)
-                                    .frame(minWidth: 0, maxWidth: .infinity)
-                                
-                                Text(state.criticsRecommendDescription)
-                                    .multilineTextAlignment(.center)
-                                    .frame(minWidth: 0, maxWidth: .infinity)
-                            }
-                            .padding(.horizontal)
+                            Text(state.topCriticScoreDescription)
+                                .multilineTextAlignment(.center)
                         }
+                        .frame(maxWidth: .infinity)
                         
-                        Spacer()
-                            .frame(height: 16)
+                        VStack {
+                            RankCircleIndicatorView(item: state.recommendedPercent)
+                                .frame(width: 72, height: 72)
+                            
+                            Text(state.criticsRecommendDescription)
+                                .multilineTextAlignment(.center)
+                        }
+                        .frame(maxWidth: .infinity)
                         
-                        
+                        VStack {
+                            RankCircleIndicatorView(item: state.playerRating)
+                                .frame(width: 72, height: 72)
+                            
+                            Text(state.playerRatingDescription)
+                                .multilineTextAlignment(.center)
+                        }
+                        .frame(maxWidth: .infinity)
                     }
-                    
-                    VStack {
-                        ForEach(state.briefReviews, id: \.self) { item in
-                            ReviewBriefListItemView(item: item)
-                        }
-                        
-                        Spacer()
-                        
-                        if state.isViewAllVisible {
-                            HStack {
-                                Spacer()
-                                Button(state.viewAllText) { state.onViewAllReviewsClick() }
-                                    .padding(.horizontal)
-                            }
-                        }
-                    }
-                    .padding()
+                    .fixedSize(horizontal: false, vertical: true)
+                    .padding(.top)
+                    .padding(.horizontal)
                 }
+                
+                VStack {
+                    ForEach(state.briefReviews, id: \.self) { item in
+                        ReviewBriefListItemView(item: item)
+                    }
+                
+                    if state.isViewAllVisible {
+                        HStack {
+                            Spacer()
+                            Button(state.viewAllText) { state.onViewAllReviewsClick() }
+                                .padding(.top)
+                        }
+                    }
+                }
+                .padding()
+                
             }
-            
-            
-            .frame(minWidth: 0, maxWidth: .infinity, alignment: .leading)
-            .card()
-            .padding()
+            .frame(maxWidth: .infinity)
         }
+        .card()
+        .padding()
     }
 }
 

@@ -16,6 +16,10 @@ import com.opencritic.api.dto.outlet.OutletDto
 import com.opencritic.api.dto.platform.PlatformDto
 import com.opencritic.api.dto.popular.PopularItemDto
 import com.opencritic.api.dto.profile.ProfileDto
+import com.opencritic.api.dto.rating.GameRatingDto
+import com.opencritic.api.dto.rating.GameRatingReviewDto
+import com.opencritic.api.dto.rating.GameRatingReviewSortKey
+import com.opencritic.api.dto.rating.GameRatingReviewTimeFrameKey
 import com.opencritic.api.dto.review.ReviewedTodayGameDto
 import com.opencritic.api.dto.released.ReleasedGameDto
 import com.opencritic.api.dto.review.ReviewDto
@@ -42,6 +46,16 @@ interface OpenCriticsApi {
     suspend fun getPlaystationFeatured(): FeaturedGameListDto
 
     suspend fun getGame(gameId: Long): GameDetailsDto
+
+    suspend fun getGameRating(gameId: Long): GameRatingDto
+
+    suspend fun getGameRatingReviews(
+        gameId: Long,
+        sort: GameRatingReviewSortKey,
+        timeframe: GameRatingReviewTimeFrameKey,
+        limit: Int,
+        page: Int,
+    ): List<GameRatingReviewDto>
 
     suspend fun getGameMedia(gameId: Long): GameDetailsDto
 

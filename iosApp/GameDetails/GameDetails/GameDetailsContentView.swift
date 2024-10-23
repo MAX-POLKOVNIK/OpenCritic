@@ -18,7 +18,6 @@ struct GameDetailsContentView: View {
     var body: some View {
         ScrollView(.vertical) {
             LazyVStack(alignment: .leading) {
-                
                 if horizontalSizeClass == .compact {
                     GameDetailsCompactView(state: state)
                 } else {

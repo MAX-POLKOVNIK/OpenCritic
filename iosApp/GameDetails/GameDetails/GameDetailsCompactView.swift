@@ -14,99 +14,115 @@ internal import NukeUI
 struct GameDetailsCompactView: View {
     let state: GameDetailsContent
     
+    init(state: GameDetailsContent) {
+        self.state = state
+    }
+    
     var body: some View {
-        LazyVStack {
-            if state.isSquareImageVisible {
-                LazyImage(url: URL(string: state.squareImageUrl)) { state in
-                    if let image = state.image {
-                        image.resizable()
-                            .scaledToFill()
-                    } else {
-                        NoGamePosterView()
+        LazyVStack(alignment: .leading) {
+            LazyVStack(spacing: 0) {
+                ZStack(alignment: .topLeading) {
+                    LazyImage(url: URL(string: state.squareImageUrl)) { state in
+                        if let image = state.image {
+                            image.resizable()
+                                .scaledToFill()
+                        } else {
+                            NoGamePosterView()
+                        }
+                        
                     }
+                    .frame(minWidth: 0, maxWidth: .infinity)
+                    .aspectRatio(1.0, contentMode: .fit)
                     
-                }
-                .frame(minWidth: 0, maxWidth: .infinity)
-                .aspectRatio(1.0, contentMode: .fit)
-            }
-            
-            YourGameIndicatorItemView(
-                item: state.yourGameIndicatorItem
-            ).padding()
-            
-            VStack(
-                alignment: .leading
-            ) {
-                Text(state.name)
-                    .font(.title)
-                    .bold()
-                    .padding()
-            
-                Text(state.companiesText)
-                    .padding(.horizontal)
-                Text(state.releaseDateText.text())
-                    .padding(.horizontal)
-                Text(state.platformsText)
-                    .padding(.horizontal)
-                    .bold()
-                
-                Spacer()
-                    .frame(height: 16)
-                
-                if state.isTierVisible {
-                    HStack(spacing: 16) {
+                    if state.isTierVisible {
                         Image(state.tierImageResource)
                             .resizable()
                             .scaledToFill()
                             .aspectRatio(1.0, contentMode: .fit)
-                            .frame(
-                                minWidth: /*@START_MENU_TOKEN@*/0/*@END_MENU_TOKEN@*/,
-                                maxWidth: .infinity
-                            )
-                        
-                        RankCircleIndicatorView(item: state.topCriticScore)
-                            .frame(minWidth: 0, maxWidth: .infinity)
-                        
-                        RankCircleIndicatorView(item: state.recommendedPercent)
-                            .frame(minWidth: 0, maxWidth: .infinity)
+                            .frame(width: 76, height: 76)
+                            .padding(.top)
+                            .padding(.leading)
                     }
-                        .padding(.horizontal)
-                    
-                    HStack(spacing: 16) {
-                        Text(state.tierDescription)
-                            .multilineTextAlignment(.center)
-                            .frame(minWidth: 0, maxWidth: .infinity)
+                }
+                
+                YourGameIndicatorItemView(
+                    item: state.yourGameIndicatorItem
+                )
+                
+                if state.isTierVisible {
+                    HStack(
+                        alignment: .top
+                    ) {
+                        VStack {
+                            RankCircleIndicatorView(item: state.topCriticScore)
+                                .frame(width: 96, height: 96)
+                            
+                            Text(state.topCriticScoreDescription)
+                                .multilineTextAlignment(.center)
+                        }
+                        .frame(maxWidth: .infinity)
                         
-                        Text(state.topCriticScoreDescription)
-                            .multilineTextAlignment(.center)
-                            .frame(minWidth: 0, maxWidth: .infinity)
+                        VStack {
+                            RankCircleIndicatorView(item: state.recommendedPercent)
+                                .frame(width: 96, height: 96)
+                            
+                            Text(state.criticsRecommendDescription)
+                                .multilineTextAlignment(.center)
+                        }
+                        .frame(maxWidth: .infinity)
                         
-                        Text(state.criticsRecommendDescription)
-                            .multilineTextAlignment(.center)
-                            .frame(minWidth: 0, maxWidth: .infinity)
+                        VStack {
+                            RankCircleIndicatorView(item: state.playerRating)
+                                .frame(width: 96, height: 96)
+                            
+                            Text(state.playerRatingDescription)
+                                .multilineTextAlignment(.center)
+                        }
+                        .frame(maxWidth: .infinity)
                     }
+                    .fixedSize(horizontal: false, vertical: true)
+                    .padding(.top)
                     .padding(.horizontal)
                 }
                 
-                Spacer()
-                    .frame(height: 16)
-                
-                ForEach(state.briefReviews, id: \.self) { item in
-                    ReviewBriefListItemView(item: item)
-                }
-                
-                if state.isViewAllVisible {
-                    HStack {
-                        Spacer()
-                        Button(state.viewAllText) { state.onViewAllReviewsClick() }
-                            .padding()
+                VStack(
+                    alignment: .leading
+                ) {
+                    Spacer()
+                        .frame(height: 16)
+                    
+                    ForEach(state.briefReviews, id: \.self) { item in
+                        ReviewBriefListItemView(item: item)
+                    }
+                    
+                    if state.isViewAllVisible {
+                        HStack {
+                            Spacer()
+                            Button(state.viewAllText) { state.onViewAllReviewsClick() }
+                                .padding(.vertical)
+                        }
                     }
                 }
+                    .frame(minWidth: 0, maxWidth: .infinity, alignment: .leading)
+                    .padding(.horizontal)
             }
-                .frame(minWidth: 0, maxWidth: .infinity, alignment: .leading)
-                .card()
-                .padding(.horizontal)
+            .card()
+            .padding(.all)
         }
+        
+        Text(state.creatorsText)
+            .frame(maxWidth: .infinity, alignment: .leading)
+            .multilineTextAlignment(.leading)
+            .padding(.horizontal)
+        Text(state.releaseText)
+            .frame(maxWidth: .infinity, alignment: .leading)
+            .multilineTextAlignment(.leading)
+            .padding(.horizontal)
+        Text(state.platformsText)
+            .bold()
+            .frame(maxWidth: .infinity, alignment: .leading)
+            .multilineTextAlignment(.leading)
+            .padding(.horizontal)
     }
 }
 

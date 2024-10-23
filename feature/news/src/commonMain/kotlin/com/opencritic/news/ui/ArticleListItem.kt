@@ -2,7 +2,7 @@ package com.opencritic.news.ui
 
 import com.opencritic.mvvm.ListItem
 import com.opencritic.news.domain.ArticlePreview
-import com.opencritic.resources.text.DateTextSource
+import com.opencritic.resources.text.Format
 import com.opencritic.resources.text.TextSource
 import com.opencritic.resources.text.asTextSource
 import com.opencritic.resources.text.format
@@ -40,7 +40,7 @@ fun ArticleListItem(
     outletTitleText = "From".asTextSource(),
     outletText = articlePreview.outlet?.name ?: "",
     writtenBy = "Written by ${articlePreview.author.name}".asTextSource(),
-    publishedDateText = articlePreview.publicationDate format DateTextSource.Format.Long,
+    publishedDateText = articlePreview.publicationDate format Format.Long,
     readMoreText = "Read more".asTextSource(),
     onReadMoreClick = onClick,
     onOutletClick = onOutletClick,

@@ -1,4 +1,4 @@
-package com.opencritic.news.ui
+package com.opencritic.resources.text
 
 import android.graphics.Typeface
 import android.text.SpannableStringBuilder
@@ -14,6 +14,9 @@ import androidx.compose.ui.text.font.FontStyle
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextDecoration
 import androidx.core.text.HtmlCompat
+
+fun HtmlTextSource.text(): AnnotatedString =
+    htmlString.htmlToAnnotatedString()
 
 fun String.htmlToAnnotatedString(): AnnotatedString {
     val spannableString = SpannableStringBuilder(this).toString()

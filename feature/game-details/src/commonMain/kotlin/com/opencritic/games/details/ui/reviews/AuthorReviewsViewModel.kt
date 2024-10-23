@@ -1,4 +1,4 @@
-package com.opencritic.games.details.ui
+package com.opencritic.games.details.ui.reviews
 
 import com.opencritic.games.Review
 import com.opencritic.games.details.api.ui.AuthorReviewsRoute
@@ -8,6 +8,11 @@ import com.opencritic.games.details.domain.ReviewSorting
 import com.opencritic.games.details.domain.asTextSource
 import com.opencritic.games.details.domain.interactor.GetAuthorInteractor
 import com.opencritic.games.details.domain.interactor.GetAuthorReviewsInteractor
+import com.opencritic.games.details.ui.IconTextItem
+import com.opencritic.games.details.ui.LoadingItem
+import com.opencritic.games.details.ui.ReviewListItem
+import com.opencritic.games.details.ui.ReviewSortItem
+import com.opencritic.games.details.ui.mapAndAdd
 import com.opencritic.logs.Logger
 import com.opencritic.mvvm.BaseViewModel
 import com.opencritic.navigation.UrlRoute
@@ -95,8 +100,8 @@ class AuthorReviewsViewModel(
             titleText = StringRes.str_reviews_of.asTextSource(author.name),
             nameText = author.name,
             bioText =
-                if (author.isClaimed) author.bio.asTextSource()
-                else StringRes.str_author_is_not_claimed.asTextSource(author.name),
+            if (author.isClaimed) author.bio.asTextSource()
+            else StringRes.str_author_is_not_claimed.asTextSource(author.name),
             isBioVisible = !author.isClaimed || author.bio.isNotBlank(),
             imageUrl = author.imageUrl,
             sortTitleText = StringRes.str_sort.asTextSource(),
@@ -107,7 +112,9 @@ class AuthorReviewsViewModel(
                 ).takeIf { author.reviewCount > 0 },
                 IconTextItem(
                     icon = Icons.chartPie,
-                    text = StringRes.str_average_score_formatted.asTextSource(author.averageScore.toInt().toString()),
+                    text = StringRes.str_average_score_formatted.asTextSource(
+                        author.averageScore.toInt().toString()
+                    ),
                 ).takeIf { author.averageScore > 0 },
                 IconTextItem(
                     icon = Icons.bullseye,
@@ -115,7 +122,9 @@ class AuthorReviewsViewModel(
                 ).takeIf { author.medianScore > 0 },
                 IconTextItem(
                     icon = Icons.thumbUp,
-                    text = StringRes.str_games_recommended_formatted.asTextSource(author.percentRecommended.toInt().toString())
+                    text = StringRes.str_games_recommended_formatted.asTextSource(
+                        author.percentRecommended.toInt().toString()
+                    )
                 ).takeIf { author.percentRecommended > 0 }
             ).toImmutableList(),
             sortText = ReviewSortItem(

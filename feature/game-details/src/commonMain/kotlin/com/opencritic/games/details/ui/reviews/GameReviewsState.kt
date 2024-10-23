@@ -1,9 +1,16 @@
-package com.opencritic.games.details.ui
+package com.opencritic.games.details.ui.reviews
 
 import com.opencritic.games.GameRank
 import com.opencritic.games.Tier
 import com.opencritic.games.details.domain.ReviewSorting
 import com.opencritic.games.details.domain.asTextSource
+import com.opencritic.games.details.ui.LoadingItem
+import com.opencritic.games.details.ui.RankCircleIndicatorItem
+import com.opencritic.games.details.ui.ReviewListItem
+import com.opencritic.games.details.ui.ReviewListItem_PreviewData
+import com.opencritic.games.details.ui.ReviewSortItem
+import com.opencritic.games.details.ui.createCriticsRecommendIndicator
+import com.opencritic.games.details.ui.createTopCriticAverageIndicator
 import com.opencritic.mvvm.BaseErrorState
 import com.opencritic.mvvm.BaseLoadingState
 import com.opencritic.mvvm.ViewModelState
@@ -71,7 +78,8 @@ fun GameReviewsStateContent_PreviewData(): GameReviewsState.Content =
         rankedDescription = "Stellar Blade is ranked in the 86th percentile of games scored on OpenCritic. ".asTextSource(),
         sortTitleText = "Sort".asTextSource(),
         sortText = ReviewSortItem(ReviewSorting.Default, ReviewSorting.Default.asTextSource()),
-        availableSorts = ReviewSorting.entries.map { ReviewSortItem(it, it.asTextSource()) }.toImmutableList(),
+        availableSorts = ReviewSorting.entries.map { ReviewSortItem(it, it.asTextSource()) }
+            .toImmutableList(),
         reviewItems = List(10) { ReviewListItem_PreviewData(it.toString()) }.toImmutableList(),
         isLoadingItemVisible = true,
         loadingItem = LoadingItem,

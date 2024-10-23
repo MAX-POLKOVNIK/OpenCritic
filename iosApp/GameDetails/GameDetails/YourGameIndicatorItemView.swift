@@ -10,6 +10,9 @@ import SwiftUI
 import shared
 
 struct YourGameIndicatorItemView: View {
+    private let iconSize: CGFloat = 20
+    private let actionsPadding: CGFloat = 10
+    
     let item: YourGameIndicatorItem
     var body: some View {
         HStack(spacing: 0) {
@@ -17,13 +20,13 @@ struct YourGameIndicatorItemView: View {
                 Image(iconRes: item.wantedImageResource)
                     .resizable()
                     .scaledToFit()
-                    .frame(width: 28, height: 28)
+                    .frame(width: iconSize, height: iconSize)
                     .foregroundColor(item.wantedTextColor?.color)
                 
                 Text(item.wantedText)
                     .foregroundColor(item.wantedTextColor?.color)
             }
-            .padding(.vertical)
+            .padding(.vertical, actionsPadding)
             .frame(minWidth: 0, maxWidth: .infinity)
             .background(item.wantedBackgroundColor.color)
             .contentShape(Rectangle())
@@ -35,13 +38,13 @@ struct YourGameIndicatorItemView: View {
                 Image(iconRes: item.playedImageResource)
                     .resizable()
                     .scaledToFit()
-                    .frame(width: 28, height: 28)
+                    .frame(width: iconSize, height: iconSize)
                     .foregroundColor(item.playedTextColor?.color)
                 
                 Text(item.playedText)
                     .foregroundColor(item.playedTextColor?.color)
             }
-            .padding(.vertical)
+            .padding(.vertical, actionsPadding)
             .frame(minWidth: 0, maxWidth: .infinity)
             .background(item.playedBackgroundColor.color)
             .contentShape(Rectangle())
@@ -53,19 +56,18 @@ struct YourGameIndicatorItemView: View {
                 Image(iconRes: item.favoriteImageResource)
                     .resizable()
                     .scaledToFit()
-                    .frame(width: 28, height: 28)
+                    .frame(width: iconSize, height: iconSize)
                     .foregroundColor(item.favoriteTextColor?.color)
                 
                 Text(item.favoriteText)
                     .foregroundColor(item.favoriteTextColor?.color)
             }
-            .padding(.vertical)
+            .padding(.vertical, actionsPadding)
             .frame(minWidth: 0, maxWidth: .infinity)
             .background(item.favoriteBackgroundColor.color)
             .contentShape(Rectangle())
             .onTapGesture { item.favoriteClick() }
         }
-        .card()
     }
 }
 

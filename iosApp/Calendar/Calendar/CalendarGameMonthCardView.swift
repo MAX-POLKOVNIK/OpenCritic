@@ -11,13 +11,13 @@ import shared
 
 struct CalendarGameMonthCardView: View {
     let item: CalendarGameMonthCard
-    
+
     var body: some View {
         VStack(spacing: 2) {
             Text(item.nameText)
                 .font(.title)
                 .padding(.vertical)
-            
+
             ForEach(item.rows, id: \.self) { row in
                 CalendarGameRowItemView(item: row)
             }

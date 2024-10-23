@@ -11,7 +11,7 @@ import shared
 
 public class CalendarScreenCreator: ScreenCreator<CalendarRoute.InitArgs> {
     public override var route: any Route { CalendarRoute.shared }
-    
+
     public override func view(args: CalendarRoute.InitArgs) -> Any {
         CalendarScreenView(args: args)
     }

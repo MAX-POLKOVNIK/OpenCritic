@@ -1,4 +1,4 @@
-package com.opencritic.games.details.ui
+package com.opencritic.games.details.ui.reviews
 
 import com.opencritic.games.Game
 import com.opencritic.games.GameRank
@@ -10,6 +10,12 @@ import com.opencritic.games.details.domain.interactor.GetGameInteractor
 import com.opencritic.games.details.domain.interactor.GetGameReviewsInteractor
 import com.opencritic.games.details.domain.ReviewSorting
 import com.opencritic.games.details.domain.asTextSource
+import com.opencritic.games.details.ui.LoadingItem
+import com.opencritic.games.details.ui.ReviewListItem
+import com.opencritic.games.details.ui.ReviewSortItem
+import com.opencritic.games.details.ui.createCriticsRecommendIndicator
+import com.opencritic.games.details.ui.createTopCriticAverageIndicator
+import com.opencritic.games.details.ui.mapAndAdd
 import com.opencritic.logs.Logger
 import com.opencritic.mvvm.BaseViewModel
 import com.opencritic.navigation.UrlRoute
@@ -114,7 +120,10 @@ class GameReviewsViewModel(
                 tier = game.rank?.tier ?: Tier.Weak, game.recommendPercent ?: 0f
             ),
             isRankedDescriptionVisible = game.recommendPercent != null,
-            rankedDescription = StringRes.str_game_review_ranked_description.asTextSource(game.name, (game.recommendPercent ?: 0).toString()),
+            rankedDescription = StringRes.str_game_review_ranked_description.asTextSource(
+                game.name,
+                (game.recommendPercent ?: 0).toString()
+            ),
             sortTitleText = StringRes.str_sort.asTextSource(),
             sortText = ReviewSortItem(
                 key = ReviewSorting.Default, name = ReviewSorting.Default.asTextSource()

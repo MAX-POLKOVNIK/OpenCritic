@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		420A5A772CEC551F008201CB /* RatingReviewListItemView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 420A5A762CEC551F008201CB /* RatingReviewListItemView.swift */; };
+		420A5A792CEC6C80008201CB /* RatingReviewsStateContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 420A5A782CEC6C80008201CB /* RatingReviewsStateContentView.swift */; };
+		420A5A7B2CEC766B008201CB /* RatingReviewsScreenView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 420A5A7A2CEC7662008201CB /* RatingReviewsScreenView.swift */; };
 		4211D37F2C8845F00042F631 /* Reviews.h in Headers */ = {isa = PBXBuildFile; fileRef = 4211D37E2C8845F00042F631 /* Reviews.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		4211D3872C8845FA0042F631 /* BuildSharedFramework.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4211D3862C8845FA0042F631 /* BuildSharedFramework.framework */; };
 		4211D38B2C8845FF0042F631 /* Views.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4211D38A2C8845FF0042F631 /* Views.framework */; };
@@ -27,6 +30,9 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		420A5A762CEC551F008201CB /* RatingReviewListItemView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RatingReviewListItemView.swift; sourceTree = "<group>"; };
+		420A5A782CEC6C80008201CB /* RatingReviewsStateContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RatingReviewsStateContentView.swift; sourceTree = "<group>"; };
+		420A5A7A2CEC7662008201CB /* RatingReviewsScreenView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RatingReviewsScreenView.swift; sourceTree = "<group>"; };
 		4211D37B2C8845F00042F631 /* Reviews.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Reviews.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		4211D37E2C8845F00042F631 /* Reviews.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Reviews.h; sourceTree = "<group>"; };
 		4211D3862C8845FA0042F631 /* BuildSharedFramework.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = BuildSharedFramework.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -61,6 +67,16 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		420A5A732CEC54DF008201CB /* Rating */ = {
+			isa = PBXGroup;
+			children = (
+				420A5A7A2CEC7662008201CB /* RatingReviewsScreenView.swift */,
+				420A5A762CEC551F008201CB /* RatingReviewListItemView.swift */,
+				420A5A782CEC6C80008201CB /* RatingReviewsStateContentView.swift */,
+			);
+			path = Rating;
+			sourceTree = "<group>";
+		};
 		4211D3712C8845F00042F631 = {
 			isa = PBXGroup;
 			children = (
@@ -81,6 +97,7 @@
 		4211D37D2C8845F00042F631 /* Reviews */ = {
 			isa = PBXGroup;
 			children = (
+				420A5A732CEC54DF008201CB /* Rating */,
 				4211D3962C8846130042F631 /* GameReviewsStateContentView.swift */,
 				4211D39A2C8846130042F631 /* ReviewListItemView.swift */,
 				4211D3942C8846120042F631 /* GameReviewsScreenView.swift */,
@@ -194,11 +211,14 @@
 				4211D39D2C8846130042F631 /* ReviewListItemView.swift in Sources */,
 				4211D3A42C8846130042F631 /* OutletReviewsScreenView.swift in Sources */,
 				4211D39B2C8846130042F631 /* AuthorReviewsScreenCreator.swift in Sources */,
+				420A5A792CEC6C80008201CB /* RatingReviewsStateContentView.swift in Sources */,
 				4211D3A02C8846130042F631 /* IconTextItemView.swift in Sources */,
 				4211D39E2C8846130042F631 /* OutletReviewsStateContentView.swift in Sources */,
 				4211D3A12C8846130042F631 /* GameReviewsScreenCreator.swift in Sources */,
+				420A5A7B2CEC766B008201CB /* RatingReviewsScreenView.swift in Sources */,
 				4211D3A22C8846130042F631 /* GameReviewsStateContentView.swift in Sources */,
 				4211D39F2C8846130042F631 /* GameReviewsScreenView.swift in Sources */,
+				420A5A772CEC551F008201CB /* RatingReviewListItemView.swift in Sources */,
 				4211D3A52C8846130042F631 /* AuthorReviewsStateContentView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

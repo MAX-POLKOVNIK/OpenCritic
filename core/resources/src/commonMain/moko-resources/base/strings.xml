@@ -12,7 +12,7 @@
     <string name="str_buy_now_on">Buy Now on %s</string>
     <string name="str_critic">Critic</string>
     <string name="str_critic_reviews_for_formatted">Critic Reviews for %s</string>
-    <string name="str_critics_recommend">Critics Recommend</string>
+    <string name="str_critics_recommend">Critics\nRecommend</string>
     <string name="str_fair">Fair</string>
     <string name="str_fair_description">Games scored in the 30th - 60th percentiles. Some issues hold these games.</string>
     <string name="str_favorite_games">Favorite Games</string>
@@ -74,7 +74,7 @@
     <string name="str_timeframe_last_90_days">Last 90 Days</string>
     <string name="str_timeframe_upcoming">Upcoming</string>
     <string name="str_next_get_only">Next-Gen Only</string>
-    <string name="str_top_critic_average">Top Critic Average</string>
+    <string name="str_top_critic_average">Top Critic\nAverage</string>
     <string name="str_trailers">Trailers</string>
     <string name="str_upcoming_releases">UPCOMING RELEASES</string>
     <string name="str_game_media">%s Media</string>
@@ -117,4 +117,17 @@
     <string name="str_hall_of_fame_title">Halls of fame</string>
     <string name="str_dashboard_view_all_hall_of_fame">View all</string>
     <string name="str_hall_of_fame_year_formatted">%s Hall of fame</string>
+    <string name="str_game_rating">Player\nRating</string>
+    <string name="str_game_rating_unavailable_formatted">Player Rating\nis visible after\n%d ratings</string>
+
+    <string name="str_rating_reviews_screen_title">%s Player Reviews</string>
+    <string name="str_rating_reviews_sort_title">Sort</string>
+    <string name="str_rating_reviews_sort_newest">Newest</string>
+    <string name="str_rating_reviews_sort_score">Score</string>
+    <string name="str_rating_reviews_timeframe_title">Timeframe</string>
+    <string name="str_rating_reviews_timeframe_all_time">All time</string>
+    <string name="str_rating_reviews_timeframe_today">Today</string>
+    <string name="str_rating_reviews_timeframe_last_7_day">last 7 days</string>
+    <string name="str_rating_reviews_timeframe_this_month">This month</string>
+    <string name="str_rating_reviews_timeframe_this_year">This year</string>
 </resources>

@@ -3,6 +3,8 @@ package com.opencritic.games.details.data
 import com.opencritic.api.OpenCriticsApi
 import com.opencritic.api.dto.details.GameDetailsDto
 import com.opencritic.api.dto.image.prefixedImageUrl
+import com.opencritic.api.dto.rating.GameRatingReviewSortKey
+import com.opencritic.api.dto.rating.GameRatingReviewTimeFrameKey
 import com.opencritic.api.dto.review.ReviewDto
 import com.opencritic.api.dto.review.ReviewSortKey
 import com.opencritic.games.Author
@@ -16,6 +18,11 @@ import com.opencritic.games.ReviewScoreFormat
 import com.opencritic.games.ReviewScoreFormatOption
 import com.opencritic.games.Trailer
 import com.opencritic.games.details.domain.GameDetailsRepository
+import com.opencritic.games.details.domain.GameRating
+import com.opencritic.games.details.domain.GameRatingReview
+import com.opencritic.games.details.domain.GameRatingUser
+import com.opencritic.games.details.domain.RatingReviewSorting
+import com.opencritic.games.details.domain.RatingTimeframe
 import com.opencritic.games.details.domain.ReviewSorting
 import kotlinx.coroutines.CoroutineDispatcher
 import kotlinx.coroutines.Dispatchers
@@ -41,6 +48,55 @@ internal class GameDetailsRepositoryImpl(
             openCriticsApi.getGameReviewsLanding(gameId)
                 .map { it.toModel() }
         }
+
+    override suspend fun getGameRating(gameId: Long): GameRating =
+        withContext(defaultDispatcher) {
+            openCriticsApi.getGameRating(gameId)
+                .let {
+                    GameRating(
+                        median = it.median,
+                        count = it.count,
+                    )
+                }
+        }
+
+    override suspend fun getGameRatingReviews(
+        gameId: Long,
+        page: Int,
+        limit: Int,
+        sorting: RatingReviewSorting,
+        timeframe: RatingTimeframe,
+    ): List<GameRatingReview> =
+        withContext(defaultDispatcher) {
+            openCriticsApi.getGameRatingReviews(
+                gameId = gameId,
+                sort = when (sorting) {
+                    RatingReviewSorting.Newest -> GameRatingReviewSortKey.Newest
+                    RatingReviewSorting.Score -> GameRatingReviewSortKey.Score
+                },
+                limit = limit,
+                page = page,
+                timeframe = when (timeframe) {
+                    RatingTimeframe.AllTime -> GameRatingReviewTimeFrameKey.AllTime
+                    RatingTimeframe.Today -> GameRatingReviewTimeFrameKey.Today
+                    RatingTimeframe.Last7Days -> GameRatingReviewTimeFrameKey.Week
+                    RatingTimeframe.ThisMonth -> GameRatingReviewTimeFrameKey.Month
+                    RatingTimeframe.ThisYear -> GameRatingReviewTimeFrameKey.Year
+                }
+            ).map { dto ->
+                GameRatingReview(
+                    id = dto.id,
+                    user = GameRatingUser(
+                        id = dto.user.id,
+                        name = dto.user.displayName,
+                    ),
+                    score = dto.score,
+                    scoreFormatId = dto.scoreFormat,
+                    date = dto.createdAt,
+                    summary = dto.excerpt,
+                )
+            }
+    }
 
     override suspend fun getGameReviews(gameId: Long, skip: Int, sort: ReviewSorting): List<Review> =
         withContext(defaultDispatcher) {
@@ -196,7 +252,7 @@ internal class GameDetailsRepositoryImpl(
             score = score,
             snippet = snippet ?: "",
             gameId = game.id,
-            gameName = game.name,
+            gameName = game.name ?: "",
             youtubePlaceholderUrl = youtubeVideoId?.let { "https://img.youtube.com/vi/$it/maxresdefault.jpg" },
         )
 }

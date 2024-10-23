@@ -19,7 +19,6 @@ fun ReviewBriefListItem(
     Row(
         modifier = modifier
             .fillMaxWidth()
-            .padding(horizontal = defaultPadding)
     ) {
         Text(text = item.nameText)
         Spacer(modifier = Modifier.weight(1f))

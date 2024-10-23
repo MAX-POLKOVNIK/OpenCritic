@@ -12,7 +12,7 @@ import com.opencritic.news.api.ArticleRoute
 import com.opencritic.news.domain.Article
 import com.opencritic.news.domain.GetArticleInteractor
 import com.opencritic.resources.images.Icons
-import com.opencritic.resources.text.DateTextSource
+import com.opencritic.resources.text.Format
 import com.opencritic.resources.text.asTextSource
 import com.opencritic.resources.text.format
 import kotlinx.coroutines.launch
@@ -49,7 +49,7 @@ class ArticleViewModel(
                             outletTitleText = "From".asTextSource(),
                             outletText = article.outlet?.name ?: "",
                             writtenBy = "Written by ${article.author.name}".asTextSource(),
-                            publishedDateText = article.publicationDate format DateTextSource.Format.Long,
+                            publishedDateText = article.publicationDate format Format.Long,
                             isGameDiscussedVisible = article.relatedGames.isNotEmpty(),
                             gamesTitleDiscussedText = "Games discussed:".asTextSource(),
                             gamesDiscussedText = article.relatedGames.firstOrNull()?.name ?: "",

@@ -2,8 +2,6 @@ package com.opencritic.news.ui
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
-import androidx.compose.foundation.gestures.rememberScrollableState
-import androidx.compose.foundation.gestures.scrollable
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
@@ -29,6 +27,7 @@ import coil.compose.SubcomposeAsyncImage
 import com.opencritic.resources.defaultPadding
 import com.opencritic.resources.largePadding
 import com.opencritic.resources.smallPadding
+import com.opencritic.resources.text.htmlToAnnotatedString
 import com.opencritic.resources.text.text
 
 @Composable

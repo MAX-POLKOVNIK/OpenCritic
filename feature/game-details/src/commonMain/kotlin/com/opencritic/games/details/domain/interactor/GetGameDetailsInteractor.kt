@@ -18,10 +18,12 @@ class GetGameDetailsInteractor(
                 val gameDeferred = async { repository.getGame(gameId) }
                 val reviewsDeferred = async { repository.getGameReviewsLanding(gameId) }
                 val listsDeferred = async { getVitalListsInteractor().getOrThrow() }
+                val ratingDeferred = async { repository.getGameRating(gameId) }
 
                 val game = gameDeferred.await()
                 val reviews = reviewsDeferred.await()
                 val lists = listsDeferred.await()
+                val rating = ratingDeferred.await()
 
                 val yourGame = YourGame(
                     id = gameId,
@@ -47,6 +49,7 @@ class GetGameDetailsInteractor(
                     trailers = game.trailers,
                     screenshotUrls = game.screenshotUrls,
                     url = game.url,
+                    gameRating = rating
                 )
             }
         }

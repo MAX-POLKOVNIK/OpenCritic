@@ -3,11 +3,11 @@ package com.opencritic.dashboard.ui
 import com.opencritic.dashboard.domain.GameItem
 import com.opencritic.games.GameRankModel
 import com.opencritic.mvvm.ListItem
-import com.opencritic.resources.text.DateTextSource
 import com.opencritic.resources.text.TextSource
 import com.opencritic.resources.text.asTextSource
 import com.opencritic.resources.text.format
 import com.opencritic.resources.images.SharedImages
+import com.opencritic.resources.text.Format
 import kotlinx.datetime.TimeZone
 import kotlinx.datetime.toLocalDateTime
 
@@ -25,7 +25,7 @@ data class DashboardGameListItem(
         id = gameItem.id,
         rank = GameRankModel(gameItem.rank),
         nameText = gameItem.name,
-        dateText = gameItem.releaseDate.toLocalDateTime(TimeZone.UTC).date format DateTextSource.Format.Short,
+        dateText = gameItem.releaseDate.toLocalDateTime(TimeZone.UTC).date format Format.Short,
         onClick = onClick,
     )
 

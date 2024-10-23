@@ -24,6 +24,7 @@ data class GameDetails(
     val releaseDate: Instant,
     val platforms: List<Platform>,
     val rank: GameRank?,
+    val gameRating: GameRating,
     val recommendPercent: Float?,
     val reviews: List<Review>,
     val reviewCount: Int,

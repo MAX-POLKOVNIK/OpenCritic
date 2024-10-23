@@ -6,7 +6,6 @@ import com.opencritic.games.Tier
 import com.opencritic.games.details.ui.RankCircleIndicatorItem
 import com.opencritic.games.details.ui.createCriticsRecommendIndicator
 import com.opencritic.games.details.ui.createTopCriticAverageIndicator
-import com.opencritic.resources.text.DateTextSource
 import com.opencritic.resources.text.TextSource
 import com.opencritic.resources.text.asTextSource
 import com.opencritic.resources.text.format
@@ -14,6 +13,7 @@ import com.opencritic.resources.images.IconResource
 import com.opencritic.resources.images.Icons
 import com.opencritic.resources.images.SharedImageResource
 import com.opencritic.resources.images.SharedImages
+import com.opencritic.resources.text.Format
 import kotlinx.collections.immutable.ImmutableList
 import kotlinx.collections.immutable.toImmutableList
 import kotlinx.datetime.TimeZone
@@ -46,7 +46,7 @@ fun BrowseGameItem(
         imageUrl = game.imageUrl,
         nameText = game.name,
         dateImageResource = Icons.tabCalendar,
-        dateText = game.releaseDate.toLocalDateTime(TimeZone.UTC).date format DateTextSource.Format.Long,
+        dateText = game.releaseDate.toLocalDateTime(TimeZone.UTC).date format Format.Long,
         isTierVisible = game.rank != null,
         tierImageResource = when (game.rank?.tier) {
             Tier.Mighty -> SharedImages.mightyMan

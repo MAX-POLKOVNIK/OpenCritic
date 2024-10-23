@@ -10,6 +10,16 @@ interface GameDetailsRepository {
 
     suspend fun getGameReviewsLanding(gameId: Long): List<Review>
 
+    suspend fun getGameRating(gameId: Long): GameRating
+
+    suspend fun getGameRatingReviews(
+        gameId: Long,
+        page: Int,
+        limit: Int,
+        sorting: RatingReviewSorting,
+        timeframe: RatingTimeframe,
+    ): List<GameRatingReview>
+
     suspend fun getGameReviews(
         gameId: Long,
         skip: Int = 0,

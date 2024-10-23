@@ -12,7 +12,7 @@ import UIKit
 import shared
 
 public extension View {
-    func card(radius: CGFloat = 8) -> some View {
+    func card(radius: CGFloat = 8, stroke: SwiftUICore.Color = .clear) -> some View {
         let color = UITraitCollection.current.userInterfaceStyle == .dark
             ? Color(red: 30 / 255, green: 30 / 255, blue: 30 / 255)
             : Color(red: 245 / 255, green: 245 / 255, blue: 245 / 255)
@@ -21,7 +21,9 @@ public extension View {
             self.clipShape(.rect(cornerRadius: radius))
                 .background(
                     RoundedRectangle(cornerRadius: radius)
+                        .stroke(stroke, lineWidth: 1)
                         .fill(color)
+                        
                 )
         )
     }

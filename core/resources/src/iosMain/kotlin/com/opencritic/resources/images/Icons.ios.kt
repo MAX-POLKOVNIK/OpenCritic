@@ -37,4 +37,5 @@ actual object Icons {
     actual val info: IconResource = "info.circle".iconRes()
 
     actual val videoPlay: IconResource = "play.circle".iconRes()
+    actual val userIcon: IconResource = "person.crop.circle.fill".iconRes()
 }

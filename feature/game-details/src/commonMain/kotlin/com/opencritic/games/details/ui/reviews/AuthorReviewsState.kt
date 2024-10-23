@@ -1,7 +1,11 @@
-package com.opencritic.games.details.ui
+package com.opencritic.games.details.ui.reviews
 
 import com.opencritic.games.details.domain.ReviewSorting
 import com.opencritic.games.details.domain.asTextSource
+import com.opencritic.games.details.ui.IconTextItem
+import com.opencritic.games.details.ui.LoadingItem
+import com.opencritic.games.details.ui.ReviewListItem
+import com.opencritic.games.details.ui.ReviewSortItem
 import com.opencritic.mvvm.BaseErrorState
 import com.opencritic.mvvm.BaseLoadingState
 import com.opencritic.mvvm.ViewModelState
@@ -81,8 +85,8 @@ fun AuthorReviewsStateContent_PreviewData(): AuthorReviewsState.Content =
         reviewItems = persistentListOf(),
         isLoadingItemVisible = true,
         loadingItem = LoadingItem,
-        onLoadMore = {  },
-        onSelectedSort = {  },
+        onLoadMore = { },
+        onSelectedSort = { },
         isFavoritesGamesVisible = true,
         favoritesGamesTitleText = "Favorite Games".asTextSource(),
         favoritesGames = persistentListOf(

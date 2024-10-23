@@ -18,7 +18,6 @@ struct ReviewBriefListItemView: View {
             Spacer()
             Text(item.scoreText)
         }
-            .padding(.horizontal)
     }
 }
 

@@ -3,6 +3,7 @@ package com.opencritic.resources.images
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.automirrored.filled.ArrowBack
 import androidx.compose.material.icons.automirrored.filled.StarHalf
+import androidx.compose.material.icons.filled.AccountCircle
 import androidx.compose.material.icons.filled.Favorite
 import androidx.compose.material.icons.filled.Star
 import androidx.compose.material.icons.outlined.Add
@@ -52,4 +53,5 @@ actual object Icons {
     actual val info: IconResource = Icons.Outlined.Info.iconRes()
 
     actual val videoPlay: IconResource = Icons.Outlined.PlayCircle.iconRes()
+    actual val userIcon: IconResource = Icons.Filled.AccountCircle.iconRes()
 }

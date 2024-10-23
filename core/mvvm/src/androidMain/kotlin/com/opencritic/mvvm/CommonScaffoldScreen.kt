@@ -27,6 +27,7 @@ import com.opencritic.navigation.router
 import com.opencritic.resources.images.Icons
 import com.opencritic.resources.images.asPainter
 import com.opencritic.resources.text.text
+import com.opencritic.resources.text.textOrEmpty
 
 @Composable
 fun <Content : ScreenContent> CommonScaffoldScreen(
@@ -73,7 +74,7 @@ private fun <Content : ScreenContent> StartAppBar(
         ),
         title = {
             Text(
-                text = state.title?.text() ?: "",
+                text = state.title.textOrEmpty(),
                 maxLines = 1,
                 overflow = TextOverflow.Ellipsis,
             )
@@ -110,7 +111,7 @@ private fun <Content : ScreenContent> CenterAppBar(
         ),
         title = {
             Text(
-                text = state.title?.text() ?: "",
+                text = state.title.textOrEmpty(),
                 maxLines = 1,
                 overflow = TextOverflow.Ellipsis
             )

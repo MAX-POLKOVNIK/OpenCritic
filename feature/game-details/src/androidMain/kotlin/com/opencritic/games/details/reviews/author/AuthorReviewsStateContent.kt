@@ -31,8 +31,8 @@ import coil.compose.SubcomposeAsyncImage
 import com.opencritic.games.details.LoadingItem
 import com.opencritic.games.details.reviews.IconTextItem
 import com.opencritic.games.details.reviews.ReviewListItem
-import com.opencritic.games.details.ui.AuthorReviewsState
-import com.opencritic.games.details.ui.AuthorReviewsStateContent_PreviewData
+import com.opencritic.games.details.ui.reviews.AuthorReviewsState
+import com.opencritic.games.details.ui.reviews.AuthorReviewsStateContent_PreviewData
 import com.opencritic.mvvm.Spinner
 import com.opencritic.resources.images.Icons
 import com.opencritic.resources.images.asPainter

@@ -13,7 +13,8 @@ internal import NukeUI
 
 struct ArticleContentView: View {
     let content: ArticleContent
-    
+
+
     var body: some View {
         ScrollView {
             VStack(alignment: .center) {
@@ -30,7 +31,7 @@ struct ArticleContentView: View {
                             .background(.gray)
                             .aspectRatio(16 / 9, contentMode: .fit)
                     }
-                    
+
                 }
                 
                 Text(content.title)
@@ -38,7 +39,7 @@ struct ArticleContentView: View {
                     .padding(.bottom)
                     .padding(.horizontal)
                     .multilineTextAlignment(.center)
-                
+
                 if content.isOutletVisible {
                     HStack {
                         Text(content.outletTitleText)
@@ -47,10 +48,10 @@ struct ArticleContentView: View {
                         }
                     }
                 }
-                
+
                 Text(content.writtenBy)
                 Text(content.publishedDateText)
-                
+
                 if content.isGameDiscussedVisible {
                     HStack {
                         Text(content.gamesTitleDiscussedText)
@@ -63,10 +64,10 @@ struct ArticleContentView: View {
             .padding(.bottom)
             .card()
             .padding()
-            
+
             Text(content.htmlToRender.htmlToAttributedString())
                 .padding(.horizontal)
-            
+
             if content.isSeeFullArticleVisible {
                 Button(content.seeFullArticleText) {
                     content.onSeeFullArticleClick()

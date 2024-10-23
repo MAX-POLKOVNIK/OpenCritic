@@ -18,8 +18,8 @@ import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavController
 import com.opencritic.games.details.api.ui.GameReviewsRoute
-import com.opencritic.games.details.ui.GameReviewsState
-import com.opencritic.games.details.ui.GameReviewsViewModel
+import com.opencritic.games.details.ui.reviews.GameReviewsState
+import com.opencritic.games.details.ui.reviews.GameReviewsViewModel
 import com.opencritic.mvvm.ErrorBox
 import com.opencritic.mvvm.LoadingBox
 import com.opencritic.navigation.router

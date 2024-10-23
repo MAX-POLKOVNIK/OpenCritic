@@ -11,12 +11,12 @@ import shared
 
 struct CalendarContentView: View {
     let content: CalendarContent
-    
+
     var body: some View {
         List {
             Text(content.description_)
                 .listRowSeparator(.hidden)
-            
+
             ForEach(content.cards, id: \.id) { card in
                 CalendarGameMonthCardView(item: card)
                     .listRowSeparator(.hidden)

@@ -3,6 +3,7 @@ package com.opencritic.games.details.ui
 import androidx.annotation.FloatRange
 import com.opencritic.games.GameRank
 import com.opencritic.games.Tier
+import com.opencritic.games.details.domain.GameRating
 import com.opencritic.games.roundScore
 import com.opencritic.resources.colors.Color
 import com.opencritic.resources.colors.Colors
@@ -37,5 +38,19 @@ fun createCriticsRecommendIndicator(tier: Tier, score: Float): RankCircleIndicat
             Tier.Strong -> Colors.StrongCriticsRecommendGradient
             Tier.Fair -> Colors.FairCriticsRecommendGradient
             Tier.Weak -> Colors.WeakCriticsRecommendGradient
+        }
+    )
+
+fun createPlayerRatingIndicator(tier: Tier, gameRating: GameRating): RankCircleIndicatorItem =
+    RankCircleIndicatorItem(
+        scoreText =
+            if (gameRating.isCalculated) "${gameRating.median}"
+            else "${gameRating.count}/${GameRating.minCount}",
+        progress = (gameRating.median?.takeIf { gameRating.isCalculated }?.toFloat() ?: 0f) / 100f,
+        colors = when (tier) {
+            Tier.Mighty -> Colors.MightyTopCriticGradient
+            Tier.Strong -> Colors.StrongTopCriticGradient
+            Tier.Fair -> Colors.FairTopCriticGradient
+            Tier.Weak -> Colors.WeakTopCriticGradient
         }
     )

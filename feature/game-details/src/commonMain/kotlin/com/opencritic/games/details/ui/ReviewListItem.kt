@@ -1,7 +1,7 @@
 package com.opencritic.games.details.ui
 
 import com.opencritic.games.Review
-import com.opencritic.resources.text.DateTextSource
+import com.opencritic.resources.text.Format
 import com.opencritic.resources.text.StringRes
 import com.opencritic.resources.text.TextSource
 import com.opencritic.resources.text.asTextSource
@@ -72,7 +72,7 @@ fun ReviewListItem(
         imageUrl = review.authors.map { it.imageUrl }.firstOrNull()
             ?: review.outlet.imageUrl,
         score = ReviewScoreDisplayItem(review.score, review.scoreFormat),
-        dateText = review.publishedDate.toLocalDateTime(TimeZone.UTC).date format DateTextSource.Format.Medium,
+        dateText = review.publishedDate.toLocalDateTime(TimeZone.UTC).date format Format.Medium,
         isSnippetVisible = review.snippet.isNotBlank(),
         snippetText = review.snippet,
         readFullReviewText = StringRes.str_read_full_review.asTextSource(),

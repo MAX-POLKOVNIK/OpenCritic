@@ -32,8 +32,8 @@ import com.opencritic.games.NoGamePoster
 import com.opencritic.games.details.LoadingItem
 import com.opencritic.games.details.RankCircleIndicatorItem
 import com.opencritic.games.details.reviews.ReviewListItem
-import com.opencritic.games.details.ui.GameReviewsState
-import com.opencritic.games.details.ui.GameReviewsStateContent_PreviewData
+import com.opencritic.games.details.ui.reviews.GameReviewsState
+import com.opencritic.games.details.ui.reviews.GameReviewsStateContent_PreviewData
 import com.opencritic.mvvm.Spinner
 import com.opencritic.resources.images.Icons
 import com.opencritic.resources.images.asPainter

@@ -21,6 +21,7 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import com.opencritic.resources.text.TextSource
 import com.opencritic.resources.text.text
+import com.opencritic.resources.text.textOrEmpty
 
 @Composable
 fun SnackBar(
@@ -28,13 +29,13 @@ fun SnackBar(
     alignValue: Alignment = Alignment.BottomCenter
 ) {
     val snackbarHostState = remember { SnackbarHostState() }
-    val text = message?.text() ?: ""
+    val text = message.textOrEmpty()
 
     LaunchedEffect(key1 = text)
     {
         if (text.isNotBlank()) {
             snackbarHostState.showSnackbar(
-                message = text,
+                message = text.toString(),
                 duration = SnackbarDuration.Indefinite,
             )
         } else {

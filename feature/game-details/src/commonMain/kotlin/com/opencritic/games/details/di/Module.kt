@@ -7,14 +7,16 @@ import com.opencritic.games.details.domain.interactor.GetAuthorReviewsInteractor
 import com.opencritic.games.details.domain.interactor.GetGameDetailsInteractor
 import com.opencritic.games.details.domain.interactor.GetGameInteractor
 import com.opencritic.games.details.domain.interactor.GetGameMediaInteractor
+import com.opencritic.games.details.domain.interactor.GetGameRatingReviewsInteractor
 import com.opencritic.games.details.domain.interactor.GetGameReviewsInteractor
 import com.opencritic.games.details.domain.interactor.GetOutletInteractor
 import com.opencritic.games.details.domain.interactor.GetOutletReviewsInteractor
-import com.opencritic.games.details.ui.AuthorReviewsViewModel
+import com.opencritic.games.details.ui.reviews.AuthorReviewsViewModel
 import com.opencritic.games.details.ui.GameDetailsViewModel
 import com.opencritic.games.details.ui.GameMediaViewModel
-import com.opencritic.games.details.ui.GameReviewsViewModel
+import com.opencritic.games.details.ui.reviews.GameReviewsViewModel
 import com.opencritic.games.details.ui.OutletReviewsViewModel
+import com.opencritic.games.details.ui.reviews.rating.RatingReviewsViewModel
 import com.opencritic.mvvm.viewModelOf
 import org.koin.core.module.dsl.singleOf
 import org.koin.dsl.module
@@ -28,6 +30,7 @@ val gameDetailsModule = module {
     singleOf(::GetOutletReviewsInteractor)
     singleOf(::GetAuthorInteractor)
     singleOf(::GetAuthorReviewsInteractor)
+    singleOf(::GetGameRatingReviewsInteractor)
 
     single<GameDetailsRepository> { GameDetailsRepositoryImpl(get()) }
 
@@ -36,4 +39,5 @@ val gameDetailsModule = module {
     viewModelOf(::GameReviewsViewModel)
     viewModelOf(::OutletReviewsViewModel)
     viewModelOf(::AuthorReviewsViewModel)
+    viewModelOf(::RatingReviewsViewModel)
 }

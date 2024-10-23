@@ -30,19 +30,22 @@ import com.opencritic.resources.images.asPainter
 import com.opencritic.resources.defaultPadding
 import com.opencritic.resources.text.text
 import com.opencritic.resources.colors.toCompose
+import com.opencritic.resources.smallPadding
 
 @Composable
 fun YourGameIndicatorItem(
     item: YourGameIndicatorItem,
     modifier: Modifier = Modifier,
+    isInCard: Boolean = false,
 ) {
     Card(
         colors = CardDefaults.cardColors(
-            containerColor = MaterialTheme.colorScheme.surfaceVariant,
+            containerColor =
+                if (isInCard) MaterialTheme.colorScheme.surfaceContainer
+                else MaterialTheme.colorScheme.surfaceVariant,
         ),
         modifier = modifier
     ) {
-
         Row(
             modifier = Modifier
                 .fillMaxWidth()
@@ -54,14 +57,14 @@ fun YourGameIndicatorItem(
                     .weight(1f)
                     .background(item.wantedBackgroundColor.toCompose())
                     .clickable { item.wantedClick() }
-                    .padding(defaultPadding)
+                    .padding(smallPadding)
             ) {
                 Image(
                     painter = item.wantedImageResource.asPainter(),
                     contentDescription = "",
                     colorFilter = ColorFilter.tint(item.wantedTextColor?.toCompose() ?: LocalContentColor.current),
                     modifier = Modifier
-                        .size(38.dp)
+                        .size(24.dp)
                 )
                 Text(
                     text = item.wantedText.text(),
@@ -80,14 +83,14 @@ fun YourGameIndicatorItem(
                     .weight(1f)
                     .background(item.playedBackgroundColor.toCompose())
                     .clickable { item.playedClick() }
-                    .padding(defaultPadding)
+                    .padding(smallPadding)
             ) {
                 Image(
                     painter = item.playedImageResource.asPainter(),
                     contentDescription = "",
                     colorFilter = ColorFilter.tint(item.playedTextColor?.toCompose() ?: LocalContentColor.current),
                     modifier = Modifier
-                        .size(38.dp)
+                        .size(24.dp)
                 )
                 Text(
                     text = item.playedText.text(),
@@ -103,14 +106,14 @@ fun YourGameIndicatorItem(
                     .weight(1f)
                     .background(item.favoriteBackgroundColor.toCompose())
                     .clickable { item.favoriteClick() }
-                    .padding(defaultPadding)
+                    .padding(smallPadding)
             ) {
                 Image(
                     painter = item.favoriteImageResource.asPainter(),
                     contentDescription = "",
                     colorFilter = ColorFilter.tint(item.favoriteTextColor?.toCompose() ?: LocalContentColor.current),
                     modifier = Modifier
-                        .size(38.dp)
+                        .size(24.dp)
                 )
                 Text(
                     text = item.favoriteText.text(),

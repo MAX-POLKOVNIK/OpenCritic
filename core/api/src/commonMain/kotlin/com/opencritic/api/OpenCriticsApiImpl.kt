@@ -16,6 +16,10 @@ import com.opencritic.api.dto.outlet.OutletDto
 import com.opencritic.api.dto.platform.PlatformDto
 import com.opencritic.api.dto.popular.PopularItemDto
 import com.opencritic.api.dto.profile.ProfileDto
+import com.opencritic.api.dto.rating.GameRatingDto
+import com.opencritic.api.dto.rating.GameRatingReviewDto
+import com.opencritic.api.dto.rating.GameRatingReviewSortKey
+import com.opencritic.api.dto.rating.GameRatingReviewTimeFrameKey
 import com.opencritic.api.dto.released.ReleasedGameDto
 import com.opencritic.api.dto.review.ReviewDto
 import com.opencritic.api.dto.review.ReviewSortKey
@@ -68,6 +72,18 @@ internal class OpenCriticsApiImpl(
 
     override suspend fun getGame(gameId: Long): GameDetailsDto =
         get("game/${gameId}")
+
+    override suspend fun getGameRating(gameId: Long): GameRatingDto =
+        get("ratings/game/$gameId")
+
+    override suspend fun getGameRatingReviews(
+        gameId: Long,
+        sort: GameRatingReviewSortKey,
+        timeframe: GameRatingReviewTimeFrameKey,
+        limit: Int,
+        page: Int
+    ): List<GameRatingReviewDto> =
+        get("ratings/game/$gameId/reviews?sort=${sort.key}&limit=$limit&page=$page&timeFrame=${timeframe.key}&id=$gameId")
 
     override suspend fun getGameMedia(gameId: Long): GameDetailsDto =
         get("game/${gameId}/?fullmedia=true")

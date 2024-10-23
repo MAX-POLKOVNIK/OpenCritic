@@ -9,9 +9,11 @@ import com.opencritic.game.browser.PeriodGameBrowserScreenCreator
 import com.opencritic.game.your.list.GameListScreenCreator
 import com.opencritic.game.your.lists.GameListsScreenCreator
 import com.opencritic.games.details.GameDetailsScreenCreator
+import com.opencritic.games.details.GameMediaScreenCreator
 import com.opencritic.games.details.reviews.author.AuthorReviewsScreenCreator
 import com.opencritic.games.details.reviews.game.GameReviewsScreenCreator
 import com.opencritic.games.details.reviews.outlet.OutletReviewsScreenCreator
+import com.opencritic.games.details.reviews.rating.RatingReviewsScreenCreator
 import com.opencritic.halloffame.ui.HallsOfFameScreenCreator
 import com.opencritic.navigation.ScreenCreators
 import com.opencritic.news.ui.ArticleListScreenCreator
@@ -26,6 +28,7 @@ val screenCreatorsModule = module {
             DashboardScreenCreator,
             GameListsScreenCreator,
             GameBrowserScreenCreator,
+            GameMediaScreenCreator,
             SearchScreenCreator,
             AboutScreenCreator,
             AuthScreenCreator,
@@ -38,6 +41,7 @@ val screenCreatorsModule = module {
             GameListScreenCreator,
             HallsOfFameScreenCreator,
             ArticleScreenCreator,
+            RatingReviewsScreenCreator,
         )
     }
 }

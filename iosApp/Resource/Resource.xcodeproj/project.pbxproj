@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		4299DD662CEB539A00F41586 /* HtmlTextSourceExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4299DD652CEB539000F41586 /* HtmlTextSourceExtensions.swift */; };
+		4299DD682CEB53C600F41586 /* StringHtmlToAttributedString.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4299DD672CEB53C600F41586 /* StringHtmlToAttributedString.swift */; };
 		42C658642C879BA900F30992 /* Resource.h in Headers */ = {isa = PBXBuildFile; fileRef = 42C658632C879BA900F30992 /* Resource.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		42C6586B2C879C0A00F30992 /* ColorExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42C6586A2C879C0A00F30992 /* ColorExtensions.swift */; };
 		42C658702C879C6600F30992 /* ImageExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42C6586F2C879C6600F30992 /* ImageExtensions.swift */; };
@@ -19,6 +21,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		4299DD652CEB539000F41586 /* HtmlTextSourceExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HtmlTextSourceExtensions.swift; sourceTree = "<group>"; };
+		4299DD672CEB53C600F41586 /* StringHtmlToAttributedString.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StringHtmlToAttributedString.swift; sourceTree = "<group>"; };
 		42C658602C879BA900F30992 /* Resource.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Resource.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		42C658632C879BA900F30992 /* Resource.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Resource.h; sourceTree = "<group>"; };
 		42C6586A2C879C0A00F30992 /* ColorExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorExtensions.swift; sourceTree = "<group>"; };
@@ -71,6 +75,8 @@
 				42C658AF2C879FAD00F30992 /* TextExtensions.swift */,
 				42C658B12C879FF400F30992 /* NavigationBarTitleExtensions.swift */,
 				42C658B32C87A06600F30992 /* ButtonExtensions.swift */,
+				4299DD672CEB53C600F41586 /* StringHtmlToAttributedString.swift */,
+				4299DD652CEB539000F41586 /* HtmlTextSourceExtensions.swift */,
 			);
 			path = Resource;
 			sourceTree = "<group>";
@@ -167,6 +173,8 @@
 				42C6586B2C879C0A00F30992 /* ColorExtensions.swift in Sources */,
 				42C658702C879C6600F30992 /* ImageExtensions.swift in Sources */,
 				42C658B22C879FF400F30992 /* NavigationBarTitleExtensions.swift in Sources */,
+				4299DD682CEB53C600F41586 /* StringHtmlToAttributedString.swift in Sources */,
+				4299DD662CEB539A00F41586 /* HtmlTextSourceExtensions.swift in Sources */,
 				42C658AC2C879F1600F30992 /* LabelExtensions.swift in Sources */,
 				42C658AE2C879F6F00F30992 /* TextSourceExtensions.swift in Sources */,
 				42C658B02C879FAD00F30992 /* TextExtensions.swift in Sources */,

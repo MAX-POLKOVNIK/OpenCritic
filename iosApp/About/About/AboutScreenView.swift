@@ -13,12 +13,12 @@ import Mvvm
 
 struct AboutScreenView: View {
     @EnvironmentObject private var store: ViewModelStore
-    
+
     let args: AboutRoute.InitArgs
-    
+
     var body: some View {
         let viewModel: AboutViewModel = store.get(for: AboutRoute.shared, args: args)
-        
+
         CommonScreenView(of: viewModel) { content in
             AboutContentView(content: content)
         }

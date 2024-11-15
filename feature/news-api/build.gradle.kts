@@ -38,15 +38,4 @@ android {
         sourceCompatibility = JavaVersion.VERSION_1_8
         targetCompatibility = JavaVersion.VERSION_1_8
     }
-    buildFeatures { // Enables Jetpack Compose for this module
-        compose = true
-    }
-    composeOptions {
-        kotlinCompilerExtensionVersion = libs.versions.compose.compiler.get()
-    }
-}
-
-dependencies {
-    implementation(libs.compose.ui)
-    implementation(libs.compose.navigation.compose)
 }

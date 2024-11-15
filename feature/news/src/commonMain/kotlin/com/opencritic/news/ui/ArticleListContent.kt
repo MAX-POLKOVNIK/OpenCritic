@@ -5,18 +5,22 @@ import com.opencritic.mvvm.ScreenContent
 
 data class ArticleListContent(
     val items: List<ArticleListItem>,
+    val isRefreshing: Boolean,
     val isLoadingItemVisible: Boolean,
     val loadingItem: LoadingItem,
     val onLoadMore: () -> Unit,
-    val onRefresh: suspend () -> Unit
+    val onRefresh: suspend () -> Unit,
+    val onRefreshRequested: () -> Unit,
 ) : ScreenContent
 
 @Suppress("FunctionName")
 fun ArticleListContent_PreviewData(): ArticleListContent =
     ArticleListContent(
         items = listOf(ArticleListItem_PreviewData()),
+        isRefreshing = false,
         isLoadingItemVisible = true,
         loadingItem = LoadingItem,
         onLoadMore = {},
         onRefresh = {},
+        onRefreshRequested = {},
     )

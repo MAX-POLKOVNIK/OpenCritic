@@ -12,7 +12,7 @@ import BuildSharedFramework
 
 struct AboutContentView: View {
     let content: AboutContent
-    
+
     var body: some View {
         List {
             Section(header: Text(content.disclosureTitleText)) {
@@ -28,7 +28,7 @@ struct AboutContentView: View {
                     .onTapGesture { link.onClick() }
                 }
             }
-            
+
             Text(content.appVersionText)
         }
     }

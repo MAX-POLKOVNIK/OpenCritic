@@ -57,7 +57,10 @@ class ArticleListViewModel(
 
                         skip = items.size
 
-                        copy(items = items)
+                        copy(
+                            isRefreshing = false,
+                            items = items
+                        )
                     }
                 } else {
                     setContent {
@@ -65,10 +68,12 @@ class ArticleListViewModel(
 
                         ArticleListContent(
                             items = newListItems,
+                            isRefreshing = false,
                             isLoadingItemVisible = true,
                             loadingItem = LoadingItem,
                             onLoadMore = { loadMore() },
-                            onRefresh = { refresh() }
+                            onRefresh = { refresh() },
+                            onRefreshRequested = { onRefreshRequested() }
                         )
                     }
                 }
@@ -81,6 +86,16 @@ class ArticleListViewModel(
     private fun loadMore() {
         scope.launch {
             loadMore(clearList = false)
+        }
+    }
+
+    private fun onRefreshRequested() {
+        scope.launch {
+            updateContentIfSet {
+                copy(isRefreshing = true)
+            }
+
+            refresh()
         }
     }
 

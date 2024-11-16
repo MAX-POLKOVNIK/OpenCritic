@@ -9,7 +9,7 @@
 /* Begin PBXBuildFile section */
 		058557BB273AAA24004C7B11 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 058557BA273AAA24004C7B11 /* Assets.xcassets */; };
 		058557D9273AAEEB004C7B11 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 058557D8273AAEEB004C7B11 /* Preview Assets.xcassets */; };
-		2152FB042600AC8F00CF470E /* iOSApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2152FB032600AC8F00CF470E /* iOSApp.swift */; };
+		2152FB042600AC8F00CF470E /* OpenCriticApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2152FB032600AC8F00CF470E /* OpenCriticApp.swift */; };
 		4211D3102C88439F0042F631 /* HallOfFame.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4211D30F2C88439F0042F631 /* HallOfFame.framework */; };
 		4211D3112C88439F0042F631 /* HallOfFame.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 4211D30F2C88439F0042F631 /* HallOfFame.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		4211D3392C8844A20042F631 /* Main.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4211D3382C8844A20042F631 /* Main.framework */; };
@@ -79,7 +79,7 @@
 /* Begin PBXFileReference section */
 		058557BA273AAA24004C7B11 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		058557D8273AAEEB004C7B11 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
-		2152FB032600AC8F00CF470E /* iOSApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = iOSApp.swift; sourceTree = "<group>"; };
+		2152FB032600AC8F00CF470E /* OpenCriticApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OpenCriticApp.swift; sourceTree = "<group>"; };
 		4211D30F2C88439F0042F631 /* HallOfFame.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = HallOfFame.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		4211D3382C8844A20042F631 /* Main.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = Main.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		4211D36E2C88458A0042F631 /* News.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = News.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -159,7 +159,7 @@
 			children = (
 				058557BA273AAA24004C7B11 /* Assets.xcassets */,
 				7555FF8C242A565B00829871 /* Info.plist */,
-				2152FB032600AC8F00CF470E /* iOSApp.swift */,
+				2152FB032600AC8F00CF470E /* OpenCriticApp.swift */,
 				058557D7273AAEEB004C7B11 /* Preview Content */,
 			);
 			path = App;
@@ -281,7 +281,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				2152FB042600AC8F00CF470E /* iOSApp.swift in Sources */,
+				2152FB042600AC8F00CF470E /* OpenCriticApp.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

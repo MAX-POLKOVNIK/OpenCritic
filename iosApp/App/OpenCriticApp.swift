@@ -15,7 +15,7 @@ import Reviews
 import Search
 
 @main
-struct iOSApp: App {
+struct OpenCriticApp: App {
     init() {
         IosApp.shared.doInit(
             creators: [

@@ -10,6 +10,8 @@
 		058557BB273AAA24004C7B11 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 058557BA273AAA24004C7B11 /* Assets.xcassets */; };
 		058557D9273AAEEB004C7B11 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 058557D8273AAEEB004C7B11 /* Preview Assets.xcassets */; };
 		2152FB042600AC8F00CF470E /* OpenCriticApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2152FB032600AC8F00CF470E /* OpenCriticApp.swift */; };
+		42009EED2CE8CD5300986A0E /* ScreenNavigation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 42009EEC2CE8CD5300986A0E /* ScreenNavigation.framework */; };
+		42009EEE2CE8CD5300986A0E /* ScreenNavigation.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 42009EEC2CE8CD5300986A0E /* ScreenNavigation.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		4211D3102C88439F0042F631 /* HallOfFame.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4211D30F2C88439F0042F631 /* HallOfFame.framework */; };
 		4211D3112C88439F0042F631 /* HallOfFame.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 4211D30F2C88439F0042F631 /* HallOfFame.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		4211D3392C8844A20042F631 /* Main.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4211D3382C8844A20042F631 /* Main.framework */; };
@@ -20,8 +22,6 @@
 		4211D3A82C8846600042F631 /* Reviews.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 4211D3A62C8846600042F631 /* Reviews.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		4211D3D12C8847200042F631 /* Search.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4211D3D02C8847200042F631 /* Search.framework */; };
 		4211D3D22C8847200042F631 /* Search.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 4211D3D02C8847200042F631 /* Search.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		42C6582C2C878D6300F30992 /* Navigation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 42C6582B2C878D6300F30992 /* Navigation.framework */; };
-		42C6582D2C878D6300F30992 /* Navigation.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 42C6582B2C878D6300F30992 /* Navigation.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		42C658432C8794A500F30992 /* Mvvm.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 42C658422C8794A500F30992 /* Mvvm.framework */; };
 		42C658442C8794A500F30992 /* Mvvm.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 42C658422C8794A500F30992 /* Mvvm.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		42C6586D2C879C2A00F30992 /* Resource.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 42C6586C2C879C2A00F30992 /* Resource.framework */; };
@@ -60,9 +60,9 @@
 				42C659A42C883AE000F30992 /* Views.framework in Embed Frameworks */,
 				42C65A672C883FE900F30992 /* GameList.framework in Embed Frameworks */,
 				42C6586E2C879C2A00F30992 /* Resource.framework in Embed Frameworks */,
-				42C6582D2C878D6300F30992 /* Navigation.framework in Embed Frameworks */,
 				42C659212C88363800F30992 /* About.framework in Embed Frameworks */,
 				4211D3702C88458A0042F631 /* News.framework in Embed Frameworks */,
+				42009EEE2CE8CD5300986A0E /* ScreenNavigation.framework in Embed Frameworks */,
 				42C6596D2C88390900F30992 /* Calendar.framework in Embed Frameworks */,
 				4211D33A2C8844A20042F631 /* Main.framework in Embed Frameworks */,
 				4211D3112C88439F0042F631 /* HallOfFame.framework in Embed Frameworks */,
@@ -80,6 +80,7 @@
 		058557BA273AAA24004C7B11 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		058557D8273AAEEB004C7B11 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		2152FB032600AC8F00CF470E /* OpenCriticApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OpenCriticApp.swift; sourceTree = "<group>"; };
+		42009EEC2CE8CD5300986A0E /* ScreenNavigation.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = ScreenNavigation.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		4211D30F2C88439F0042F631 /* HallOfFame.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = HallOfFame.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		4211D3382C8844A20042F631 /* Main.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = Main.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		4211D36E2C88458A0042F631 /* News.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = News.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -113,9 +114,9 @@
 				42C659A32C883AE000F30992 /* Views.framework in Frameworks */,
 				42C65A662C883FE900F30992 /* GameList.framework in Frameworks */,
 				42C6586D2C879C2A00F30992 /* Resource.framework in Frameworks */,
-				42C6582C2C878D6300F30992 /* Navigation.framework in Frameworks */,
 				42C659202C88363800F30992 /* About.framework in Frameworks */,
 				4211D36F2C88458A0042F631 /* News.framework in Frameworks */,
+				42009EED2CE8CD5300986A0E /* ScreenNavigation.framework in Frameworks */,
 				42C6596C2C88390900F30992 /* Calendar.framework in Frameworks */,
 				4211D3392C8844A20042F631 /* Main.framework in Frameworks */,
 				4211D3102C88439F0042F631 /* HallOfFame.framework in Frameworks */,
@@ -168,6 +169,7 @@
 		7555FFB0242A642200829871 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				42009EEC2CE8CD5300986A0E /* ScreenNavigation.framework */,
 				4211D3D02C8847200042F631 /* Search.framework */,
 				4211D3A62C8846600042F631 /* Reviews.framework */,
 				4211D36E2C88458A0042F631 /* News.framework */,

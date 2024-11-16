@@ -7,7 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		42C658252C878D1E00F30992 /* Navigation.h in Headers */ = {isa = PBXBuildFile; fileRef = 42C658242C878D1E00F30992 /* Navigation.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		42C658252C878D1E00F30992 /* ScreenNavigation.h in Headers */ = {isa = PBXBuildFile; fileRef = 42C658242C878D1E00F30992 /* ScreenNavigation.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		42C658A82C879E8200F30992 /* BuildSharedFramework.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 42C658A72C879E8200F30992 /* BuildSharedFramework.framework */; };
 		42C658B62C87A0CC00F30992 /* ScreenCreator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42C658B52C87A0CC00F30992 /* ScreenCreator.swift */; };
 		42C658D62C88298D00F30992 /* IosRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42C658D52C88298D00F30992 /* IosRouter.swift */; };
@@ -17,8 +17,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		42C658212C878D1E00F30992 /* Navigation.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Navigation.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		42C658242C878D1E00F30992 /* Navigation.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Navigation.h; sourceTree = "<group>"; };
+		42C658212C878D1E00F30992 /* ScreenNavigation.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = ScreenNavigation.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		42C658242C878D1E00F30992 /* ScreenNavigation.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ScreenNavigation.h; sourceTree = "<group>"; };
 		42C658A72C879E8200F30992 /* BuildSharedFramework.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = BuildSharedFramework.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		42C658B52C87A0CC00F30992 /* ScreenCreator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScreenCreator.swift; sourceTree = "<group>"; };
 		42C658D52C88298D00F30992 /* IosRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IosRouter.swift; sourceTree = "<group>"; };
@@ -44,7 +44,7 @@
 		42C658172C878D1E00F30992 = {
 			isa = PBXGroup;
 			children = (
-				42C658232C878D1E00F30992 /* Navigation */,
+				42C658232C878D1E00F30992 /* ScreenHavigation */,
 				42C658222C878D1E00F30992 /* Products */,
 				42C658A62C879E8200F30992 /* Frameworks */,
 			);
@@ -53,21 +53,21 @@
 		42C658222C878D1E00F30992 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				42C658212C878D1E00F30992 /* Navigation.framework */,
+				42C658212C878D1E00F30992 /* ScreenNavigation.framework */,
 			);
 			name = Products;
 			sourceTree = "<group>";
 		};
-		42C658232C878D1E00F30992 /* Navigation */ = {
+		42C658232C878D1E00F30992 /* ScreenHavigation */ = {
 			isa = PBXGroup;
 			children = (
-				42C658242C878D1E00F30992 /* Navigation.h */,
+				42C658242C878D1E00F30992 /* ScreenNavigation.h */,
 				42C658B52C87A0CC00F30992 /* ScreenCreator.swift */,
 				42C658D52C88298D00F30992 /* IosRouter.swift */,
 				42C658D72C882A3100F30992 /* RouterView.swift */,
 				42C658D92C882A8E00F30992 /* RoutableView.swift */,
 			);
-			path = Navigation;
+			path = ScreenHavigation;
 			sourceTree = "<group>";
 		};
 		42C658A62C879E8200F30992 /* Frameworks */ = {
@@ -87,16 +87,16 @@
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				42C658252C878D1E00F30992 /* Navigation.h in Headers */,
+				42C658252C878D1E00F30992 /* ScreenNavigation.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXHeadersBuildPhase section */
 
 /* Begin PBXNativeTarget section */
-		42C658202C878D1E00F30992 /* Navigation */ = {
+		42C658202C878D1E00F30992 /* ScreenNavigation */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 42C658282C878D1E00F30992 /* Build configuration list for PBXNativeTarget "Navigation" */;
+			buildConfigurationList = 42C658282C878D1E00F30992 /* Build configuration list for PBXNativeTarget "ScreenNavigation" */;
 			buildPhases = (
 				42C6581C2C878D1E00F30992 /* Headers */,
 				42C6581D2C878D1E00F30992 /* Sources */,
@@ -107,9 +107,9 @@
 			);
 			dependencies = (
 			);
-			name = Navigation;
+			name = ScreenNavigation;
 			productName = Navigation;
-			productReference = 42C658212C878D1E00F30992 /* Navigation.framework */;
+			productReference = 42C658212C878D1E00F30992 /* ScreenNavigation.framework */;
 			productType = "com.apple.product-type.framework";
 		};
 /* End PBXNativeTarget section */
@@ -127,7 +127,7 @@
 					};
 				};
 			};
-			buildConfigurationList = 42C6581B2C878D1E00F30992 /* Build configuration list for PBXProject "Navigation" */;
+			buildConfigurationList = 42C6581B2C878D1E00F30992 /* Build configuration list for PBXProject "ScreenNavigation" */;
 			compatibilityVersion = "Xcode 14.0";
 			developmentRegion = en;
 			hasScannedForEncodings = 0;
@@ -140,7 +140,7 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				42C658202C878D1E00F30992 /* Navigation */,
+				42C658202C878D1E00F30992 /* ScreenNavigation */,
 			);
 		};
 /* End PBXProject section */
@@ -369,7 +369,7 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		42C6581B2C878D1E00F30992 /* Build configuration list for PBXProject "Navigation" */ = {
+		42C6581B2C878D1E00F30992 /* Build configuration list for PBXProject "ScreenNavigation" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				42C658262C878D1E00F30992 /* Debug */,
@@ -378,7 +378,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		42C658282C878D1E00F30992 /* Build configuration list for PBXNativeTarget "Navigation" */ = {
+		42C658282C878D1E00F30992 /* Build configuration list for PBXNativeTarget "ScreenNavigation" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				42C658292C878D1E00F30992 /* Debug */,

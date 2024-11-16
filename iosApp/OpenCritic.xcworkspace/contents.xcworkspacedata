@@ -20,7 +20,7 @@
          location = "group:MvvmBase/MvvmBase.xcodeproj">
       </FileRef>
       <FileRef
-         location = "group:Navigation/Navigation.xcodeproj">
+         location = "group:Navigation/ScreenNavigation.xcodeproj">
       </FileRef>
    </Group>
    <Group

@@ -1,6 +1,6 @@
 import SwiftUI
 import shared
-import Navigation
+import ScreenNavigation
 import About
 import Auth
 import Calendar

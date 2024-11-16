@@ -8,7 +8,7 @@
 
 import SwiftUI
 import shared
-import Navigation
+import ScreenNavigation
 
 public struct CommonScreenView<Content: AnyObject, ViewModel: BaseContentViewModel<Content>, ContentView: View>: View {
     private let viewModel: ViewModel

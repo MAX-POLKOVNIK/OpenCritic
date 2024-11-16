@@ -10,7 +10,7 @@ import SwiftUI
 import shared
 import Mvvm
 import MvvmBase
-import Navigation
+import ScreenNavigation
 
 struct OutletReviewsScreenView: View {
     @EnvironmentObject private var store: ViewModelStore

@@ -9,7 +9,7 @@
 import SwiftUI
 import shared
 import Combine
-import Navigation
+import ScreenNavigation
 
 struct MainStateView: View {
     let state: MainContent

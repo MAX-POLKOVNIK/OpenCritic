@@ -10,7 +10,7 @@ import SwiftUI
 import shared
 import Mvvm
 import MvvmBase
-import Navigation
+import ScreenNavigation
 
 struct GameMediaScreenView: View {
     @EnvironmentObject var store: ViewModelStore

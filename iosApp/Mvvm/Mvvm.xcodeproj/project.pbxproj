@@ -7,13 +7,13 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		42009EE92CE8CD3F00986A0E /* ScreenNavigation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 42009EE82CE8CD3F00986A0E /* ScreenNavigation.framework */; };
 		42C6583C2C87949200F30992 /* Mvvm.h in Headers */ = {isa = PBXBuildFile; fileRef = 42C6583B2C87949200F30992 /* Mvvm.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		42C6584D2C8795C000F30992 /* FlowPublisher.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42C6584C2C8795C000F30992 /* FlowPublisher.swift */; };
 		42C658512C87970100F30992 /* FlowView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42C658502C87970100F30992 /* FlowView.swift */; };
 		42C658532C87975100F30992 /* ObservableViewModelState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42C658522C87975100F30992 /* ObservableViewModelState.swift */; };
 		42C658A32C879E7C00F30992 /* BuildSharedFramework.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 42C658A22C879E7C00F30992 /* BuildSharedFramework.framework */; };
 		42C658D32C87A42200F30992 /* MvvmBase.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 42C658D22C87A42200F30992 /* MvvmBase.framework */; };
-		42C658E92C88309400F30992 /* Navigation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 42C658E82C88309400F30992 /* Navigation.framework */; };
 		42C658EC2C8830DF00F30992 /* ProgressView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42C658EB2C8830DF00F30992 /* ProgressView.swift */; };
 		42C658EE2C88310200F30992 /* ViewExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42C658ED2C88310200F30992 /* ViewExtensions.swift */; };
 		42C658F02C88315E00F30992 /* ErrorPopupView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42C658EF2C88315E00F30992 /* ErrorPopupView.swift */; };
@@ -27,6 +27,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		42009EE82CE8CD3F00986A0E /* ScreenNavigation.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = ScreenNavigation.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		42C658382C87949200F30992 /* Mvvm.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Mvvm.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		42C6583B2C87949200F30992 /* Mvvm.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Mvvm.h; sourceTree = "<group>"; };
 		42C6584C2C8795C000F30992 /* FlowPublisher.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FlowPublisher.swift; sourceTree = "<group>"; };
@@ -54,8 +55,8 @@
 			files = (
 				42C658A32C879E7C00F30992 /* BuildSharedFramework.framework in Frameworks */,
 				42C658D32C87A42200F30992 /* MvvmBase.framework in Frameworks */,
+				42009EE92CE8CD3F00986A0E /* ScreenNavigation.framework in Frameworks */,
 				42C658F62C8831AE00F30992 /* Resource.framework in Frameworks */,
-				42C658E92C88309400F30992 /* Navigation.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -102,6 +103,7 @@
 		42C658A12C879E7C00F30992 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				42009EE82CE8CD3F00986A0E /* ScreenNavigation.framework */,
 				42C658F52C8831AE00F30992 /* Resource.framework */,
 				42C658E82C88309400F30992 /* Navigation.framework */,
 				42C658D22C87A42200F30992 /* MvvmBase.framework */,

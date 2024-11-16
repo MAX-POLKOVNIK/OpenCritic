@@ -9,32 +9,13 @@
 /* Begin PBXBuildFile section */
 		4211D3B72C8846C30042F631 /* Search.h in Headers */ = {isa = PBXBuildFile; fileRef = 4211D3B62C8846C30042F631 /* Search.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		4211D3BF2C8846C70042F631 /* BuildSharedFramework.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4211D3BE2C8846C70042F631 /* BuildSharedFramework.framework */; };
-		4211D3C02C8846C70042F631 /* BuildSharedFramework.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 4211D3BE2C8846C70042F631 /* BuildSharedFramework.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		4211D3C32C8846CC0042F631 /* Views.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4211D3C22C8846CC0042F631 /* Views.framework */; };
-		4211D3C42C8846CC0042F631 /* Views.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 4211D3C22C8846CC0042F631 /* Views.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		4211D3C62C8846D50042F631 /* Mvvm.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4211D3C52C8846D50042F631 /* Mvvm.framework */; };
-		4211D3C72C8846D50042F631 /* Mvvm.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 4211D3C52C8846D50042F631 /* Mvvm.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		4211D3CC2C8846FA0042F631 /* SearchListItemView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4211D3CA2C8846F90042F631 /* SearchListItemView.swift */; };
 		4211D3CD2C8846FA0042F631 /* SearchScreenCreator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4211D3CB2C8846FA0042F631 /* SearchScreenCreator.swift */; };
 		4211D3CE2C8846FA0042F631 /* SearchScreenView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4211D3C92C8846F90042F631 /* SearchScreenView.swift */; };
 		4211D3CF2C8846FA0042F631 /* SearchStateView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4211D3C82C8846F90042F631 /* SearchStateView.swift */; };
 /* End PBXBuildFile section */
-
-/* Begin PBXCopyFilesBuildPhase section */
-		4211D3C12C8846C70042F631 /* Embed Frameworks */ = {
-			isa = PBXCopyFilesBuildPhase;
-			buildActionMask = 2147483647;
-			dstPath = "";
-			dstSubfolderSpec = 10;
-			files = (
-				4211D3C72C8846D50042F631 /* Mvvm.framework in Embed Frameworks */,
-				4211D3C02C8846C70042F631 /* BuildSharedFramework.framework in Embed Frameworks */,
-				4211D3C42C8846CC0042F631 /* Views.framework in Embed Frameworks */,
-			);
-			name = "Embed Frameworks";
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-/* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
 		4211D3B32C8846C30042F631 /* Search.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Search.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -123,7 +104,6 @@
 				4211D3AF2C8846C30042F631 /* Sources */,
 				4211D3B02C8846C30042F631 /* Frameworks */,
 				4211D3B12C8846C30042F631 /* Resources */,
-				4211D3C12C8846C70042F631 /* Embed Frameworks */,
 			);
 			buildRules = (
 			);

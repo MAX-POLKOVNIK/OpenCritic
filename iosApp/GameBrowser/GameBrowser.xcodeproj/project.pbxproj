@@ -8,12 +8,9 @@
 
 /* Begin PBXBuildFile section */
 		4211D2D52C8842200042F631 /* Mvvm.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4211D2D42C8842200042F631 /* Mvvm.framework */; };
-		4211D2D62C8842200042F631 /* Mvvm.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 4211D2D42C8842200042F631 /* Mvvm.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		429E615B2C88C9B100FC9AEB /* Views.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 429E615A2C88C9B100FC9AEB /* Views.framework */; };
-		429E615C2C88C9B100FC9AEB /* Views.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 429E615A2C88C9B100FC9AEB /* Views.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		42C659E72C883CDD00F30992 /* GameBrowser.h in Headers */ = {isa = PBXBuildFile; fileRef = 42C659E62C883CDD00F30992 /* GameBrowser.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		42C659EF2C883CEA00F30992 /* BuildSharedFramework.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 42C659EE2C883CEA00F30992 /* BuildSharedFramework.framework */; };
-		42C659F02C883CEA00F30992 /* BuildSharedFramework.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 42C659EE2C883CEA00F30992 /* BuildSharedFramework.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		42C659FB2C883D0400F30992 /* GameBrowserContentCompactView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42C659F42C883D0300F30992 /* GameBrowserContentCompactView.swift */; };
 		42C659FC2C883D0400F30992 /* GameBrowserScreenView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42C659FA2C883D0400F30992 /* GameBrowserScreenView.swift */; };
 		42C659FD2C883D0400F30992 /* GameBrowserStateContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42C659F82C883D0400F30992 /* GameBrowserStateContentView.swift */; };
@@ -24,22 +21,6 @@
 		42C65A032C883D0400F30992 /* GameBrowserContentRegularView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42C659F92C883D0400F30992 /* GameBrowserContentRegularView.swift */; };
 		42C65A092C883D6B00F30992 /* PeriodGameBrowserScreenView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42C65A082C883D6B00F30992 /* PeriodGameBrowserScreenView.swift */; };
 /* End PBXBuildFile section */
-
-/* Begin PBXCopyFilesBuildPhase section */
-		42C659F12C883CEA00F30992 /* Embed Frameworks */ = {
-			isa = PBXCopyFilesBuildPhase;
-			buildActionMask = 2147483647;
-			dstPath = "";
-			dstSubfolderSpec = 10;
-			files = (
-				4211D2D62C8842200042F631 /* Mvvm.framework in Embed Frameworks */,
-				42C659F02C883CEA00F30992 /* BuildSharedFramework.framework in Embed Frameworks */,
-				429E615C2C88C9B100FC9AEB /* Views.framework in Embed Frameworks */,
-			);
-			name = "Embed Frameworks";
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-/* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
 		4211D2D42C8842200042F631 /* Mvvm.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = Mvvm.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -146,7 +127,6 @@
 				42C659DF2C883CDD00F30992 /* Sources */,
 				42C659E02C883CDD00F30992 /* Frameworks */,
 				42C659E12C883CDD00F30992 /* Resources */,
-				42C659F12C883CEA00F30992 /* Embed Frameworks */,
 			);
 			buildRules = (
 			);

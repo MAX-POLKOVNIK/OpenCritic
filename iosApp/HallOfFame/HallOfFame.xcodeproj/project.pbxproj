@@ -9,33 +9,14 @@
 /* Begin PBXBuildFile section */
 		4211D2F42C8843460042F631 /* HallOfFame.h in Headers */ = {isa = PBXBuildFile; fileRef = 4211D2F32C8843460042F631 /* HallOfFame.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		4211D2FC2C88434A0042F631 /* BuildSharedFramework.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4211D2FB2C88434A0042F631 /* BuildSharedFramework.framework */; };
-		4211D2FD2C88434A0042F631 /* BuildSharedFramework.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 4211D2FB2C88434A0042F631 /* BuildSharedFramework.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		4211D3002C88434F0042F631 /* Views.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4211D2FF2C88434F0042F631 /* Views.framework */; };
-		4211D3012C88434F0042F631 /* Views.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 4211D2FF2C88434F0042F631 /* Views.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		4211D3032C8843610042F631 /* Mvvm.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4211D3022C8843610042F631 /* Mvvm.framework */; };
-		4211D3042C8843610042F631 /* Mvvm.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 4211D3022C8843610042F631 /* Mvvm.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		4211D30A2C8843750042F631 /* HallsOfFameScreenCreator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4211D3092C8843750042F631 /* HallsOfFameScreenCreator.swift */; };
 		4211D30B2C8843750042F631 /* HallsOfFameContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4211D3062C8843750042F631 /* HallsOfFameContentView.swift */; };
 		4211D30C2C8843750042F631 /* HallOfFameGameListListItemView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4211D3072C8843750042F631 /* HallOfFameGameListListItemView.swift */; };
 		4211D30D2C8843750042F631 /* HallsOfFameScreenView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4211D3082C8843750042F631 /* HallsOfFameScreenView.swift */; };
 		4211D30E2C8843750042F631 /* HallOfFameGameListItemView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4211D3052C8843750042F631 /* HallOfFameGameListItemView.swift */; };
 /* End PBXBuildFile section */
-
-/* Begin PBXCopyFilesBuildPhase section */
-		4211D2FE2C88434A0042F631 /* Embed Frameworks */ = {
-			isa = PBXCopyFilesBuildPhase;
-			buildActionMask = 2147483647;
-			dstPath = "";
-			dstSubfolderSpec = 10;
-			files = (
-				4211D3042C8843610042F631 /* Mvvm.framework in Embed Frameworks */,
-				4211D2FD2C88434A0042F631 /* BuildSharedFramework.framework in Embed Frameworks */,
-				4211D3012C88434F0042F631 /* Views.framework in Embed Frameworks */,
-			);
-			name = "Embed Frameworks";
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-/* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
 		4211D2F02C8843460042F631 /* HallOfFame.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = HallOfFame.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -126,7 +107,6 @@
 				4211D2EC2C8843460042F631 /* Sources */,
 				4211D2ED2C8843460042F631 /* Frameworks */,
 				4211D2EE2C8843460042F631 /* Resources */,
-				4211D2FE2C88434A0042F631 /* Embed Frameworks */,
 			);
 			buildRules = (
 			);

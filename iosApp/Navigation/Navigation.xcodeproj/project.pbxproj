@@ -9,29 +9,12 @@
 /* Begin PBXBuildFile section */
 		42C658252C878D1E00F30992 /* Navigation.h in Headers */ = {isa = PBXBuildFile; fileRef = 42C658242C878D1E00F30992 /* Navigation.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		42C658A82C879E8200F30992 /* BuildSharedFramework.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 42C658A72C879E8200F30992 /* BuildSharedFramework.framework */; };
-		42C658A92C879E8200F30992 /* BuildSharedFramework.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 42C658A72C879E8200F30992 /* BuildSharedFramework.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		42C658B62C87A0CC00F30992 /* ScreenCreator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42C658B52C87A0CC00F30992 /* ScreenCreator.swift */; };
 		42C658D62C88298D00F30992 /* IosRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42C658D52C88298D00F30992 /* IosRouter.swift */; };
 		42C658D82C882A3100F30992 /* RouterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42C658D72C882A3100F30992 /* RouterView.swift */; };
 		42C658DA2C882A8E00F30992 /* RoutableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42C658D92C882A8E00F30992 /* RoutableView.swift */; };
 		42C658E12C882D3B00F30992 /* MvvmBase.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 42C658E02C882D3B00F30992 /* MvvmBase.framework */; };
-		42C658E22C882D3B00F30992 /* MvvmBase.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 42C658E02C882D3B00F30992 /* MvvmBase.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 /* End PBXBuildFile section */
-
-/* Begin PBXCopyFilesBuildPhase section */
-		42C658AA2C879E8200F30992 /* Embed Frameworks */ = {
-			isa = PBXCopyFilesBuildPhase;
-			buildActionMask = 2147483647;
-			dstPath = "";
-			dstSubfolderSpec = 10;
-			files = (
-				42C658A92C879E8200F30992 /* BuildSharedFramework.framework in Embed Frameworks */,
-				42C658E22C882D3B00F30992 /* MvvmBase.framework in Embed Frameworks */,
-			);
-			name = "Embed Frameworks";
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-/* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
 		42C658212C878D1E00F30992 /* Navigation.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Navigation.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -119,7 +102,6 @@
 				42C6581D2C878D1E00F30992 /* Sources */,
 				42C6581E2C878D1E00F30992 /* Frameworks */,
 				42C6581F2C878D1E00F30992 /* Resources */,
-				42C658AA2C879E8200F30992 /* Embed Frameworks */,
 			);
 			buildRules = (
 			);

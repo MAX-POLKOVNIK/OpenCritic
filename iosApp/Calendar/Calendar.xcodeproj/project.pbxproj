@@ -8,10 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		4211D3132C8843F50042F631 /* Mvvm.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4211D3122C8843F50042F631 /* Mvvm.framework */; };
-		4211D3142C8843F50042F631 /* Mvvm.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 4211D3122C8843F50042F631 /* Mvvm.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		42C659522C88382100F30992 /* Calendar.h in Headers */ = {isa = PBXBuildFile; fileRef = 42C659512C88382100F30992 /* Calendar.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		42C6595A2C88385500F30992 /* BuildSharedFramework.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 42C659592C88385500F30992 /* BuildSharedFramework.framework */; };
-		42C6595B2C88385500F30992 /* BuildSharedFramework.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 42C659592C88385500F30992 /* BuildSharedFramework.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		42C659642C88388900F30992 /* CalendarContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42C659622C88388900F30992 /* CalendarContentView.swift */; };
 		42C659652C88388900F30992 /* CalendarScreenView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42C6595F2C88388800F30992 /* CalendarScreenView.swift */; };
 		42C659662C88388900F30992 /* CalendarGameMonthCardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42C659632C88388900F30992 /* CalendarGameMonthCardView.swift */; };
@@ -20,24 +18,7 @@
 		42C659692C88388900F30992 /* CalendarGameRowItemView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42C659612C88388900F30992 /* CalendarGameRowItemView.swift */; };
 		42C6596A2C88388900F30992 /* CalendarGamePosterCellItemView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42C6595E2C88388800F30992 /* CalendarGamePosterCellItemView.swift */; };
 		42C659A02C883A6E00F30992 /* Views.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 42C6599F2C883A6E00F30992 /* Views.framework */; };
-		42C659A12C883A6E00F30992 /* Views.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 42C6599F2C883A6E00F30992 /* Views.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 /* End PBXBuildFile section */
-
-/* Begin PBXCopyFilesBuildPhase section */
-		42C6595C2C88385500F30992 /* Embed Frameworks */ = {
-			isa = PBXCopyFilesBuildPhase;
-			buildActionMask = 2147483647;
-			dstPath = "";
-			dstSubfolderSpec = 10;
-			files = (
-				4211D3142C8843F50042F631 /* Mvvm.framework in Embed Frameworks */,
-				42C6595B2C88385500F30992 /* BuildSharedFramework.framework in Embed Frameworks */,
-				42C659A12C883A6E00F30992 /* Views.framework in Embed Frameworks */,
-			);
-			name = "Embed Frameworks";
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-/* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
 		4211D3122C8843F50042F631 /* Mvvm.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = Mvvm.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -132,7 +113,6 @@
 				42C6594A2C88382100F30992 /* Sources */,
 				42C6594B2C88382100F30992 /* Frameworks */,
 				42C6594C2C88382100F30992 /* Resources */,
-				42C6595C2C88385500F30992 /* Embed Frameworks */,
 			);
 			buildRules = (
 			);

@@ -9,25 +9,10 @@
 /* Begin PBXBuildFile section */
 		42C658C52C87A36200F30992 /* MvvmBase.h in Headers */ = {isa = PBXBuildFile; fileRef = 42C658C42C87A36200F30992 /* MvvmBase.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		42C658CD2C87A39200F30992 /* BuildSharedFramework.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 42C658CC2C87A39200F30992 /* BuildSharedFramework.framework */; };
-		42C658CE2C87A39200F30992 /* BuildSharedFramework.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 42C658CC2C87A39200F30992 /* BuildSharedFramework.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		42C658D12C87A3B200F30992 /* ViewModelStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42C658D02C87A3B200F30992 /* ViewModelStore.swift */; };
 		42C658DC2C882B1100F30992 /* UIControllerExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42C658DB2C882B1100F30992 /* UIControllerExtensions.swift */; };
 		42C658E42C882DA200F30992 /* KoinViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42C658E32C882DA200F30992 /* KoinViewModel.swift */; };
 /* End PBXBuildFile section */
-
-/* Begin PBXCopyFilesBuildPhase section */
-		42C658CF2C87A39200F30992 /* Embed Frameworks */ = {
-			isa = PBXCopyFilesBuildPhase;
-			buildActionMask = 2147483647;
-			dstPath = "";
-			dstSubfolderSpec = 10;
-			files = (
-				42C658CE2C87A39200F30992 /* BuildSharedFramework.framework in Embed Frameworks */,
-			);
-			name = "Embed Frameworks";
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-/* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
 		42C658C12C87A36200F30992 /* MvvmBase.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = MvvmBase.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -108,7 +93,6 @@
 				42C658BD2C87A36200F30992 /* Sources */,
 				42C658BE2C87A36200F30992 /* Frameworks */,
 				42C658BF2C87A36200F30992 /* Resources */,
-				42C658CF2C87A39200F30992 /* Embed Frameworks */,
 			);
 			buildRules = (
 			);

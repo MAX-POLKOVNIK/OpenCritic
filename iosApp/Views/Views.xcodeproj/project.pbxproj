@@ -8,30 +8,13 @@
 
 /* Begin PBXBuildFile section */
 		4211D2D22C8842080042F631 /* Resource.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4211D2D12C8842080042F631 /* Resource.framework */; };
-		4211D2D32C8842080042F631 /* Resource.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 4211D2D12C8842080042F631 /* Resource.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		42C6597C2C88398A00F30992 /* Views.h in Headers */ = {isa = PBXBuildFile; fileRef = 42C6597B2C88398A00F30992 /* Views.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		42C659842C88399D00F30992 /* BuildSharedFramework.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 42C659832C88399D00F30992 /* BuildSharedFramework.framework */; };
-		42C659852C88399D00F30992 /* BuildSharedFramework.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 42C659832C88399D00F30992 /* BuildSharedFramework.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		42C659982C883A0A00F30992 /* CachedImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42C659972C883A0A00F30992 /* CachedImageView.swift */; };
 		42C6599A2C883A2B00F30992 /* GameRankView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42C659992C883A2B00F30992 /* GameRankView.swift */; };
 		42C6599C2C883A4500F30992 /* NoGamePosterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42C6599B2C883A4500F30992 /* NoGamePosterView.swift */; };
 		42C6599E2C883A5D00F30992 /* RankCircleIndicatorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42C6599D2C883A5D00F30992 /* RankCircleIndicatorView.swift */; };
 /* End PBXBuildFile section */
-
-/* Begin PBXCopyFilesBuildPhase section */
-		42C659862C88399D00F30992 /* Embed Frameworks */ = {
-			isa = PBXCopyFilesBuildPhase;
-			buildActionMask = 2147483647;
-			dstPath = "";
-			dstSubfolderSpec = 10;
-			files = (
-				4211D2D32C8842080042F631 /* Resource.framework in Embed Frameworks */,
-				42C659852C88399D00F30992 /* BuildSharedFramework.framework in Embed Frameworks */,
-			);
-			name = "Embed Frameworks";
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-/* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
 		4211D2D12C8842080042F631 /* Resource.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = Resource.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -117,7 +100,6 @@
 				42C659742C88398A00F30992 /* Sources */,
 				42C659752C88398A00F30992 /* Frameworks */,
 				42C659762C88398A00F30992 /* Resources */,
-				42C659862C88399D00F30992 /* Embed Frameworks */,
 			);
 			buildRules = (
 			);

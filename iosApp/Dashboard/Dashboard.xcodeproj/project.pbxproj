@@ -8,10 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		4211D2CF2C8841CB0042F631 /* Mvvm.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4211D2CE2C8841CB0042F631 /* Mvvm.framework */; };
-		4211D2D02C8841CB0042F631 /* Mvvm.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 4211D2CE2C8841CB0042F631 /* Mvvm.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		42C659B32C883C0C00F30992 /* Dashboard.h in Headers */ = {isa = PBXBuildFile; fileRef = 42C659B22C883C0C00F30992 /* Dashboard.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		42C659BB2C883C2000F30992 /* BuildSharedFramework.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 42C659BA2C883C2000F30992 /* BuildSharedFramework.framework */; };
-		42C659BC2C883C2000F30992 /* BuildSharedFramework.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 42C659BA2C883C2000F30992 /* BuildSharedFramework.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		42C659CA2C883C3E00F30992 /* DashboardPosterGamesHorizontalListItemView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42C659C92C883C3E00F30992 /* DashboardPosterGamesHorizontalListItemView.swift */; };
 		42C659CB2C883C3E00F30992 /* DashboardSublistListitemView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42C659C82C883C3E00F30992 /* DashboardSublistListitemView.swift */; };
 		42C659CC2C883C3E00F30992 /* DashboardDealListItemView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42C659C72C883C3E00F30992 /* DashboardDealListItemView.swift */; };
@@ -25,21 +23,6 @@
 		42C659D42C883C3E00F30992 /* DashboardStateContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42C659C42C883C3E00F30992 /* DashboardStateContentView.swift */; };
 		42C659D52C883C3E00F30992 /* DashboardScreenCreator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42C659C22C883C3E00F30992 /* DashboardScreenCreator.swift */; };
 /* End PBXBuildFile section */
-
-/* Begin PBXCopyFilesBuildPhase section */
-		42C659BD2C883C2100F30992 /* Embed Frameworks */ = {
-			isa = PBXCopyFilesBuildPhase;
-			buildActionMask = 2147483647;
-			dstPath = "";
-			dstSubfolderSpec = 10;
-			files = (
-				4211D2D02C8841CB0042F631 /* Mvvm.framework in Embed Frameworks */,
-				42C659BC2C883C2000F30992 /* BuildSharedFramework.framework in Embed Frameworks */,
-			);
-			name = "Embed Frameworks";
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-/* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
 		4211D2CE2C8841CB0042F631 /* Mvvm.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = Mvvm.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -141,7 +124,6 @@
 				42C659AB2C883C0C00F30992 /* Sources */,
 				42C659AC2C883C0C00F30992 /* Frameworks */,
 				42C659AD2C883C0C00F30992 /* Resources */,
-				42C659BD2C883C2100F30992 /* Embed Frameworks */,
 			);
 			buildRules = (
 			);

@@ -8,12 +8,9 @@
 
 /* Begin PBXBuildFile section */
 		4211D2DE2C88427C0042F631 /* Mvvm.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4211D2DD2C88427C0042F631 /* Mvvm.framework */; };
-		4211D2DF2C88427C0042F631 /* Mvvm.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 4211D2DD2C88427C0042F631 /* Mvvm.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		4211D2E12C8842800042F631 /* Views.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4211D2E02C8842800042F631 /* Views.framework */; };
-		4211D2E22C8842800042F631 /* Views.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 4211D2E02C8842800042F631 /* Views.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		42C65A182C883E8200F30992 /* GameDetails.h in Headers */ = {isa = PBXBuildFile; fileRef = 42C65A172C883E8200F30992 /* GameDetails.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		42C65A202C883E9100F30992 /* BuildSharedFramework.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 42C65A1F2C883E9100F30992 /* BuildSharedFramework.framework */; };
-		42C65A212C883E9100F30992 /* BuildSharedFramework.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 42C65A1F2C883E9100F30992 /* BuildSharedFramework.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		42C65A2F2C883EB200F30992 /* TrailerItemView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42C65A2B2C883EB200F30992 /* TrailerItemView.swift */; };
 		42C65A302C883EB200F30992 /* GameMediaStateContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42C65A252C883EB200F30992 /* GameMediaStateContentView.swift */; };
 		42C65A312C883EB200F30992 /* GameDetailsRegularView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42C65A282C883EB200F30992 /* GameDetailsRegularView.swift */; };
@@ -28,22 +25,6 @@
 		42C65A3A2C883EB200F30992 /* GameDetailsContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42C65A2E2C883EB200F30992 /* GameDetailsContentView.swift */; };
 		42C65A412C883F3500F30992 /* YourGameIndicatorItemView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42C65A402C883F3500F30992 /* YourGameIndicatorItemView.swift */; };
 /* End PBXBuildFile section */
-
-/* Begin PBXCopyFilesBuildPhase section */
-		42C65A222C883E9100F30992 /* Embed Frameworks */ = {
-			isa = PBXCopyFilesBuildPhase;
-			buildActionMask = 2147483647;
-			dstPath = "";
-			dstSubfolderSpec = 10;
-			files = (
-				4211D2DF2C88427C0042F631 /* Mvvm.framework in Embed Frameworks */,
-				42C65A212C883E9100F30992 /* BuildSharedFramework.framework in Embed Frameworks */,
-				4211D2E22C8842800042F631 /* Views.framework in Embed Frameworks */,
-			);
-			name = "Embed Frameworks";
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-/* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
 		4211D2DD2C88427C0042F631 /* Mvvm.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = Mvvm.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -150,7 +131,6 @@
 				42C65A102C883E8200F30992 /* Sources */,
 				42C65A112C883E8200F30992 /* Frameworks */,
 				42C65A122C883E8200F30992 /* Resources */,
-				42C65A222C883E9100F30992 /* Embed Frameworks */,
 			);
 			buildRules = (
 			);

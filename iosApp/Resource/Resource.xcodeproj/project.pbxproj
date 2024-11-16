@@ -11,27 +11,12 @@
 		42C6586B2C879C0A00F30992 /* ColorExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42C6586A2C879C0A00F30992 /* ColorExtensions.swift */; };
 		42C658702C879C6600F30992 /* ImageExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42C6586F2C879C6600F30992 /* ImageExtensions.swift */; };
 		42C6589E2C879E7200F30992 /* BuildSharedFramework.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 42C6589D2C879E7200F30992 /* BuildSharedFramework.framework */; };
-		42C6589F2C879E7200F30992 /* BuildSharedFramework.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 42C6589D2C879E7200F30992 /* BuildSharedFramework.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		42C658AC2C879F1600F30992 /* LabelExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42C658AB2C879F1600F30992 /* LabelExtensions.swift */; };
 		42C658AE2C879F6F00F30992 /* TextSourceExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42C658AD2C879F6F00F30992 /* TextSourceExtensions.swift */; };
 		42C658B02C879FAD00F30992 /* TextExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42C658AF2C879FAD00F30992 /* TextExtensions.swift */; };
 		42C658B22C879FF400F30992 /* NavigationBarTitleExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42C658B12C879FF400F30992 /* NavigationBarTitleExtensions.swift */; };
 		42C658B42C87A06600F30992 /* ButtonExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42C658B32C87A06600F30992 /* ButtonExtensions.swift */; };
 /* End PBXBuildFile section */
-
-/* Begin PBXCopyFilesBuildPhase section */
-		42C658A02C879E7200F30992 /* Embed Frameworks */ = {
-			isa = PBXCopyFilesBuildPhase;
-			buildActionMask = 2147483647;
-			dstPath = "";
-			dstSubfolderSpec = 10;
-			files = (
-				42C6589F2C879E7200F30992 /* BuildSharedFramework.framework in Embed Frameworks */,
-			);
-			name = "Embed Frameworks";
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-/* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
 		42C658602C879BA900F30992 /* Resource.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Resource.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -120,7 +105,6 @@
 				42C6585C2C879BA900F30992 /* Sources */,
 				42C6585D2C879BA900F30992 /* Frameworks */,
 				42C6585E2C879BA900F30992 /* Resources */,
-				42C658A02C879E7200F30992 /* Embed Frameworks */,
 			);
 			buildRules = (
 			);

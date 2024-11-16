@@ -12,40 +12,19 @@
 		42C658512C87970100F30992 /* FlowView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42C658502C87970100F30992 /* FlowView.swift */; };
 		42C658532C87975100F30992 /* ObservableViewModelState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42C658522C87975100F30992 /* ObservableViewModelState.swift */; };
 		42C658A32C879E7C00F30992 /* BuildSharedFramework.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 42C658A22C879E7C00F30992 /* BuildSharedFramework.framework */; };
-		42C658A42C879E7C00F30992 /* BuildSharedFramework.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 42C658A22C879E7C00F30992 /* BuildSharedFramework.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		42C658D32C87A42200F30992 /* MvvmBase.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 42C658D22C87A42200F30992 /* MvvmBase.framework */; };
-		42C658D42C87A42200F30992 /* MvvmBase.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 42C658D22C87A42200F30992 /* MvvmBase.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		42C658E92C88309400F30992 /* Navigation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 42C658E82C88309400F30992 /* Navigation.framework */; };
-		42C658EA2C88309400F30992 /* Navigation.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 42C658E82C88309400F30992 /* Navigation.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		42C658EC2C8830DF00F30992 /* ProgressView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42C658EB2C8830DF00F30992 /* ProgressView.swift */; };
 		42C658EE2C88310200F30992 /* ViewExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42C658ED2C88310200F30992 /* ViewExtensions.swift */; };
 		42C658F02C88315E00F30992 /* ErrorPopupView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42C658EF2C88315E00F30992 /* ErrorPopupView.swift */; };
 		42C658F22C88317300F30992 /* CommonStateView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42C658F12C88317300F30992 /* CommonStateView.swift */; };
 		42C658F42C88319900F30992 /* ErrorStateView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42C658F32C88319900F30992 /* ErrorStateView.swift */; };
 		42C658F62C8831AE00F30992 /* Resource.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 42C658F52C8831AE00F30992 /* Resource.framework */; };
-		42C658F72C8831AE00F30992 /* Resource.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 42C658F52C8831AE00F30992 /* Resource.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		42C658F92C8831EB00F30992 /* LoadingStateView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42C658F82C8831EB00F30992 /* LoadingStateView.swift */; };
 		42C658FB2C88321F00F30992 /* BlinkViewModifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42C658FA2C88321F00F30992 /* BlinkViewModifier.swift */; };
 		42C658FD2C88338300F30992 /* CommonScreenView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42C658FC2C88338300F30992 /* CommonScreenView.swift */; };
 		42C658FF2C88342500F30992 /* LoadingItemView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42C658FE2C88342500F30992 /* LoadingItemView.swift */; };
 /* End PBXBuildFile section */
-
-/* Begin PBXCopyFilesBuildPhase section */
-		42C658A52C879E7C00F30992 /* Embed Frameworks */ = {
-			isa = PBXCopyFilesBuildPhase;
-			buildActionMask = 2147483647;
-			dstPath = "";
-			dstSubfolderSpec = 10;
-			files = (
-				42C658A42C879E7C00F30992 /* BuildSharedFramework.framework in Embed Frameworks */,
-				42C658D42C87A42200F30992 /* MvvmBase.framework in Embed Frameworks */,
-				42C658F72C8831AE00F30992 /* Resource.framework in Embed Frameworks */,
-				42C658EA2C88309400F30992 /* Navigation.framework in Embed Frameworks */,
-			);
-			name = "Embed Frameworks";
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-/* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
 		42C658382C87949200F30992 /* Mvvm.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Mvvm.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -153,7 +132,6 @@
 				42C658342C87949200F30992 /* Sources */,
 				42C658352C87949200F30992 /* Frameworks */,
 				42C658362C87949200F30992 /* Resources */,
-				42C658A52C879E7C00F30992 /* Embed Frameworks */,
 			);
 			buildRules = (
 			);

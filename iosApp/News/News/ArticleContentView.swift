@@ -13,8 +13,6 @@ import Views
 struct ArticleContentView: View {
     let content: ArticleContent
     
-    @State private var webViewHeight: CGFloat = 500
-    
     var body: some View {
         ScrollView {
             VStack(alignment: .center) {
@@ -65,12 +63,8 @@ struct ArticleContentView: View {
             .card()
             .padding()
             
-            Webview(
-                html: content.htmlToRender,
-                dynamicHeight: $webViewHeight
-            )
-            .padding(.horizontal)
-            .frame(height: webViewHeight)
+            Text(content.htmlToRender.htmlToAttributedString())
+                .padding(.horizontal)
             
             if content.isSeeFullArticleVisible {
                 Button(content.seeFullArticleText) {

@@ -121,8 +121,9 @@ fun ArticleContent(
             }
         }
 
-        ArticleWevView(
-            html = content.htmlToRender,
+        Text(
+            text = content.htmlToRender
+                .htmlToAnnotatedString(),
             modifier = Modifier
                 .padding(defaultPadding)
         )

@@ -11,21 +11,24 @@ import com.opencritic.resources.images.Icons
 import com.opencritic.resources.text.StringRes
 import com.opencritic.resources.text.TextSource
 import com.opencritic.resources.text.asTextSource
+import kotlinx.collections.immutable.ImmutableList
+import kotlinx.collections.immutable.persistentListOf
+import kotlinx.collections.immutable.toImmutableList
 
 data class GameBrowserContent(
     val platformTitleText: TextSource,
     val platformText: PlatformItem,
-    val platformsItems: List<PlatformItem>,
+    val platformsItems: ImmutableList<PlatformItem>,
     val timeframeTitleText: TextSource,
     val timeframeText: TimeframeItem,
-    val timeframeItems: List<TimeframeItem>,
+    val timeframeItems: ImmutableList<TimeframeItem>,
     val sortTitleText: TextSource,
     val sortText: GameSortItem,
-    val sortItems: List<GameSortItem>,
+    val sortItems: ImmutableList<GameSortItem>,
     val isNextGenVisible: Boolean,
     val nextGenTitle: TextSource,
     val isNextGenChecked: Boolean,
-    val browseGameItems: List<BrowseGameItem>,
+    val browseGameItems: ImmutableList<BrowseGameItem>,
     val isLoadingItemVisible: Boolean,
     val loadingItem: LoadingItem,
     val onLoadMore: () -> Unit,
@@ -44,7 +47,8 @@ fun GameBrowserContent_PreviewData(): GameBrowserContent =
         sortTitleText = "Sort".asTextSource(),
         sortText = GameSortItem(GameSorting.Score, "Score".asTextSource()),
         sortItems = GameSorting.entries
-            .map { GameSortItem(it, it.asTextSource()) },
+            .map { GameSortItem(it, it.asTextSource()) }
+            .toImmutableList(),
         platformTitleText = "Platform".asTextSource(),
         platformText = PlatformItem(
             key = null,
@@ -52,16 +56,17 @@ fun GameBrowserContent_PreviewData(): GameBrowserContent =
         ),
         platformsItems = listOf(
             PlatformItem(key = null, "AllPlatforms".asTextSource()),
-        ),
+        ).toImmutableList(),
         timeframeTitleText = "Timeframe".asTextSource(),
         timeframeText = TimeframeItem(GameTimeframe.AllTIme, "AllTime".asTextSource()),
         timeframeItems = GameTimeframe.entries
-            .map { TimeframeItem(it, it.asTextSource()) },
+            .map { TimeframeItem(it, it.asTextSource()) }
+            .toImmutableList(),
         isNextGenVisible = true,
         isNextGenChecked = true,
         onNextGenChecked = {},
         nextGenTitle = StringRes.str_next_get_only.asTextSource(),
-        browseGameItems = emptyList(),
+        browseGameItems = persistentListOf(),
         isLoadingItemVisible = true,
         loadingItem = LoadingItem,
         onLoadMore = { },

@@ -7,21 +7,26 @@ import com.opencritic.game.browser.domain.GameTimeframe
 import com.opencritic.game.browser.domain.GetBrowseGamesInteractor
 import com.opencritic.game.browser.domain.GetPlatformsInteractor
 import com.opencritic.game.browser.domain.asTextSource
+import com.opencritic.game.browser.domain.images
 import com.opencritic.games.Platform
 import com.opencritic.games.details.api.ui.GameDetailsRoute
 import com.opencritic.games.details.ui.LoadingItem
 import com.opencritic.logs.Logger
 import com.opencritic.mvvm.BaseContentViewModel
 import com.opencritic.mvvm.CommonViewModelState
+import com.opencritic.remote.images.ImagePreloader
 import com.opencritic.resources.images.Icons
 import com.opencritic.resources.text.StringRes
 import com.opencritic.resources.text.asTextSource
+import kotlinx.collections.immutable.persistentListOf
+import kotlinx.collections.immutable.toImmutableList
 import kotlinx.coroutines.launch
 
 class GameBrowserViewModel(
     private val getPlatformsInteractor: GetPlatformsInteractor,
     private val getBrowseGamesInteractor: GetBrowseGamesInteractor,
     private val logger: Logger,
+    private val imagePreloader: ImagePreloader,
 ) : BaseContentViewModel<GameBrowserContent>() {
     override fun initialState(): CommonViewModelState<GameBrowserContent> =
         CommonViewModelState.loading(title = StringRes.str_tab_browse.asTextSource())
@@ -33,6 +38,12 @@ class GameBrowserViewModel(
     private var platform: Platform? = null
     private var isNextGenVisible: Boolean = false
     private var isNextGenChecked: Boolean = true
+
+    override fun onCleared() {
+        super.onCleared()
+
+        imagePreloader.cancel()
+    }
 
     override fun onStateInit() {
         super.onStateInit()
@@ -66,11 +77,11 @@ class GameBrowserViewModel(
                     .onSuccess { games ->
                         val content = requireContent()
 
+                        imagePreloader.load(games.images)
+
                         updateContentIfSet {
                             content.copy(
-                                browseGameItems = content.browseGameItems + games.map { game ->
-                                    BrowseGameItem(game)
-                                },
+                                browseGameItems = content.browseGameItems.mapAndAdd(games, ::navigateToGame),
                                 isLoadingItemVisible = games.isNotEmpty()
                             )
                         }
@@ -88,7 +99,8 @@ class GameBrowserViewModel(
             sortTitleText = StringRes.str_sort.asTextSource(),
             sortText = GameSortItem(sorting, sorting.asTextSource()),
             sortItems = GameSorting.entries
-                .map { GameSortItem(it, it.asTextSource()) },
+                .map { GameSortItem(it, it.asTextSource()) }
+                .toImmutableList(),
             platformTitleText = StringRes.str_platform.asTextSource(),
             platformText = PlatformItem(
                 key = platform,
@@ -98,25 +110,26 @@ class GameBrowserViewModel(
             platformsItems = listOf(
                 PlatformItem(key = null, StringRes.str_all_platforms.asTextSource()),
                 *platforms.map { PlatformItem(it, it.name.asTextSource()) }.toTypedArray()
-            ),
+            ).toImmutableList(),
             timeframeTitleText = StringRes.str_timeframe.asTextSource(),
             timeframeText = TimeframeItem(timeframe, timeframe.asTextSource()),
             timeframeItems = GameTimeframe.entries
-                .map { TimeframeItem(it, it.asTextSource()) },
+                .map { TimeframeItem(it, it.asTextSource()) }
+                .toImmutableList(),
             isNextGenVisible = isNextGenVisible,
             isNextGenChecked = isNextGenChecked,
             nextGenTitle = StringRes.str_next_get_only.asTextSource(),
-            browseGameItems = emptyList(),
+            browseGameItems = persistentListOf(),
             isLoadingItemVisible = true,
             loadingItem = LoadingItem,
-            onLoadMore = { loadMore() },
-            onSelectedSort = { onSortSelected(it) },
-            onSelectedPlatform = { onPlatformSelected(it) },
-            onSelectedTimeframe = { onTimeframeSelected(it) },
-            onNextGenChecked = { onNextGenChecked(it) },
+            onLoadMore = ::loadMore,
+            onSelectedSort = ::onSortSelected,
+            onSelectedPlatform = ::onPlatformSelected,
+            onSelectedTimeframe = ::onTimeframeSelected,
+            onNextGenChecked = ::onNextGenChecked,
             isActionVisible = true,
             actionIconResource = Icons.calendar,
-            onAction = { navigateToCalendar() },
+            onAction = ::navigateToCalendar,
         )
 
     private fun loadMore() {
@@ -133,15 +146,13 @@ class GameBrowserViewModel(
                 time = timeframe,
                 isExclusive = isNextGenVisible && isNextGenChecked
             )
-                .onSuccess { reviews ->
-                    logger.log("Loaded reviews count: ${reviews.size} --- $platform $sorting $timeframe ${content.browseGameItems.size}")
+                .onSuccess { games ->
+                    imagePreloader.load(games.images)
 
                     updateContentIfSet {
                         copy(
-                            browseGameItems = content.browseGameItems + reviews.map { game ->
-                                BrowseGameItem(game)
-                            },
-                            isLoadingItemVisible = reviews.isNotEmpty()
+                            browseGameItems = content.browseGameItems.mapAndAdd(games, ::navigateToGame),
+                            isLoadingItemVisible = games.isNotEmpty()
                         )
                     }
                 }
@@ -150,13 +161,6 @@ class GameBrowserViewModel(
                 }
         }
     }
-
-    private fun BrowseGameItem(game: BrowseGame): BrowseGameItem =
-        BrowseGameItem(
-            game = game,
-            isPercentRecommendedVisible = sorting == GameSorting.PercentRecommended,
-            onClick = { openGame(game.id, game.name) },
-        )
 
     private fun onSortSelected(item: GameSortItem) {
         if (item.key == sorting)
@@ -168,7 +172,7 @@ class GameBrowserViewModel(
         updateContentIfSet {
             copy(
                 sortText = item,
-                browseGameItems = emptyList(),
+                browseGameItems = persistentListOf(),
                 isLoadingItemVisible = true
             )
         }
@@ -186,7 +190,7 @@ class GameBrowserViewModel(
         updateContentIfSet {
             copy(
                 isNextGenChecked = isChecked,
-                browseGameItems = emptyList(),
+                browseGameItems = persistentListOf(),
                 isLoadingItemVisible = true
             )
         }
@@ -204,7 +208,7 @@ class GameBrowserViewModel(
         updateContentIfSet {
             copy(
                 timeframeText = item,
-                browseGameItems = emptyList(),
+                browseGameItems = persistentListOf(),
                 isLoadingItemVisible = true
             )
         }
@@ -227,7 +231,7 @@ class GameBrowserViewModel(
                 isNextGenChecked = this@GameBrowserViewModel.isNextGenChecked,
                 isNextGenVisible = this@GameBrowserViewModel.isNextGenVisible,
                 platformText = item,
-                browseGameItems = emptyList(),
+                browseGameItems = persistentListOf(),
                 isLoadingItemVisible = true
             )
         }
@@ -235,11 +239,10 @@ class GameBrowserViewModel(
         loadMore()
     }
 
-    private fun openGame(gameId: Long, gameName: String) {
+    private fun navigateToGame(item: BrowseGameItem) =
         GameDetailsRoute.navigate(
-            GameDetailsRoute.InitArgs(gameId, gameName)
+            GameDetailsRoute.InitArgs(item.id, item.nameText)
         )
-    }
 
     private fun navigateToCalendar() {
         CalendarRoute.navigate(CalendarRoute.InitArgs)

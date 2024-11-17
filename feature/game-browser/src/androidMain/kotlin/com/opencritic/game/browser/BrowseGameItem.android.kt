@@ -41,7 +41,7 @@ fun BrowseGameItem(
     modifier: Modifier = Modifier,
 ) {
     Card(
-        onClick = { item.onClick() },
+        onClick = item::click,
         modifier = modifier,
     ) {
         Box(

@@ -6,15 +6,21 @@ import com.opencritic.game.browser.domain.GameSorting
 import com.opencritic.game.browser.domain.GameTimeframe
 import com.opencritic.game.browser.domain.GetBrowseGamesInteractor
 import com.opencritic.game.browser.domain.GetReviewedThisWeekInteractor
+import com.opencritic.game.browser.domain.images
 import com.opencritic.game.browser.ui.BrowseGameItem
+import com.opencritic.game.browser.ui.mapAndAdd
 import com.opencritic.games.details.api.ui.GameDetailsRoute
 import com.opencritic.games.details.ui.LoadingItem
 import com.opencritic.logs.Logger
 import com.opencritic.mvvm.BaseContentViewModel
 import com.opencritic.mvvm.CommonViewModelState
+import com.opencritic.remote.images.ImagePreloader
 import com.opencritic.resources.text.StringRes
 import com.opencritic.resources.text.TextSource
 import com.opencritic.resources.text.asTextSource
+import kotlinx.collections.immutable.ImmutableList
+import kotlinx.collections.immutable.persistentListOf
+import kotlinx.collections.immutable.toImmutableList
 import kotlinx.coroutines.launch
 
 class PeriodGameBrowserViewModel(
@@ -22,11 +28,18 @@ class PeriodGameBrowserViewModel(
     private val getBrowseGamesInteractor: GetBrowseGamesInteractor,
     private val getReviewedThisWeekInteractor: GetReviewedThisWeekInteractor,
     private val logger: Logger,
+    private val imagePreloader: ImagePreloader,
 ) : BaseContentViewModel<PeriodGameBrowserContent>() {
     override fun initialState(): CommonViewModelState<PeriodGameBrowserContent> =
         CommonViewModelState.loading(titleFor(args.period))
 
     private var canLoadMore: Boolean = args.period != PeriodGameBrowserRoute.InitArgs.Period.ReviewedThisWeek
+
+    override fun onCleared() {
+        super.onCleared()
+
+        imagePreloader.cancel()
+    }
 
     override fun onStateInit() {
         super.onStateInit()
@@ -56,12 +69,12 @@ class PeriodGameBrowserViewModel(
                     logger.log(it.toString())
                 }
                 .onSuccess { games ->
+                    imagePreloader.load(games.images)
+
                     createContentState()
                         .let { content ->
                             content.copy(
-                                browseGameItems = content.browseGameItems + games.map { game ->
-                                    BrowseGameItem(game)
-                                },
+                                browseGameItems = content.browseGameItems.mapAndAdd(games, ::navigateToGame),
                                 isLoadingItemVisible = games.isNotEmpty() && args.period != PeriodGameBrowserRoute.InitArgs.Period.ReviewedThisWeek
                             )
                         }
@@ -83,10 +96,10 @@ class PeriodGameBrowserViewModel(
 
     private fun createContentState(): PeriodGameBrowserContent =
         PeriodGameBrowserContent(
-            browseGameItems = emptyList(),
+            browseGameItems = persistentListOf(),
             isLoadingItemVisible = true,
             loadingItem = LoadingItem,
-            onLoadMore = { loadMore() },
+            onLoadMore = ::loadMore,
         )
 
     private fun loadMore() {
@@ -116,13 +129,13 @@ class PeriodGameBrowserViewModel(
                         isExclusive = false,
                     )
             }
-                .onSuccess { reviews ->
+                .onSuccess { games ->
+                    imagePreloader.load(games.images)
+
                     updateContentIfSet {
                         copy(
-                            browseGameItems = content.browseGameItems + reviews.map { game ->
-                                BrowseGameItem(game)
-                            },
-                            isLoadingItemVisible = reviews.isNotEmpty()
+                            browseGameItems = content.browseGameItems.mapAndAdd(games, ::navigateToGame),
+                            isLoadingItemVisible = games.isNotEmpty()
                         )
                     }
                 }
@@ -132,16 +145,8 @@ class PeriodGameBrowserViewModel(
         }
     }
 
-    private fun BrowseGameItem(game: BrowseGame): BrowseGameItem =
-        BrowseGameItem(
-            game = game,
-            isPercentRecommendedVisible = false,
-            onClick = { openGame(game.id, game.name) },
-        )
-
-    private fun openGame(gameId: Long, gameName: String) {
+    private fun navigateToGame(item: BrowseGameItem) =
         GameDetailsRoute.navigate(
-            GameDetailsRoute.InitArgs(gameId, gameName)
+            GameDetailsRoute.InitArgs(item.id, item.nameText)
         )
-    }
 }

@@ -14,6 +14,8 @@ import com.opencritic.resources.images.IconResource
 import com.opencritic.resources.images.Icons
 import com.opencritic.resources.images.SharedImageResource
 import com.opencritic.resources.images.SharedImages
+import kotlinx.collections.immutable.ImmutableList
+import kotlinx.collections.immutable.toImmutableList
 import kotlinx.datetime.TimeZone
 import kotlinx.datetime.toLocalDateTime
 
@@ -29,13 +31,15 @@ data class BrowseGameItem(
     val nameText: String,
     val dateImageResource: IconResource,
     val dateText: TextSource,
-    val onClick: () -> Unit,
-)
+    private val onClick: (BrowseGameItem) -> Unit,
+) {
+    fun click() = onClick(this)
+}
 
 fun BrowseGameItem(
     game: BrowseGame,
-    isPercentRecommendedVisible: Boolean,
-    onClick: () -> Unit,
+    isPercentRecommendedVisible: Boolean = false,
+    onClick: (BrowseGameItem) -> Unit,
 ): BrowseGameItem =
     BrowseGameItem(
         id = game.id,
@@ -78,3 +82,14 @@ fun BrowseGameItem_PreviewData(): BrowseGameItem =
         percentRecommendedIndicator = createCriticsRecommendIndicator(Tier.Mighty, 90f),
         onClick = {},
     )
+
+internal fun List<BrowseGameItem>.mapAndAdd(
+    list: List<BrowseGame>,
+    onClick: (BrowseGameItem) -> Unit,
+): ImmutableList<BrowseGameItem> =
+    (this + list.toItemList(onClick)).toImmutableList()
+
+internal fun List<BrowseGame>.toItemList(
+    onClick: (BrowseGameItem) -> Unit
+): ImmutableList<BrowseGameItem> =
+    map { BrowseGameItem(it, onClick = onClick) }.toImmutableList()

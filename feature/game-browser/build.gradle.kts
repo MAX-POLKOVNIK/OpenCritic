@@ -26,6 +26,7 @@ kotlin {
             implementation(projects.core.api)
             implementation(projects.core.logs)
             implementation(projects.core.navigation)
+            implementation(projects.core.remoteImages)
 
             implementation(projects.feature.games)
             implementation(projects.feature.gameDetails)
@@ -37,6 +38,7 @@ kotlin {
             implementation(libs.koin.core)
             implementation(libs.androidx.lifecycle.viewmodel)
             implementation(libs.moko.resources)
+            implementation(libs.kotlinx.collections.immutable)
         }
         commonTest.dependencies {
             implementation(libs.kotlin.test)

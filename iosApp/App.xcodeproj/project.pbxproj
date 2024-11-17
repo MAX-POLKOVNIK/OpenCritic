@@ -22,6 +22,8 @@
 		4211D3A82C8846600042F631 /* Reviews.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 4211D3A62C8846600042F631 /* Reviews.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		4211D3D12C8847200042F631 /* Search.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4211D3D02C8847200042F631 /* Search.framework */; };
 		4211D3D22C8847200042F631 /* Search.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 4211D3D02C8847200042F631 /* Search.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		42A460302CE9A04E0055BFBC /* BuildSharedFramework.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 42A4602F2CE9A0440055BFBC /* BuildSharedFramework.framework */; };
+		42A460312CE9A04E0055BFBC /* BuildSharedFramework.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 42A4602F2CE9A0440055BFBC /* BuildSharedFramework.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		42C658432C8794A500F30992 /* Mvvm.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 42C658422C8794A500F30992 /* Mvvm.framework */; };
 		42C658442C8794A500F30992 /* Mvvm.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 42C658422C8794A500F30992 /* Mvvm.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		42C6586D2C879C2A00F30992 /* Resource.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 42C6586C2C879C2A00F30992 /* Resource.framework */; };
@@ -46,6 +48,16 @@
 		42C65A672C883FE900F30992 /* GameList.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 42C65A652C883FE900F30992 /* GameList.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 /* End PBXBuildFile section */
 
+/* Begin PBXContainerItemProxy section */
+		42A4602E2CE9A0440055BFBC /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 42A4602A2CE9A0440055BFBC /* BuildSharedFramework.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 42C6588F2C879DB400F30992;
+			remoteInfo = BuildSharedFramework;
+		};
+/* End PBXContainerItemProxy section */
+
 /* Begin PBXCopyFilesBuildPhase section */
 		7555FFB4242A642300829871 /* Embed Frameworks */ = {
 			isa = PBXCopyFilesBuildPhase;
@@ -58,6 +70,7 @@
 				4211D3A82C8846600042F631 /* Reviews.framework in Embed Frameworks */,
 				42C658442C8794A500F30992 /* Mvvm.framework in Embed Frameworks */,
 				42C659A42C883AE000F30992 /* Views.framework in Embed Frameworks */,
+				42A460312CE9A04E0055BFBC /* BuildSharedFramework.framework in Embed Frameworks */,
 				42C65A672C883FE900F30992 /* GameList.framework in Embed Frameworks */,
 				42C6586E2C879C2A00F30992 /* Resource.framework in Embed Frameworks */,
 				42C659212C88363800F30992 /* About.framework in Embed Frameworks */,
@@ -86,6 +99,7 @@
 		4211D36E2C88458A0042F631 /* News.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = News.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		4211D3A62C8846600042F631 /* Reviews.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = Reviews.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		4211D3D02C8847200042F631 /* Search.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = Search.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		42A4602A2CE9A0440055BFBC /* BuildSharedFramework.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = BuildSharedFramework.xcodeproj; path = BuildSharedFramework/BuildSharedFramework.xcodeproj; sourceTree = "<group>"; };
 		42C6582B2C878D6300F30992 /* Navigation.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = Navigation.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		42C658422C8794A500F30992 /* Mvvm.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = Mvvm.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		42C6586C2C879C2A00F30992 /* Resource.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = Resource.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -112,6 +126,7 @@
 				4211D3A72C8846600042F631 /* Reviews.framework in Frameworks */,
 				42C658432C8794A500F30992 /* Mvvm.framework in Frameworks */,
 				42C659A32C883AE000F30992 /* Views.framework in Frameworks */,
+				42A460302CE9A04E0055BFBC /* BuildSharedFramework.framework in Frameworks */,
 				42C65A662C883FE900F30992 /* GameList.framework in Frameworks */,
 				42C6586D2C879C2A00F30992 /* Resource.framework in Frameworks */,
 				42C659202C88363800F30992 /* About.framework in Frameworks */,
@@ -136,6 +151,14 @@
 				058557D8273AAEEB004C7B11 /* Preview Assets.xcassets */,
 			);
 			path = "Preview Content";
+			sourceTree = "<group>";
+		};
+		42A4602B2CE9A0440055BFBC /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				42A4602F2CE9A0440055BFBC /* BuildSharedFramework.framework */,
+			);
+			name = Products;
 			sourceTree = "<group>";
 		};
 		7555FF72242A565900829871 = {
@@ -186,6 +209,7 @@
 				42C658E52C882E0500F30992 /* MvvmBase.framework */,
 				42C6586C2C879C2A00F30992 /* Resource.framework */,
 				42C658422C8794A500F30992 /* Mvvm.framework */,
+				42A4602A2CE9A0440055BFBC /* BuildSharedFramework.xcodeproj */,
 				42C6582B2C878D6300F30992 /* Navigation.framework */,
 			);
 			name = Frameworks;
@@ -239,12 +263,28 @@
 			mainGroup = 7555FF72242A565900829871;
 			productRefGroup = 7555FF7C242A565900829871 /* Products */;
 			projectDirPath = "";
+			projectReferences = (
+				{
+					ProductGroup = 42A4602B2CE9A0440055BFBC /* Products */;
+					ProjectRef = 42A4602A2CE9A0440055BFBC /* BuildSharedFramework.xcodeproj */;
+				},
+			);
 			projectRoot = "";
 			targets = (
 				7555FF7A242A565900829871 /* App */,
 			);
 		};
 /* End PBXProject section */
+
+/* Begin PBXReferenceProxy section */
+		42A4602F2CE9A0440055BFBC /* BuildSharedFramework.framework */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.framework;
+			path = BuildSharedFramework.framework;
+			remoteRef = 42A4602E2CE9A0440055BFBC /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+/* End PBXReferenceProxy section */
 
 /* Begin PBXResourcesBuildPhase section */
 		7555FF79242A565900829871 /* Resources */ = {
@@ -419,7 +459,7 @@
 					"$(SRCROOT)/../shared/build/xcode-frameworks/$(CONFIGURATION)/$(SDK_NAME)",
 				);
 				INFOPLIST_FILE = App/Info.plist;
-				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.entertainment";
+				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.news";
 				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -450,7 +490,7 @@
 					"$(SRCROOT)/../shared/build/xcode-frameworks/$(CONFIGURATION)/$(SDK_NAME)",
 				);
 				INFOPLIST_FILE = App/Info.plist;
-				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.entertainment";
+				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.news";
 				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",

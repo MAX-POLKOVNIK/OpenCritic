@@ -16,17 +16,16 @@ import com.opencritic.api.dto.outlet.OutletDto
 import com.opencritic.api.dto.platform.PlatformDto
 import com.opencritic.api.dto.popular.PopularItemDto
 import com.opencritic.api.dto.profile.ProfileDto
-import com.opencritic.api.dto.review.ReviewedTodayGameDto
 import com.opencritic.api.dto.released.ReleasedGameDto
 import com.opencritic.api.dto.review.ReviewDto
 import com.opencritic.api.dto.review.ReviewSortKey
+import com.opencritic.api.dto.review.ReviewedTodayGameDto
 import com.opencritic.api.dto.search.SearchItemDto
 import com.opencritic.api.exceptions.NoInternetException
 import com.opencritic.api.exceptions.UnknownException
 import com.opencritic.api.exceptions.UnsuccessfulResponseException
 import io.ktor.client.HttpClient
 import io.ktor.client.call.body
-import io.ktor.client.network.sockets.SocketTimeoutException
 import io.ktor.client.request.HttpRequestBuilder
 import io.ktor.client.request.get
 import io.ktor.client.request.headers
@@ -35,7 +34,7 @@ import io.ktor.client.request.setBody
 import io.ktor.http.ContentType
 import io.ktor.http.HttpHeaders
 import io.ktor.http.contentType
-import io.ktor.utils.io.errors.IOException
+import kotlinx.io.IOException
 
 internal class OpenCriticsApiImpl(
     private val client: HttpClient,

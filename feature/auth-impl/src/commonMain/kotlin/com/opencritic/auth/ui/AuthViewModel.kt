@@ -3,8 +3,6 @@ package com.opencritic.auth.ui
 import com.opencritic.auth.api.domain.GetAuthStateInteractor
 import com.opencritic.auth.api.domain.SetOfflineModeInteractor
 import com.opencritic.auth.domain.AuthByTokenInteractor
-import com.opencritic.auth.domain.GetAuthStateInteractorImpl
-import com.opencritic.auth.domain.SetOfflineModeInteractorImpl
 import com.opencritic.logs.Logger
 import com.opencritic.mvvm.BaseContentViewModel
 import com.opencritic.mvvm.CommonViewModelState
@@ -36,9 +34,9 @@ class AuthViewModel(
                     descriptionText = StringRes.str_auth_description.asTextSource(),
                     authButtonText = StringRes.str_auth_button.asTextSource(),
                     useOfflineListsText = StringRes.str_auth_use_offline_button.asTextSource(),
-                    onAuthButtonClicked = { onAuth() },
-                    onTokenChanged = { onTokenChanged(it) },
-                    onUseOfflineListsClick = { onUserOffline() }
+                    onAuthButtonClicked = ::onAuth,
+                    onTokenChanged = ::onTokenChanged,
+                    onUseOfflineListsClick = ::onUserOffline
                 )
             }
         }

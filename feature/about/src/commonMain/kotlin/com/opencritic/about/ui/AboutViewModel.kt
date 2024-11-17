@@ -15,10 +15,9 @@ class AboutViewModel(
         CommonViewModelState.content(
             title = StringRes.str_about_title.asTextSource(),
             content = AboutContent(
-                appVersion = getAppVersionInteractor()
-            ) {
-                onClick(it)
-            }
+                appVersion = getAppVersionInteractor(),
+                onLinkClick = ::onClick
+            )
         )
 
     private fun onClick(url: String) {

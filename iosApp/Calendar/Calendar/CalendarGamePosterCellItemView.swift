@@ -24,7 +24,7 @@ struct CalendarGamePosterCellItemView: View {
                 .aspectRatio(10 / 16, contentMode: .fit)
         }
         .aspectRatio(10 / 16, contentMode: .fit)
-        .onTapGesture { item.onClick() }
+        .onTapGesture { item.click() }
     }
 }
 

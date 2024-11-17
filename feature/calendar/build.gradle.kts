@@ -35,6 +35,7 @@ kotlin {
             implementation(libs.androidx.lifecycle.viewmodel)
             implementation(libs.moko.resources)
             implementation(libs.kotlinx.datetime)
+            implementation(libs.kotlinx.collections.immutable)
         }
         commonTest.dependencies {
             implementation(libs.kotlin.test)

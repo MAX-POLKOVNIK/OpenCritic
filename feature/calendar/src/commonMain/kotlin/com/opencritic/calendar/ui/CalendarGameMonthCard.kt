@@ -1,50 +1,52 @@
 package com.opencritic.calendar.ui
 
-import com.opencritic.calendar.domain.CalendarGame
 import com.opencritic.calendar.domain.GameMonth
 import com.opencritic.mvvm.ListItem
+import kotlinx.collections.immutable.ImmutableList
+import kotlinx.collections.immutable.persistentListOf
+import kotlinx.collections.immutable.toImmutableList
 
 data class CalendarGameMonthCard(
     val nameText: String,
-    val rows: List<CalendarGameRowItem>,
+    val rows: ImmutableList<CalendarGameRowItem>,
     override val id: String = nameText,
 ) : ListItem<String> {
     fun switchedNext(): CalendarGameMonthCard =
-        copy(rows = rows.map { it.switchedNext() })
+        copy(rows = rows.map { it.switchedNext() }.toImmutableList())
 }
 
 fun CalendarGameMonthCard(
     month: GameMonth,
-    onPosterClick: (CalendarGame) -> Unit,
+    onPosterClick: (CalendarGamePosterCellItem) -> Unit,
 ): CalendarGameMonthCard =
     CalendarGameMonthCard(
         nameText = month.name,
         rows = month.weeks.map { week ->
             CalendarGameRowItem(
-                cells = week.days.map { day ->
+                cells = week.days.mapIndexed { index, day ->
                     CalendarGameCellItem(
+                        id = day?.dayNumber ?: (index * -1),
                         dayText = day?.dayNumber?.toString() ?: "",
                         isBackgroundVisible = day != null,
                         posters = day?.games?.map { game ->
                             CalendarGamePosterCellItem(
                                 id = game.id,
+                                name = game.name,
                                 posterImageUrl = game.posterImageUrl,
-                                onClick = { onPosterClick(game) }
+                                onClick = onPosterClick
                             )
-                        } ?: emptyList()
+                        }?.toImmutableList() ?: persistentListOf()
                     )
-                }
+                }.toImmutableList()
             )
-        }
+        }.toImmutableList()
     )
 
 @Suppress("FunctionName")
 fun CalendarGameMonthCard_PreviewData(nameText: String = "September"): CalendarGameMonthCard =
     CalendarGameMonthCard(
         nameText = nameText,
-        rows = buildList {
-            repeat(5) {
-                CalendarGameRowItem_PreviewData()
-            }
-        }
+        rows = List(5) {
+            CalendarGameRowItem_PreviewData()
+        }.toImmutableList()
     )

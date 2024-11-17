@@ -1,7 +1,6 @@
 package com.opencritic.news.di
 
 import com.opencritic.mvvm.viewModelOf
-import com.opencritic.navigation.ScreenCreator
 import com.opencritic.news.data.ArticleRepositoryImpl
 import com.opencritic.news.domain.ArticleRepository
 import com.opencritic.news.domain.GetArticleInteractor

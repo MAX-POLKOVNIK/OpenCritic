@@ -1,12 +1,12 @@
 package com.opencritic.calendar.ui
 
-import com.opencritic.calendar.domain.CalendarGame
 import com.opencritic.calendar.domain.GetGameCalendarInteractor
 import com.opencritic.games.details.api.ui.GameDetailsRoute
 import com.opencritic.mvvm.BaseContentViewModel
 import com.opencritic.mvvm.CommonViewModelState
 import com.opencritic.resources.text.StringRes
 import com.opencritic.resources.text.asTextSource
+import kotlinx.collections.immutable.toImmutableList
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 import kotlin.time.Duration.Companion.seconds
@@ -42,7 +42,7 @@ class CalendarViewModel(
                                     month = it,
                                     onPosterClick = ::navigateToGame
                                 )
-                            },
+                            }.toImmutableList(),
                         )
                     }
 
@@ -58,14 +58,14 @@ class CalendarViewModel(
 
                 updateContentIfSet {
                     copy(
-                        cards = cards.map { it.switchedNext() }
+                        cards = cards.map { it.switchedNext() }.toImmutableList()
                     )
                 }
             }
         }
     }
 
-    private fun navigateToGame(calendarGame: CalendarGame) {
+    private fun navigateToGame(calendarGame: CalendarGamePosterCellItem) {
         GameDetailsRoute.navigate(
             GameDetailsRoute.InitArgs(calendarGame.id, calendarGame.name)
         )

@@ -20,6 +20,7 @@ androidxRoom = "2.7.0-alpha11"
 runtime = "1.7.1"
 sqlite = "2.5.0-SNAPSHOT"
 adaptiveAndroid = "1.0.0"
+jetbrainsKotlinJvm = "2.0.21"
 
 [libraries]
 kotlin-test = { module = "org.jetbrains.kotlin:kotlin-test", version.ref = "kotlin" }
@@ -71,4 +72,5 @@ kotlin-ksp = { id = "com.google.devtools.ksp", version = "2.0.21-1.0.27" }
 moko-resources = { id = "dev.icerock.mobile.multiplatform-resources", version = "0.24.2" }
 compose-compiler = { id = "org.jetbrains.kotlin.plugin.compose", version.ref = "kotlin" }
 composeMultiplatform = { id = "org.jetbrains.compose", version.ref = "compose-multiplatform" }
+jetbrains-kotlin-jvm = { id = "org.jetbrains.kotlin.jvm", version.ref = "jetbrainsKotlinJvm" }
 

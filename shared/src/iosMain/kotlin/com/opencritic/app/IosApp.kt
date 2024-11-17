@@ -1,13 +1,18 @@
 package com.opencritic.app
 
 import com.opencritic.navigation.ScreenCreator
+import com.opencritic.remote.images.ImagePreloader
 import org.koin.core.KoinApplication
 
 @Suppress("unused")
 object IosApp : BaseApp() {
-    fun init(creators: List<ScreenCreator<*>>) {
+    fun init(
+        creators: List<ScreenCreator<*>>,
+        imagePreloader: () -> ImagePreloader,
+    ) {
         onInit(
-            screenCreatorsModule(creators)
+            screenCreatorsModule(creators),
+            imagePreloaderModule(imagePreloader)
         )
     }
 

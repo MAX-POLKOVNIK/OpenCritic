@@ -18,7 +18,7 @@ class GetDashboardInteractor(
                 val switchFeatured = async { dashboardRepository.getSwitchFeatured() }
                 val xboxFeatured = async { dashboardRepository.getXboxFeatured() }
                 val playstationFeatured = async { dashboardRepository.getPlaystationFeatured() }
-
+                
                 Dashboard(
                     popularGames = popularGames.await(),
                     deals = deals.await(),

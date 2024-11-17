@@ -19,6 +19,7 @@ kotlin {
         projects.core.logs,
         projects.core.resources,
         projects.core.mvvm,
+        projects.core.remoteImages,
         projects.feature.dashboard,
         projects.feature.dashboardApi,
         projects.feature.games,

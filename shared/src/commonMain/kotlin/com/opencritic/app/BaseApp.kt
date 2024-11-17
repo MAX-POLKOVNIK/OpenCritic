@@ -25,7 +25,10 @@ import org.koin.core.module.Module
 abstract class BaseApp : KoinComponent {
     private val logger: Logger by inject()
 
-    internal fun onInit(screenModule: Module) {
+    internal fun onInit(
+        screenModule: Module,
+        imagePreloader: Module,
+    ) {
         startKoin {
             onKoinInit(this)
 
@@ -45,6 +48,7 @@ abstract class BaseApp : KoinComponent {
                 aboutModule,
                 hallOfFameModule,
                 screenModule,
+                imagePreloader
             )
         }
 

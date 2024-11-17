@@ -36,7 +36,8 @@ struct OpenCriticApp: App {
                 anyCreator(of: AuthorReviewsScreenCreator()),
                 anyCreator(of: GameDetailsScreenCreator()),
                 anyCreator(of: GameMediaScreenCreator()),
-            ]
+            ],
+            imagePreloader: { NukeImagePreloader() }
         )
     }
 	var body: some Scene {

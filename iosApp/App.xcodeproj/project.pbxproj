@@ -26,6 +26,7 @@
 		42A460312CE9A04E0055BFBC /* BuildSharedFramework.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 42A4602F2CE9A0440055BFBC /* BuildSharedFramework.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		42A4603E2CE9BEEE0055BFBC /* Nuke in Frameworks */ = {isa = PBXBuildFile; productRef = 42A4603D2CE9BEEE0055BFBC /* Nuke */; };
 		42A460402CE9BEEE0055BFBC /* NukeUI in Frameworks */ = {isa = PBXBuildFile; productRef = 42A4603F2CE9BEEE0055BFBC /* NukeUI */; };
+		42A460422CE9C5630055BFBC /* NukeImagePreloader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42A460412CE9C5580055BFBC /* NukeImagePreloader.swift */; };
 		42C658432C8794A500F30992 /* Mvvm.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 42C658422C8794A500F30992 /* Mvvm.framework */; };
 		42C658442C8794A500F30992 /* Mvvm.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 42C658422C8794A500F30992 /* Mvvm.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		42C6586D2C879C2A00F30992 /* Resource.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 42C6586C2C879C2A00F30992 /* Resource.framework */; };
@@ -102,6 +103,7 @@
 		4211D3A62C8846600042F631 /* Reviews.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = Reviews.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		4211D3D02C8847200042F631 /* Search.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = Search.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		42A4602A2CE9A0440055BFBC /* BuildSharedFramework.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = BuildSharedFramework.xcodeproj; path = BuildSharedFramework/BuildSharedFramework.xcodeproj; sourceTree = "<group>"; };
+		42A460412CE9C5580055BFBC /* NukeImagePreloader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NukeImagePreloader.swift; sourceTree = "<group>"; };
 		42C658422C8794A500F30992 /* Mvvm.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = Mvvm.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		42C6586C2C879C2A00F30992 /* Resource.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = Resource.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		42C658E52C882E0500F30992 /* MvvmBase.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = MvvmBase.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -184,6 +186,7 @@
 		7555FF7D242A565900829871 /* App */ = {
 			isa = PBXGroup;
 			children = (
+				42A460412CE9C5580055BFBC /* NukeImagePreloader.swift */,
 				058557BA273AAA24004C7B11 /* Assets.xcassets */,
 				7555FF8C242A565B00829871 /* Info.plist */,
 				2152FB032600AC8F00CF470E /* OpenCriticApp.swift */,
@@ -329,6 +332,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				2152FB042600AC8F00CF470E /* OpenCriticApp.swift in Sources */,
+				42A460422CE9C5630055BFBC /* NukeImagePreloader.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

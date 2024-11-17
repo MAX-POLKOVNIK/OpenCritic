@@ -1,28 +1,25 @@
 package com.opencritic.news.ui
 
-import com.opencritic.games.details.ui.LoadingItem
+import androidx.paging.ItemSnapshotList
 import com.opencritic.mvvm.ScreenContent
-import kotlinx.collections.immutable.ImmutableList
-import kotlinx.collections.immutable.persistentListOf
+import com.opencritic.news.domain.ArticlePreview
 
 data class ArticleListContent(
-    val items: ImmutableList<ArticleListItem>,
+    val items: ItemSnapshotList<ArticlePreview>,
     val isRefreshing: Boolean,
     val isLoadingItemVisible: Boolean,
-    val loadingItem: LoadingItem,
-    val onLoadMore: () -> Unit,
     val onRefresh: suspend () -> Unit,
     val onRefreshRequested: () -> Unit,
+    val getItemAt: (Int) -> ArticleListItem?,
 ) : ScreenContent
 
 @Suppress("FunctionName")
 fun ArticleListContent_PreviewData(): ArticleListContent =
     ArticleListContent(
-        items = persistentListOf(ArticleListItem_PreviewData()),
+        items = ItemSnapshotList(0, 0, emptyList()),
         isRefreshing = false,
         isLoadingItemVisible = true,
-        loadingItem = LoadingItem,
-        onLoadMore = {},
         onRefresh = {},
         onRefreshRequested = {},
+        getItemAt = { null }
     )

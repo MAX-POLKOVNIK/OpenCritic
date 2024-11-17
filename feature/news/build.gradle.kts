@@ -39,6 +39,7 @@ kotlin {
             implementation(libs.androidx.lifecycle.viewmodel)
             implementation(libs.moko.resources)
             implementation(libs.kotlinx.collections.immutable)
+            implementation(libs.androidx.paging.common)
         }
         commonTest.dependencies {
             implementation(libs.kotlin.test)

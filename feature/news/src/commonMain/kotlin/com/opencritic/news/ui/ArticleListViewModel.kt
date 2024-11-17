@@ -1,107 +1,103 @@
 package com.opencritic.news.ui
 
+import androidx.paging.ItemSnapshotList
+import androidx.paging.PagingData
+import androidx.paging.PagingDataEvent
+import androidx.paging.PagingDataPresenter
+import androidx.paging.cachedIn
 import com.opencritic.games.details.api.ui.OutletReviewsRoute
-import com.opencritic.games.details.ui.LoadingItem
-import com.opencritic.logs.Logger
 import com.opencritic.mvvm.BaseContentViewModel
 import com.opencritic.mvvm.CommonViewModelState
 import com.opencritic.news.api.ArticleRoute
+import com.opencritic.news.domain.ArticlePreview
 import com.opencritic.news.domain.GetArticlesInteractor
-import com.opencritic.remote.images.ImagePreloader
-import com.opencritic.remote.images.load
+import com.opencritic.news.domain.pagingFlow
 import com.opencritic.resources.text.StringRes
 import com.opencritic.resources.text.asTextSource
-import kotlinx.collections.immutable.toImmutableList
+import kotlinx.coroutines.ExperimentalCoroutinesApi
+import kotlinx.coroutines.delay
+import kotlinx.coroutines.flow.Flow
+import kotlinx.coroutines.flow.MutableStateFlow
+import kotlinx.coroutines.flow.collectLatest
+import kotlinx.coroutines.flow.flatMapLatest
+import kotlinx.coroutines.flow.update
 import kotlinx.coroutines.launch
+import kotlin.time.Duration.Companion.seconds
 
 class ArticleListViewModel(
     private val getArticlesInteractor: GetArticlesInteractor,
-    private val logger: Logger,
-    private val imagePreloader: ImagePreloader,
 ) : BaseContentViewModel<ArticleListContent>() {
     override fun initialState(): CommonViewModelState<ArticleListContent> =
         CommonViewModelState.loading(title = StringRes.str_tab_news.asTextSource())
 
-    private var canLoadMore: Boolean = true
-    private var skip: Int = 0
+    private val pullToRefreshFlow = MutableStateFlow(0)
+
+    @OptIn(ExperimentalCoroutinesApi::class)
+    private val articlesFlow: Flow<PagingData<ArticlePreview>> =
+        pullToRefreshFlow.flatMapLatest {
+            getArticlesInteractor.pagingFlow().cachedIn(scope)
+        }
+
+    private val articlesPagingDataPresenter = object : PagingDataPresenter<ArticlePreview>() {
+        override suspend fun presentPagingDataEvent(event: PagingDataEvent<ArticlePreview>) {
+            updateSnapshot()
+        }
+    }
 
     override fun onStateInit() {
         super.onStateInit()
 
-        loadMore()
-    }
-
-    private suspend fun loadMore(clearList: Boolean = false) {
-        if (!canLoadMore)
-            return
-
-        getArticlesInteractor(
-            skip = if (clearList) 0 else skip,
-        )
-            .onSuccess { articles ->
-                imagePreloader.load(articles)
-
-                hideLoading()
-
-                val newListItems = articles.map {
-                    ArticleListItem(
-                        articlePreview = it,
-                        onClick = ::navigateToArticle,
-                        onOutletClick = ::navigateToOutlet,
-                    )
-                }
-
-                if (isContentSet) {
-                    updateContentIfSet {
-                        val items = ((if (clearList) emptyList() else items) + newListItems)
-                            .distinctBy { it.id }
-
-                        skip = items.size
-
-                        copy(
-                            isRefreshing = false,
-                            items = items.toImmutableList()
-                        )
-                    }
-                } else {
-                    setContent {
-                        skip = newListItems.size
-
-                        ArticleListContent(
-                            items = newListItems.toImmutableList(),
-                            isRefreshing = false,
-                            isLoadingItemVisible = true,
-                            loadingItem = LoadingItem,
-                            onLoadMore = ::loadMore,
-                            onRefresh = { refresh() },
-                            onRefreshRequested = ::onRefreshRequested
-                        )
-                    }
-                }
-            }
-            .onFailure {
-                logger.log(it.toString())
-            }
-    }
-
-    private fun loadMore() {
         scope.launch {
-            loadMore(clearList = false)
+            articlesFlow.collectLatest {
+                articlesPagingDataPresenter.collectFrom(it)
+            }
         }
+
+        setContent {
+            ArticleListContent(
+                items = ItemSnapshotList(0, 0, emptyList()),
+                isRefreshing = false,
+                isLoadingItemVisible = true,
+                onRefresh = { onRefresh() },
+                onRefreshRequested = ::onRefreshRequested,
+                getItemAt = ::getElement
+            )
+        }
+    }
+
+    private fun getElement(index: Int): ArticleListItem? =
+        articlesPagingDataPresenter[index]
+            ?.let {
+                ArticleListItem(
+                    articlePreview = it,
+                    onClick = ::navigateToArticle,
+                    onOutletClick = ::navigateToOutlet,
+                )
+            }
+
+    private suspend fun onRefresh() {
+        onRefreshRequested()
+
+        // Need to think how to bound paging and suspend
+        delay(1.seconds)
     }
 
     private fun onRefreshRequested() {
-        scope.launch {
-            updateContentIfSet {
-                copy(isRefreshing = true)
-            }
-
-            refresh()
+        updateContentIfSet {
+            copy(isRefreshing = true)
         }
+        pullToRefreshFlow.update { it.inc() }
     }
 
-    private suspend fun refresh() {
-        loadMore(clearList = true)
+    private fun updateSnapshot() {
+        hideLoading()
+
+        updateContentIfSet {
+            copy(
+                isRefreshing = false,
+                items = articlesPagingDataPresenter.snapshot()
+            )
+        }
     }
 
     private fun navigateToArticle(item: ArticleListItem) {

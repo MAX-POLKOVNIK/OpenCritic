@@ -32,26 +32,17 @@ fun ArticleListContent(
             contentPadding = PaddingValues(defaultPadding),
             modifier = modifier,
         ) {
-            content.items.forEach {
-                item(key = it.id) {
-                    Column {
-                        ArticleListItem(
-                            item = it,
-                            modifier = Modifier
-                                .padding(vertical = smallPadding)
-                        )
-                        HorizontalDivider()
-                    }
-                }
-            }
-
-            if (content.isLoadingItemVisible) {
-                item {
-                    LoadingItem(
-                        item = content.loadingItem,
-                    )
-                    LaunchedEffect(Unit) {
-                        content.onLoadMore()
+            content.items.indices.forEach { index ->
+                item(key = index) {
+                    content.getItemAt(index)?.let {
+                        Column {
+                            ArticleListItem(
+                                item = it,
+                                modifier = Modifier
+                                    .padding(vertical = smallPadding)
+                            )
+                            HorizontalDivider()
+                        }
                     }
                 }
             }

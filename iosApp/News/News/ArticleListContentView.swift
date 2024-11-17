@@ -9,23 +9,20 @@
 import SwiftUI
 import shared
 import Mvvm
+import Views
 
 struct ArticleListContentView: View {
     let content: ArticleListContent
     
     var body: some View {
         List {
-            ForEach(content.items, id: \.id) { item in
-                ArticleListItemView(item: item)
-                    .buttonStyle(BorderlessButtonStyle())
-            }
-            
-            if content.isLoadingItemVisible {
-                LoadingItemView(item: content.loadingItem)
-                    .onAppear {
-                        content.onLoadMore()
+            ForEach(content.items.indices, id: \.self) { index in
+                LazyVStack {
+                    if let item = content.getItemAt(index.ktInt32) {
+                        ArticleListItemView(item: item)
+                            .buttonStyle(BorderlessButtonStyle())
                     }
-                    .listRowSeparator(.hidden)
+                }
             }
         }
         .listStyle(.plain)

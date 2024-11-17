@@ -11,20 +11,19 @@ data class DashboardDealListItem(
     private val onClick: (DashboardDealListItem) -> Unit,
     private val onBuyNowClick: (DashboardDealListItem) -> Unit,
 ) : ListItem<Long> {
-    override val id: Long
-        get() = gameDeal.game.id
+    override val id: Long = gameDeal.game.id
 
-    val gameItem: DashboardPosterGameListItem
-        get() = DashboardPosterGameListItem(
+    val gameItem: DashboardPosterGameListItem =
+        DashboardPosterGameListItem(
             game = gameDeal.game,
             onClick = { onClick(this) }
         )
 
-    val priceText: String
-        get() = gameDeal.price?.let { "$$it" } ?: ""
+    val priceText: String =
+        gameDeal.price?.let { "$$it" } ?: ""
 
-    val buyNowText: TextSource
-        get() = MR.strings.str_buy_now_on.asTextSource(gameDeal.name)
+    val buyNowText: TextSource =
+        MR.strings.str_buy_now_on.asTextSource(gameDeal.name)
 
     fun buyNowClick() =
         onBuyNowClick(this)

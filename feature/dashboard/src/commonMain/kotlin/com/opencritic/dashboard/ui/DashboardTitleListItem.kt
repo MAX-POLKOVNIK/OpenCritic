@@ -9,12 +9,9 @@ data class DashboardTitleListItem(
     val buttonTitle: TextSource? = null,
     val onButtonClick: () -> Unit = {},
 ) {
-    val titleText: TextSource
-        get() = title
+    val titleText: TextSource = title
 
-    val subtitleText: TextSource
-        get() = subtitle ?: "".asTextSource()
+    val subtitleText: TextSource = subtitle ?: "".asTextSource()
 
-    val isDescriptionVisible: Boolean
-        get() = subtitle != null
+    val isDescriptionVisible: Boolean = subtitle != null
 }

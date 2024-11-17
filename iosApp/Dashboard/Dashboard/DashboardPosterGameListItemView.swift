@@ -9,6 +9,7 @@
 import SwiftUI
 import shared
 import Views
+internal import NukeUI
 
 struct DashboardPosterGameListItemView: View {
     let item: DashboardPosterGameListItem
@@ -17,20 +18,23 @@ struct DashboardPosterGameListItemView: View {
         VStack(
             alignment: .leading,
             content: {
-                CachedAsyncImage(
-                    url: URL(string: item.posterUrl),
-                    urlCache: .imageCache
-                ) { image in
-                    image.resizable()
-                } placeholder: {
-                    NoGamePosterView()
+                LazyImage(
+                    url: URL(string: item.posterUrl)
+                ) { state in
+                    if let image = state.image {
+                        image.resizable()
+                    } else {
+                        NoGamePosterView()
+                    }
+                    
                 }
-                    .frame(width: 128, height: 192)
-                    .clipShape(.rect(cornerRadius: 8))
+                .frame(width: 128, height: 192)
+                .clipShape(.rect(cornerRadius: 8))
                 
                 GameRankView(
                     model: item.rank
                 )
+                
                 Text(item.nameText)
                     .lineLimit(2)
                     .multilineTextAlignment(.leading)

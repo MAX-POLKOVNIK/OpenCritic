@@ -5,11 +5,13 @@ import com.opencritic.mvvm.ListItem
 import com.opencritic.resources.text.StringRes
 import com.opencritic.resources.text.TextSource
 import com.opencritic.resources.text.asTextSource
+import kotlinx.collections.immutable.ImmutableList
+import kotlinx.collections.immutable.toImmutableList
 
 data class DashboardSublistListItem(
     override val id: Type,
     val titleText: TextSource,
-    val items: List<DashboardGameListItem>,
+    val items: ImmutableList<DashboardGameListItem>,
     val viewMoreText: TextSource,
     private val onMoreClick: (DashboardSublistListItem) -> Unit,
 ) : ListItem<DashboardSublistListItem.Type> {
@@ -34,7 +36,7 @@ data class DashboardSublistListItem(
                 titleText = StringRes.str_recently_released.asTextSource(),
                 items = gameItems.map {
                     DashboardGameListItem(it, onItemClick)
-                },
+                }.toImmutableList(),
                 viewMoreText = StringRes.str_view_more.asTextSource(),
                 onMoreClick = onMoreClick,
             )
@@ -49,7 +51,7 @@ data class DashboardSublistListItem(
                 titleText = StringRes.str_upcoming_releases.asTextSource(),
                 items = gameItems.map {
                     DashboardGameListItem(it, onItemClick)
-                },
+                }.toImmutableList(),
                 viewMoreText = StringRes.str_view_more.asTextSource(),
                 onMoreClick = onMoreClick,
             )
@@ -64,7 +66,7 @@ data class DashboardSublistListItem(
                 titleText = StringRes.str_reviewed_today.asTextSource(),
                 items = gameItems.map {
                     DashboardGameListItem(it, onItemClick)
-                },
+                }.toImmutableList(),
                 viewMoreText = StringRes.str_reviewed_this_week.asTextSource(),
                 onMoreClick = onMoreClick,
             )

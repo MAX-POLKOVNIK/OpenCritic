@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 50;
+	objectVersion = 54;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -24,6 +24,8 @@
 		4211D3D22C8847200042F631 /* Search.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 4211D3D02C8847200042F631 /* Search.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		42A460302CE9A04E0055BFBC /* BuildSharedFramework.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 42A4602F2CE9A0440055BFBC /* BuildSharedFramework.framework */; };
 		42A460312CE9A04E0055BFBC /* BuildSharedFramework.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 42A4602F2CE9A0440055BFBC /* BuildSharedFramework.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		42A4603E2CE9BEEE0055BFBC /* Nuke in Frameworks */ = {isa = PBXBuildFile; productRef = 42A4603D2CE9BEEE0055BFBC /* Nuke */; };
+		42A460402CE9BEEE0055BFBC /* NukeUI in Frameworks */ = {isa = PBXBuildFile; productRef = 42A4603F2CE9BEEE0055BFBC /* NukeUI */; };
 		42C658432C8794A500F30992 /* Mvvm.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 42C658422C8794A500F30992 /* Mvvm.framework */; };
 		42C658442C8794A500F30992 /* Mvvm.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 42C658422C8794A500F30992 /* Mvvm.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		42C6586D2C879C2A00F30992 /* Resource.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 42C6586C2C879C2A00F30992 /* Resource.framework */; };
@@ -133,8 +135,10 @@
 				4211D36F2C88458A0042F631 /* News.framework in Frameworks */,
 				42009EED2CE8CD5300986A0E /* ScreenNavigation.framework in Frameworks */,
 				42C6596C2C88390900F30992 /* Calendar.framework in Frameworks */,
+				42A4603E2CE9BEEE0055BFBC /* Nuke in Frameworks */,
 				4211D3392C8844A20042F631 /* Main.framework in Frameworks */,
 				4211D3102C88439F0042F631 /* HallOfFame.framework in Frameworks */,
+				42A460402CE9BEEE0055BFBC /* NukeUI in Frameworks */,
 				42C659422C88375400F30992 /* Auth.framework in Frameworks */,
 				42C658E62C882E0500F30992 /* MvvmBase.framework in Frameworks */,
 				42C65A052C883D1100F30992 /* GameBrowser.framework in Frameworks */,
@@ -261,6 +265,9 @@
 				Base,
 			);
 			mainGroup = 7555FF72242A565900829871;
+			packageReferences = (
+				42A4603C2CE9BEEE0055BFBC /* XCRemoteSwiftPackageReference "Nuke" */,
+			);
 			productRefGroup = 7555FF7C242A565900829871 /* Products */;
 			projectDirPath = "";
 			projectReferences = (
@@ -530,6 +537,30 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		42A4603C2CE9BEEE0055BFBC /* XCRemoteSwiftPackageReference "Nuke" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/kean/Nuke";
+			requirement = {
+				kind = exactVersion;
+				version = 12.8.0;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		42A4603D2CE9BEEE0055BFBC /* Nuke */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 42A4603C2CE9BEEE0055BFBC /* XCRemoteSwiftPackageReference "Nuke" */;
+			productName = Nuke;
+		};
+		42A4603F2CE9BEEE0055BFBC /* NukeUI */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 42A4603C2CE9BEEE0055BFBC /* XCRemoteSwiftPackageReference "Nuke" */;
+			productName = NukeUI;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = 7555FF73242A565900829871 /* Project object */;
 }

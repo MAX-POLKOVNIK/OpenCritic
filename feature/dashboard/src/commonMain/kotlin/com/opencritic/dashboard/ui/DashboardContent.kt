@@ -6,6 +6,8 @@ import com.opencritic.games.GameRank
 import com.opencritic.games.Tier
 import com.opencritic.mvvm.ScreenContent
 import com.opencritic.resources.text.asTextSource
+import kotlinx.collections.immutable.persistentListOf
+import kotlinx.collections.immutable.toImmutableList
 
 data class DashboardContent(
     val popularGamesTitle: DashboardTitleListItem,
@@ -53,7 +55,7 @@ fun DashboardContent_PreviewData(): DashboardContent =
                     posterUrl = "https://img.opencritic.com/game/14353/o/cDwMyHmW.jpg",
                     rank = GameRank(tier = Tier.Fair, score = 32)
                 )
-            ),
+            ).toImmutableList(),
             onClick = {}
         ),
         dealsTitle = DashboardTitleListItem(
@@ -95,28 +97,28 @@ fun DashboardContent_PreviewData(): DashboardContent =
                     price = 49.99f,
                     externalUrl = ""
                 ),
-            ),
+            ).toImmutableList(),
             onClick = { },
             onBuyNowClick = {}
         ),
         recentlyReleased = DashboardSublistListItem(
             id = DashboardSublistListItem.Type.RecentlyReleased,
             titleText = "".asTextSource(),
-            items = emptyList(),
+            items = persistentListOf(),
             viewMoreText = "".asTextSource(),
             onMoreClick = {}
         ),
         upcomingReleases = DashboardSublistListItem(
             id = DashboardSublistListItem.Type.RecentlyReleased,
             titleText = "".asTextSource(),
-            items = emptyList(),
+            items = persistentListOf(),
             viewMoreText = "".asTextSource(),
             onMoreClick = {}
         ),
         reviewedToday = DashboardSublistListItem(
             id = DashboardSublistListItem.Type.RecentlyReleased,
             titleText = "".asTextSource(),
-            items = emptyList(),
+            items = persistentListOf(),
             viewMoreText = "".asTextSource(),
             onMoreClick = {}
         ),
@@ -126,7 +128,7 @@ fun DashboardContent_PreviewData(): DashboardContent =
             buttonTitle = "View all".asTextSource(),
         ),
         hallOfFame = DashboardPosterGamesHorizontalListItem(
-            popularGames = emptyList(),
+            popularGames = persistentListOf(),
             onClick = {}
         ),
         whoIsMightyMan = DashboardMightyManListItem(),
@@ -135,7 +137,7 @@ fun DashboardContent_PreviewData(): DashboardContent =
             subtitle = "Hall of fame description".asTextSource()
         ),
         switchGames = DashboardPosterGamesHorizontalListItem(
-            popularGames = emptyList(),
+            popularGames = persistentListOf(),
             onClick = {}
         ),
         xboxTitle = DashboardTitleListItem(
@@ -143,7 +145,7 @@ fun DashboardContent_PreviewData(): DashboardContent =
             subtitle = "Hall of fame description".asTextSource()
         ),
         xboxGames = DashboardPosterGamesHorizontalListItem(
-            popularGames = emptyList(),
+            popularGames = persistentListOf(),
             onClick = {}
         ),
         playstationTitle = DashboardTitleListItem(
@@ -151,7 +153,7 @@ fun DashboardContent_PreviewData(): DashboardContent =
             subtitle = "Hall of fame description".asTextSource()
         ),
         playstationGames = DashboardPosterGamesHorizontalListItem(
-            popularGames = emptyList(),
+            popularGames = persistentListOf(),
             onClick = {},
         )
 )

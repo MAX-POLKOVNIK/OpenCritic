@@ -9,18 +9,14 @@ data class DashboardPosterGameListItem(
     val game: PosterGame,
     private val onClick: (DashboardPosterGameListItem) -> Unit,
 ) : ListItem<Long> {
-    override val id: Long
-        get() = game.id
+    override val id: Long = game.id
 
-    val nameText: String
-        get() = game.name
+    val nameText: String = game.name
 
     val rank: GameRankModel? =
         GameRankModel(game.rank)
 
-    val posterUrl: String
-        get() = game.posterUrl
+    val posterUrl: String = game.posterUrl
 
-    fun click() =
-        onClick(this)
+    fun click() = onClick(this)
 }

@@ -11,6 +11,7 @@ import com.opencritic.navigation.UrlRoute
 import com.opencritic.navigation.asUrlRouteArgs
 import com.opencritic.resources.text.StringRes
 import com.opencritic.resources.text.asTextSource
+import kotlinx.collections.immutable.toImmutableList
 import kotlinx.coroutines.launch
 import kotlinx.datetime.Clock
 import kotlinx.datetime.TimeZone
@@ -53,59 +54,42 @@ class DashboardViewModel(
                                 StringRes.str_popular_games_description.asTextSource(),
                             ),
                             popularGames = DashboardPosterGamesHorizontalListItem(
-                                dashboard.popularGames,
-                            ) {
-                                navigateToGame(it.id, it.nameText)
-                            },
+                                popularGames = dashboard.popularGames.toImmutableList(),
+                                onClick = ::onDashboardPosterGameListItemClick
+                            ),
                             dealsTitle = DashboardTitleListItem(
                                 StringRes.str_featured_deals.asTextSource(),
                                 StringRes.str_featured_deals_description.asTextSource(),
                             ),
                             deals = DashboardDealsHorizontalListItem(
-                                deals = dashboard.deals,
-                                onClick = { navigateToGame(it.id, it.gameDeal.game.name) },
-                                onBuyNowClick = {
-                                    UrlRoute.navigate(it.gameDeal.externalUrl.asUrlRouteArgs())
-                                },
+                                deals = dashboard.deals.toImmutableList(),
+                                onClick = ::onDashboardDealListItemClick,
+                                onBuyNowClick = ::onDashboardDealListItemBuyNowClick,
                             ),
                             reviewedToday = DashboardSublistListItem.reviewedToday(
                                 gameItems = dashboard.reviewedToday,
-                                onItemClick = { navigateToGame(it.id, it.nameText) },
-                                onMoreClick = {
-                                    PeriodGameBrowserRoute.navigate(
-                                        PeriodGameBrowserRoute.InitArgs(PeriodGameBrowserRoute.InitArgs.Period.ReviewedThisWeek)
-                                    )
-                                },
+                                onItemClick = ::onDashboardGameListItemClick,
+                                onMoreClick = ::onReviewedThisWeekMoreClick,
                             ),
                             upcomingReleases = DashboardSublistListItem.upcomingReleases(
                                 gameItems = dashboard.upcoming,
-                                onItemClick = { navigateToGame(it.id, it.nameText) },
-                                onMoreClick = {
-                                    PeriodGameBrowserRoute.navigate(
-                                        PeriodGameBrowserRoute.InitArgs(
-                                            PeriodGameBrowserRoute.InitArgs.Period.UpcomingReleases
-                                        )
-                                    )
-                                },
+                                onItemClick = ::onDashboardGameListItemClick,
+                                onMoreClick = ::onUpcomingReleasesMoreClick,
                             ),
                             recentlyReleased = DashboardSublistListItem.recentlyReleased(
                                 gameItems = dashboard.recentlyReleased,
-                                onItemClick = { navigateToGame(it.id, it.nameText) },
-                                onMoreClick = {
-                                    PeriodGameBrowserRoute.navigate(
-                                        PeriodGameBrowserRoute.InitArgs(PeriodGameBrowserRoute.InitArgs.Period.RecentlyReleased)
-                                    )
-                                },
+                                onItemClick = ::onDashboardGameListItemClick,
+                                onMoreClick = ::onRecentlyReleasedMoreClick,
                             ),
                             hallOfFameTitle = DashboardTitleListItem(
                                 title = StringRes.str_hall_of_fame.asTextSource(currentYear.toString()),
                                 subtitle = StringRes.str_hall_of_fame_description.asTextSource(currentYear.toString()),
                                 buttonTitle = StringRes.str_dashboard_view_all_hall_of_fame.asTextSource(),
-                                onButtonClick = { navigateToHallOfFame() }
+                                onButtonClick = ::navigateToHallOfFame
                             ),
                             hallOfFame = DashboardPosterGamesHorizontalListItem(
-                                popularGames = dashboard.hallOfFame,
-                                onClick = { navigateToGame(it.id, it.nameText) }
+                                popularGames = dashboard.hallOfFame.toImmutableList(),
+                                onClick = ::onDashboardPosterGameListItemClick
                             ),
                             whoIsMightyMan = DashboardMightyManListItem(),
                             switchTitle = DashboardTitleListItem(
@@ -113,24 +97,24 @@ class DashboardViewModel(
                                 subtitle = dashboard.switchFeatured.description.asTextSource(),
                             ),
                             switchGames = DashboardPosterGamesHorizontalListItem(
-                                popularGames = dashboard.switchFeatured.games,
-                                onClick = { navigateToGame(it.id, it.nameText) }
+                                popularGames = dashboard.switchFeatured.games.toImmutableList(),
+                                onClick = ::onDashboardPosterGameListItemClick
                             ),
                             xboxTitle = DashboardTitleListItem(
                                 title = dashboard.xboxFeatured.name.asTextSource(),
                                 subtitle = dashboard.xboxFeatured.description.asTextSource(),
                             ),
                             xboxGames = DashboardPosterGamesHorizontalListItem(
-                                popularGames = dashboard.xboxFeatured.games,
-                                onClick = { navigateToGame(it.id, it.nameText) }
+                                popularGames = dashboard.xboxFeatured.games.toImmutableList(),
+                                onClick = ::onDashboardPosterGameListItemClick
                             ),
                             playstationTitle = DashboardTitleListItem(
                                 title = dashboard.playstationFeatured.name.asTextSource(),
                                 subtitle = dashboard.playstationFeatured.description.asTextSource(),
                             ),
                             playstationGames = DashboardPosterGamesHorizontalListItem(
-                                popularGames = dashboard.playstationFeatured.games,
-                                onClick = { navigateToGame(it.id, it.nameText) }
+                                popularGames = dashboard.playstationFeatured.games.toImmutableList(),
+                                onClick = ::onDashboardPosterGameListItemClick
                             ),
                         )
                     }
@@ -138,11 +122,40 @@ class DashboardViewModel(
         }
     }
 
+    private fun onReviewedThisWeekMoreClick(
+        @Suppress("UNUSED_PARAMETER") item: DashboardSublistListItem
+    ) = navigateToPeriodGameBrowser(PeriodGameBrowserRoute.InitArgs.Period.ReviewedThisWeek)
+
+    private fun onUpcomingReleasesMoreClick(
+        @Suppress("UNUSED_PARAMETER") item: DashboardSublistListItem
+    ) = navigateToPeriodGameBrowser(PeriodGameBrowserRoute.InitArgs.Period.UpcomingReleases)
+
+    private fun onRecentlyReleasedMoreClick(
+        @Suppress("UNUSED_PARAMETER") item: DashboardSublistListItem
+    ) = navigateToPeriodGameBrowser(PeriodGameBrowserRoute.InitArgs.Period.RecentlyReleased)
+
+    private fun onDashboardGameListItemClick(item: DashboardGameListItem) =
+        navigateToGame(item.id, item.nameText)
+
+    private fun onDashboardDealListItemClick(item: DashboardDealListItem) =
+        navigateToGame(item.id, item.gameDeal.game.name)
+
+    private fun onDashboardDealListItemBuyNowClick(item: DashboardDealListItem) =
+        UrlRoute.navigate(item.gameDeal.externalUrl.asUrlRouteArgs())
+
+    private fun onDashboardPosterGameListItemClick(item: DashboardPosterGameListItem) =
+        navigateToGame(item.id, item.nameText)
+
     private fun navigateToHallOfFame() =
         HallOfFameRoute.navigate(HallOfFameRoute.InitArgs)
 
     private fun navigateToGame(gameId: Long, gameName: String) =
         GameDetailsRoute.navigate(
             GameDetailsRoute.InitArgs(gameId, gameName)
+        )
+
+    private fun navigateToPeriodGameBrowser(period: PeriodGameBrowserRoute.InitArgs.Period) =
+        PeriodGameBrowserRoute.navigate(
+            PeriodGameBrowserRoute.InitArgs(period)
         )
 }

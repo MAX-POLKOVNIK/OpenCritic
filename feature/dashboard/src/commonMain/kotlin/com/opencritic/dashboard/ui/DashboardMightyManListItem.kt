@@ -5,13 +5,15 @@ import com.opencritic.mvvm.ListItem
 import com.opencritic.resources.text.StringRes
 import com.opencritic.resources.text.TextSource
 import com.opencritic.resources.text.asTextSource
+import kotlinx.collections.immutable.ImmutableList
+import kotlinx.collections.immutable.toImmutableList
 
 data class DashboardMightyManListItem(
     override val id: Unit = Unit,
     val title: TextSource,
     val description: TextSource,
     val colorDescription: TextSource,
-    val items: List<DashboardMightyManItemListItem>,
+    val items: ImmutableList<DashboardMightyManItemListItem>,
 ) : ListItem<Unit>
 
 
@@ -24,5 +26,5 @@ fun DashboardMightyManListItem(): DashboardMightyManListItem =
             DashboardMightyManItemListItem(
                 tier = it,
             )
-        }
+        }.toImmutableList()
     )

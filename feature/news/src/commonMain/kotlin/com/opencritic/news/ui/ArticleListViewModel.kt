@@ -1,21 +1,23 @@
 package com.opencritic.news.ui
 
-import com.opencritic.games.Outlet
 import com.opencritic.games.details.api.ui.OutletReviewsRoute
 import com.opencritic.games.details.ui.LoadingItem
 import com.opencritic.logs.Logger
 import com.opencritic.mvvm.BaseContentViewModel
 import com.opencritic.mvvm.CommonViewModelState
 import com.opencritic.news.api.ArticleRoute
-import com.opencritic.news.domain.ArticlePreview
 import com.opencritic.news.domain.GetArticlesInteractor
+import com.opencritic.remote.images.ImagePreloader
+import com.opencritic.remote.images.load
 import com.opencritic.resources.text.StringRes
 import com.opencritic.resources.text.asTextSource
+import kotlinx.collections.immutable.toImmutableList
 import kotlinx.coroutines.launch
 
 class ArticleListViewModel(
     private val getArticlesInteractor: GetArticlesInteractor,
     private val logger: Logger,
+    private val imagePreloader: ImagePreloader,
 ) : BaseContentViewModel<ArticleListContent>() {
     override fun initialState(): CommonViewModelState<ArticleListContent> =
         CommonViewModelState.loading(title = StringRes.str_tab_news.asTextSource())
@@ -37,16 +39,15 @@ class ArticleListViewModel(
             skip = if (clearList) 0 else skip,
         )
             .onSuccess { articles ->
-                logger.log("Loaded articles count: ${articles.size} --- ${state.value.content?.items?.size}")
-                logger.log("Loaded articles: ${articles.map { it.id }}")
+                imagePreloader.load(articles)
 
                 hideLoading()
 
                 val newListItems = articles.map {
                     ArticleListItem(
                         articlePreview = it,
-                        onClick = { navigateToArticle(it) },
-                        onOutletClick = { navigateToOutlet(it.outlet) }
+                        onClick = ::navigateToArticle,
+                        onOutletClick = ::navigateToOutlet,
                     )
                 }
 
@@ -59,7 +60,7 @@ class ArticleListViewModel(
 
                         copy(
                             isRefreshing = false,
-                            items = items
+                            items = items.toImmutableList()
                         )
                     }
                 } else {
@@ -67,13 +68,13 @@ class ArticleListViewModel(
                         skip = newListItems.size
 
                         ArticleListContent(
-                            items = newListItems,
+                            items = newListItems.toImmutableList(),
                             isRefreshing = false,
                             isLoadingItemVisible = true,
                             loadingItem = LoadingItem,
-                            onLoadMore = { loadMore() },
+                            onLoadMore = ::loadMore,
                             onRefresh = { refresh() },
-                            onRefreshRequested = { onRefreshRequested() }
+                            onRefreshRequested = ::onRefreshRequested
                         )
                     }
                 }
@@ -103,17 +104,17 @@ class ArticleListViewModel(
         loadMore(clearList = true)
     }
 
-    private fun navigateToArticle(articlePreview: ArticlePreview) {
+    private fun navigateToArticle(item: ArticleListItem) {
         ArticleRoute.navigate(
-            ArticleRoute.InitArgs(articlePreview.id, articlePreview.teaser)
+            ArticleRoute.InitArgs(item.id, item.title)
         )
     }
 
-    private fun navigateToOutlet(outlet: Outlet?) {
-        if (outlet == null) return
+    private fun navigateToOutlet(item: ArticleListItem) {
+        val id = item.outletId ?: return
 
         OutletReviewsRoute.navigate(
-            OutletReviewsRoute.InitArgs(outlet.id, outlet.name)
+            OutletReviewsRoute.InitArgs(id, item.outletText)
         )
     }
 }

@@ -5,6 +5,7 @@ import com.opencritic.mvvm.ViewModelState
 import com.opencritic.resources.colors.Colors
 import com.opencritic.resources.text.TextSource
 import com.opencritic.resources.text.asTextSource
+import kotlinx.collections.immutable.persistentListOf
 
 data class SearchState(
     val searchText: String,
@@ -23,7 +24,7 @@ fun SearchState_PreviewData(): SearchState =
         searchText = "Game to find",
         searchHint = "Type something".asTextSource(),
         searchListItemsState = SearchItemsState.Content(
-            items = listOf(
+            items = persistentListOf(
                 SearchListItem(
                     id = 1,
                     nameText = "Game name",

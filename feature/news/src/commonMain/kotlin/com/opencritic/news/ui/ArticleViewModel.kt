@@ -1,6 +1,5 @@
 package com.opencritic.news.ui
 
-import com.opencritic.games.Outlet
 import com.opencritic.games.details.api.ui.GameDetailsRoute
 import com.opencritic.games.details.api.ui.OutletReviewsRoute
 import com.opencritic.mvvm.BaseContentViewModel
@@ -11,7 +10,6 @@ import com.opencritic.navigation.asShareLinkRouteArgs
 import com.opencritic.navigation.asUrlRouteArgs
 import com.opencritic.news.api.ArticleRoute
 import com.opencritic.news.domain.Article
-import com.opencritic.news.domain.ArticleGame
 import com.opencritic.news.domain.GetArticleInteractor
 import com.opencritic.resources.images.Icons
 import com.opencritic.resources.text.DateTextSource
@@ -26,6 +24,8 @@ class ArticleViewModel(
     override fun initialState(): CommonViewModelState<ArticleContent> =
         CommonViewModelState.loading(title = args.title.asTextSource())
 
+    private var article: Article? = null
+
     override fun onStateInit() {
         super.onStateInit()
 
@@ -39,6 +39,8 @@ class ArticleViewModel(
                     showError(it) { loadArticle() }
                 }
                 .onSuccess { article ->
+                    this@ArticleViewModel.article = article
+
                     setContent {
                         ArticleContent(
                             bannerImageUrl = article.bannerUrl,
@@ -56,10 +58,10 @@ class ArticleViewModel(
                             htmlToRender = article.html.clearLinks().removeSeeFullString(),
                             isSeeFullArticleVisible = article.originalUrl != null,
                             seeFullArticleText = "See full article at ${article.outlet?.name}".asTextSource(),
-                            onAction = { navigateToShare(article) },
-                            onOutletClick = { navigateToOutlet(article.outlet) },
-                            onGameClick = { navigateToGame(article.relatedGames.firstOrNull()) },
-                            onSeeFullArticleClick = { navigateToFullArticle(article.originalUrl) },
+                            onAction = ::navigateToShare,
+                            onOutletClick = ::navigateToOutlet,
+                            onGameClick = ::navigateToGame,
+                            onSeeFullArticleClick = ::navigateToFullArticle,
                         )
                     }
                 }
@@ -87,29 +89,31 @@ class ArticleViewModel(
         return substring(0, start1)
     }
 
-    private fun navigateToGame(articleGame: ArticleGame?) {
-        if (articleGame == null) return
+    private fun navigateToGame() {
+        val articleGame = article?.relatedGames?.firstOrNull() ?: return
 
         GameDetailsRoute.navigate(
             GameDetailsRoute.InitArgs(articleGame.id, articleGame.name)
         )
     }
 
-    private fun navigateToOutlet(outlet: Outlet?) {
-        if (outlet == null) return
+    private fun navigateToOutlet() {
+        val outlet = article?.outlet ?: return
 
         OutletReviewsRoute.navigate(
             OutletReviewsRoute.InitArgs(outlet.id, outlet.name)
         )
     }
 
-    private fun navigateToFullArticle(url: String?) {
-        if (url.isNullOrBlank()) return
+    private fun navigateToFullArticle() {
+        val url = article?.originalUrl?.takeUnless { it.isBlank() } ?: return
 
         UrlRoute.navigate(url.asUrlRouteArgs())
     }
 
-    private fun navigateToShare(article: Article) {
+    private fun navigateToShare() {
+        val article = article ?: return
+
         val title = Regex("[^A-Za-z0-9 ]")
             .replace(article.teaser, "-")
             .lowercase()

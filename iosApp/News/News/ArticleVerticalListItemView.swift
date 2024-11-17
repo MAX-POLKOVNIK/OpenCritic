@@ -9,26 +9,26 @@
 import SwiftUI
 import shared
 import Views
+internal import NukeUI
 
 struct ArticleVerticalListItemView: View {
     let item: ArticleListItem
     
     var body: some View {
         VStack(alignment: .leading) {
-            CachedAsyncImage(
-                url: URL(string: item.bannerImageUrl),
-                urlCache: .imageCache
-            ) { image in
-                image.resizable()
-                    .scaledToFill()
-                    .aspectRatio(16 / 9, contentMode: .fit)
-                    .frame(minWidth: 0, maxWidth: .infinity)
-                    .clipped()
-            } placeholder: {
-                Rectangle()
-                    .foregroundColor(.gray)
-                    .background(.gray)
-                    .aspectRatio(16 / 9, contentMode: .fit)
+            LazyImage(url: URL(string: item.bannerImageUrl)) { state in
+                if let image = state.image {
+                    image.resizable()
+                        .scaledToFill()
+                        .aspectRatio(16 / 9, contentMode: .fit)
+                        .frame(minWidth: 0, maxWidth: .infinity)
+                        .clipped()
+                } else {
+                    Rectangle()
+                        .foregroundColor(.gray)
+                        .background(.gray)
+                        .aspectRatio(16 / 9, contentMode: .fit)
+                }
             }
             .card()
             
@@ -42,7 +42,7 @@ struct ArticleVerticalListItemView: View {
                 HStack {
                     Text(item.outletTitleText)
                     Button(item.outletText) {
-                        item.onOutletClick()
+                        item.outletClick()
                     }
                 }
             }
@@ -53,12 +53,12 @@ struct ArticleVerticalListItemView: View {
             HStack {
                 Spacer()
                 Button(item.readMoreText) {
-                    item.onReadMoreClick()
+                    item.readMoreClick()
                 }
             }
         }
         .onTapGesture {
-            item.onReadMoreClick()
+            item.readMoreClick()
         }
     }
 }

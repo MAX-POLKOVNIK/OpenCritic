@@ -9,6 +9,7 @@
 import SwiftUI
 import shared
 import Views
+internal import NukeUI
 
 struct ArticleContentView: View {
     let content: ArticleContent
@@ -16,20 +17,20 @@ struct ArticleContentView: View {
     var body: some View {
         ScrollView {
             VStack(alignment: .center) {
-                CachedAsyncImage(
-                    url: URL(string: content.bannerImageUrl),
-                    urlCache: .imageCache
-                ) { image in
-                    image.resizable()
-                        .scaledToFill()
-                        .aspectRatio(16 / 9, contentMode: .fit)
-                        .frame(minWidth: 0, maxWidth: .infinity)
-                        .clipped()
-                } placeholder: {
-                    Rectangle()
-                        .foregroundColor(.gray)
-                        .background(.gray)
-                        .aspectRatio(16 / 9, contentMode: .fit)
+                LazyImage(url: URL(string: content.bannerImageUrl)) { state in
+                    if let image = state.image {
+                        image.resizable()
+                            .scaledToFill()
+                            .aspectRatio(16 / 9, contentMode: .fit)
+                            .frame(minWidth: 0, maxWidth: .infinity)
+                            .clipped()
+                    } else {
+                        Rectangle()
+                            .foregroundColor(.gray)
+                            .background(.gray)
+                            .aspectRatio(16 / 9, contentMode: .fit)
+                    }
+                    
                 }
                 
                 Text(content.title)

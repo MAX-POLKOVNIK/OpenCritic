@@ -10,7 +10,6 @@
 		4211D2D22C8842080042F631 /* Resource.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4211D2D12C8842080042F631 /* Resource.framework */; };
 		42C6597C2C88398A00F30992 /* Views.h in Headers */ = {isa = PBXBuildFile; fileRef = 42C6597B2C88398A00F30992 /* Views.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		42C659842C88399D00F30992 /* BuildSharedFramework.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 42C659832C88399D00F30992 /* BuildSharedFramework.framework */; };
-		42C659982C883A0A00F30992 /* CachedImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42C659972C883A0A00F30992 /* CachedImageView.swift */; };
 		42C6599A2C883A2B00F30992 /* GameRankView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42C659992C883A2B00F30992 /* GameRankView.swift */; };
 		42C6599C2C883A4500F30992 /* NoGamePosterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42C6599B2C883A4500F30992 /* NoGamePosterView.swift */; };
 		42C6599E2C883A5D00F30992 /* RankCircleIndicatorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42C6599D2C883A5D00F30992 /* RankCircleIndicatorView.swift */; };
@@ -21,7 +20,6 @@
 		42C659782C88398A00F30992 /* Views.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Views.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		42C6597B2C88398A00F30992 /* Views.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Views.h; sourceTree = "<group>"; };
 		42C659832C88399D00F30992 /* BuildSharedFramework.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = BuildSharedFramework.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		42C659972C883A0A00F30992 /* CachedImageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CachedImageView.swift; sourceTree = "<group>"; };
 		42C659992C883A2B00F30992 /* GameRankView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameRankView.swift; sourceTree = "<group>"; };
 		42C6599B2C883A4500F30992 /* NoGamePosterView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoGamePosterView.swift; sourceTree = "<group>"; };
 		42C6599D2C883A5D00F30992 /* RankCircleIndicatorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RankCircleIndicatorView.swift; sourceTree = "<group>"; };
@@ -61,7 +59,6 @@
 			isa = PBXGroup;
 			children = (
 				42C6597B2C88398A00F30992 /* Views.h */,
-				42C659972C883A0A00F30992 /* CachedImageView.swift */,
 				42C659992C883A2B00F30992 /* GameRankView.swift */,
 				42C6599B2C883A4500F30992 /* NoGamePosterView.swift */,
 				42C6599D2C883A5D00F30992 /* RankCircleIndicatorView.swift */,
@@ -159,7 +156,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				42C6599A2C883A2B00F30992 /* GameRankView.swift in Sources */,
-				42C659982C883A0A00F30992 /* CachedImageView.swift in Sources */,
 				42C6599E2C883A5D00F30992 /* RankCircleIndicatorView.swift in Sources */,
 				42C6599C2C883A4500F30992 /* NoGamePosterView.swift in Sources */,
 			);

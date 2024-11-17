@@ -9,6 +9,7 @@
 import SwiftUI
 import shared
 import Views
+internal import NukeUI
 
 struct ArticleHorizontalListItemView: View {
     let item: ArticleListItem
@@ -23,20 +24,20 @@ struct ArticleHorizontalListItemView: View {
             .frame(height: 0)
             
             GridRow {
-                CachedAsyncImage(
-                    url: URL(string: item.bannerImageUrl),
-                    urlCache: .imageCache
-                ) { image in
-                    image.resizable()
-                        .scaledToFill()
-                        .aspectRatio(16 / 9, contentMode: .fit)
-                        .frame(minWidth: 0, maxWidth: .infinity)
-                        .clipped()
-                } placeholder: {
-                    Rectangle()
-                        .foregroundColor(.gray)
-                        .background(.gray)
-                        .aspectRatio(16 / 9, contentMode: .fit)
+                LazyImage(url: URL(string: item.bannerImageUrl)) { state in
+                    if let image = state.image {
+                        image.resizable()
+                            .scaledToFill()
+                            .aspectRatio(16 / 9, contentMode: .fit)
+                            .frame(minWidth: 0, maxWidth: .infinity)
+                            .clipped()
+                    } else {
+                        Rectangle()
+                            .foregroundColor(.gray)
+                            .background(.gray)
+                            .aspectRatio(16 / 9, contentMode: .fit)
+                    }
+                    
                 }
                 .card()
                 .gridCellColumns(4) // 40 %
@@ -52,7 +53,7 @@ struct ArticleHorizontalListItemView: View {
                         HStack {
                             Text(item.outletTitleText)
                             Button(item.outletText) {
-                                item.onOutletClick()
+                                item.outletClick()
                             }
                         }
                     }
@@ -63,7 +64,7 @@ struct ArticleHorizontalListItemView: View {
                     HStack {
                         Spacer()
                         Button(item.readMoreText) {
-                            item.onReadMoreClick()
+                            item.readMoreClick()
                         }
                     }
                 }
@@ -73,7 +74,7 @@ struct ArticleHorizontalListItemView: View {
         }
         .contentShape(Rectangle())
         .onTapGesture {
-            item.onReadMoreClick()
+            item.readMoreClick()
         }
     }
 }

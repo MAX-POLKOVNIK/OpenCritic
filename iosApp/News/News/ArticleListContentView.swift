@@ -25,6 +25,7 @@ struct ArticleListContentView: View {
                     .onAppear {
                         content.onLoadMore()
                     }
+                    .listRowSeparator(.hidden)
             }
         }
         .listStyle(.plain)

@@ -34,7 +34,7 @@ fun ArticleVerticalListItem(
     Column(
         horizontalAlignment = Alignment.Start,
         modifier = modifier
-            .clickable { item.onReadMoreClick() },
+            .clickable(onClick = item::readMoreClick),
     ) {
         Card {
             Box(
@@ -86,9 +86,7 @@ fun ArticleVerticalListItem(
                     fontWeight = FontWeight.Medium,
                     modifier = Modifier
                         .padding(start = smallPadding)
-                        .clickable {
-                            item.onOutletClick()
-                        }
+                        .clickable(onClick = item::outletClick)
                 )
             }
         }
@@ -105,7 +103,7 @@ fun ArticleVerticalListItem(
             modifier = Modifier
                 .fillMaxWidth()
         ) {
-            TextButton(onClick = item.onReadMoreClick) {
+            TextButton(onClick = item::readMoreClick) {
                 Text(text = item.readMoreText.text())
             }
         }

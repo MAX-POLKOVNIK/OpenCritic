@@ -35,7 +35,7 @@ fun ArticleHorizontalListItem(
         verticalAlignment = Alignment.CenterVertically,
         horizontalArrangement = Arrangement.spacedBy(defaultPadding),
         modifier = modifier
-            .clickable { item.onReadMoreClick() },
+            .clickable(onClick = item::readMoreClick),
     ) {
         Card(
             modifier = Modifier
@@ -95,9 +95,7 @@ fun ArticleHorizontalListItem(
                         fontWeight = FontWeight.Medium,
                         modifier = Modifier
                             .padding(start = smallPadding)
-                            .clickable {
-                                item.onOutletClick()
-                            }
+                            .clickable(onClick = item::outletClick)
                     )
                 }
             }
@@ -114,7 +112,7 @@ fun ArticleHorizontalListItem(
                 modifier = Modifier
                     .fillMaxWidth()
             ) {
-                TextButton(onClick = item.onReadMoreClick) {
+                TextButton(onClick = item::readMoreClick) {
                     Text(text = item.readMoreText.text())
                 }
             }

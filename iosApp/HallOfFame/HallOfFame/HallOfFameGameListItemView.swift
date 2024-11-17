@@ -9,6 +9,7 @@
 import SwiftUI
 import shared
 import Views
+internal import NukeUI
 
 struct HallOfFameGameListItemView: View {
     let item: HallOfFameGameListItem
@@ -17,17 +18,16 @@ struct HallOfFameGameListItemView: View {
         VStack(
             alignment: .leading,
             content: {
-                CachedAsyncImage(
-                    url: URL(string: item.posterUrl),
-                    urlCache: .imageCache
-                ) { image in
-                    image.resizable()
-                } placeholder: {
-                    NoGamePosterView()
-                        .frame(width: 128, height: 192)
+                LazyImage(url: URL(string: item.posterUrl)) { state in
+                    if let image = state.image {
+                        image.resizable()
+                    } else {
+                        NoGamePosterView()
+                            .frame(width: 128, height: 192)
+                    }
                 }
-                    .frame(width: 128, height: 192)
-                    .clipShape(.rect(cornerRadius: 8))
+                .frame(width: 128, height: 192)
+                .clipShape(.rect(cornerRadius: 8))
                 
                 GameRankView(
                     model: item.rank
@@ -40,7 +40,7 @@ struct HallOfFameGameListItemView: View {
             }
         )
         .onTapGesture {
-            item.onClick()
+            item.click()
         }
     }
 }

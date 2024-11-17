@@ -11,13 +11,14 @@ import com.opencritic.resources.images.Icons
 import com.opencritic.resources.text.StringRes
 import com.opencritic.resources.text.asTextSource
 import com.opencritic.search.api.ui.SearchRoute
+import kotlinx.collections.immutable.persistentListOf
 
 class MainViewModel(
     private val screenCreators: ScreenCreators,
 ) : BaseContentViewModel<MainContent>() {
     override fun initialState(): CommonViewModelState<MainContent> =
         CommonViewModelState.content(
-            content = listOf(
+            content = persistentListOf(
                 Tab(
                     id = TabType.Dashboard,
                     name = StringRes.str_tab_main.asTextSource(),

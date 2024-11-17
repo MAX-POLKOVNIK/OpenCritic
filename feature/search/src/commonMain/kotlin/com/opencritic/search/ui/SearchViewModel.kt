@@ -11,6 +11,7 @@ import com.opencritic.resources.text.asTextSource
 import com.opencritic.search.domain.SearchInteractor
 import com.opencritic.search.domain.SearchItem
 import com.opencritic.search.domain.SearchItemKind
+import kotlinx.collections.immutable.toImmutableList
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.FlowPreview
@@ -87,7 +88,7 @@ class SearchViewModel(
                                     ) {
                                         onSearchItemClick(item)
                                     }
-                                }
+                                }.toImmutableList()
                             )
                         )
                     }

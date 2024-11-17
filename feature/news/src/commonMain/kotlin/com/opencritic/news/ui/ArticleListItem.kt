@@ -9,6 +9,7 @@ import com.opencritic.resources.text.format
 
 data class ArticleListItem(
     override val id: Long,
+    internal val outletId: Int?,
     val bannerImageUrl: String,
     val title: String,
     val summary: String,
@@ -18,16 +19,20 @@ data class ArticleListItem(
     val writtenBy: TextSource,
     val publishedDateText: TextSource,
     val readMoreText: TextSource,
-    val onReadMoreClick: () -> Unit,
-    val onOutletClick: () -> Unit,
-) : ListItem<Long>
+    private val onReadMoreClick: (ArticleListItem) -> Unit,
+    private val onOutletClick: (ArticleListItem) -> Unit,
+) : ListItem<Long> {
+    fun readMoreClick() = onReadMoreClick(this)
+    fun outletClick() = onOutletClick(this)
+}
 
 fun ArticleListItem(
     articlePreview: ArticlePreview,
-    onClick: () -> Unit,
-    onOutletClick: () -> Unit,
+    onClick: (ArticleListItem) -> Unit,
+    onOutletClick: (ArticleListItem) -> Unit,
 ): ArticleListItem = ArticleListItem(
     id = articlePreview.id,
+    outletId = articlePreview.outlet?.id,
     bannerImageUrl = articlePreview.bannerUrl,
     title = articlePreview.teaser,
     summary = articlePreview.description,
@@ -45,6 +50,7 @@ fun ArticleListItem(
 fun ArticleListItem_PreviewData(): ArticleListItem =
     ArticleListItem(
         id = 1,
+        outletId = 0,
         bannerImageUrl = "https://opencritic.com/news/3612/xbox-game-roadmap-highlights-major-games-coming-in-2024-and-2025",
         title = "Xbox Game Roadmap Highlights Major Games Coming in 2024 and 2025",
         summary = "Microsoft releases a roadmap showcasing major new Xbox games coming in 2024 and 2025.",

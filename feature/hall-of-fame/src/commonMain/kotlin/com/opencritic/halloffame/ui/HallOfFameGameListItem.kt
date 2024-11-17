@@ -9,12 +9,14 @@ data class HallOfFameGameListItem(
     val nameText: String,
     val rank: GameRankModel?,
     val posterUrl: String,
-    val onClick: () -> Unit,
-) : ListItem<Long>
+    private val onClick: (HallOfFameGameListItem) -> Unit,
+) : ListItem<Long> {
+    fun click() = onClick(this)
+}
 
 fun HallOfFameGameListItem(
     game: HallOfFameGame,
-    onClick: () -> Unit,
+    onClick: (HallOfFameGameListItem) -> Unit,
 ): HallOfFameGameListItem =
     HallOfFameGameListItem(
         id = game.id,

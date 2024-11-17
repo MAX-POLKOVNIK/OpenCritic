@@ -9,19 +9,19 @@
 import SwiftUI
 import shared
 import Views
+internal import NukeUI
 
 struct CalendarGamePosterCellItemView: View {
     let item: CalendarGamePosterCellItem
     
     var body: some View {
-        CachedAsyncImage(
-            url: URL(string: item.posterImageUrl ?? ""),
-            urlCache: .imageCache
-        ) { image in
-            image.resizable()
-        } placeholder: {
-            NoGamePosterView()
-                .aspectRatio(10 / 16, contentMode: .fit)
+        LazyImage(url: URL(string: item.posterImageUrl ?? "")) { state in
+            if let image = state.image {
+                image.resizable().aspectRatio(10 / 16, contentMode: .fill)
+            } else {
+                NoGamePosterView()
+                    .aspectRatio(10 / 16, contentMode: .fit)
+            }
         }
         .aspectRatio(10 / 16, contentMode: .fit)
         .onTapGesture { item.click() }

@@ -8,6 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		4211D3132C8843F50042F631 /* Mvvm.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4211D3122C8843F50042F631 /* Mvvm.framework */; };
+		42A460342CE9B2EA0055BFBC /* Nuke in Frameworks */ = {isa = PBXBuildFile; productRef = 42A460332CE9B2EA0055BFBC /* Nuke */; };
+		42A460362CE9B2EA0055BFBC /* NukeUI in Frameworks */ = {isa = PBXBuildFile; productRef = 42A460352CE9B2EA0055BFBC /* NukeUI */; };
 		42C659522C88382100F30992 /* Calendar.h in Headers */ = {isa = PBXBuildFile; fileRef = 42C659512C88382100F30992 /* Calendar.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		42C6595A2C88385500F30992 /* BuildSharedFramework.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 42C659592C88385500F30992 /* BuildSharedFramework.framework */; };
 		42C659642C88388900F30992 /* CalendarContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42C659622C88388900F30992 /* CalendarContentView.swift */; };
@@ -40,9 +42,11 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				42A460362CE9B2EA0055BFBC /* NukeUI in Frameworks */,
 				4211D3132C8843F50042F631 /* Mvvm.framework in Frameworks */,
 				42C6595A2C88385500F30992 /* BuildSharedFramework.framework in Frameworks */,
 				42C659A02C883A6E00F30992 /* Views.framework in Frameworks */,
+				42A460342CE9B2EA0055BFBC /* Nuke in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -146,6 +150,9 @@
 				Base,
 			);
 			mainGroup = 42C659442C88382100F30992;
+			packageReferences = (
+				42A460322CE9B2EA0055BFBC /* XCRemoteSwiftPackageReference "Nuke" */,
+			);
 			productRefGroup = 42C6594F2C88382100F30992 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -400,6 +407,30 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		42A460322CE9B2EA0055BFBC /* XCRemoteSwiftPackageReference "Nuke" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/kean/Nuke";
+			requirement = {
+				kind = exactVersion;
+				version = 12.8.0;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		42A460332CE9B2EA0055BFBC /* Nuke */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 42A460322CE9B2EA0055BFBC /* XCRemoteSwiftPackageReference "Nuke" */;
+			productName = Nuke;
+		};
+		42A460352CE9B2EA0055BFBC /* NukeUI */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 42A460322CE9B2EA0055BFBC /* XCRemoteSwiftPackageReference "Nuke" */;
+			productName = NukeUI;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = 42C659452C88382100F30992 /* Project object */;
 }

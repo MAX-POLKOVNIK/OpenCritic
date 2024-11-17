@@ -9,23 +9,23 @@
 import SwiftUI
 import shared
 import Views
+internal import NukeUI
 
 struct GameRowListItemView: View {
     let item: GameRowListItem
     
     var body: some View {
         HStack(alignment: .top) {
-            CachedAsyncImage(
-                url: URL(string: item.posterUrl),
-                urlCache: .imageCache
-            ) { image in
-                image.resizable()
-            } placeholder: {
-                NoGamePosterView()
-                    .frame(width: 64, height: 96)
+            LazyImage(url: URL(string: item.posterUrl)) { state in
+                if let image = state.image {
+                    image.resizable()
+                } else {
+                    NoGamePosterView()
+                        .frame(width: 64, height: 96)
+                }
             }
-                .frame(width: 64, height: 96)
-                .clipShape(.rect(cornerRadius: 4))
+            .frame(width: 64, height: 96)
+            .clipShape(.rect(cornerRadius: 4))
             
             VStack(alignment: .leading) {
                 Text(item.name)
@@ -38,7 +38,7 @@ struct GameRowListItemView: View {
         }
         .contentShape(Rectangle())
         .onTapGesture {
-            item.onClick()
+            item.click()
         }
     }
 }

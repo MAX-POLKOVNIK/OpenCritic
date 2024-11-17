@@ -9,6 +9,7 @@
 import SwiftUI
 import shared
 import Views
+internal import NukeUI
 
 struct GameListItemView: View {
     let item: GameListListItem
@@ -24,17 +25,16 @@ struct GameListItemView: View {
                         let padding = ((item.posterUrls.count - 1 - index) * 64)
                         
                         ZStack(alignment: .leading) {
-                            CachedAsyncImage(
-                                url: URL(string: posterUrl),
-                                urlCache: .imageCache
-                            ) { image in
-                                image.resizable()
-                            } placeholder: {
-                                NoGamePosterView()
-                                    .frame(width: 128, height: 192)
+                            LazyImage(url: URL(string: posterUrl)) { state in
+                                if let image = state.image {
+                                    image.resizable()
+                                } else {
+                                    NoGamePosterView()
+                                        .frame(width: 128, height: 192)
+                                }
                             }
-                                .frame(width: 128, height: 192)
-                                .clipShape(.rect(cornerRadius: 8))
+                            .frame(width: 128, height: 192)
+                            .clipShape(.rect(cornerRadius: 8))
                         }
                         .padding(.leading, CGFloat(padding))
                     }
@@ -54,17 +54,17 @@ struct GameListItemView: View {
             
             HStack {
                 if item.isShareButtonVisible {
-                    Button(item.shareButtonText, action: item.onShareClick)
+                    Button(item.shareButtonText, action: item.shareClick)
                         .padding()
                 }
                 
-                Button(item.editButtonText, action: item.onEditClick)
+                Button(item.editButtonText, action: item.editClick)
                     .padding()
                     .disabled(true)
             }
         }
         .card()
-        .onTapGesture { item.onClick() }
+        .onTapGesture { item.click() }
     }
 }
 

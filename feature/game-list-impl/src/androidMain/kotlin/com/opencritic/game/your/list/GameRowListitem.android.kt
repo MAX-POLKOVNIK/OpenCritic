@@ -31,7 +31,7 @@ fun GameRowListItem(
     Row(
         modifier = modifier
             .fillMaxWidth()
-            .clickable { item.onClick() }
+            .clickable { item.click() }
     ) {
         SubcomposeAsyncImage(
             model = item.posterUrl,

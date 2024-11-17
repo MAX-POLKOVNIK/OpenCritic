@@ -37,7 +37,7 @@ fun GameListListItem(
     modifier: Modifier = Modifier
 ) {
     Card(
-        onClick = item.onClick,
+        onClick = item::click,
         modifier = modifier
             .fillMaxWidth(),
     ) {
@@ -106,13 +106,13 @@ fun GameListListItem(
                 modifier = Modifier.padding(top = smallPadding)
             ) {
                 if (item.isShareButtonVisible) {
-                    Button(onClick = item.onShareClick) {
+                    Button(onClick = item::shareClick) {
                         Text(text = item.shareButtonText.text())
                     }
                 }
 
                 Button(
-                    onClick = item.onEditClick,
+                    onClick = item::editClick,
                     enabled = false,
                 ) {
                     Text(text = item.editButtonText.text())

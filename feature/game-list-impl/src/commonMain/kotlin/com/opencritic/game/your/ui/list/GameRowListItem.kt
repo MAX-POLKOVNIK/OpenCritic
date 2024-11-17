@@ -12,10 +12,13 @@ data class GameRowListItem(
     val name: String,
     val posterUrl: String,
     val rank: GameRankModel?,
-    val onClick: () -> Unit,
-)
+    private val onClick: (GameRowListItem) -> Unit,
+) {
+    fun click() = onClick(this)
+}
 
-fun GameRowListItem(gameInList: GameInList, onClick: () -> Unit): GameRowListItem =
+
+fun GameRowListItem(gameInList: GameInList, onClick: (GameRowListItem) -> Unit): GameRowListItem =
     GameRowListItem(
         id = gameInList.id,
         name = gameInList.name,
@@ -24,6 +27,7 @@ fun GameRowListItem(gameInList: GameInList, onClick: () -> Unit): GameRowListIte
         onClick = onClick
     )
 
+@Suppress("FunctionName")
 fun GameRowListItem_PreviewData(): GameRowListItem =
     GameRowListItem(
         id = 0,

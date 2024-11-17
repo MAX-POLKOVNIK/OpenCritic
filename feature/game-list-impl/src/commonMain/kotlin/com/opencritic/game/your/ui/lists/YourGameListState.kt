@@ -7,9 +7,11 @@ import com.opencritic.resources.images.IconResource
 import com.opencritic.resources.images.Icons
 import com.opencritic.resources.text.TextSource
 import com.opencritic.resources.text.asTextSource
+import kotlinx.collections.immutable.ImmutableList
+import kotlinx.collections.immutable.persistentListOf
 
 data class YourGameListState(
-    val items: List<GameListListItem>,
+    val items: ImmutableList<GameListListItem>,
     val refresh: () -> Unit,
     val isLoginVisible: Boolean,
     val loginText: TextSource,
@@ -24,7 +26,7 @@ data class YourGameListState(
 @Suppress("FunctionName")
 fun YourGameListState_PreviewData(): YourGameListState =
     YourGameListState(
-        items = emptyList(),
+        items = persistentListOf(),
         refresh = { },
         isLoginVisible = true,
         loginText = "Login to profile".asTextSource(),

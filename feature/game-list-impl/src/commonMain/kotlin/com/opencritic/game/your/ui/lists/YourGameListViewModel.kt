@@ -10,15 +10,20 @@ import com.opencritic.mvvm.BaseContentViewModel
 import com.opencritic.mvvm.CommonViewModelState
 import com.opencritic.navigation.ShareLinkRoute
 import com.opencritic.navigation.asShareLinkRouteArgs
+import com.opencritic.remote.images.ImagePreloader
+import com.opencritic.remote.images.load
 import com.opencritic.resources.images.Icons
 import com.opencritic.resources.text.StringRes
 import com.opencritic.resources.text.asTextSource
+import kotlinx.collections.immutable.persistentListOf
+import kotlinx.collections.immutable.toImmutableList
 import kotlinx.coroutines.launch
 
 class YourGameListViewModel(
     private val getListsInteractor: GetListsInteractor,
     private val getAuthStateInteractor: GetAuthStateInteractor,
     private val setOfflineModeInteractor: SetOfflineModeInteractor,
+    private val imagePreloader: ImagePreloader,
 ) : BaseContentViewModel<YourGameListState>() {
 
     override fun initialState(): CommonViewModelState<YourGameListState> =
@@ -51,16 +56,16 @@ class YourGameListViewModel(
             if (isLoggedIn) {
                 setContent {
                     YourGameListState(
-                        items = emptyList(),
-                        onLoginClick = { navigateToAuth() },
+                        items = persistentListOf(),
+                        onLoginClick = ::navigateToAuth,
                         isLoginVisible = true,
                         loginText = StringRes.str_game_lists_login_to_profile.asTextSource(),
                         useOfflineText = StringRes.str_game_lists_use_offline.asTextSource(),
-                        onUseOfflineClick = { onUseOfflineClick() },
-                        refresh = { loadLists(shouldShowLoading = false) },
+                        onUseOfflineClick = ::onUseOfflineClick,
+                        refresh = ::refresh,
                         isActionVisible = true,
                         actionIconResource = Icons.info,
-                        onAction = { navigateToAbout() }
+                        onAction = ::navigateToAbout
                     )
                 }
             } else {
@@ -71,33 +76,36 @@ class YourGameListViewModel(
                         }
                     }
                     .onSuccess { gameLists ->
+                        imagePreloader.load(gameLists)
+
                         hideLoading()
                         setContent {
                             YourGameListState(
                                 items = gameLists.map {
                                     GameListListItem(
                                         gameList = it,
-                                        onClick = {
-                                            navigateToList(it.id, it.name)
-                                        },
-                                        onShareClick = { navigateToShare(it.shareLink) },
-                                        onEditClick = {}
+                                        onClick = ::navigateToList,
+                                        onShareClick = ::navigateToShare,
                                     )
-                                },
+                                }.toImmutableList(),
                                 onLoginClick = {},
                                 isLoginVisible = false,
                                 loginText = "".asTextSource(),
-                                refresh = { loadLists(shouldShowLoading = false) },
+                                refresh = ::refresh,
                                 isActionVisible = true,
                                 actionIconResource = Icons.info,
-                                onAction = { navigateToAbout() },
+                                onAction = ::navigateToAbout,
                                 useOfflineText = "Use offline lists".asTextSource(),
-                                onUseOfflineClick = { onUseOfflineClick() },
+                                onUseOfflineClick = ::onUseOfflineClick,
                             )
                         }
                     }
             }
         }
+    }
+
+    private fun refresh() {
+        loadLists(shouldShowLoading = false)
     }
 
     private fun onUseOfflineClick() {
@@ -108,14 +116,14 @@ class YourGameListViewModel(
         }
     }
 
-    private fun navigateToList(listId: String, listName: String) {
+    private fun navigateToList(item: GameListListItem) {
         GameListRoute.navigate(
-            GameListRoute.InitArgs(listId, listName)
+            GameListRoute.InitArgs(item.id, item.name)
         )
     }
 
-    private fun navigateToShare(url: String) {
-        ShareLinkRoute.navigate(url.asShareLinkRouteArgs())
+    private fun navigateToShare(item: GameListListItem) {
+        ShareLinkRoute.navigate(item.shareLink.asShareLinkRouteArgs())
     }
 
     private fun navigateToAuth() {

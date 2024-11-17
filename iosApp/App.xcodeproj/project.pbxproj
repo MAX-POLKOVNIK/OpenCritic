@@ -102,7 +102,6 @@
 		4211D3A62C8846600042F631 /* Reviews.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = Reviews.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		4211D3D02C8847200042F631 /* Search.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = Search.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		42A4602A2CE9A0440055BFBC /* BuildSharedFramework.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = BuildSharedFramework.xcodeproj; path = BuildSharedFramework/BuildSharedFramework.xcodeproj; sourceTree = "<group>"; };
-		42C6582B2C878D6300F30992 /* Navigation.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = Navigation.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		42C658422C8794A500F30992 /* Mvvm.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = Mvvm.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		42C6586C2C879C2A00F30992 /* Resource.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = Resource.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		42C658E52C882E0500F30992 /* MvvmBase.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = MvvmBase.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -214,7 +213,6 @@
 				42C6586C2C879C2A00F30992 /* Resource.framework */,
 				42C658422C8794A500F30992 /* Mvvm.framework */,
 				42A4602A2CE9A0440055BFBC /* BuildSharedFramework.xcodeproj */,
-				42C6582B2C878D6300F30992 /* Navigation.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";

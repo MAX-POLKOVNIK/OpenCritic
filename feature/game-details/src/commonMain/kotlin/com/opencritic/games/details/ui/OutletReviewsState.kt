@@ -8,6 +8,9 @@ import com.opencritic.mvvm.ViewModelState
 import com.opencritic.resources.images.Icons
 import com.opencritic.resources.text.TextSource
 import com.opencritic.resources.text.asTextSource
+import kotlinx.collections.immutable.ImmutableList
+import kotlinx.collections.immutable.persistentListOf
+import kotlinx.collections.immutable.toImmutableList
 
 interface OutletReviewsState : ViewModelState {
     val titleText: TextSource
@@ -26,11 +29,11 @@ interface OutletReviewsState : ViewModelState {
         val outletImageUrl: String,
         val isHomepageVisible: Boolean,
         val homepageText: TextSource,
-        val infoItems: List<IconTextItem>,
+        val infoItems: ImmutableList<IconTextItem>,
         val sortTitleText: TextSource,
         val sortText: ReviewSortItem,
-        val availableSorts: List<ReviewSortItem>,
-        val reviewItems: List<ReviewListItem>,
+        val availableSorts: ImmutableList<ReviewSortItem>,
+        val reviewItems: ImmutableList<ReviewListItem>,
         val isLoadingItemVisible: Boolean,
         val loadingItem: LoadingItem,
         val onLoadMore: () -> Unit,
@@ -48,7 +51,7 @@ fun OutletReviewsStateContent_PreviewData(): OutletReviewsState.Content =
         isHomepageVisible = true,
         homepageText = "Homepage".asTextSource(),
         sortTitleText = "Sort".asTextSource(),
-        infoItems = listOf(
+        infoItems = persistentListOf(
             IconTextItem(
                 icon = Icons.hashTag,
                 text = "2188 games reviewed".asTextSource(),
@@ -71,8 +74,9 @@ fun OutletReviewsStateContent_PreviewData(): OutletReviewsState.Content =
         ),
         availableSorts = ReviewSorting.entries
             .filter { it != ReviewSorting.MostPopular }
-            .map { ReviewSortItem(it, it.asTextSource()) },
-        reviewItems = emptyList(),
+            .map { ReviewSortItem(it, it.asTextSource()) }
+            .toImmutableList(),
+        reviewItems = persistentListOf(),
         isLoadingItemVisible = true,
         loadingItem = LoadingItem,
         onLoadMore = { },

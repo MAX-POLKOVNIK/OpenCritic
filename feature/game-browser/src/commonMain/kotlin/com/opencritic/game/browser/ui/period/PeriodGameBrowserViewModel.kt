@@ -1,12 +1,10 @@
 package com.opencritic.game.browser.ui.period
 
 import com.opencritic.game.browser.api.PeriodGameBrowserRoute
-import com.opencritic.game.browser.domain.BrowseGame
 import com.opencritic.game.browser.domain.GameSorting
 import com.opencritic.game.browser.domain.GameTimeframe
 import com.opencritic.game.browser.domain.GetBrowseGamesInteractor
 import com.opencritic.game.browser.domain.GetReviewedThisWeekInteractor
-import com.opencritic.game.browser.domain.images
 import com.opencritic.game.browser.ui.BrowseGameItem
 import com.opencritic.game.browser.ui.mapAndAdd
 import com.opencritic.games.details.api.ui.GameDetailsRoute
@@ -15,12 +13,11 @@ import com.opencritic.logs.Logger
 import com.opencritic.mvvm.BaseContentViewModel
 import com.opencritic.mvvm.CommonViewModelState
 import com.opencritic.remote.images.ImagePreloader
+import com.opencritic.remote.images.load
 import com.opencritic.resources.text.StringRes
 import com.opencritic.resources.text.TextSource
 import com.opencritic.resources.text.asTextSource
-import kotlinx.collections.immutable.ImmutableList
 import kotlinx.collections.immutable.persistentListOf
-import kotlinx.collections.immutable.toImmutableList
 import kotlinx.coroutines.launch
 
 class PeriodGameBrowserViewModel(
@@ -69,7 +66,7 @@ class PeriodGameBrowserViewModel(
                     logger.log(it.toString())
                 }
                 .onSuccess { games ->
-                    imagePreloader.load(games.images)
+                    imagePreloader.load(games)
 
                     createContentState()
                         .let { content ->
@@ -130,7 +127,7 @@ class PeriodGameBrowserViewModel(
                     )
             }
                 .onSuccess { games ->
-                    imagePreloader.load(games.images)
+                    imagePreloader.load(games)
 
                     updateContentIfSet {
                         copy(

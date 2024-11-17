@@ -24,12 +24,15 @@ import com.opencritic.navigation.ShareLinkRoute
 import com.opencritic.navigation.UrlRoute
 import com.opencritic.navigation.asShareLinkRouteArgs
 import com.opencritic.navigation.asUrlRouteArgs
+import com.opencritic.remote.images.ImagePreloader
+import com.opencritic.remote.images.load
 import com.opencritic.resources.images.Icons
 import com.opencritic.resources.images.SharedImages
 import com.opencritic.resources.text.DateTextSource
 import com.opencritic.resources.text.StringRes
 import com.opencritic.resources.text.asTextSource
 import com.opencritic.resources.text.format
+import kotlinx.collections.immutable.toImmutableList
 import kotlinx.coroutines.flow.update
 import kotlinx.coroutines.launch
 import kotlinx.datetime.TimeZone
@@ -41,11 +44,13 @@ class GameDetailsViewModel(
     private val updateGameListInteractor: UpdateGameListInteractor,
     private val getAuthStateInteractor: GetAuthStateInteractor,
     private val logger: Logger,
+    private val imagePreloader: ImagePreloader,
 ) : BaseContentViewModel<GameDetailsContent>() {
     override fun initialState(): CommonViewModelState<GameDetailsContent> =
         CommonViewModelState.loading(args.gameName.asTextSource())
 
     private var yourGame: YourGame? = null
+    private var gameUrl: String? = null
 
     override fun onStateInit() {
         super.onStateInit()
@@ -67,13 +72,16 @@ class GameDetailsViewModel(
                 }
                 .onSuccess { details ->
                     yourGame = details.yourGame
+                    gameUrl = details.url
+
+                    imagePreloader.load(details)
 
                     mutableState.update { state ->
                         state.content(
                             title = args.gameName.asTextSource(),
                             content = GameDetailsContent(
-                                isImageVisible = details.squareUrl.isNotBlank(),
-                                imageUrl = details.squareUrl,
+                                isSquareImageVisible = details.squareUrl.isNotBlank(),
+                                squareImageUrl = details.squareUrl,
                                 bannerImageUrl = details.bannerUrl,
                                 name = details.name,
                                 yourGameIndicatorItem = createYourGameIndicatorItem(details.yourGame, details),
@@ -81,7 +89,7 @@ class GameDetailsViewModel(
                                 releaseDateText = details.releaseDate.toLocalDateTime(TimeZone.UTC).date format DateTextSource.Format.Medium,
                                 platformsText = details.platforms.joinToString(", ") { it.name },
                                 isTierVisible = details.rank != null,
-                                tierImageResource = when(details.rank?.tier) {
+                                tierImageResource = when (details.rank?.tier) {
                                     Tier.Mighty -> SharedImages.mightyMan
                                     Tier.Strong -> SharedImages.strongMan
                                     Tier.Fair -> SharedImages.fairMan
@@ -106,31 +114,35 @@ class GameDetailsViewModel(
                                             score = review.score,
                                             scoreFormat = review.scoreFormat,
                                         )
-                                    },
+                                    }.toImmutableList(),
                                 isViewAllVisible = details.reviewCount != 0,
                                 viewAllText = StringRes.str_view_all_reviews.asTextSource(details.reviewCount.toString()),
                                 isMediaVisible = details.trailers.size <= 1 && details.screenshotUrls.isNotEmpty(),
                                 mediaText = StringRes.str_game_media.asTextSource(details.name),
-                                media = details.trailers
+                                media = (details.trailers
                                     .map {  trailer ->
-                                        TrailerItem(trailer) { openTrailer(trailer) }
+                                        TrailerItem(trailer, ::openTrailer)
                                     } + details.screenshotUrls
                                     .take(3)
-                                    .map {
-                                        ScreenshotItem(it) {}
-                                    },
+                                    .map { ScreenshotItem(it) }
+                                    )
+                                    .toImmutableList(),
                                 viewAllMedia = StringRes.str_view_all_media.asTextSource(),
                                 isTrailersVisible = details.trailers.size > 1,
                                 trailersText = StringRes.str_game_trailers.asTextSource(details.name),
                                 trailers = details.trailers
                                     .take(3)
                                     .map { trailer ->
-                                        TrailerItem(trailer) { openTrailer(trailer) }
-                                    },
+                                        TrailerItem(trailer, ::openTrailer)
+                                    }
+                                    .toImmutableList(),
                                 viewAllTrailers = StringRes.str_view_all_trailers.asTextSource(),
                                 isScreenshotsVisible = details.screenshotUrls.isNotEmpty() && details.trailers.size > 1,
                                 screenshotsText = StringRes.str_game_screenshots.asTextSource(details.name),
-                                screenshots = details.screenshotUrls.take(3).map { ScreenshotItem(it) {} },
+                                screenshots = details.screenshotUrls
+                                    .take(3)
+                                    .map { ScreenshotItem(it) }
+                                    .toImmutableList(),
                                 viewAllScreenshots = StringRes.str_view_all_screenshots.asTextSource(),
                                 isReviewsVisible = details.reviewCount != 0,
                                 reviewTitleText = StringRes.str_critic_reviews_for_formatted.asTextSource(details.name),
@@ -140,19 +152,18 @@ class GameDetailsViewModel(
                                         CardReviewItem(
                                             review = review,
                                             readFullReviewText = StringRes.str_read_full_review.asTextSource(),
-                                            onClick = {
-                                                UrlRoute.navigate(review.externalUrl.asUrlRouteArgs())
-                                            },
+                                            onClick = ::onCardReviewItemClick,
                                         )
-                                    },
-                                onViewAllMediaClick = { openMedia() },
-                                onViewAllScreenshotsClick = { openMedia() },
-                                onViewAllTrailersClick = { openMedia() },
-                                onViewAllReviewsClick = { openReviews() },
+                                    }
+                                    .toImmutableList(),
+                                onViewAllMediaClick = ::openMedia,
+                                onViewAllScreenshotsClick = ::openMedia,
+                                onViewAllTrailersClick = ::openMedia,
+                                onViewAllReviewsClick = ::openReviews,
                                 onRefresh = ::onRefresh,
                                 isActionVisible = true,
                                 actionIconResource = Icons.share,
-                                onAction = { shareGameUrl(details.url) }
+                                onAction = ::shareGameUrl
                             )
                         )
                     }
@@ -231,8 +242,10 @@ class GameDetailsViewModel(
         }
     }
 
-    private fun shareGameUrl(url: String) {
-        ShareLinkRoute.navigate(url.asShareLinkRouteArgs())
+    private fun shareGameUrl() {
+        val gameUrl = gameUrl ?: return
+
+        ShareLinkRoute.navigate(gameUrl.asShareLinkRouteArgs())
     }
 
     private fun openMedia() {
@@ -253,7 +266,9 @@ class GameDetailsViewModel(
         )
     }
 
-    private fun openTrailer(trailer: Trailer) {
+    private fun onCardReviewItemClick(item: CardReviewItem) =
+        UrlRoute.navigate(item.externalUrl.asUrlRouteArgs())
+
+    private fun openTrailer(trailer: TrailerItem) =
         UrlRoute.navigate(trailer.externalUrl.asUrlRouteArgs())
-    }
 }

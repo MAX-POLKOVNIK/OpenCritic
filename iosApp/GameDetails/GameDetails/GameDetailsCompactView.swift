@@ -9,6 +9,7 @@
 import SwiftUI
 import shared
 import Views
+internal import NukeUI
 
 struct GameDetailsCompactView: View {
     let state: GameDetailsContent
@@ -16,17 +17,17 @@ struct GameDetailsCompactView: View {
     var body: some View {
         LazyVStack {
             if state.isSquareImageVisible {
-                CachedAsyncImage(
-                    url: URL(string: state.squareImageUrl),
-                    urlCache: .imageCache
-                ) { image in
-                    image.resizable()
-                        .scaledToFill()
-                } placeholder: {
-                    NoGamePosterView()
+                LazyImage(url: URL(string: state.squareImageUrl)) { state in
+                    if let image = state.image {
+                        image.resizable()
+                            .scaledToFill()
+                    } else {
+                        NoGamePosterView()
+                    }
+                    
                 }
-                    .frame(minWidth: 0, maxWidth: .infinity)
-                    .aspectRatio(1.0, contentMode: .fit)
+                .frame(minWidth: 0, maxWidth: .infinity)
+                .aspectRatio(1.0, contentMode: .fit)
             }
             
             YourGameIndicatorItemView(

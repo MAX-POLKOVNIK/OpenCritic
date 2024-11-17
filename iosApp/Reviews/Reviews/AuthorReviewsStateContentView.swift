@@ -11,6 +11,7 @@ import shared
 import Combine
 import Mvvm
 import Views
+internal import NukeUI
 
 struct AuthorReviewsStateContentView: View {
     let state: AuthorReviewsStateContent
@@ -26,14 +27,14 @@ struct AuthorReviewsStateContentView: View {
     var body: some View {
         List {
             VStack(alignment: .center) {
-                CachedAsyncImage(
-                    url: URL(string: state.imageUrl),
-                    urlCache: .imageCache
-                ) { image in
-                    image.resizable()
-                } placeholder: {
-                    Image(systemName: "person.crop.circle.fill")
-                        .resizable()
+                LazyImage(url: URL(string: state.imageUrl)) { state in
+                    if let image = state.image {
+                        image.resizable()
+                    } else {
+                        Image(systemName: "person.crop.circle.fill")
+                            .resizable()
+                    }
+                    
                 }
                 .frame(width: 128, height: 128)
                 .clipShape(Circle())

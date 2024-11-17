@@ -16,7 +16,7 @@ import com.opencritic.resources.defaultPadding
 
 @Composable
 fun LoadingItem(
-    item: LoadingItem,
+    @Suppress("UNUSED_PARAMETER") item: LoadingItem,
     modifier: Modifier = Modifier,
 ) {
     Row(

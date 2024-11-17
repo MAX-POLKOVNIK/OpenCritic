@@ -28,7 +28,7 @@ fun DashboardGameListItem(
         verticalAlignment = Alignment.CenterVertically,
         modifier = modifier
             .fillMaxWidth()
-            .clickable { item.click() }
+            .clickable(onClick = item::click)
             .padding(horizontal = defaultPadding)
             .heightIn(min = 40.dp)
     ) {

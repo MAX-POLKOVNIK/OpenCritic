@@ -70,16 +70,12 @@ fun CardReviewItem(
                             modifier = Modifier
                                 .background(Color.Gray)
                                 .size(width = 56.dp, height = 56.dp)
-                                .clip(
-                                    shape = CircleShape
-                                )
+                                .clip(shape = CircleShape)
                         )
                     },
                     modifier = Modifier
                         .size(width = 48.dp, height = 48.dp)
-                        .clip(
-                            shape = CircleShape
-                        )
+                        .clip(shape = CircleShape)
                 )
             }
 
@@ -140,6 +136,7 @@ fun CardReviewItem_Preview() {
     CardReviewItem(
         item = CardReviewItem(
             id = "",
+            externalUrl = "",
             outletText = "GamesRadar+",
             authorText = "Sam Loveridge",
             outletThumbnailUrl = "https://img.opencritic.com/outlet/91/qqIbhWtu.jpg",

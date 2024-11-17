@@ -1,13 +1,11 @@
 package com.opencritic.game.browser.ui
 
 import com.opencritic.calendar.api.CalendarRoute
-import com.opencritic.game.browser.domain.BrowseGame
 import com.opencritic.game.browser.domain.GameSorting
 import com.opencritic.game.browser.domain.GameTimeframe
 import com.opencritic.game.browser.domain.GetBrowseGamesInteractor
 import com.opencritic.game.browser.domain.GetPlatformsInteractor
 import com.opencritic.game.browser.domain.asTextSource
-import com.opencritic.game.browser.domain.images
 import com.opencritic.games.Platform
 import com.opencritic.games.details.api.ui.GameDetailsRoute
 import com.opencritic.games.details.ui.LoadingItem
@@ -15,6 +13,7 @@ import com.opencritic.logs.Logger
 import com.opencritic.mvvm.BaseContentViewModel
 import com.opencritic.mvvm.CommonViewModelState
 import com.opencritic.remote.images.ImagePreloader
+import com.opencritic.remote.images.load
 import com.opencritic.resources.images.Icons
 import com.opencritic.resources.text.StringRes
 import com.opencritic.resources.text.asTextSource
@@ -77,7 +76,7 @@ class GameBrowserViewModel(
                     .onSuccess { games ->
                         val content = requireContent()
 
-                        imagePreloader.load(games.images)
+                        imagePreloader.load(games)
 
                         updateContentIfSet {
                             content.copy(
@@ -147,7 +146,7 @@ class GameBrowserViewModel(
                 isExclusive = isNextGenVisible && isNextGenChecked
             )
                 .onSuccess { games ->
-                    imagePreloader.load(games.images)
+                    imagePreloader.load(games)
 
                     updateContentIfSet {
                         copy(

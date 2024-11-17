@@ -6,6 +6,10 @@ import com.opencritic.games.GameRank
 import com.opencritic.games.Platform
 import com.opencritic.games.Review
 import com.opencritic.games.Trailer
+import com.opencritic.remote.images.ImagePreloadable
+import com.opencritic.remote.images.ImageUrl
+import com.opencritic.remote.images.preloadableImageListOf
+import com.opencritic.remote.images.preloadableImageUrls
 import kotlinx.datetime.Instant
 
 data class GameDetails(
@@ -25,4 +29,13 @@ data class GameDetails(
     val reviewCount: Int,
     val trailers: List<Trailer>,
     val screenshotUrls: List<String>,
-)
+) : ImagePreloadable {
+
+    override val preloadableImageUrls: List<ImageUrl>
+        get() = preloadableImageListOf(
+            preloadableImageListOf(squareUrl, bannerUrl, posterUrl),
+            reviews.preloadableImageUrls,
+            trailers.preloadableImageUrls,
+            preloadableImageListOf(screenshotUrls),
+        )
+}

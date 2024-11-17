@@ -33,6 +33,7 @@ kotlin {
             implementation(libs.kotlinx.datetime)
             implementation(libs.moko.resources)
             implementation(libs.jetbrains.compose.runtime)
+            implementation(libs.kotlinx.collections.immutable)
         }
         commonTest.dependencies {
             implementation(libs.kotlin.test)

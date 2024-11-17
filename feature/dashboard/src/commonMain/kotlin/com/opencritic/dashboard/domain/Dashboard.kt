@@ -1,6 +1,9 @@
 package com.opencritic.dashboard.domain
 
+import com.opencritic.remote.images.ImagePreloadable
 import com.opencritic.remote.images.ImageUrl
+import com.opencritic.remote.images.preloadableImageListOf
+import com.opencritic.remote.images.preloadableImageUrls
 
 data class Dashboard(
     val popularGames: List<PosterGame>,
@@ -12,17 +15,14 @@ data class Dashboard(
     val switchFeatured: FeaturedGameList,
     val xboxFeatured: FeaturedGameList,
     val playstationFeatured: FeaturedGameList,
-)
-
-val Dashboard.images: List<ImageUrl>
-    get() =
-        listOf(
-            popularGames.map { ImageUrl(it.posterUrl) },
-            deals.map { ImageUrl(it.game.posterUrl) },
-            hallOfFame.map { ImageUrl(it.posterUrl) },
-            switchFeatured.games.map { ImageUrl(it.posterUrl) },
-            xboxFeatured.games.map { ImageUrl(it.posterUrl) },
-            playstationFeatured.games.map { ImageUrl(it.posterUrl) },
+) : ImagePreloadable {
+    override val preloadableImageUrls: List<ImageUrl>
+        get() = preloadableImageListOf(
+            popularGames.preloadableImageUrls,
+            deals.preloadableImageUrls,
+            hallOfFame.preloadableImageUrls,
+            switchFeatured.preloadableImageUrls,
+            xboxFeatured.preloadableImageUrls,
+            playstationFeatured.preloadableImageUrls,
         )
-            .flatten()
-            .distinct()
+}

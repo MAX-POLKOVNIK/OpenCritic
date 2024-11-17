@@ -1,7 +1,9 @@
 package com.opencritic.game.browser.domain
 
 import com.opencritic.games.GameRank
+import com.opencritic.remote.images.ImagePreloadable
 import com.opencritic.remote.images.ImageUrl
+import com.opencritic.remote.images.preloadableImageListOf
 import kotlinx.datetime.Instant
 
 data class BrowseGame(
@@ -11,10 +13,8 @@ data class BrowseGame(
     val rank: GameRank?,
     val percentRecommended: Float,
     val releaseDate: Instant,
-)
+) : ImagePreloadable {
 
-val BrowseGame.image: ImageUrl
-    get() = ImageUrl(imageUrl)
-
-val List<BrowseGame>.images: List<ImageUrl>
-    get() = map { it.image }
+    override val preloadableImageUrls: List<ImageUrl>
+        get() = preloadableImageListOf(imageUrl)
+}

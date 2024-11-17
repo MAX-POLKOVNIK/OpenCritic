@@ -54,16 +54,19 @@ struct GameMediaStateContentView: View {
                 TrailerItem(
                     titleText: "1Stellar Blade - Demo Teaser | PS5 Games",
                     thumbnailUrl: "https://img.youtube.com/vi/C3GLEPFrlhw/maxresdefault.jpg",
+                    externalUrl: "",
                     onClick: { _ in }
                 ),
                 TrailerItem(
                     titleText: "2Stellar Blade - Demo Teaser | PS5 Games",
                     thumbnailUrl: "https://img.youtube.com/vi/C3GLEPFrlhw/maxresdefault.jpg",
+                    externalUrl: "",
                     onClick: { _ in }
                 ),
                 TrailerItem(
                     titleText: "3Stellar Blade - Demo Teaser | PS5 Games",
                     thumbnailUrl: "https://img.youtube.com/vi/C3GLEPFrlhw/maxresdefault.jpg",
+                    externalUrl: "",
                     onClick: { _ in }
                 )
             ],

@@ -11,6 +11,7 @@ import shared
 import Combine
 import Mvvm
 import Views
+internal import NukeUI
 
 struct GameReviewsStateContentView: View {
     let state: GameReviewsStateContent
@@ -29,18 +30,18 @@ struct GameReviewsStateContentView: View {
     var body: some View {
         List {
             ZStack(alignment: .bottomLeading) {
-                CachedAsyncImage(
-                    url: URL(string: state.imageUrl),
-                    urlCache: .imageCache
-                ) { image in
-                    image.resizable()
-                        .scaledToFill()
-                        .aspectRatio(16 / 9, contentMode: .fit)
-                        .frame(minWidth: 0, maxWidth: .infinity)
-                        .clipped()
-                } placeholder: {
-                    NoGamePosterView()
-                        .aspectRatio(16 / 9, contentMode: .fit)
+                LazyImage(url: URL(string: state.imageUrl)) { state in
+                    if let image = state.image {
+                        image.resizable()
+                            .scaledToFill()
+                            .aspectRatio(16 / 9, contentMode: .fit)
+                            .frame(minWidth: 0, maxWidth: .infinity)
+                            .clipped()
+                    } else {
+                        NoGamePosterView()
+                            .aspectRatio(16 / 9, contentMode: .fit)
+                    }
+                    
                 }
                     
                 Rectangle()

@@ -37,7 +37,7 @@ fun DashboardPosterGameListItem(
     Column(
         horizontalAlignment = Alignment.Start,
         modifier = modifier
-            .clickable { item.click() }
+            .clickable(onClick = item::click)
     ) {
         SubcomposeAsyncImage(
             model = item.posterUrl,

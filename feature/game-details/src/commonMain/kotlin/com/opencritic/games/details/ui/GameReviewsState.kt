@@ -11,6 +11,8 @@ import com.opencritic.resources.images.SharedImageResource
 import com.opencritic.resources.images.SharedImages
 import com.opencritic.resources.text.TextSource
 import com.opencritic.resources.text.asTextSource
+import kotlinx.collections.immutable.ImmutableList
+import kotlinx.collections.immutable.toImmutableList
 
 interface GameReviewsState : ViewModelState {
     val titleText: TextSource
@@ -37,8 +39,8 @@ interface GameReviewsState : ViewModelState {
         val rankedDescription: TextSource,
         val sortTitleText: TextSource,
         val sortText: ReviewSortItem,
-        val availableSorts: List<ReviewSortItem>,
-        val reviewItems: List<ReviewListItem>,
+        val availableSorts: ImmutableList<ReviewSortItem>,
+        val reviewItems: ImmutableList<ReviewListItem>,
         val isLoadingItemVisible: Boolean,
         val loadingItem: LoadingItem,
         private val onLoadMore: () -> Unit,
@@ -69,8 +71,8 @@ fun GameReviewsStateContent_PreviewData(): GameReviewsState.Content =
         rankedDescription = "Stellar Blade is ranked in the 86th percentile of games scored on OpenCritic. ".asTextSource(),
         sortTitleText = "Sort".asTextSource(),
         sortText = ReviewSortItem(ReviewSorting.Default, ReviewSorting.Default.asTextSource()),
-        availableSorts = ReviewSorting.entries.map { ReviewSortItem(it, it.asTextSource()) },
-        reviewItems = List(10) { ReviewListItem_PreviewData(it.toString()) },
+        availableSorts = ReviewSorting.entries.map { ReviewSortItem(it, it.asTextSource()) }.toImmutableList(),
+        reviewItems = List(10) { ReviewListItem_PreviewData(it.toString()) }.toImmutableList(),
         isLoadingItemVisible = true,
         loadingItem = LoadingItem,
         onLoadMore = {},

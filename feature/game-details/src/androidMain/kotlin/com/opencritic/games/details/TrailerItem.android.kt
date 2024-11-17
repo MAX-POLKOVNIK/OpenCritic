@@ -73,6 +73,7 @@ fun TrailerItem_Preview() {
     TrailerItem(
         item = TrailerItem(
             titleText = "Trailer text",
+            externalUrl = "",
             thumbnailUrl = "https://img.youtube.com/vi/uLN9qrJ8ESs/0.jpg",
             onClick = {},
         )

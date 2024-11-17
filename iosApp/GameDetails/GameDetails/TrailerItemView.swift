@@ -9,6 +9,7 @@
 import SwiftUI
 import shared
 import Views
+internal import NukeUI
 
 struct TrailerItemView: View {
     @State var imageSize = CGSize.zero
@@ -18,13 +19,12 @@ struct TrailerItemView: View {
     var body: some View {
         VStack(alignment: .leading, spacing: 0) {
             ChildSizeReader(size: $imageSize) {
-                CachedAsyncImage(
-                    url: URL(string: item.thumbnailUrl),
-                    urlCache: .imageCache
-                ) { image in
-                    image.resizable()
-                } placeholder: {
-                    Color.gray
+                LazyImage(url: URL(string: item.thumbnailUrl)) { state in
+                    if let image = state.image {
+                        image.resizable()
+                    } else {
+                        Color.gray
+                    }
                 }
                 .aspectRatio(16 / 9, contentMode: .fill) // You need the size of this view
             }
@@ -74,6 +74,7 @@ struct SizePreferenceKey: PreferenceKey {
             item: TrailerItem(
                 titleText: "Trailer text",
                 thumbnailUrl: "https://img.youtube.com/vi/uLN9qrJ8ESs/0.jpg",
+                externalUrl: "",
                 onClick: { _ in }
             )
         )

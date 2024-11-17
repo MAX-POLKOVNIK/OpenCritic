@@ -9,21 +9,21 @@
 import SwiftUI
 import shared
 import Views
+internal import NukeUI
 
 struct ScreenshotItemView: View {
     let item: ScreenshotItem
     
     var body: some View {
-        CachedAsyncImage(
-            url: URL(string: item.thumbnailUrl),
-            urlCache: .imageCache
-        ) { image in
-            image.resizable()
-        } placeholder: {
-            Color.gray
+        LazyImage(url: URL(string: item.thumbnailUrl)) { state in
+            if let image = state.image {
+                image.resizable()
+            } else {
+                Color.gray
+            }
         }
-            .aspectRatio(1.77, contentMode: .fit)
-            .card()
+        .aspectRatio(1.77, contentMode: .fit)
+        .card()
     }
 }
 

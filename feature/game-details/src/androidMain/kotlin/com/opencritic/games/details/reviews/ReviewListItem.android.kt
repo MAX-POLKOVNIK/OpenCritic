@@ -53,13 +53,13 @@ fun ReviewListItem(
                     text = item.authorText,
                     style = MaterialTheme.typography.titleMedium,
                     modifier = Modifier
-                        .clickable { item.authorClick() }
+                        .clickable(onClick = item::authorClick)
                 )
                 Text(
                     text = item.outletText,
                     fontStyle = FontStyle.Italic,
                     modifier = Modifier
-                        .clickable { item.outletClick() }
+                        .clickable(onClick = item::outletClick)
                 )
             }
 
@@ -71,17 +71,13 @@ fun ReviewListItem(
                         modifier = Modifier
                             .background(Color.Gray)
                             .size(width = 56.dp, height = 56.dp)
-                            .clip(
-                                shape = CircleShape
-                            )
+                            .clip(shape = CircleShape)
                     )
                 },
                 modifier = Modifier
                     .size(width = 48.dp, height = 48.dp)
-                    .clickable { item.imageClick() }
-                    .clip(
-                        shape = CircleShape
-                    )
+                    .clickable(onClick = item::imageClick)
+                    .clip(shape = CircleShape)
             )
         }
 
@@ -158,7 +154,7 @@ fun ReviewListItem(
             }
         }
 
-        if (item.isSnipperVisible) {
+        if (item.isSnippetVisible) {
             Text(
                 text = item.snippetText,
                 modifier = Modifier

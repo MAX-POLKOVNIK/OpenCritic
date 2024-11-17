@@ -1,7 +1,6 @@
 package com.opencritic.dashboard.ui
 
 import com.opencritic.dashboard.domain.GetDashboardInteractor
-import com.opencritic.dashboard.domain.images
 import com.opencritic.game.browser.api.PeriodGameBrowserRoute
 import com.opencritic.games.details.api.ui.GameDetailsRoute
 import com.opencritic.halloffame.api.HallOfFameRoute
@@ -11,6 +10,7 @@ import com.opencritic.mvvm.CommonViewModelState
 import com.opencritic.navigation.UrlRoute
 import com.opencritic.navigation.asUrlRouteArgs
 import com.opencritic.remote.images.ImagePreloader
+import com.opencritic.remote.images.load
 import com.opencritic.resources.text.StringRes
 import com.opencritic.resources.text.asTextSource
 import kotlinx.collections.immutable.toImmutableList
@@ -56,7 +56,7 @@ class DashboardViewModel(
                     logger.log("Get dashboard error: $error")
                 }
                 .onSuccess { dashboard ->
-                    imagePreloader.load(dashboard.images)
+                    imagePreloader.load(dashboard)
 
                     setContent {
                         DashboardContent(

@@ -9,6 +9,7 @@
 import SwiftUI
 import shared
 import Views
+internal import NukeUI
 
 struct ReviewListItemView: View {
     let item: ReviewListItem
@@ -31,13 +32,12 @@ struct ReviewListItemView: View {
                 
                 Spacer()
                 
-                CachedAsyncImage(
-                    url: URL(string: item.imageUrl),
-                    urlCache: .imageCache
-                ) { image in
-                    image.resizable()
-                } placeholder: {
-                    Color.gray
+                LazyImage(url: URL(string: item.imageUrl)) { state in
+                    if let image = state.image {
+                        image.resizable()
+                    } else {
+                        Color.gray
+                    }
                 }
                 .frame(width: 56, height: 56)
                 .clipShape(Circle())
@@ -76,20 +76,20 @@ struct ReviewListItemView: View {
             }
             
             if item.isYoutubeVisible {
-                CachedAsyncImage(
-                    url: URL(string: item.youtubePlaceholderUrl!),
-                    urlCache: .imageCache
-                ) { image in
-                    image.resizable()
-                } placeholder: {
-                    Color.gray
+                LazyImage(url: URL(string: item.youtubePlaceholderUrl!)) { state in
+                    if let image = state.image {
+                        image.resizable()
+                    } else {
+                        Color.gray
+                    }
+                    
                 }
-                    .aspectRatio(1.77, contentMode: .fit)
-                    .card()
-                    .padding(.top)
+                .aspectRatio(1.77, contentMode: .fit)
+                .card()
+                .padding(.top)
             }
             
-            if item.isSnipperVisible {
+            if item.isSnippetVisible {
                 Text(item.snippetText)
                     .padding(.top)
             }

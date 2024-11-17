@@ -9,6 +9,7 @@
 import SwiftUI
 import shared
 import Views
+internal import NukeUI
 
 struct GameDetailsRegularView: View {
     let state: GameDetailsContent
@@ -16,14 +17,12 @@ struct GameDetailsRegularView: View {
     var body: some View {
         LazyVStack {
             ZStack(alignment: .bottomTrailing) {
-                CachedAsyncImage(
-                    url: URL(string: state.bannerImageUrl),
-                    urlCache: .imageCache
-                ) { image in
-                    image.centerCropped()
-                        
-                } placeholder: {
-                    NoGamePosterView()
+                LazyImage(url: URL(string: state.bannerImageUrl)) { state in
+                    if let image = state.image {
+                        image.centerCropped()
+                    } else {
+                        NoGamePosterView()
+                    }
                 }
                 .frame(minWidth: 0, maxWidth: .infinity)
                 .aspectRatio(16 / 9, contentMode: .fit)

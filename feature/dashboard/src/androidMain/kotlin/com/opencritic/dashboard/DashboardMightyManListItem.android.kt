@@ -28,8 +28,6 @@ fun DashboardMightyManListItem(
             modifier = Modifier
                 .padding(all = defaultPadding)
         ) {
-
-
             Text(
                 text = item.title.text(),
                 style = MaterialTheme.typography.titleLarge,

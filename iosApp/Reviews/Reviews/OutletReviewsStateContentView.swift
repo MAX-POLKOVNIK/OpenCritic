@@ -11,6 +11,7 @@ import shared
 import Combine
 import Mvvm
 import Views
+internal import NukeUI
 
 struct OutletReviewsStateContentView: View {
     let state: OutletReviewsStateContent
@@ -29,13 +30,12 @@ struct OutletReviewsStateContentView: View {
     var body: some View {
         List {
             VStack(alignment: .center) {
-                CachedAsyncImage(
-                    url: URL(string: state.outletImageUrl),
-                    urlCache: .imageCache
-                ) { image in
-                    image.resizable()
-                } placeholder: {
-                    Color.gray
+                LazyImage(url: URL(string: state.outletImageUrl)) { state in
+                    if let image = state.image {
+                        image.resizable()
+                    } else {
+                        Color.gray
+                    }
                 }
                 .frame(width: 128, height: 128)
                 .clipShape(Circle())

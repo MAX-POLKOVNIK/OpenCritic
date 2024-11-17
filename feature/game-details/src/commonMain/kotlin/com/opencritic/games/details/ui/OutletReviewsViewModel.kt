@@ -13,9 +13,12 @@ import com.opencritic.logs.Logger
 import com.opencritic.mvvm.BaseViewModel
 import com.opencritic.navigation.UrlRoute
 import com.opencritic.navigation.asUrlRouteArgs
+import com.opencritic.remote.images.ImagePreloader
 import com.opencritic.resources.images.Icons
 import com.opencritic.resources.text.StringRes
 import com.opencritic.resources.text.asTextSource
+import kotlinx.collections.immutable.persistentListOf
+import kotlinx.collections.immutable.toImmutableList
 import kotlinx.coroutines.launch
 
 class OutletReviewsViewModel(
@@ -23,6 +26,7 @@ class OutletReviewsViewModel(
     private val getOutletInteractor: GetOutletInteractor,
     private val getOutletReviewsInteractor: GetOutletReviewsInteractor,
     private val logger: Logger,
+    private val imagePreloader: ImagePreloader,
 ) : BaseViewModel<OutletReviewsState>() {
     override fun initialState(): OutletReviewsState =
         OutletReviewsState.Loading(StringRes.str_reviews_of.asTextSource(args.outletName))
@@ -30,6 +34,12 @@ class OutletReviewsViewModel(
     private var outlet: Outlet? = null
     private var canLoadMore: Boolean = true
     private var sorting: ReviewSorting = ReviewSorting.Default
+
+    override fun onCleared() {
+        super.onCleared()
+
+        imagePreloader.cancel()
+    }
 
     override fun onStateInit() {
         super.onStateInit()
@@ -61,9 +71,7 @@ class OutletReviewsViewModel(
                         requireNotNull(state.value as? OutletReviewsState.Content)
                             .let { content ->
                                 content.copy(
-                                    reviewItems = content.reviewItems + reviews.map { review ->
-                                        ReviewListItem(review)
-                                    },
+                                    reviewItems = content.reviewItems.mapAndAdd(reviews, ::ReviewListItem),
                                     isLoadingItemVisible = content.reviewItems.size + reviews.size < (outlet?.reviewsCount ?: 0)
                                 )
                             }
@@ -87,7 +95,7 @@ class OutletReviewsViewModel(
             isHomepageVisible = outlet.externalUrl.isNotBlank(),
             homepageText = StringRes.str_home_page.asTextSource(),
             sortTitleText = StringRes.str_sort.asTextSource(),
-            infoItems = listOf(
+            infoItems = persistentListOf(
                 IconTextItem(
                     icon = Icons.hashTag,
                     text = StringRes.str_games_reviewed_formatted.asTextSource(outlet.reviewsCount.toString()),
@@ -106,17 +114,19 @@ class OutletReviewsViewModel(
                 )
             ),
             sortText = ReviewSortItem(
-                key = ReviewSorting.Default, name = ReviewSorting.Default.asTextSource()
+                key = ReviewSorting.Default,
+                name = ReviewSorting.Default.asTextSource()
             ),
             availableSorts = ReviewSorting.entries
                 .filter { it != ReviewSorting.MostPopular }
-                .map { ReviewSortItem(it, it.asTextSource()) },
-            reviewItems = emptyList(),
+                .map { ReviewSortItem(it, it.asTextSource()) }
+                .toImmutableList(),
+            reviewItems = persistentListOf(),
             isLoadingItemVisible = true,
             loadingItem = LoadingItem,
-            onLoadMore = { loadMore() },
-            onSelectedSort = { onSortSelected(it) },
-            onHomepageClick = { openUrl(outlet.externalUrl) }
+            onLoadMore = ::loadMore,
+            onSelectedSort = ::onSortSelected,
+            onHomepageClick = ::onHomePageClick,
         )
 
     private fun loadMore() {
@@ -129,9 +139,7 @@ class OutletReviewsViewModel(
             getOutletReviewsInteractor(args.outletId, state.reviewItems.size, sorting)
                 .onSuccess { reviews ->
                     state.copy(
-                        reviewItems = state.reviewItems + reviews.map { review ->
-                            ReviewListItem(review)
-                        },
+                        reviewItems = state.reviewItems.mapAndAdd(reviews, ::ReviewListItem),
                         isLoadingItemVisible = state.reviewItems.size + reviews.size < (outlet?.reviewsCount ?: 0)
                     ).let {
                         mutableState.tryEmit(it)
@@ -144,14 +152,9 @@ class OutletReviewsViewModel(
         ReviewListItem(
             review = review,
             isGameVisible = true,
-            onClick = { openUrl(review.externalUrl) },
-            onAuthorClick = {
-                review.authors.firstOrNull()
-                    ?.let { openAuthor(it.id, it.name) }
-            },
-            onImageClick = {},
-            onOutletClick = {},
-            onGameClick = { openGame(review.gameId, review.gameName) },
+            onClick = ::openUrl,
+            onAuthorClick = ::openAuthor,
+            onGameClick = :: openGame,
         )
 
     private fun onSortSelected(item: ReviewSortItem) {
@@ -166,7 +169,7 @@ class OutletReviewsViewModel(
         mutableState.tryEmit(
             state.copy(
                 sortText = item,
-                reviewItems = emptyList(),
+                reviewItems = persistentListOf(),
                 isLoadingItemVisible = true
             )
         )
@@ -174,19 +177,27 @@ class OutletReviewsViewModel(
         loadMore()
     }
 
-    private fun openUrl(url: String) {
+    private fun onHomePageClick() {
+        val url = outlet?.externalUrl ?: return
+
         UrlRoute.navigate(url.asUrlRouteArgs())
     }
 
-    private fun openGame(gameId: Long, gameName: String) {
+    private fun openUrl(item: ReviewListItem) {
+        UrlRoute.navigate(item.externalUrl.asUrlRouteArgs())
+    }
+
+    private fun openGame(item: ReviewListItem) {
         GameDetailsRoute.navigate(
-            GameDetailsRoute.InitArgs(gameId, gameName)
+            GameDetailsRoute.InitArgs(item.gameId, item.gameText)
         )
     }
 
-    private fun openAuthor(authorId: Int, authorName: String) {
+    private fun openAuthor(item: ReviewListItem) {
+        val authorId = item.authorId ?: return
+
         AuthorReviewsRoute.navigate(
-            AuthorReviewsRoute.InitArgs(authorId, authorName)
+            AuthorReviewsRoute.InitArgs(authorId, item.authorText)
         )
     }
 }

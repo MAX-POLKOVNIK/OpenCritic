@@ -87,7 +87,6 @@ fun AuthorReviewsStateContent(
 
                     Spacer(modifier = Modifier.height(defaultPadding))
 
-
                     if (state.isFavoritesGamesVisible) {
                         HorizontalDivider(
                             modifier = Modifier

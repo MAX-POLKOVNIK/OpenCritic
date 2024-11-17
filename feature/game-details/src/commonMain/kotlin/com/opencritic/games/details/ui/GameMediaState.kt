@@ -4,6 +4,7 @@ import com.opencritic.mvvm.BaseErrorState
 import com.opencritic.mvvm.BaseLoadingState
 import com.opencritic.mvvm.ViewModelState
 import com.opencritic.resources.text.TextSource
+import kotlinx.collections.immutable.ImmutableList
 
 interface GameMediaState : ViewModelState {
     val titleText: TextSource
@@ -18,9 +19,9 @@ interface GameMediaState : ViewModelState {
         override val titleText: TextSource,
         val isTrailersVisible: Boolean,
         val trailersText: TextSource,
-        val trailers: List<TrailerItem>,
+        val trailers: ImmutableList<TrailerItem>,
         val isScreenshotsVisible: Boolean,
         val screenshotsText: TextSource,
-        val screenshots: List<ScreenshotItem>,
+        val screenshots: ImmutableList<ScreenshotItem>,
     ) : GameMediaState
 }

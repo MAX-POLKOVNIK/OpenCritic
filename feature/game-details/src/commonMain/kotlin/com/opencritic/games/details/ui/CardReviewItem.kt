@@ -11,6 +11,7 @@ data class CardReviewItem(
     val score: ReviewScoreDisplayItem,
     val snippetText: String,
     val readFullReviewText: TextSource,
+    val externalUrl: String,
     private val onClick: (CardReviewItem) -> Unit,
 ) {
     fun click() = onClick(this)
@@ -31,5 +32,6 @@ fun CardReviewItem(
         score = ReviewScoreDisplayItem(review.score, review.scoreFormat),
         snippetText = review.snippet,
         readFullReviewText = readFullReviewText,
+        externalUrl = review.externalUrl,
         onClick = onClick,
     )

@@ -9,6 +9,7 @@
 import SwiftUI
 import shared
 import Views
+internal import NukeUI
 
 struct CardReviewItemView: View {
     let item: CardReviewItem
@@ -22,13 +23,13 @@ struct CardReviewItemView: View {
                     Text(item.authorText)
                 }
                 Spacer()
-                CachedAsyncImage(
-                    url: URL(string: item.outletThumbnailUrl),
-                    urlCache: .imageCache
-                ) { image in
-                    image.resizable()
-                } placeholder: {
-                    Color.gray
+                LazyImage(url: URL(string: item.outletThumbnailUrl)) { state in
+                    if let image = state.image {
+                        image.resizable()
+                    } else {
+                        Color.gray
+                    }
+                    
                 }
                 .frame(width: 56, height: 56)
                 .clipShape(Circle())
@@ -77,6 +78,7 @@ struct CardReviewItemView: View {
             ),
             snippetText: "Everything that made GT Sport so good, plus everything that made early Gran Turismo games so good. A simply stunning driving game and a superb showcase for PS5.",
             readFullReviewText: "Read full review".asTextSource(),
+            externalUrl: "",
             onClick: { _ in }
         )
     )

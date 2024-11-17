@@ -24,6 +24,8 @@
 		42C65A392C883EB200F30992 /* ScreenshotItemView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42C65A2D2C883EB200F30992 /* ScreenshotItemView.swift */; };
 		42C65A3A2C883EB200F30992 /* GameDetailsContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42C65A2E2C883EB200F30992 /* GameDetailsContentView.swift */; };
 		42C65A412C883F3500F30992 /* YourGameIndicatorItemView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42C65A402C883F3500F30992 /* YourGameIndicatorItemView.swift */; };
+		42D569E32CEA045E006A83D0 /* Nuke in Frameworks */ = {isa = PBXBuildFile; productRef = 42D569E22CEA045E006A83D0 /* Nuke */; };
+		42D569E52CEA045E006A83D0 /* NukeUI in Frameworks */ = {isa = PBXBuildFile; productRef = 42D569E42CEA045E006A83D0 /* NukeUI */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -52,9 +54,11 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				42D569E52CEA045E006A83D0 /* NukeUI in Frameworks */,
 				4211D2DE2C88427C0042F631 /* Mvvm.framework in Frameworks */,
 				42C65A202C883E9100F30992 /* BuildSharedFramework.framework in Frameworks */,
 				4211D2E12C8842800042F631 /* Views.framework in Frameworks */,
+				42D569E32CEA045E006A83D0 /* Nuke in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -164,6 +168,9 @@
 				Base,
 			);
 			mainGroup = 42C65A0A2C883E8200F30992;
+			packageReferences = (
+				42D569E12CEA045E006A83D0 /* XCRemoteSwiftPackageReference "Nuke" */,
+			);
 			productRefGroup = 42C65A152C883E8200F30992 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -424,6 +431,30 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		42D569E12CEA045E006A83D0 /* XCRemoteSwiftPackageReference "Nuke" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/kean/Nuke";
+			requirement = {
+				kind = exactVersion;
+				version = 12.8.0;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		42D569E22CEA045E006A83D0 /* Nuke */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 42D569E12CEA045E006A83D0 /* XCRemoteSwiftPackageReference "Nuke" */;
+			productName = Nuke;
+		};
+		42D569E42CEA045E006A83D0 /* NukeUI */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 42D569E12CEA045E006A83D0 /* XCRemoteSwiftPackageReference "Nuke" */;
+			productName = NukeUI;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = 42C65A0B2C883E8200F30992 /* Project object */;
 }

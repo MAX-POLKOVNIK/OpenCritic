@@ -12,9 +12,13 @@ import com.opencritic.logs.Logger
 import com.opencritic.mvvm.BaseViewModel
 import com.opencritic.navigation.UrlRoute
 import com.opencritic.navigation.asUrlRouteArgs
+import com.opencritic.remote.images.ImagePreloader
+import com.opencritic.remote.images.load
 import com.opencritic.resources.images.Icons
 import com.opencritic.resources.text.StringRes
 import com.opencritic.resources.text.asTextSource
+import kotlinx.collections.immutable.persistentListOf
+import kotlinx.collections.immutable.toImmutableList
 import kotlinx.coroutines.flow.update
 import kotlinx.coroutines.launch
 
@@ -23,6 +27,7 @@ class AuthorReviewsViewModel(
     private val getAuthorInteractor: GetAuthorInteractor,
     private val getAuthorReviewsInteractor: GetAuthorReviewsInteractor,
     private val logger: Logger,
+    private val imagePreloader: ImagePreloader,
 ) : BaseViewModel<AuthorReviewsState>() {
     override fun initialState(): AuthorReviewsState =
         AuthorReviewsState.Loading(StringRes.str_reviews_of.asTextSource(args.authorName))
@@ -30,6 +35,12 @@ class AuthorReviewsViewModel(
     private var author: Author? = null
     private var canLoadMore: Boolean = true
     private var sorting: ReviewSorting = ReviewSorting.Default
+
+    override fun onCleared() {
+        super.onCleared()
+
+        imagePreloader.cancel()
+    }
 
     override fun onStateInit() {
         super.onStateInit()
@@ -60,10 +71,10 @@ class AuthorReviewsViewModel(
                     .onSuccess { reviews ->
                         requireNotNull(state.value as? AuthorReviewsState.Content)
                             .let { content ->
+                                imagePreloader.load(reviews)
+
                                 content.copy(
-                                    reviewItems = content.reviewItems + reviews.map { review ->
-                                        ReviewListItem(review)
-                                    },
+                                    reviewItems = content.reviewItems.mapAndAdd(reviews, ::ReviewListItem),
                                     isLoadingItemVisible = content.reviewItems.size + reviews.size < (author?.reviewCount ?: 0)
                                 )
                             }
@@ -106,21 +117,22 @@ class AuthorReviewsViewModel(
                     icon = Icons.thumbUp,
                     text = StringRes.str_games_recommended_formatted.asTextSource(author.percentRecommended.toInt().toString())
                 ).takeIf { author.percentRecommended > 0 }
-            ),
+            ).toImmutableList(),
             sortText = ReviewSortItem(
                 key = ReviewSorting.Default, name = ReviewSorting.Default.asTextSource()
             ),
             availableSorts = ReviewSorting.entries
                 .filter { it != ReviewSorting.MostPopular }
-                .map { ReviewSortItem(it, it.asTextSource()) },
-            reviewItems = emptyList(),
+                .map { ReviewSortItem(it, it.asTextSource()) }
+                .toImmutableList(),
+            reviewItems = persistentListOf(),
             isLoadingItemVisible = true,
             loadingItem = LoadingItem,
-            onLoadMore = { loadMore() },
-            onSelectedSort = { onSortSelected(it) },
+            onLoadMore = ::loadMore,
+            onSelectedSort = ::onSortSelected,
             isFavoritesGamesVisible = author.favoriteGames.isNotEmpty(),
             favoritesGamesTitleText = StringRes.str_favorite_games.asTextSource(),
-            favoritesGames = author.favoriteGames,
+            favoritesGames = author.favoriteGames.toImmutableList(),
             personalInfoItems = listOfNotNull(
                 IconTextItem(
                     icon = Icons.home,
@@ -134,7 +146,7 @@ class AuthorReviewsViewModel(
                     icon = Icons.playstation,
                     text = author.psn.asTextSource()
                 ).takeIf { author.psn.isNotBlank() },
-            )
+            ).toImmutableList()
         )
 
     private fun loadMore() {
@@ -146,10 +158,10 @@ class AuthorReviewsViewModel(
         scope.launch {
             getAuthorReviewsInteractor(args.authorId, state.reviewItems.size, sorting)
                 .onSuccess { reviews ->
+                    imagePreloader.load(reviews)
+
                     state.copy(
-                        reviewItems = state.reviewItems + reviews.map { review ->
-                            ReviewListItem(review)
-                        },
+                        reviewItems = state.reviewItems.mapAndAdd(reviews, ::ReviewListItem),
                         isLoadingItemVisible = state.reviewItems.size + reviews.size < (author?.reviewCount ?: 0)
                     ).let { content ->
                         mutableState.update { content }
@@ -162,11 +174,8 @@ class AuthorReviewsViewModel(
         ReviewListItem(
             review = review,
             isGameVisible = true,
-            onClick = { openUrl(review.externalUrl) },
-            onAuthorClick = {},
-            onImageClick = {},
-            onOutletClick = {},
-            onGameClick = { openGame(review.gameId, review.gameName) },
+            onClick = ::onReviewListItemClick,
+            onGameClick = ::onReviewListItemGameClick,
         )
 
     private fun onSortSelected(item: ReviewSortItem) {
@@ -180,7 +189,7 @@ class AuthorReviewsViewModel(
 
         mutableState.tryEmit(
             state.copy(
-                reviewItems = emptyList(),
+                reviewItems = persistentListOf(),
                 isLoadingItemVisible = true
             )
         )
@@ -188,13 +197,11 @@ class AuthorReviewsViewModel(
         loadMore()
     }
 
-    private fun openUrl(url: String) {
-        UrlRoute.navigate(url.asUrlRouteArgs())
-    }
+    private fun onReviewListItemClick(item: ReviewListItem) =
+        UrlRoute.navigate(item.externalUrl.asUrlRouteArgs())
 
-    private fun openGame(gameId: Long, gameName: String) {
+    private fun onReviewListItemGameClick(item: ReviewListItem) =
         GameDetailsRoute.navigate(
-            GameDetailsRoute.InitArgs(gameId, gameName)
+            GameDetailsRoute.InitArgs(item.gameId, item.gameText)
         )
-    }
 }

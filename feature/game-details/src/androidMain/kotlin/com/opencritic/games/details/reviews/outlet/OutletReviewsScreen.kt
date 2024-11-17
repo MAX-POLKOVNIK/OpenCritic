@@ -55,7 +55,7 @@ fun OutletReviewsScreen(
                     )
                 },
                 navigationIcon = {
-                    IconButton(onClick = { router.navigateBack() }) {
+                    IconButton(onClick = router::navigateBack) {
                         Icon(
                             painter = Icons.arrowBack.asPainter(),
                             contentDescription = "Localized description"

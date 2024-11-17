@@ -20,6 +20,7 @@ kotlin {
     sourceSets {
         commonMain.dependencies {
             implementation(projects.core.resources)
+            implementation(projects.core.remoteImages)
 
             implementation(libs.kotlinx.datetime)
 

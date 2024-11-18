@@ -1,6 +1,5 @@
 package com.opencritic.news.ui
 
-import androidx.paging.ItemSnapshotList
 import androidx.paging.PagingData
 import androidx.paging.PagingDataEvent
 import androidx.paging.PagingDataPresenter
@@ -14,6 +13,8 @@ import com.opencritic.news.domain.GetArticlesInteractor
 import com.opencritic.news.domain.pagingFlow
 import com.opencritic.resources.text.StringRes
 import com.opencritic.resources.text.asTextSource
+import kotlinx.collections.immutable.persistentListOf
+import kotlinx.collections.immutable.toImmutableList
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.Flow
@@ -55,7 +56,7 @@ class ArticleListViewModel(
 
         setContent {
             ArticleListContent(
-                items = ItemSnapshotList(0, 0, emptyList()),
+                itemIndices = persistentListOf(),
                 isRefreshing = false,
                 isLoadingItemVisible = true,
                 onRefresh = { onRefresh() },
@@ -95,7 +96,10 @@ class ArticleListViewModel(
         updateContentIfSet {
             copy(
                 isRefreshing = false,
-                items = articlesPagingDataPresenter.snapshot()
+                itemIndices = articlesPagingDataPresenter.snapshot()
+                    .indices
+                    .toList()
+                    .toImmutableList()
             )
         }
     }

@@ -9,9 +9,4 @@ import io.ktor.serialization.kotlinx.json.DefaultJson
 import io.ktor.serialization.kotlinx.json.json
 
 internal actual fun HttpClient(): HttpClient =
-    HttpClient(Darwin) {
-        install(ContentNegotiation) { json(ApiJson) }
-        install(Logging) {
-            level = LogLevel.NONE
-        }
-    }
+    HttpClient(Darwin) { setup() }

@@ -16,9 +16,9 @@ struct ArticleListContentView: View {
     
     var body: some View {
         List {
-            ForEach(content.items.indices, id: \.self) { index in
+            ForEach(content.itemIndices, id: \.self) { index in
                 LazyVStack {
-                    if let item = content.getItemAt(index.ktInt32) {
+                    if let item = content.getItemAt(index) {
                         ArticleListItemView(item: item)
                             .buttonStyle(BorderlessButtonStyle())
                     }

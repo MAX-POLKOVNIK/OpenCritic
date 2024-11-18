@@ -8,10 +8,8 @@ import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.HorizontalDivider
 import androidx.compose.material3.pulltorefresh.PullToRefreshBox
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
-import com.opencritic.games.details.LoadingItem
 import com.opencritic.mvvm.rememberForeverLazyListState
 import com.opencritic.resources.defaultPadding
 import com.opencritic.resources.smallPadding
@@ -32,7 +30,7 @@ fun ArticleListContent(
             contentPadding = PaddingValues(defaultPadding),
             modifier = modifier,
         ) {
-            content.items.indices.forEach { index ->
+            content.itemIndices.forEach { index ->
                 item(key = index) {
                     content.getItemAt(index)?.let {
                         Column {

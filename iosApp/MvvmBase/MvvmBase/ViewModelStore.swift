@@ -25,11 +25,9 @@ public class ViewModelStore: ObservableObject {
         for route: Route,
         args: I
     ) -> T {
-        let d = Destination<I>(route: route, args: args)
+        let destination = Destination<I>(route: route, args: args)
         
-        print("Resolving for \(route) in \(counter)")
-        
-        return get(for: d)
+        return get(for: destination)
     }
     
     public func get<I: AnyObject, S: ViewModelState, T: BaseViewModel<S>>(
@@ -48,9 +46,7 @@ public class ViewModelStore: ObservableObject {
     }
     
     public func clear(for destination: Dest) {
-        print("clearing: \(viewModels.keys.count)")
         viewModels[destination] = nil
-        print("cleared: \(viewModels.keys.count)")
     }
 }
 

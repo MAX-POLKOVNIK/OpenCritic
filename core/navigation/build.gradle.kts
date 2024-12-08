@@ -46,7 +46,7 @@ android {
     namespace = "com.opencritic.navigation"
     compileSdk = 34
     defaultConfig {
-        minSdk = 28
+        minSdk = 26
     }
 }
 

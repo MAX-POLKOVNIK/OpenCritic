@@ -1,6 +1,8 @@
 [versions]
 agp = "8.7.2"
+androidTools = "31.4.0"
 kotlin = "2.0.21"
+ksp = "2.0.21-1.0.27"
 compose = "1.7.5"
 compose-compiler = "1.0.0"
 compose-material3 = "1.3.1"
@@ -64,6 +66,12 @@ androidx-adaptive-android = { group = "androidx.compose.material3.adaptive", nam
 androidx-paging-compose = { group = "androidx.paging", name = "paging-compose", version.ref = "androidxPaging" }
 androidx-paging-common = { group = "androidx.paging", name = "paging-common", version.ref = "androidxPaging" }
 
+# Dependencies of the included build-logic
+androidGradlePlugin = { module = "com.android.tools.build:gradle", version.ref = "agp" }
+androidToolsCommon = { group = "com.android.tools", name = "common", version.ref = "androidTools" }
+kotlinGradlePlugin = { group = "org.jetbrains.kotlin", name = "kotlin-gradle-plugin", version.ref = "kotlin" }
+kspGradlePlugin = { group = "com.google.devtools.ksp", name = "com.google.devtools.ksp.gradle.plugin", version.ref = "ksp" }
+
 [plugins]
 androidApplication = { id = "com.android.application", version.ref = "agp" }
 androidLibrary = { id = "com.android.library", version.ref = "agp" }
@@ -71,9 +79,12 @@ kotlinAndroid = { id = "org.jetbrains.kotlin.android", version.ref = "kotlin" }
 kotlinMultiplatform = { id = "org.jetbrains.kotlin.multiplatform", version.ref = "kotlin" }
 kotlin-serialization = { id = "org.jetbrains.kotlin.plugin.serialization", version.ref = "kotlin" }
 room = { id = "androidx.room", version.ref = "androidxRoom" }
-kotlin-ksp = { id = "com.google.devtools.ksp", version = "2.0.21-1.0.27" }
+kotlin-ksp = { id = "com.google.devtools.ksp", version.ref = "ksp" }
 moko-resources = { id = "dev.icerock.mobile.multiplatform-resources", version = "0.24.2" }
 compose-compiler = { id = "org.jetbrains.kotlin.plugin.compose", version.ref = "kotlin" }
 composeMultiplatform = { id = "org.jetbrains.compose", version.ref = "compose-multiplatform" }
 jetbrains-kotlin-jvm = { id = "org.jetbrains.kotlin.jvm", version.ref = "jetbrainsKotlinJvm" }
 
+# Plugins defined by this project
+
+feature = { id = "com.opencritic.kmp.feature", version = "unspecified" }

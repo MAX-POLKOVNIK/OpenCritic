@@ -35,5 +35,3 @@ fun NSBundle.Companion.loadableBundle(identifier: String): NSBundle {
     throw IllegalArgumentException("bundle with identifier $identifier not found")
 }
 
-var isBundleSearchLogEnabled = false
-

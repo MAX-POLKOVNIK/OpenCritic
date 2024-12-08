@@ -9,7 +9,7 @@ android {
     compileSdk = 34
     defaultConfig {
         applicationId = "com.opencritic.app.android"
-        minSdk = 28
+        minSdk = 26
         targetSdk = 34
         versionCode = 3
         versionName = "1.2"

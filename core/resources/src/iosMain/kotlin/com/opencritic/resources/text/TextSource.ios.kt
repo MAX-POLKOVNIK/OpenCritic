@@ -1,6 +1,6 @@
 package com.opencritic.resources.text
 
-import dev.icerock.moko.resources.desc.desc
+import dev.icerock.moko.resources.desc.ResourceStringDesc
 
 @Suppress("unused")
 fun TextSource.text(): String =
@@ -8,5 +8,5 @@ fun TextSource.text(): String =
         is DateTextSource -> text()
         is StringTextSource -> string
         is ResourceFormattedTextSource -> desc.localized()
-        is ResourceTextSource -> resId.desc().localized()
+        is ResourceTextSource -> ResourceStringDesc(resId).localized()
     }
